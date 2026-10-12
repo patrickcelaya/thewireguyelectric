@@ -18,6 +18,12 @@ const out = args.out ?? 'migration/seo-crawl.json';
 const concurrency = Number(args.concurrency ?? 4);
 const maxPages = Number(args.max ?? 2000);
 const userAgent = 'WireGuySEOParity/1.0 (+migration audit)';
+// Protected Vercel deployments: pass the project's "Protection Bypass for
+// Automation" secret via VERCEL_AUTOMATION_BYPASS_SECRET.
+const requestHeaders = {
+  'user-agent': userAgent,
+  ...(process.env.VERCEL_AUTOMATION_BYPASS_SECRET ? {'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET} : {}),
+};
 
 // Pages that exist on the current site but aren't in its sitemap, plus legacy and
 // junk URLs whose status we want on record.
@@ -67,7 +73,7 @@ function normalizePath(href, from) {
 
 async function fetchSitemapPaths() {
   try {
-    const res = await fetch(new URL('/sitemap.xml', base), { headers: { 'user-agent': userAgent } });
+    const res = await fetch(new URL('/sitemap.xml', base), { headers: requestHeaders });
     if (!res.ok) return [];
     const xml = await res.text();
     const locs = [...xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].map((m) => m[1]);
@@ -75,7 +81,7 @@ async function fetchSitemapPaths() {
     for (const loc of locs) {
       if (loc.endsWith('.xml')) {
         // Sitemap index: pull child sitemaps too.
-        const child = await fetch(new URL(new URL(loc).pathname, base), { headers: { 'user-agent': userAgent } });
+        const child = await fetch(new URL(new URL(loc).pathname, base), { headers: requestHeaders });
         if (child.ok) {
           const cxml = await child.text();
           for (const m of cxml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)) paths.push(new URL(m[1]).pathname);
@@ -95,7 +101,7 @@ async function fetchWithChain(path) {
   const chain = [];
   let url = new URL(path, base);
   for (let hop = 0; hop < 6; hop++) {
-    const res = await fetch(url, { redirect: 'manual', headers: { 'user-agent': userAgent } });
+    const res = await fetch(url, { redirect: 'manual', headers: requestHeaders });
     if (res.status >= 300 && res.status < 400 && res.headers.get('location')) {
       const next = new URL(res.headers.get('location'), url);
       chain.push({ status: res.status, from: url.href, to: next.href });

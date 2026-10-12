@@ -70,7 +70,7 @@ node scripts/seo/crawl.mjs --base http://localhost:4321 --paths-from migration/s
 node scripts/seo/parity.mjs                           # exits 1 on any SEO regression
 ```
 
-To check a real Vercel preview, crawl its URL instead (add `--allow-noindex`, since previews are noindexed). CI runs the local version on every pull request.
+To check the real Vercel deployment, crawl https://thewireguyelectric.vercel.app instead. It sits behind Vercel Authentication, so export `VERCEL_AUTOMATION_BYPASS_SECRET` (Project → Settings → Deployment Protection → Protection Bypass for Automation) and add `--allow-noindex`, since the site is noindexed until launch. CI runs the local version on every pull request.
 
 ## How content gets to the live site
 
