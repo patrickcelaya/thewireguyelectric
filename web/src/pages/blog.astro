@@ -1,39 +1,21 @@
 ---
-// All posts on one page (Webflow paginated with ?f384d0a1_page=N; a single list
-// gives every post a link from /blog, and the old query URLs canonicalize here).
-import BaseLayout from '../layouts/BaseLayout.astro'
-import PostCard from '../components/PostCard.astro'
-import {getPage, getPostCategories, getPosts, getSettings} from '../lib/queries'
+// All posts on one page. Webflow paginated with ?f384d0a1_page=N; one list gives
+// every post a link from /blog, and the old query URLs canonicalize here.
+import WebflowLayout from '../layouts/WebflowLayout.astro'
+import {getPage, getPosts, getSettings} from '../lib/queries'
+import {legacyPage, renderBlogPage} from '../lib/legacy'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
 import {blogNode, webPageNode} from '../lib/schema'
 
-const [settings, page, posts, categories] = await Promise.all([getSettings(), getPage('blog'), getPosts(), getPostCategories()])
+const [settings, page, posts] = await Promise.all([getSettings(), getPage('blog'), getPosts()])
 const title = resolveTitle(page?.seo, `Electrical Tips & Guides | ${settings.businessName} Blog`)
 const description = resolveDescription(page?.seo, page?.intro)
 const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}]
-const featured = posts.filter((p) => p.featured).slice(0, 1)[0] ?? posts[0]
-const rest = posts.filter((p) => p !== featured)
 ---
 
-<BaseLayout
+<WebflowLayout
   meta={{title, description, path: '/blog', ogImage: resolveOgImage(settings, page?.seo?.ogImage), breadcrumbs: crumbs}}
   schema={[webPageNode({path: '/blog', title, description, type: 'CollectionPage', breadcrumbs: crumbs}), blogNode(settings, posts)]}
 >
-  <header class="container-page mt-8 max-w-3xl">
-    <h1 class="text-4xl font-bold leading-tight sm:text-5xl">{page?.heading ?? 'Electrical tips & guides'}</h1>
-    {page?.intro && <p class="mt-4 text-lg">{page.intro}</p>}
-  </header>
-  {
-    categories.length > 0 && (
-      <nav aria-label="Blog categories" class="container-page mt-6">
-        <ul class="flex flex-wrap gap-2 text-sm">
-          {categories.map((c) => <li><a href={`/posts-categories/${c.slug}`} class="inline-block rounded-full border border-line px-3 py-1 hover:border-brand hover:text-brand">{c.name}</a></li>)}
-        </ul>
-      </nav>
-    )
-  }
-  <section class="container-page mt-10">
-    {featured && <div class="mb-10 max-w-3xl"><PostCard post={featured} headingLevel="h2" /></div>}
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{rest.map((p) => <PostCard post={p} headingLevel="h2" />)}</div>
-  </section>
-</BaseLayout>
+  <Fragment set:html={renderBlogPage(legacyPage('blog')!, posts)} />
+</WebflowLayout>

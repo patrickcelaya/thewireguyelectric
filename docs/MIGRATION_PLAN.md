@@ -39,6 +39,32 @@ Deliberate changes:
 - The self-serving `aggregateRating` in the homepage schema is removed, because Google never shows stars for a business's own ratings. The rating stays visible on the page.
 - The `/blog` list is no longer paginated by query string.
 
+## Design: ported from Webflow (October 2026)
+
+The site renders the **published Webflow design itself**, not a re-creation:
+- Webflow's compiled CSS.
+- The original navbar and footer.
+- The page markup.
+- All 107 design images and fonts, downloaded into `web/public/wf/`.
+
+`scripts/migrate/build-legacy-design.mjs` generates `web/src/legacy/` from the live HTML snapshots. `web/src/lib/legacy.ts` fills the CMS spots (headlines, intros, rich text, service and blog lists) from Sanity at build time, the same way Webflow's templates do.
+
+Webflow's runtime (jQuery plus about 700 KB of JS) is replaced by `web/src/scripts/webflow-lite.ts`, about 5 KB. It handles:
+- the mobile menu, dropdowns, the FAQ accordions and the tabs;
+- scroll-in animations;
+- lazy-loaded review and Instagram widgets;
+- form submissions.
+
+Side-by-side screenshots match the live site, with identical page heights on desktop. The parity check reports 0 errors and 0 warnings. The full-page copy on About, Team, Contact, Careers, Commercial and Services is back.
+
+Deliberate differences from the live site:
+- "All Services" lists every service. Webflow's list was capped at 16, which hid Panels, EV Chargers, Recessed Lighting, Troubleshooting and Remodels.
+- The blog index lists every post, instead of 6 per page.
+- Duplicate H1s are demoted to H2.
+- The "Buy this Template" leftovers from the purchased Webflow template are removed.
+
+The design refresh builds on this foundation, section by section.
+
 ## Phases
 
 ### Phase 1: Accounts, data and decisions

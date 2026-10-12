@@ -1,13 +1,7 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import SanityImage from '../../components/SanityImage.astro'
-import RichText from '../../components/RichText.astro'
-import TrustBar from '../../components/TrustBar.astro'
-import ServiceCard from '../../components/ServiceCard.astro'
-import PostCard from '../../components/PostCard.astro'
-import FaqList from '../../components/FaqList.astro'
-import CtaBand from '../../components/CtaBand.astro'
-import {getLocations, getService, getServices, getSettings} from '../../lib/queries'
+import WebflowLayout from '../../layouts/WebflowLayout.astro'
+import {getService, getServices, getSettings} from '../../lib/queries'
+import {renderService} from '../../lib/legacy'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
 import {faqNode, serviceNode, webPageNode} from '../../lib/schema'
 
@@ -15,10 +9,8 @@ export async function getStaticPaths() {
   return (await getServices()).map((s) => ({params: {slug: s.slug}}))
 }
 
-const {slug} = Astro.params
-const [settings, service, locations] = await Promise.all([getSettings(), getService(slug!), getLocations()])
-if (!service) throw new Error(`service ${slug} not found`)
-
+const [settings, service] = await Promise.all([getSettings(), getService(Astro.params.slug!)])
+if (!service) throw new Error(`service ${Astro.params.slug} not found`)
 const path = `/services/${service.slug}`
 // Same template Webflow used: "{name} in Mesa, AZ | The Wire Guy"
 const title = resolveTitle(service.seo, `${service.name} in Mesa, AZ | The Wire Guy`)
@@ -29,55 +21,11 @@ const crumbs = [
   ...(service.category ? [{name: service.category.name, path: `/services-categories/${service.category.slug}`}] : []),
   {name: service.name, path},
 ]
-const faqs = service.faqs ?? []
 ---
 
-<BaseLayout
+<WebflowLayout
   meta={{title, description, path, ogImage: resolveOgImage(settings, service.seo?.ogImage, service.mainImage), noIndex: service.seo?.noIndex, breadcrumbs: crumbs}}
-  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), serviceNode(service, settings, description), faqNode(path, faqs)]}
+  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), serviceNode(service, settings, description), faqNode(path, service.faqs ?? [])]}
 >
-  <section class="container-page mt-8 grid items-start gap-10 lg:grid-cols-2">
-    <div>
-      <h1 class="text-4xl font-bold leading-tight sm:text-5xl">{service.heading ?? service.name}</h1>
-      {service.shortDescription && <p class="mt-4 text-lg">{service.shortDescription}</p>}
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="/contact-us" class="btn-primary">Get a free estimate</a>
-        <a href={`tel:${settings.phoneE164}`} class="btn-outline">Call {settings.phone}</a>
-      </div>
-      <TrustBar settings={settings} class="mt-6" />
-    </div>
-    <SanityImage image={service.mainImage} width={720} aspect={4 / 3} priority class="aspect-[4/3] w-full rounded-lg object-cover" />
-  </section>
-
-  <article class="container-page mt-16 max-w-3xl">
-    <RichText value={service.body} />
-  </article>
-
-  <FaqList faqs={faqs} heading={`${service.name}: common questions`} />
-
-  <section class="container-page mt-16" aria-labelledby="areas-heading">
-    <h2 id="areas-heading" class="text-2xl font-bold">{service.name} across the East Valley</h2>
-    <ul class="mt-4 flex flex-wrap gap-2 text-sm">
-      <li><a href="/" class="inline-block rounded-full border border-line px-3 py-1 hover:border-brand hover:text-brand">Mesa</a></li>
-      {locations.map((l) => <li><a href={`/locations/${l.slug}`} class="inline-block rounded-full border border-line px-3 py-1 hover:border-brand hover:text-brand">{l.name}</a></li>)}
-    </ul>
-  </section>
-
-  {
-    service.relatedServices?.length ? (
-      <section class="container-page mt-16">
-        <h2 class="text-2xl font-bold">Related services</h2>
-        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{service.relatedServices.map((s) => <ServiceCard service={s} />)}</div>
-      </section>
-    ) : null
-  }
-  {
-    service.relatedPosts?.length ? (
-      <section class="container-page mt-16">
-        <h2 class="text-2xl font-bold">Helpful guides</h2>
-        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{service.relatedPosts.map((p) => <PostCard post={p} />)}</div>
-      </section>
-    ) : null
-  }
-  <CtaBand settings={settings} heading={`Need ${service.name.toLowerCase()}?`} />
-</BaseLayout>
+  <Fragment set:html={renderService(service)} />
+</WebflowLayout>

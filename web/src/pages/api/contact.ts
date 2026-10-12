@@ -10,7 +10,7 @@ import type {APIRoute} from 'astro'
 export const prerender = false
 
 const MIN_FILL_MS = 2500
-const FIELDS = ['name', 'phone', 'email', 'zip', 'experience', 'startDate', 'message'] as const
+const FIELDS = ['name', 'phone', 'email', 'zip', 'experience', 'fullTime', 'startDate', 'message'] as const
 
 type Lead = Record<(typeof FIELDS)[number] | 'formType' | 'page', string>
 

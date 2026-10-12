@@ -264,7 +264,14 @@ for (const c of items(await readJson('migration/webflow-cms/posts-categories.jso
   })
 }
 
-// Services
+// Services, in the order the live /services page lists them (Residential tab,
+// then Commercial, then the rest of "All").
+const servicesPage = cheerio.load(await readFile(p('migration/live-snapshots/services.html'), 'utf8'))
+const tabOrder = (tab) =>
+  servicesPage(`.w-tab-pane[data-w-tab="${tab}"] .w-dyn-item a.services-title`)
+    .map((_, a) => servicesPage(a).attr('href').split('/').pop())
+    .get()
+const serviceOrder = [...new Set([...tabOrder('Residential'), ...tabOrder('Commercial'), ...tabOrder('All')])]
 for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
   if (it.isArchived) continue
   const f = it.fieldData
@@ -282,6 +289,7 @@ for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
     mainImage: image(f['main-image']),
     body: toPortableText(f['post-body-2'], path),
     seo: seoFor(path, `${f.name} in Mesa, AZ | The Wire Guy`, f['short-description']),
+    order: serviceOrder.includes(f.slug) ? serviceOrder.indexOf(f.slug) : 100,
     webflowId: it.id,
   })
 }

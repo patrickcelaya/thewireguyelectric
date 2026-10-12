@@ -1,12 +1,11 @@
 ---
-// Standalone pages from Sanity (about-us, contact-us, faq, careers, our-team,
-// commercial-electrician, ...). /, /services and /blog have their own templates.
-import BaseLayout from '../layouts/BaseLayout.astro'
-import PageSections from '../components/sections/PageSections.astro'
+// Standalone pages (about-us, contact-us, faq, careers, our-team, commercial-electrician).
+// /, /services and /blog have their own routes.
+import WebflowLayout from '../layouts/WebflowLayout.astro'
 import {getFaqs, getOpenJobs, getPage, getPageSlugs, getSettings} from '../lib/queries'
+import {legacyPage} from '../lib/legacy'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
 import {faqNode, jobPostingNode, webPageNode} from '../lib/schema'
-import type {PageSection} from '../lib/types'
 
 export async function getStaticPaths() {
   const reserved = new Set(['index', 'services', 'blog'])
@@ -17,40 +16,19 @@ export async function getStaticPaths() {
 const slug = Astro.params.page!
 const [settings, page] = await Promise.all([getSettings(), getPage(slug)])
 if (!page) throw new Error(`page ${slug} not found`)
+const html = legacyPage(slug)
+if (!html) throw new Error(`no design template for /${slug}; add one to src/legacy/pages`)
 
 const title = resolveTitle(page.seo, `${page.title} | ${settings.titleSuffix ?? settings.businessName}`)
 const description = resolveDescription(page.seo, page.intro)
 const path = `/${slug}`
-
-// Default sections per page until each page is built out in Sanity.
-const DEFAULTS: Record<string, PageSection[]> = {
-  'contact-us': [{_type: 'contactSection', _key: 'form', heading: 'Request a free estimate', formType: 'estimate'}],
-  careers: [
-    {_type: 'jobsSection', _key: 'jobs', heading: 'Open positions'},
-    {_type: 'contactSection', _key: 'apply', heading: 'Apply', formType: 'careers'},
-  ],
-  'our-team': [{_type: 'teamSection', _key: 'team'}, {_type: 'ctaSection', _key: 'cta'}],
-  faq: [{_type: 'faqSection', _key: 'faqs', heading: 'Common questions'}, {_type: 'ctaSection', _key: 'cta'}],
-  'commercial-electrician': [{_type: 'servicesSection', _key: 'services', heading: 'Commercial electrical services', category: {slug: 'commercial'}}, {_type: 'ctaSection', _key: 'cta'}],
-  'about-us': [{_type: 'teamSection', _key: 'team', heading: 'Meet the team'}, {_type: 'reviewsSection', _key: 'reviews', heading: 'What our customers say'}, {_type: 'ctaSection', _key: 'cta'}],
-}
-const sections = page.sections?.length ? page.sections : (DEFAULTS[slug] ?? [{_type: 'ctaSection', _key: 'cta'}])
-
+const crumbs = [{name: 'Home', path: '/'}, {name: page.title, path}]
 const PAGE_TYPES: Record<string, string> = {'about-us': 'AboutPage', 'contact-us': 'ContactPage', faq: 'FAQPage', 'our-team': 'AboutPage'}
-const schema: Array<Record<string, unknown> | undefined> = [
-  webPageNode({path, title, description, type: PAGE_TYPES[slug], breadcrumbs: [{name: 'Home', path: '/'}, {name: page.title, path}]}),
-]
-if (sections.some((s) => s._type === 'faqSection')) schema.push(faqNode(path, await getFaqs()))
-if (sections.some((s) => s._type === 'jobsSection')) schema.push(...(await getOpenJobs()).map((j) => jobPostingNode(j, settings)))
+const schema: Array<Record<string, unknown> | undefined> = [webPageNode({path, title, description, type: PAGE_TYPES[slug], breadcrumbs: crumbs})]
+if (slug === 'faq') schema.push(faqNode(path, await getFaqs()))
+if (slug === 'careers') schema.push(...(await getOpenJobs()).map((j) => jobPostingNode(j, settings)))
 ---
 
-<BaseLayout
-  meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex, breadcrumbs: [{name: 'Home', path: '/'}, {name: page.title, path}]}}
-  schema={schema}
->
-  <header class="container-page mt-8 max-w-3xl">
-    <h1 class="text-4xl font-bold leading-tight sm:text-5xl">{page.heading ?? page.title}</h1>
-    {page.intro && <p class="mt-4 text-lg">{page.intro}</p>}
-  </header>
-  <PageSections sections={sections} settings={settings} hasH1 />
-</BaseLayout>
+<WebflowLayout meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex, breadcrumbs: crumbs}} schema={schema}>
+  <Fragment set:html={html} />
+</WebflowLayout>

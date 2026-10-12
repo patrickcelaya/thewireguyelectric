@@ -1,33 +1,19 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import ServiceCard from '../components/ServiceCard.astro'
-import CtaBand from '../components/CtaBand.astro'
-import PageSections from '../components/sections/PageSections.astro'
-import {getPage, getServiceCategories, getSettings} from '../lib/queries'
+import WebflowLayout from '../layouts/WebflowLayout.astro'
+import {getPage, getServices, getSettings} from '../lib/queries'
+import {legacyPage, renderServicesPage} from '../lib/legacy'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
 import {webPageNode} from '../lib/schema'
 
-const [settings, page, categories] = await Promise.all([getSettings(), getPage('services'), getServiceCategories()])
+const [settings, page, services] = await Promise.all([getSettings(), getPage('services'), getServices()])
 const title = resolveTitle(page?.seo, `Electrical Services | ${settings.businessName}`)
 const description = resolveDescription(page?.seo, page?.intro)
 const crumbs = [{name: 'Home', path: '/'}, {name: 'Services', path: '/services'}]
 ---
 
-<BaseLayout
+<WebflowLayout
   meta={{title, description, path: '/services', ogImage: resolveOgImage(settings, page?.seo?.ogImage), breadcrumbs: crumbs}}
   schema={[webPageNode({path: '/services', title, description, type: 'CollectionPage', breadcrumbs: crumbs})]}
 >
-  <header class="container-page mt-8 max-w-3xl">
-    <h1 class="text-4xl font-bold leading-tight sm:text-5xl">{page?.heading ?? 'Electrical services'}</h1>
-    {page?.intro && <p class="mt-4 text-lg">{page.intro}</p>}
-  </header>
-  {
-    categories.map((c) => (
-      <section class="container-page mt-14">
-        <h2 class="text-3xl font-bold"><a href={`/services-categories/${c.slug}`} class="hover:text-brand">{c.name}</a></h2>
-        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{c.services.map((s) => <ServiceCard service={s} />)}</div>
-      </section>
-    ))
-  }
-  {page?.sections?.length ? <PageSections sections={page.sections} settings={settings} hasH1 /> : <CtaBand settings={settings} />}
-</BaseLayout>
+  <Fragment set:html={renderServicesPage(legacyPage('services')!, services)} />
+</WebflowLayout>

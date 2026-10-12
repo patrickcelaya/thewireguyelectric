@@ -1,7 +1,6 @@
 // @ts-check
 import {defineConfig} from 'astro/config'
 import vercel from '@astrojs/vercel'
-import tailwindcss from '@tailwindcss/vite'
 import {loadEnv} from 'vite'
 import {LEGACY_REDIRECTS, flattenRedirects, loadSanityRedirects} from './src/config/redirects.mjs'
 
@@ -25,5 +24,4 @@ export default defineConfig({
   redirects: flattenRedirects({...LEGACY_REDIRECTS, ...sanityRedirects}),
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},
-  vite: {plugins: [tailwindcss()]},
 })

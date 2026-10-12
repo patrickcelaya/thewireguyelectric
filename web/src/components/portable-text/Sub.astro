@@ -1,1 +1,0 @@
-<sub><slot /></sub>
