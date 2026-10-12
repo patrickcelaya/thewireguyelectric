@@ -33,6 +33,11 @@ export interface PostalAddress {
   postalCode?: string
   geo?: {lat: number; lng: number}
   googleMapsUrl?: string
+  gbpName?: string
+  /** Slug of the city page this office's Google Business Profile links to. */
+  locationSlug?: string
+  phone?: string
+  appointmentOnly?: boolean
 }
 
 export interface SiteSettings {

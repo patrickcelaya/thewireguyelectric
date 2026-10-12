@@ -2,7 +2,7 @@ import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
   api: {
-    projectId: process.env.SANITY_STUDIO_PROJECT_ID,
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID ?? 'qhi2uf0l',
     dataset: process.env.SANITY_STUDIO_DATASET ?? 'production',
   },
   // Hosted at https://<studioHost>.sanity.studio after `pnpm --filter studio deploy`.

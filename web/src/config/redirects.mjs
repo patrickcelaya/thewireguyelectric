@@ -6,8 +6,8 @@
 // 2. `redirect` documents in Sanity, so editors can add redirects without a deploy
 //    of code (a publish triggers a rebuild).
 //
-// TODO before launch: add every rule from Webflow → Site settings → Publishing →
-// 301 redirects. The Webflow API doesn't expose them on this plan.
+// Webflow had no 301 redirects configured (confirmed by the owner, 2026-10-12),
+// so there is no legacy rule list to carry over.
 import {createClient} from '@sanity/client'
 
 /** @type {Record<string, string>} */
@@ -18,6 +18,20 @@ export const LEGACY_REDIRECTS = {
   '/services/electrical-panels': '/services/panels',
   '/blog/[slug]': '/blog-posts/[slug]',
   '/index.html': '/',
+
+  // Misspelled URLs that Google has seen (Search Console, last 16 months) and
+  // that 404 on the live site. Redirecting recovers whatever links point at them.
+  '/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-time': '/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix',
+  '/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-time-fix': '/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix',
+  '/blog-posts/bathroom-or-garage-outlets-not-working-heres-to-fix': '/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix',
+  '/blog-posts/garage-outlets-not-working-heres-how-to-fix': '/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix',
+  '/blog-posts/can-hot-weather-cause-your-breaker-to-trip': '/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip',
+  '/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trap': '/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip',
+  '/blog-posts/can-hot-weather-cause-your-circuit-breaker-to_trip': '/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip',
+  '/blog-posts/electrical-work-in-arizona': '/blog-posts/diy-electrical-work-in-arizona',
+  '/blog-posts/hot-tub-electrical-installation-cost-in-arizona': '/blog-posts/hot-tub-electrical-installation-cost-arizona',
+  '/blog-posts/panel-upgrade-cost-arizona': '/blog-posts/electrical-panel-upgrade-cost-arizona',
+  '/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex': '/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix',
 
   // Archived 2023 posts (404 today); route any old links to the closest live page.
   '/blog-posts/upgrading-your-electrical-panel': '/services/panels',

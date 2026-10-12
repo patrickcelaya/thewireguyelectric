@@ -8,7 +8,7 @@ import FaqList from '../../components/FaqList.astro'
 import CtaBand from '../../components/CtaBand.astro'
 import {getLocations, getServices, getSettings} from '../../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
-import {faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
+import {branchFor, branchNode, faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
 import type {LocationDoc} from '../../lib/types'
 
 export async function getStaticPaths() {
@@ -25,11 +25,12 @@ const description = resolveDescription(location.seo, location.description)
 const crumbs = [{name: 'Home', path: '/'}, {name: 'Service areas', path: '/services'}, {name: location.name, path}]
 const featured = location.featuredServices?.length ? location.featuredServices : services.slice(0, 6)
 const faqs = location.faqs ?? []
+const office = branchFor(settings, location.slug)
 ---
 
 <BaseLayout
   meta={{title, description, path, ogImage: resolveOgImage(settings, location.seo?.ogImage, location.mainImage), noIndex: location.seo?.noIndex, breadcrumbs: crumbs}}
-  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), locationServiceNode(location), faqNode(path, faqs)]}
+  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), locationServiceNode(location), office && branchNode(settings, office), faqNode(path, faqs)]}
 >
   <section class="container-page mt-8 grid items-start gap-10 lg:grid-cols-2">
     <div>
@@ -40,6 +41,16 @@ const faqs = location.faqs ?? []
         <a href={`tel:${settings.phoneE164}`} class="btn-outline">Call {settings.phone}</a>
       </div>
       <TrustBar settings={settings} class="mt-6" />
+      {
+        office && (
+          <address class="mt-6 not-italic text-sm">
+            <span class="font-semibold text-ink">{office.gbpName ?? settings.businessName}</span>
+            <br />
+            {office.streetAddress}, {office.addressLocality}, {office.addressRegion} {office.postalCode}
+            {office.appointmentOnly && <><br />Office visits by appointment only. We come to you.</>}
+          </address>
+        )
+      }
     </div>
     <SanityImage image={location.mainImage} width={720} aspect={4 / 3} priority class="aspect-[4/3] w-full rounded-lg object-cover" />
   </section>

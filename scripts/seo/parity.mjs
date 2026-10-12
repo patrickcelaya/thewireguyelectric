@@ -36,7 +36,12 @@ for (const [path, before] of Object.entries(baseline.pages)) {
   const wasIndexable = before.status === 200 && !/noindex/i.test(before.metaRobots ?? '')
 
   if (before.status !== 200) {
-    if (after?.status === 200 || after?.redirectChain?.length) add('info', path, 'status', `was ${before.status}, now ${after?.redirectChain?.length ? `redirects to ${after.finalUrl}` : after?.status}`)
+    if (after?.redirectChain?.length) {
+      // A new redirect must land on a live page in one hop.
+      if (after.status !== 200) add('error', path, 'redirect-target', `redirects to ${after.finalUrl}, which returns ${after.status}`)
+      else if (after.redirectChain.length > 1) add('error', path, 'redirect-chain', after.redirectChain.map((h) => `${h.status} ${h.from} -> ${h.to}`).join(' | '))
+      else add('info', path, 'status', `was ${before.status}, now redirects to ${new URL(after.finalUrl).pathname}`)
+    } else if (after?.status === 200) add('info', path, 'status', `was ${before.status}, now 200`)
     continue
   }
   if (!after) {

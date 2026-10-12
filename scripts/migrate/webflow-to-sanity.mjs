@@ -427,15 +427,22 @@ push({
   phone: '(602) 769-7892',
   phoneE164: biz.telephone ?? '+16027697892',
   email: biz.email,
-  addresses: (biz.address ?? []).map((a, i) => ({
-    _type: 'postalAddress',
-    _key: `addr${i}`,
-    label: `${a.addressLocality} office`,
-    streetAddress: a.streetAddress,
-    addressLocality: a.addressLocality,
-    addressRegion: a.addressRegion,
-    postalCode: a.postalCode,
-  })),
+  addresses: (biz.address ?? []).map((a, i) => {
+    // Scottsdale has its own Google Business Profile (appointment-only office);
+    // it's modeled as a branch whose entity lives on /locations/scottsdale.
+    const isScottsdale = a.addressLocality === 'Scottsdale'
+    const scottsdale = isScottsdale ? locationKeys.find((k) => docs.some((d) => d._id === idFor(k) && d.slug?.current === 'scottsdale')) : undefined
+    return {
+      _type: 'postalAddress',
+      _key: `addr${i}`,
+      label: `${a.addressLocality} office`,
+      streetAddress: a.streetAddress,
+      addressLocality: a.addressLocality,
+      addressRegion: a.addressRegion,
+      postalCode: a.postalCode,
+      ...(scottsdale ? {locationPage: ref(scottsdale), appointmentOnly: true} : {}),
+    }
+  }),
   openingHours: [{_type: 'openingHours', _key: 'weekdays', days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '17:00'}],
   priceRange: biz.priceRange ?? '$$',
   foundingDate: biz.foundingDate ?? '2017',

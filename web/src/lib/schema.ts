@@ -1,7 +1,7 @@
 // JSON-LD builders. Everything is emitted as a single @graph per page, with
 // stable @ids so Google (and AI search) can tie every page back to one business
 // entity.
-import type {FaqItem, JobOpening, LocationDoc, PortableTextValue, PostDoc, ServiceDoc, SiteSettings} from './types'
+import type {FaqItem, JobOpening, LocationDoc, PortableTextValue, PostDoc, PostalAddress, ServiceDoc, SiteSettings} from './types'
 import {SITE_URL, absoluteUrl, type Crumb} from './seo'
 import {imageUrl, hasImage} from './image'
 
@@ -40,15 +40,11 @@ export function businessNode(s: SiteSettings, services?: Array<{name: string; sl
     image: `${SITE_URL}/logo.png`,
     logo: {'@type': 'ImageObject', url: `${SITE_URL}/logo.png`, width: 500, height: 447},
     identifier: s.rocLicense ? {'@type': 'PropertyValue', name: 'ROC License', value: s.rocLicense} : undefined,
-    address: s.addresses?.map((a) => ({
-      '@type': 'PostalAddress',
-      streetAddress: a.streetAddress,
-      addressLocality: a.addressLocality,
-      addressRegion: a.addressRegion,
-      postalCode: a.postalCode,
-      addressCountry: 'US',
-    })),
-    geo: s.addresses?.[0]?.geo ? {'@type': 'GeoCoordinates', latitude: s.addresses[0].geo.lat, longitude: s.addresses[0].geo.lng} : undefined,
+    // The main entity is the headquarters. Offices with their own Google Business
+    // Profile get their own entity on their city page (see branchNode).
+    address: mainAddresses(s).map(postalAddressNode),
+    geo: mainAddresses(s)[0]?.geo ? {'@type': 'GeoCoordinates', latitude: mainAddresses(s)[0].geo!.lat, longitude: mainAddresses(s)[0].geo!.lng} : undefined,
+    subOrganization: branchAddresses(s).length ? branchAddresses(s).map((a) => ({'@id': branchId(a)})) : undefined,
     openingHoursSpecification: s.openingHours?.map((h) => ({
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: h.days.map((d) => DAY_MAP[d] ?? d),
@@ -68,6 +64,48 @@ export function businessNode(s: SiteSettings, services?: Array<{name: string; sl
     sameAs: s.sameAs?.length ? s.sameAs : undefined,
   }
   return node
+}
+
+function postalAddressNode(a: PostalAddress) {
+  return {
+    '@type': 'PostalAddress',
+    streetAddress: a.streetAddress,
+    addressLocality: a.addressLocality,
+    addressRegion: a.addressRegion,
+    postalCode: a.postalCode,
+    addressCountry: 'US',
+  }
+}
+
+const mainAddresses = (s: SiteSettings) => (s.addresses ?? []).filter((a) => !a.locationSlug)
+const branchAddresses = (s: SiteSettings) => (s.addresses ?? []).filter((a) => a.locationSlug)
+const branchId = (a: PostalAddress) => `${absoluteUrl(`/locations/${a.locationSlug}`)}#business`
+
+/** The office whose Google Business Profile links to this city page, if any. */
+export function branchFor(s: SiteSettings, locationSlug: string) {
+  return branchAddresses(s).find((a) => a.locationSlug === locationSlug)
+}
+
+/** A second office with its own Google Business Profile (e.g. Scottsdale), as its own entity. */
+export function branchNode(s: SiteSettings, a: PostalAddress): Node {
+  return {
+    '@type': 'Electrician',
+    '@id': branchId(a),
+    // Same brand unless the Google Business Profile uses a different name.
+    name: a.gbpName ?? s.businessName,
+    url: absoluteUrl(`/locations/${a.locationSlug}`),
+    telephone: a.phone ?? s.phoneE164,
+    email: s.email,
+    priceRange: s.priceRange,
+    image: `${SITE_URL}/logo.png`,
+    address: postalAddressNode(a),
+    geo: a.geo ? {'@type': 'GeoCoordinates', latitude: a.geo.lat, longitude: a.geo.lng} : undefined,
+    openingHoursSpecification: s.openingHours?.map((h) => ({'@type': 'OpeningHoursSpecification', dayOfWeek: h.days, opens: h.opens, closes: h.closes})),
+    areaServed: {'@type': 'City', name: a.addressLocality},
+    parentOrganization: {'@id': BUSINESS_ID},
+    identifier: s.rocLicense ? {'@type': 'PropertyValue', name: 'ROC License', value: s.rocLicense} : undefined,
+    sameAs: a.googleMapsUrl ? [a.googleMapsUrl] : undefined,
+  }
 }
 
 export function websiteNode(s: SiteSettings): Node {

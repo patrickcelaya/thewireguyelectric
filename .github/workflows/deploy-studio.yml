@@ -1,0 +1,31 @@
+name: Deploy Sanity Studio
+
+# Deploys studio/ to https://thewireguyelectric.sanity.studio.
+# Needs a repository secret SANITY_AUTH_TOKEN: create it in sanity.io/manage →
+# The Wire Guy Electric → API → Tokens, with the "Deploy Studio" permission.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['studio/**']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Deploy
+        working-directory: studio
+        run: pnpm exec sanity deploy --yes
+        env:
+          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
+          SANITY_STUDIO_PROJECT_ID: qhi2uf0l
+          SANITY_STUDIO_DATASET: production

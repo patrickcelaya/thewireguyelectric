@@ -41,28 +41,26 @@ Deliberate changes:
 
 ## Phases
 
-### Phase 1: Accounts, data and decisions (needs you)
+### Phase 1: Accounts, data and decisions
 
-1. **Sanity project.** Create it (I can do this through the Sanity connection once you confirm the org and name), then:
-   - deploy the Studio (`thewireguyelectric.sanity.studio`);
-   - import `production.ndjson`;
-   - invite editors.
-2. **Vercel account.** Vercel's Hobby plan is for non-commercial use, so this site needs a **Pro** team. Then:
-   - import the GitHub repo with root directory `web`;
-   - add env vars;
-   - add the Sanity → deploy-hook webhook.
-3. **Webflow's existing 301 redirects.** Copy them from Webflow → Site settings → Publishing → 301 redirects. Webflow's API only exposes them on Enterprise plans. **This is the single biggest migration risk:** any old URL with backlinks that isn't carried over breaks.
-4. **SEO data exports.** The connected Ahrefs plan has no API access. Export these instead:
-   - **Ahrefs:** Top pages, Organic keywords, Best by links, Broken backlinks, Referring domains.
-   - **Google Search Console:** Performance → Pages and Queries (16 months), and Links → Top linked pages.
+| Item | Status |
+|---|---|
+| Webflow 301 redirects | **None existed** (confirmed by the owner). No legacy rules to carry over. |
+| Search Console data | Pulled through OpenSEO (16 months, 107 URLs): `migration/seo-equity/gsc-pages-16mo.tsv`. 11 misspelled URLs that Google has seen and that 404 today now 301 to the right posts. |
+| Sanity project | **Created:** "The Wire Guy Electric" (`qhi2uf0l`, dataset `production`), in the Celaya Ventures org. All 134 documents imported, with 83 images re-hosted on Sanity's CDN. The build output has zero references to Webflow's CDN. |
+| Sanity Studio hosting | **Waiting on a token.** Create one in sanity.io/manage → project → API → Tokens with "Deploy Studio" permission, save it as GitHub secret `SANITY_AUTH_TOKEN`, then run the "Deploy Sanity Studio" workflow. Alternatively, run `pnpm --filter studio deploy` from a machine logged in to Sanity. |
+| Vercel | **Waiting on access.** The Pro team ("celaya-ventures") isn't reachable through the current Vercel connection. Either reconnect the connector with access to that team, or import the repo in the dashboard (steps below). |
+| Scottsdale office | A real, appointment-only office with its own Google Business Profile. It's modeled as its own `Electrician` entity on `/locations/scottsdale` (linked to the main business), and shown in the footer as "by appointment". **To do:** enter the exact Google Business Profile name in Studio → Site settings → Addresses, and point that profile's website link at `/locations/scottsdale`. |
+| Form delivery | `/api/contact` delivers to Formspark (`FORMSPARK_FORM_ID`), any webhook (`LEAD_WEBHOOK_URL`, e.g. Zapier → Housecall Pro) and/or email (Resend). Configure at least one before launch. |
+| Blog authors | None shown (owner's choice). Schema attributes posts to the business. |
+| Design | **Refresh.** Guardrail: presentation can change freely, but URLs, titles, meta descriptions, H1s and body copy stay identical at launch. The parity check enforces this. |
 
-   These rank which pages matter most and reveal old URLs that still get links.
-5. **Decisions:**
-   - **Scottsdale address.** The schema lists two offices. If the Scottsdale one isn't a staffed location with its own Google Business Profile, it should come out of the markup (GBP rules prohibit virtual offices).
-   - **Form delivery.** Where should estimate requests go: email (Resend is wired up), a CRM, or a field-service tool such as Housecall Pro or ServiceTitan?
-   - **Blog authors.** Who wrote or reviewed each post? A real licensed electrician byline is a strong trust signal, but only if it's true. Imported posts have no author set.
-   - **Design direction.** Port the current Webflow look, or refresh it?
-   - **Reviews widget.** Elfsight currently renders Google reviews with client-side JS. Plan: curated reviews in Sanity as static HTML, plus a link to Google.
+**Vercel import (dashboard):**
+1. vercel.com/new: switch to the celaya-ventures team and import `patrickcelaya/thewireguyelectric`.
+2. Set Root Directory to `web`. The framework (Astro) is detected automatically.
+3. Add environment variables: `PUBLIC_SANITY_PROJECT_ID=qhi2uf0l` and `PUBLIC_SANITY_DATASET=production`. **Do not** set `SITE_INDEXABLE` and **do not** add the domain yet.
+4. Deploy, then create a Deploy Hook (Settings → Git → Deploy Hooks).
+5. In Sanity (sanity.io/manage → API → Webhooks), add a webhook to that hook URL. Use filter `!(_id in path("drafts.**"))` and trigger on create, update and delete.
 
 ### Phase 2: Design and page build-out
 

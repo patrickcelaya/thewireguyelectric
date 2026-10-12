@@ -243,6 +243,14 @@ async function main() {
     for (const p of Object.keys(prev.pages)) seeds.add(p);
   }
   for (const p of DEFAULT_EXTRA) seeds.add(p);
+  // Every URL Search Console has seen (including typo URLs from external links).
+  try {
+    const tsv = await readFile('migration/seo-equity/gsc-pages-16mo.tsv', 'utf8');
+    for (const line of tsv.split('\n').slice(1)) {
+      const path = line.split('\t')[0];
+      if (path?.startsWith('/') && !path.includes('?')) seeds.add(path);
+    }
+  } catch {}
   if (typeof args.extra === 'string') for (const p of args.extra.split(',')) seeds.add(p.trim());
 
   const queue = [...seeds];

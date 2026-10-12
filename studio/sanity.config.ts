@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes, singletonTypes} from './schemaTypes'
 import {structure} from './structure'
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? ''
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID ?? 'qhi2uf0l'
 const dataset = process.env.SANITY_STUDIO_DATASET ?? 'production'
 
 export default defineConfig({

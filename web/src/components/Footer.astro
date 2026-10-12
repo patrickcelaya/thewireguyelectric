@@ -20,6 +20,7 @@ const year = new Date().getFullYear()
       {
         settings.addresses?.map((a) => (
           <address class="mt-4 not-italic">
+            {a.label && <span class="block text-sm font-semibold text-white">{a.label}{a.appointmentOnly && ' (by appointment)'}</span>}
             {a.streetAddress}<br />
             {a.addressLocality}, {a.addressRegion} {a.postalCode}
           </address>

@@ -23,6 +23,7 @@ migration/
   seo-equity/       Redirect candidates and SEO-equity notes
   sanity-import/    Generated Sanity dataset (production.ndjson) + stable ID map
 docs/               Plans, strategy, research
+.claude/skills/     OpenSEO skills (from every-app/open-seo@89e5a00); they use the OpenSEO connector
 ```
 
 ## Getting started

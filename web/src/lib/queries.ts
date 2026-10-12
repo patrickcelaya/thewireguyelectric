@@ -77,6 +77,7 @@ export function getSettings() {
       "logo": logo${IMAGE},
       "defaultOgImage": defaultOgImage${IMAGE},
       "founders": founders[]->{name, role},
+      "addresses": addresses[]{..., "locationSlug": locationPage->slug.current},
       "serviceAreas": serviceAreas[]->{name, "slug": slug.current, geo}
     }`),
   ).then((s) => {

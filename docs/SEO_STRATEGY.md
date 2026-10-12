@@ -33,6 +33,31 @@ The new stack makes all four cheap to do well and consistently.
   - a `noIndex` switch documented as "never on a page that ranks";
   - Redirect documents.
 
+## What Search Console says (last 16 months, via OpenSEO)
+
+`migration/seo-equity/gsc-pages-16mo.tsv`
+
+- **The pages that pay the bills today** are informational posts and the homepage:
+  - `/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip`: 1,348 clicks, average position 5.5
+  - `/` (homepage): 1,316 clicks
+  - `/blog-posts/diy-electrical-work-in-arizona`: 942 clicks
+  - `/blog-posts/permit-for-electrical-work`: 279 clicks
+
+  These are Tier 1. Their URLs, titles and copy don't change at launch.
+- **City pages have huge demand and almost no clicks.** Each has 15k–90k impressions, but CTR is only 0.1–0.4%:
+
+  | City page | Impressions | Avg position |
+  |---|---|---|
+  | Scottsdale | 90k | 15 |
+  | Gilbert | 86k | 7.7 |
+  | Chandler | 84k | 12 |
+  | Tempe | 67k | 10.7 |
+  | Phoenix | 71k | 38 |
+
+  This is the single biggest growth lever. After launch, give each city page real local proof (jobs, reviews, utility and permit specifics). Then rewrite titles and descriptions for click-through, in batches, measuring each one.
+- **Service pages are weak:** most rank 18–50, and EV charger installation sits at position 33 with 38k impressions. They're thin today. Deepening them (step 1 below) is the second lever.
+- **Brand and navigation pages** (`/about-us`, `/our-team`, `/faq`) rank around position 4 with 55k–64k impressions but almost no clicks. These are mostly brand-query sitelinks, so they're less of a lever.
+
 ## After launch: the growth roadmap
 
 Start 4–6 weeks after launch, once Search Console shows the migration has settled. Change one variable at a time.
