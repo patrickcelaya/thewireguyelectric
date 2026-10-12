@@ -47,7 +47,9 @@ With no Sanity project configured, the site builds from `migration/sanity-import
 | `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET` | Read content from Sanity instead of the local dataset |
 | `SANITY_API_READ_TOKEN` | Only for a private dataset |
 | `SITE_INDEXABLE` | **Set to `true` only on the Vercel Production environment, at cutover.** Anything else renders `noindex` and a blocking `robots.txt`. |
-| `RESEND_API_KEY`, `LEADS_TO_EMAIL`, `LEADS_FROM_EMAIL` | Delivery for the estimate/careers forms (`/api/contact`) |
+| `FORMSPARK_FORM_ID` | Deliver estimate/careers form leads (`/api/contact`) to a Formspark form |
+| `LEAD_WEBHOOK_URL` | Also/instead POST each lead as JSON to a webhook (e.g. Zapier → Housecall Pro) |
+| `RESEND_API_KEY`, `LEADS_TO_EMAIL`, `LEADS_FROM_EMAIL` | Also/instead email each lead via Resend |
 
 `studio/.env` (see `studio/.env.example`): `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`.
 
@@ -75,3 +77,8 @@ To check the real Vercel deployment, crawl https://thewireguyelectric.vercel.app
 ## How content gets to the live site
 
 The site is fully static. Publishing in Sanity fires a webhook to a Vercel deploy hook, which rebuilds the site in about a minute. Redirects are managed as `Redirect` documents in Studio and applied at build time.
+
+The webhook fires once per changed document, so a bulk change (a dataset import, a script patching many documents) sends one deploy-hook call per document. Two safeguards keep that from becoming one production build per document:
+
+- **Vercel → Project → Settings → Build and Deployment → On-Demand Concurrent Builds: "Run up to one build per branch".** Hook calls that arrive during a build are collapsed into a single follow-up build. The Pro default ("Run all builds immediately") builds every call in parallel.
+- **Before a bulk import**, set the project's Ignored Build Step to `[ "$VERCEL_GIT_COMMIT_SHA" = "$VERCEL_GIT_PREVIOUS_SHA" ]` (skips rebuilds of an already-deployed commit; git pushes still deploy). Clear it once the webhook's delivery log in sanity.io/manage is empty, then trigger one deploy.
