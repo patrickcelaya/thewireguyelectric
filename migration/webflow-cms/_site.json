@@ -1,0 +1,41 @@
+{
+  "id": "66980076a856729471b47cbc",
+  "workspaceId": "63cb634d25cbcf402deee41e",
+  "displayName": "Wire Guy Electric",
+  "shortName": "wire-guy",
+  "previewUrl": "https://screenshots.webflow.com/sites/66980076a856729471b47cbc/20260924173328_c3f67876d358083ff1bd55df3a70f66c.png",
+  "timeZone": "America/Phoenix",
+  "createdOn": "2024-07-17T17:33:42.282Z",
+  "lastUpdated": "2026-10-12T21:48:15.617Z",
+  "lastPublished": "2026-09-24T17:33:27.682Z",
+  "fullSiteCompiledAt": "2026-09-24T17:33:27.682Z",
+  "customDomains": [
+    {
+      "id": "642cebe86e06ee3d14bdcf66",
+      "url": "www.thewireguyelectric.com",
+      "lastPublished": "2026-09-24T17:33:27.682Z",
+      "fullSiteCompiledAt": "2026-09-24T17:33:27.682Z"
+    },
+    {
+      "id": "642cebe86e06ee6055bdcf65",
+      "url": "thewireguyelectric.com",
+      "lastPublished": "2026-09-24T17:33:27.682Z",
+      "fullSiteCompiledAt": "2026-09-24T17:33:27.682Z"
+    }
+  ],
+  "locales": {
+    "primary": {
+      "id": "6698007aa856729471b484c3",
+      "cmsLocaleId": "66980076a856729471b47cf9",
+      "enabled": false,
+      "displayName": "English",
+      "redirect": true,
+      "subdirectory": "",
+      "tag": "en"
+    },
+    "secondary": []
+  },
+  "dataCollectionEnabled": false,
+  "dataCollectionType": "always",
+  "googleTagIds": []
+}

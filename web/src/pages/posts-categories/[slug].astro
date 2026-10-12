@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import PostCard from '../../components/PostCard.astro'
+import {getPostCategories, getSettings} from '../../lib/queries'
+import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {webPageNode} from '../../lib/schema'
+import type {PostCategoryDoc} from '../../lib/types'
+
+export async function getStaticPaths() {
+  return (await getPostCategories()).map((c) => ({params: {slug: c.slug}, props: {category: c}}))
+}
+
+const {category} = Astro.props as {category: PostCategoryDoc}
+const settings = await getSettings()
+const path = `/posts-categories/${category.slug}`
+const title = resolveTitle(category.seo, `${category.name} Electrical Tips | ${settings.businessName} Blog`)
+const description = resolveDescription(
+  category.seo,
+  category.description,
+  `Browse our ${category.name} electrical articles, tips, and cost guides from licensed Phoenix valley electricians.`,
+)
+const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}, {name: category.name, path}]
+---
+
+<BaseLayout
+  meta={{title, description, path, ogImage: resolveOgImage(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
+  schema={[webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs})]}
+>
+  <header class="container-page mt-8 max-w-3xl">
+    <h1 class="text-4xl font-bold leading-tight sm:text-5xl">{category.name}</h1>
+    {category.description && <p class="mt-4 text-lg">{category.description}</p>}
+  </header>
+  <section class="container-page mt-10">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{category.posts.map((p) => <PostCard post={p} headingLevel="h2" />)}</div>
+  </section>
+</BaseLayout>

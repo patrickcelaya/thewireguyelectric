@@ -1,0 +1,73 @@
+---
+import '@fontsource-variable/schibsted-grotesk'
+import '@fontsource/lato/400.css'
+import '@fontsource/lato/700.css'
+import '../styles/global.css'
+import Seo from '../components/Seo.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import MobileCallBar from '../components/MobileCallBar.astro'
+import Breadcrumbs from '../components/Breadcrumbs.astro'
+import {getServices, getSettings} from '../lib/queries'
+import {businessNode, breadcrumbNode, graph, websiteNode} from '../lib/schema'
+import type {PageMeta} from '../lib/seo'
+
+interface Props {
+  meta: PageMeta
+  /** Extra JSON-LD nodes for this page (merged into one @graph with the business entity). */
+  schema?: Array<Record<string, unknown> | undefined>
+}
+
+const {meta, schema = []} = Astro.props
+const [settings, services] = await Promise.all([getSettings(), getServices()])
+const crumbs = meta.breadcrumbs
+const ld = graph([
+  businessNode(settings, services),
+  websiteNode(settings),
+  ...schema,
+  crumbs?.length ? breadcrumbNode(meta.path, crumbs) : undefined,
+])
+const ga = settings.ga4MeasurementId
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo meta={{...meta, jsonLd: [ld, ...(meta.jsonLd ?? [])]}} settings={settings} />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#aa502e" />
+    {
+      ga && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga}`} />
+          <script is:inline define:vars={{ga}}>
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+              dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
+            gtag('config', ga)
+            // Track phone clicks as conversions.
+            document.addEventListener('click', (e) => {
+              const a = e.target instanceof Element ? e.target.closest('a[href^="tel:"]') : null
+              if (a) gtag('event', 'phone_call_click', {link_url: a.getAttribute('href'), page_path: location.pathname})
+            })
+          </script>
+        </>
+      )
+    }
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:p-2">Skip to content</a>
+    <Header settings={settings} />
+    {crumbs && crumbs.length > 1 && <Breadcrumbs crumbs={crumbs} />}
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer settings={settings} />
+    <MobileCallBar settings={settings} />
+  </body>
+</html>

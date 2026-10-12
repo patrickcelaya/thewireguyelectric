@@ -1,0 +1,146 @@
+[
+  {
+    "id": "66980076a856729471b47ddb",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:38:15.416Z",
+    "createdOn": "2023-11-01T12:42:47.166Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-properties": null,
+      "category": [
+        "66980076a856729471b47dda"
+      ],
+      "description": "A range of circuit breakers and fuses for both residential",
+      "shippable": true,
+      "tax-category": "standard-taxable",
+      "default-sku": "66980076a856729471b47de1",
+      "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+      "categories": "66980076a856729471b47dda",
+      "details": "<p>At Electrician, we understand that every electrical project starts with the right foundation – quality wiring and cable. Our Electrical Wiring and Cable products are designed to meet the diverse needs of electricians, contractors, and homeowners, ensuring the safe and efficient distribution of electricity in any setting.</p><h3>Key Features</h3><p>Selecting the appropriate wiring and cable is essential for a successful electrical project. Factors to consider include the type of installation (residential, commercial, or industrial), load requirements, and environmental conditions.</p><ul><li>Diverse Selection</li><li>Different Sizes and Lengths</li><li>High-Quality Materials</li><li>Versatility</li><li>Safety and Compliance</li></ul><p>All our wiring and cable products are designed with safety in mind and comply with electrical codes and regulations. You can trust that your electrical systems will be secure and code-compliant. If you're unsure about which product is best for your project, our knowledgeable staff is ready to provide guidance and recommendations.</p>",
+      "name": "Circuit Breakers",
+      "slug": "circuit-breakers"
+    }
+  },
+  {
+    "id": "66980076a856729471b47de0",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:46:48.406Z",
+    "createdOn": "2023-11-01T12:41:22.868Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-properties": null,
+      "category": [
+        "66980076a856729471b47dd8"
+      ],
+      "description": "A selection of smart home products, as smart thermostats",
+      "shippable": true,
+      "tax-category": "standard-taxable",
+      "default-sku": "66980076a856729471b47de7",
+      "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+      "categories": "66980076a856729471b47dd8",
+      "details": "<p id=\"\">At Electrician, we understand that every electrical project starts with the right foundation – quality wiring and cable. Our Electrical Wiring and Cable products are designed to meet the diverse needs of electricians, contractors, and homeowners, ensuring the safe and efficient distribution of electricity in any setting.</p><h3 id=\"\">Key Features</h3><p id=\"\">Selecting the appropriate wiring and cable is essential for a successful electrical project. Factors to consider include the type of installation (residential, commercial, or industrial), load requirements, and environmental conditions.</p><ul id=\"\"><li id=\"\">Diverse Selection</li><li id=\"\">Different Sizes and Lengths</li><li id=\"\">High-Quality Materials</li><li id=\"\">Versatility</li><li id=\"\">Safety and Compliance</li></ul><p id=\"\">All our wiring and cable products are designed with safety in mind and comply with electrical codes and regulations. You can trust that your electrical systems will be secure and code-compliant. If you're unsure about which product is best for your project, our knowledgeable staff is ready to provide guidance and recommendations.</p>",
+      "name": "Smart Devices",
+      "slug": "smart-devices"
+    }
+  },
+  {
+    "id": "66980076a856729471b47ddf",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:47:01.769Z",
+    "createdOn": "2023-11-01T12:40:03.065Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-properties": null,
+      "category": [
+        "66980076a856729471b47dd9"
+      ],
+      "description": " Personal protective equipment (PPE) for electricians",
+      "shippable": true,
+      "tax-category": "standard-taxable",
+      "default-sku": "66980076a856729471b47de5",
+      "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+      "categories": "66980076a856729471b47dd9",
+      "details": "<p id=\"\">At Electrician, we understand that every electrical project starts with the right foundation – quality wiring and cable. Our Electrical Wiring and Cable products are designed to meet the diverse needs of electricians, contractors, and homeowners, ensuring the safe and efficient distribution of electricity in any setting.</p><h3 id=\"\">Key Features</h3><p id=\"\">Selecting the appropriate wiring and cable is essential for a successful electrical project. Factors to consider include the type of installation (residential, commercial, or industrial), load requirements, and environmental conditions.</p><ul id=\"\"><li id=\"\">Diverse Selection</li><li id=\"\">Different Sizes and Lengths</li><li id=\"\">High-Quality Materials</li><li id=\"\">Versatility</li><li id=\"\">Safety and Compliance</li></ul><p id=\"\">All our wiring and cable products are designed with safety in mind and comply with electrical codes and regulations. You can trust that your electrical systems will be secure and code-compliant. If you're unsure about which product is best for your project, our knowledgeable staff is ready to provide guidance and recommendations.</p>",
+      "name": "Safety Equipment",
+      "slug": "safety-equipment"
+    }
+  },
+  {
+    "id": "66980076a856729471b47dde",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:47:13.937Z",
+    "createdOn": "2023-11-01T12:37:34.985Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-properties": null,
+      "category": [
+        "66980076a856729471b47dda"
+      ],
+      "description": "Energy-efficient and long-lasting LED lighting options for homes",
+      "shippable": true,
+      "tax-category": "standard-taxable",
+      "default-sku": "66980076a856729471b47de4",
+      "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+      "categories": "66980076a856729471b47dda",
+      "details": "<p id=\"\">At Electrician, we understand that every electrical project starts with the right foundation – quality wiring and cable. Our Electrical Wiring and Cable products are designed to meet the diverse needs of electricians, contractors, and homeowners, ensuring the safe and efficient distribution of electricity in any setting.</p><h3 id=\"\">Key Features</h3><p id=\"\">Selecting the appropriate wiring and cable is essential for a successful electrical project. Factors to consider include the type of installation (residential, commercial, or industrial), load requirements, and environmental conditions.</p><ul id=\"\"><li id=\"\">Diverse Selection</li><li id=\"\">Different Sizes and Lengths</li><li id=\"\">High-Quality Materials</li><li id=\"\">Versatility</li><li id=\"\">Safety and Compliance</li></ul><p id=\"\">All our wiring and cable products are designed with safety in mind and comply with electrical codes and regulations. You can trust that your electrical systems will be secure and code-compliant. If you're unsure about which product is best for your project, our knowledgeable staff is ready to provide guidance and recommendations.</p>",
+      "name": "Lighting Fixtures",
+      "slug": "lighting-fixtures"
+    }
+  },
+  {
+    "id": "66980076a856729471b47ddd",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:47:24.780Z",
+    "createdOn": "2023-11-01T12:35:03.517Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-properties": null,
+      "category": [
+        "66980076a856729471b47dd9"
+      ],
+      "description": "Various types of electrical wiring, cables, and conduits",
+      "shippable": true,
+      "tax-category": "standard-taxable",
+      "default-sku": "66980076a856729471b47de3",
+      "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+      "categories": "66980076a856729471b47dd9",
+      "details": "<p id=\"\">At Electrician, we understand that every electrical project starts with the right foundation – quality wiring and cable. Our Electrical Wiring and Cable products are designed to meet the diverse needs of electricians, contractors, and homeowners, ensuring the safe and efficient distribution of electricity in any setting.</p><h3 id=\"\">Key Features</h3><p id=\"\">Selecting the appropriate wiring and cable is essential for a successful electrical project. Factors to consider include the type of installation (residential, commercial, or industrial), load requirements, and environmental conditions.</p><ul id=\"\"><li id=\"\">Diverse Selection</li><li id=\"\">Different Sizes and Lengths</li><li id=\"\">High-Quality Materials</li><li id=\"\">Versatility</li><li id=\"\">Safety and Compliance</li></ul><p id=\"\">All our wiring and cable products are designed with safety in mind and comply with electrical codes and regulations. You can trust that your electrical systems will be secure and code-compliant. If you're unsure about which product is best for your project, our knowledgeable staff is ready to provide guidance and recommendations.</p>",
+      "name": "Electrical Wiring",
+      "slug": "electrical-wiring"
+    }
+  },
+  {
+    "id": "66980076a856729471b47ddc",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:47:37.428Z",
+    "createdOn": "2023-11-01T12:23:19.749Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-properties": null,
+      "category": [
+        "66980076a856729471b47dd8"
+      ],
+      "description": " A comprehensive set of electrical tools, including wire strippers",
+      "shippable": true,
+      "tax-category": "standard-taxable",
+      "default-sku": "66980076a856729471b47de2",
+      "ec-product-type": "ff42fee0113744f693a764e3431a9cc2",
+      "categories": "66980076a856729471b47dd8",
+      "details": "<p id=\"\">At Electrician, we understand that every electrical project starts with the right foundation – quality wiring and cable. Our Electrical Wiring and Cable products are designed to meet the diverse needs of electricians, contractors, and homeowners, ensuring the safe and efficient distribution of electricity in any setting.</p><h3 id=\"\">Key Features</h3><p id=\"\">Selecting the appropriate wiring and cable is essential for a successful electrical project. Factors to consider include the type of installation (residential, commercial, or industrial), load requirements, and environmental conditions.</p><ul id=\"\"><li id=\"\">Diverse Selection</li><li id=\"\">Different Sizes and Lengths</li><li id=\"\">High-Quality Materials</li><li id=\"\">Versatility</li><li id=\"\">Safety and Compliance</li></ul><p id=\"\">All our wiring and cable products are designed with safety in mind and comply with electrical codes and regulations. You can trust that your electrical systems will be secure and code-compliant. If you're unsure about which product is best for your project, our knowledgeable staff is ready to provide guidance and recommendations.</p>",
+      "name": "Electrical Tools Kit",
+      "slug": "electrical-tools-kit"
+    }
+  }
+]

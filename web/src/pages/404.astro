@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import {getServices} from '../lib/queries'
+
+const services = (await getServices()).slice(0, 8)
+---
+
+<BaseLayout meta={{title: 'Page Not Found | The Wire Guy Electric', path: '/404', noIndex: true}}>
+  <section class="container-page mt-16 max-w-2xl text-center">
+    <h1 class="text-4xl font-bold">We couldn't find that page</h1>
+    <p class="mt-4 text-lg">It may have moved. Try one of these, or call us and we'll help directly.</p>
+    <div class="mt-6 flex justify-center gap-3">
+      <a href="/" class="btn-primary">Go home</a>
+      <a href="/contact-us" class="btn-outline">Contact us</a>
+    </div>
+    <ul class="mt-10 grid gap-2 text-left sm:grid-cols-2">
+      {services.map((s) => <li><a href={`/services/${s.slug}`} class="text-brand hover:underline">{s.name}</a></li>)}
+    </ul>
+  </section>
+</BaseLayout>

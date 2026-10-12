@@ -1,0 +1,149 @@
+{
+  "source": "migration/webflow-cms/*.json cross-checked with urls.txt and live HTTP status, 2026-10-12 (measured status; backlinks/traffic UNKNOWN).",
+  "rows": [
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/lighting",
+      "collection": "posts-categories",
+      "live_status": 200,
+      "meta_robots": "noindex",
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/industrial",
+      "collection": "posts-categories",
+      "live_status": 200,
+      "meta_robots": "noindex",
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/commercial",
+      "collection": "posts-categories",
+      "live_status": 200,
+      "meta_robots": "noindex",
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/circuit-breakers",
+      "collection": "product (Webflow e-commerce template filler)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/smart-devices",
+      "collection": "product (Webflow e-commerce template filler)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/safety-equipment",
+      "collection": "product (Webflow e-commerce template filler)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/lighting-fixtures",
+      "collection": "product (Webflow e-commerce template filler)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/electrical-wiring",
+      "collection": "product (Webflow e-commerce template filler)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/electrical-tools-kit",
+      "collection": "product (Webflow e-commerce template filler)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/lighting-solutions",
+      "collection": "category (e-commerce)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/hardware",
+      "collection": "category (e-commerce)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/electrical-tools",
+      "collection": "category (e-commerce)",
+      "live_status": 200,
+      "meta_robots": null,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sku/circuit-breakers",
+      "collection": "sku",
+      "live_status": 404,
+      "note": "checked: 404 (SKUs have no pages)"
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sku/smart-devices",
+      "collection": "sku",
+      "live_status": null,
+      "note": "not checked; SKU collection has no template page"
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sku/safety-equipment",
+      "collection": "sku",
+      "live_status": null,
+      "note": "not checked; SKU collection has no template page"
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sku/lighting-fixtures",
+      "collection": "sku",
+      "live_status": null,
+      "note": "not checked; SKU collection has no template page"
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sku/electrical-wiring",
+      "collection": "sku",
+      "live_status": null,
+      "note": "not checked; SKU collection has no template page"
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sku/electrical-tools-kit",
+      "collection": "sku",
+      "live_status": null,
+      "note": "not checked; SKU collection has no template page"
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/upgrading-your-electrical-panel",
+      "collection": "blog-posts (isArchived, lastPublished=null, created 2023-10-31)",
+      "live_status": 404,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/protecting-your-home-and-family",
+      "collection": "blog-posts (isArchived, lastPublished=null, created 2023-10-31)",
+      "live_status": 404,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/the-benefits-and-efficiency-of-lighting",
+      "collection": "blog-posts (isArchived, lastPublished=null, created 2023-10-31)",
+      "live_status": 404,
+      "in_sitemap": false
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/understanding-of-residential-wiring",
+      "collection": "blog-posts (isArchived, lastPublished=null, created 2023-10-31)",
+      "live_status": 404,
+      "in_sitemap": false
+    }
+  ]
+}

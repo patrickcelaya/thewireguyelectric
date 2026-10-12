@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SanityImage from '../../components/SanityImage.astro'
+import RichText from '../../components/RichText.astro'
+import TrustBar from '../../components/TrustBar.astro'
+import ServiceCard from '../../components/ServiceCard.astro'
+import FaqList from '../../components/FaqList.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import {getLocations, getServices, getSettings} from '../../lib/queries'
+import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
+import type {LocationDoc} from '../../lib/types'
+
+export async function getStaticPaths() {
+  const locations = await getLocations()
+  return locations.map((l) => ({params: {slug: l.slug}, props: {location: l, others: locations.filter((o) => o._id !== l._id)}}))
+}
+
+const {location, others} = Astro.props as {location: LocationDoc; others: LocationDoc[]}
+const [settings, services] = await Promise.all([getSettings(), getServices()])
+const path = `/locations/${location.slug}`
+// Same template Webflow used: "Electrician in {City Name for SEO} | The Wire Guy Electric"
+const title = resolveTitle(location.seo, `Electrician in ${location.cityNameForSeo ?? `${location.name}, AZ`} | ${settings.businessName}`)
+const description = resolveDescription(location.seo, location.description)
+const crumbs = [{name: 'Home', path: '/'}, {name: 'Service areas', path: '/services'}, {name: location.name, path}]
+const featured = location.featuredServices?.length ? location.featuredServices : services.slice(0, 6)
+const faqs = location.faqs ?? []
+---
+
+<BaseLayout
+  meta={{title, description, path, ogImage: resolveOgImage(settings, location.seo?.ogImage, location.mainImage), noIndex: location.seo?.noIndex, breadcrumbs: crumbs}}
+  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), locationServiceNode(location), faqNode(path, faqs)]}
+>
+  <section class="container-page mt-8 grid items-start gap-10 lg:grid-cols-2">
+    <div>
+      <h1 class="text-4xl font-bold leading-tight sm:text-5xl">{location.heading ?? `Licensed Electrician in ${location.name}, Arizona`}</h1>
+      {location.description && <p class="mt-4 text-lg">{location.description}</p>}
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/contact-us" class="btn-primary">Get a free estimate</a>
+        <a href={`tel:${settings.phoneE164}`} class="btn-outline">Call {settings.phone}</a>
+      </div>
+      <TrustBar settings={settings} class="mt-6" />
+    </div>
+    <SanityImage image={location.mainImage} width={720} aspect={4 / 3} priority class="aspect-[4/3] w-full rounded-lg object-cover" />
+  </section>
+
+  <article class="container-page mt-16 max-w-3xl">
+    <RichText value={location.body} />
+    {location.permitNotes?.length ? <><h2 class="mt-12 text-2xl font-bold">Permits &amp; inspections in {location.name}</h2><RichText value={location.permitNotes} class="mt-4" /></> : null}
+  </article>
+
+  <section class="container-page mt-16">
+    <h2 class="text-3xl font-bold">Electrical services in {location.name}</h2>
+    <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{featured.map((s) => <ServiceCard service={s} />)}</div>
+  </section>
+
+  {
+    location.reviews?.length ? (
+      <section class="container-page mt-16">
+        <h2 class="text-3xl font-bold">What {location.name} customers say</h2>
+        <div class="mt-6 grid gap-6 md:grid-cols-3">
+          {location.reviews.map((r) => (
+            <figure class="rounded-md border border-line p-6">
+              <p class="text-brand" aria-label={`${r.rating} out of 5 stars`}>{'★'.repeat(r.rating)}</p>
+              <blockquote class="mt-3">{r.text}</blockquote>
+              <figcaption class="mt-4 font-semibold text-ink">{r.authorName}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    ) : null
+  }
+
+  <FaqList faqs={faqs} heading={`Electrician in ${location.name}: FAQs`} />
+
+  <section class="container-page mt-16">
+    <h2 class="text-2xl font-bold">Other areas we serve</h2>
+    <ul class="mt-4 flex flex-wrap gap-2 text-sm">
+      <li><a href="/" class="inline-block rounded-full border border-line px-3 py-1 hover:border-brand hover:text-brand">Mesa</a></li>
+      {others.map((o) => <li><a href={`/locations/${o.slug}`} class="inline-block rounded-full border border-line px-3 py-1 hover:border-brand hover:text-brand">{o.name}</a></li>)}
+    </ul>
+  </section>
+  <CtaBand settings={settings} heading={`Need an electrician in ${location.name}?`} />
+</BaseLayout>

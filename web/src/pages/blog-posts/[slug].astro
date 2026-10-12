@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SanityImage from '../../components/SanityImage.astro'
+import RichText from '../../components/RichText.astro'
+import PostCard from '../../components/PostCard.astro'
+import ServiceCard from '../../components/ServiceCard.astro'
+import FaqList from '../../components/FaqList.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import {getPost, getPosts, getSettings} from '../../lib/queries'
+import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {blogPostingNode, faqNode, webPageNode} from '../../lib/schema'
+import type {PostSummary} from '../../lib/types'
+
+export async function getStaticPaths() {
+  const posts = await getPosts()
+  return posts.map((p, i) => ({params: {slug: p.slug}, props: {newer: posts[i - 1], older: posts[i + 1]}}))
+}
+
+const {slug} = Astro.params
+const {newer, older} = Astro.props as {newer?: PostSummary; older?: PostSummary}
+const [settings, post, all] = await Promise.all([getSettings(), getPost(slug!), getPosts()])
+if (!post) throw new Error(`post ${slug} not found`)
+
+const path = `/blog-posts/${post.slug}`
+// Same template Webflow used: "{name} | The Wire Guy Electric"
+const title = resolveTitle(post.seo, `${post.title} | ${settings.businessName}`)
+const description = resolveDescription(post.seo, post.excerpt)
+const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}, {name: post.title, path}]
+const related = all.filter((p) => p._id !== post._id && p.category?.slug && p.category.slug === post.category?.slug).slice(0, 3)
+const fmt = (d: string) => new Date(d).toLocaleDateString('en-US', {month: 'long', day: 'numeric', year: 'numeric', timeZone: 'America/Phoenix'})
+const faqs = post.faqs ?? []
+---
+
+<BaseLayout
+  meta={{
+    title,
+    description,
+    path,
+    ogType: 'article',
+    ogImage: resolveOgImage(settings, post.seo?.ogImage, post.mainImage),
+    noIndex: post.seo?.noIndex,
+    breadcrumbs: crumbs,
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt ?? post.publishedAt,
+  }}
+  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), blogPostingNode(post, description), faqNode(path, faqs)]}
+>
+  <article>
+    <header class="container-page mt-8 max-w-3xl">
+      {post.category && <a href={`/posts-categories/${post.category.slug}`} class="font-display text-sm font-semibold uppercase tracking-wide text-brand hover:underline">{post.category.name}</a>}
+      <h1 class="mt-2 text-4xl font-bold leading-tight sm:text-5xl">{post.title}</h1>
+      <p class="mt-4 text-sm">
+        {post.author ? <>By <span class="font-semibold text-ink">{post.author.name}</span>{post.author.role && `, ${post.author.role}`} · </> : null}
+        <time datetime={post.publishedAt}>{fmt(post.publishedAt)}</time>
+        {post.updatedAt && post.updatedAt.slice(0, 10) !== post.publishedAt.slice(0, 10) && <> · Updated <time datetime={post.updatedAt}>{fmt(post.updatedAt)}</time></>}
+      </p>
+    </header>
+    <div class="container-page mt-8 max-w-4xl">
+      <SanityImage image={post.mainImage} width={960} aspect={16 / 9} priority class="aspect-video w-full rounded-lg object-cover" />
+    </div>
+    <div class="container-page mt-10 max-w-3xl">
+      <RichText value={post.body} />
+    </div>
+  </article>
+
+  <FaqList faqs={faqs} />
+
+  {
+    post.relatedServices?.length ? (
+      <section class="container-page mt-16">
+        <h2 class="text-2xl font-bold">Services mentioned in this article</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">{post.relatedServices.map((s) => <ServiceCard service={s} />)}</div>
+      </section>
+    ) : null
+  }
+
+  <nav aria-label="More posts" class="container-page mt-16 grid max-w-3xl gap-4 sm:grid-cols-2">
+    {older && <a href={`/blog-posts/${older.slug}`} class="rounded-md border border-line p-4 hover:border-brand"><span class="text-xs uppercase">Previous post</span><span class="mt-1 block font-display font-semibold text-ink">{older.title}</span></a>}
+    {newer && <a href={`/blog-posts/${newer.slug}`} class="rounded-md border border-line p-4 text-right hover:border-brand sm:col-start-2"><span class="text-xs uppercase">Next post</span><span class="mt-1 block font-display font-semibold text-ink">{newer.title}</span></a>}
+  </nav>
+
+  {
+    related.length > 0 && (
+      <section class="container-page mt-16">
+        <h2 class="text-2xl font-bold">Related articles</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{related.map((p) => <PostCard post={p} />)}</div>
+      </section>
+    )
+  }
+  <CtaBand settings={settings} />
+</BaseLayout>

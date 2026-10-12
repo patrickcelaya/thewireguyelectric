@@ -1,0 +1,64 @@
+{
+  "checked_at": "2026-10-12",
+  "result": "FAILED - no Ahrefs data retrieved",
+  "note": "Every Ahrefs MCP endpoint returned {\"error\":\"Insufficient plan\"}, including free/zero-unit endpoints (subscription-info, public-domain-rating-free, site-explorer-metrics on ahrefs.com). The API key/plan behind this MCP connection has no API v3 access. 0 API units consumed (usage could not be read: the usage endpoint itself is blocked).",
+  "calls": [
+    {
+      "tool": "subscription-info-limits-and-usage",
+      "params": {},
+      "error": "Insufficient plan"
+    },
+    {
+      "tool": "management-projects",
+      "params": {},
+      "error": "Insufficient plan"
+    },
+    {
+      "tool": "site-audit-projects",
+      "params": {
+        "project_url": "thewireguyelectric.com"
+      },
+      "error": "Insufficient plan"
+    },
+    {
+      "tool": "public-domain-rating-free",
+      "params": {
+        "targets": [
+          "thewireguyelectric.com"
+        ]
+      },
+      "error": "Insufficient plan"
+    },
+    {
+      "tool": "site-explorer-domain-rating",
+      "params": {
+        "target": "thewireguyelectric.com",
+        "date": "2026-10-12"
+      },
+      "error": "Insufficient plan"
+    },
+    {
+      "tool": "site-explorer-metrics",
+      "params": {
+        "target": "ahrefs.com",
+        "date": "2026-10-12",
+        "mode": "subdomains"
+      },
+      "error": "Insufficient plan",
+      "note": "free test target"
+    },
+    {
+      "tool": "gsc-performance-history",
+      "params": {
+        "project_id": 1,
+        "date_from": "2026-07-12"
+      },
+      "error": "Insufficient plan",
+      "note": "probe only; real project_id unobtainable because management-projects is blocked"
+    }
+  ],
+  "not_attempted": "site-explorer-metrics-history, top-pages, organic-keywords, pages-by-backlinks, broken-backlinks, referring-domains, anchors, all-backlinks, organic-competitors, gsc-pages, gsc-keywords, site-audit-issues: skipped because every endpoint family tested (subscription, management, site-audit, public, site-explorer, gsc) returned the same plan error.",
+  "also_failed": {
+    "wayback_cdx": "web.archive.org blocked/reset by sandbox egress proxy (2 attempts, ws_closed_mid_exchange after 39 B). No historical URL list obtained."
+  }
+}

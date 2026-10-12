@@ -1,0 +1,69 @@
+{
+  "source": "Parsed hrefs from live crawl of 114 pages, 2026-10-12 (measured). Targets return 404 today; no Webflow 301 exists for them.",
+  "rows": [
+    {
+      "target": "https://www.thewireguyelectric.com/estimate",
+      "status": 404,
+      "linked_from_count": 13,
+      "linked_from": [
+        "https://www.thewireguyelectric.com/blog-posts/ac-keeps-tripping-breaker-arizona",
+        "https://www.thewireguyelectric.com/blog-posts/aluminum-wiring-older-phoenix-homes",
+        "https://www.thewireguyelectric.com/blog-posts/cutting-corners-panel-upgrades-phoenix",
+        "https://www.thewireguyelectric.com/blog-posts/electrical-panel-hot-to-the-touch-arizona",
+        "https://www.thewireguyelectric.com/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+        "https://www.thewireguyelectric.com/blog-posts/federal-pacific-zinsco-panels-arizona",
+        "https://www.thewireguyelectric.com/blog-posts/half-house-lost-power-heat-arizona",
+        "https://www.thewireguyelectric.com/blog-posts/hot-tub-electrical-installation-cost-arizona",
+        "https://www.thewireguyelectric.com/blog-posts/mini-split-electrical-requirements-arizona",
+        "https://www.thewireguyelectric.com/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+        "https://www.thewireguyelectric.com/blog-posts/whole-home-standby-generator-installation-phoenix",
+        "https://www.thewireguyelectric.com/blog-posts/why-is-my-electric-bill-so-high-phoenix-summer",
+        "https://www.thewireguyelectric.com/services/custom-lighting"
+      ]
+    },
+    {
+      "target": "https://www.thewireguyelectric.com/locations/mesa",
+      "status": 404,
+      "linked_from_count": 3,
+      "linked_from": [
+        "https://www.thewireguyelectric.com/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+        "https://www.thewireguyelectric.com/blog-posts/dryer-outlet-for-ev",
+        "https://www.thewireguyelectric.com/blog-posts/generator-interlock-in-arizona"
+      ]
+    },
+    {
+      "target": "https://www.thewireguyelectric.com/services/electrical-panels",
+      "status": 404,
+      "linked_from_count": 2,
+      "linked_from": [
+        "https://www.thewireguyelectric.com/blog-posts/cutting-corners-panel-upgrades-phoenix",
+        "https://www.thewireguyelectric.com/blog-posts/federal-pacific-zinsco-panels-arizona"
+      ]
+    },
+    {
+      "target": "https://www.thewireguyelectric.com/blog/ev-charger-hardwired-vs-plug-in-phoenix",
+      "status": 404,
+      "linked_from_count": 1,
+      "linked_from": [
+        "https://www.thewireguyelectric.com/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix"
+      ]
+    }
+  ],
+  "also_non_canonical_internal_links": [
+    {
+      "href": "http://thewireguyelectric.com",
+      "pages": 3,
+      "note": "2-hop redirect chain to https://www"
+    },
+    {
+      "href": "https://thewireguyelectric.com",
+      "pages": 3,
+      "note": "1-hop redirect to https://www"
+    },
+    {
+      "href": "https://thewireguyelectric.com/",
+      "pages": 2,
+      "note": "1-hop redirect to https://www"
+    }
+  ]
+}

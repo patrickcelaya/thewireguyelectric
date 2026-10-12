@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PageSections from '../components/sections/PageSections.astro'
+import {getPage, getSettings} from '../lib/queries'
+import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
+import {webPageNode} from '../lib/schema'
+import type {PageSection} from '../lib/types'
+
+const [settings, page] = await Promise.all([getSettings(), getPage('index')])
+const title = resolveTitle(page?.seo, `${settings.businessName} | Licensed Electrician in Mesa, AZ`)
+const description = resolveDescription(page?.seo, page?.intro, settings.description)
+
+// Until the homepage is built out in Sanity, fall back to a sensible default layout.
+const sections: PageSection[] = page?.sections?.length
+  ? page.sections
+  : [
+      {_type: 'heroSection', _key: 'hero', heading: page?.heading ?? title, text: page?.intro},
+      {_type: 'servicesSection', _key: 'services', heading: 'Electrical services'},
+      {_type: 'locationsSection', _key: 'areas', heading: 'Proudly serving the East Valley'},
+      {_type: 'reviewsSection', _key: 'reviews', heading: 'What our customers say'},
+      {_type: 'postsSection', _key: 'posts', heading: 'Electrical tips & guides', limit: 3},
+      {_type: 'ctaSection', _key: 'cta'},
+    ]
+---
+
+<BaseLayout
+  meta={{title, description, path: '/', ogImage: resolveOgImage(settings, page?.seo?.ogImage), noIndex: page?.seo?.noIndex}}
+  schema={[webPageNode({path: '/', title, description})]}
+>
+  <PageSections sections={sections} settings={settings} />
+</BaseLayout>

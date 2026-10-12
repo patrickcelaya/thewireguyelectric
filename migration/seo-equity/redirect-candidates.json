@@ -1,0 +1,251 @@
+{
+  "source": "Derived from measured live HTTP checks, live internal links and the Webflow CMS export (2026-10-12). NOT from backlink data: Ahrefs/GSC unavailable, so external-link counts and traffic for these URLs are UNKNOWN. Append the Ahrefs/GSC-derived list when obtained.",
+  "pattern_rules": [
+    {
+      "source": "http://(www.)thewireguyelectric.com/*",
+      "destination": "https://www.thewireguyelectric.com/*",
+      "status": 301,
+      "evidence": "live-url-variants.json: 301 today (apex http = 2 hops)",
+      "reason": "Preserve existing Webflow host/protocol normalization; set www as primary domain in Vercel and redirect apex",
+      "confidence": "measured-existing"
+    },
+    {
+      "source": "https://thewireguyelectric.com/*",
+      "destination": "https://www.thewireguyelectric.com/*",
+      "status": 301,
+      "evidence": "live-url-variants.json: 301 today",
+      "reason": "Same as above",
+      "confidence": "measured-existing"
+    },
+    {
+      "source": "/:path+/ (trailing slash)",
+      "destination": "/:path+",
+      "status": 301,
+      "evidence": "live-url-variants.json: 301 today",
+      "reason": "Astro trailingSlash:\"never\" + vercel.json trailingSlash:false",
+      "confidence": "measured-existing"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "status": 301,
+      "evidence": "200 duplicate of home today (same title)",
+      "reason": "Kill duplicate home URL",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/blog?f384d0a1_page=:n",
+      "destination": "/blog (or new pagination URL)",
+      "status": 301,
+      "evidence": "200 today; linked from /blog",
+      "reason": "Webflow collection pagination param; map to new pagination scheme via vercel.json \"has\" query match",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/services?6dcb6eb7_page=:n",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today; linked from /services",
+      "reason": "Webflow collection pagination param",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog-posts/:slug",
+      "status": 301,
+      "evidence": "one internal link uses /blog/ev-charger-hardwired-vs-plug-in-phoenix (404 today)",
+      "reason": "Safety net for mistyped prefix; only if new site does not use /blog/:slug",
+      "confidence": "measured-404+judgment"
+    }
+  ],
+  "url_redirects": [
+    {
+      "source": "/estimate",
+      "destination": "/contact-us",
+      "status": 301,
+      "evidence": "404 today; internal links from 13 pages (internal-broken-links.json)",
+      "reason": "/contact-us is titled \"Free Electrical Estimate in Mesa, AZ\"; links live in CMS rich text and will migrate with the content",
+      "confidence": "measured-404"
+    },
+    {
+      "source": "/locations/mesa",
+      "destination": "/",
+      "status": 301,
+      "evidence": "404 today; internal links from 3 blog posts",
+      "reason": "Home page is the Mesa page (title \"Best Rated Electrician in Mesa, AZ\"). Alternative: build a real /locations/mesa page",
+      "confidence": "measured-404"
+    },
+    {
+      "source": "/services/electrical-panels",
+      "destination": "/services/panels",
+      "status": 301,
+      "evidence": "404 today; internal links from 2 blog posts",
+      "reason": "Old/mistyped slug of the panels service page",
+      "confidence": "measured-404"
+    },
+    {
+      "source": "/blog/ev-charger-hardwired-vs-plug-in-phoenix",
+      "destination": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "status": 301,
+      "evidence": "404 today; internal link from 1 post",
+      "reason": "Wrong prefix",
+      "confidence": "measured-404"
+    },
+    {
+      "source": "/product/circuit-breakers",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap, no H1, ~7 words",
+      "reason": "Webflow e-commerce template filler; will not exist on new site",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/product/smart-devices",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap, no H1, ~7 words",
+      "reason": "Webflow e-commerce template filler; will not exist on new site",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/product/safety-equipment",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap, no H1, ~7 words",
+      "reason": "Webflow e-commerce template filler; will not exist on new site",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/product/lighting-fixtures",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap, no H1, ~7 words",
+      "reason": "Webflow e-commerce template filler; will not exist on new site",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/product/electrical-wiring",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap, no H1, ~7 words",
+      "reason": "Webflow e-commerce template filler; will not exist on new site",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/product/electrical-tools-kit",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap, no H1, ~7 words",
+      "reason": "Webflow e-commerce template filler; will not exist on new site",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/category/lighting-solutions",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap",
+      "reason": "Webflow e-commerce template filler",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/category/hardware",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap",
+      "reason": "Webflow e-commerce template filler",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/category/electrical-tools",
+      "destination": "/services",
+      "status": 301,
+      "evidence": "200 today, indexable, not in sitemap",
+      "reason": "Webflow e-commerce template filler",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/posts-categories/lighting",
+      "destination": "/blog",
+      "status": 301,
+      "evidence": "200 today, noindex, not in sitemap",
+      "reason": "Blog category pages; map to new category URLs if rebuilt",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/posts-categories/industrial",
+      "destination": "/blog",
+      "status": 301,
+      "evidence": "200 today, noindex, not in sitemap",
+      "reason": "Blog category pages; map to new category URLs if rebuilt",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/posts-categories/commercial",
+      "destination": "/blog",
+      "status": 301,
+      "evidence": "200 today, noindex, not in sitemap",
+      "reason": "Blog category pages; map to new category URLs if rebuilt",
+      "confidence": "measured-status"
+    },
+    {
+      "source": "/checkout",
+      "destination": "/",
+      "status": 301,
+      "evidence": "200 today, IN sitemap, no H1, ~6 words",
+      "reason": "Webflow e-commerce system pages; only if not rebuilt. Drop from sitemap",
+      "confidence": "measured-status, conditional"
+    },
+    {
+      "source": "/paypal-checkout",
+      "destination": "/",
+      "status": 301,
+      "evidence": "200 today, IN sitemap, no H1, ~6 words",
+      "reason": "Webflow e-commerce system pages; only if not rebuilt. Drop from sitemap",
+      "confidence": "measured-status, conditional"
+    },
+    {
+      "source": "/order-confirmation",
+      "destination": "/",
+      "status": 301,
+      "evidence": "200 today, IN sitemap, no H1, ~6 words",
+      "reason": "Webflow e-commerce system pages; only if not rebuilt. Drop from sitemap",
+      "confidence": "measured-status, conditional"
+    },
+    {
+      "source": "/blog-posts/upgrading-your-electrical-panel",
+      "destination": "/services/panels",
+      "status": 301,
+      "evidence": "CMS: archived, created 2023-10-31, lastPublished null; 404 today",
+      "reason": "May have been public before archiving; cheap insurance",
+      "confidence": "low - existence unverified"
+    },
+    {
+      "source": "/blog-posts/protecting-your-home-and-family",
+      "destination": "/blog-posts/electrical-safety-tips",
+      "status": 301,
+      "evidence": "CMS: archived, created 2023-10-31; 404 today",
+      "reason": "As above",
+      "confidence": "low - existence unverified"
+    },
+    {
+      "source": "/blog-posts/the-benefits-and-efficiency-of-lighting",
+      "destination": "/services/led-lights",
+      "status": 301,
+      "evidence": "CMS: archived, created 2023-10-31; 404 today",
+      "reason": "As above",
+      "confidence": "low - existence unverified"
+    },
+    {
+      "source": "/blog-posts/understanding-of-residential-wiring",
+      "destination": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "status": 301,
+      "evidence": "CMS: archived, created 2023-10-31; 404 today",
+      "reason": "As above",
+      "confidence": "low - existence unverified"
+    }
+  ],
+  "counts": {
+    "pattern_rules": 7,
+    "url_redirects": 23
+  }
+}

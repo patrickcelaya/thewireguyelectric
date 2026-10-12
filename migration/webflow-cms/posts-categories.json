@@ -1,0 +1,41 @@
+[
+  {
+    "id": "66980076a856729471b47d1f",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2026-09-21T02:16:58.285Z",
+    "lastUpdated": "2026-09-21T01:55:36.949Z",
+    "createdOn": "2023-10-31T15:56:17.228Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Lighting",
+      "slug": "lighting"
+    }
+  },
+  {
+    "id": "66980076a856729471b47d4e",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2026-09-21T02:16:58.285Z",
+    "lastUpdated": "2026-09-21T01:55:36.950Z",
+    "createdOn": "2023-10-31T15:54:53.799Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Industrial",
+      "slug": "industrial"
+    }
+  },
+  {
+    "id": "66980076a856729471b47d31",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2026-09-21T02:16:58.285Z",
+    "lastUpdated": "2026-09-21T01:55:36.950Z",
+    "createdOn": "2023-10-31T15:52:38.988Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Commercial",
+      "slug": "commercial"
+    }
+  }
+]

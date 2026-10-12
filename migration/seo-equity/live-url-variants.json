@@ -1,0 +1,293 @@
+{
+  "source": "curl against live Webflow site, 2026-10-12 (measured). status = first response without following; final = after following redirects.",
+  "rows": [
+    {
+      "url": "http://www.thewireguyelectric.com/",
+      "status": 301,
+      "location": "https://www.thewireguyelectric.com/",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/",
+      "hops": 1
+    },
+    {
+      "url": "http://thewireguyelectric.com/",
+      "status": 301,
+      "location": "https://thewireguyelectric.com/",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/",
+      "hops": 2
+    },
+    {
+      "url": "https://thewireguyelectric.com/",
+      "status": 301,
+      "location": "https://www.thewireguyelectric.com/",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/",
+      "hops": 1
+    },
+    {
+      "url": "https://thewireguyelectric.com/services/panels",
+      "status": 301,
+      "location": "https://www.thewireguyelectric.com/services/panels",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/services/panels",
+      "hops": 1
+    },
+    {
+      "url": "http://thewireguyelectric.com/services/panels",
+      "status": 301,
+      "location": "https://thewireguyelectric.com/services/panels",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/services/panels",
+      "hops": 2
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/panels/",
+      "status": 301,
+      "location": "https://www.thewireguyelectric.com/services/panels",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/services/panels",
+      "hops": 1
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/Services/Panels",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/Services/Panels",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/index.html",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/index.html",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/panels?utm_source=test",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/services/panels?utm_source=test",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/gilbert/",
+      "status": 301,
+      "location": "https://www.thewireguyelectric.com/locations/gilbert",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/locations/gilbert",
+      "hops": 1
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-does-my-breaker-keep-tripping/",
+      "status": 301,
+      "location": "https://www.thewireguyelectric.com/blog-posts/why-does-my-breaker-keep-tripping",
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/blog-posts/why-does-my-breaker-keep-tripping",
+      "hops": 1
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/blog-posts",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/locations",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services-categories",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/services-categories",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sister-companies",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/sister-companies",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/401",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/401",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/404",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/404",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/lighting",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/posts-categories/lighting",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/industrial",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/posts-categories/industrial",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/commercial",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/posts-categories/commercial",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/circuit-breakers",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/product/circuit-breakers",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/smart-devices",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/product/smart-devices",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/safety-equipment",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/product/safety-equipment",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/lighting-fixtures",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/product/lighting-fixtures",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/electrical-wiring",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/product/electrical-wiring",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/electrical-tools-kit",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/product/electrical-tools-kit",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/lighting-solutions",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/category/lighting-solutions",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/hardware",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/category/hardware",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/electrical-tools",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/category/electrical-tools",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/sku/circuit-breakers",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/sku/circuit-breakers",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/upgrading-your-electrical-panel",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/blog-posts/upgrading-your-electrical-panel",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/protecting-your-home-and-family",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/blog-posts/protecting-your-home-and-family",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/the-benefits-and-efficiency-of-lighting",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/blog-posts/the-benefits-and-efficiency-of-lighting",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/understanding-of-residential-wiring",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/blog-posts/understanding-of-residential-wiring",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/mesa",
+      "status": 404,
+      "location": null,
+      "final_status": 404,
+      "final_url": "https://www.thewireguyelectric.com/locations/mesa",
+      "hops": 0
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/hanging-lights",
+      "status": 200,
+      "location": null,
+      "final_status": 200,
+      "final_url": "https://www.thewireguyelectric.com/services/hanging-lights",
+      "hops": 0
+    }
+  ]
+}

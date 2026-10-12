@@ -1,0 +1,1576 @@
+{
+  "source": "Live crawl of www.thewireguyelectric.com via curl on 2026-10-12 (measured). Not Ahrefs.",
+  "rows": [
+    {
+      "url": "https://www.thewireguyelectric.com",
+      "http_status": 200,
+      "title": "Best Rated Electrician in Mesa, AZ | The Wire Guy Electric",
+      "meta_description": "Family-owned, licensed Mesa electricians for panel upgrades, EV chargers, lighting, troubleshooting, and commercial work. Call for a free estimate.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Mesa\u2019s top choice electricians for homes and businesses."
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 530
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/about-us",
+      "http_status": 200,
+      "title": "Family-Owned Mesa Electricians Since 2017 | The Wire Guy",
+      "meta_description": "Meet the family behind The Wire Guy Electric. Licensed, bonded, and insured since 2017, serving the Phoenix Valley with honest pricing.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "The Wire Guy Electric is a family operated business"
+      ],
+      "h1_count": 1,
+      "h2_count": 2,
+      "approx_visible_words": 515
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog",
+      "http_status": 200,
+      "title": "Electrical Tips & Guides | The Wire Guy Electric Blog",
+      "meta_description": "Helpful electrical tips, cost guides, and expert advice from a licensed Phoenix electrician. Panel upgrades, lighting, surge protection, and more.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "The Wire Guy Blog"
+      ],
+      "h1_count": 1,
+      "h2_count": 1,
+      "approx_visible_words": 421
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/contact-us",
+      "http_status": 200,
+      "title": "Free Electrical Estimate in Mesa, AZ | The Wire Guy Electric",
+      "meta_description": "Get a free, no-obligation electrical estimate. Flat-rate pricing with no hidden fees. Serving Mesa, Scottsdale, Gilbert, Chandler, and Tempe.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Ready to start a request?"
+      ],
+      "h1_count": 1,
+      "h2_count": 1,
+      "approx_visible_words": 268
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/faq",
+      "http_status": 200,
+      "title": "Electrician FAQ | Costs & Common Questions | Mesa, AZ",
+      "meta_description": "Straight answers on panel upgrades, EV chargers, recessed lighting, aluminum wiring, and breaker problems from a licensed Mesa electrician.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Frequently asked electrical questions"
+      ],
+      "h1_count": 1,
+      "h2_count": 4,
+      "approx_visible_words": 2672
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/our-team",
+      "http_status": 200,
+      "title": "Meet Our Electricians | The Wire Guy Electric Team",
+      "meta_description": "Get to know the licensed electricians behind The Wire Guy Electric in Mesa, AZ. Real people, real expertise, and a real commitment to quality work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "The team of licensed electricians"
+      ],
+      "h1_count": 1,
+      "h2_count": 5,
+      "approx_visible_words": 849
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/search",
+      "http_status": 200,
+      "title": "Search Results | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Search results"
+      ],
+      "h1_count": 1,
+      "h2_count": 0,
+      "approx_visible_words": 129
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services",
+      "http_status": 200,
+      "title": "Electrical Services in Mesa & Phoenix | The Wire Guy Electric",
+      "meta_description": "Residential and commercial electrical across the Phoenix Valley. Panels, EV chargers, lighting, remodels, new construction, and tenant improvements.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Electrical Services in Mesa, Arizona and the Phoenix Valley"
+      ],
+      "h1_count": 1,
+      "h2_count": 2,
+      "approx_visible_words": 1000
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/checkout",
+      "http_status": 200,
+      "title": "Checkout | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 6
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/paypal-checkout",
+      "http_status": 200,
+      "title": "Checkout | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 6
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/order-confirmation",
+      "http_status": 200,
+      "title": "Order Confirmation | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/careers",
+      "http_status": 200,
+      "title": "Residential Electrician Jobs in Mesa, AZ | The Wire Guy",
+      "meta_description": "Hiring an experienced residential service electrician in Mesa. 4+ years residential service required. Steady year-round work and daytime hours.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Residential Service Electrician Jobs in Mesa, AZ"
+      ],
+      "h1_count": 1,
+      "h2_count": 1,
+      "approx_visible_words": 431
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/commercial-electrician",
+      "http_status": 200,
+      "title": "Commercial Electrician in Mesa & Phoenix | The Wire Guy",
+      "meta_description": "Licensed commercial electricians serving Phoenix, Mesa, and Scottsdale. Tenant improvements, service and maintenance, LED retrofits, and upgrades.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 553
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "http_status": 200,
+      "title": "7 Signs You Need an Electrical Panel Upgrade | The Wire Guy Electric",
+      "meta_description": "Identify the signs that your electrical panel needs an upgrade to enhance safety, efficiency, and compliance with modern power demands.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "7 Signs You Need an Electrical Panel Upgrade"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 1453
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/ac-disconnect-box-arizona",
+      "http_status": 200,
+      "title": "AC Disconnect Boxes in Arizona: The Gray Switch Outside That Fails More Than You Think | The Wire Guy Electric",
+      "meta_description": "The gray box beside your condenser sits in full sun for twenty years, then takes your AC down with it. How they fail and the warning signs.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "AC Disconnect Boxes in Arizona: The Gray Switch Outside That Fails More Than You Think"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1688
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/ac-keeps-tripping-breaker-arizona",
+      "http_status": 200,
+      "title": "Why Does My AC Keep Tripping the Breaker in Arizona? | The Wire Guy Electric",
+      "meta_description": "If your AC keeps tripping the breaker in the Arizona heat, here is what is actually causing it, what you can check yourself, and when it points to a panel that has outgrown your home.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Does My AC Keep Tripping the Breaker in Arizona?"
+      ],
+      "h1_count": 1,
+      "h2_count": 8,
+      "approx_visible_words": 1196
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "http_status": 200,
+      "title": "Aluminum Wiring in Older Phoenix Homes: Risks, Red Flags, and Remediation Costs | The Wire Guy Electric",
+      "meta_description": "Many Phoenix homes built between 1965 and 1975 have aluminum wiring. Here's why it's a fire risk, how to tell if your home has it, and what remediation actually costs in Arizona.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Aluminum Wiring in Older Phoenix Homes: Risks, Red Flags, and Remediation Costs"
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 1210
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "http_status": 200,
+      "title": "Bathroom or Garage Outlets Not Working? Here's How to Fix. | The Wire Guy Electric",
+      "meta_description": "Bathroom or garage outlets not working? Learn how to reset a GFCI, common reasons it fails, and when to call The Wire Guy Electric in Phoenix.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Bathroom or Garage Outlets Not Working? Here's How to Fix."
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 660
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/breaker-trips-ac",
+      "http_status": 200,
+      "title": "Why Your Breaker Trips When the AC Turns On in Phoenix | The Wire Guy Electric",
+      "meta_description": "If your breaker trips every time the AC kicks on, you\u2019re not alone. This is one of the most common electrical complaints.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Your Breaker Trips When the AC Turns On in Phoenix"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1090
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "http_status": 200,
+      "title": "Can Hot Weather Cause Your Circuit Breaker to Trip? | The Wire Guy Electric",
+      "meta_description": "Learn how Arizona heat, heavy air-conditioning loads, loose connections, and aging breakers can cause summer trips\u2014and when to call an electrician.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Can Hot Weather Cause Your Circuit Breaker to Trip?"
+      ],
+      "h1_count": 1,
+      "h2_count": 8,
+      "approx_visible_words": 1082
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/casita-adu-electrical-requirements-arizona",
+      "http_status": 200,
+      "title": "Casita and ADU Electrical in Arizona: Panel Capacity, Subpanels, and Trenching | The Wire Guy Electric",
+      "meta_description": "Arizona's casita laws opened the door. The electrical side is what decides your budget: service capacity, subpanel sizing, and the trench between the two.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Casita and ADU Electrical in Arizona: Panel Capacity, Subpanels, and Trenching"
+      ],
+      "h1_count": 1,
+      "h2_count": 12,
+      "approx_visible_words": 1935
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/ceiling-fan-installation-cost-arizona",
+      "http_status": 200,
+      "title": "How Much Does Ceiling Fan Installation Cost in Arizona? | The Wire Guy Electric",
+      "meta_description": "Thinking about installing a ceiling fan in your Arizona home? Here's what it actually costs, what affects the price, and why it's not a DIY job.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "How Much Does Ceiling Fan Installation Cost in Arizona?"
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 1268
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "http_status": 200,
+      "title": "Common Electrical Issues in Scottsdale Homes | The Wire Guy Electric",
+      "meta_description": "Living in Scottsdale, Arizona, comes with its unique set of challenges. One of these is dealing with common electrical issues in homes.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Common Electrical Issues in Scottsdale Homes"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 2290
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/cost-to-rewire-house-arizona",
+      "http_status": 200,
+      "title": "How Much Does It Cost to Rewire a House in Arizona? | The Wire Guy Electric",
+      "meta_description": "Wondering what a full house rewire costs in the Phoenix area? Here's a real breakdown from a local electrician, including when you actually need one.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "How Much Does It Cost to Rewire a House in Arizona?"
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 1446
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "http_status": 200,
+      "title": "Cutting Corners on Panel Upgrades: Why Cheap Quotes in Phoenix Should Worry You | The Wire Guy Electric",
+      "meta_description": "See which shortcuts can undermine a Phoenix panel upgrade, what a proper 200-amp replacement includes, and how to compare electrician quotes.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Cutting Corners on Panel Upgrades: Why Cheap Quotes in Phoenix Should Worry You"
+      ],
+      "h1_count": 1,
+      "h2_count": 15,
+      "approx_visible_words": 1540
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/diy-electrical-work-in-arizona",
+      "http_status": 200,
+      "title": "DIY Electrical Work in Arizona: What\u2019s Legal and What\u2019s Not | The Wire Guy Electric",
+      "meta_description": "Thinking about doing your own electrical work in Arizona? Learn what\u2019s allowed for homeowners, what\u2019s illegal, and when to call a licensed electrician in Phoenix or Scottsdale.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "DIY Electrical Work in Arizona: What\u2019s Legal and What\u2019s Not"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 702
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "http_status": 200,
+      "title": "Do You Need an Electrical Panel Upgrade? Here\u2019s How to Tell | The Wire Guy Electric",
+      "meta_description": "Your electrical panel is the heart of your home\u2019s electrical system\u2014distributing power where it\u2019s needed and protecting your home from overloads.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Do You Need an Electrical Panel Upgrade? Here\u2019s How to Tell"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 552
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/dryer-outlet-for-ev",
+      "http_status": 200,
+      "title": "Can I Plug My EV Into My Dryer Outlet? | The Wire Guy Electric",
+      "meta_description": "Can you plug your EV into a dryer outlet? Learn the risks, permit rules, and safer options for home charging.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Can I Plug My EV Into My Dryer Outlet?"
+      ],
+      "h1_count": 1,
+      "h2_count": 4,
+      "approx_visible_words": 642
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/electrical-inspection-before-selling-a-home",
+      "http_status": 200,
+      "title": "Electrical Inspection Before Selling a Home in Phoenix | The Wire Guy Electric",
+      "meta_description": "Selling your home? Schedule a pre-listing electrical inspection with The Wire Guy Electric to catch issues early and close faster.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Electrical Inspection Before Selling a Home in Phoenix"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 667
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/electrical-panel-hot-to-the-touch-arizona",
+      "http_status": 200,
+      "title": "Why Is My Electrical Panel Hot to the Touch? | The Wire Guy Electric",
+      "meta_description": "An electrical panel that is hot to the touch can be normal summer heat, or a warning sign of a failing connection. Here is how to tell the difference, and what to do about it.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Is My Electrical Panel Hot to the Touch?"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 1108
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/electrical-panel-upgrade-cost-arizona",
+      "http_status": 200,
+      "title": "How Much Does an Electrical Panel Upgrade Cost in Arizona? | The Wire Guy Electric",
+      "meta_description": "A real-world breakdown of what Arizona homeowners pay to upgrade their electrical panel, from a licensed Mesa electrician who does this work every week.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "How Much Does an Electrical Panel Upgrade Cost in Arizona?"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 961
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/electrical-safety-tips",
+      "http_status": 200,
+      "title": "10 Essential Electricity Safety Tips Everyone Should Know | The Wire Guy Electric",
+      "meta_description": "Review 10 practical electrical safety tips for avoiding shocks, overloaded circuits, damaged cords, and other common hazards at home.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "10 Essential Electricity Safety Tips Everyone Should Know"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 826
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/emfs-in-your-phoenix-home",
+      "http_status": 200,
+      "title": "EMFs in Your Phoenix Home: What Every Arizona Homeowner Should Know About Electrical Exposure | The Wire Guy Electric",
+      "meta_description": "Phoenix homes rely heavily on electricity. Many Arizona homeowners are unknowingly exposed to higher-than-normal electromagnetic fields (EMFs) inside their homes.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "EMFs in Your Phoenix Home: What Every Arizona Homeowner Should Know About Electrical Exposure"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1167
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "http_status": 200,
+      "title": "EV Charger Install: Hardwired vs Plug-In, and Why Plug-In Outlets Burn Up in Phoenix | The Wire Guy Electric",
+      "meta_description": "Compare hardwired EV chargers with NEMA 14-50 plug-in setups, including heat, connection, and continuous-load concerns in Phoenix garages.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "EV Charger Install: Hardwired vs Plug-In, and Why Plug-In Outlets Burn Up in Phoenix"
+      ],
+      "h1_count": 1,
+      "h2_count": 12,
+      "approx_visible_words": 1227
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/federal-pacific-zinsco-panels-arizona",
+      "http_status": 200,
+      "title": "Federal Pacific and Zinsco Panels in Arizona: Why Insurers Flag Them | The Wire Guy Electric",
+      "meta_description": "Learn why Federal Pacific, Stab-Lok, Zinsco, and Sylvania panels draw safety and insurance concerns, plus how replacement works in Arizona.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Federal Pacific and Zinsco Panels in Arizona: Why Insurers Flag Them"
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 1299
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/generator-interlock-in-arizona",
+      "http_status": 200,
+      "title": "Can I Use a Generator Interlock in Arizona? | The Wire Guy Electric",
+      "meta_description": "Wondering if a generator interlock is legal in Arizona? Learn the code rules, utility requirements, and safe backup power options for your home.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Can I Use a Generator Interlock in Arizona?"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 640
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/half-house-lost-power-heat-arizona",
+      "http_status": 200,
+      "title": "Half My House Lost Power in the Heat: What It Means in Arizona | The Wire Guy Electric",
+      "meta_description": "Learn why losing power to half a house can signal a failed utility leg or service connection, especially during extreme Arizona heat.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Half My House Lost Power in the Heat: What It Means in Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 1101
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/hot-tub-electrical-installation-cost-arizona",
+      "http_status": 200,
+      "title": "Hot Tub Electrical Installation Cost in Arizona: What to Budget and What to Expect | The Wire Guy Electric",
+      "meta_description": "Planning a hot tub in your Phoenix backyard? Here's what the electrical hookup actually costs in Arizona, what's required by code, and what separates a safe install from a dangerous one.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Hot Tub Electrical Installation Cost in Arizona: What to Budget and What to Expect"
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 1099
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "http_status": 200,
+      "title": "How Phoenix Heat Affects Your Home\u2019s Electrical System | The Wire Guy Electric",
+      "meta_description": "Phoenix summers aren\u2019t just hot \u2014 they\u2019re extreme.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "How Phoenix Heat Affects Your Home\u2019s Electrical System"
+      ],
+      "h1_count": 1,
+      "h2_count": 7,
+      "approx_visible_words": 637
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/how-to-wire-a-gfci-outlet",
+      "http_status": 200,
+      "title": "How to Wire a GFCI Outlet: A Step-by-Step Guide for Beginners | The Wire Guy Electric",
+      "meta_description": "Learn how GFCI line and load terminals work, the risks of incorrect wiring, and when outlet replacement should be handled by an electrician.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "How to Wire a GFCI Outlet: A Step-by-Step Guide for Beginners"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1025
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/installing-car-charger",
+      "http_status": 200,
+      "title": "Installing an Electric Car Charger at Home in Arizona | The Wire Guy Electric",
+      "meta_description": "Learn what home EV charger installation in Arizona requires, from panel capacity and circuit sizing to permits, placement, and charging speed.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Installing an Electric Car Charger at Home in Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 684
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/is-whole-house-surge-protection-necessary",
+      "http_status": 200,
+      "title": "Is Whole-House Surge Protection Necessary in My Home? | The Wire Guy Electric",
+      "meta_description": "Learn why whole-house surge protection is essential for Phoenix homeowners. Protect your home\u2019s wiring and electronics with The Wire Guy Electric\u2019s professional installation.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Is Whole-House Surge Protection Necessary in My Home?"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 706
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+      "http_status": 200,
+      "title": "How Many Circuits Does a Kitchen Need? An Arizona Remodel Wiring Guide | The Wire Guy Electric",
+      "meta_description": "A modern kitchen needs seven or eight circuits. Most Valley kitchens built before 2000 have three. Here is what a remodel actually requires and when to wire it.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "How Many Circuits Does a Kitchen Need? An Arizona Remodel Wiring Guide"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1738
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "http_status": 200,
+      "title": "Landscape Lighting Installation: Cost and Ideas for Phoenix Homes | The Wire Guy Electric",
+      "meta_description": "Thinking about landscape lighting for your Phoenix home? Here's what it costs, the best types of lights for Arizona, and what to expect from a pro install.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Landscape Lighting Installation: Cost and Ideas for Phoenix Homes"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1486
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "http_status": 200,
+      "title": "Level 1 vs Level 2 EV Chargers: Which to Choose | The Wire Guy Electric",
+      "meta_description": "Compare Level 1 and Level 2 EV charging speeds, electrical requirements, installation needs, and daily-use tradeoffs for Arizona homes.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Level 1 vs Level 2 EV Chargers: Which to Choose",
+        "Level 1 vs Level 2 EV Chargers: Which to Choose"
+      ],
+      "h1_count": 2,
+      "h2_count": 9,
+      "approx_visible_words": 1316
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/mini-split-electrical-requirements-arizona",
+      "http_status": 200,
+      "title": "Mini-Split Electrical Requirements in Arizona: Breakers, Wiring, and Who Does What | The Wire Guy Electric",
+      "meta_description": "Learn the breaker, wiring, disconnect, and panel requirements for an Arizona mini-split\u2014and which work belongs to the electrician or HVAC technician.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Mini-Split Electrical Requirements in Arizona: Breakers, Wiring, and Who Does What"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 1158
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "http_status": 200,
+      "title": "A Homeowner\u2019s Guide to Old Electrical Systems in Arizona Houses | The Wire Guy Electric",
+      "meta_description": "Worried your Arizona home has outdated wiring? Learn how to spot the signs of old electrical systems, prevent fire risks, and when to call a licensed electrician.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "A Homeowner\u2019s Guide to Old Electrical Systems in Arizona Houses"
+      ],
+      "h1_count": 1,
+      "h2_count": 4,
+      "approx_visible_words": 696
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/permit-for-electrical-work",
+      "http_status": 200,
+      "title": "Do You Need a Permit for Electrical Work in Phoenix? (2026 Guide) | The Wire Guy Electric",
+      "meta_description": "Learn which Phoenix electrical projects need permits, what homeowners can legally do, and how permits affect cost, safety, and timelines.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Do You Need a Permit for Electrical Work in Phoenix? (2026 Guide)"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 768
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "http_status": 200,
+      "title": "Phoenix Back-to-School Electrical Upgrades for Safer, Smarter Homes | The Wire Guy Electric",
+      "meta_description": "Is your Phoenix home ready for remote learning, after-school gaming, and smart devices? Discover top electrical upgrades and safety tips for modern families this school year.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Phoenix Back-to-School Electrical Upgrades for Safer, Smarter Homes"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 858
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "http_status": 200,
+      "title": "Phoenix Monsoon Electrical Damage: How Haboobs & Storms Impact Your System | The Wire Guy Electric",
+      "meta_description": "Learn how monsoon winds, dust, lightning, and moisture can affect a Phoenix home's electrical system, plus warning signs to check after storms.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Phoenix Monsoon Electrical Damage: How Haboobs & Storms Impact Your System"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 909
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/pool-pump-electrical-requirements-arizona",
+      "http_status": 200,
+      "title": "Pool Pump Electrical in Arizona: Why It Trips, What Bonding Is, and What Code Requires | The Wire Guy Electric",
+      "meta_description": "Pool pump tripping the GFCI? Equipment pad wiring in full Arizona sun fails in ways people do not expect. What bonding does and what a correct install looks like.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Pool Pump Electrical in Arizona: Why It Trips, What Bonding Is, and What Code Requires"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1987
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/recessed-lighting-installation-phoenix",
+      "http_status": 200,
+      "title": "Recessed Lighting Installation: What It Costs and Whether It's Worth It | The Wire Guy Electric",
+      "meta_description": "Honest pricing, room-by-room recommendations, and the mistakes we fix from DIY installs. From a Phoenix electrician who installs recessed lights every week.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Recessed Lighting Installation: What It Costs and Whether It's Worth It"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 1293
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/smart-thermostat-c-wire-arizona",
+      "http_status": 200,
+      "title": "No C-Wire? What It Takes to Add a Smart Thermostat in an Arizona Home | The Wire Guy Electric",
+      "meta_description": "Four wires where the instructions show five. What the C-wire does, why most Valley homes never got one, and the four ways this gets solved.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "No C-Wire? What It Takes to Add a Smart Thermostat in an Arizona Home"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1710
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/summer-electrical-tips",
+      "http_status": 200,
+      "title": "Summer Electrical Tips from Arizona's #1 Electrician | The Wire Guy Electric",
+      "meta_description": "Prepare your home for the extreme Arizona heat with summer electrical safety tips from The Wire Guy Electric. Trusted residential and commercial electricians in Scottsdale and beyond.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Summer Electrical Tips from Arizona's #1 Electrician"
+      ],
+      "h1_count": 1,
+      "h2_count": 4,
+      "approx_visible_words": 607
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/swamp-cooler-to-ac-conversion-electrical-arizona",
+      "http_status": 200,
+      "title": "Swapping a Swamp Cooler for Refrigerated AC: What Changes on the Electrical Side | The Wire Guy Electric",
+      "meta_description": "Swapping an evaporative cooler for refrigerated air is a huge load increase. What your panel has to handle and what actually gets installed.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Swapping a Swamp Cooler for Refrigerated AC: What Changes on the Electrical Side"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1753
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+      "http_status": 200,
+      "title": "Tesla Wall Connector vs ChargePoint Home Flex: Which One Belongs in Your Garage | The Wire Guy Electric",
+      "meta_description": "Compare Tesla Wall Connector and ChargePoint Home Flex on charging speed, plug compatibility, app features, price, and fit for Phoenix homes.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Tesla Wall Connector vs ChargePoint Home Flex: Which One Belongs in Your Garage"
+      ],
+      "h1_count": 1,
+      "h2_count": 13,
+      "approx_visible_words": 1249
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "http_status": 200,
+      "title": "Top Outdoor Lighting Tips to Elevate Your Phoenix Yard This Fall | The Wire Guy Electric",
+      "meta_description": "Want to upgrade your outdoor space this fall? Discover expert tips on outdoor lighting design, safety, and installation for Phoenix homes \u2014 from landscape lights to smart upgrades.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Top Outdoor Lighting Tips to Elevate Your Phoenix Yard This Fall"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 884
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "http_status": 200,
+      "title": "Whole-Home Standby Generator Installation in Phoenix: Cost, Sizing, and Is It Worth It? | The Wire Guy Electric",
+      "meta_description": "Learn typical Phoenix standby generator costs, how systems are sized, what installation involves, and when whole-home backup may make sense.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Whole-Home Standby Generator Installation in Phoenix: Cost, Sizing, and Is It Worth It?"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1248
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/whole-house-surge-protector-guide-arizona",
+      "http_status": 200,
+      "title": "Whole House Surge Protectors: What They Do, What They Cost, and Whether You Need One | The Wire Guy Electric",
+      "meta_description": "Your power strip isn't protecting your AC, fridge, or anything hardwired. Here's what a panel-mounted surge protector actually does and why it matters in Arizona.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Whole House Surge Protectors: What They Do, What They Cost, and Whether You Need One"
+      ],
+      "h1_count": 1,
+      "h2_count": 11,
+      "approx_visible_words": 1260
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-does-my-breaker-keep-tripping",
+      "http_status": 200,
+      "title": "Why Does My Breaker Keep Tripping in My Phoenix Home? | The Wire Guy Electric",
+      "meta_description": "Breaker keeps tripping in your Phoenix home? Learn the most common causes \u2014 and how The Wire Guy Electric can fix it safely with same-day service.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Does My Breaker Keep Tripping in My Phoenix Home?"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 719
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "http_status": 200,
+      "title": "Why does my breaker keep tripping in the summer? | The Wire Guy Electric",
+      "meta_description": "It\u2019s 110 degrees in the middle of a Phoenix summer. Your A/C is running full blast\u2014then suddenly, the power cuts out.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why does my breaker keep tripping in the summer?"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 602
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-is-my-electric-bill-so-high-phoenix-summer",
+      "http_status": 200,
+      "title": "Why Is My Electric Bill So High in Phoenix This Summer? | The Wire Guy Electric",
+      "meta_description": "Learn how cooling demand, time-of-use rates, pool pumps, and thermostat settings raise Phoenix summer electric bills\u2014and which changes can help.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Is My Electric Bill So High in Phoenix This Summer?"
+      ],
+      "h1_count": 1,
+      "h2_count": 9,
+      "approx_visible_words": 1317
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "http_status": 200,
+      "title": "Why You Should Never Ignore Flickering Lights in Your Arizona Home | The Wire Guy Electric",
+      "meta_description": "Learn what flickering lights may indicate in an Arizona home, from high appliance loads to loose connections, and when the issue needs inspection.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why You Should Never Ignore Flickering Lights in Your Arizona Home"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 548
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "http_status": 200,
+      "title": "Why Your Circuit Breaker Keeps Tripping in Cold Weather | The Wire Guy Electric",
+      "meta_description": "Learn why circuit breakers may trip during cold weather, including heavier heater loads, moisture, and wiring or breaker problems to investigate.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Your Circuit Breaker Keeps Tripping in Cold Weather"
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 980
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-your-lights-flicker",
+      "http_status": 200,
+      "title": "Why Your Lights Flicker (Especially in Phoenix) | The Wire Guy Electric",
+      "meta_description": "Flickering lights are one of the most common electrical complaints in Phoenix homes, and they\u2019re also one of the most misunderstood.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Your Lights Flicker (Especially in Phoenix)"
+      ],
+      "h1_count": 1,
+      "h2_count": 10,
+      "approx_visible_words": 844
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "http_status": 200,
+      "title": "Why Your Lights Flicker in the Afternoon in Phoenix (and How to Fix It) | The Wire Guy Electric",
+      "meta_description": "Wondering why your lights flicker in the afternoon in Phoenix? Learn the common causes, from peak heat power demand to loose wiring, and how The Wire Guy Electric can fix it fast.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Why Your Lights Flicker in the Afternoon in Phoenix (and How to Fix It)"
+      ],
+      "h1_count": 1,
+      "h2_count": 7,
+      "approx_visible_words": 636
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/ballast-replacement-fluorescent-lighting",
+      "http_status": 200,
+      "title": "Ballast Replacement & Fluorescent Lighting in Mesa, AZ | The Wire Guy",
+      "meta_description": "Ballast replacement and fluorescent repair, with a straight comparison of repair versus LED conversion on real numbers.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Ballast Replacement & Fluorescent Lighting"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 775
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/commercial-electrical-troubleshooting",
+      "http_status": 200,
+      "title": "Commercial Electrical Troubleshooting in Mesa, AZ | The Wire Guy",
+      "meta_description": "Dead circuits, repeat trips, voltage problems, overheating terminations, and the intermittent faults nobody else can pin down.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Commercial Electrical Troubleshooting"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 804
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/commercial-service",
+      "http_status": 200,
+      "title": "Commercial Electrical Service in Mesa, AZ | The Wire Guy",
+      "meta_description": "Service, repair, and maintenance for commercial properties. Retail, office, restaurant, medical, and warehouse, with off-hours scheduling.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Commercial Electrical Service"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1076
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/custom-lighting",
+      "http_status": 200,
+      "title": "Custom Lighting in Mesa, AZ | The Wire Guy",
+      "meta_description": "Custom cabinet lighting cut and soldered to fit, plus recessed cans, chandeliers, pendants, and cove runs. Hardwired and seamless.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Custom Lighting"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1016
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/dedicated-circuits",
+      "http_status": 200,
+      "title": "Dedicated Circuits in Mesa, AZ | The Wire Guy",
+      "meta_description": "Dedicated circuits for commercial equipment. Kitchen, refrigeration, medical, salon, and server loads sized off the nameplate.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Dedicated Circuits"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 775
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/electrical-remodels",
+      "http_status": 200,
+      "title": "Kitchen & Bathroom Remodels in Mesa, AZ | The Wire Guy",
+      "meta_description": "Kitchen, bath, and whole-house remodel electrical. Circuits, GFCI and AFCI protection, layered lighting, and the old wiring behind your walls.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Kitchen & Bathroom Remodels"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1262
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/electrical-safety-inspections",
+      "http_status": 200,
+      "title": "Electrical Safety Inspections in Mesa, AZ | The Wire Guy",
+      "meta_description": "Inspections for home buyers, sellers, and older homes. Panel, wiring, GFCI, and grounding assessed with real pricing on every finding.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Electrical Safety Inspections"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 924
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/electrical-troubleshooting",
+      "http_status": 200,
+      "title": "Troubleshooting in Mesa, AZ | The Wire Guy",
+      "meta_description": "Dead outlets, repeat breaker trips, flickering lights, buzzing, and burning smells. We map the circuit and find the cause, not the symptom.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Troubleshooting"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 961
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/electrical-upgrades",
+      "http_status": 200,
+      "title": "Electrical Upgrades in Mesa, AZ | The Wire Guy",
+      "meta_description": "Commercial panel, feeder, and service upgrades. Load calculation first, so you learn whether the problem is capacity or distribution.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Electrical Upgrades"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 716
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/emergency-exit-lights",
+      "http_status": 200,
+      "title": "Emergency & Exit Lights in Mesa, AZ | The Wire Guy",
+      "meta_description": "Exit sign and emergency lighting installation, testing, battery replacement, and repair. Arizona heat shortens battery life.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Emergency & Exit Lights"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 778
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/ev-charger-installation",
+      "http_status": 200,
+      "title": "EV Charger Installation in Mesa, AZ | The Wire Guy",
+      "meta_description": "Tesla Wall Connector, ChargePoint, NEMA 14-50, and universal Level 2 EV charger installation. Correct circuit sizing, every make and model.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "EV Charger Installation"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1015
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/exterior-electrical",
+      "http_status": 200,
+      "title": "Exterior Electrical in Mesa, AZ | The Wire Guy",
+      "meta_description": "Outdoor outlets, landscape and security lighting, patio and detached structure power. UV-rated and built for Arizona sun and monsoon.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Exterior Electrical"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 875
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/fixture-replacements",
+      "http_status": 200,
+      "title": "Fixture Replacements in Mesa, AZ | The Wire Guy",
+      "meta_description": "Fixture, chandelier, pendant, and ceiling fan replacement. Rated boxes, proper bracing, and dimmer compatibility so LEDs do not buzz.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Fixture Replacements"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 918
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/hanging-lights",
+      "http_status": 200,
+      "title": "Hanging Lights in Mesa, AZ | The Wire Guy",
+      "meta_description": "Hanging lights for commercial settings, perfect for businesses looking to enhance their ambiance and visual appeal.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Hanging Lights"
+      ],
+      "h1_count": 1,
+      "h2_count": 2,
+      "approx_visible_words": 698
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/led-lights",
+      "http_status": 200,
+      "title": "LED Lights in Mesa, AZ | The Wire Guy",
+      "meta_description": "Commercial LED retrofits and new installs. High bay, troffer, exterior, and parking lot lighting, phased around occupied buildings.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "LED Lights"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 817
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/new-construction-wiring",
+      "http_status": 200,
+      "title": "New Construction Wiring in Mesa, AZ | The Wire Guy",
+      "meta_description": "Full electrical for custom homes, casitas, shops, and additions. Temp power, slab rough, service sizing, complete rough-in and trim out.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "New Construction Wiring"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1211
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/outlets-and-switches",
+      "http_status": 200,
+      "title": "Outlets and Switches in Mesa, AZ | The Wire Guy",
+      "meta_description": "Commercial receptacle and switch work. Added circuits, GFCI protection, floor boxes, and workstation power instead of power strip chains.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Outlets and Switches"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 711
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/panels",
+      "http_status": 200,
+      "title": "Panel Replacements in Mesa, AZ | The Wire Guy",
+      "meta_description": "200-amp like-for-like swaps and full service replacements with a new meter base. APS and SRP coordination, NEC-compliant panel work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Panel Replacements"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1038
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/recessed-lights-installation",
+      "http_status": 200,
+      "title": "Recessed Lighting in Mesa, AZ | The Wire Guy",
+      "meta_description": "Recessed can lighting laid out around how you use the room. IC-rated where required, dimmers included, clean retrofit into existing ceilings.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Recessed Lighting"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 938
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/storefront-lights",
+      "http_status": 200,
+      "title": "Storefront Lights in Mesa, AZ | The Wire Guy",
+      "meta_description": "Storefront, sign, facade, and entry lighting installed and repaired. UV-rated materials and drivers spec'd for Arizona sun and dust.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Storefront Lights"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 709
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services/tenant-improvements",
+      "http_status": 200,
+      "title": "Tenant Improvements in Mesa, AZ | The Wire Guy",
+      "meta_description": "Commercial TI electrical for GCs and property managers. Shell buildouts, panels, lighting, and equipment circuits, bid from plans and on schedule.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Tenant Improvements"
+      ],
+      "h1_count": 1,
+      "h2_count": 3,
+      "approx_visible_words": 1140
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services-categories/commercial",
+      "http_status": 200,
+      "title": "Commercial Electrician in Mesa, AZ | The Wire Guy Electric",
+      "meta_description": "Top-rated Commercial electrician services in the Phoenix valley. Licensed, insured, flat-rate pricing. Serving Mesa, Scottsdale, Chandler, and more.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Commercial",
+        "We're ready to work for you"
+      ],
+      "h1_count": 2,
+      "h2_count": 1,
+      "approx_visible_words": 305
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/services-categories/residential",
+      "http_status": 200,
+      "title": "Residential Electrician in Mesa, AZ | The Wire Guy Electric",
+      "meta_description": "Top-rated Residential electrician services in the Phoenix valley. Licensed, insured, flat-rate pricing. Serving Mesa, Scottsdale, Chandler, and more.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Residential",
+        "We're ready to work for you"
+      ],
+      "h1_count": 2,
+      "h2_count": 1,
+      "approx_visible_words": 314
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/ahwatukee",
+      "http_status": 200,
+      "title": "Electrician in Ahwatukee, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed electrician in Ahwatukee, AZ for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial repairs.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Ahwatukee, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 737
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/apache-junction",
+      "http_status": 200,
+      "title": "Electrician in Apache Junction, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed electrician serving Apache Junction, AZ for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial repairs.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Apache Junction, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 692
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/chandler",
+      "http_status": 200,
+      "title": "Electrician in Chandler, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed Chandler electrician for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial electrical work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Chandler, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 673
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/fountain-hills",
+      "http_status": 200,
+      "title": "Electrician in Fountain Hills, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed electrician in Fountain Hills, AZ for panel upgrades, EV chargers, lighting, troubleshooting, and home or business repairs.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Fountain Hills, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 697
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/gilbert",
+      "http_status": 200,
+      "title": "Electrician in Gilbert, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed Gilbert electrician for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial electrical work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Gilbert, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 686
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/phoenix",
+      "http_status": 200,
+      "title": "Electrician in Phoenix, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed Phoenix electrician for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial electrical work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Phoenix, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 689
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/queen-creek",
+      "http_status": 200,
+      "title": "Electrician in Queen Creek, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed Queen Creek electrician for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial electrical work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Queen Creek, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 690
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/san-tan-valley",
+      "http_status": 200,
+      "title": "Electrician in San Tan Valley, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed electrician in San Tan Valley, AZ for panel upgrades, EV chargers, lighting, troubleshooting, and home or business repairs.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in San Tan Valley, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 715
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "http_status": 200,
+      "title": "Electrician in Scottsdale, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed Scottsdale electrician for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial electrical work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Scottsdale, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 697
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/locations/tempe",
+      "http_status": 200,
+      "title": "Electrician in Tempe, AZ | The Wire Guy Electric",
+      "meta_description": "Licensed Tempe electrician for panel upgrades, EV chargers, lighting, troubleshooting, and residential or commercial electrical work.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Licensed Electrician in Tempe, Arizona"
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 677
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/index.html",
+      "http_status": 200,
+      "title": "Best Rated Electrician in Mesa, AZ | The Wire Guy Electric",
+      "meta_description": "Family-owned, licensed Mesa electricians for panel upgrades, EV chargers, lighting, troubleshooting, and commercial work. Call for a free estimate.",
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [
+        "Mesa\u2019s top choice electricians for homes and businesses."
+      ],
+      "h1_count": 1,
+      "h2_count": 6,
+      "approx_visible_words": 530
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/401",
+      "http_status": 200,
+      "title": "Protected Page | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 1,
+      "approx_visible_words": 15
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/404",
+      "http_status": 200,
+      "title": "Page Not Found | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 1,
+      "approx_visible_words": 29
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/lighting",
+      "http_status": 200,
+      "title": "Lighting Electrical Tips | The Wire Guy Electric Blog",
+      "meta_description": "Browse our Lighting electrical articles, tips, and cost guides from licensed Phoenix valley electricians.",
+      "meta_robots": "noindex",
+      "canonical": null,
+      "h1": [
+        "Lighting"
+      ],
+      "h1_count": 1,
+      "h2_count": 0,
+      "approx_visible_words": 163
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/industrial",
+      "http_status": 200,
+      "title": "Industrial Electrical Tips | The Wire Guy Electric Blog",
+      "meta_description": "Browse our Industrial electrical articles, tips, and cost guides from licensed Phoenix valley electricians.",
+      "meta_robots": "noindex",
+      "canonical": null,
+      "h1": [
+        "Industrial"
+      ],
+      "h1_count": 1,
+      "h2_count": 0,
+      "approx_visible_words": 163
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/posts-categories/commercial",
+      "http_status": 200,
+      "title": "Commercial Electrical Tips | The Wire Guy Electric Blog",
+      "meta_description": "Browse our Commercial electrical articles, tips, and cost guides from licensed Phoenix valley electricians.",
+      "meta_robots": "noindex",
+      "canonical": null,
+      "h1": [
+        "Commercial"
+      ],
+      "h1_count": 1,
+      "h2_count": 0,
+      "approx_visible_words": 163
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/circuit-breakers",
+      "http_status": 200,
+      "title": "Circuit Breakers | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/smart-devices",
+      "http_status": 200,
+      "title": "Smart Devices | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/safety-equipment",
+      "http_status": 200,
+      "title": "Safety Equipment | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/lighting-fixtures",
+      "http_status": 200,
+      "title": "Lighting Fixtures | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/electrical-wiring",
+      "http_status": 200,
+      "title": "Electrical Wiring | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/product/electrical-tools-kit",
+      "http_status": 200,
+      "title": "Electrical Tools Kit | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 8
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/lighting-solutions",
+      "http_status": 200,
+      "title": "Lighting Solutions | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/hardware",
+      "http_status": 200,
+      "title": "Hardware | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 6
+    },
+    {
+      "url": "https://www.thewireguyelectric.com/category/electrical-tools",
+      "http_status": 200,
+      "title": "Electrical Tools | The Wire Guy Electric",
+      "meta_description": null,
+      "meta_robots": null,
+      "canonical": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2_count": 0,
+      "approx_visible_words": 7
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+---
+// Native <details> accordions: answers stay in the HTML (crawlable) with zero JS.
+import RichText from './RichText.astro'
+import type {FaqItem} from '../lib/types'
+
+interface Props {
+  faqs: FaqItem[]
+  heading?: string
+  headingLevel?: 'h2' | 'h3'
+}
+const {faqs, heading = 'Frequently asked questions', headingLevel = 'h2'} = Astro.props
+const Heading = headingLevel
+---
+
+{
+  faqs.length > 0 && (
+    <section class="container-page mt-16 max-w-3xl" aria-labelledby="faq-heading">
+      <Heading id="faq-heading" class="text-3xl font-bold">{heading}</Heading>
+      <div class="mt-6 divide-y divide-line border-y border-line">
+        {faqs.map((f) => (
+          <details class="group py-4">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-semibold text-ink">
+              {f.question}
+              <span class="text-brand transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+            </summary>
+            <RichText value={f.answer} class="prose-base mt-3" />
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}

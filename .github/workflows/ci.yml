@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Typecheck site
+        run: pnpm --filter web check
+      - name: Typecheck and build Studio
+        run: |
+          pnpm --filter studio exec tsc --noEmit
+          pnpm --filter studio build
+
+      # Builds from migration/sanity-import/production.ndjson unless Sanity
+      # credentials are configured as repository secrets.
+      - name: Build site (production indexing on)
+        run: pnpm --filter web build
+        env:
+          SITE_INDEXABLE: 'true'
+          PUBLIC_SANITY_PROJECT_ID: ${{ vars.PUBLIC_SANITY_PROJECT_ID }}
+          PUBLIC_SANITY_DATASET: ${{ vars.PUBLIC_SANITY_DATASET }}
+
+      - name: SEO parity against the live-site baseline
+        run: |
+          node scripts/seo/serve-build.mjs --port 4321 &
+          for i in $(seq 1 20); do curl -sf localhost:4321/ > /dev/null && break; sleep 0.5; done
+          node scripts/seo/crawl.mjs --base http://localhost:4321 --paths-from migration/seo-baseline.json --out migration/seo-candidate.json --concurrency 8
+          node scripts/seo/parity.mjs --out migration/parity-report.json
+
+      - name: Upload parity report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-parity-report
+          path: migration/parity-report.json
+          if-no-files-found: ignore

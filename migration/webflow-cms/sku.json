@@ -1,0 +1,287 @@
+[
+  {
+    "id": "66980076a856729471b47de1",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:18:07.679Z",
+    "createdOn": "2023-11-01T12:42:48.314Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-values": {},
+      "product": "66980076a856729471b47ddb",
+      "main-image": {
+        "fileId": "66980076a856729471b47e4d",
+        "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e4d_electric-machines-switches-isolated-white-close.jpg",
+        "alt": null
+      },
+      "more-images": [
+        {
+          "fileId": "66980076a856729471b47e40",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e40_man-electrical-technicianyh.jpg",
+          "alt": null
+        },
+        {
+          "fileId": "66980076a856729471b47e41",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e41_man-electrical-technicianfgt.jpg",
+          "alt": null
+        }
+      ],
+      "price": {
+        "unit": "USD",
+        "value": 8900
+      },
+      "compare-at-price": {
+        "unit": "USD",
+        "value": 12900
+      },
+      "download-files": [],
+      "ec-sku-subscription-plan": null,
+      "width": null,
+      "length": null,
+      "height": null,
+      "weight": null,
+      "sku": null,
+      "ec-sku-billing-method": "one-time",
+      "name": "Circuit Breakers",
+      "slug": "circuit-breakers"
+    }
+  },
+  {
+    "id": "66980076a856729471b47de7",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:19:19.523Z",
+    "createdOn": "2023-11-01T12:41:23.762Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-values": {},
+      "product": "66980076a856729471b47de0",
+      "main-image": {
+        "fileId": "66980076a856729471b47e4c",
+        "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e4c_female-turning-light-using-remote-control.jpg",
+        "alt": null
+      },
+      "more-images": [
+        {
+          "fileId": "66980076a856729471b47e4e",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e4e_home-automation-with-tablet.jpg",
+          "alt": null
+        },
+        {
+          "fileId": "66980076a856729471b47e4f",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e4f_man-electrical-technician-working-switchboard-with-fuses%20(1).jpg",
+          "alt": null
+        }
+      ],
+      "price": {
+        "unit": "USD",
+        "value": 62500
+      },
+      "compare-at-price": {
+        "unit": "USD",
+        "value": 69800
+      },
+      "download-files": [],
+      "ec-sku-subscription-plan": null,
+      "width": null,
+      "length": null,
+      "height": null,
+      "weight": null,
+      "sku": null,
+      "ec-sku-billing-method": "one-time",
+      "name": "Smart Devices",
+      "slug": "smart-devices"
+    }
+  },
+  {
+    "id": "66980076a856729471b47de5",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:25:41.178Z",
+    "createdOn": "2023-11-01T12:40:03.940Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-values": {},
+      "product": "66980076a856729471b47ddf",
+      "main-image": {
+        "fileId": "66980076a856729471b47e4b",
+        "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e4b_front-view-protective-glasses-with-hard-hat-headphones.jpg",
+        "alt": null
+      },
+      "more-images": [
+        {
+          "fileId": "66980076a856729471b47e60",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e60_top-view-safety-construction-helmet-medical-mask.jpg",
+          "alt": null
+        },
+        {
+          "fileId": "66980076a856729471b47e47",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e47_different-electrical-tools-wooden-background-flat-lay.jpg",
+          "alt": null
+        }
+      ],
+      "price": {
+        "unit": "USD",
+        "value": 23500
+      },
+      "compare-at-price": {
+        "unit": "USD",
+        "value": 28900
+      },
+      "download-files": [],
+      "ec-sku-subscription-plan": null,
+      "width": null,
+      "length": null,
+      "height": null,
+      "weight": null,
+      "sku": null,
+      "ec-sku-billing-method": "one-time",
+      "name": "Safety Equipment",
+      "slug": "safety-equipment"
+    }
+  },
+  {
+    "id": "66980076a856729471b47de4",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:27:10.012Z",
+    "createdOn": "2023-11-01T12:37:35.998Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-values": {},
+      "product": "66980076a856729471b47dde",
+      "main-image": {
+        "fileId": "66980076a856729471b47e4a",
+        "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e4a_light-bulbs.jpg",
+        "alt": null
+      },
+      "more-images": [
+        {
+          "fileId": "66980076a856729471b47e62",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e62_you-will-never-leave-me-dark-anymore.jpg",
+          "alt": null
+        },
+        {
+          "fileId": "66980076a856729471b47e64",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e64_hanging-color-retro-lighting-vintage.jpg",
+          "alt": null
+        }
+      ],
+      "price": {
+        "unit": "USD",
+        "value": 10500
+      },
+      "compare-at-price": {
+        "unit": "USD",
+        "value": 12900
+      },
+      "download-files": [],
+      "ec-sku-subscription-plan": null,
+      "width": null,
+      "length": null,
+      "height": null,
+      "weight": null,
+      "sku": null,
+      "ec-sku-billing-method": "one-time",
+      "name": "Lighting Fixtures",
+      "slug": "lighting-fixtures"
+    }
+  },
+  {
+    "id": "66980076a856729471b47de3",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:27:35.171Z",
+    "createdOn": "2023-11-01T12:35:07.034Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-values": {},
+      "product": "66980076a856729471b47ddd",
+      "main-image": {
+        "fileId": "66980076a856729471b47e48",
+        "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e48_colorful-plastic-polymer-granules-cable.jpg",
+        "alt": null
+      },
+      "more-images": [
+        {
+          "fileId": "66980076a856729471b47e49",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e49_male-electrician-works-switchboard-with-electrical-connecting-cable%20(4).jpg",
+          "alt": null
+        },
+        {
+          "fileId": "66980076a856729471b47e43",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e43_switchboard-with-manyfsf.jpg",
+          "alt": null
+        }
+      ],
+      "price": {
+        "unit": "USD",
+        "value": 13600
+      },
+      "compare-at-price": {
+        "unit": "USD",
+        "value": 15900
+      },
+      "download-files": [],
+      "ec-sku-subscription-plan": null,
+      "width": null,
+      "length": null,
+      "height": null,
+      "weight": null,
+      "sku": null,
+      "ec-sku-billing-method": "one-time",
+      "name": "Electrical Wiring",
+      "slug": "electrical-wiring"
+    }
+  },
+  {
+    "id": "66980076a856729471b47de2",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T14:29:32.007Z",
+    "createdOn": "2023-11-01T12:23:21.015Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "sku-values": {},
+      "product": "66980076a856729471b47ddc",
+      "main-image": {
+        "fileId": "66980076a856729471b47e47",
+        "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e47_different-electrical-tools-wooden-background-flat-lay.jpg",
+        "alt": null
+      },
+      "more-images": [
+        {
+          "fileId": "66980076a856729471b47e65",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e65_multimeter-electrical-instruments-table.jpg",
+          "alt": null
+        },
+        {
+          "fileId": "66980076a856729471b47e66",
+          "url": "https://uploads-ssl.webflow.com/66980076a856729471b47cf8/66980076a856729471b47e66_male-electrician-works-switchboard-with-electrical-connecting-cable%20(1).jpg",
+          "alt": null
+        }
+      ],
+      "price": {
+        "unit": "USD",
+        "value": 59600
+      },
+      "compare-at-price": null,
+      "download-files": [],
+      "ec-sku-subscription-plan": null,
+      "width": null,
+      "length": null,
+      "height": null,
+      "weight": null,
+      "sku": null,
+      "ec-sku-billing-method": "one-time",
+      "name": "Electrical Tools Kit",
+      "slug": "electrical-tools-kit"
+    }
+  }
+]

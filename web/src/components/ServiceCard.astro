@@ -1,0 +1,18 @@
+---
+import SanityImage from './SanityImage.astro'
+import type {ServiceSummary} from '../lib/types'
+
+interface Props {
+  service: ServiceSummary
+}
+const {service} = Astro.props
+---
+
+<a href={`/services/${service.slug}`} class="group flex flex-col overflow-hidden rounded-md border border-line bg-white transition-shadow hover:shadow-lg">
+  <SanityImage image={service.mainImage} width={480} aspect={3 / 2} class="aspect-[3/2] w-full object-cover" />
+  <div class="flex flex-1 flex-col p-5">
+    <h3 class="text-lg font-bold group-hover:text-brand">{service.name}</h3>
+    {service.shortDescription && <p class="mt-2 line-clamp-3 text-sm">{service.shortDescription}</p>}
+    <span class="mt-auto pt-4 text-sm font-semibold text-brand">Learn more →</span>
+  </div>
+</a>

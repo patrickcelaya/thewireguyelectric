@@ -1,0 +1,16 @@
+---
+// Thumb-reach call and estimate buttons on phones, where most "electrician near
+// me" searches happen. Hidden on desktop.
+import type {SiteSettings} from '../lib/types'
+
+interface Props {
+  settings: SiteSettings
+}
+const {settings} = Astro.props
+---
+
+<div class="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-line bg-white p-2 sm:hidden">
+  <a href={`tel:${settings.phoneE164}`} class="btn-outline py-3 text-sm whitespace-nowrap" aria-label={`Call ${settings.phone}`}>Call now</a>
+  <a href={settings.primaryCta?.href ?? '/contact-us'} class="btn-primary py-3 text-sm whitespace-nowrap">{settings.primaryCta?.label ?? 'Free Estimate'}</a>
+</div>
+<div class="h-16 sm:hidden" aria-hidden="true"></div>

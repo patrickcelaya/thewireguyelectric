@@ -1,0 +1,73 @@
+---
+import type {SiteSettings} from '../lib/types'
+import {getLocations, getServices} from '../lib/queries'
+
+interface Props {
+  settings: SiteSettings
+}
+const {settings} = Astro.props
+const [services, locations] = await Promise.all([getServices(), getLocations()])
+const year = new Date().getFullYear()
+---
+
+<footer class="mt-24 bg-ink text-white/80">
+  <div class="container-page grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
+    <div>
+      <p class="font-display text-xl font-bold text-white">{settings.businessName}</p>
+      {settings.tagline && <p class="mt-2">{settings.tagline}</p>}
+      <p class="mt-4"><a href={`tel:${settings.phoneE164}`} class="font-display text-lg font-semibold text-white hover:underline">{settings.phone}</a></p>
+      {settings.email && <p class="mt-1"><a href={`mailto:${settings.email}`} class="hover:underline">{settings.email}</a></p>}
+      {
+        settings.addresses?.map((a) => (
+          <address class="mt-4 not-italic">
+            {a.streetAddress}<br />
+            {a.addressLocality}, {a.addressRegion} {a.postalCode}
+          </address>
+        ))
+      }
+      {settings.rocLicense && <p class="mt-4 text-sm">AZ ROC #{settings.rocLicense} · Licensed, bonded &amp; insured</p>}
+    </div>
+
+    <nav aria-label="Services">
+      <p class="font-display font-semibold text-white">Services</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        {services.slice(0, 12).map((s) => <li><a href={`/services/${s.slug}`} class="hover:text-white hover:underline">{s.name}</a></li>)}
+        <li><a href="/services" class="font-semibold text-white hover:underline">All services</a></li>
+      </ul>
+    </nav>
+
+    <nav aria-label="Service areas">
+      <p class="font-display font-semibold text-white">Service areas</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/" class="hover:text-white hover:underline">Mesa</a></li>
+        {locations.map((l) => <li><a href={`/locations/${l.slug}`} class="hover:text-white hover:underline">{l.name}</a></li>)}
+      </ul>
+    </nav>
+
+    <nav aria-label="Company">
+      <p class="font-display font-semibold text-white">Company</p>
+      <ul class="mt-4 space-y-2 text-sm">
+        <li><a href="/about-us" class="hover:text-white hover:underline">About us</a></li>
+        <li><a href="/our-team" class="hover:text-white hover:underline">Our team</a></li>
+        <li><a href="/commercial-electrician" class="hover:text-white hover:underline">Commercial</a></li>
+        <li><a href="/blog" class="hover:text-white hover:underline">Blog</a></li>
+        <li><a href="/faq" class="hover:text-white hover:underline">FAQ</a></li>
+        <li><a href="/careers" class="hover:text-white hover:underline">Careers</a></li>
+        <li><a href="/contact-us" class="hover:text-white hover:underline">Contact</a></li>
+      </ul>
+      {
+        settings.sisterCompanies?.length ? (
+          <>
+            <p class="mt-6 font-display font-semibold text-white">Sister companies</p>
+            <ul class="mt-2 space-y-2 text-sm">
+              {settings.sisterCompanies.map((c) => <li><a href={c.href} class="hover:text-white hover:underline" rel="noopener">{c.label}</a></li>)}
+            </ul>
+          </>
+        ) : null
+      }
+    </nav>
+  </div>
+  <div class="border-t border-white/10">
+    <p class="container-page py-6 text-sm">© {year} {settings.legalName ?? settings.businessName}. All rights reserved.</p>
+  </div>
+</footer>

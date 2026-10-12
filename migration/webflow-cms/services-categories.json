@@ -1,0 +1,28 @@
+[
+  {
+    "id": "66980076a856729471b47dd6",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-10-30T13:37:35.419Z",
+    "createdOn": "2023-10-30T13:37:35.419Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Residential",
+      "slug": "residential"
+    }
+  },
+  {
+    "id": "66980076a856729471b47dd4",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-10-30T13:35:30.093Z",
+    "createdOn": "2023-10-30T13:35:30.093Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Commercial",
+      "slug": "commercial"
+    }
+  }
+]

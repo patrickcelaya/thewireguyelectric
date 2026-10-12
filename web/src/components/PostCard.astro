@@ -1,0 +1,26 @@
+---
+import SanityImage from './SanityImage.astro'
+import type {PostSummary} from '../lib/types'
+
+interface Props {
+  post: PostSummary
+  headingLevel?: 'h2' | 'h3'
+}
+const {post, headingLevel = 'h3'} = Astro.props
+const Heading = headingLevel
+const date = new Date(post.publishedAt)
+---
+
+<article class="group flex flex-col overflow-hidden rounded-md border border-line bg-white transition-shadow hover:shadow-lg">
+  <a href={`/blog-posts/${post.slug}`} tabindex="-1" aria-hidden="true">
+    <SanityImage image={post.mainImage} width={480} aspect={3 / 2} class="aspect-[3/2] w-full object-cover" />
+  </a>
+  <div class="flex flex-1 flex-col p-5">
+    <p class="text-xs font-semibold uppercase tracking-wide text-slate-light">
+      {post.category?.name && <span>{post.category.name} · </span>}
+      <time datetime={post.publishedAt}>{date.toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Phoenix'})}</time>
+    </p>
+    <Heading class="mt-2 text-lg font-bold leading-snug"><a href={`/blog-posts/${post.slug}`} class="group-hover:text-brand">{post.title}</a></Heading>
+    {post.excerpt && <p class="mt-2 line-clamp-3 text-sm">{post.excerpt}</p>}
+  </div>
+</article>

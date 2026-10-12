@@ -1,0 +1,11 @@
+---
+import SanityImage from '../SanityImage.astro'
+import type {ImageRef} from '../../lib/types'
+
+const {node} = Astro.props as {node: ImageRef & {_type: string}}
+---
+
+<figure>
+  <SanityImage image={node} width={800} class="rounded-md" />
+  {node.caption && <figcaption>{node.caption}</figcaption>}
+</figure>

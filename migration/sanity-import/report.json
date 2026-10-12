@@ -1,0 +1,612 @@
+{
+  "fixedLinks": [
+    {
+      "doc": "/services/commercial-service",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/new-construction-wiring",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/tenant-improvements",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/exterior-electrical",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/fixture-replacements",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/custom-lighting",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/led-lights",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/outlets-and-switches",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/storefront-lights",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/hanging-lights",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/electrical-upgrades",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/commercial-electrical-troubleshooting",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/emergency-exit-lights",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/dedicated-circuits",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/ballast-replacement-fluorescent-lighting",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/electrical-safety-inspections",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/ev-charger-installation",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/electrical-troubleshooting",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/electrical-remodels",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/panels",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/services/recessed-lights-installation",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/locations/fountain-hills",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/scottsdale",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/tempe",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/san-tan-valley",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/queen-creek",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/chandler",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/apache-junction",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/gilbert",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/locations/phoenix",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/pool-pump-electrical-requirements-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/casita-adu-electrical-requirements-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/swamp-cooler-to-ac-conversion-electrical-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/ac-disconnect-box-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/smart-thermostat-c-wire-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/mini-split-electrical-requirements-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/federal-pacific-zinsco-panels-arizona",
+      "from": "/services/electrical-panels",
+      "to": "/services/panels"
+    },
+    {
+      "doc": "/blog-posts/federal-pacific-zinsco-panels-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/why-is-my-electric-bill-so-high-phoenix-summer",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/half-house-lost-power-heat-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/electrical-panel-hot-to-the-touch-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/ac-keeps-tripping-breaker-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "from": "/services/electrical-panels",
+      "to": "/services/panels"
+    },
+    {
+      "doc": "/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+      "from": "/blog/ev-charger-hardwired-vs-plug-in-phoenix",
+      "to": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix"
+    },
+    {
+      "doc": "/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
+      "from": "/estimate",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/locations/gilbert",
+      "to": "/locations/gilbert"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/locations/chandler",
+      "to": "/locations/chandler"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "to": "/locations/scottsdale"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/locations/phoenix",
+      "to": "/locations/phoenix"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/locations/queen-creek",
+      "to": "/locations/queen-creek"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/services/exterior-electrical",
+      "to": "/services/exterior-electrical"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/services/custom-lighting",
+      "to": "/services/custom-lighting"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/blog-posts/why-your-lights-flicker",
+      "to": "/blog-posts/why-your-lights-flicker"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/blog-posts/why-does-my-breaker-keep-tripping",
+      "to": "/blog-posts/why-does-my-breaker-keep-tripping"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/services/panels",
+      "to": "/services/panels"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/blog-posts/how-to-wire-a-gfci-outlet",
+      "to": "/blog-posts/how-to-wire-a-gfci-outlet"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/blog-posts/electrical-panel-upgrade-cost-arizona",
+      "to": "/blog-posts/electrical-panel-upgrade-cost-arizona"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/blog-posts/permit-for-electrical-work",
+      "to": "/blog-posts/permit-for-electrical-work"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/services/electrical-remodels",
+      "to": "/services/electrical-remodels"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/services/electrical-safety-inspections",
+      "to": "/services/electrical-safety-inspections"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/services/electrical-troubleshooting",
+      "to": "/services/electrical-troubleshooting"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/blog-posts/electrical-inspection-before-selling-a-home",
+      "to": "/blog-posts/electrical-inspection-before-selling-a-home"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/tempe",
+      "to": "/locations/tempe"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/phoenix",
+      "to": "/locations/phoenix"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "to": "/locations/scottsdale"
+    },
+    {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/services/panels",
+      "to": "/services/panels"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/blog-posts/permit-for-electrical-work",
+      "to": "/blog-posts/permit-for-electrical-work"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/services/recessed-lights-installation",
+      "to": "/services/recessed-lights-installation"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/gilbert",
+      "to": "/locations/gilbert"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/chandler",
+      "to": "/locations/chandler"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "to": "/locations/scottsdale"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/phoenix",
+      "to": "/locations/phoenix"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/tempe",
+      "to": "/locations/tempe"
+    },
+    {
+      "doc": "/blog-posts/whole-house-surge-protector-guide-arizona",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/recessed-lighting-installation-phoenix",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/electrical-panel-upgrade-cost-arizona",
+      "from": "https://www.thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/why-your-lights-flicker",
+      "from": "https://thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/breaker-trips-ac",
+      "from": "https://thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/emfs-in-your-phoenix-home",
+      "from": "https://thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "from": "https://www.thewireguyelectric.com/services/electrical-troubleshooting",
+      "to": "/services/electrical-troubleshooting"
+    },
+    {
+      "doc": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "from": "https://www.thewireguyelectric.com/services/panels",
+      "to": "/services/panels"
+    },
+    {
+      "doc": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "from": "https://www.thewireguyelectric.com/locations/phoenix",
+      "to": "/locations/phoenix"
+    },
+    {
+      "doc": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "to": "/locations/scottsdale"
+    },
+    {
+      "doc": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "from": "https://www.thewireguyelectric.com/locations/mesa",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/generator-interlock-in-arizona",
+      "from": "https://www.thewireguyelectric.com/services/panels",
+      "to": "/services/panels"
+    },
+    {
+      "doc": "/blog-posts/generator-interlock-in-arizona",
+      "from": "https://www.thewireguyelectric.com/services/electrical-troubleshooting",
+      "to": "/services/electrical-troubleshooting"
+    },
+    {
+      "doc": "/blog-posts/generator-interlock-in-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/phoenix",
+      "to": "/locations/phoenix"
+    },
+    {
+      "doc": "/blog-posts/generator-interlock-in-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "to": "/locations/scottsdale"
+    },
+    {
+      "doc": "/blog-posts/generator-interlock-in-arizona",
+      "from": "https://www.thewireguyelectric.com/locations/mesa",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/dryer-outlet-for-ev",
+      "from": "https://www.thewireguyelectric.com/services/ev-charger-installation",
+      "to": "/services/ev-charger-installation"
+    },
+    {
+      "doc": "/blog-posts/dryer-outlet-for-ev",
+      "from": "https://www.thewireguyelectric.com/services/panels",
+      "to": "/services/panels"
+    },
+    {
+      "doc": "/blog-posts/dryer-outlet-for-ev",
+      "from": "https://www.thewireguyelectric.com/locations/phoenix",
+      "to": "/locations/phoenix"
+    },
+    {
+      "doc": "/blog-posts/dryer-outlet-for-ev",
+      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "to": "/locations/scottsdale"
+    },
+    {
+      "doc": "/blog-posts/dryer-outlet-for-ev",
+      "from": "https://www.thewireguyelectric.com/locations/mesa",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/permit-for-electrical-work",
+      "from": "http://thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "from": "http://thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "from": "http://thewireguyelectric.com",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/diy-electrical-work-in-arizona",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/summer-electrical-tips",
+      "from": "https://www.thewireguyelectric.com/contact-us",
+      "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
+      "to": "/locations/scottsdale"
+    },
+    {
+      "doc": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "from": "https://thewireguyelectric.com/",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "from": "https://thewireguyelectric.com/",
+      "to": "/"
+    },
+    {
+      "doc": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "from": "https://www.thewireguyelectric.com/blog-posts/electrical-panel-upgrade-cost-arizona",
+      "to": "/blog-posts/electrical-panel-upgrade-cost-arizona"
+    },
+    {
+      "doc": "/blog-posts/installing-car-charger",
+      "from": "https://www.thewireguyelectric.com/#contact",
+      "to": "/#contact"
+    }
+  ],
+  "droppedScripts": [
+    {
+      "doc": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "src": "https://app.seobotai.com/banner/banner.js?id=6806df84e572faef869989e9"
+    }
+  ],
+  "demotedH1": [
+    {
+      "doc": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "text": "Level 1 vs Level 2 EV Chargers: Which to Choose"
+    }
+  ],
+  "externalImages": [
+    {
+      "doc": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "src": "https://assets.seobotai.com/thewireguyelectric.com/6806df84e572faef869989e9/0115400c5ed8dd17af953d5871652879.jpg"
+    }
+  ]
+}

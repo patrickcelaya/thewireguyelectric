@@ -1,0 +1,957 @@
+{
+  "siteId": "66980076a856729471b47cbc",
+  "note": "list_forms result (forms + pagination) and get_form result per form, exactly as returned by the Webflow Data API. Submissions intentionally not exported.",
+  "list_forms": {
+    "forms": [
+      {
+        "displayName": "Careers Form",
+        "createdOn": "2026-09-21T02:16:57.344Z",
+        "lastUpdated": "2026-09-24T17:33:26.743Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464ac3a": {
+            "displayName": "Name",
+            "type": "Plain",
+            "placeholder": "Your name",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d5"
+          },
+          "6ab55ee6ade6d0ecd464ac3b": {
+            "displayName": "Email 4",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d6"
+          },
+          "6ab55ee6ade6d0ecd464ac3c": {
+            "displayName": "Phone Number",
+            "type": "Phone",
+            "placeholder": "Your phone number",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d7"
+          },
+          "6ab55ee6ade6d0ecd464ac3d": {
+            "displayName": "Years of Electrical Experience",
+            "type": "Number",
+            "placeholder": "Years of Electrical Experience",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d8"
+          },
+          "6ab55ee6ade6d0ecd464ac3e": {
+            "displayName": "Are you available for full-time work?",
+            "type": "Plain",
+            "placeholder": "Are you available for full-time work?",
+            "userVisible": true,
+            "fieldElementId": "a1efb41c-daa7-456b-8435-56eb7817d341"
+          },
+          "6ab55ee6ade6d0ecd464ac3f": {
+            "displayName": "How soon can you start?",
+            "type": "Plain",
+            "placeholder": "How soon can you start?",
+            "userVisible": true,
+            "fieldElementId": "a9898a37-ce65-9feb-f950-14c537847599"
+          },
+          "6ab55ee6ade6d0ecd464ac40": {
+            "displayName": "Request",
+            "type": "Plain",
+            "placeholder": "Tell us about you and your relevant experience.",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d9"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "6ab093996868f3a55170f86b",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "66980076a856729471b47cbc",
+        "pageId": "689153be9e70a99e2eb2bcba",
+        "formElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d4",
+        "pageName": "Careers",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Careers Form",
+        "createdOn": "2025-08-05T00:57:28.970Z",
+        "lastUpdated": "2026-09-24T17:33:26.715Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464ac1a": {
+            "displayName": "Name",
+            "type": "Plain",
+            "placeholder": "Your name",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d5"
+          },
+          "6ab55ee6ade6d0ecd464ac1b": {
+            "displayName": "Email 4",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d6"
+          },
+          "6ab55ee6ade6d0ecd464ac1c": {
+            "displayName": "Phone Number",
+            "type": "Phone",
+            "placeholder": "Your phone number",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d7"
+          },
+          "6ab55ee6ade6d0ecd464ac1d": {
+            "displayName": "Years of Electrical Experience",
+            "type": "Number",
+            "placeholder": "Years of Electrical Experience",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d8"
+          },
+          "6ab55ee6ade6d0ecd464ac1e": {
+            "displayName": "Are you available for full-time work?",
+            "type": "Plain",
+            "placeholder": "Are you available for full-time work?",
+            "userVisible": true,
+            "fieldElementId": "a1efb41c-daa7-456b-8435-56eb7817d341"
+          },
+          "6ab55ee6ade6d0ecd464ac1f": {
+            "displayName": "How soon can you start?",
+            "type": "Plain",
+            "placeholder": "How soon can you start?",
+            "userVisible": true,
+            "fieldElementId": "a9898a37-ce65-9feb-f950-14c537847599"
+          },
+          "6ab55ee6ade6d0ecd464ac20": {
+            "displayName": "Request",
+            "type": "Plain",
+            "placeholder": "Tell us about you and your relevant experience.",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d9"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "689156f86ad75357c790a96a",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "642cebe86e06ee3d14bdcf66",
+        "pageId": "689153be9e70a99e2eb2bcba",
+        "formElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d4",
+        "pageName": "Careers",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Careers Form",
+        "createdOn": "2025-08-05T00:57:28.932Z",
+        "lastUpdated": "2026-09-24T17:33:26.682Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464abfa": {
+            "displayName": "Name",
+            "type": "Plain",
+            "placeholder": "Your name",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d5"
+          },
+          "6ab55ee6ade6d0ecd464abfb": {
+            "displayName": "Email 4",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d6"
+          },
+          "6ab55ee6ade6d0ecd464abfc": {
+            "displayName": "Phone Number",
+            "type": "Phone",
+            "placeholder": "Your phone number",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d7"
+          },
+          "6ab55ee6ade6d0ecd464abfd": {
+            "displayName": "Years of Electrical Experience",
+            "type": "Number",
+            "placeholder": "Years of Electrical Experience",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d8"
+          },
+          "6ab55ee6ade6d0ecd464abfe": {
+            "displayName": "Are you available for full-time work?",
+            "type": "Plain",
+            "placeholder": "Are you available for full-time work?",
+            "userVisible": true,
+            "fieldElementId": "a1efb41c-daa7-456b-8435-56eb7817d341"
+          },
+          "6ab55ee6ade6d0ecd464abff": {
+            "displayName": "How soon can you start?",
+            "type": "Plain",
+            "placeholder": "How soon can you start?",
+            "userVisible": true,
+            "fieldElementId": "a9898a37-ce65-9feb-f950-14c537847599"
+          },
+          "6ab55ee6ade6d0ecd464ac00": {
+            "displayName": "Request",
+            "type": "Plain",
+            "placeholder": "Tell us about you and your relevant experience.",
+            "userVisible": true,
+            "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d9"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "689156f86ad75357c790a952",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "642cebe86e06ee6055bdcf65",
+        "pageId": "689153be9e70a99e2eb2bcba",
+        "formElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d4",
+        "pageName": "Careers",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Contact Form",
+        "createdOn": "2024-09-27T21:39:56.816Z",
+        "lastUpdated": "2026-09-24T17:33:26.705Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464ac0e": {
+            "displayName": "Name",
+            "type": "Plain",
+            "placeholder": "Your name",
+            "userVisible": true,
+            "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550e9"
+          },
+          "6ab55ee6ade6d0ecd464ac0f": {
+            "displayName": "Email 4",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550ec"
+          },
+          "6ab55ee6ade6d0ecd464ac10": {
+            "displayName": "Phone Number",
+            "type": "Phone",
+            "placeholder": "Your phone number",
+            "userVisible": true,
+            "fieldElementId": "32bae801-989e-8dd5-7607-5f32894bc9ad"
+          },
+          "6ab55ee6ade6d0ecd464ac11": {
+            "displayName": "Zip Code",
+            "type": "Number",
+            "placeholder": "Zip Code",
+            "userVisible": true,
+            "fieldElementId": "89581808-9bd2-671e-a798-e46cda5eb373"
+          },
+          "6ab55ee6ade6d0ecd464ac12": {
+            "displayName": "Request",
+            "type": "Plain",
+            "placeholder": "Your Request",
+            "userVisible": true,
+            "fieldElementId": "fb9c8747-2368-247f-fe55-7cfa6038568c"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "66f7262cb25ccbe0ab91be0d",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "642cebe86e06ee3d14bdcf66",
+        "pageId": "66980076a856729471b47d47",
+        "formElementId": "ccf52e97-77a3-4018-b21c-03c2764550e6",
+        "pageName": "Contact Us",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Email Form",
+        "createdOn": "2024-09-27T21:39:56.816Z",
+        "lastUpdated": "2026-09-24T17:33:26.692Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464ac0a": {
+            "displayName": "Email",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf1b"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "66f7262cb25ccbe0ab91be0b",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "642cebe86e06ee3d14bdcf66",
+        "pageId": "66980076a856729471b47d46",
+        "formElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf15",
+        "pageName": "Coming Soon",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Contact Form",
+        "createdOn": "2024-09-27T21:39:56.801Z",
+        "lastUpdated": "2026-09-24T17:33:26.661Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464abea": {
+            "displayName": "Name",
+            "type": "Plain",
+            "placeholder": "Your name",
+            "userVisible": true,
+            "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550e9"
+          },
+          "6ab55ee6ade6d0ecd464abeb": {
+            "displayName": "Email 4",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550ec"
+          },
+          "6ab55ee6ade6d0ecd464abec": {
+            "displayName": "Phone Number",
+            "type": "Phone",
+            "placeholder": "Your phone number",
+            "userVisible": true,
+            "fieldElementId": "32bae801-989e-8dd5-7607-5f32894bc9ad"
+          },
+          "6ab55ee6ade6d0ecd464abed": {
+            "displayName": "Zip Code",
+            "type": "Number",
+            "placeholder": "Zip Code",
+            "userVisible": true,
+            "fieldElementId": "89581808-9bd2-671e-a798-e46cda5eb373"
+          },
+          "6ab55ee6ade6d0ecd464abee": {
+            "displayName": "Request",
+            "type": "Plain",
+            "placeholder": "Your Request",
+            "userVisible": true,
+            "fieldElementId": "fb9c8747-2368-247f-fe55-7cfa6038568c"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "66f7262cb25ccbe0ab91be03",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "642cebe86e06ee6055bdcf65",
+        "pageId": "66980076a856729471b47d47",
+        "formElementId": "ccf52e97-77a3-4018-b21c-03c2764550e6",
+        "pageName": "Contact Us",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Email Form",
+        "createdOn": "2024-09-27T21:39:56.801Z",
+        "lastUpdated": "2026-09-24T17:33:26.672Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464abf6": {
+            "displayName": "Email",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf1b"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "66f7262cb25ccbe0ab91be01",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "642cebe86e06ee6055bdcf65",
+        "pageId": "66980076a856729471b47d46",
+        "formElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf15",
+        "pageName": "Coming Soon",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Contact Form",
+        "createdOn": "2024-07-17T20:10:15.844Z",
+        "lastUpdated": "2026-09-24T17:33:26.733Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464ac2e": {
+            "displayName": "Name",
+            "type": "Plain",
+            "placeholder": "Your name",
+            "userVisible": true,
+            "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550e9"
+          },
+          "6ab55ee6ade6d0ecd464ac2f": {
+            "displayName": "Email 4",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550ec"
+          },
+          "6ab55ee6ade6d0ecd464ac30": {
+            "displayName": "Phone Number",
+            "type": "Phone",
+            "placeholder": "Your phone number",
+            "userVisible": true,
+            "fieldElementId": "32bae801-989e-8dd5-7607-5f32894bc9ad"
+          },
+          "6ab55ee6ade6d0ecd464ac31": {
+            "displayName": "Zip Code",
+            "type": "Number",
+            "placeholder": "Zip Code",
+            "userVisible": true,
+            "fieldElementId": "89581808-9bd2-671e-a798-e46cda5eb373"
+          },
+          "6ab55ee6ade6d0ecd464ac32": {
+            "displayName": "Request",
+            "type": "Plain",
+            "placeholder": "Your Request",
+            "userVisible": true,
+            "fieldElementId": "fb9c8747-2368-247f-fe55-7cfa6038568c"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "669825273a244feef8d014dd",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "66980076a856729471b47cbc",
+        "pageId": "66980076a856729471b47d47",
+        "formElementId": "ccf52e97-77a3-4018-b21c-03c2764550e6",
+        "pageName": "Contact Us",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      },
+      {
+        "displayName": "Email Form",
+        "createdOn": "2024-07-17T20:10:15.844Z",
+        "lastUpdated": "2026-09-24T17:33:26.724Z",
+        "fields": {
+          "6ab55ee6ade6d0ecd464ac2a": {
+            "displayName": "Email",
+            "type": "Email",
+            "placeholder": "Your email",
+            "userVisible": true,
+            "fieldElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf1b"
+          }
+        },
+        "responseSettings": {
+          "redirectUrl": null,
+          "redirectMethod": "GET",
+          "redirectAction": null,
+          "sendEmailConfirmation": false
+        },
+        "id": "669825273a244feef8d014db",
+        "siteId": "66980076a856729471b47cbc",
+        "siteDomainId": "66980076a856729471b47cbc",
+        "pageId": "66980076a856729471b47d46",
+        "formElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf15",
+        "pageName": "Coming Soon",
+        "workspaceId": "63cb634d25cbcf402deee41e",
+        "componentId": null,
+        "componentElementId": null
+      }
+    ],
+    "pagination": {
+      "total": 9,
+      "limit": 100,
+      "offset": 0
+    }
+  },
+  "get_form": [
+    {
+      "displayName": "Careers Form",
+      "createdOn": "2026-09-21T02:16:57.344Z",
+      "lastUpdated": "2026-09-24T17:33:26.743Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464ac3a": {
+          "displayName": "Name",
+          "type": "Plain",
+          "placeholder": "Your name",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d5"
+        },
+        "6ab55ee6ade6d0ecd464ac3b": {
+          "displayName": "Email 4",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d6"
+        },
+        "6ab55ee6ade6d0ecd464ac3c": {
+          "displayName": "Phone Number",
+          "type": "Phone",
+          "placeholder": "Your phone number",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d7"
+        },
+        "6ab55ee6ade6d0ecd464ac3d": {
+          "displayName": "Years of Electrical Experience",
+          "type": "Number",
+          "placeholder": "Years of Electrical Experience",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d8"
+        },
+        "6ab55ee6ade6d0ecd464ac3e": {
+          "displayName": "Are you available for full-time work?",
+          "type": "Plain",
+          "placeholder": "Are you available for full-time work?",
+          "userVisible": true,
+          "fieldElementId": "a1efb41c-daa7-456b-8435-56eb7817d341"
+        },
+        "6ab55ee6ade6d0ecd464ac3f": {
+          "displayName": "How soon can you start?",
+          "type": "Plain",
+          "placeholder": "How soon can you start?",
+          "userVisible": true,
+          "fieldElementId": "a9898a37-ce65-9feb-f950-14c537847599"
+        },
+        "6ab55ee6ade6d0ecd464ac40": {
+          "displayName": "Request",
+          "type": "Plain",
+          "placeholder": "Tell us about you and your relevant experience.",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d9"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "6ab093996868f3a55170f86b",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "66980076a856729471b47cbc",
+      "pageId": "689153be9e70a99e2eb2bcba",
+      "formElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d4",
+      "pageName": "Careers",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Careers Form",
+      "createdOn": "2025-08-05T00:57:28.970Z",
+      "lastUpdated": "2026-09-24T17:33:26.715Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464ac1a": {
+          "displayName": "Name",
+          "type": "Plain",
+          "placeholder": "Your name",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d5"
+        },
+        "6ab55ee6ade6d0ecd464ac1b": {
+          "displayName": "Email 4",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d6"
+        },
+        "6ab55ee6ade6d0ecd464ac1c": {
+          "displayName": "Phone Number",
+          "type": "Phone",
+          "placeholder": "Your phone number",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d7"
+        },
+        "6ab55ee6ade6d0ecd464ac1d": {
+          "displayName": "Years of Electrical Experience",
+          "type": "Number",
+          "placeholder": "Years of Electrical Experience",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d8"
+        },
+        "6ab55ee6ade6d0ecd464ac1e": {
+          "displayName": "Are you available for full-time work?",
+          "type": "Plain",
+          "placeholder": "Are you available for full-time work?",
+          "userVisible": true,
+          "fieldElementId": "a1efb41c-daa7-456b-8435-56eb7817d341"
+        },
+        "6ab55ee6ade6d0ecd464ac1f": {
+          "displayName": "How soon can you start?",
+          "type": "Plain",
+          "placeholder": "How soon can you start?",
+          "userVisible": true,
+          "fieldElementId": "a9898a37-ce65-9feb-f950-14c537847599"
+        },
+        "6ab55ee6ade6d0ecd464ac20": {
+          "displayName": "Request",
+          "type": "Plain",
+          "placeholder": "Tell us about you and your relevant experience.",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d9"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "689156f86ad75357c790a96a",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "642cebe86e06ee3d14bdcf66",
+      "pageId": "689153be9e70a99e2eb2bcba",
+      "formElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d4",
+      "pageName": "Careers",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Careers Form",
+      "createdOn": "2025-08-05T00:57:28.932Z",
+      "lastUpdated": "2026-09-24T17:33:26.682Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464abfa": {
+          "displayName": "Name",
+          "type": "Plain",
+          "placeholder": "Your name",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d5"
+        },
+        "6ab55ee6ade6d0ecd464abfb": {
+          "displayName": "Email 4",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d6"
+        },
+        "6ab55ee6ade6d0ecd464abfc": {
+          "displayName": "Phone Number",
+          "type": "Phone",
+          "placeholder": "Your phone number",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d7"
+        },
+        "6ab55ee6ade6d0ecd464abfd": {
+          "displayName": "Years of Electrical Experience",
+          "type": "Number",
+          "placeholder": "Years of Electrical Experience",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d8"
+        },
+        "6ab55ee6ade6d0ecd464abfe": {
+          "displayName": "Are you available for full-time work?",
+          "type": "Plain",
+          "placeholder": "Are you available for full-time work?",
+          "userVisible": true,
+          "fieldElementId": "a1efb41c-daa7-456b-8435-56eb7817d341"
+        },
+        "6ab55ee6ade6d0ecd464abff": {
+          "displayName": "How soon can you start?",
+          "type": "Plain",
+          "placeholder": "How soon can you start?",
+          "userVisible": true,
+          "fieldElementId": "a9898a37-ce65-9feb-f950-14c537847599"
+        },
+        "6ab55ee6ade6d0ecd464ac00": {
+          "displayName": "Request",
+          "type": "Plain",
+          "placeholder": "Tell us about you and your relevant experience.",
+          "userVisible": true,
+          "fieldElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d9"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "689156f86ad75357c790a952",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "642cebe86e06ee6055bdcf65",
+      "pageId": "689153be9e70a99e2eb2bcba",
+      "formElementId": "dce37dff-ef9c-32b6-91ec-b2d78c5852d4",
+      "pageName": "Careers",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Contact Form",
+      "createdOn": "2024-09-27T21:39:56.816Z",
+      "lastUpdated": "2026-09-24T17:33:26.705Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464ac0e": {
+          "displayName": "Name",
+          "type": "Plain",
+          "placeholder": "Your name",
+          "userVisible": true,
+          "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550e9"
+        },
+        "6ab55ee6ade6d0ecd464ac0f": {
+          "displayName": "Email 4",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550ec"
+        },
+        "6ab55ee6ade6d0ecd464ac10": {
+          "displayName": "Phone Number",
+          "type": "Phone",
+          "placeholder": "Your phone number",
+          "userVisible": true,
+          "fieldElementId": "32bae801-989e-8dd5-7607-5f32894bc9ad"
+        },
+        "6ab55ee6ade6d0ecd464ac11": {
+          "displayName": "Zip Code",
+          "type": "Number",
+          "placeholder": "Zip Code",
+          "userVisible": true,
+          "fieldElementId": "89581808-9bd2-671e-a798-e46cda5eb373"
+        },
+        "6ab55ee6ade6d0ecd464ac12": {
+          "displayName": "Request",
+          "type": "Plain",
+          "placeholder": "Your Request",
+          "userVisible": true,
+          "fieldElementId": "fb9c8747-2368-247f-fe55-7cfa6038568c"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "66f7262cb25ccbe0ab91be0d",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "642cebe86e06ee3d14bdcf66",
+      "pageId": "66980076a856729471b47d47",
+      "formElementId": "ccf52e97-77a3-4018-b21c-03c2764550e6",
+      "pageName": "Contact Us",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Email Form",
+      "createdOn": "2024-09-27T21:39:56.816Z",
+      "lastUpdated": "2026-09-24T17:33:26.692Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464ac0a": {
+          "displayName": "Email",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf1b"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "66f7262cb25ccbe0ab91be0b",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "642cebe86e06ee3d14bdcf66",
+      "pageId": "66980076a856729471b47d46",
+      "formElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf15",
+      "pageName": "Coming Soon",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Contact Form",
+      "createdOn": "2024-09-27T21:39:56.801Z",
+      "lastUpdated": "2026-09-24T17:33:26.661Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464abea": {
+          "displayName": "Name",
+          "type": "Plain",
+          "placeholder": "Your name",
+          "userVisible": true,
+          "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550e9"
+        },
+        "6ab55ee6ade6d0ecd464abeb": {
+          "displayName": "Email 4",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550ec"
+        },
+        "6ab55ee6ade6d0ecd464abec": {
+          "displayName": "Phone Number",
+          "type": "Phone",
+          "placeholder": "Your phone number",
+          "userVisible": true,
+          "fieldElementId": "32bae801-989e-8dd5-7607-5f32894bc9ad"
+        },
+        "6ab55ee6ade6d0ecd464abed": {
+          "displayName": "Zip Code",
+          "type": "Number",
+          "placeholder": "Zip Code",
+          "userVisible": true,
+          "fieldElementId": "89581808-9bd2-671e-a798-e46cda5eb373"
+        },
+        "6ab55ee6ade6d0ecd464abee": {
+          "displayName": "Request",
+          "type": "Plain",
+          "placeholder": "Your Request",
+          "userVisible": true,
+          "fieldElementId": "fb9c8747-2368-247f-fe55-7cfa6038568c"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "66f7262cb25ccbe0ab91be03",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "642cebe86e06ee6055bdcf65",
+      "pageId": "66980076a856729471b47d47",
+      "formElementId": "ccf52e97-77a3-4018-b21c-03c2764550e6",
+      "pageName": "Contact Us",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Email Form",
+      "createdOn": "2024-09-27T21:39:56.801Z",
+      "lastUpdated": "2026-09-24T17:33:26.672Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464abf6": {
+          "displayName": "Email",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf1b"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "66f7262cb25ccbe0ab91be01",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "642cebe86e06ee6055bdcf65",
+      "pageId": "66980076a856729471b47d46",
+      "formElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf15",
+      "pageName": "Coming Soon",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Contact Form",
+      "createdOn": "2024-07-17T20:10:15.844Z",
+      "lastUpdated": "2026-09-24T17:33:26.733Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464ac2e": {
+          "displayName": "Name",
+          "type": "Plain",
+          "placeholder": "Your name",
+          "userVisible": true,
+          "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550e9"
+        },
+        "6ab55ee6ade6d0ecd464ac2f": {
+          "displayName": "Email 4",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "ccf52e97-77a3-4018-b21c-03c2764550ec"
+        },
+        "6ab55ee6ade6d0ecd464ac30": {
+          "displayName": "Phone Number",
+          "type": "Phone",
+          "placeholder": "Your phone number",
+          "userVisible": true,
+          "fieldElementId": "32bae801-989e-8dd5-7607-5f32894bc9ad"
+        },
+        "6ab55ee6ade6d0ecd464ac31": {
+          "displayName": "Zip Code",
+          "type": "Number",
+          "placeholder": "Zip Code",
+          "userVisible": true,
+          "fieldElementId": "89581808-9bd2-671e-a798-e46cda5eb373"
+        },
+        "6ab55ee6ade6d0ecd464ac32": {
+          "displayName": "Request",
+          "type": "Plain",
+          "placeholder": "Your Request",
+          "userVisible": true,
+          "fieldElementId": "fb9c8747-2368-247f-fe55-7cfa6038568c"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "669825273a244feef8d014dd",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "66980076a856729471b47cbc",
+      "pageId": "66980076a856729471b47d47",
+      "formElementId": "ccf52e97-77a3-4018-b21c-03c2764550e6",
+      "pageName": "Contact Us",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    },
+    {
+      "displayName": "Email Form",
+      "createdOn": "2024-07-17T20:10:15.844Z",
+      "lastUpdated": "2026-09-24T17:33:26.724Z",
+      "fields": {
+        "6ab55ee6ade6d0ecd464ac2a": {
+          "displayName": "Email",
+          "type": "Email",
+          "placeholder": "Your email",
+          "userVisible": true,
+          "fieldElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf1b"
+        }
+      },
+      "responseSettings": {
+        "redirectUrl": null,
+        "redirectMethod": "GET",
+        "redirectAction": null,
+        "sendEmailConfirmation": false
+      },
+      "id": "669825273a244feef8d014db",
+      "siteId": "66980076a856729471b47cbc",
+      "siteDomainId": "66980076a856729471b47cbc",
+      "pageId": "66980076a856729471b47d46",
+      "formElementId": "77c65c3e-1fa7-9a1e-fa8b-3c975f0ecf15",
+      "pageName": "Coming Soon",
+      "workspaceId": "63cb634d25cbcf402deee41e",
+      "componentId": null,
+      "componentElementId": null
+    }
+  ]
+}

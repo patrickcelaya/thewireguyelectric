@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import RichText from '../../components/RichText.astro'
+import ServiceCard from '../../components/ServiceCard.astro'
+import CtaBand from '../../components/CtaBand.astro'
+import {getServiceCategories, getSettings} from '../../lib/queries'
+import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {webPageNode} from '../../lib/schema'
+import type {ServiceCategoryDoc} from '../../lib/types'
+
+export async function getStaticPaths() {
+  return (await getServiceCategories()).map((c) => ({params: {slug: c.slug}, props: {category: c}}))
+}
+
+const {category} = Astro.props as {category: ServiceCategoryDoc}
+const settings = await getSettings()
+const path = `/services-categories/${category.slug}`
+const title = resolveTitle(category.seo, `${category.name} Electrician in Mesa, AZ | ${settings.businessName}`)
+const description = resolveDescription(
+  category.seo,
+  `Top-rated ${category.name} electrician services in the Phoenix valley. Licensed, insured, flat-rate pricing. Serving Mesa, Scottsdale, Chandler, and more.`,
+)
+const crumbs = [{name: 'Home', path: '/'}, {name: 'Services', path: '/services'}, {name: category.name, path}]
+---
+
+<BaseLayout
+  meta={{title, description, path, ogImage: resolveOgImage(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
+  schema={[webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs})]}
+>
+  <header class="container-page mt-8 max-w-3xl">
+    <h1 class="text-4xl font-bold leading-tight sm:text-5xl">{category.heading ?? category.name}</h1>
+  </header>
+  <div class="container-page mt-6 max-w-3xl"><RichText value={category.description} /></div>
+  <section class="container-page mt-10">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{category.services.map((s) => <ServiceCard service={s} />)}</div>
+  </section>
+  <CtaBand settings={settings} heading="We're ready to work for you" />
+</BaseLayout>

@@ -1,0 +1,9 @@
+---
+const {node} = Astro.props as {node: {heading?: string; text?: string; label?: string; href?: string}}
+---
+
+<aside class="not-prose my-8 rounded-md bg-brand-light p-6">
+  {node.heading && <p class="font-display text-xl font-bold text-ink">{node.heading}</p>}
+  {node.text && <p class="mt-2">{node.text}</p>}
+  <a href={node.href ?? '/contact-us'} class="btn-primary mt-4">{node.label ?? 'Get a free estimate'}</a>
+</aside>

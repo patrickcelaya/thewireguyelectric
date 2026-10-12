@@ -1,0 +1,41 @@
+[
+  {
+    "id": "66980076a856729471b47dda",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T12:43:10.458Z",
+    "createdOn": "2023-11-01T12:37:26.661Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Lighting Solutions",
+      "slug": "lighting-solutions"
+    }
+  },
+  {
+    "id": "66980076a856729471b47dd9",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T12:43:27.709Z",
+    "createdOn": "2023-11-01T12:34:39.286Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Hardware",
+      "slug": "hardware"
+    }
+  },
+  {
+    "id": "66980076a856729471b47dd8",
+    "cmsLocaleId": "66980076a856729471b47cf9",
+    "lastPublished": "2024-07-17T20:10:13.295Z",
+    "lastUpdated": "2023-11-01T12:38:07.817Z",
+    "createdOn": "2023-11-01T12:23:06.696Z",
+    "isArchived": false,
+    "isDraft": false,
+    "fieldData": {
+      "name": "Electrical Tools",
+      "slug": "electrical-tools"
+    }
+  }
+]
