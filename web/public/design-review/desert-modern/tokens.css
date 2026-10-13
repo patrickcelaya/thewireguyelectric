@@ -1,0 +1,183 @@
+/* ==========================================================================
+   The Wire Guy Electric — "Horizon Line" design tokens
+   Direction: Desert modernist, Arizona light.
+
+   Two families (both on Fontsource, checked 2026-10-13 via api.fontsource.org):
+     display  Barlow Condensed  (id: barlow-condensed, static 100–900; ship 500/600)
+     text     Figtree           (id: figtree, variable 300–900; ship one wght file)
+   Production: self-host through the Astro Fonts API (fontProviders.fontsource()),
+   woff2, latin, preload only Barlow Condensed 600 (the H1). Mockups load the same
+   families from Google Fonts CSS.
+
+   CONTRAST LEDGER — WCAG 2.2, computed with tools/contrast.py.
+   AA = 4.5:1 body text; large = 3:1 (>= 24px, or >= 18.66px bold); UI = 3:1.
+   Every text/background pair used in home.html and city.html is listed here.
+
+   Text on light surfaces           bone    sand   adobe   white  copper-50
+     ink        #1C1714             16.64   15.15  13.26   17.77  15.74
+     ink-2      #4A3F37              9.56    8.71   7.62   10.21   9.04
+     ink-3      #6B5E53              5.87    5.34   4.68    6.27   5.55   (meta, captions)
+     copper     #AA502E              5.05    4.60   4.02*   5.39   4.77   (*adobe: large/UI only)
+     copper-600 #8E4024              6.76    6.16   5.39    7.22   6.39   (small copper text, links)
+     copper-700 #70331B              9.03    8.22   7.20    9.64   8.54
+     saguaro    #3B6A4C              5.87    5.34   4.68    6.27   5.55   ("available" status)
+     dusk-700   #1F4670              9.07    8.26                         (focus ring on light)
+
+   Text on dark surfaces            dusk    dusk-800  dusk-700  night
+     bone       #FBF7F0             15.07   12.41      9.07     16.75
+     sand-text  #F1E6D3             13.03   10.73      7.84     14.48
+     sand-muted #C9BBA5              8.54    7.03      5.14      9.48
+     copper-300 #EFA27A              7.76    6.39      4.67      8.62   (copper text on dark; brand copper there is 2.8:1 = decoration only)
+     saguaro-300 #8FC3A0             8.03    6.62      4.83      8.93
+     sky-300    #9CC3EE              8.78    7.23      5.28      9.75
+     sun        #F0B13C              8.48    6.98      5.10      9.42   (stars, rating numeral)
+
+   Text on brand fills
+     white on copper 5.39 · bone on copper 5.05 · white on copper-600 7.22 · white on copper-700 9.64
+     white on ink 17.77 · white on saguaro 6.27
+     ink on copper-300 8.56 · ink on sun 9.36 · ink on sky-300 9.69
+     white on terracotta 3.92 -> large display type / decoration only
+     white on sky #548EE7 3.28 -> never used for text; hero copy sits on the dusk scrim (below)
+
+   Text over the hero photograph (measured, see rationale.md §Contrast):
+     the hero scrim (--scrim-sky) darkens the photo sky so that bone text measures
+     >= 7:1 and copper-300 accent >= 4.5:1 at the worst pixel under every glyph box;
+     the ground band (--scrim-ground) keeps the review quotes >= 7:1 over asphalt.
+
+   UI boundaries (1.4.11)
+     focus ring dusk-700 on bone 9.07 / on sand 8.26 · copper-300 ring on dusk 7.76
+     input / chip border ink-3 on white 6.27 · copper button edge on bone 5.05
+   ========================================================================== */
+
+:root {
+  /* ---- Color: desert neutrals (caliche, stucco, adobe) ---- */
+  --c-bone: #FBF7F0;          /* page */
+  --c-sand: #F4ECDF;          /* alt section */
+  --c-adobe: #EADDC8;         /* warm panel */
+  --c-sandstone: #D8C6A8;     /* hairlines, strata, decoration */
+  --c-white: #FFFFFF;         /* cards */
+
+  /* ---- Color: ink (warm black, from the van tyres and CMU shadow) ---- */
+  --c-ink: #1C1714;
+  --c-ink-2: #4A3F37;
+  --c-ink-3: #6B5E53;
+
+  /* ---- Color: copper & terracotta (the brand; the metal inside every wire) ---- */
+  --c-copper: #AA502E;        /* brand copper = logo, primary action */
+  --c-copper-600: #8E4024;    /* hover, small copper text */
+  --c-copper-700: #70331B;
+  --c-copper-300: #EFA27A;    /* copper text on dark */
+  --c-copper-200: #F6C3A6;
+  --c-copper-50: #FBEFE7;
+  --c-terracotta: #C4673F;    /* sunset bands; large type / decoration only */
+  --c-clay: #E0A07C;          /* decoration */
+
+  /* ---- Color: sky (sampled from the Superstitions fleet photo) & dusk ---- */
+  --c-sky: #548EE7;           /* photo zenith; decoration only */
+  --c-sky-300: #9CC3EE;
+  --c-sky-100: #DCE8F3;
+  --c-dusk: #0E2238;          /* blue-hour sky: dark sections */
+  --c-dusk-800: #15314F;
+  --c-dusk-700: #1F4670;
+  --c-night: #0A1828;         /* footer */
+
+  /* ---- Color: saguaro & sun ---- */
+  --c-saguaro: #3B6A4C;       /* "available" status, success */
+  --c-saguaro-300: #8FC3A0;
+  --c-sun: #F0B13C;           /* stars, rating numeral, sun disc */
+
+  /* ---- Text on dark ---- */
+  --c-sand-text: #F1E6D3;
+  --c-sand-muted: #C9BBA5;
+
+  /* ---- Semantic roles ---- */
+  --bg: var(--c-bone);
+  --bg-alt: var(--c-sand);
+  --bg-warm: var(--c-adobe);
+  --bg-dark: var(--c-dusk);
+  --surface: var(--c-white);
+  --text: var(--c-ink);
+  --text-2: var(--c-ink-2);
+  --text-3: var(--c-ink-3);
+  --text-on-dark: var(--c-bone);
+  --text-on-dark-2: var(--c-sand-muted);
+  --accent: var(--c-copper);
+  --accent-strong: var(--c-copper-600);
+  --accent-on-dark: var(--c-copper-300);
+  --line: rgba(28, 23, 20, .13);
+  --line-strong: rgba(28, 23, 20, .26);
+  --line-on-dark: rgba(241, 230, 211, .16);
+  --focus: var(--c-dusk-700);
+  --focus-on-dark: var(--c-copper-300);
+
+  /* ---- Gradients (the light of the place) ---- */
+  --scrim-sky: linear-gradient(180deg, rgba(8, 20, 38, .84) 0%, rgba(8, 20, 38, .70) 30%, rgba(8, 20, 38, .62) 48%, rgba(8, 20, 38, .52) 56%, rgba(8, 20, 38, .18) 63%, rgba(8, 20, 38, 0) 70%);
+  --scrim-ground: linear-gradient(0deg, rgba(20, 11, 6, .86) 0%, rgba(20, 11, 6, .55) 11%, rgba(20, 11, 6, 0) 24%);
+  --glow-golden: radial-gradient(70% 34% at 58% 74%, rgba(240, 177, 60, .30), rgba(196, 103, 63, .10) 55%, transparent 75%);
+  --grad-sunset: linear-gradient(180deg, var(--c-dusk) 0%, #2A2F4E 34%, #7A3F37 64%, var(--c-terracotta) 86%, #D9874F 100%);
+  --grad-sky: linear-gradient(180deg, #102844 0%, #1F4670 38%, #3E6FB5 72%, var(--c-sky) 100%);
+
+  /* ---- Type ---- */
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --font-text: "Figtree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Fluid scale, 390px -> 1440px viewport */
+  --fs-hero: clamp(2.75rem, 1.4rem + 5vw, 5.5rem);         /* 44 -> 88  home H1 */
+  --fs-h1-page: clamp(2.375rem, 1.3rem + 4.2vw, 5rem);     /* 38 -> 80  city H1 */
+  --fs-h2: clamp(2.125rem, 1.4rem + 2.9vw, 4rem);          /* 34 -> 64 */
+  --fs-h3-lg: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem);      /* 24 -> 36 */
+  --fs-h3: clamp(1.25rem, 1.1rem + .55vw, 1.625rem);       /* 20 -> 26  card titles */
+  --fs-stat: clamp(4.5rem, 2.8rem + 7vw, 9rem);            /* 72 -> 144 rating numeral */
+  --fs-num: clamp(2.5rem, 1.9rem + 2.4vw, 4rem);           /* 40 -> 64  stat numerals */
+  --fs-quote: clamp(1.375rem, 1.1rem + 1.1vw, 2.125rem);   /* 22 -> 34  pull quote */
+  --fs-lead: clamp(1.125rem, 1.02rem + .45vw, 1.4375rem);  /* 18 -> 23 */
+  --fs-body: 1.0625rem;                                    /* 17 */
+  --fs-small: .9375rem;                                    /* 15 */
+  --fs-xs: .8125rem;                                       /* 13 */
+  --fs-label: .8125rem;                                    /* 13 condensed caps */
+
+  --lh-display: .92;
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-body: 1.6;
+  --tracking-display: .002em;
+  --tracking-label: .16em;
+  --fw-display: 600;
+  --fw-label: 600;
+
+  /* ---- Space (4px base) ---- */
+  --s-1: .25rem; --s-2: .5rem; --s-3: .75rem; --s-4: 1rem; --s-5: 1.25rem; --s-6: 1.5rem;
+  --s-8: 2rem; --s-10: 2.5rem; --s-12: 3rem; --s-16: 4rem; --s-20: 5rem; --s-24: 6rem;
+  --section-y: clamp(4rem, 2.4rem + 6.4vw, 8.5rem);        /* 64 -> 136 */
+  --gutter: clamp(1rem, .1rem + 3.7vw, 5rem);              /* 16 -> 80 */
+  --container: 80rem;                                      /* 1280 */
+  --measure: 64ch;
+
+  /* ---- Radii ---- */
+  --r-xs: 6px; --r-sm: 10px; --r-md: 16px; --r-lg: 24px; --r-xl: 32px; --r-pill: 999px;
+  --r-arch: 999px 999px var(--r-sm) var(--r-sm);           /* the sun arch / adobe window */
+
+  /* ---- Shadows (warm, low, like late sun) ---- */
+  --sh-1: 0 1px 2px rgba(60, 35, 20, .06), 0 2px 6px rgba(60, 35, 20, .05);
+  --sh-2: 0 2px 4px rgba(60, 35, 20, .06), 0 14px 30px -10px rgba(60, 35, 20, .18);
+  --sh-3: 0 4px 8px rgba(60, 35, 20, .06), 0 30px 60px -20px rgba(60, 35, 20, .30);
+
+  /* ---- Layout constants ---- */
+  --header-h: 72px;
+  --mobilebar-h: 0px;
+
+  /* ---- Motion (transform/opacity only; nothing above the fold animates in) ---- */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-sun: cubic-bezier(.45, 0, .2, 1);
+  --t-fast: 140ms;
+  --t-base: 220ms;
+  --t-slow: 700ms;
+}
+
+@media (max-width: 639px) {
+  :root { --header-h: 64px; --mobilebar-h: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --t-fast: 0ms; --t-base: 0ms; --t-slow: 0ms; }
+}
