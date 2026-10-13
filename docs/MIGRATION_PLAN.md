@@ -75,7 +75,7 @@ The design refresh builds on this foundation, section by section.
 | Search Console data | Pulled through OpenSEO (16 months, 107 URLs): `migration/seo-equity/gsc-pages-16mo.tsv`. 11 misspelled URLs that Google has seen and that 404 today now 301 to the right posts. |
 | Sanity project | **Created:** "The Wire Guy Electric" (`qhi2uf0l`, dataset `production`), in the Celaya Ventures org. All 134 documents imported, with 83 images re-hosted on Sanity's CDN. The build output has zero references to Webflow's CDN. |
 | Sanity Studio hosting | **Waiting on a token.** Create one in sanity.io/manage → project → API → Tokens with "Deploy Studio" permission, save it as GitHub secret `SANITY_AUTH_TOKEN`, then run the "Deploy Sanity Studio" workflow. Alternatively, run `pnpm --filter studio deploy` from a machine logged in to Sanity. |
-| Vercel | **Live preview.** Project `thewireguyelectric` in the celaya-ventures team, root directory `web`, with Sanity env vars set. It deploys on every push to https://thewireguyelectric.vercel.app, behind Vercel Authentication and noindexed. The parity check against this real deployment reports 0 errors. A "Protection Bypass for Automation" secret exists for the crawler; revoke it after launch. **Still to do (dashboard):** create a Deploy Hook and point a Sanity webhook at it, so publishing rebuilds the site. |
+| Vercel | **Live preview.** Project `thewireguyelectric` in the celaya-ventures team, root directory `web`, with Sanity env vars set. It deploys on every push to https://thewireguyelectric.vercel.app, noindexed and behind Vercel Authentication for all deployments (set to "All deployments" on 2026-10-13, because the default left the production `.vercel.app` address public; switch back at cutover). The parity check against this real deployment reports 0 errors. A "Protection Bypass for Automation" secret exists for the crawler; revoke it after launch. **Still to do (dashboard):** create a Deploy Hook and point a Sanity webhook at it, so publishing rebuilds the site. |
 | Scottsdale office | A real, appointment-only office with its own Google Business Profile. It's modeled as its own `Electrician` entity on `/locations/scottsdale` (linked to the main business), and shown in the footer as "by appointment". **To do:** enter the exact Google Business Profile name in Studio → Site settings → Addresses, and point that profile's website link at `/locations/scottsdale`. |
 | Form delivery | `/api/contact` delivers to Formspark (`FORMSPARK_FORM_ID`), any webhook (`LEAD_WEBHOOK_URL`, e.g. Zapier → Housecall Pro) and/or email (Resend). Configure at least one before launch. |
 | Blog authors | None shown (owner's choice). Schema attributes posts to the business. |
@@ -122,7 +122,7 @@ Pick a date outside a Google core-update rollout (check the [Search Status Dashb
 
 **Launch:**
 1. In Vercel, add `www.thewireguyelectric.com` as primary and `thewireguyelectric.com` → redirect to www. Confirm SSL.
-2. Set `SITE_INDEXABLE=true` on **Production only** and redeploy.
+2. Set `SITE_INDEXABLE=true` on **Production only**. Set Vercel Authentication (Settings → Deployment Protection) back from "All deployments" to "Standard protection" (all except custom domains), or the real domain will ask visitors to log in to Vercel. Then redeploy.
 3. Switch DNS to Vercel.
 4. Verify:
    - `curl -sI https://www.thewireguyelectric.com/` gives 200 with no `x-robots-tag`;
