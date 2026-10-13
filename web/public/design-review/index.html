@@ -28,6 +28,10 @@
   .btn { display:inline-flex; align-items:center; min-height:44px; padding:0 18px; border-radius:999px; background:var(--copper); color:#fff; font-weight:600; text-decoration:none; }
   .btn.ghost { background:transparent; color:var(--ink); border:1.5px solid var(--ink); }
   .btn:focus-visible, .shots:focus-visible { outline:3px solid var(--copper); outline-offset:3px; }
+  .r3wrap { max-width:1180px; margin:0 auto; padding:32px 20px 24px; }
+  .r3 .shots { aspect-ratio:16/8; }
+  .duo { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:8px 0 28px; } .duo img, .wide { width:100%; height:auto; border-radius:14px; border:1px solid var(--line); display:block; } .wide { margin:8px 0 28px; }
+  @media (max-width:760px) { .duo { grid-template-columns:1fr; } }
   .wrap { max-width:1180px; margin:0 auto; padding:0 20px; }
   .sec { font-size:22px; margin:8px 0 12px; }
   .note-block p { color:var(--muted); max-width:760px; }
@@ -38,11 +42,37 @@
 <body>
 <header>
   <p class="eyebrow">Private draft · not the live site</p>
-  <h1>Rebrand: round 2 finalists</h1>
-  <p>Built from your notes: the Copper &amp; Ink light-bulb animation as the signature, no serif, professional type with impact but not aggressive or playful, no prices anywhere (FAQs and guides sprinkled in like the original), your Mesa address only in the footer, and “we proudly serve the entire valley” as a headline feature.</p>
-  <p>Two finalists that differ mainly in voice. Each has the homepage, the Gilbert page and the Panels service page; try them on your phone too. A review panel critiqued both and each designer fixed what came up. The panel leaned toward Main Line for calls and estimate requests; the art director liked Steady Current's type best.</p>
+  <h1>Rebrand: round 3</h1>
+  <p>One merged design built from all of your notes on rounds 1 and 2. Open each page on your phone too.</p>
   <span class="note">Private draft, not the live site. Links inside the mockups go to the current site's pages.</span>
 </header>
+<main class="r3wrap">
+    <article class="card big r3">
+      <a class="shots" href="/design-review/round-3/home.html" aria-label="Open the round 3 homepage">
+        <img class="d" src="/design-review/round-3/thumb-d.webp" width="1200" height="750" alt="">
+        <img class="m" src="/design-review/round-3/thumb-m.webp" width="390" height="845" alt="">
+      </a>
+      <div class="body">
+        <p class="tag">Round 3 · one merged design</p>
+        <h2>The Wire Guy, refined</h2>
+        <p>Main Line's layout and full-width photos with Steady Current's font, buttons, guide cards and valley section. Much more space, one idea per section, no black backgrounds, reviews front and center, Emma as a subtle status line, the light bulb woven through, and a real /estimate page.</p>
+        <p class="meta">Red Hat Display + Red Hat Text</p>
+        <p class="links"><a class="btn" href="/design-review/round-3/home.html">Homepage</a><a class="btn ghost" href="/design-review/round-3/city.html">Gilbert page</a><a class="btn ghost" href="/design-review/round-3/service.html">Panels page</a><a class="btn ghost" href="/design-review/round-3/estimate.html">Free estimate page</a></p>
+      </div>
+    </article>
+</main>
+<section class="wrap note-block">
+  <h2 class="sec">Typeface: same page, two fonts</h2>
+  <p>Red Hat (left) is the main version; the reviewers preferred it and it echoes the rounded letters in your logo. Mona Sans (right) is Main Line's font, swapped in with nothing else changed. <a href="/design-review/round-3/home-type-b.html">Open the Mona Sans version</a>.</p>
+  <div class="duo"><img src="/design-review/round-3/thumb-typea.webp" alt="Homepage top in Red Hat Display" loading="lazy"><img src="/design-review/round-3/thumb-typeb.webp" alt="Homepage top in Mona Sans" loading="lazy"></div>
+  <h2 class="sec">Reviews carousel</h2>
+  <p>All 46 Google reviews, word for word, drifting slowly in two rows (one on phones). It pauses when you hover, focus or press Pause, and stays still for people who turn off animations.</p>
+  <img src="/design-review/round-3/reviews.webp" alt="The reviews section with two rows of review cards" loading="lazy" class="wide">
+  <h2 class="sec">The light bulb</h2>
+  <p>It draws itself in the estimate band at the bottom of every page, and lights up when someone sends the estimate form (try it on the Free estimate page: on this review page the form only simulates sending).</p>
+  <img src="/design-review/round-3/bulb-sequence.webp" alt="Frames of the wire drawing the bulb and lighting it" loading="lazy" class="wide">
+</section>
+<section class="wrap"><h2 class="sec">Round 2 (for reference)</h2></section>
 <main class="r2">
     <article class="card big">
       <a class="shots" href="/design-review/round-2/bold/home.html" aria-label="Open the Main Line homepage">

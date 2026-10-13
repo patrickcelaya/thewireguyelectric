@@ -1,0 +1,1718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script>/* design review only: the form does not send anything */(()=>{const f=window.fetch;window.fetch=(u,o)=>{const s=typeof u==="string"?u:(u&&u.url)||"";if(s.includes("/api/contact"))return new Promise(r=>setTimeout(()=>r(new Response(null,{status:204})),700));return f(u,o)}})();</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Best Rated Electrician in Mesa, AZ | The Wire Guy Electric</title>
+<meta name="description" content="Family-owned, licensed Mesa electricians for panel upgrades, EV chargers, lighting, troubleshooting, and commercial work. Call for a free estimate.">
+<link rel="canonical" href="https://www.thewireguyelectric.com/">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F7F3EC">
+<link rel="icon" href="/favicon.png">
+<script>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- mockup only: production self-hosts both families through the Astro Fonts API (Fontsource provider, optimizedFallbacks) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&amp;family=Mona+Sans:wght@500..900&amp;display=swap">
+<link rel="preload" as="image" media="(min-width:700px)" href="/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-1600.avif" imagesrcset="/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-800.avif 800w, /wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-1080.avif 1080w, /wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-1600.avif 1600w, /wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif 2542w" imagesizes="100vw" fetchpriority="high">
+<style>
+/* =====================================================================
+   The Wire Guy Electric · Round 3 (the merged design)
+   Design tokens. Every page inlines this file, then the component layer (src/base.css).
+
+   Base layout + full-width imagery: Main Line (round 2 "bold").
+   Typeface, buttons, guide cards, the valley section: Steady Current (round 2 "calm").
+
+   TYPE (2 families, both on Fontsource; mockup loads them from Google Fonts)
+     Display  Red Hat Display  variable 300–900  → H1, H2, H3, the 5.0 numeral, phone
+     Text     Red Hat Text     variable 300–700  → body, UI, labels, buttons, forms
+     home-type-b.html swaps these two variables for Mona Sans + Inter and changes nothing else.
+
+   SURFACES: light and warm only. bone page, paper and sand alternate so each section reads as its own room.
+     No flat black or near-black fill anywhere: no dark section, no dark card, no dark guide cover.
+     Petrol (--ink) is a type colour only. Dark appears only as a light scrim on a photo
+     (the strip under the crew quotes, the CTA band's copy side).
+
+   CONTRAST LEDGER (WCAG 2.x, computed by contrast.py; photo text is measured on rendered pixels)
+     ink   #0F2A35 on bone #F7F3EC 13.53 · on paper #FDFBF7 14.48 · on sand #EFE8DC 12.29
+     text  #1D3039 on bone 12.38 · on paper 13.24 · on sand 11.24
+     muted #53646B on bone 5.58 · on paper 5.97 · on sand 5.07                (small text OK)
+     copper #AA502E on bone 4.87 · on paper 5.22 · on white 5.39             (≥ 4.5: any size)
+     copper-700 #8E4024 on bone 6.53 · paper 6.98 · sand 5.93                 (small copper text)
+     white on copper 5.39 · cream #FFF4EC on copper 4.98 · ink on cream 13.83
+     live dot #2E9B5E on bone 3.18 · off #7D8A90 3.21                          (non-text ≥ 3, always beside text)
+     field line #7A878D on white 3.70                                           (form boundaries, 1.4.11)
+     focus ring: ink on light (≥ 12:1) · cream on copper (4.98) · ink inside the paper form card
+     photo text: measured on rendered pixels by contrast.mjs + contrast.py, ≥ 4.5:1 at the worst pixel
+   ===================================================================== */
+:root {
+  /* surfaces (warm, light) */
+  --bone: #F7F3EC;        /* page: stucco */
+  --paper: #FDFBF7;       /* cards, raised */
+  --white: #FFFFFF;       /* form fields */
+  --sand: #EFE8DC;        /* the occasional quiet band (valley, footer) */
+  --sand-2: #E6DCCB;
+  --wash: #F5E7DD;        /* copper wash */
+  --cream: #FFF4EC;       /* on copper */
+  --line: #E2D8C8;        /* hairlines (decorative) */
+  --line-strong: #CDBFAA;
+  --field-line: #7A878D;  /* form controls, 3:1 boundary */
+
+  /* ink (petrol, used for type only, never as a section fill) */
+  --ink: #0F2A35;
+  --text: #1D3039;
+  --muted: #53646B;
+  --scrim: 15 42 53;      /* rgb triplet for photo scrims */
+
+  /* copper (brand #AA502E) */
+  --copper: #AA502E;
+  --copper-700: #8E4024;
+  --copper-800: #74331C;
+  --copper-300: #E8A07A;
+  --glow: #FFE2B8;        /* the lit bulb */
+
+  /* signals */
+  --live: #2E9B5E;
+  --off: #7D8A90;
+  --gold: #F2B54A;        /* stars on a photo scrim only */
+  --error: #9E1F17;
+
+  /* type */
+  --font-display: "Red Hat Display", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-text: "Red Hat Text", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --w-display: 700;
+  --w-h3: 680;
+  --track-display: -.03em;
+  --track-tight: -.018em;
+  --fs-h1: clamp(2.5rem, min(1.05rem + 4.6vw, 9vh), 5rem);      /* 40 → 80; caps by height for 1366×768 */
+  --fs-h1-inner: clamp(2.375rem, min(1rem + 4vw, 8.6vh), 4.5rem); /* 38 → 72 */
+  --fs-h2: clamp(2rem, 1.25rem + 2.4vw, 3.375rem);              /* 32 → 54 */
+  --fs-h2-xl: clamp(2.375rem, 1rem + 4.2vw, 4.5rem);           /* 38 → 72: valley + CTA */
+  --fs-h3: clamp(1.25rem, 1.1rem + .45vw, 1.5rem);             /* 20 → 24 */
+  --fs-lede: clamp(1.125rem, 1.04rem + .35vw, 1.3125rem);      /* 18 → 21 */
+  --fs-body: 1.0625rem;                                        /* 17 */
+  --fs-small: .9375rem;                                        /* 15 */
+  --fs-meta: .8125rem;                                         /* 13 */
+  --measure: 33em;                                             /* about 62–65 real characters: paragraphs never run wider */
+
+  /* the brand mark carried through every eyebrow: a small bulb (glass + the logo's three base bars) */
+  --bulb-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 18'%3E%3Cpath d='M7 1.2a5.2 5.2 0 0 0-3 9.45c.55.4.85.95.85 1.6v.25h4.3v-.25c0-.65.3-1.2.85-1.6A5.2 5.2 0 0 0 7 1.2z' fill='none' stroke='black' stroke-width='1.7'/%3E%3Crect x='3.9' y='13.3' width='6.2' height='1.6' rx='.8'/%3E%3Cpath d='M5 15.6h4a2 2 0 0 1-4 0z'/%3E%3C/svg%3E");
+
+  /* five stars as ONE mask image (no inline SVG per star) */
+  --stars5: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 24'%3E%3Cpath transform='translate(0 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(26 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(52 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(78 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(104 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3C/svg%3E");
+
+  /* space: breathable. 152 px between sections at 1440, 84 px on phones */
+  --section-y: clamp(84px, 3.5rem + 6.2vw, 152px);
+  --gutter: clamp(20px, 4.6vw, 72px);
+  --max: 1200px;
+  --max-wide: 1360px;
+  --header-h: 88px;
+  --callbar-h: 64px;
+
+  /* shape + depth */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(15 42 53 / .05), 0 2px 10px -3px rgb(15 42 53 / .07);
+  --shadow-2: 0 1px 2px rgb(15 42 53 / .05), 0 22px 44px -22px rgb(15 42 53 / .3);
+
+  /* motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-draw: cubic-bezier(.65, 0, .25, 1);
+}
+@media (max-width: 1099px) { :root { --header-h: 72px; } }
+
+[hidden]{display:none!important}
+/* ===================================================================== base */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 16px)}
+html.menu-open{overflow:hidden}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bone);color:var(--text);font:400 var(--fs-body)/1.65 var(--font-text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:clip}
+img,svg{display:block;max-width:100%}
+img{height:auto}
+a{color:inherit}
+p,ul,ol,dl,dd,figure,blockquote,h1,h2,h3,h4{margin:0}
+ul,ol{padding:0;list-style:none}
+button,input,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--ink);font-weight:var(--w-display);letter-spacing:var(--track-display);line-height:1.04;text-wrap:balance}
+h3{font-size:var(--fs-h3);font-weight:var(--w-h3);letter-spacing:var(--track-tight);line-height:1.22}
+p{text-wrap:pretty}
+.wrap{width:min(100% - 2*var(--gutter),var(--max));margin-inline:auto}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.tnum{font-variant-numeric:tabular-nums;white-space:nowrap}
+.nw{white-space:nowrap}
+.accent{color:var(--copper)}
+:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px;border-radius:6px}
+.on-photo .cta__copy :focus-visible{outline-color:var(--cream)}
+.crew :focus-visible{outline-color:#fff}
+::selection{background:var(--wash);color:var(--ink)}
+.skip{position:absolute;left:16px;top:-80px;z-index:100;background:var(--ink);color:#fff;padding:12px 18px;border-radius:var(--r-sm);font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.i--sm{width:16px;height:16px}
+/* five stars: one mask, decorative (the rating is always in text beside it) */
+.stars{--s:15px;display:inline-block;flex:none;width:calc(var(--s) * 5.333);height:var(--s);background:currentColor;color:var(--copper);-webkit-mask:var(--stars5) center/100% 100% no-repeat;mask:var(--stars5) center/100% 100% no-repeat;vertical-align:-1px}
+
+/* ===================================================================== type helpers */
+.eyebrow{display:flex;align-items:center;gap:10px;font:600 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700);letter-spacing:.005em;margin-bottom:22px}
+.eyebrow::before{content:"";flex:none;width:14px;height:18px;background:currentColor;-webkit-mask:var(--bulb-mark) center/contain no-repeat;mask:var(--bulb-mark) center/contain no-repeat}
+.h2{font-size:var(--fs-h2)}
+.h2-xl{font-size:var(--fs-h2-xl);letter-spacing:-.034em;line-height:1.0}
+.lede{font-size:var(--fs-lede);line-height:1.6;color:var(--text);max-width:var(--measure)}
+.link{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
+.link:hover{color:var(--copper-800)}
+.link .i{display:inline-block;vertical-align:-2px;margin-left:3px}
+
+/* ===================================================================== buttons (Steady Current) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:var(--r-pill);border:1.5px solid transparent;font:650 1rem/1 var(--font-text);letter-spacing:.005em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s var(--ease),color .15s var(--ease),border-color .15s var(--ease),box-shadow .15s var(--ease)}
+.btn .i{width:18px;height:18px}
+.btn--primary{background:var(--copper);color:#fff;box-shadow:0 1px 0 rgb(255 255 255 / .18) inset,0 10px 22px -12px rgb(142 64 36 / .7)}
+.btn--primary:hover{background:var(--copper-700)}
+.btn--ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn--ghost:hover{background:var(--ink);color:var(--bone)}
+.btn--cream{background:var(--cream);color:var(--ink)}
+.btn--cream:hover{background:#fff}
+.btn--lg{min-height:58px;padding:0 30px;font-size:1.0625rem;gap:12px}
+.btn--lg .i{width:20px;height:20px}
+.btn .arrow{transition:transform .2s var(--ease)}
+.btn:hover .arrow{transform:translateX(3px)}
+.btn-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 16px}
+.textlink{display:inline-flex;align-items:center;gap:8px;font:650 1rem/1.3 var(--font-text);color:var(--ink);text-decoration:none;padding-bottom:4px;border-bottom:1.5px solid var(--copper)}
+.textlink .i{width:17px;height:17px;transition:transform .2s var(--ease)}
+.textlink:hover{color:var(--copper-700)}
+.textlink:hover .i{transform:translateX(3px)}
+
+/* ===================================================================== status: Emma, one quiet line with a dot */
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 3px rgb(46 155 94 / .16);flex:none}
+.is-closed .dot{background:var(--off);box-shadow:0 0 0 3px rgb(125 138 144 / .18)}
+.status{display:inline-flex;align-items:center;gap:8px}
+[data-office] [data-closed-text]{display:none}
+.is-closed [data-open-text]{display:none}
+.is-closed [data-closed-text]{display:inline}
+
+/* ===================================================================== header */
+.site-header{position:sticky;top:0;z-index:50;height:var(--header-h);background:rgb(247 243 236 / .94);backdrop-filter:saturate(1.2) blur(10px);-webkit-backdrop-filter:saturate(1.2) blur(10px);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;gap:24px;height:100%}
+.logo{flex:none;border-radius:6px}
+.logo img{height:68px;width:auto}
+.nav{margin-left:auto}
+.nav>ul{display:flex;align-items:center;gap:2px}
+.nav a,.dd-btn{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 13px;border-radius:var(--r-sm);font:500 1rem/1 var(--font-text);color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer;white-space:nowrap}
+.nav a:hover,.dd-btn:hover,.dd-btn[aria-expanded=true]{color:var(--copper-700);background:rgb(15 42 53 / .04)}
+.nav a[aria-current=page]{color:var(--copper-700)}
+.dd{position:relative}
+.dd-btn .chev{width:14px;height:14px;transition:transform .2s var(--ease)}
+.dd-btn[aria-expanded=true] .chev{transform:rotate(180deg)}
+.dd-panel{position:absolute;top:calc(100% + 16px);left:-8px;min-width:240px;background:var(--paper);border-radius:var(--r-md);box-shadow:var(--shadow-2);padding:10px;border:1px solid var(--line)}
+.dd-panel a{display:flex;height:auto;min-height:40px;padding:8px 12px;font-size:.9375rem;border-radius:var(--r-sm)}
+.dd-panel a:hover{background:var(--bone)}
+.dd-panel--cols ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 8px}
+.dd-panel--cols{width:min(520px,80vw);left:50%;transform:translateX(-50%);padding:16px}
+.dd-panel--mega{display:grid;grid-template-columns:1fr 1fr;gap:8px 28px;width:min(760px,86vw);left:50%;transform:translateX(-50%);padding:22px}
+.dd-panel .grp a{display:inline;padding:4px 12px 6px;min-height:0;font-size:var(--fs-meta);font-weight:650;color:var(--muted)}
+.dd-panel .all{grid-column:1/-1;border-top:1px solid var(--line);margin-top:8px;padding-top:10px}
+.dd-panel .all a{font-weight:650;color:var(--copper-700)}
+.hdr-cta{display:flex;align-items:center;gap:22px;flex:none}
+.hdr-phone{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-decoration:none;color:var(--ink);min-height:44px;justify-content:center}
+.hdr-phone b{font:700 1.125rem/1.1 var(--font-display);letter-spacing:-.01em}
+/* a fixed width, so switching between the open and closed lines never shifts the nav */
+.hdr-phone .status{min-width:11.75rem;font-size:.8125rem;line-height:1.2;color:var(--muted)}
+.hdr-phone .dot{width:7px;height:7px;box-shadow:0 0 0 2.5px rgb(46 155 94 / .16)}
+.hdr-phone:hover b{color:var(--copper-700)}
+.hdr .btn{min-height:48px;padding:0 22px;font-size:.96875rem}
+.hdr .btn[aria-current]{box-shadow:0 0 0 3px var(--wash)}
+.menu-btn,.hdr-call{display:none}
+@media (max-width:1279px){.nav a,.dd-btn{padding:0 10px;font-size:.96875rem}.hdr{gap:16px}.logo img{height:62px}}
+@media (max-width:1099px){
+  .nav,.hdr-cta{display:none}
+  .logo img{height:54px}
+  .hdr{gap:10px}
+  .hdr-call{display:inline-flex;margin-left:auto;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:var(--r-pill);background:var(--copper);color:#fff;font:650 .9375rem/1 var(--font-text);text-decoration:none}
+  .hdr-call .i{width:17px;height:17px}
+  .menu-btn{display:inline-grid;place-items:center;width:46px;height:46px;margin-left:auto;border-radius:var(--r-pill);border:1.5px solid var(--line-strong);background:transparent;color:var(--ink);cursor:pointer}
+  .hdr-call+.menu-btn{margin-left:0}
+}
+/* phones: the call bar at the bottom carries Call + Estimate, so the header is only the logo and the menu */
+@media (max-width:639px){.hdr-call{display:none}}
+/* the mobile menu is a sibling of the header (not inside it), so position:fixed is relative to the viewport */
+.mobile-menu{position:fixed;top:var(--header-h);left:0;right:0;bottom:0;z-index:55;background:var(--bone);overflow:auto;overscroll-behavior:contain;padding:12px var(--gutter) calc(var(--callbar-h) + 40px);border-top:1px solid var(--line)}
+.mobile-menu details{border-bottom:1px solid var(--line)}
+.mobile-menu summary{list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:58px;font:680 1.25rem/1 var(--font-display);color:var(--ink);cursor:pointer}
+.mobile-menu summary::-webkit-details-marker{display:none}
+.mobile-menu details[open] summary .chev{transform:rotate(180deg)}
+.mobile-menu ul{display:grid;grid-template-columns:1fr 1fr;gap:2px 16px;padding-bottom:14px}
+.mobile-menu li a{display:flex;align-items:center;min-height:44px;color:var(--text);text-decoration:none;font-size:.9375rem}
+.mobile-menu .top{display:flex;align-items:center;min-height:58px;border-bottom:1px solid var(--line);font:680 1.25rem/1 var(--font-display);color:var(--ink);text-decoration:none}
+.mobile-menu .m-cta{display:grid;gap:10px;margin-top:28px}
+.m-status{display:flex;justify-content:center;font-size:.875rem;color:var(--muted);margin-top:4px}
+@media (min-width:1100px){.mobile-menu{display:none!important}}
+
+/* ===================================================================== the hero trust line: ONE quiet line (rating · licence) */
+.trust{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:.96875rem;line-height:1.45;color:var(--text)}
+.trust a{text-decoration:none;color:var(--text)}
+.trust__rating{display:inline-flex;align-items:center;gap:8px}
+.trust__rating b{font:700 1rem/1 var(--font-display);color:var(--ink)}
+.trust a:hover{color:var(--copper-700)}
+.trust__sep{color:var(--muted)}
+.trust__roc{text-decoration:underline!important;text-decoration-color:var(--line-strong)!important;text-decoration-thickness:1px!important;text-underline-offset:.24em}
+.trust__roc:hover{text-decoration-color:var(--copper)!important}
+@media (max-width:640px){.trust__sep{display:none}}
+
+/* ===================================================================== home hero: the words start on the paper and land on the crew photo */
+.hero{position:relative}
+.hero__copy{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:clamp(48px,6vw,96px);align-items:start;padding-top:clamp(40px,min(5vw,6.4vh),88px)}
+.hero__copy>.eyebrow,.hero__copy>h1{grid-column:1/-1}
+.hero__copy>.hero__lede{grid-column:1;grid-row:3}
+.hero__copy>.hero__actions{grid-column:2;grid-row:3}
+.hero__copy>.hero__status{display:none}
+/* the trust line runs under both columns, right-aligned under the buttons: it is the first thing that sits on the photo */
+.hero__copy>.hero__trust{grid-column:1/-1;grid-row:4;justify-self:end;margin-top:clamp(28px,3vw,44px)}
+.hero h1{font-size:var(--fs-h1);line-height:1.02;letter-spacing:-.034em;max-width:16em}
+.hero__lede{margin-top:clamp(22px,2.6vw,38px);font-size:var(--fs-lede);line-height:1.6;color:var(--text);max-width:40rem}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px 16px;margin-top:clamp(26px,2.9vw,42px)}
+@media (max-width:1099px){
+  .hero__copy{display:block}
+  .hero__copy>.hero__status{display:flex;margin-top:14px;font-size:.9375rem;color:var(--muted)}
+  .hero__copy>.hero__trust{margin-top:22px}
+}
+@media (max-width:640px){.hero__actions .btn{flex:1 1 100%}.hero h1{letter-spacing:-.03em}.hero__copy>.hero__status{justify-content:center}}
+/* the crew, full width. It starts UNDER the end of the hero copy: the page colour fades into the photo's quiet wall */
+.crew{--lap:clamp(76px,7.4vw,118px);position:relative;isolation:isolate;overflow:clip;margin-top:calc(-1 * var(--lap))}
+.crew img{width:100%;height:clamp(420px,44vw,700px);object-fit:cover;object-position:50% 86%}
+.crew::before{content:"";position:absolute;inset:0 0 auto;height:clamp(200px,19vw,290px);background:
+  radial-gradient(farthest-side at 0 0,rgb(247 243 236 / .98),rgb(247 243 236 / .94) 64%,rgb(247 243 236 / 0)) 0 0/40% 100% no-repeat,
+  linear-gradient(var(--bone) 0,rgb(247 243 236 / .97) calc(var(--lap) * .55),rgb(247 243 236 / .72) var(--lap),rgb(247 243 236 / .26) 74%,rgb(247 243 236 / 0));z-index:1;pointer-events:none}
+/* a light scrim hugs the quotes only; the rest of the photo stays a photo */
+.crew::after{content:"";position:absolute;inset:auto 0 0;height:clamp(150px,13vw,190px);background:linear-gradient(rgb(var(--scrim) / 0),rgb(var(--scrim) / .16) 45%,rgb(var(--scrim) / .3));z-index:1;pointer-events:none}
+.crew__quotes{position:absolute;inset:auto 0 0;z-index:2;padding-bottom:clamp(22px,2.4vw,36px)}
+.crew__quotes ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;max-width:1040px;margin-inline:auto}
+.crew__quotes li{position:relative;isolation:isolate;display:flex;flex-direction:column;gap:8px;font:600 clamp(1rem,.9rem + .35vw,1.1875rem)/1.3 var(--font-display);letter-spacing:-.008em;color:#fff;text-shadow:0 1px 12px rgb(15 42 53 / .5)}
+/* a soft, local scrim under each quote (a blurred patch, not a bar): the rest of the photo stays a photo */
+.crew__quotes li::before{content:"";position:absolute;inset:-26px -30px -22px -34px;z-index:-1;border-radius:40px;background:rgb(var(--scrim) / .64);filter:blur(16px);pointer-events:none}
+.crew__quotes li+li{padding-left:24px}
+.crew__quotes .stars{--s:14px;color:var(--gold)}
+@media (max-width:899px){.crew__quotes ul{max-width:none}.crew__quotes li{font-size:1rem}}
+@media (max-width:699px){
+  /* phones: a 4:5 crop centred on the faces; the quotes stay ON the photo over a light bottom scrim */
+  .crew{--lap:64px}
+  .crew img{height:auto;aspect-ratio:4/5;object-position:50% 50%}
+  .crew::before{height:150px;background:linear-gradient(var(--bone) 0,rgb(247 243 236 / .9) 34%,rgb(247 243 236 / .45) 66%,rgb(247 243 236 / 0))}
+  .crew::after{height:150px;background:linear-gradient(rgb(var(--scrim) / 0),rgb(var(--scrim) / .3))}
+  .crew__quotes{padding-bottom:22px}
+  .crew__quotes ul{grid-template-columns:1fr;gap:10px;width:max-content;max-width:100%}
+  .crew__quotes li::before{inset:-12px -22px -12px -18px;filter:blur(12px);background:rgb(var(--scrim) / .72)}
+  .crew__quotes li{flex-direction:row;align-items:center;gap:10px;font-size:.96875rem;line-height:1.3}
+  .crew__quotes li+li{border-left:0;padding-left:0}
+  .crew__quotes .stars{--s:11px}
+}
+
+/* ===================================================================== inner hero: copy on the paper, the photo bleeds to the right edge */
+.ihero{position:relative;overflow:hidden}
+.ihero__media{position:absolute;top:0;bottom:0;right:0;width:50vw;z-index:0}
+.ihero__media img{width:100%;height:100%;object-fit:cover}
+.ihero__media::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bone) 0%,rgb(247 243 236 / .55) 7%,rgb(247 243 236 / 0) 20%);z-index:1}
+.ihero__media::after{content:"";position:absolute;inset:auto 0 0;height:40px;background:linear-gradient(rgb(247 243 236 / 0),var(--bone));z-index:1}
+.ihero .wrap{position:relative;z-index:2}
+.ihero__copy{max-width:min(650px,54%);padding-block:clamp(28px,4vw,56px) clamp(64px,7vw,112px)}
+.ihero h1{font-size:var(--fs-h1-inner);letter-spacing:-.034em;line-height:1.02}
+.ihero .lede{margin-top:clamp(18px,2vw,26px);max-width:33rem}
+.ihero .hero__actions{margin-top:clamp(26px,2.8vw,36px)}
+.ihero .hero__status{display:none}
+@media (max-width:1099px){.ihero .hero__status{display:flex;margin-top:14px;font-size:.9375rem;color:var(--muted)}}
+@media (max-width:640px){.ihero .hero__status{justify-content:center}}
+.ihero .trust{margin-top:24px;column-gap:9px;font-size:.9375rem}
+.ihero .trust .stars{--s:13px}
+.ihero__tag{position:absolute;right:var(--gutter);bottom:clamp(28px,3vw,44px);z-index:2;margin:0;padding:8px 14px;border-radius:var(--r-pill);background:rgb(var(--scrim) / .82);color:#fff;font-size:var(--fs-meta);font-weight:600;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ihero__media img.crisp{filter:contrast(1.06) saturate(1.06)}
+@media (max-width:999px){
+  .ihero__media{position:relative;width:100%;height:auto;order:2}
+  .ihero{display:flex;flex-direction:column}
+  .ihero__media img{height:auto;aspect-ratio:16/11}
+  .ihero__media::before{background:linear-gradient(var(--bone),rgb(247 243 236 / 0) 22%)}
+  .ihero__media::after{display:none}
+  .ihero__copy{max-width:none;padding-bottom:36px}
+  .ihero .hero__actions .btn{flex:1 1 auto}
+}
+@media (max-width:640px){.ihero .hero__actions .btn{flex:1 1 100%}}
+
+/* breadcrumbs: one line on wide screens; on phones the trail wraps (full text stays visible and in the DOM) */
+.crumbs{padding-top:clamp(20px,2.2vw,30px)}
+.crumbs ol{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:var(--fs-small);color:var(--muted)}
+.crumbs li{display:flex;align-items:center;gap:10px}
+.crumbs li+li::before{content:"";flex:none;width:6px;height:6px;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);opacity:.7}
+.crumbs a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.22em}
+.crumbs a:hover{color:var(--copper-700)}
+.crumbs [aria-current]{color:var(--copper-700);font-weight:600}
+
+/* ===================================================================== sections: surfaces alternate so each section is its own room */
+.section{padding-block:var(--section-y)}
+.section--sand{background:var(--sand)}
+.section--paper{background:var(--paper)}
+.head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px 72px;align-items:end;margin-bottom:clamp(44px,5vw,76px)}
+.head .intro{font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:30rem}
+.head .intro .more{margin-top:18px}
+.head h2{max-width:20ch}
+@media (max-width:880px){.head{grid-template-columns:1fr;gap:20px}}
+
+/* ===================================================================== who we are: two balanced columns, the promises as a quiet list */
+.family__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px clamp(56px,8vw,128px);align-items:start}
+.family__copy h2{max-width:12ch}
+.family__copy .answer{margin-top:clamp(26px,2.6vw,36px);font-size:var(--fs-lede);line-height:1.6;color:var(--ink);font-weight:500;max-width:var(--measure)}
+.family__copy p+p{margin-top:20px}
+.family__copy .team{max-width:var(--measure)}
+.family__copy .btn-row{margin-top:36px;gap:24px}
+.values{border-top:1px solid var(--line-strong)}
+.value{padding:30px 0 32px;border-bottom:1px solid var(--line-strong)}
+.value h3{font-size:clamp(1.375rem,1.2rem + .6vw,1.75rem);font-weight:700;letter-spacing:-.022em}
+.value p{margin-top:12px;color:var(--text);max-width:34em}
+@media (max-width:880px){.family__grid{grid-template-columns:1fr}}
+
+/* ===================================================================== services */
+.svc-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,32px)}
+.svc-card{position:relative;display:flex;flex-direction:column;background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+.svc-card:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--line),var(--shadow-2)}
+.svc-card img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.svc-card .body{position:relative;padding:28px 30px 30px;display:flex;flex-direction:column;gap:12px;flex:1}
+.svc-card h3{font-size:clamp(1.375rem,1.25rem + .4vw,1.625rem);font-weight:700;letter-spacing:-.02em}
+.svc-card h3 a{text-decoration:none;color:var(--ink)}
+.svc-card h3 a::after{content:"";position:absolute;inset:0}
+.svc-card p{color:var(--text)}
+.svc-card .go{margin-top:auto;padding-top:8px;display:inline-flex;align-items:center;gap:8px;font-weight:650;color:var(--copper-700)}
+.svc-card .go .i{width:17px;height:17px;transition:transform .2s var(--ease)}
+.svc-card:hover .go .i{transform:translateX(3px)}
+/* the bulb switches on with the pointer or keyboard focus. At rest it is not drawn at all (no icon in the column) */
+.mini-bulb{position:absolute;right:26px;bottom:24px;width:30px;height:auto;overflow:visible;opacity:0;transform:translateY(4px);transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.mini-bulb .halo{opacity:0;transition:opacity .45s var(--ease) .1s}
+.mini-bulb .glass{fill:var(--glow);fill-opacity:0;stroke:none;transition:fill-opacity .35s var(--ease) .1s}
+.mini-bulb .line{fill:none;stroke:var(--copper);stroke-width:20;stroke-linecap:round;stroke-linejoin:round}
+.mini-bulb .bars>*{fill:var(--copper)}
+:is(.svc-card,.svc-tile):is(:hover,:focus-within) .mini-bulb{opacity:1;transform:none}
+:is(.svc-card,.svc-tile):is(:hover,:focus-within) .mini-bulb .halo{opacity:1}
+:is(.svc-card,.svc-tile):is(:hover,:focus-within) .mini-bulb .glass{fill-opacity:1}
+@media (hover:none){.mini-bulb{display:none}}
+@media (max-width:980px){.svc-cards{grid-template-columns:1fr 1fr}.svc-cards>:last-child{grid-column:1/-1}.svc-cards>:last-child img{aspect-ratio:16/8}}
+@media (max-width:640px){.svc-cards{grid-template-columns:1fr}.svc-cards>:last-child img,.svc-card img{aspect-ratio:16/10}}
+/* the solutions list (verbatim): big, quiet type */
+.solutions{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px clamp(48px,8vw,128px);margin-top:clamp(96px,10vw,152px);align-items:start}
+.solutions .lede{margin-top:22px;color:var(--muted)}
+.solutions .cats{display:flex;flex-wrap:wrap;gap:16px 28px;margin-top:32px}
+.sol-list{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;border-top:1px solid var(--line)}
+.sol-list li{border-bottom:1px solid var(--line)}
+.sol-list a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:80px;text-decoration:none;color:var(--ink)}
+.sol-list h3{font-size:clamp(1.125rem,1.05rem + .3vw,1.3125rem);font-weight:650;letter-spacing:-.012em}
+.sol-list .i{color:var(--copper);transition:transform .2s var(--ease)}
+.sol-list a:hover{color:var(--copper-700)}
+.sol-list a:hover h3{color:var(--copper-700)}
+.sol-list a:hover .i{transform:translateX(4px)}
+@media (max-width:880px){.solutions{grid-template-columns:1fr}}
+@media (max-width:520px){.sol-list{grid-template-columns:1fr}}
+
+/* ===================================================================== the valley (Steady Current's section, homepage only, with room to breathe) */
+.valley{background:var(--sand)}
+.valley__head{max-width:56rem;margin-bottom:clamp(56px,6vw,96px)}
+.valley__intro{margin-top:28px;font-size:var(--fs-lede);line-height:1.6;color:var(--text);max-width:var(--measure)}
+.valley__grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(48px,6vw,104px);align-items:start}
+.valley__aside{position:sticky;top:calc(var(--header-h) + 32px)}
+.valley__map{position:relative;border-radius:var(--r-xl);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line),var(--shadow-1);overflow:hidden}
+.valley__map figcaption{position:absolute;left:26px;bottom:20px;font-size:var(--fs-meta);color:var(--muted)}
+.valley-svg{width:100%;height:auto}
+.valley-svg .bus{fill:none;stroke:var(--copper);stroke-width:3.5;stroke-linecap:round}
+.valley-svg .bus-glow{fill:none;stroke:var(--copper);stroke-opacity:.12;stroke-width:14;stroke-linecap:round}
+.valley-svg .tap{fill:none;stroke:var(--copper);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.valley-svg .tap.is-dim{stroke-opacity:.35}
+.valley-svg .tap.is-lit{stroke-width:3.2}
+.valley-svg .joint{fill:var(--copper)}
+.valley-svg .lm path{fill:none;stroke:rgb(83 100 107 / .42);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+.valley-svg .lm-t text{font:600 10.5px var(--font-text);letter-spacing:.14em;fill:var(--muted)}
+.valley-svg .node .halo{fill:var(--copper);opacity:0;transition:opacity .2s var(--ease)}
+.valley-svg .node .pad{fill:var(--paper);stroke:var(--copper);stroke-width:2;transition:fill .2s var(--ease)}
+.valley-svg .node .core{fill:var(--copper);transition:fill .2s var(--ease)}
+.valley-svg .node text{font:650 16px var(--font-text);fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:5px;stroke-linejoin:round}
+.valley-svg .node.is-dim text{fill:var(--muted)}
+.valley-svg .node.is-focus .halo{opacity:.16}
+.valley-svg .node.is-focus .pad{fill:var(--copper)}
+.valley-svg .node.is-focus .core{fill:var(--paper)}
+.valley-svg .node.is-focus text{font:720 22px var(--font-display);fill:var(--copper-700);letter-spacing:-.01em}
+.valley-svg .flow{display:none}
+@media (prefers-reduced-motion:no-preference){
+  .valley-svg .flow{display:inline;fill:none;stroke:#FFD9A6;stroke-width:5;stroke-linecap:round;stroke-dasharray:16 2000;stroke-dashoffset:16;opacity:0;filter:drop-shadow(0 0 4px #F2B54A)}
+  .valley__map.is-live .flow{animation:flow 4.2s cubic-bezier(.45,0,.55,1) .3s 1 forwards}
+  @keyframes flow{0%{stroke-dashoffset:16;opacity:0}8%{opacity:1}90%{opacity:1}100%{stroke-dashoffset:-1000;opacity:0}}
+}
+/* hovering or focusing a city lights its node on the map */
+.valley:has(.cities a:hover,.cities a:focus-visible) .valley-svg .node{opacity:.4}
+.valley:has([data-city=mesa] a:hover,[data-city=mesa] a:focus-visible) .node--mesa,.valley:has([data-city=gilbert] a:hover,[data-city=gilbert] a:focus-visible) .node--gilbert,.valley:has([data-city=chandler] a:hover,[data-city=chandler] a:focus-visible) .node--chandler,.valley:has([data-city=scottsdale] a:hover,[data-city=scottsdale] a:focus-visible) .node--scottsdale,.valley:has([data-city=tempe] a:hover,[data-city=tempe] a:focus-visible) .node--tempe,.valley:has([data-city=phoenix] a:hover,[data-city=phoenix] a:focus-visible) .node--phoenix,.valley:has([data-city=queen-creek] a:hover,[data-city=queen-creek] a:focus-visible) .node--queen-creek,.valley:has([data-city=san-tan-valley] a:hover,[data-city=san-tan-valley] a:focus-visible) .node--san-tan-valley,.valley:has([data-city=apache-junction] a:hover,[data-city=apache-junction] a:focus-visible) .node--apache-junction,.valley:has([data-city=fountain-hills] a:hover,[data-city=fountain-hills] a:focus-visible) .node--fountain-hills,.valley:has([data-city=ahwatukee] a:hover,[data-city=ahwatukee] a:focus-visible) .node--ahwatukee{opacity:1}
+.valley-svg .node{transition:opacity .2s var(--ease)}
+/* the city list: wider columns, roomier rows, neighborhoods in the text colour */
+.cities{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(48px,4.4vw,64px);align-content:start}
+.cities li{border-top:1px solid var(--line-strong);padding:24px 0 28px}
+.cities h3{font-size:1.25rem;font-weight:700;letter-spacing:-.012em}
+.cities h3 a{display:inline-flex;align-items:center;gap:8px;min-height:40px;color:var(--ink);text-decoration:none}
+.cities h3 a .i{color:var(--copper);transition:transform .2s var(--ease)}
+.cities h3 a:hover{color:var(--copper-700)}
+.cities h3 a:hover .i{transform:translateX(3px)}
+.cities h3 a[aria-current]{color:var(--copper-700)}
+.cities p{margin-top:4px;font-size:.96875rem;line-height:1.55;color:var(--text)}
+.valley__cta{margin-top:clamp(40px,4vw,56px)}
+.valley__cta p{font-size:var(--fs-lede);line-height:1.55;color:var(--ink);max-width:34rem;margin-bottom:28px}
+@media (max-width:1099px){.valley__grid{grid-template-columns:minmax(0,1fr)}.valley__aside{display:contents}.valley__map{order:1}.cities{order:2}.valley__cta{order:3;margin-top:8px}}
+@media (max-width:640px){
+  .cities{grid-template-columns:1fr}
+  .cities li{padding:20px 0 22px}
+  .valley-svg .node text{font-size:27px;stroke-width:7px}
+  .valley-svg .node.is-focus text{font-size:31px}
+  .valley-svg .lm,.valley-svg .lm-t{display:none}
+  .valley__map figcaption{position:static;padding:0 18px 14px}
+  .valley__cta .btn{flex:1 1 100%}
+}
+
+/* inner pages: a compact "other areas" row (no map) */
+.areas{background:var(--sand)}
+.areas__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 72px;align-items:end;margin-bottom:clamp(36px,4vw,56px)}
+.areas__intro{font-size:var(--fs-lede);line-height:1.6;color:var(--text);max-width:30rem}
+.area-links{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));column-gap:clamp(32px,3.4vw,48px);border-top:1px solid var(--line-strong)}
+.area-links li{border-bottom:1px solid var(--line-strong)}
+.area-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px;font:700 1.1875rem/1.2 var(--font-display);letter-spacing:-.012em;color:var(--ink);text-decoration:none}
+.area-links a .i{color:var(--copper);transition:transform .2s var(--ease)}
+.area-links a:hover{color:var(--copper-700)}
+.area-links a:hover .i{transform:translateX(3px)}
+.areas__foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 48px;margin-top:clamp(36px,4vw,52px)}
+.areas__foot p{font-size:1.0625rem;line-height:1.55;color:var(--text);max-width:32rem}
+@media (max-width:880px){.areas__head{grid-template-columns:1fr}}
+@media (max-width:640px){.areas__foot .btn{flex:1 1 100%}.area-links{grid-template-columns:1fr 1fr;column-gap:20px}.area-links a{font-size:1.0625rem;min-height:56px}}
+
+/* ===================================================================== reviews */
+.reviews{background:var(--paper)}
+.reviews__head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px 72px;align-items:end;margin-bottom:clamp(40px,4.4vw,64px)}
+.reviews__head h2{max-width:20ch}
+.reviews__intro{margin-top:20px;font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:34rem}
+.score{display:flex;align-items:center;gap:22px}
+.score__num{font:700 clamp(4.5rem,3rem + 4vw,7.5rem)/.8 var(--font-display);letter-spacing:-.04em;color:var(--ink)}
+.score__txt{display:grid;gap:6px;font-size:var(--fs-lede);color:var(--text)}
+.score__txt .stars{--s:20px}
+.score__links{display:flex;flex-direction:column;gap:6px;margin-top:4px;font-size:1rem}
+@media (max-width:880px){.reviews__head{grid-template-columns:1fr}.score{gap:18px}}
+/* the controls sit above the lanes (reachable before the moving content) */
+.reviews__bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;margin-bottom:clamp(24px,2.6vw,36px)}
+.reviews__note{font-size:var(--fs-small);color:var(--muted);max-width:40rem}
+.mq-ctrl{display:flex;align-items:center;gap:8px}
+.mq-btn,.mq-toggle{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;border-radius:var(--r-pill);border:1.5px solid var(--line-strong);background:transparent;color:var(--ink);font:650 .9375rem/1 var(--font-text);cursor:pointer;transition:background-color .15s var(--ease),border-color .15s var(--ease)}
+.mq-btn{width:44px}
+.mq-toggle{padding:0 18px 0 16px}
+.mq-btn:hover,.mq-toggle:hover{border-color:var(--ink);background:var(--bone)}
+.mq-toggle .ic-play{display:none}
+.mq-toggle.is-paused .ic-play{display:block}
+.mq-toggle.is-paused .ic-pause{display:none}
+.mq-toggle .ic-play{fill:currentColor;stroke:none}
+.marquee{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.lane{min-width:0;contain:paint;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent;padding-block:4px;border-radius:var(--r-md)}
+.lane:focus-visible{outline-offset:-2px}
+.belt{display:flex;width:max-content}
+.track{display:flex;gap:20px;padding-inline:var(--gutter) 20px}
+.marquee.is-moving .lane{overflow:hidden}
+.marquee.is-moving .track{padding-left:0}
+.marquee.is-moving .belt{animation:mq var(--mq-dur,300s) linear infinite;will-change:transform}
+.marquee.is-moving .lane--b .belt{animation-direction:reverse}
+.marquee:hover .belt,.marquee:focus-within .belt,.marquee.is-paused .belt{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(calc(-1 * var(--mq-w,50%)))}}
+@media (prefers-reduced-motion:reduce){.marquee .belt{animation:none!important}}
+.rv{flex:none;width:360px;height:256px;scroll-snap-align:start}
+.rv--s{width:300px}
+.rv--l{width:440px}
+.rv figure{display:flex;flex-direction:column;height:100%;padding:26px 28px 24px;border-radius:var(--r-lg);background:var(--bone);box-shadow:inset 0 0 0 1px var(--line)}
+/* the five stars, decorative (CSS only; the section states every review shown is 5 out of 5) */
+.rv figure::before{content:"";flex:none;width:calc(14px * 5.333);height:14px;background:var(--copper);-webkit-mask:var(--stars5) center/100% 100% no-repeat;mask:var(--stars5) center/100% 100% no-repeat}
+.rv blockquote{margin-top:16px;flex:1;min-height:0}
+.rv blockquote p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;overflow:hidden;font-size:1rem;line-height:1.55;color:var(--text)}
+.rv--s blockquote p{font:600 1.3125rem/1.35 var(--font-display);letter-spacing:-.012em;color:var(--ink);-webkit-line-clamp:4}
+.rv figcaption{margin-top:14px;display:grid;gap:2px}
+.rv cite{font:650 1rem/1.3 var(--font-text);font-style:normal;color:var(--ink)}
+.rv small{font-size:var(--fs-meta);color:var(--muted)}
+@media (max-width:699px){.rv,.rv--l{width:min(82vw,330px);height:272px}.rv--s{width:min(72vw,280px)}}
+/* inner pages: three reviews in a calm row, full text */
+.rv-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,32px)}
+.rv--static{width:auto;height:auto}
+.rv--static blockquote{flex:none}
+.rv--static blockquote p{display:block;font:500 1.125rem/1.55 var(--font-text);color:var(--ink)}
+.rv--static figcaption{margin-top:20px}
+@media (max-width:880px){.rv-row{grid-template-columns:1fr}}
+
+/* ===================================================================== recent photos: full bleed */
+.work .head{margin-bottom:clamp(40px,4.4vw,64px)}
+.gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(220px,24vw,380px);gap:8px}
+.gallery figure{position:relative;overflow:hidden;background:var(--sand)}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.gallery figure:hover img{transform:scale(1.03)}
+.gallery figcaption{position:absolute;left:16px;bottom:16px;max-width:calc(100% - 32px);padding:7px 13px;border-radius:var(--r-pill);background:rgb(var(--scrim) / .8);color:#fff;font-size:.8125rem;font-weight:600;line-height:1.3;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.g-a{grid-column:1/6}.g-b{grid-column:6/9}.g-c{grid-column:9/13}
+.g-d{grid-column:1/5}.g-e{grid-column:5/8}.g-f{grid-column:8/13}
+@media (max-width:899px){
+  .gallery{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+  .gallery figure{grid-column:auto!important;aspect-ratio:1/1}
+  .gallery .g-a,.gallery .g-f{grid-column:1/-1!important;aspect-ratio:3/2}
+  .gallery figcaption{left:10px;bottom:10px;max-width:calc(100% - 20px);font-size:.75rem;padding:5px 10px;border-radius:10px}
+}
+
+/* ===================================================================== answers: FAQ (native details) + guides */
+.answers--sand{background:var(--sand)}
+.faq{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:40px clamp(48px,8vw,128px);align-items:start}
+.faq__intro{margin-top:22px;font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:30rem}
+.faq__aside .textlink{margin-top:30px}
+.qa{border-top:1px solid var(--line-strong)}
+.qa:last-child{border-bottom:1px solid var(--line-strong)}
+.qa summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:24px;min-height:84px;padding:18px 0;cursor:pointer;font:680 clamp(1.125rem,1.05rem + .3vw,1.3125rem)/1.3 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .pm{position:relative;width:36px;height:36px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--line-strong);flex:none;transition:background-color .2s}
+.qa summary .pm::before,.qa summary .pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%);border-radius:2px}
+.qa summary .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .2s var(--ease)}
+.qa[open] summary .pm{background:var(--copper);box-shadow:none}
+.qa[open] summary .pm::before,.qa[open] summary .pm::after{background:#fff}
+.qa[open] summary .pm::after{transform:translate(-50%,-50%) rotate(0)}
+.qa summary:hover{color:var(--copper-700)}
+.qa .a{padding:0 64px 30px 0;color:var(--text);max-width:var(--measure)}
+.qa .a a{color:var(--copper-700);text-decoration:underline;text-underline-offset:.2em}
+@media (max-width:880px){.faq{grid-template-columns:1fr}.qa .a{padding-right:0}}
+.guides-block{margin-top:clamp(112px,12vw,176px)}
+.guides{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,2.8vw,40px)}
+.guide{position:relative;display:flex;flex-direction:column}
+.cover{position:relative;overflow:hidden;aspect-ratio:16/10;border-radius:var(--r-lg);padding:clamp(20px,2vw,26px);display:flex;flex-direction:column;justify-content:space-between;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.cover .lab{position:relative;z-index:1;display:flex;align-items:center;gap:8px;font:600 .8125rem/1.2 var(--font-text)}
+.cover .lab::before{content:"";flex:none;width:12px;height:15px;background:currentColor;-webkit-mask:var(--bulb-mark) center/contain no-repeat;mask:var(--bulb-mark) center/contain no-repeat}
+.cover .big{position:relative;z-index:1;font:720 clamp(1.75rem,1.2rem + 1.4vw,2.5rem)/1 var(--font-display);letter-spacing:-.035em;max-width:9ch}
+.cover .cw{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke-width:1.5;stroke-linecap:round}
+.cover .cw path{vector-effect:non-scaling-stroke}
+/* three light covers per row: paper / copper / copper wash. No dark (ink) cover anywhere. */
+.cover--paper{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.cover--paper .lab{color:var(--copper-700)}
+.cover--paper .cw{stroke:var(--copper);opacity:.7}
+.cover--copper{background:var(--copper);color:#fff}
+.cover--copper .lab{color:var(--cream)}
+.cover--copper .cw{stroke:var(--cream);opacity:.55}
+.cover--wash{background:var(--wash);color:var(--ink);box-shadow:inset 0 0 0 1px rgb(170 80 46 / .14)}
+.cover--wash .lab{color:var(--copper-700)}
+.cover--wash .cw{stroke:var(--copper);opacity:.6}
+.guide:hover .cover{transform:translateY(-3px);box-shadow:var(--shadow-2)}
+.guide .meta{margin-top:22px;font-size:var(--fs-meta);font-weight:600;color:var(--muted)}
+.guide h3{margin-top:8px;font-size:1.3125rem;line-height:1.28;font-weight:700;letter-spacing:-.014em}
+.guide h3 a{color:var(--ink);text-decoration:none}
+.guide h3 a::after{content:"";position:absolute;inset:0;border-radius:var(--r-lg)}
+.guide:hover h3 a{color:var(--copper-700)}
+.guide .ex{margin-top:10px;font-size:var(--fs-small);color:var(--muted);line-height:1.6}
+.answers--sand .guide .ex{color:var(--text)}
+@media (max-width:899px){.guides{grid-template-columns:1fr;gap:36px}.guide .cover{aspect-ratio:16/8}}
+
+/* ===================================================================== CTA band: the photo is the background; the words sit on it; the form card overlaps on the right */
+.cta{--fade-from:var(--bone);position:relative;isolation:isolate;background:var(--copper);color:#fff;overflow:hidden}
+.answers--sand+.cta,.areas+.cta,.section--sand+.cta{--fade-from:var(--sand)}
+.section--paper+.cta{--fade-from:var(--paper)}
+.cta__media{position:absolute;inset:0;z-index:-1}
+.cta__media img{width:100%;height:100%;object-fit:cover;object-position:50% 58%}
+/* 1) the page colour fades into the photo at the top */
+.cta__media::before{content:"";position:absolute;inset:0 0 auto;height:clamp(120px,12vw,190px);background:linear-gradient(var(--fade-from),color-mix(in srgb,var(--fade-from) 55%,transparent) 45%,transparent);z-index:1}
+/* 2) a copper scrim that is strong only behind the words (left), then clears so the van reads on the right;
+      a little petrol at the foot gives it depth. It is a scrim on a photo, never a flat dark fill. */
+.cta{--copy-end:calc(max(var(--gutter),(100% - var(--max)) / 2) + 37rem)}
+.cta__media::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgb(142 64 36 / .9) 0,rgb(146 66 37 / .87) var(--copy-end),rgb(170 80 46 / .36) calc(var(--copy-end) + 12%),rgb(170 80 46 / .1) 100%),
+  linear-gradient(rgb(15 42 53 / 0) 55%,rgb(15 42 53 / .28) 100%)}
+.cta__grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:clamp(40px,5vw,88px);align-items:center;min-height:clamp(640px,56vw,820px);padding-block:clamp(132px,12vw,188px) clamp(88px,8vw,128px)}
+.cta__copy{max-width:36rem}
+.cta__copy h2{margin-top:clamp(18px,2vw,28px);font-size:var(--fs-h2-xl);letter-spacing:-.034em;line-height:1.0;color:#fff;max-width:11em}
+.cta .sub{margin-top:24px;font-size:var(--fs-lede);line-height:1.55;color:#fff;max-width:30rem}
+.cta .avail{display:flex;align-items:center;gap:10px;margin-top:22px;font:650 1.0625rem/1.3 var(--font-text);color:#fff}
+.cta .avail .emoji{font-size:0;line-height:0}
+.cta .avail .emoji::before{content:"";display:inline-block;width:11px;height:11px;border-radius:50%;background:#7BE3A6;box-shadow:0 0 0 4px rgb(123 227 166 / .26)}
+.cta .callrow{margin-top:30px}
+.cta .bulb{justify-content:flex-start}
+.cta .bulb svg{width:clamp(120px,11.5vw,170px)}
+.bulb{position:relative;width:100%;display:flex;justify-content:flex-end}
+.bulb svg{width:min(100%,270px);height:auto;overflow:visible}
+.bulb .wire{fill:none;stroke:var(--cream);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.bulb .bars>*{fill:var(--cream)}
+@media (prefers-reduced-motion:no-preference){
+  .js .bulb .wire{stroke-dasharray:1;stroke-dashoffset:1}
+  .js .bulb .glow{opacity:0}
+  .js .bulb .bars>*{opacity:.22;transform:translateY(6px);transform-box:fill-box}
+  .js .bulb.is-in .wire--lead{stroke-dashoffset:0;transition:stroke-dashoffset 1.15s cubic-bezier(.55,.05,.45,1)}
+  .js .bulb.is-in .wire--bulb{stroke-dashoffset:0;transition:stroke-dashoffset 1.6s 1.05s var(--ease)}
+  .js .bulb.is-in .bars>*{opacity:1;transform:none;transition:opacity .4s var(--ease),transform .5s var(--ease)}
+  .js .bulb.is-in .bars>:nth-child(1){transition-delay:2.5s}
+  .js .bulb.is-in .bars>:nth-child(2){transition-delay:2.63s}
+  .js .bulb.is-in .bars>:nth-child(3){transition-delay:2.76s}
+  .js .bulb.is-in .glow{animation:switch-on 1.1s 2.85s var(--ease) forwards}
+  @keyframes switch-on{0%{opacity:0}18%{opacity:.85}26%{opacity:.15}40%{opacity:.95}52%{opacity:.5}100%{opacity:1}}
+}
+@media (max-width:1099px){
+  .cta__grid{grid-template-columns:minmax(0,1fr);gap:56px;padding-top:clamp(120px,16vw,170px)}
+  .cta__form{max-width:640px}
+  .cta__media::after{background:linear-gradient(90deg,rgb(142 64 36 / .9) 0,rgb(146 66 37 / .87) var(--copy-end),rgb(170 80 46 / .55) 100%),linear-gradient(rgb(170 80 46 / 0) 40%,var(--copper) 78%)}
+}
+@media (max-width:699px){
+  /* phones: the photo sits behind the words (top of the band); the form follows on copper */
+  .cta__media{bottom:auto;height:800px}
+  .cta__media img{object-position:28% 50%}
+  .cta__media::after{background:linear-gradient(rgb(146 66 37 / .2) 0%,rgb(146 66 37 / .32) 21%,rgb(146 66 37 / .82) 30%,rgb(146 66 37 / .88) 36%,rgb(146 66 37 / .9) 86%,var(--copper) 100%)}
+  .cta__grid{gap:36px;padding-block:120px 72px}
+  .cta .bulb svg{width:104px}
+  .cta .callrow .btn{width:100%}
+}
+
+/* the estimate form (CTA band and /estimate) */
+.est{background:var(--paper);color:var(--text);border-radius:var(--r-xl);padding:clamp(24px,2.6vw,36px);box-shadow:0 34px 70px -28px rgb(58 20 6 / .5)}
+.cta .est__title,.est__title{color:var(--ink);font-size:clamp(1.5rem,1.3rem + .6vw,1.875rem);font-weight:700;letter-spacing:-.022em}
+.est .hint{margin-top:4px;font-size:var(--fs-small);color:var(--muted)}
+.est form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.est__alert:empty{display:none}
+.est__alert{grid-column:1/-1;padding:12px 14px;border-radius:var(--r-sm);background:#FCECEA;color:#8C1D16;font-size:.9375rem;font-weight:600;line-height:1.45;border:1px solid #F1C7C2}
+.est__alert a{color:inherit;text-decoration:underline;text-underline-offset:.2em}
+.field{display:grid;gap:7px;align-content:start}
+.field--full{grid-column:1/-1}
+.field label{font-size:.875rem;font-weight:650;color:var(--ink)}
+.field label .req{font-weight:500;color:var(--muted)}
+.field input,.field textarea{width:100%;min-height:52px;padding:12px 15px;border:1.5px solid var(--field-line);border-radius:12px;background:var(--white);font-size:1rem;color:var(--ink)}
+.field input::placeholder,.field textarea::placeholder{color:#68767C}
+.field textarea{min-height:96px;resize:vertical;line-height:1.5}
+.field input:focus-visible,.field textarea:focus-visible{outline:3px solid var(--ink);outline-offset:1px;border-color:var(--ink)}
+.field [aria-invalid=true]{border-color:var(--error)}
+.field .err{font-size:.8125rem;color:var(--error);font-weight:600}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.est .submit{grid-column:1/-1;display:flex;margin-top:4px}
+.est .submit .btn{flex:1 1 auto}
+.est .submit .btn[aria-busy=true]{opacity:.75;cursor:progress}
+.est .promise{grid-column:1/-1;font-size:.8125rem;color:var(--muted);line-height:1.45;margin-top:-4px;text-wrap:balance}
+.est .done{display:none;align-items:center;gap:22px;padding:8px 0 4px}
+.est .done:focus{outline:none}
+.est .done:focus-visible{outline:2.5px solid var(--ink);outline-offset:6px;border-radius:12px}
+.done__h{font:700 1.5rem/1.15 var(--font-display);letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.done p+p{color:var(--text)}
+.done a{color:var(--copper-700);font-weight:650}
+.est.is-sent form{display:none}
+.est.is-sent .done{display:flex;margin-top:18px}
+@media (max-width:560px){.est form{grid-template-columns:minmax(0,1fr)}.est .submit .btn{padding-inline:18px;font-size:1rem;gap:10px}}
+@media (max-width:360px){.est .submit .btn{white-space:normal;text-align:center;line-height:1.2}.est .done{flex-direction:column;align-items:flex-start}}
+/* success: the bulb lights when the request is sent */
+.ok-bulb{flex:none;width:118px;height:auto;overflow:visible;filter:drop-shadow(0 0 18px rgb(255 214 150 / 0))}
+.is-sent .ok-bulb{animation:bulb-warm 1.2s .3s var(--ease) forwards}
+@keyframes bulb-warm{to{filter:drop-shadow(0 0 22px rgb(255 196 120 / .55))}}
+.ok-bulb .halo{opacity:0}
+.ok-bulb .glass{fill:var(--glow);fill-opacity:0;stroke:none}
+.ok-bulb .line{fill:none;stroke:var(--copper);stroke-width:16;stroke-linecap:round;stroke-linejoin:round}
+.ok-bulb .bars>*{fill:var(--copper)}
+.is-sent .ok-bulb .halo{animation:switch-on 1.1s .25s var(--ease) forwards}
+.is-sent .ok-bulb .glass{animation:glass-on .9s .3s var(--ease) forwards}
+@keyframes glass-on{to{fill-opacity:1}}
+@keyframes switch-on{0%{opacity:0}18%{opacity:.85}26%{opacity:.15}40%{opacity:.95}52%{opacity:.5}100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.is-sent .ok-bulb .halo{animation:none;opacity:1}.is-sent .ok-bulb .glass{animation:none;fill-opacity:1}}
+
+/* ===================================================================== inner pages: shared modules */
+.glance{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px clamp(48px,8vw,128px);align-items:start}
+.glance .answer{margin-top:24px;font-size:var(--fs-lede);line-height:1.6;color:var(--ink);font-weight:500;max-width:var(--measure)}
+.glance .answer strong{font-weight:650}
+.facts{display:grid;grid-template-columns:1fr 1fr;column-gap:48px;border-top:1px solid var(--ink)}
+.facts>div{padding:24px 0 26px;border-bottom:1px solid var(--line-strong)}
+.facts dt{font-size:var(--fs-meta);font-weight:650;color:var(--copper-700);letter-spacing:.01em;margin-bottom:6px}
+.facts dd{font-size:var(--fs-small);line-height:1.55;color:var(--text);overflow-wrap:anywhere}
+.facts dd b{display:block;margin-bottom:2px;font:700 1.125rem/1.3 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.facts dd a{color:var(--copper-700);text-decoration:underline;text-underline-offset:.2em}
+.glance__line{grid-column:2;margin-top:-16px;font-size:var(--fs-small);line-height:1.6;color:var(--muted)}
+.glance__line b{font-weight:650;color:var(--copper-700)}
+@media (max-width:880px){.glance{grid-template-columns:minmax(0,1fr)}.glance__line{grid-column:1;margin-top:-8px}}
+@media (max-width:560px){.facts{grid-template-columns:minmax(0,1fr)}}
+/* service tiles (no icons; the bulb switches on with hover/focus) */
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2vw,28px)}
+.svc-tile{position:relative;display:flex;flex-direction:column;gap:12px;padding:32px 32px 30px;border-radius:var(--r-lg);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+.section--paper .svc-tile{background:var(--white)}
+.svc-tile:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px var(--line),var(--shadow-2)}
+.svc-tile h3{font-size:1.3125rem;font-weight:700;letter-spacing:-.018em}
+.svc-tile h3 a{color:var(--ink);text-decoration:none}
+.svc-tile h3 a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.svc-tile p{color:var(--text);font-size:var(--fs-small);line-height:1.6}
+.svc-tile .go{margin-top:auto;padding-top:8px;display:inline-flex;align-items:center;gap:8px;font-weight:650;font-size:.9375rem;color:var(--copper-700)}
+.svc-tile .go .i{width:16px;height:16px}
+.svc-tile .mini-bulb{right:28px;bottom:26px;width:28px}
+@media (max-width:980px){.svc-grid{grid-template-columns:1fr 1fr}.svc-grid>:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:600px){.svc-grid{grid-template-columns:1fr}}
+.svc-more{margin-top:clamp(36px,4vw,52px);display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+/* rich text body (verbatim CMS copy) beside a quiet contact card */
+.article{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr);gap:48px clamp(48px,7vw,112px);align-items:start}
+.prose{font-size:1.1875rem;line-height:1.7;color:var(--text);max-width:var(--measure)}
+.prose>*+*{margin-top:1.1em}
+.prose h2{font-size:var(--fs-h2);margin-bottom:.35em}
+.prose h3{font-size:clamp(1.375rem,1.2rem + .6vw,1.75rem);font-weight:700;letter-spacing:-.02em;margin-top:2em}
+.prose a{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
+.prose ul{display:grid;gap:12px}
+.prose li{position:relative;padding-left:28px}
+.prose li::before{content:"";position:absolute;left:3px;top:.68em;width:12px;height:3px;border-radius:2px;background:var(--copper)}
+.prose li strong{font-weight:650;color:var(--ink)}
+.prose figure{margin-block:2em}
+.prose figure img{width:100%;border-radius:var(--r-lg);aspect-ratio:4/3;object-fit:cover}
+.prose figcaption{margin-top:12px;font-size:var(--fs-small);color:var(--muted)}
+.aside{position:sticky;top:calc(var(--header-h) + 32px);display:grid;gap:20px}
+.contact-card{padding:32px;border-radius:var(--r-lg);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.contact-card .k{font-size:var(--fs-small);font-weight:650;color:var(--copper-700)}
+.contact-card h3{margin-top:6px;font-size:1.5rem;font-weight:700;line-height:1.15}
+.contact-card .ph{display:block;margin-top:20px;font:700 1.375rem/1.2 var(--font-display);color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.contact-card .ph:hover{color:var(--copper-700)}
+.contact-card .mail{display:inline-block;margin-top:14px;font-size:var(--fs-small);color:var(--text)}
+.contact-card .hours{margin-top:4px;font-size:var(--fs-small);color:var(--muted)}
+.contact-card .btn{margin-top:24px;width:100%}
+@media (max-width:1023px){.article{grid-template-columns:1fr}.aside{position:static}}
+/* signs list: typographic, numbered */
+.signs{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:40px clamp(48px,8vw,128px);align-items:start}
+.signs__more{margin-top:24px;font-size:var(--fs-lede);line-height:1.6;color:var(--text);max-width:34rem}
+.signs ol{counter-reset:s;border-top:1px solid var(--line-strong)}
+.signs ol li{counter-increment:s;display:grid;grid-template-columns:52px minmax(0,1fr);align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line-strong);font-size:var(--fs-lede);line-height:1.45;color:var(--ink)}
+.signs ol li::before{content:counter(s,decimal-leading-zero);font:700 .9375rem/1 var(--font-display);color:var(--copper-700);letter-spacing:.02em}
+.signs ol li .more{display:block;margin-top:8px;font-size:var(--fs-small);line-height:1.5}
+@media (max-width:880px){.signs{grid-template-columns:1fr}}
+.prose .do-grid{gap:0;border-top:1px solid var(--line-strong)}
+.prose .do-grid li{padding:18px 0 20px;border-bottom:1px solid var(--line-strong)}
+.prose .do-grid li::before{display:none}
+.rel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2vw,28px)}
+@media (max-width:980px){.rel{grid-template-columns:1fr 1fr}.rel>:last-child:nth-child(odd){grid-column:1/-1}}
+@media (max-width:600px){.rel{grid-template-columns:1fr}}
+
+/* ===================================================================== /estimate */
+.ehero{position:relative;overflow:hidden}
+.ehero__grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:24px 48px;align-items:center;padding-block:clamp(24px,2.6vw,40px) clamp(40px,4vw,60px)}
+.ehero h1{font-size:var(--fs-h1-inner);letter-spacing:-.034em;line-height:1.02}
+.ehero .lede{margin-top:22px;max-width:36rem}
+.ehero .bulb{justify-content:center;align-self:center}
+.ehero .bulb svg{width:min(100%,176px)}
+.ehero .bulb .wire{stroke:var(--copper)}
+.ehero .bulb .bars>*{fill:var(--copper)}
+.ehero .bulb .glow{mix-blend-mode:multiply}
+.est-page{padding-block:0 var(--section-y)}
+.est-page__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:40px clamp(40px,6vw,96px);align-items:start}
+.est-page .est{box-shadow:inset 0 0 0 1px var(--line),var(--shadow-2)}
+.next h2{font-size:clamp(1.5rem,1.3rem + .6vw,1.875rem);font-weight:700}
+.next ol{counter-reset:n;margin-top:22px;border-top:1px solid var(--line-strong)}
+.next ol li{counter-increment:n;display:grid;grid-template-columns:44px minmax(0,1fr);padding:20px 0;border-bottom:1px solid var(--line-strong)}
+.next ol li::before{content:counter(n);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--copper);color:var(--copper-700);font:700 .875rem/1 var(--font-display)}
+.next ol b{display:block;font:700 1.125rem/1.3 var(--font-display);color:var(--ink);letter-spacing:-.01em}
+.next ol p{margin-top:4px;font-size:var(--fs-small);color:var(--text);line-height:1.6}
+.reassure{margin-top:36px;display:grid;gap:14px;font-size:var(--fs-small);color:var(--text)}
+.reassure a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.22em}
+.talk{margin-top:36px;padding:28px;border-radius:var(--r-lg);background:var(--sand)}
+.talk p{font-size:var(--fs-small);color:var(--muted)}
+.talk a{display:block;margin-top:6px;font:700 1.5rem/1.2 var(--font-display);color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.talk .status{margin-top:8px;font-size:.875rem;color:var(--muted)}
+@media (max-width:980px){.est-page__grid{grid-template-columns:minmax(0,1fr)}.ehero__grid{grid-template-columns:1fr}.ehero .bulb{display:none}}
+.quotes3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.4vw,32px)}
+.quotes3 figure{padding:30px;border-radius:var(--r-lg);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.quotes3 blockquote{margin-top:14px;font:600 1.1875rem/1.45 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.quotes3 figcaption{margin-top:16px;font-size:var(--fs-small);color:var(--muted)}
+.quotes3 cite{font-style:normal;font-weight:650;color:var(--ink)}
+@media (max-width:880px){.quotes3{grid-template-columns:1fr}}
+
+/* ===================================================================== footer (light, quiet) */
+.site-footer{background:var(--sand);color:var(--text);padding-top:clamp(72px,7vw,112px)}
+.site-footer a{text-decoration:none}
+.site-footer a:hover{color:var(--copper-700);text-decoration:underline;text-underline-offset:.2em}
+.foot-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px 40px;align-items:center;padding-bottom:clamp(40px,4vw,56px);border-bottom:1px solid var(--line-strong)}
+.foot-logo img{width:84px;height:auto}
+.foot-roc{font:600 1.125rem/1.4 var(--font-text);color:var(--ink)}
+.foot-roc a{color:var(--ink)}
+.foot-rating{display:inline-flex;align-items:center;gap:10px;font-size:var(--fs-small);color:var(--text)}
+.foot-rating b{font:700 1rem/1 var(--font-display);color:var(--ink)}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1.15fr .85fr .8fr;gap:44px 36px;padding-block:clamp(48px,5vw,72px)}
+.foot-col h2{font:650 var(--fs-small)/1.3 var(--font-text);letter-spacing:0;color:var(--copper-700);margin-bottom:16px}
+.foot-col h2 a{color:inherit}
+.foot-col li{margin-bottom:10px;font-size:.9375rem;line-height:1.4}
+.foot-col li a{color:var(--text)}
+.foot-col .sub{color:var(--muted);font-size:.875rem}
+.foot-col address{font-style:normal;font-size:.9375rem;line-height:1.55;margin-bottom:18px;color:var(--text)}
+.foot-col address strong{display:block;font-weight:650;color:var(--ink)}
+.foot-col address .sub{display:block}
+.foot-nap p{font-size:.9375rem;line-height:1.7}
+.foot-nap a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.2em}
+.foot-nap p.sub{margin-top:8px;font-size:.875rem}
+.foot-family{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px;padding-block:36px;border-top:1px solid var(--line-strong)}
+.foot-family .lab{font:650 var(--fs-small)/1.3 var(--font-text);letter-spacing:0;color:var(--copper-700)}
+.sisters{display:flex;gap:16px}
+.sister{display:block;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgb(15 42 53 / .08);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.sister img{width:132px;height:auto}
+.sister:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
+.badges{display:flex;align-items:center;gap:10px;margin-left:auto}
+.bbb,.soc{display:inline-grid;place-items:center;min-width:44px;height:44px;border-radius:var(--r-pill);box-shadow:inset 0 0 0 1.5px var(--line-strong);color:var(--ink)}
+.bbb{padding:0 16px;font-weight:650;font-size:.875rem}
+.soc svg{width:18px;height:18px}
+.foot-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:24px 32px;border-top:1px solid var(--line-strong);font-size:.8125rem;color:var(--muted)}
+.foot-legal a{color:var(--muted);text-decoration:underline;text-underline-offset:.2em}
+@media (max-width:1099px){.foot-grid{grid-template-columns:1fr 1fr 1fr}.foot-nap{grid-column:1/-1}}
+@media (max-width:720px){.foot-top{grid-template-columns:auto minmax(0,1fr)}.foot-rating{grid-column:1/-1}.foot-grid{grid-template-columns:1fr 1fr;gap:36px 20px}.badges{margin-left:0}.sister img{width:116px}}
+
+/* ===================================================================== mobile call bar: present from first paint below 640 px, space reserved, never animated in (spec §2.4) */
+.callbar{display:none}
+@media (max-width:639px){
+  body{padding-bottom:var(--callbar-h)}
+  html{scroll-padding-bottom:calc(var(--callbar-h) + 8px)}
+  .callbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;height:var(--callbar-h);padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:rgb(247 243 236 / .97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .callbar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:var(--r-pill);font:650 1rem/1 var(--font-text);text-decoration:none}
+  .callbar .call{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+  .callbar .est-l{background:var(--copper);color:#fff}
+  .callbar .i{width:18px;height:18px}
+}
+@media (max-width:359px){.callbar a{font-size:.9375rem;gap:6px}}
+@media (max-width:639px) and (max-height:399px){.callbar{position:static}body{padding-bottom:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:0s!important}}
+
+:root{--font-display:"Mona Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--font-text:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--track-display:-.028em}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Electrician", "@id": "https://www.thewireguyelectric.com/#business", "name": "The Wire Guy Electric", "legalName": "The Wire Guy Electric LLC", "description": "Licensed family owned Mesa electricians for residential & commercial work. Licensed, insured, and reliable service. Rated 5 stars with 380+ Google reviews.", "url": "https://www.thewireguyelectric.com", "telephone": "+16027697892", "email": "office@thewireguyelectric.com", "priceRange": "$$", "foundingDate": "2017", "founder": [{"@type": "Person", "name": "Steven Taylor"}], "image": "https://www.thewireguyelectric.com/logo.png", "logo": {"@type": "ImageObject", "url": "https://www.thewireguyelectric.com/logo.png", "width": 500, "height": 447}, "identifier": {"@type": "PropertyValue", "name": "ROC License", "value": "365306"}, "address": [{"@type": "PostalAddress", "streetAddress": "1321 N 65th St", "addressLocality": "Mesa", "addressRegion": "AZ", "postalCode": "85205", "addressCountry": "US"}], "subOrganization": [{"@id": "https://www.thewireguyelectric.com/locations/scottsdale#business"}], "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "09:00", "closes": "17:00"}], "areaServed": [{"@type": "City", "name": "Mesa"}, {"@type": "City", "name": "Ahwatukee"}, {"@type": "City", "name": "Fountain Hills"}, {"@type": "City", "name": "Scottsdale"}, {"@type": "City", "name": "Tempe"}, {"@type": "City", "name": "San Tan Valley"}, {"@type": "City", "name": "Queen Creek"}, {"@type": "City", "name": "Chandler"}, {"@type": "City", "name": "Apache Junction"}, {"@type": "City", "name": "Gilbert"}, {"@type": "City", "name": "Phoenix"}], "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Electrical Services", "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Panel Replacements", "url": "https://www.thewireguyelectric.com/services/panels"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "EV Charger Installation", "url": "https://www.thewireguyelectric.com/services/ev-charger-installation"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Troubleshooting", "url": "https://www.thewireguyelectric.com/services/electrical-troubleshooting"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Recessed Lighting", "url": "https://www.thewireguyelectric.com/services/recessed-lights-installation"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom Lighting", "url": "https://www.thewireguyelectric.com/services/custom-lighting"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Fixture Replacements", "url": "https://www.thewireguyelectric.com/services/fixture-replacements"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Exterior Electrical", "url": "https://www.thewireguyelectric.com/services/exterior-electrical"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Kitchen & Bathroom Remodels", "url": "https://www.thewireguyelectric.com/services/electrical-remodels"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Electrical Safety Inspections", "url": "https://www.thewireguyelectric.com/services/electrical-safety-inspections"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "New Construction Wiring", "url": "https://www.thewireguyelectric.com/services/new-construction-wiring"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Electrical Service", "url": "https://www.thewireguyelectric.com/services/commercial-service"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tenant Improvements", "url": "https://www.thewireguyelectric.com/services/tenant-improvements"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Commercial Electrical Troubleshooting", "url": "https://www.thewireguyelectric.com/services/commercial-electrical-troubleshooting"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Electrical Upgrades", "url": "https://www.thewireguyelectric.com/services/electrical-upgrades"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "LED Lights", "url": "https://www.thewireguyelectric.com/services/led-lights"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Dedicated Circuits", "url": "https://www.thewireguyelectric.com/services/dedicated-circuits"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Outlets and Switches", "url": "https://www.thewireguyelectric.com/services/outlets-and-switches"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Emergency & Exit Lights", "url": "https://www.thewireguyelectric.com/services/emergency-exit-lights"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Storefront Lights", "url": "https://www.thewireguyelectric.com/services/storefront-lights"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hanging Lights", "url": "https://www.thewireguyelectric.com/services/hanging-lights"}}, {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Ballast Replacement & Fluorescent Lighting", "url": "https://www.thewireguyelectric.com/services/ballast-replacement-fluorescent-lighting"}}]}, "sameAs": ["https://www.facebook.com/thewireguyelectric", "https://www.instagram.com/thewireguyelectric/", "https://www.yelp.com/biz/the-wire-guy-electric-mesa-2", "https://www.bbb.org/us/az/mesa/profile/electrician/the-wire-guy-electric-llc-1126-1000115134"]}, {"@type": "WebSite", "@id": "https://www.thewireguyelectric.com/#website", "url": "https://www.thewireguyelectric.com", "name": "The Wire Guy Electric", "publisher": {"@id": "https://www.thewireguyelectric.com/#business"}, "inLanguage": "en-US"}, {"@type": "WebPage", "@id": "https://www.thewireguyelectric.com/#webpage", "url": "https://www.thewireguyelectric.com/", "name": "Best Rated Electrician in Mesa, AZ | The Wire Guy Electric", "description": "Family-owned, licensed Mesa electricians for panel upgrades, EV chargers, lighting, troubleshooting, and commercial work. Call for a free estimate.", "isPartOf": {"@id": "https://www.thewireguyelectric.com/#website"}, "about": {"@id": "https://www.thewireguyelectric.com/#business"}, "inLanguage": "en-US"}, {"@type": "FAQPage", "@id": "https://www.thewireguyelectric.com/#faq", "mainEntity": [{"@type": "Question", "name": "Do you offer free estimates?", "acceptedAnswer": {"@type": "Answer", "text": "Yes we do! Contact us today to get a free quote. We'll come out, look at the job, and give you a straight answer on what it'll cost. No pressure and no obligation."}}, {"@type": "Question", "name": "Do you have any hidden fees?", "acceptedAnswer": {"@type": "Answer", "text": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review."}}, {"@type": "Question", "name": "Are you licensed, bonded, and insured?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Wire Guy Electric is fully licensed, bonded, and insured in the state of Arizona. Our ROC (Registrar of Contractors) license number is 365306, which you can verify at azroc.gov. This protects you as the homeowner because it means our work is backed by the state's contractor recovery fund, and our insurance covers any accidents or damage on the job. Never hire an electrician who can't provide proof of licensing and insurance. Learn more about us."}}, {"@type": "Question", "name": "Do you warranty your work?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, we do. We offer a 2-year warranty on services we provide. Contact us for full warranty details."}}]}]}</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<radialGradient id="bulbglow" cx="50%" cy="46%" r="50%"><stop offset="0" stop-color="#FFF7E6" stop-opacity=".95"/><stop offset=".3" stop-color="#FFE0B8" stop-opacity=".62"/><stop offset=".62" stop-color="#FFC08F" stop-opacity=".2"/><stop offset="1" stop-color="#FFB07A" stop-opacity="0"/></radialGradient>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+</defs></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap hdr">
+    <a class="logo" href="/"><img src="/logo.png" alt="The Wire Guy Electric, home" width="500" height="447"></a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-about">About Us <svg class="i chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="dd-panel" id="dd-about" hidden><ul><li><a href="/about-us">About Us</a></li>
+<li><a href="/our-team">Our Team</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/contact-us">contact us</a></li>
+</ul>
+</div>
+</li>
+        <li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-loc">Locations <svg class="i chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="dd-panel dd-panel--cols" id="dd-loc" hidden><ul><li><a href="/" aria-current="page">Mesa</a></li>
+<li><a href="/locations/gilbert">Gilbert</a></li>
+<li><a href="/locations/apache-junction">Apache Junction</a></li>
+<li><a href="/locations/chandler">Chandler</a></li>
+<li><a href="/locations/queen-creek">Queen Creek</a></li>
+<li><a href="/locations/san-tan-valley">San Tan Valley</a></li>
+<li><a href="/locations/tempe">Tempe</a></li>
+<li><a href="/locations/scottsdale">Scottsdale</a></li>
+<li><a href="/locations/phoenix">Phoenix</a></li>
+<li><a href="/locations/fountain-hills">Fountain Hills</a></li>
+<li><a href="/locations/ahwatukee">Ahwatukee</a></li>
+</ul>
+</div>
+</li>
+        <li><a href="/commercial-electrician">Commercial</a></li>
+        <li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-svc">Services <svg class="i chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="dd-panel dd-panel--mega" id="dd-svc" hidden>
+            <div><p class="grp"><a href="/services-categories/residential">Residential</a></p>
+<ul><li><a href="/services/panels">Panel Replacements</a></li>
+<li><a href="/services/ev-charger-installation">EV Charger Installation</a></li>
+<li><a href="/services/electrical-troubleshooting">Troubleshooting</a></li>
+<li><a href="/services/recessed-lights-installation">Recessed Lighting</a></li>
+<li><a href="/services/custom-lighting">Custom Lighting</a></li>
+<li><a href="/services/fixture-replacements">Fixture Replacements</a></li>
+<li><a href="/services/exterior-electrical">Exterior Electrical</a></li>
+<li><a href="/services/electrical-remodels">Kitchen &amp; Bathroom Remodels</a></li>
+<li><a href="/services/electrical-safety-inspections">Electrical Safety Inspections</a></li>
+<li><a href="/services/new-construction-wiring">New Construction Wiring</a></li>
+</ul>
+</div>
+            <div><p class="grp"><a href="/services-categories/commercial">Commercial</a></p>
+<ul><li><a href="/services/commercial-service">Commercial Electrical Service</a></li>
+<li><a href="/services/tenant-improvements">Tenant Improvements</a></li>
+<li><a href="/services/commercial-electrical-troubleshooting">Commercial Electrical Troubleshooting</a></li>
+<li><a href="/services/electrical-upgrades">Electrical Upgrades</a></li>
+<li><a href="/services/led-lights">LED Lights</a></li>
+<li><a href="/services/dedicated-circuits">Dedicated Circuits</a></li>
+<li><a href="/services/outlets-and-switches">Outlets and Switches</a></li>
+<li><a href="/services/emergency-exit-lights">Emergency &amp; Exit Lights</a></li>
+<li><a href="/services/storefront-lights">Storefront Lights</a></li>
+<li><a href="/services/hanging-lights">Hanging Lights</a></li>
+<li><a href="/services/ballast-replacement-fluorescent-lighting">Ballast Replacement &amp; Fluorescent Lighting</a></li>
+</ul>
+</div>
+            <p class="all"><a href="/services">All services</a></p>
+          </div>
+</li>
+        <li><a href="/careers">Careers</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </nav>
+    <div class="hdr-cta">
+      <a class="hdr-phone" href="tel:+16027697892"><b class="tnum"><span class="sr-only">Call </span>(602) 769-7892</b> <span class="status" data-office><span class="dot" aria-hidden="true"></span> <span data-open-text>Emma is ready for your call</span> <span data-closed-text>Office opens <span data-opens>at 9 am</span></span></span></a>
+      <a class="btn btn--primary" href="/design-review/round-3/estimate.html">Get a Free Estimate</a>
+    </div>
+    <a class="hdr-call" href="tel:+16027697892" aria-label="Call (602) 769-7892"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M5.5 3.5h3l2 5-2.6 1.6a11.5 11.5 0 0 0 6 6l1.6-2.6 5 2v3a2 2 0 0 1-2.1 2A17 17 0 0 1 3.5 5.6a2 2 0 0 1 2-2.1z"/></svg> <span>Call</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
+  <details><summary>Services <svg class="i chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/services/panels">Panel Replacements</a></li>
+<li><a href="/services/ev-charger-installation">EV Charger Installation</a></li>
+<li><a href="/services/electrical-troubleshooting">Troubleshooting</a></li>
+<li><a href="/services/recessed-lights-installation">Recessed Lighting</a></li>
+<li><a href="/services/custom-lighting">Custom Lighting</a></li>
+<li><a href="/services/fixture-replacements">Fixture Replacements</a></li>
+<li><a href="/services/exterior-electrical">Exterior Electrical</a></li>
+<li><a href="/services/electrical-remodels">Kitchen &amp; Bathroom Remodels</a></li>
+<li><a href="/services/electrical-safety-inspections">Electrical Safety Inspections</a></li>
+<li><a href="/services/new-construction-wiring">New Construction Wiring</a></li>
+<li><a href="/services/commercial-service">Commercial Electrical Service</a></li>
+<li><a href="/services/tenant-improvements">Tenant Improvements</a></li>
+<li><a href="/services/commercial-electrical-troubleshooting">Commercial Electrical Troubleshooting</a></li>
+<li><a href="/services/electrical-upgrades">Electrical Upgrades</a></li>
+<li><a href="/services/led-lights">LED Lights</a></li>
+<li><a href="/services/dedicated-circuits">Dedicated Circuits</a></li>
+<li><a href="/services/outlets-and-switches">Outlets and Switches</a></li>
+<li><a href="/services/emergency-exit-lights">Emergency &amp; Exit Lights</a></li>
+<li><a href="/services/storefront-lights">Storefront Lights</a></li>
+<li><a href="/services/hanging-lights">Hanging Lights</a></li>
+<li><a href="/services/ballast-replacement-fluorescent-lighting">Ballast Replacement &amp; Fluorescent Lighting</a></li>
+<li><a href="/services">All services</a></li>
+</ul>
+</details>
+  <details><summary>Locations <svg class="i chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/" aria-current="page">Mesa</a></li>
+<li><a href="/locations/gilbert">Gilbert</a></li>
+<li><a href="/locations/apache-junction">Apache Junction</a></li>
+<li><a href="/locations/chandler">Chandler</a></li>
+<li><a href="/locations/queen-creek">Queen Creek</a></li>
+<li><a href="/locations/san-tan-valley">San Tan Valley</a></li>
+<li><a href="/locations/tempe">Tempe</a></li>
+<li><a href="/locations/scottsdale">Scottsdale</a></li>
+<li><a href="/locations/phoenix">Phoenix</a></li>
+<li><a href="/locations/fountain-hills">Fountain Hills</a></li>
+<li><a href="/locations/ahwatukee">Ahwatukee</a></li>
+</ul>
+</details>
+  <details><summary>About Us <svg class="i chev" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+<ul><li><a href="/about-us">About Us</a></li>
+<li><a href="/our-team">Our Team</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/contact-us">contact us</a></li>
+</ul>
+</details>
+  <a class="top" href="/commercial-electrician">Commercial</a>
+  <a class="top" href="/careers">Careers</a>
+  <a class="top" href="/blog">Blog</a>
+  <div class="m-cta"><a class="btn btn--primary btn--lg" href="/design-review/round-3/estimate.html">Get a Free Estimate</a> <a class="btn btn--ghost btn--lg" href="tel:+16027697892"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M5.5 3.5h3l2 5-2.6 1.6a11.5 11.5 0 0 0 6 6l1.6-2.6 5 2v3a2 2 0 0 1-2.1 2A17 17 0 0 1 3.5 5.6a2 2 0 0 1 2-2.1z"/></svg> <span class="tnum">Call (602) 769-7892</span></a>
+    <p class="m-status"><span class="status" data-office><span class="dot" aria-hidden="true"></span> <span data-open-text>Emma is ready for your call</span> <span data-closed-text>Office opens <span data-opens>at 9 am</span></span></span></p>
+</div>
+</nav>
+<main id="main">
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero__copy">
+    <p class="eyebrow">Family-owned in Mesa, Arizona · Since 2017</p>
+    <h1 id="h1">Mesa’s <span class="accent">top choice</span> electricians for homes and businesses.</h1>
+    <p class="hero__lede">We are committed to quality work and friendly service - keeping our prices competitive and our customers happy. Our family-owned team of professional electricians provide a wide range of electrical solutions for both residential and commercial clients.</p>
+    <div class="hero__actions" data-hero-cta><a class="btn btn--primary btn--lg" href="/design-review/round-3/estimate.html">Get a Free Estimate <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a> <a class="btn btn--ghost btn--lg" href="tel:+16027697892"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M5.5 3.5h3l2 5-2.6 1.6a11.5 11.5 0 0 0 6 6l1.6-2.6 5 2v3a2 2 0 0 1-2.1 2A17 17 0 0 1 3.5 5.6a2 2 0 0 1 2-2.1z"/></svg> <span class="tnum">Call (602) 769-7892</span></a></div>
+    <p class="hero__status"><span class="status" data-office><span class="dot" aria-hidden="true"></span> <span data-open-text>Emma is ready for your call</span> <span data-closed-text>Office opens <span data-opens>at 9 am</span></span></span></p>
+    <p class="trust hero__trust"><a class="trust__rating" href="https://maps.app.goo.gl/j4qZJwx8ttVZo93w5" rel="noopener"><span class="stars" aria-hidden="true"></span> <b>5.0</b> <span class="sr-only">out of 5 stars </span>from 380+ Google reviews</a> <span class="trust__sep" aria-hidden="true">·</span> <a class="trust__roc" href="https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB" rel="noopener">Licensed, bonded, and insured · <span class="nw">ROC #365306</span></a></p>
+  </div>
+  <figure class="crew">
+    <picture>
+      <source media="(max-width:699px)" srcset="/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-800.avif 800w, /wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-1080.avif 1080w" sizes="190vw">
+      <img src="/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-1600.avif" srcset="/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-800.avif 800w, /wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-1080.avif 1080w, /wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures-p-1600.avif 1600w, /wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif 2542w" sizes="100vw" width="2542" height="1694"
+        alt="The Wire Guy Electric crew in matching company shirts in front of two of the company trucks" fetchpriority="high" loading="eager" decoding="sync">
+    </picture>
+    <figcaption class="crew__quotes"><div class="wrap"><ul aria-label="What customers say"><li><span class="stars" aria-hidden="true"></span> <p>“Went above and beyond, great prices too!”</p>
+</li>
+<li><span class="stars" aria-hidden="true"></span> <p>“Could not be more pleased!”</p>
+</li>
+<li><span class="stars" aria-hidden="true"></span> <p>“Excellent, polite and timely service!”</p>
+</li>
+</ul>
+</div>
+</figcaption>
+  </figure>
+</section>
+<section class="section family" aria-labelledby="fam-h">
+  <div class="wrap family__grid">
+    <div class="family__copy">
+      <p class="eyebrow">Who we are</p>
+      <h2 class="h2" id="fam-h">The family behind the trucks.</h2>
+      <p class="answer">The Wire Guy Electric is a family-owned, licensed electrician (AZ ROC #365306) based in Mesa, Arizona, serving homes and businesses across the Phoenix valley since 2017.</p>
+      <p class="team">At The Wire Guy Electric, <a class="link" href="/our-team">Steven</a> leads our commitment to quality workmanship and fair pricing. Our family-owned team, including <a class="link" href="/our-team">Cody</a>, provides friendly, professional electrical service. <a class="link" href="/our-team">Emma</a> helps customers schedule the right solution for their home or business.</p>
+      <div class="btn-row"><a class="btn btn--ghost" href="/about-us">About Us</a> <a class="textlink" href="/our-team">Meet the team <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></div>
+    </div>
+    <ul class="values" role="list" aria-label="Our promises"><li class="value"><h3>No BS pricing</h3> <p>Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free &amp; accurate quote.</p>
+</li>
+<li class="value"><h3>Amazing Quality</h3> <p>We only offer top-quality electrical services. We'll tackle your problems big or small, and get it done right the first time.</p>
+</li>
+<li class="value"><h3>Client Satisfaction</h3> <p>Your satisfaction is our <strong>top priority</strong>. We don't go home until the job is done. We'll always come back if you have any issues.</p>
+</li>
+</ul>
+  </div>
+</section>
+<section class="section section--paper services" aria-labelledby="svc-h">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Services</p>
+<h2 class="h2" id="svc-h">Our top electrical services</h2>
+</div>
+      <div class="intro"><p>Residential and commercial electrical work, from small repairs to entire remodels.</p>
+<p class="more"><a class="textlink" href="/services">View All Services <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></p>
+</div>
+</div>
+    <ul class="svc-cards" role="list"><li class="svc-card"><img src="/wf/a/66f596be1d76adb6fa3130e2_EV-Chargers.avif" width="926" height="976" alt="A Wire Guy electrician working in a garage beside a Tesla Model 3" loading="lazy" decoding="async" style="object-position:50% 60%">
+      <div class="body"><h3><a href="/services/ev-charger-installation">EV Chargers</a></h3> <p>We install or troubleshoot issues with all EV chargers that are installed to last and perform.</p> <span class="go" aria-hidden="true">Read more <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></span><svg class="mini-bulb" viewBox="-40 -40 380 470" aria-hidden="true"><ellipse class="halo" cx="150" cy="150" rx="190" ry="190" fill="url(#bulbglow)"/><path class="glass" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300 Z"/><path class="line" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300"/><g class="bars"><rect x="96" y="318" width="108" height="20" rx="10"/><rect x="104" y="350" width="92" height="20" rx="10"/><path d="M114 382 H186 A36 36 0 0 1 114 382 Z"/></g></svg></div>
+</li>
+<li class="svc-card"><img src="/wf/a/66f59a5e4c615989162acc70_Recessed-Lighting.avif" width="1186" height="1120" alt="Recessed lights over a remodeled kitchen with white cabinets and a stone island" loading="lazy" decoding="async" style="object-position:50% 50%">
+      <div class="body"><h3><a href="/services/recessed-lights-installation">Recessed Lights</a></h3> <p>Brighten and modernize any home! Recessed lights are the #1 lighting choice for our customers.</p> <span class="go" aria-hidden="true">Read more <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></span><svg class="mini-bulb" viewBox="-40 -40 380 470" aria-hidden="true"><ellipse class="halo" cx="150" cy="150" rx="190" ry="190" fill="url(#bulbglow)"/><path class="glass" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300 Z"/><path class="line" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300"/><g class="bars"><rect x="96" y="318" width="108" height="20" rx="10"/><rect x="104" y="350" width="92" height="20" rx="10"/><path d="M114 382 H186 A36 36 0 0 1 114 382 Z"/></g></svg></div>
+</li>
+<li class="svc-card"><img src="/wf/a/66f59b1dd36a289c7a2b05c6_electrician-troubleshooting.avif" width="1160" height="1094" alt="A Wire Guy electrician in safety glasses working wires out of a ceiling opening" loading="lazy" decoding="async" style="object-position:40% 30%">
+      <div class="body"><h3><a href="/services/electrical-troubleshooting">Troubleshooting</a></h3> <p>Something not working? We provide reliable electrical troubleshooting for any issue.</p> <span class="go" aria-hidden="true">Read more <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></span><svg class="mini-bulb" viewBox="-40 -40 380 470" aria-hidden="true"><ellipse class="halo" cx="150" cy="150" rx="190" ry="190" fill="url(#bulbglow)"/><path class="glass" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300 Z"/><path class="line" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300"/><g class="bars"><rect x="96" y="318" width="108" height="20" rx="10"/><rect x="104" y="350" width="92" height="20" rx="10"/><path d="M114 382 H186 A36 36 0 0 1 114 382 Z"/></g></svg></div>
+</li>
+</ul>
+    <div class="solutions">
+      <div><h2 class="h2" id="sol-h">Electrician solutions tailored to <span class="accent">your needs</span></h2>
+        <p class="lede">From entire remodels to small repairs, we do it all!</p>
+        <p class="cats"><a class="textlink" href="/services-categories/residential">Residential services <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a> <a class="textlink" href="/services-categories/commercial">Commercial services <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></p>
+</div>
+      <ul class="sol-list" role="list"><li><a href="/services/electrical-troubleshooting"><h3>Electrical Repairs</h3> <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a href="/services/custom-lighting"><h3>Custom Lighting Solutions</h3> <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a href="/services/new-construction-wiring"><h3>Wiring Solutions</h3> <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a href="/services/panels"><h3>Panel Upgrades</h3> <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a href="/services/ev-charger-installation"><h3>Electric Vehicle Chargers</h3> <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+<li><a href="/services"><h3>+ More!</h3> <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></li>
+</ul>
+    </div>
+  </div>
+</section>
+<section class="section valley" aria-labelledby="valley-h">
+  <div class="wrap">
+    <div class="valley__head">
+      <p class="eyebrow">Serving the whole Phoenix valley</p>
+      <h2 class="h2-xl" id="valley-h">We proudly serve the <span class="accent">entire valley!</span></h2>
+      <p class="valley__intro">We travel all over the Phoenix Valley, for homes and businesses alike.</p>
+    </div>
+    <div class="valley__grid">
+      <div class="valley__aside">
+        <figure class="valley__map"><svg class="valley-svg" viewBox="0 0 720 600" aria-hidden="true" focusable="false"><defs><pattern id="hm-dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.1" fill="rgb(15 42 53 / .11)"/></pattern></defs><rect width="720" height="600" fill="url(#hm-dots)"/><g class="lm"><path d="M316 64 l13 -15 l9 7 l14 -22 l13 15 l9 -7 l14 20"/><path d="M624 392 l14 -17 l10 8 l15 -26 l14 17 l10 -9 l15 25"/><path d="M64 456 l15 -13 l11 7 l17 -15 l20 19"/></g><g class="lm-t"><text x="354" y="86" text-anchor="middle">MCDOWELL MTNS</text><text x="706" y="416" text-anchor="end">SUPERSTITION</text><text x="706" y="431" text-anchor="end">MTNS</text><text x="96" y="478" text-anchor="middle">SOUTH MTN</text></g><path class="tap" d="M272 292 V198"/><path class="tap" d="M440 292 V92"/><path class="tap" d="M168 292 V376"/><path class="tap" d="M316 292 V412"/><path class="tap" d="M392 292 V364"/><path class="tap" d="M512 292 V476"/><path class="tap" d="M512 476 V520 Q512 536 528 536 H606"/><path class="bus-glow" d="M110 292 H594"/><path class="bus" d="M110 292 H594"/><path class="flow" pathLength="1000" d="M110 292 H594"/><circle class="joint" cx="272" cy="292" r="4"/><circle class="joint" cx="440" cy="292" r="4"/><circle class="joint" cx="168" cy="292" r="4"/><circle class="joint" cx="316" cy="292" r="4"/><circle class="joint" cx="392" cy="292" r="4"/><circle class="joint" cx="512" cy="292" r="4"/><g class="node node--phoenix"><circle class="halo" cx="110" cy="292" r="24"/><circle class="pad" cx="110" cy="292" r="10"/><circle class="core" cx="110" cy="292" r="4"/><text x="110" y="268" text-anchor="middle">Phoenix</text></g><g class="node node--tempe"><circle class="halo" cx="220" cy="292" r="24"/><circle class="pad" cx="220" cy="292" r="10"/><circle class="core" cx="220" cy="292" r="4"/><text x="220" y="328" text-anchor="middle">Tempe</text></g><g class="node node--mesa"><circle class="halo" cx="348" cy="292" r="24"/><circle class="pad" cx="348" cy="292" r="10"/><circle class="core" cx="348" cy="292" r="4"/><text x="348" y="268" text-anchor="middle">Mesa</text></g><g class="node node--apache-junction"><circle class="halo" cx="594" cy="292" r="24"/><circle class="pad" cx="594" cy="292" r="10"/><circle class="core" cx="594" cy="292" r="4"/><text x="594" y="268" text-anchor="middle">Apache Junction</text></g><g class="node node--scottsdale"><circle class="halo" cx="272" cy="198" r="24"/><circle class="pad" cx="272" cy="198" r="10"/><circle class="core" cx="272" cy="198" r="4"/><text x="292" y="204" text-anchor="start">Scottsdale</text></g><g class="node node--fountain-hills"><circle class="halo" cx="440" cy="92" r="24"/><circle class="pad" cx="440" cy="92" r="10"/><circle class="core" cx="440" cy="92" r="4"/><text x="460" y="98" text-anchor="start">Fountain Hills</text></g><g class="node node--ahwatukee"><circle class="halo" cx="168" cy="376" r="24"/><circle class="pad" cx="168" cy="376" r="10"/><circle class="core" cx="168" cy="376" r="4"/><text x="148" y="382" text-anchor="end">Ahwatukee</text></g><g class="node node--chandler"><circle class="halo" cx="316" cy="412" r="24"/><circle class="pad" cx="316" cy="412" r="10"/><circle class="core" cx="316" cy="412" r="4"/><text x="296" y="418" text-anchor="end">Chandler</text></g><g class="node node--gilbert"><circle class="halo" cx="392" cy="364" r="24"/><circle class="pad" cx="392" cy="364" r="10"/><circle class="core" cx="392" cy="364" r="4"/><text x="412" y="370" text-anchor="start">Gilbert</text></g><g class="node node--queen-creek"><circle class="halo" cx="512" cy="476" r="24"/><circle class="pad" cx="512" cy="476" r="10"/><circle class="core" cx="512" cy="476" r="4"/><text x="492" y="482" text-anchor="end">Queen Creek</text></g><g class="node node--san-tan-valley"><circle class="halo" cx="606" cy="536" r="24"/><circle class="pad" cx="606" cy="536" r="10"/><circle class="core" cx="606" cy="536" r="4"/><text x="606" y="574" text-anchor="middle">San Tan Valley</text></g></svg><figcaption>Schematic, not to scale.</figcaption>
+</figure>
+        <div class="valley__cta">
+          <p>If you don't see your city listed, don't worry! Just give us a call and we'll let you know if you're in our service radius.</p>
+          <div class="btn-row"><a class="btn btn--primary btn--lg" href="/design-review/round-3/estimate.html">Get a Free Estimate <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a> <a class="btn btn--ghost btn--lg" href="tel:+16027697892"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M5.5 3.5h3l2 5-2.6 1.6a11.5 11.5 0 0 0 6 6l1.6-2.6 5 2v3a2 2 0 0 1-2.1 2A17 17 0 0 1 3.5 5.6a2 2 0 0 1 2-2.1z"/></svg> <span class="tnum">Call (602) 769-7892</span></a></div>
+        </div>
+      </div>
+      <ul class="cities" role="list"><li data-city="mesa"><h3><a href="/">Mesa, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Eastmark, Las Sendas, Red Mountain Ranch, and Dobson Ranch</p>
+</li>
+<li data-city="gilbert"><h3><a href="/locations/gilbert">Gilbert, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia</p>
+</li>
+<li data-city="chandler"><h3><a href="/locations/chandler">Chandler, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Serving Ocotillo, Fulton Ranch, and Downtown Chandler</p>
+</li>
+<li data-city="scottsdale"><h3><a href="/locations/scottsdale">Scottsdale, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch</p>
+</li>
+<li data-city="tempe"><h3><a href="/locations/tempe">Tempe, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods</p>
+</li>
+<li data-city="phoenix"><h3><a href="/locations/phoenix">Phoenix, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City</p>
+</li>
+<li data-city="queen-creek"><h3><a href="/locations/queen-creek">Queen Creek, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Queen Creek Marketplace Area, Sossaman Estates, Montelena, Ironwood Crossing, and Hastings Farms</p>
+</li>
+<li data-city="san-tan-valley"><h3><a href="/locations/san-tan-valley">San Tan Valley, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Johnson Ranch, San Tan Heights, Copper Basin, Morning Sun Farms, and Pecan Creek</p>
+</li>
+<li data-city="apache-junction"><h3><a href="/locations/apache-junction">Apache Junction, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Superstition Foothills, Ironwood Estates, Cimmarron, Jacobs Ranch, and Renaissance Point</p>
+</li>
+<li data-city="fountain-hills"><h3><a href="/locations/fountain-hills">Fountain Hills, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Fountain Park District, SunRidge Canyon, Eagle Mountain, North Heights, and Firerock</p>
+</li>
+<li data-city="ahwatukee"><h3><a href="/locations/ahwatukee">Ahwatukee, AZ <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></h3> <p>Foothills Club West, Mountain Park Ranch, Lakewood, Desert Foothills, and Center Court</p>
+</li>
+</ul>
+    </div>
+  </div>
+</section>
+<section class="section reviews" id="reviews" aria-labelledby="rev-h">
+  <div class="wrap reviews__head">
+    <div><p class="eyebrow">Reviews</p>
+<h2 class="h2" id="rev-h">Let our reviews speak for themselves</h2>
+</div>
+    <div class="score">
+      <p class="score__num" aria-hidden="true">5.0</p>
+      <div class="score__txt"><span class="stars" aria-hidden="true"></span> <p><span class="sr-only">Rated 5.0 out of 5 </span>from 380+ Google reviews</p>
+        <p class="score__links"><a class="link" href="https://maps.app.goo.gl/j4qZJwx8ttVZo93w5" rel="noopener">Read our reviews on Google <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a></p>
+</div>
+    </div>
+  </div>
+  <div class="wrap reviews__bar">
+    <p class="reviews__note">Real Google reviews, shown word for word, with each reviewer’s name as it appears on Google. <span class="sr-only">Every review shown is rated 5 out of 5 stars.</span></p>
+    <div class="mq-ctrl" role="group" aria-label="Review carousel">
+      <button class="mq-btn" type="button" data-mq-step="-1" aria-label="Previous reviews"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M15 5.5 8.5 12l6.5 6.5"/></svg></button>
+      <button class="mq-toggle" type="button" data-marquee-toggle><svg class="i i--sm ic-pause" aria-hidden="true" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></svg><svg class="i i--sm ic-play" aria-hidden="true" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg> <span data-l>Pause reviews</span></button>
+      <button class="mq-btn" type="button" data-mq-step="1" aria-label="Next reviews"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5.5 6.5 6.5L9 18.5"/></svg></button>
+    </div>
+  </div>
+  <div class="marquee" data-marquee>
+    <div class="lane lane--a" tabindex="0" role="region" aria-label="Customer reviews, first row (arrow keys move it)"><div class="belt"><ul class="track" role="list"><li class="rv rv--s"><figure><blockquote><p>Electrician was polite, professional, and did a great job.</p>
+</blockquote> <figcaption><cite>Jennifer Kirsten</cite> <small>Google review · <time datetime="2026-02-26">Feb 26, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Excellent service provided by The Wire Guy in running a new 110V and 240V power lines into my garage shop. Very professional, efficient and effective team of electricians.</p>
+</blockquote> <figcaption><cite>Scott Collinge</cite> <small>Google review · <time datetime="2026-02-25">Feb 25, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Very professional removed and replaced main electrical panel and tested. Labeled all breakers .cleaned up area of work. Good people to work with.</p>
+</blockquote> <figcaption><cite>William Pascal</cite> <small>Google review · <time datetime="2026-02-24">Feb 24, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>Update (Feb 2026): Had them come back out for a different project! Still highly recommend! 5 stars!!! This time Blake came by to install a new outlet and was just as excellent as Rhett back in November. He was just as polite, personable and very knowledgeable. Highly Recommend The Wire Guy Electric! The Wire Guy Electric is officially my go-to! From my first call to my completed installation, I had an excellent experience with The Wire Guy Electric. When I called to ask about having outlets installed above my kitchen cabinets and on two other high ledges, I spoke with Emma. She was extremely friendly, helpful, and professional, and she was able to schedule an appointment for the very next week. The time window was 10–12, and the electrician Rhett called when he was on his way and arrived right at 10:00. Rhett was polite, personable, and very knowledgeable. I explained what I needed, and he quickly assessed the situation and started working right away. He even took the time to look at what had been left on top of the cabinets by a previous owner and found a way to use what was already there. Because he didn’t have to fish a wire through the wall, it actually saved me money—which I really appreciated. The job took a little longer than expected because one of the outlets turned out to be more involved than we thought, but Rhett answered every question I had and still managed to finish all three outlets plus a fourth one with the remaining time. Overall, it was a great experience from start to finish. I will absolutely be using them again for more electrical work in the near future, and I will definitely be requesting Rhett. Highly recommend The Wire Guy Electric!</p>
+</blockquote> <figcaption><cite>CathySiegel</cite> <small>Google review · <time datetime="2026-02-20">Feb 20, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>Just had them out again for the 4th time! Today’s tasks were installing more pot lights in the big room and a new outlet behind the bed in guest room. What I said the first time (below) is exactly what I’d say today. Cade and Cole were the guys today. Great job once again. A-maz-ing work! Everything looks like it was always there. We had them install a can light above the BBQ outside and a flood light in backyard patio area so we can see when we eat at night or play table games. The placement was perfect. The 4 can lights in the office literally was like night and day. The ceiling fan light was always so dim and changing the bulb made no difference. Thank goodness we went with installation of can lights rather than replacing the ceiling fan. What an amazing difference. We had made the closet into a built-in bookshelf/filing cabinet by California Closets, but couldn&#x27;t see the titles of the books. We had three can lights installed above them with the switch on the wall right outside it. Steve, the estimator, guided us in the right direction for everything we were needing. Gave great suggestions on placement and types of lights and switches. We had light switches that didn&#x27;t go to anything and one switch that went to two things at the same time (ceiling fan &amp; fan). Got those separated and on dimmer switches. Had dimmer switches put in several places in the house - like above the dining room table. Soooo nice! In the broom/vacuum/ cleaning products closet they installed an overhead light that turns on when the door opens. They also installed an AC outlet for the battery charger for the stick vacuum in that closet. We also had them put an outlet under the bathroom counter so the hair dryer could be left plugged in and hidden on a shelf. Cody and his crew were like busy bees all day with the installations. They never even stopped for lunch. Their work was truly great and they cleaned up afterward. They all seemed to like working together and enjoyed their work. The attic situation made some installations challenging but Cody figured out workarounds. His problem solving skills and suggestions were right on target. Before going ahead with outlets we wanted higher up on a couple of walls, he stopped and explained that he&#x27;d have to cut through the drywall to go horizontally above our desk. We then decided not to do those. There are a few places where it was necessary to cut drywall but they are mostly in hidden spots. We will be using their older brother who does drywall repair. This is a family business and even the receptionist is Steven’s fiancé. The communication by phone, verbally, and via text was very good. They were timely, precise, and professional. You really couldn’t ask for more from an electrician outfit. We loved everything they did so much that we just had them out to do more! HIGHLY recommend!</p>
+</blockquote> <figcaption><cite>Susan Chambers</cite> <small>Google review · <time datetime="2026-02-18">Feb 18, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>The technician was fantastic, polite and very informative. They take care of my problem right away and I’m very happy. Thank you so much.</p>
+</blockquote> <figcaption><cite>Rich Ganley</cite> <small>Google review · <time datetime="2026-02-14">Feb 14, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>Cole was actually able to see us earlier than the appt time. He was friendly, and listened to us, &amp; was well informed as he explained the problem. He replaced our faulty sockets in the kitchen in a professional way. The job cost was what we expected. Great company in general.</p>
+</blockquote> <figcaption><cite>Syl G</cite> <small>Google review · <time datetime="2026-02-12">Feb 12, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Excellent communication! Very reliable. They did a great job! Highly recommend!</p>
+</blockquote> <figcaption><cite>Eileen Black</cite> <small>Google review · <time datetime="2026-02-11">Feb 11, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Outstanding work.</p>
+</blockquote> <figcaption><cite>Michael Kobernick</cite> <small>Google review · <time datetime="2026-02-06">Feb 6, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Blake very professional, knowledgeable &amp; polite. Thank you</p>
+</blockquote> <figcaption><cite>Kerry Macpherson</cite> <small>Google review · <time datetime="2026-02-04">Feb 4, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Steve did a great job. He quickly located the problem and had it fixed in no time.</p>
+</blockquote> <figcaption><cite>Cody Crance</cite> <small>Google review · <time datetime="2026-02-03">Feb 3, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Professional, efficient, friendly, competitive pricing. Also a local business. Shop local.</p>
+</blockquote> <figcaption><cite>Brandon Vardy</cite> <small>Google review · <time datetime="2026-01-30">Jan 30, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>For some reason the power going to our custom built-in entertainment center went out. The circuit breaker had popped, but when I flipped it back on the power didn&#x27;t come back on. That was the extent of my electrical know-how. I actually replaced the breaker as a hail Mary prayer to try and fix it, but that didn&#x27;t do anything. I found The Wire Guys on Offer Up. Short version: they fixed everything. I got a bill. I thought for sure they had made a mistake because it was far far less than I expected, so I called them to fix it. I told them if that was the correct price, I wanted them to text me links to everywhere they wanted me to leave a review. It was correct and now I&#x27;m leaving this review. I could not believe that the young guy I had been dealing with was the owner. What a great thing to see, someone that age making good money and doing a damn good job at it. I have since referred my sister to them so they could diagnose and fix the awful job her electrician did (that resulted in a small fire) and she was super happy with them as well. I&#x27;m leaving this review about 8 months after the fact, but good karma is always welcome, so that&#x27;s what I&#x27;m creating here. Thanks y&#x27;all</p>
+</blockquote> <figcaption><cite>Alan Miller</cite> <small>Google review · <time datetime="2026-01-29">Jan 29, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>A 2-man team came out to install new rocker switches, replace existing bathroom fans, and do some minor repair to our electrical panel. The whole process of getting an estimate, scheduling the work, and coming to our house to complete the job was excellent. It even took them less time to do the work than anticipated. Appreciate it Wire Guys!</p>
+</blockquote> <figcaption><cite>Kevin Dishun</cite> <small>Google review · <time datetime="2026-01-26">Jan 26, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Work was completed in a short period of time and was a very neat installation of a AC PANEL surge protector. Very happy with the work that was done.</p>
+</blockquote> <figcaption><cite>David Watson</cite> <small>Google review · <time datetime="2026-01-21">Jan 21, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>Cody Taylor came to my house to repair the dusk to dawn lights on my house. He was professional, courteous and punctual. After fixing all of the wiring in my garage, he showed me the replacement lights I need. I would recommend Cody and The Wire Guy to anyone who needs electrical work done.</p>
+</blockquote> <figcaption><cite>Mary Maddock</cite> <small>Google review · <time datetime="2026-01-20">Jan 20, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Once again Great Job!!! and always on time!!!</p>
+</blockquote> <figcaption><cite>Troy Washington</cite> <small>Google review · <time datetime="2026-01-16">Jan 16, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>We have used Wire Guy in the past. We had such a great experience previously, so when we had another project, we called them, again. This experience was equally as great. Rhett showed up right at the beginning of the scheduled &quot;window&quot; time, did our installation promptly and quickly, and cleaned up afterwards. He is friendly, knowledgeable, and professional. We enthusiastically recommend Wire Guy Electric for any electrical need,</p>
+</blockquote> <figcaption><cite>Jay Roper</cite> <small>Google review · <time datetime="2026-01-12">Jan 12, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Always excellent service and fair prices and great to work with on my homes needs.</p>
+</blockquote> <figcaption><cite>Edward Taylor</cite> <small>Google review · <time datetime="2026-01-09">Jan 9, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Great service!</p>
+</blockquote> <figcaption><cite>Patrick McCormick</cite> <small>Google review · <time datetime="2026-01-07">Jan 7, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Rhett and his guy did a great job troubleshooting my issue and got it fixed! I will use them again in the future.</p>
+</blockquote> <figcaption><cite>Laura Day</cite> <small>Google review · <time datetime="2026-01-01">Jan 1, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Very friendly and competent crew. Will keep using for the foreseeable future.</p>
+</blockquote> <figcaption><cite>Mike Kolker</cite> <small>Google review · <time datetime="2025-12-29">Dec 29, 2025</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>On time and courteous. Explained issue and replaced what was needed</p>
+</blockquote> <figcaption><cite>Stephen Dunnery</cite> <small>Google review · <time datetime="2025-12-18">Dec 18, 2025</time></small></figcaption>
+</figure>
+</li>
+</ul>
+</div>
+</div>
+    <div class="lane lane--b" tabindex="0" role="region" aria-label="Customer reviews, second row (arrow keys move it)"><div class="belt"><ul class="track" role="list"><li class="rv rv--s"><figure><blockquote><p>Very professional. We are happy with all their work!</p>
+</blockquote> <figcaption><cite>Brenda Harrell</cite> <small>Google review · <time datetime="2026-02-25">Feb 25, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>On- time and very professional. Fast and efficient. Cleaned up afterwards. I would highly recommend.</p>
+</blockquote> <figcaption><cite>jacque murdoch</cite> <small>Google review · <time datetime="2026-02-24">Feb 24, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>I had a great experience with The Wire Guy Electric here in Tempe. They came out to fix a lighting issue and diagnosed a failed ballast. Instead of pushing a full fixture replacement, they professionally rerouted around the ballast and converted it properly so everything works safely and efficiently. They were on time (early, in fact), explained the solution clearly, and left the area clean. The $195 charge felt very fair for the service and expertise. If you’re looking for a reliable, licensed electrician in Mesa or the Tempe area, I highly recommend them. Honest work and no upselling--just solid electrical service. Call &#x27;em! =)</p>
+</blockquote> <figcaption><cite>Christopher Demetral</cite> <small>Google review · <time datetime="2026-02-20">Feb 20, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Excellent service. Very knowledgeable, and patient with a lot of questions asked about other various upcoming electrical needs. Upfront about costs and time needed. Great experience. I&#x27;ll call them for my next electrical project.</p>
+</blockquote> <figcaption><cite>Becky Schoen</cite> <small>Google review · <time datetime="2026-02-19">Feb 19, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Very happy with the work completed and the friend team that was here doing the work! Very reasonably priced as well!</p>
+</blockquote> <figcaption><cite>Colleen Rebuck</cite> <small>Google review · <time datetime="2026-02-17">Feb 17, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Great company!! Easy to work with and setup the estimate and then the job itself. Cade was very professional and efficient. Will be using them again for any electrical project and highly recommend them!!</p>
+</blockquote> <figcaption><cite>Charles Boles</cite> <small>Google review · <time datetime="2026-02-12">Feb 12, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Excellent work and just the nicest couple of guys! Will definitely be a repeat customer.</p>
+</blockquote> <figcaption><cite>Flip Flop Chronicles</cite> <small>Google review · <time datetime="2026-02-12">Feb 12, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Finding the Wire Guy to do our electrical work has been an absolute blessing!! They are always on time and courteous and reasonable! We feel blessed that we don’t have to worry about electrical problems anymore.</p>
+</blockquote> <figcaption><cite>Billy Cobean</cite> <small>Google review · <time datetime="2026-02-10">Feb 10, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>They did an excellent job, were quick and saved us money by using existing conduit instead of having to trench and run a new line over to our pool.</p>
+</blockquote> <figcaption><cite>Rebecca Race</cite> <small>Google review · <time datetime="2026-02-05">Feb 5, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Highly recommend &amp; very professional reasonable rates</p>
+</blockquote> <figcaption><cite>Cindy Tahiti</cite> <small>Google review · <time datetime="2026-02-03">Feb 3, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>technician was knowledgeable and explained the process</p>
+</blockquote> <figcaption><cite>Roger Watton</cite> <small>Google review · <time datetime="2026-02-02">Feb 2, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Great experience two guys showed on time worked entire day installed a new pool breaker box and went beyond the call and wired both pumps for me very professional the cost was lower than the others by a lot</p>
+</blockquote> <figcaption><cite>Lawrence Rinaldo</cite> <small>Google review · <time datetime="2026-01-29">Jan 29, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Cade did a wonderful job on the two, new electrical outlets. On time, professional, personable. I’ll definitely contact them again for future electrical needs.</p>
+</blockquote> <figcaption><cite>Brady staples</cite> <small>Google review · <time datetime="2026-01-27">Jan 27, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Did a great job. Reasonable pricing. I’ll definitely be using this company again.</p>
+</blockquote> <figcaption><cite>Robert Joling</cite> <small>Google review · <time datetime="2026-01-26">Jan 26, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Super efficient and fixed issue right away. Cody was very knowledgeable and was great at outlining problem.</p>
+</blockquote> <figcaption><cite>mary kelly</cite> <small>Google review · <time datetime="2026-01-20">Jan 20, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--s"><figure><blockquote><p>Cody corrected all the electrical problems I had. Very polite and efficient.</p>
+</blockquote> <figcaption><cite>Darrel Videen</cite> <small>Google review · <time datetime="2026-01-19">Jan 19, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Had six new garage lights installed and one overhead light fixture. They arrived right on time, were meticulous and got the job done well an quickly. Highly recommend.</p>
+</blockquote> <figcaption><cite>Maria Parrish</cite> <small>Google review · <time datetime="2026-01-14">Jan 14, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Great experience. They were on time. They were prepared for my unique needs. The electricians were polite, efficient, and helpful. I highly recommend The Wire Guy Electric.</p>
+</blockquote> <figcaption><cite>Allen Schroeder</cite> <small>Google review · <time datetime="2026-01-11">Jan 11, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>Needed to have a Ring Floodlight Cam removed and replaced about 15 feet off the ground and have a spa power disconnected and capped off as we&#x27;re getting rid of the spa. They arrived on time and were very quick to get the job done. Very professional and Friendly. Didn&#x27;t mind answering stupid old guy questions!</p>
+</blockquote> <figcaption><cite>Matthew Caswell</cite> <small>Google review · <time datetime="2026-01-09">Jan 9, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>Very pleased with this company. I use a lot of electrical companies for business and this was my first residential in a while and what a positive experience Highly recommend Prompt, great communication, work was completed quickly and they cleaned up as well.</p>
+</blockquote> <figcaption><cite>Lisa Ayotte</cite> <small>Google review · <time datetime="2026-01-02">Jan 2, 2026</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>Did a great job for us. I&#x27;ll definitely use them again in the future. Thank you.</p>
+</blockquote> <figcaption><cite>David Rockwell</cite> <small>Google review · <time datetime="2025-12-30">Dec 30, 2025</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--l"><figure><blockquote><p>Rhett, from the Wire Guy was fantastic. Super helpful even with a pretty minor situation. Was very courteous and explained the issue thoroughly. Was able to get an appointment fairly quickly. Will call them in the future with any electrical issues I may have.</p>
+</blockquote> <figcaption><cite>Chris Hylton</cite> <small>Google review · <time datetime="2025-12-23">Dec 23, 2025</time></small></figcaption>
+</figure>
+</li>
+<li class="rv rv--m"><figure><blockquote><p>They did a phenomenal job, they made the process seamless and I couldn&#x27;t be more happy with the outcome!</p>
+</blockquote> <figcaption><cite>Jesse Frank</cite> <small>Google review · <time datetime="2025-12-17">Dec 17, 2025</time></small></figcaption>
+</figure>
+</li>
+</ul>
+</div>
+</div>
+  </div>
+</section>
+<section class="section work" aria-labelledby="gal-h">
+  <div class="wrap head"><div><p class="eyebrow">Our work</p>
+<h2 class="h2" id="gal-h">Recent photos of <span class="accent">our work</span></h2>
+</div>
+    <div class="intro"><p>Real jobs and our own crew. No stock photos.</p>
+<p class="more"><a class="textlink" href="https://www.instagram.com/thewireguyelectric/" rel="noopener">Follow @thewireguyelectric <svg class="i i--sm" aria-hidden="true" viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a></p>
+</div>
+</div>
+  <div class="gallery"><figure class="g-a"><img src="/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif" width="1086" height="724" alt="Two Wire Guy electricians on ladders installing lighting under dark vaulted beams" loading="lazy" decoding="async" style="object-position:50% 45%"><figcaption>Lighting under vaulted beams</figcaption>
+</figure>
+<figure class="g-b"><img src="https://cdn.sanity.io/images/qhi2uf0l/production/cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256.png?w=828&auto=format&q=72" srcset="https://cdn.sanity.io/images/qhi2uf0l/production/cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256.png?w=480&auto=format&q=72 480w, https://cdn.sanity.io/images/qhi2uf0l/production/cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256.png?w=828&auto=format&q=72 828w, https://cdn.sanity.io/images/qhi2uf0l/production/cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256.png?w=1200&auto=format&q=72 1200w" sizes="(max-width:899px) 50vw, 25vw" width="1280" height="1256" alt="A new Siemens panel with labeled breakers next to an SRP meter on a stucco wall" loading="lazy" decoding="async" style="object-position:50% 40%"><figcaption>New panel beside an SRP meter</figcaption>
+</figure>
+<figure class="g-c"><img src="https://cdn.sanity.io/images/qhi2uf0l/production/f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811.jpg?w=828&auto=format&q=72" srcset="https://cdn.sanity.io/images/qhi2uf0l/production/f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811.jpg?w=480&auto=format&q=72 480w, https://cdn.sanity.io/images/qhi2uf0l/production/f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811.jpg?w=828&auto=format&q=72 828w, https://cdn.sanity.io/images/qhi2uf0l/production/f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811.jpg?w=1200&auto=format&q=72 1200w" sizes="(max-width:899px) 67vw, 33vw" width="3748" height="2811" alt="LED cove and toe-kick lighting around a soaking tub" loading="lazy" decoding="async" style="object-position:50% 55%"><figcaption>LED cove lighting around a tub</figcaption>
+</figure>
+<figure class="g-d"><img src="https://cdn.sanity.io/images/qhi2uf0l/production/8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536.jpg?w=828&auto=format&q=72" srcset="https://cdn.sanity.io/images/qhi2uf0l/production/8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536.jpg?w=480&auto=format&q=72 480w, https://cdn.sanity.io/images/qhi2uf0l/production/8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536.jpg?w=828&auto=format&q=72 828w, https://cdn.sanity.io/images/qhi2uf0l/production/8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536.jpg?w=1200&auto=format&q=72 1200w" sizes="(max-width:899px) 67vw, 33vw" width="2048" height="1536" alt="Lamp posts lighting a brick front walk" loading="lazy" decoding="async" style="object-position:50% 60%"><figcaption>Lamp posts along a front walk</figcaption>
+</figure>
+<figure class="g-e"><img src="https://cdn.sanity.io/images/qhi2uf0l/production/49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280.jpg?w=828&auto=format&q=72" srcset="https://cdn.sanity.io/images/qhi2uf0l/production/49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280.jpg?w=480&auto=format&q=72 480w, https://cdn.sanity.io/images/qhi2uf0l/production/49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280.jpg?w=828&auto=format&q=72 828w, https://cdn.sanity.io/images/qhi2uf0l/production/49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280.jpg?w=1200&auto=format&q=72 1200w" sizes="(max-width:899px) 50vw, 25vw" width="960" height="1280" alt="Chandelier over a dining table in a room with a coffered ceiling and wainscoting" loading="lazy" decoding="async" style="object-position:50% 35%"><figcaption>Chandelier in a coffered dining room</figcaption>
+</figure>
+<figure class="g-f"><img src="https://cdn.sanity.io/images/qhi2uf0l/production/06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088.png?w=828&auto=format&q=72" srcset="https://cdn.sanity.io/images/qhi2uf0l/production/06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088.png?w=480&auto=format&q=72 480w, https://cdn.sanity.io/images/qhi2uf0l/production/06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088.png?w=828&auto=format&q=72 828w, https://cdn.sanity.io/images/qhi2uf0l/production/06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088.png?w=1200&auto=format&q=72 1200w" sizes="(max-width:899px) 100vw, 42vw" width="1633" height="1088" alt="Four Wire Guy electricians giving a thumbs-up in front of a freshly installed panel and meter" loading="lazy" decoding="async" style="object-position:50% 35%"><figcaption>The crew with a new panel and meter</figcaption>
+</figure>
+</div>
+</section>
+<section class="section answers answers--sand" aria-labelledby="faq-h">
+  <div class="wrap">
+    <div class="faq">
+      <div class="faq__aside"><p class="eyebrow">Questions</p>
+<h2 class="h2" id="faq-h">Good questions, straight answers</h2>
+        <p class="faq__intro">The things homeowners across the valley ask us most, answered by the people who do the work.</p>
+        <p><a class="textlink" href="/faq">All questions on our FAQ <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></p>
+</div>
+      <div class="faq__list"><details class="qa" open><summary><span>Do you offer free estimates?</span> <span class="pm" aria-hidden="true"></span></summary>
+<div class="a"><p>Yes we do! <a href="/design-review/round-3/estimate.html">Contact us today</a> to get a free quote. We'll come out, look at the job, and give you a straight answer on what it'll cost. No pressure and no obligation.</p>
+</div>
+</details>
+<details class="qa"><summary><span>Do you have any hidden fees?</span> <span class="pm" aria-hidden="true"></span></summary>
+<div class="a"><p>Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.</p>
+</div>
+</details>
+<details class="qa"><summary><span>Are you licensed, bonded, and insured?</span> <span class="pm" aria-hidden="true"></span></summary>
+<div class="a"><p>Yes. The Wire Guy Electric is fully licensed, bonded, and insured in the state of Arizona. Our ROC (Registrar of Contractors) license number is <a href="https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB">365306</a>, which you can verify at azroc.gov. This protects you as the homeowner because it means our work is backed by the state's contractor recovery fund, and our insurance covers any accidents or damage on the job. Never hire an electrician who can't provide proof of licensing and insurance. Learn more <a href="/about-us">about us</a>.</p>
+</div>
+</details>
+<details class="qa"><summary><span>Do you warranty your work?</span> <span class="pm" aria-hidden="true"></span></summary>
+<div class="a"><p>Yes, we do. We offer a 2-year warranty on services we provide. <a href="/contact-us">Contact us</a> for full warranty details.</p>
+</div>
+</details>
+</div>
+    </div>
+    <div class="guides-block">
+      <div class="head"><div><p class="eyebrow">Guides</p>
+<h2 class="h2" id="guides-h">Guides from our electricians</h2>
+</div>
+        <div class="intro"><p>Plain-English answers to the questions Arizona homeowners ask us most.</p>
+<p class="more"><a class="textlink" href="/blog">All guides on the blog <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></a></p>
+</div>
+</div>
+      <ul class="guides" role="list"><li class="guide"><div class="cover cover--paper" aria-hidden="true"><span class="lab">Troubleshooting</span> <span class="big">Heat and breakers</span><svg class="cw" viewBox="0 0 320 200" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false"><path d="M268 200 V112 C268 88 282 74 306 74 H320"/></svg></div>
+<p class="meta"><time datetime="2025-12-01">Dec 1, 2025</time></p> <h3><a href="/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip">Can Hot Weather Cause Your Circuit Breaker to Trip?</a></h3> <p class="ex">Learn how Arizona heat, heavy air-conditioning loads, loose connections, and aging breakers can cause summer trips—and when to call an electrician.</p>
+</li>
+<li class="guide"><div class="cover cover--copper" aria-hidden="true"><span class="lab">Safety and the law</span> <span class="big">DIY in Arizona</span><svg class="cw" viewBox="0 0 320 200" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false"><path d="M268 200 V112 C268 88 282 74 306 74 H320"/></svg></div>
+<p class="meta"><time datetime="2025-06-08">Jun 8, 2025</time></p> <h3><a href="/blog-posts/diy-electrical-work-in-arizona">DIY Electrical Work in Arizona: What’s Legal and What’s Not</a></h3> <p class="ex">Thinking about doing your own electrical work in Arizona? Learn what’s allowed for homeowners, what’s illegal, and when to call a licensed electrician in Phoenix or Scottsdale.</p>
+</li>
+<li class="guide"><div class="cover cover--wash" aria-hidden="true"><span class="lab">Permits · 2026 guide</span> <span class="big">Permits in Phoenix</span><svg class="cw" viewBox="0 0 320 200" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false"><path d="M268 200 V112 C268 88 282 74 306 74 H320"/></svg></div>
+<p class="meta"><time datetime="2025-08-14">Aug 14, 2025</time></p> <h3><a href="/blog-posts/permit-for-electrical-work">Do You Need a Permit for Electrical Work in Phoenix? (2026 Guide)</a></h3> <p class="ex">Learn which Phoenix electrical projects need permits, what homeowners can legally do, and how permits affect cost, safety, and timelines.</p>
+</li>
+</ul>
+    </div>
+  </div>
+</section>
+<section class="cta on-photo" aria-labelledby="cta-h" data-bulb-field>
+  <div class="cta__media" aria-hidden="true"><img src="/wf/a/66f595230f2163a622924cfb_Wire-Guy-Looking-At-Van.avif" width="1280" height="853" alt="" loading="lazy" decoding="async"></div>
+  <div class="wrap cta__grid">
+    <div class="cta__copy">
+      <div class="bulb" data-lead="left" aria-hidden="true">
+  <svg viewBox="0 0 300 430">
+    <ellipse class="glow" cx="150" cy="148" rx="182" ry="176" fill="url(#bulbglow)"/>
+    <path class="wire wire--lead" pathLength="1" d="M-1400 352 H64 Q104 352 104 312 L104 300"/>
+    <path class="wire wire--bulb" pathLength="1" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300"/>
+    <g class="bars"><rect x="96" y="318" width="108" height="20" rx="10"/><rect x="104" y="350" width="92" height="20" rx="10"/><path d="M114 382 H186 A36 36 0 0 1 114 382 Z"/></g>
+  </svg>
+</div>
+      <h2 id="cta-h">We're ready to work for you</h2>
+      <p class="sub">Free estimates and a real person on the phone. Call us Monday to Friday, 9 am to 5 pm, or send the form and we’ll call you back.</p>
+      <p class="avail"><span class="emoji" aria-hidden="true">🟢</span> Free estimates available</p>
+      <div class="callrow"><a class="btn btn--cream btn--lg" href="tel:+16027697892"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M5.5 3.5h3l2 5-2.6 1.6a11.5 11.5 0 0 0 6 6l1.6-2.6 5 2v3a2 2 0 0 1-2.1 2A17 17 0 0 1 3.5 5.6a2 2 0 0 1 2-2.1z"/></svg> <span class="tnum">Call (602) 769-7892</span></a></div>
+    </div>
+    <div class="cta__form" id="estimate"><div class="est" data-est>
+  <div class="est__head"><h2 class="est__title">Get a Free Estimate</h2> <p class="hint">No pressure and no obligation.</p>
+</div>
+  <form action="#" method="post" novalidate data-est-form aria-label="Get a Free Estimate">
+    <div class="est__alert" role="alert" data-est-alert></div>
+    <input type="hidden" name="formType" value="estimate"><input type="hidden" name="startedAt" value="" data-started><div class="hp" aria-hidden="true"><label for="cw-home">Company website</label>
+<input id="cw-home" name="company_website" tabindex="-1" autocomplete="off"></div>
+    <div class="field"><label for="n-home">Name <span class="req">(required)</span></label>
+<input id="n-home" name="name" autocomplete="name" required aria-required="true" aria-describedby="n-home-e"><span class="err" id="n-home-e" hidden>Please enter your name.</span></div>
+    <div class="field"><label for="p-home">Phone <span class="req">(required)</span></label>
+<input id="p-home" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-required="true" aria-describedby="p-home-e"><span class="err" id="p-home-e" hidden>Please enter a phone number we can call.</span></div>
+    <div class="field"><label for="e-home">Email <span class="req">(optional)</span></label>
+<input id="e-home" name="email" type="email" autocomplete="email" aria-describedby="e-home-e"><span class="err" id="e-home-e" hidden>Please check the email address, or leave it blank.</span></div>
+    <div class="field"><label for="z-home">City or ZIP</label>
+<input id="z-home" name="zip" autocomplete="postal-code" placeholder="Gilbert or 85233"></div>
+    <div class="field field--full"><label for="m-home">What’s going on? <span class="req">(optional)</span></label>
+<textarea id="m-home" name="message" rows="3" placeholder="Breaker keeps tripping, new EV charger, more lights in the kitchen…"></textarea></div>
+    <div class="submit"><button class="btn btn--primary btn--lg" type="submit"><span data-submit-l>Request my free estimate</span> <svg class="i arrow" aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></svg></button>
+</div>
+    <p class="promise">We call back during office hours, Monday to Friday, 9 am to 5 pm.</p>
+  </form>
+  <div class="done" role="status" tabindex="-1" data-est-done>
+    <svg class="ok-bulb" viewBox="-40 -40 380 470" aria-hidden="true"><ellipse class="halo" cx="150" cy="150" rx="190" ry="190" fill="url(#bulbglow)"/><path class="glass" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300 Z"/><path class="line" d="M104 300 C104 262 36 232 36 152 C36 86 88 36 150 36 C212 36 264 86 264 150 C264 176 254 196 238 214 C222 232 196 232 192 214 C188 196 212 184 228 196 C244 208 222 234 210 250 C200 264 196 282 196 300"/><g class="bars"><rect x="96" y="318" width="108" height="20" rx="10"/><rect x="104" y="350" width="92" height="20" rx="10"/><path d="M114 382 H186 A36 36 0 0 1 114 382 Z"/></g></svg>
+    <div><p class="done__h">Your request is in.</p> <p>Thanks! We’ll call you during office hours to schedule your free estimate. Prefer to talk now? Call <a href="tel:+16027697892" class="tnum">(602) 769-7892</a>.</p>
+</div>
+  </div>
+</div>
+</div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <a class="foot-logo" href="/"><img src="/logo.png" alt="The Wire Guy Electric" width="500" height="447" loading="lazy" decoding="async"></a>
+      <p class="foot-roc"><a href="https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB" rel="noopener">Licensed, bonded, and insured. ROC#365306</a></p>
+      <a class="foot-rating" href="https://maps.app.goo.gl/j4qZJwx8ttVZo93w5" rel="noopener"><span class="stars" aria-hidden="true"></span> <span><b>5.0</b> <span class="sr-only">out of 5 stars </span>from 380+ Google reviews</span></a>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col foot-nap">
+        <h2>Contact</h2>
+        <address><strong>The Wire Guy Electric</strong> 1321 N 65th St, Mesa, AZ 85205</address>
+        <address><strong>The Wire Guy Electric of Scottsdale (by appointment)</strong> 8555 E Raintree Dr, Unit 117, Scottsdale, AZ 85260 <span class="sub">Office visits by appointment only. We come to you.</span></address>
+        <p><a href="tel:+16027697892" class="tnum">(602) 769-7892</a><br><a href="mailto:office@thewireguyelectric.com">office@thewireguyelectric.com</a></p>
+        <p class="sub">Our Office Hours: Mon – Fri, 9 am – 5 pm</p>
+      </div>
+      <nav class="foot-col" aria-label="Residential services"><h2><a href="/services-categories/residential">Residential services</a></h2>
+<ul><li><a href="/services/panels">Panel Replacements</a></li>
+<li><a href="/services/ev-charger-installation">EV Charger Installation</a></li>
+<li><a href="/services/electrical-troubleshooting">Troubleshooting</a></li>
+<li><a href="/services/recessed-lights-installation">Recessed Lighting</a></li>
+<li><a href="/services/custom-lighting">Custom Lighting</a></li>
+<li><a href="/services/fixture-replacements">Fixture Replacements</a></li>
+<li><a href="/services/exterior-electrical">Exterior Electrical</a></li>
+<li><a href="/services/electrical-remodels">Kitchen &amp; Bathroom Remodels</a></li>
+<li><a href="/services/electrical-safety-inspections">Electrical Safety Inspections</a></li>
+<li><a href="/services/new-construction-wiring">New Construction Wiring</a></li>
+</ul>
+</nav>
+      <nav class="foot-col" aria-label="Commercial services"><h2><a href="/services-categories/commercial">Commercial services</a></h2>
+<ul><li><a href="/services/commercial-service">Commercial Electrical Service</a></li>
+<li><a href="/services/tenant-improvements">Tenant Improvements</a></li>
+<li><a href="/services/commercial-electrical-troubleshooting">Commercial Electrical Troubleshooting</a></li>
+<li><a href="/services/electrical-upgrades">Electrical Upgrades</a></li>
+<li><a href="/services/led-lights">LED Lights</a></li>
+<li><a href="/services/dedicated-circuits">Dedicated Circuits</a></li>
+<li><a href="/services/outlets-and-switches">Outlets and Switches</a></li>
+<li><a href="/services/emergency-exit-lights">Emergency &amp; Exit Lights</a></li>
+<li><a href="/services/storefront-lights">Storefront Lights</a></li>
+<li><a href="/services/hanging-lights">Hanging Lights</a></li>
+<li><a href="/services/ballast-replacement-fluorescent-lighting">Ballast Replacement &amp; Fluorescent Lighting</a></li>
+</ul>
+</nav>
+      <nav class="foot-col" aria-label="Service areas"><h2>Service areas</h2>
+<ul><li><a href="/">Mesa</a></li>
+<li><a href="/locations/gilbert">Gilbert</a></li>
+<li><a href="/locations/apache-junction">Apache Junction</a></li>
+<li><a href="/locations/chandler">Chandler</a></li>
+<li><a href="/locations/queen-creek">Queen Creek</a></li>
+<li><a href="/locations/san-tan-valley">San Tan Valley</a></li>
+<li><a href="/locations/tempe">Tempe</a></li>
+<li><a href="/locations/scottsdale">Scottsdale</a></li>
+<li><a href="/locations/phoenix">Phoenix</a></li>
+<li><a href="/locations/fountain-hills">Fountain Hills</a></li>
+<li><a href="/locations/ahwatukee">Ahwatukee</a></li>
+</ul>
+</nav>
+      <nav class="foot-col" aria-label="Company"><h2>Company</h2>
+<ul><li><a href="/about-us">About Us</a></li>
+<li><a href="/our-team">Our Team</a></li>
+<li><a href="/commercial-electrician">Commercial</a></li>
+<li><a href="/services">Services</a></li>
+<li><a href="/careers">Careers</a></li>
+<li><a href="/blog">Blog</a></li>
+<li><a href="/faq">FAQ</a></li>
+<li><a href="/contact-us">Contact Us</a></li>
+<li><a href="/design-review/round-3/estimate.html">Free Estimate</a></li>
+</ul>
+</nav>
+    </div>
+    <div class="foot-family">
+      <h2 class="lab">Our family of brands</h2>
+      <ul class="sisters" role="list"><li><a class="sister" href="https://www.thecoolingguyhvac.com" rel="noopener"><img src="/wf/a/6a59460d2717680188422929_Frame-43-3-.png" alt="The Cooling Guy HVAC" width="132" height="119" loading="lazy" decoding="async"></a></li>
+<li><a class="sister" href="https://www.thewaterguyplumbing.com" rel="noopener"><img src="/wf/a/6a59462ba5e66d45a6863242_Frame-45-2-.png" alt="The Water Guy Plumbing" width="132" height="119" loading="lazy" decoding="async"></a></li>
+</ul>
+      <div class="badges"><a class="bbb" href="https://www.bbb.org/us/az/mesa/profile/electrician/the-wire-guy-electric-llc-1126-1000115134" rel="nofollow noopener">BBB profile</a><a class="soc" href="https://www.facebook.com/thewireguyelectric" rel="noopener" aria-label="Facebook"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z"/></svg></a><a class="soc" href="https://www.instagram.com/thewireguyelectric/" rel="noopener" aria-label="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg></a></div>
+    </div>
+    <div class="foot-legal"><p>© 2026 The Wire Guy Electric LLC. All rights reserved.</p> <p>Website by <a href="https://celayaventures.com" rel="noopener">Celaya Ventures</a></p>
+</div>
+  </div>
+</footer>
+<nav class="callbar" aria-label="Quick contact"><a class="call" href="tel:+16027697892" aria-label="Call (602) 769-7892"><svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d="M5.5 3.5h3l2 5-2.6 1.6a11.5 11.5 0 0 0 6 6l1.6-2.6 5 2v3a2 2 0 0 1-2.1 2A17 17 0 0 1 3.5 5.6a2 2 0 0 1 2-2.1z"/></svg> Call now</a> <a class="est-l" href="/design-review/round-3/estimate.html">Free Estimate</a></nav>
+<script>
+/* ~6 KB, no dependencies. Every word and link is in the HTML; this only adds behaviour. */
+(function () {
+  var d = document, de = d.documentElement;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function each(sel, fn, root) { [].forEach.call((root || d).querySelectorAll(sel), fn); }
+
+  /* ---------- desktop disclosure menus: click to open, Esc or focus leaving the menu closes it (WCAG 2.4.11) ---------- */
+  var btns = [].slice.call(d.querySelectorAll('.dd-btn'));
+  function panel(b) { return d.getElementById(b.getAttribute('aria-controls')); }
+  function closeAll(except) { btns.forEach(function (b) { if (b !== except) { b.setAttribute('aria-expanded', 'false'); panel(b).hidden = true; } }); }
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () { var o = b.getAttribute('aria-expanded') === 'true'; closeAll(b); b.setAttribute('aria-expanded', String(!o)); panel(b).hidden = o; });
+    var dd = b.closest('.dd');
+    dd.addEventListener('focusout', function (e) { if (e.relatedTarget && !dd.contains(e.relatedTarget)) { b.setAttribute('aria-expanded', 'false'); panel(b).hidden = true; } });
+  });
+  d.addEventListener('click', function (e) { if (!e.target.closest('.dd')) closeAll(); });
+
+  /* ---------- mobile menu: a sibling of the header, fixed to the viewport. While open the page behind is inert. ---------- */
+  var mb = d.querySelector('.menu-btn'), mm = d.getElementById('mobile-menu');
+  var behind = ['main', 'footer', '.callbar', '.skip'].map(function (s) { return d.querySelector(s); }).filter(Boolean);
+  function setMenu(open) {
+    if (!mb || !mm) return;
+    mb.setAttribute('aria-expanded', String(open)); mm.hidden = !open;
+    mb.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+    mb.querySelector('use').setAttribute('href', open ? '#i-close' : '#i-menu');
+    de.classList.toggle('menu-open', open);
+    behind.forEach(function (el) { if (open) el.setAttribute('inert', ''); else el.removeAttribute('inert'); });
+  }
+  if (mb) mb.addEventListener('click', function () { setMenu(mb.getAttribute('aria-expanded') !== 'true'); });
+  matchMedia('(min-width: 1100px)').addEventListener('change', function (m) { if (m.matches) setMenu(false); });
+  d.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var ob = d.querySelector('.dd-btn[aria-expanded="true"]'); closeAll(); if (ob) ob.focus();
+    if (mb && mb.getAttribute('aria-expanded') === 'true') { setMenu(false); mb.focus(); }
+  });
+
+  /* ---------- office hours: Mon–Fri 9–5, America/Phoenix (no DST). Never claims 24/7. ---------- */
+  try {
+    var parts = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Phoenix', weekday: 'short', hour: 'numeric', hourCycle: 'h23' }).formatToParts(new Date());
+    var wd = parts.find(function (p) { return p.type === 'weekday'; }).value, hr = +parts.find(function (p) { return p.type === 'hour'; }).value;
+    var open = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].indexOf(wd) > -1 && hr >= 9 && hr < 17;
+    if (!open) {
+      var nextMon = wd === 'Sat' || wd === 'Sun' || (wd === 'Fri' && hr >= 17);
+      each('[data-office]', function (el) { el.classList.add('is-closed'); });
+      each('[data-opens]', function (el) { el.textContent = nextMon ? 'Monday at 9 am' : 'at 9 am'; });
+    }
+  } catch (e) {}
+
+  var IO = 'IntersectionObserver' in window;
+  function once(els, fn, opts) {
+    if (!IO) { els.forEach(fn); return; }
+    var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) { fn(en.target); io.unobserve(en.target); } }); }, opts);
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------- the bulb: the lead-in starts exactly at the edge of its field, then the wire draws the bulb once ---------- */
+  var bulbs = [].slice.call(d.querySelectorAll('.bulb'));
+  function lead() {
+    bulbs.forEach(function (b) {
+      var svg = b.querySelector('svg'), p = b.querySelector('.wire--lead'), field = b.closest('[data-bulb-field]') || d.body;
+      if (!svg || !p) return;
+      var r = svg.getBoundingClientRect();
+      if (!r.width) return;                       /* hidden (display:none at this breakpoint): leave the default lead */
+      var f = field.getBoundingClientRect(), k = 300 / r.width;
+      if (b.getAttribute('data-lead') === 'right') {
+        p.setAttribute('d', 'M' + ((f.right - r.left) * k + 8).toFixed(1) + ' 352 H236 Q196 352 196 312 L196 300');
+      } else {
+        p.setAttribute('d', 'M' + (-(r.left - f.left) * k - 8).toFixed(1) + ' 352 H64 Q104 352 104 312 L104 300');
+      }
+    });
+  }
+  lead(); var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(lead, 150); });
+  once(bulbs, function (b) { lead(); b.classList.add('is-in'); }, { threshold: .45 });
+  once([].slice.call(d.querySelectorAll('.valley__map')), function (m) { m.classList.add('is-live'); }, { threshold: .4 });
+
+  /* ---------- reviews marquee (homepage) ----------
+     Every review is plain HTML text. With motion allowed, each lane gets an inert, aria-hidden copy of only as many
+     cards as fill one view, so the loop is seamless with few extra nodes; the belt moves by transform only (no layout
+     shift). It pauses on hover, on keyboard focus and with the Pause button (WCAG 2.2.2). Previous / Next and the arrow
+     keys on a focused lane move it one card. With reduced motion (or no JS) the lanes are static rows you scroll. */
+  var mq = d.querySelector('[data-marquee]');
+  if (mq) {
+    var lanes = [].slice.call(mq.querySelectorAll('.lane'));
+    /* lane A holds reviews 1, 3, 5…, lane B 2, 4, 6… (newest first); interleave them back into reading order */
+    var la = [].slice.call(lanes[0].querySelectorAll('.track > li')), lb = [].slice.call(lanes[1].querySelectorAll('.track > li')), items = [];
+    la.forEach(function (li, i) { li._lane = 0; items.push(li); if (lb[i]) { lb[i]._lane = 1; items.push(lb[i]); } });
+    var narrow = matchMedia('(max-width: 699px)');
+    var sec = mq.closest('section'), toggle = sec.querySelector('[data-marquee-toggle]');
+    var anim = function (l) { var a = l.querySelector('.belt').getAnimations ? l.querySelector('.belt').getAnimations() : []; return a[0]; };
+    var layout = function () {
+      var one = narrow.matches;
+      each('.track[data-clone]', function (c) { c.remove(); }, mq);
+      var tracks = lanes.map(function (l) { return l.querySelector('.track'); });
+      items.forEach(function (li) { tracks[one ? 0 : li._lane].appendChild(li); });
+      lanes[1].hidden = one;
+      if (reduce) return;
+      mq.classList.add('is-moving');
+      lanes.forEach(function (l) {
+        if (l.hidden) return;
+        var belt = l.querySelector('.belt'), t = belt.querySelector('.track'), w = t.getBoundingClientRect().width;
+        var c = d.createElement('ul'), need = l.clientWidth + 40, got = 0;
+        c.className = 'track'; c.setAttribute('aria-hidden', 'true'); c.setAttribute('inert', ''); c.setAttribute('data-clone', '');
+        [].some.call(t.children, function (li) { c.appendChild(li.cloneNode(true)); got += li.getBoundingClientRect().width + 20; return got >= need; });
+        belt.appendChild(c);
+        belt.style.setProperty('--mq-w', w.toFixed(1) + 'px');
+        belt.style.setProperty('--mq-dur', Math.round(w / (one ? 24 : 30)) + 's');
+      });
+    };
+    layout();
+    if (narrow.addEventListener) narrow.addEventListener('change', layout);
+    var setPaused = function (p) {
+      mq.classList.toggle('is-paused', p);
+      if (toggle) { toggle.classList.toggle('is-paused', p); toggle.querySelector('[data-l]').textContent = p ? 'Play reviews' : 'Pause reviews'; }
+    };
+    var step = function (dir, only) {
+      lanes.forEach(function (l) {
+        if (l.hidden || (only && l !== only)) return;
+        var li = l.querySelector('.track > li'), cw = li ? li.getBoundingClientRect().width + 20 : 380;
+        var a = !reduce && anim(l);
+        if (a && a.effect) {
+          var dur = a.effect.getTiming().duration, w = parseFloat(l.querySelector('.belt').style.getPropertyValue('--mq-w')) || 1;
+          var t = (a.currentTime || 0) + dir * dur * cw / w;
+          a.currentTime = ((t % dur) + dur) % dur;
+        } else {
+          l.scrollBy({ left: dir * cw, behavior: reduce ? 'auto' : 'smooth' });
+        }
+      });
+    };
+    if (toggle) {
+      if (reduce) toggle.hidden = true;
+      toggle.addEventListener('click', function () { setPaused(!mq.classList.contains('is-paused')); });
+    }
+    each('[data-mq-step]', function (b) { b.addEventListener('click', function () { if (!reduce) setPaused(true); step(+b.getAttribute('data-mq-step')); }); }, sec);
+    lanes.forEach(function (l) {
+      l.addEventListener('keydown', function (e) {
+        if (reduce || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;   /* static rows scroll natively */
+        e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1, l);
+      });
+    });
+  }
+
+  /* ---------- analytics (GA4 event names kept); the gtag() stub in <head> queues events until gtag.js loads ---------- */
+  d.addEventListener('click', function (e) { if (e.target.closest('a[href^="tel:"]')) gtag('event', 'phone_call_click'); });
+
+  /* ---------- estimate forms: progressive enhancement over a normal POST to /api/contact ----------
+     Success shows the sent panel (role=status) and lights the bulb. Failure keeps everything the visitor typed and says
+     so in the role=alert box, with the phone number. It never re-posts the form. */
+  var FAIL = 'We couldn’t send that. Please call <a href="tel:+16027697892">(602) 769-7892</a>, or try again in a moment.';
+  function sent(box) { box.classList.add('is-sent'); box.querySelector('[data-est-done]').focus({ preventScroll: true }); }
+  each('[data-est]', function (box) {
+    var f = box.querySelector('form'), st = f.querySelector('[data-started]'), alert = f.querySelector('[data-est-alert]'), btn = f.querySelector('[type=submit]');
+    st.value = String(Date.now());
+    f.addEventListener('submit', function (e) {
+      e.preventDefault(); var bad = [];
+      each('input[required], input[type=email]', function (el) {
+        var v = el.value.trim(), miss = el.required ? !v : (v && !el.checkValidity()), msg = d.getElementById(el.getAttribute('aria-describedby'));
+        el.setAttribute('aria-invalid', miss ? 'true' : 'false'); if (msg) msg.hidden = !miss; if (miss) bad.push(el);
+      }, f);
+      if (bad.length) {
+        alert.textContent = bad.length === 1 ? '1 field needs attention: ' + f.querySelector('label[for="' + bad[0].id + '"]').firstChild.textContent.trim() + '.' : bad.length + ' fields need attention.';
+        bad[0].focus(); return;
+      }
+      alert.textContent = '';
+      var fd = new FormData(f), ta = f.querySelector('textarea[name=message]');
+      if (ta && !ta.value.trim()) fd.set('message', 'No details given');
+      /* the API treats a submit under ~2.5 s as a bot (204, dropped): wait out the rest so a fast autofill is never lost */
+      var wait = Math.max(0, 2600 - (Date.now() - (+st.value || 0)));
+      btn.setAttribute('aria-busy', 'true');
+      setTimeout(function () {
+        fetch(f.action, { method: 'POST', body: fd, headers: { Accept: 'application/json' } }).then(function (r) {
+          if (!r.ok) throw 0;
+          btn.removeAttribute('aria-busy'); sent(box); gtag('event', 'generate_lead');
+        }).catch(function () { btn.removeAttribute('aria-busy'); alert.innerHTML = FAIL; });
+      }, wait);
+    });
+  });
+  /* without JS the API answers a form POST with 303 → /estimate?sent=1 (or ?error=1); production renders these states
+     server-side. The mockup mirrors that here. */
+  var q = location.search, main = d.querySelector('main [data-est]');
+  if (main && /[?&]sent=1/.test(q)) sent(main);
+  if (main && /[?&]error=1/.test(q)) main.querySelector('[data-est-alert]').innerHTML = FAIL;
+})();
+</script>
+</body>
+</html>
