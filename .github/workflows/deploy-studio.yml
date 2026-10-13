@@ -3,6 +3,7 @@ name: Deploy Sanity Studio
 # Deploys studio/ to https://thewireguyelectric.sanity.studio.
 # Needs a repository secret SANITY_AUTH_TOKEN: create it in sanity.io/manage →
 # The Wire Guy Electric → API → Tokens, with the "Deploy Studio" permission.
+# Until the secret exists the job only logs a warning.
 
 on:
   workflow_dispatch:
@@ -14,18 +15,27 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
     steps:
+      - name: Skip without a deploy token
+        if: env.SANITY_AUTH_TOKEN == ''
+        run: echo "::warning::SANITY_AUTH_TOKEN is not set, so the Studio was not deployed."
       - uses: actions/checkout@v4
+        if: env.SANITY_AUTH_TOKEN != ''
       - uses: pnpm/action-setup@v4
+        if: env.SANITY_AUTH_TOKEN != ''
       - uses: actions/setup-node@v4
+        if: env.SANITY_AUTH_TOKEN != ''
         with:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+        if: env.SANITY_AUTH_TOKEN != ''
       - name: Deploy
+        if: env.SANITY_AUTH_TOKEN != ''
         working-directory: studio
         run: pnpm exec sanity deploy --yes
         env:
-          SANITY_AUTH_TOKEN: ${{ secrets.SANITY_AUTH_TOKEN }}
           SANITY_STUDIO_PROJECT_ID: qhi2uf0l
           SANITY_STUDIO_DATASET: production

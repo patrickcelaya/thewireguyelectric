@@ -448,7 +448,7 @@ push({
       addressLocality: a.addressLocality,
       addressRegion: a.addressRegion,
       postalCode: a.postalCode,
-      ...(scottsdale ? {locationPage: ref(scottsdale), appointmentOnly: true} : {}),
+      ...(scottsdale ? {gbpName: 'The Wire Guy Electric of Scottsdale', locationPage: ref(scottsdale), appointmentOnly: true} : {}),
     }
   }),
   openingHours: [{_type: 'openingHours', _key: 'weekdays', days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '17:00'}],
