@@ -64,6 +64,16 @@ const FAQ_DOC = /* groq */ `{_id, question, answer${RICH_TEXT}, topic}`
 
 const NAMED_LINK = /* groq */ `{name, "slug": slug.current}`
 
+/**
+ * A city's bare name ("Gilbert") for chips, cards and links. Some location
+ * documents still hold the full H1 in `name`, so derive it from cityNameForSeo
+ * ("Gilbert, AZ") when that is set. Evaluated in the scope of a location document.
+ */
+const CITY_NAME = /* groq */ `coalesce(string::split(cityNameForSeo, ",")[0], name)`
+
+/** A location as a NamedLink: the bare city name and slug. */
+const LOCATION_LINK = /* groq */ `{"name": ${CITY_NAME}, "slug": slug.current}`
+
 const SERVICE_FIELDS = /* groq */ `
   _id,
   name,
@@ -97,7 +107,7 @@ const LOCATION_CARD = /* groq */ `{
   _id,
   name,
   "slug": slug.current,
-  "shortName": coalesce(string::split(cityNameForSeo, ",")[0], name),
+  "shortName": ${CITY_NAME},
   cityNameForSeo,
   cardBlurb,
   description,
@@ -116,7 +126,7 @@ const REVIEW = /* groq */ `{
   source,
   sourceUrl,
   featured,
-  "location": location->name,
+  "location": location->{"city": ${CITY_NAME}}.city,
   "locationSlug": location->slug.current,
   "service": service->name,
   "serviceSlug": service->slug.current
@@ -145,7 +155,7 @@ const PROJECT_CARD = /* groq */ `{
   neighborhood,
   "mainImage": mainImage${IMAGE},
   "gallery": gallery[]${KEYED_IMAGE},
-  "location": location->{name, "slug": slug.current, "shortName": coalesce(string::split(cityNameForSeo, ",")[0], name)},
+  "location": location->{name, "slug": slug.current, "shortName": ${CITY_NAME}},
   "services": services[]->${NAMED_LINK},
   "review": review->${REVIEW}
 }`
@@ -189,8 +199,9 @@ const SECTIONS = /* groq */ `sections[]{
     "homeCity": select(includeHomeCity != false => ${SITE_SETTINGS}.homeCity${HOME_CITY})
   },
   _type == "reviewsSection" => {
-    "location": location->${NAMED_LINK},
+    "location": location->${LOCATION_LINK},
     "service": service->${NAMED_LINK},
+    "picked": count(coalesce(reviews, [])) > 0,
     "reviews": coalesce(select(
       count(reviews) > 0 => reviews[]->${REVIEW},
       *[_type == "review"
@@ -223,6 +234,7 @@ const SECTIONS = /* groq */ `sections[]{
   },
   _type == "postsSection" => {
     "category": category->${NAMED_LINK},
+    "picked": count(coalesce(posts, [])) > 0,
     "posts": coalesce(select(
       count(posts) > 0 => posts[]->${POST_CARD},
       featuredFirst == true => *[_type == "post" && defined(slug.current) && defined(publishedAt) && (!defined(^.category) || category._ref == ^.category._ref)]
@@ -268,7 +280,7 @@ const SECTIONS = /* groq */ `sections[]{
       "asset": asset->{_id, url, metadata{lqip, dimensions{width, height}}},
       "legacyUrl": _sanityAsset,
       "service": service->${NAMED_LINK},
-      "location": location->${NAMED_LINK}
+      "location": location->${LOCATION_LINK}
     }, []),
     "projects": coalesce(projects[]->${PROJECT_CARD}, [])
   },
@@ -317,7 +329,7 @@ export function getSettings() {
       "defaultOgImage": defaultOgImage${IMAGE},
       "founders": founders[]->{name, role},
       "addresses": addresses[]{..., "locationSlug": locationPage->slug.current},
-      "serviceAreas": serviceAreas[]->{name, "slug": slug.current, geo},
+      "serviceAreas": serviceAreas[]->{name, "slug": slug.current, "shortName": ${CITY_NAME}, geo},
       "homeCity": homeCity${HOME_CITY},
       "heroQuotes": heroQuotes[]${REVIEW_SNIPPET},
       "valueProps": valueProps[]${FEATURE_ITEM},
@@ -329,6 +341,9 @@ export function getSettings() {
   })
   return settingsPromise
 }
+
+/** Alias of getSettings() (same memoized promise), named after the document type. */
+export const getSiteSettings = getSettings
 
 // ---------------------------------------------------------------------------
 // Pages
@@ -365,6 +380,8 @@ function present<T>(items: Array<T | null | undefined> | null | undefined): T[] 
 type CategoryInfo = Omit<ServiceCategoryGroup, 'services'>
 /** servicesSection as the query returns it, before normalizeSections() turns categoryInfo into groups. */
 type RawServicesSection = ServicesSection & {categoryInfo?: CategoryInfo[] | null}
+/** reviewsSection / postsSection as the query returns them: `picked` is true when the editor picked the items. */
+type RawPicked<T> = T & {picked?: boolean | null}
 
 function uniqueById<T extends {_id: string}>(items: T[]) {
   const seen = new Set<string>()
@@ -372,9 +389,10 @@ function uniqueById<T extends {_id: string}>(items: T[]) {
 }
 
 /**
- * Post-query clean-up that GROQ can't express: apply `limit` (GROQ can't slice by a
- * field), drop dangling references, de-duplicate mentioned people, and group service
- * cards by category for the "grouped" layout.
+ * Post-query clean-up that GROQ can't express: apply `limit` to automatic lists
+ * (GROQ can't slice by a field; picked items are always shown in full), drop
+ * dangling references, de-duplicate mentioned people, and group service cards by
+ * category for the "grouped" layout.
  */
 function normalizeSections(sections: PageSection[] | null | undefined): PageSection[] {
   return (sections ?? []).map((section): PageSection => {
@@ -394,8 +412,11 @@ function normalizeSections(sections: PageSection[] | null | undefined): PageSect
       }
       case 'locationsSection':
         return {...section, locations: present<LocationSummary>(section.locations)}
-      case 'reviewsSection':
-        return {...section, reviews: applyLimit(present<Review>(section.reviews), section.limit, DEFAULT_LIMITS.reviewsSection)}
+      case 'reviewsSection': {
+        const {picked, ...rest} = section as RawPicked<typeof section>
+        const reviews = present<Review>(section.reviews)
+        return {...rest, reviews: picked ? reviews : applyLimit(reviews, section.limit, DEFAULT_LIMITS.reviewsSection)}
+      }
       case 'faqSection':
         return {
           ...section,
@@ -404,8 +425,11 @@ function normalizeSections(sections: PageSection[] | null | undefined): PageSect
         }
       case 'teamSection':
         return {...section, members: present<TeamMember>(section.members)}
-      case 'postsSection':
-        return {...section, posts: applyLimit(present<PostSummary>(section.posts), section.limit, DEFAULT_LIMITS.postsSection)}
+      case 'postsSection': {
+        const {picked, ...rest} = section as RawPicked<typeof section>
+        const posts = present<PostSummary>(section.posts)
+        return {...rest, posts: picked ? posts : applyLimit(posts, section.limit, DEFAULT_LIMITS.postsSection)}
+      }
       case 'jobsSection':
         return {...section, jobs: present<JobOpening>(section.jobs)}
       case 'teamIntroSection':
@@ -531,7 +555,7 @@ export const getLocations = memo(() =>
   fetchQuery<LocationDoc[]>(
     defineQuery(`*[_type == "location" && defined(slug.current)] | order(name asc){
       _id, _updatedAt, name, "slug": slug.current,
-      "shortName": coalesce(string::split(cityNameForSeo, ",")[0], name),
+      "shortName": ${CITY_NAME},
       cityNameForSeo, heading, description, cardBlurb,
       "mainImage": mainImage${IMAGE},
       body${RICH_TEXT},

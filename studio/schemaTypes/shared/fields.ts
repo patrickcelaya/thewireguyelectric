@@ -16,15 +16,19 @@ export function urlSlugField(pathPrefix: string, options: {source?: string} = {}
     type: 'slug',
     description: `Public URL: ${pathPrefix}/<slug>. Changing this on a live page breaks links unless you add a redirect.`,
     options: {source: options.source ?? 'title', maxLength: 96},
-    validation: (rule) =>
-      rule.required().custom(async (slug, context) => {
+    // Sanity takes the level from the rule, not from what a custom validator
+    // returns, so the format check (error) and the live-URL check (warning) are
+    // separate rules.
+    validation: (rule) => [
+      rule.required().custom((slug) => {
         const current = slug?.current
         if (!current) return 'Required'
-        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(current)) {
-          return 'Use lowercase letters, numbers and single hyphens only'
-        }
-        return warnOnLiveSlugChange(current, pathPrefix, context)
+        return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(current) ? true : 'Use lowercase letters, numbers and single hyphens only'
       }),
+      rule
+        .custom(async (slug, context) => (slug?.current ? warnOnLiveSlugChange(slug.current, pathPrefix, context) : true))
+        .warning(),
+    ],
   })
 }
 
@@ -40,10 +44,7 @@ async function warnOnLiveSlugChange(current: string, pathPrefix: string, context
     {oldPath},
   )
   if (hasRedirect > 0) return true
-  return {
-    message: `This page is live at ${oldPath}. Add a Redirect from ${oldPath} to ${pathPrefix}/${current} before publishing, or Google will see a 404.`,
-    level: 'warning',
-  } as const
+  return `This page is live at ${oldPath}. Add a Redirect from ${oldPath} to ${pathPrefix}/${current} before publishing, or Google will see a 404.`
 }
 
 const ALT_DESCRIPTION =
@@ -169,10 +170,9 @@ export function headingAccentField(of: 'section' | 'page' = 'section') {
             ? ((context.document as {heading?: string; title?: string} | undefined)?.heading ?? (context.document as {title?: string} | undefined)?.title)
             : (context.parent as {heading?: string} | undefined)?.heading
         if (!heading) return true
-        return heading.includes(accent)
-          ? true
-          : ({message: `"${accent}" does not appear in the heading, so nothing will be highlighted`, level: 'warning'} as const)
-      }),
+        return heading.includes(accent) ? true : `"${accent}" does not appear in the heading, so nothing will be highlighted`
+      })
+        .warning(),
   })
 }
 

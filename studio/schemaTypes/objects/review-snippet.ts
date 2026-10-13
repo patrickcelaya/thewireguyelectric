@@ -15,7 +15,7 @@ export const reviewSnippet = defineType({
       title: 'Quote',
       type: 'string',
       description: 'Verbatim words from a real review, without quotation marks (the design adds them).',
-      validation: (rule) => rule.required().max(140).warning('Keep hero quotes short (under ~140 characters)'),
+      validation: (rule) => [rule.required(), rule.max(140).warning('Keep hero quotes short (under ~140 characters)')],
     }),
     defineField({
       name: 'review',

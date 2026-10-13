@@ -34,8 +34,8 @@ How content for thewireguyelectric.com is structured in Sanity (project `qhi2uf0
    Hero quotes are copied verbatim from real reviews. Prices carry the date they were checked.
 5. **NAP lives only in Site settings.** Name, address, phone, email, hours, license, rating and review count come from `siteSettings`. Sections never store their own copy of these.
 6. **Every image has alt text.**
-   - Images in sections and projects require it (an error in Studio).
-   - Document main images (imported from Webflow, many still without alt) show a warning so old content can still be published.
+   - Images in sections, projects and Site settings → Home city require it (an error in Studio).
+   - Document main images (imported from Webflow, many still without alt), team photos, the logo and share images show a warning so old content can still be published.
    - Templates may render a card thumbnail with `alt=""` when the card title sits next to it (decorative).
 7. **One FAQPage per page.**
    - Visible FAQs and FAQ structured data come from the same documents.
@@ -76,20 +76,20 @@ The single source of truth for the business entity. It feeds the header, footer,
 | badges | string[] | Short trust claims, e.g. "Licensed, bonded & insured". Appended to the standard trust strip |
 | **heroQuotes** | reviewSnippet[] | **New.** Shared hero quotes, used by city-page heroes and any template without its own |
 | sameAs | url[] | Social and directory profiles for schema |
-| serviceAreas | ref location[] | Cities for `areaServed` |
+| serviceAreas | ref location[] | Cities for `areaServed`. The query adds `shortName` (bare city) because some location names still hold the full H1 |
 | **homeCity** | object | **New.** Mesa is the homepage, so it has no `location` document. City lists show Mesa from here, linking to `/`. Fields: `name`, `cardBlurb`, `image` (alt required), `neighborhoods[]`, `county`, `utilityProviders[]` (same list as location) |
 | sisterCompanies | linkItem[] | The Cooling Guy HVAC, The Water Guy Plumbing. Link only |
-| logo, defaultOgImage | image | |
+| logo, defaultOgImage | image (+alt) | Logo alt is the business name. The share image is 1200×630 |
 | headerNav, footerNav, primaryCta | linkItem(s) | Navigation |
 | **ctaBand** | callToAction | **New.** The site-wide closing band ("We're ready to work for you"). Templates use it; so does any CTA band section left without a heading |
 | **valueProps** | featureItem[] | **New.** Shared "why us" cards ("No BS pricing", "Amazing Quality", "Client Satisfaction") |
 | **capabilities** | featureItem[] | **New.** Shared "what we do" checklist ("Panel Upgrades" → its service, "+ More!") |
 | titleSuffix, ga4MeasurementId, googleSiteVerification | string | SEO and tracking |
 
-**Query:** `getSettings()` returns everything, with references resolved:
+**Query:** `getSettings()` (also exported as `getSiteSettings()`, same memoized promise) returns everything, with references resolved:
 - `founders` → `{name, role}`;
 - `addresses[].locationSlug`;
-- `serviceAreas` → `{name, slug, geo}`;
+- `serviceAreas` → `{name, slug, shortName, geo}`;
 - `heroQuotes[].review` → Review;
 - `valueProps[]` and `capabilities[]` with `service` → `{name, slug}`;
 - `homeCity.image`.
@@ -251,6 +251,8 @@ Real customer reviews, copied with attribution. Rendered as text, never as revie
 | service | Service, for service pages |
 | featured | Put first in lists |
 
+The `Review` shape the queries return flattens the tags: `location` is the bare city name ("Gilbert"), `locationSlug`, `service` (service name) and `serviceSlug`.
+
 **Queries:**
 - `getReviews({location?, service?, featuredOnly?, limit?})`: `location` and `service` accept an `_id` or a slug. Featured first, then newest.
 - `getFeaturedReviews(limit)`: unchanged.
@@ -286,7 +288,7 @@ Real customer reviews, copied with attribution. Rendered as text, never as revie
 
 | Type | Fields | Used for |
 |---|---|---|
-| seo | title, description, ogImage, noIndex | Meta tags (frozen to the live values) |
+| seo | title, description, ogImage (+alt, warning), noIndex | Meta tags (frozen to the live values) |
 | richText | Blocks (normal, h2–h6, blockquote; bullet/numbered lists; bold/italic/sup/sub/underline; `link` {href, openInNewTab}), `figure` (image + alt + caption), `table`, `videoEmbed`, `callToAction` | Bodies of services, cities, posts, FAQ answers |
 | **textWithMentions** | Paragraph blocks with bold/italic, `link` {href} and **`teamMemberMention` {member → teamMember}** | Team intro body. Mentioned names render with the person's photo and link to /our-team |
 | callToAction | heading, text, label, href, **statusText** (new) | CTA bands, Site settings → CTA band, inline CTAs |
@@ -312,7 +314,7 @@ There are 21 section types: the 12 original ones (extended, nothing renamed) and
 - **Proof:** reviews, FAQs.
 - **Contact:** contact form, office locations, CTA band.
 
-Studio warns if a page has more than one hero, or a hero that isn't first.
+Studio blocks publishing a page with more than one hero, and warns when the hero isn't first.
 
 Each entry lists the stored fields, then **Returns:** what `getPage()` gives the renderer (type names from `web/src/lib/types.ts`).
 
@@ -320,6 +322,7 @@ Each entry lists the stored fields, then **Returns:** what `getPage()` gives the
 - `eyebrow` is a short label rendered as a `<p>` above the heading.
 - `headingAccent` is words of the heading to highlight. Studio warns if they don't appear in the heading.
 - `cta` is a linkItem button.
+- A city reference on a section (reviews filter, gallery photo) is returned as `{name, slug}` where `name` is the bare city ("Gilbert"), not the stored `location.name`.
 
 ### heroSection (Hero): `HeroSection`
 
@@ -383,10 +386,10 @@ The top of the page. **It renders the page H1 from `page.heading`; it has no hea
 | **eyebrow**, heading, **intro** | |
 | reviews | Picked reviews |
 | **location**, **service** | Filters used when nothing is picked |
-| **limit** | Default 6; 0 = all |
+| **limit** | Default 6; 0 = all. Only limits the automatic list: picked reviews are all shown |
 | **cta** | e.g. "Get a Free Estimate Now" → /contact-us |
 
-**Returns:** `reviews: Review[]`, from the picked reviews, else the filtered reviews (featured first, then newest), with the limit applied. Empty = hide the section. Show the aggregate rating from Site settings as text if wanted; no review markup.
+**Returns:** `reviews: Review[]`: every picked review in order, else the filtered reviews (featured first, then newest) with the limit applied. Empty = hide the section. Show the aggregate rating from Site settings as text if wanted; no review markup.
 
 ### faqSection (FAQs): `FaqSection`
 
@@ -420,10 +423,10 @@ The top of the page. **It renders the page H1 from `page.heading`; it has no hea
 | **posts** | Picked posts |
 | **category** | Only this category (ignored when posts are picked) |
 | **featuredFirst** | Featured posts ahead of newer ones |
-| limit | Default 3; **0 = all** (/blog lists every post) |
+| limit | Default 3; **0 = all** (/blog lists every post). Only limits the automatic list: picked posts are all shown |
 | **cta** | |
 
-**Returns:** `posts: PostSummary[]`, with the limit applied.
+**Returns:** `posts: PostSummary[]`: every picked post in order, else the newest posts with the limit applied.
 
 ### jobsSection (Job openings): `JobsSection`
 
@@ -569,7 +572,7 @@ A short checklist with a photo and a side note, e.g. "We treat you like family" 
 ## 5. What the queries do for you
 
 **`getPage(slug)`** resolves every reference in every section (see "Returns" above). It also post-processes the result, because GROQ can't do these steps:
-- applies `limit` on reviews (default 6) and posts (default 3; 0 = all);
+- applies `limit` to automatic review lists (default 6) and post lists (default 3; 0 = all); picked items are never cut;
 - drops dangling references (deleted documents);
 - de-duplicates mentioned people;
 - builds `groups` for grouped service lists.
@@ -580,7 +583,7 @@ Every list a section renders is always an array.
 
 | Export | Returns |
 |---|---|
-| `getSettings()` | SiteSettings (memoized) |
+| `getSettings()`, `getSiteSettings()` | SiteSettings (memoized; the second is an alias) |
 | `getPage(slug)`, `getPageSlugs()` | PageDoc with typed `sections: PageSection[]` |
 | `collectPageFaqs(page)` | Every FAQ shown on the page, de-duplicated. Build the one FAQPage node from it |
 | `resolveTrustItems(items, settings)` | Display-ready trust facts (empty items = standard strip) |
@@ -637,3 +640,30 @@ page.sections.push({_type: 'featureGridSection', _key: 'capabilities', heading: 
 ```
 
 Find documents in `ctx.docs` by `_type` and slug (as above) rather than guessing ids.
+
+---
+
+## 7. Studio checks (for editors)
+
+**Errors block publishing:**
+- Missing alt text on an image in a section, a project, a gallery, or Site settings → Home city.
+- A URL slug that isn't lowercase letters, numbers and single hyphens.
+- More than one hero on a page.
+- A price guide row without both prices (unless it links a service), or with "To" below "From". A price guide without its "Prices checked on" date.
+- A service price range with only one of low/high, or high below low.
+- Empty required parts of a section item: a trust fact with neither value nor label, a highlight point with neither lead nor text, a quote without its text, a team intro without text, a process step or FAQ group without a title, a service card without a service, a hero quote without its words.
+- An office city that isn't in Site settings → Addresses.
+
+**Warnings allow publishing, but read them:**
+- Changing the slug of a live page without a redirect from the old URL.
+- A hero that isn't the first section.
+- Highlighted words that don't appear in the heading.
+- A Features section with no items and no shared list (it won't show).
+- A quick answer outside 40–60 words.
+- A service price range without the date it was checked.
+- A process with fewer than two steps.
+- More than four hero quotes, or a quote over ~140 characters.
+- Missing alt text on document main images, team photos, the logo and share images.
+- Meta titles and descriptions outside the recommended lengths.
+
+Schema note: Sanity takes a check's level (error or warning) from the rule, not from what a custom validator returns. To make a custom check a warning, chain `.warning()` on the rule. When a field needs both, use an array of rules.

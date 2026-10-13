@@ -30,7 +30,7 @@ export interface LinkItem {
   href: string
 }
 
-/** A link target: a document's display name and slug. */
+/** A link target: a document's display name and slug. For a location, `name` is the bare city ("Gilbert"). */
 export interface NamedLink {
   name: string
   slug: string
@@ -150,7 +150,8 @@ export interface SiteSettings {
   /** Shared hero quotes (city pages and any template without its own). */
   heroQuotes?: ReviewSnippet[] | null
   sameAs?: string[]
-  serviceAreas?: Array<{name: string; slug: string; geo?: {lat: number; lng: number}}>
+  /** `name` is the stored name (some still hold the full H1); `shortName` is the bare city. */
+  serviceAreas?: Array<{name: string; slug: string; shortName: string; geo?: {lat: number; lng: number}}>
   homeCity?: HomeCity | null
   sisterCompanies?: LinkItem[]
   logo?: ImageRef
@@ -186,7 +187,7 @@ export interface Review {
   source?: string
   sourceUrl?: string
   featured?: boolean
-  /** City name of the review, when tagged. */
+  /** Bare city name of the review ("Gilbert"), when tagged. */
   location?: string
   locationSlug?: string
   /** Service name of the review, when tagged. */
@@ -453,7 +454,7 @@ export interface ReviewsSection extends SectionBase {
   eyebrow?: string
   heading?: string
   intro?: string
-  /** Picked reviews, else reviews matching the city/service filters, featured first; `limit` applied (default 6, 0 = all). */
+  /** Picked reviews (all of them, in order), else reviews matching the city/service filters, featured first, with `limit` applied (default 6, 0 = all). */
   reviews: Review[]
   location?: NamedLink | null
   service?: NamedLink | null
@@ -496,7 +497,7 @@ export interface PostsSection extends SectionBase {
   eyebrow?: string
   heading?: string
   intro?: string
-  /** Picked posts, else the newest posts (in `category`, featured first when asked); `limit` applied (default 3, 0 = all). */
+  /** Picked posts (all of them, in order), else the newest posts (in `category`, featured first when asked) with `limit` applied (default 3, 0 = all). */
   posts: PostSummary[]
   category?: NamedLink | null
   featuredFirst?: boolean

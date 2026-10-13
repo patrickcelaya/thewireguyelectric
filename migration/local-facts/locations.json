@@ -1,0 +1,2069 @@
+{
+  "$comment": "Sourced local facts for the city pages. Every value carries source ids (see \"sources\") and a confidence. scripts/migrate/content/local-facts.mjs writes only confidence \"high\" values to the location documents. Neighborhoods are only names the business already uses in its own copy (homepage tiles or the location body); each carries the quote that names it, which the module checks. Human-readable version: docs/research/local-facts.md.",
+  "researchedAt": "2026-10-13",
+  "method": {
+    "zipCodes": "Census 2020 ZCTA-to-place relationship file: a ZIP is listed when at least 40% of its land is inside the city limits, or it covers at least 5% of the city’s land (and at least 0.25 sq mi of overlap). ZIPs under 50% are listed in \"partlyInCity\". ZCTAs approximate USPS ZIP areas; USPS lookups were not reachable (bot protection), so USPS city names were not checked.",
+    "geo": "USGS GNIS populated-place point (traditional town center), rounded to 4 decimals. Census 2025 Gazetteer internal points were used as a cross-check.",
+    "utilityProviders": "Values use the schema list (SRP, APS, City of Mesa, TEP, ED3). Boundaries from SRP’s 2026 Electric Service Specifications map (which draws the APS pockets inside SRP’s area) and APS’s Metro Phoenix territory map, plus each city’s own utility listing where reachable. Utility territory is set by address; nuance goes in \"detail\" and permitNotes.",
+    "permitAuthority": "Official city/town/county pages. Several city sites (mesaaz.gov, gilbertaz.gov, tempe.gov, queencreekaz.gov, explore.pinal.gov, azmag.gov) return 403 to automated fetches; their content was confirmed through search-engine extracts of the official pages and is marked in the source note."
+  },
+  "sources": {
+    "census-zcta-place": {
+      "title": "2020 Census ZCTA to Place Relationship File (tab20_zcta520_place20_natl.txt)",
+      "publisher": "U.S. Census Bureau",
+      "url": "https://www2.census.gov/geo/docs/maps-data/data/rel2020/zcta520/tab20_zcta520_place20_natl.txt",
+      "accessed": "2026-10-13"
+    },
+    "census-place-county": {
+      "title": "2020 Census Place by County reference file, Arizona (st04_az_place_by_county2020.txt)",
+      "publisher": "U.S. Census Bureau",
+      "url": "https://www2.census.gov/geo/docs/reference/codes2020/place_by_cou/st04_az_place_by_county2020.txt",
+      "accessed": "2026-10-13"
+    },
+    "census-tigerweb-zcta": {
+      "title": "TIGERweb 2020 Census ZIP Code Tabulation Areas (layer 1), queried for the Ahwatukee Foothills village overlap",
+      "publisher": "U.S. Census Bureau",
+      "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/PUMA_TAD_TAZ_UGA_ZCTA/MapServer/1",
+      "accessed": "2026-10-13"
+    },
+    "usgs-gnis-az": {
+      "title": "GNIS Domestic Names, Arizona (populated-place coordinates)",
+      "publisher": "U.S. Geological Survey",
+      "url": "https://prd-tnm.s3.amazonaws.com/StagedProducts/GeographicNames/DomesticNames/DomesticNames_AZ_Text.zip",
+      "accessed": "2026-10-13"
+    },
+    "srp-ess-2026": {
+      "title": "SRP Electric Service Specifications (2026 republication, revised through 2026-08): section 1-1-1 \"SRP Electric Service Area\" map with \"APS Boundaries within the Salt River Project Valley Service Area\" and \"City of Mesa Boundary\" insets; section 1-3 items 4 and 6",
+      "publisher": "Salt River Project",
+      "url": "https://azure-na-assets.contentstack.com/v3/assets/bltefc1fc708dcc94e7/blt87e6290270102348/6a85de4fc0f001dc63fe7495/Electric_Service_Specifications.pdf",
+      "quotes": [
+        "Contact both SRP and the AHJ prior to making any panel modifications and/or repair to an existing service entrance section. SRP will reconnect power when both SRP and the AHJ approve all service entrance section modifications.",
+        "Maricopa County and most cities/towns in SRP’s service area have ordinances restricting SRP from energizing the load side of the electrical service to the Customer until the Customer has obtained the necessary permits and until the actual electrical installation has been approved by the AHJ."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "aps-esrm-100": {
+      "title": "APS Electric Service Requirements Manual, section 100 (General Information), 100.9 Inspection Approval and Permits",
+      "publisher": "Arizona Public Service",
+      "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/About/Construction-and-Power-Line-Siting/Construction-Services/Electric-Service-Requirements-Manual/100.pdf",
+      "quotes": [
+        "On new installations, or where changes necessitate relocating or replacing APS meters, ... APS shall not energize or restore service until the wiring has been approved and proper notification given to APS by the inspection authorities where such inspection is required."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "aps-phx-metro-map": {
+      "title": "APS Service Territory, Metro Phoenix map (dated 2013-09-17; white = APS service area)",
+      "publisher": "Arizona Public Service",
+      "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/Residential/Service-Plans/Service-Territory-Map/APS_Service_Territory_Phoenix_Metro.pdf",
+      "accessed": "2026-10-13"
+    },
+    "gilbert-permits": {
+      "title": "Town of Gilbert Development Services: Permits, Applications & Checklists (Plan Review & Inspection)",
+      "publisher": "Town of Gilbert",
+      "url": "https://www.gilbertaz.gov/departments/development-services/plan-review-inspection/permits-applications",
+      "note": "gilbertaz.gov returns 403 to automated fetches; content confirmed through search-engine extracts (applications, payments and inspection scheduling run through the OneStopShop portal).",
+      "accessed": "2026-10-13"
+    },
+    "gilbert-power-outage": {
+      "title": "Town of Gilbert Emergency Management: Power Outage",
+      "publisher": "Town of Gilbert",
+      "url": "https://www.gilbertaz.gov/departments/emergency-management/hazards-emergency-situations/power-outage",
+      "note": "Search-engine extract: the Town of Gilbert has two utility companies operating within the Town, SRP and APS.",
+      "accessed": "2026-10-13"
+    },
+    "chandler-building-safety": {
+      "title": "City of Chandler Development Services: Building Safety — Plan Review, Permits and Inspections",
+      "publisher": "City of Chandler",
+      "url": "https://www.chandleraz.gov/government/departments/development-services/building-safety-plan-review-permits-and-inspections",
+      "quotes": [
+        "The City of Chandler has amended and adopted the 2024 editions of the International Codes with the 2023 edition of the National Electrical Code. All plans submitted for review on or after July 1, 2025, must be designed to comply with these code editions."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "chandler-homeowner-manual": {
+      "title": "City of Chandler Homeowner’s Building Permit Manual (Development Services Department), \"Electrical Permits\"",
+      "publisher": "City of Chandler",
+      "url": "https://www.chandleraz.gov/government/departments/development-services/building-safety-plan-review-permits-and-inspections",
+      "note": "Linked from the Building Safety page (\"Homeowner's Building Permit Manual\"); PDF modified 2026-10-09.",
+      "quotes": [
+        "Provide a panel schedule showing the existing and new breakers and if you are adding a sub-panel. Load calculations may also be required."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "chandler-utilities": {
+      "title": "City of Chandler Utility Services (\"Other Utility Services: APS, SRP, Southwest Gas\")",
+      "publisher": "City of Chandler",
+      "url": "https://www.chandleraz.gov/residents/utility-services",
+      "accessed": "2026-10-13"
+    },
+    "scottsdale-permit-services": {
+      "title": "City of Scottsdale Planning & Development: Permit Services",
+      "publisher": "City of Scottsdale",
+      "url": "https://www.scottsdaleaz.gov/planning-development/permit-services",
+      "quotes": [
+        "Work completed without a permit will be fined an amount equal to double the permit fee.",
+        "All permit requests require a completed application to be submitted through Scottsdale SPUR, our planning and permitting portal."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "scottsdale-home-improvement": {
+      "title": "City of Scottsdale Planning & Development: Home Improvement",
+      "publisher": "City of Scottsdale",
+      "url": "https://www.scottsdaleaz.gov/planning-development/home-improvement",
+      "quotes": [
+        "Generally, home improvement projects that are cosmetic, do not involve structural changes, and do not require skilled trades, such as plumbing, electrical, and mechanical work, do not require a permit."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "tempe-building-safety": {
+      "title": "City of Tempe Community Development: Building Safety (Permit Center)",
+      "publisher": "City of Tempe",
+      "url": "https://www.tempe.gov/government/community-development/building-safety",
+      "note": "tempe.gov returns 403 to automated fetches; content confirmed through search-engine extracts (Building Safety Division of Community Development; applications through the Tempe Citizen Access Portal; Permit Center 480-350-4311).",
+      "accessed": "2026-10-13"
+    },
+    "tempe-new-resident": {
+      "title": "City of Tempe New Community Member Directory (lists APS and SRP for electricity)",
+      "publisher": "City of Tempe",
+      "url": "https://www.tempe.gov/government/city-manager-s-office/neighborhood-services/new-community-member-directory",
+      "note": "Search-engine extract (direct fetch returns 403).",
+      "accessed": "2026-10-13"
+    },
+    "phoenix-residential-building": {
+      "title": "City of Phoenix Planning and Development: Residential Building",
+      "publisher": "City of Phoenix",
+      "url": "https://www.phoenix.gov/administration/departments/pdd/residential-building.html",
+      "accessed": "2026-10-13"
+    },
+    "phoenix-ev-trt-00311": {
+      "title": "City of Phoenix PDD, \"Electric Vehicle Chargers – Residential Permitting\" (TRT/DOC/00311, new 05/23)",
+      "publisher": "City of Phoenix",
+      "url": "https://www.phoenix.gov/content/dam/phoenix/pddsite/documents/trt/external/dsd_trt_pdf_00311.pdf",
+      "quotes": [
+        "EVSE equipment installations can be reviewed and permitted over the counter if the existing electrical service entrance section does not exceed 200-amp 1 phase and does not require an upgrade to facilitate the installation of the new equipment.",
+        "EVSE equipment installations that require an electrical service entrance be upgraded beyond 200-amp 1 phase will be required to be formally submitted for plan review."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "phoenix-villages": {
+      "title": "City of Phoenix GIS, Villages map service (15 urban villages, including \"Ahwatukee Foothills\" and \"Central City\")",
+      "publisher": "City of Phoenix",
+      "url": "https://maps.phoenix.gov/pub/rest/services/Public/Villages/MapServer/0",
+      "accessed": "2026-10-13"
+    },
+    "phoenix-parks": {
+      "title": "City of Phoenix GIS, Park Boundaries (South Mountain), used to exclude park-only ZIP overlap from Ahwatukee",
+      "publisher": "City of Phoenix",
+      "url": "https://maps.phoenix.gov/pub/rest/services/Public/ParksOpenData/MapServer/10",
+      "accessed": "2026-10-13"
+    },
+    "qc-building-safety": {
+      "title": "Town of Queen Creek Development Services: Building Safety",
+      "publisher": "Town of Queen Creek",
+      "url": "https://www.queencreekaz.gov/government/development-services/building-safety",
+      "note": "queencreekaz.gov returns 403 to automated fetches; content confirmed through search-engine extracts (Building Safety Division enforces the adopted building, plumbing, mechanical and electrical codes; plan review, permit issuance and inspection; Development Nexus online portal).",
+      "accessed": "2026-10-13"
+    },
+    "qc-resident-resources": {
+      "title": "Town of Queen Creek Resident Resources (lists Salt River Project for electric service)",
+      "publisher": "Town of Queen Creek",
+      "url": "https://queencreekaz.gov/residents/resident-resources",
+      "note": "Search-engine extract (direct fetch returns 403).",
+      "accessed": "2026-10-13"
+    },
+    "pinal-building-safety": {
+      "title": "Pinal County Community Development: Building Safety",
+      "publisher": "Pinal County",
+      "url": "https://www.pinal.gov/189/Building-Safety",
+      "accessed": "2026-10-13"
+    },
+    "pinal-stv-permitting-notice": {
+      "title": "Pinal County, applicant information for permitting in the Town of San Tan Valley (Document Center 30892) and news flash 2439 (2026-06-10)",
+      "publisher": "Pinal County",
+      "url": "https://explore.pinal.gov/DocumentCenter/View/30892",
+      "note": "explore.pinal.gov returns 403 to automated fetches; content confirmed through two independent search-engine extracts: the Town has an IGA with Pinal County for building plan review, permitting, inspections and certificates of occupancy, currently scheduled to run through 2026-12-31; applicants submit building permit applications to Pinal County. The banner \"Important Permitting Information for the Town of San Tan Valley\" appears on https://www.pinal.gov/191/Applications-Information-Bulletins.",
+      "accessed": "2026-10-13"
+    },
+    "mag-stv": {
+      "title": "Maricopa Association of Governments: Town of San Tan Valley Becomes Newest MAG Member Agency",
+      "publisher": "Maricopa Association of Governments",
+      "url": "https://azmag.gov/Newsroom/News-Releases/town-of-san-tan-valley-becomes-newest-mag-member-agency",
+      "note": "Search-engine extract (direct fetch returns 403): incorporation approved by voters (Proposition 495, 2025-08-05); Town officially incorporated 2025-09-17. GNIS also lists \"Town of San Tan Valley\" as a civil feature (ID 2833010, added 2025-09-23).",
+      "accessed": "2026-10-13"
+    },
+    "ed3-history": {
+      "title": "Electrical District No. 3 of Pinal County: History",
+      "publisher": "Electrical District No. 3",
+      "url": "https://www.ed3online.org/about-us/history",
+      "note": "ed3online.org returns 403 to automated fetches; search-engine extract: territory described as south of the Gila River Indian Community, north of the Tohono O’odham Nation, east of the Pinal-Maricopa county line and west of the City of Casa Grande (i.e. western Pinal County, not San Tan Valley).",
+      "accessed": "2026-10-13"
+    },
+    "aj-building-safety": {
+      "title": "City of Apache Junction Development Services: Division of Building Safety and Inspection",
+      "publisher": "City of Apache Junction",
+      "url": "https://www.apachejunctionaz.gov/85/Building-Safety-and-Inspection",
+      "quotes": [
+        "The Division of Building Safety and Inspection uses a permitting software called MyGovernmentOnline (MGO).",
+        "MyGovernmentOnline processes permit applications, plan review, and inspections on-line."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "aj-overhead-lines": {
+      "title": "City of Apache Junction: Overhead Lines",
+      "publisher": "City of Apache Junction",
+      "url": "https://www.apachejunctionaz.gov/1118/Utility-Poles-and-Overhead-Lines",
+      "quotes": [
+        "Utility poles and power lines in Apache Junction are owned by Salt River Project (SRP), our trusted utility partner."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "fh-building-safety": {
+      "title": "Town of Fountain Hills Development Services: Building Safety",
+      "publisher": "Town of Fountain Hills",
+      "url": "https://www.fountainhillsaz.gov/204/Building-Safety",
+      "quotes": [
+        "TOPPS is the Town of Fountain Hills online system for processing building applications."
+      ],
+      "accessed": "2026-10-13"
+    },
+    "fh-utility-contacts": {
+      "title": "Town of Fountain Hills: Important Numbers and Utility Contact Information",
+      "publisher": "Town of Fountain Hills",
+      "url": "https://www.fountainhillsaz.gov/741/Utility-Contact-Information",
+      "quotes": [
+        "SRP - To report a power emergency 602-236-8811"
+      ],
+      "accessed": "2026-10-13"
+    },
+    "business-homepage-tiles": {
+      "title": "The Wire Guy Electric homepage, service-area tiles (live snapshot migration/live-snapshots/index.html)",
+      "publisher": "The Wire Guy Electric",
+      "url": "https://www.thewireguyelectric.com/",
+      "accessed": "2026-10-13"
+    },
+    "business-location-body": {
+      "title": "The Wire Guy Electric location page body, \"Service Areas within {City} include\" list (Sanity location.body)",
+      "publisher": "The Wire Guy Electric",
+      "url": "https://www.thewireguyelectric.com/locations/{slug}",
+      "accessed": "2026-10-13"
+    }
+  },
+  "locations": {
+    "gilbert": {
+      "city": "Gilbert",
+      "county": {
+        "value": "Maricopa County",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "SRP",
+          "APS"
+        ],
+        "detail": "Most of Gilbert is in SRP’s electric service area. APS serves a pocket between Guadalupe and Warner roads, from Cooper Road to Lindsay Road.",
+        "sources": [
+          "srp-ess-2026",
+          "aps-phx-metro-map",
+          "gilbert-power-outage"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "Town of Gilbert Development Services (Plan Review & Inspection)",
+        "url": "https://www.gilbertaz.gov/departments/development-services/plan-review-inspection/permits-applications",
+        "portal": "OneStopShop (OneStopShop.gilbertaz.gov)",
+        "sources": [
+          "gilbert-permits"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85233",
+          "85234",
+          "85295",
+          "85296",
+          "85297",
+          "85298"
+        ],
+        "partlyInCity": [],
+        "detail": [
+          {
+            "zip": "85233",
+            "pctOfZipLandInCity": 98.9,
+            "pctOfCityLand": 13.9
+          },
+          {
+            "zip": "85234",
+            "pctOfZipLandInCity": 97.7,
+            "pctOfCityLand": 17
+          },
+          {
+            "zip": "85295",
+            "pctOfZipLandInCity": 93.7,
+            "pctOfCityLand": 16.5
+          },
+          {
+            "zip": "85296",
+            "pctOfZipLandInCity": 96.2,
+            "pctOfCityLand": 16.4
+          },
+          {
+            "zip": "85297",
+            "pctOfZipLandInCity": 96.6,
+            "pctOfCityLand": 15.1
+          },
+          {
+            "zip": "85298",
+            "pctOfZipLandInCity": 83.7,
+            "pctOfCityLand": 19.1
+          }
+        ],
+        "nearbyNotIncluded": [
+          {
+            "zip": "85142",
+            "pctOfZipLandInCity": 0.9,
+            "pctOfCityLand": 1.3
+          },
+          {
+            "zip": "85212",
+            "pctOfZipLandInCity": 0.7,
+            "pctOfCityLand": 0.4
+          }
+        ],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high"
+      },
+      "geo": {
+        "value": {
+          "lat": 33.3528,
+          "lng": -111.789
+        },
+        "gnisFeatureId": 5032,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/5032",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Power Ranch",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+            }
+          },
+          {
+            "name": "Val Vista Lakes",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+            }
+          },
+          {
+            "name": "Seville",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+            }
+          },
+          {
+            "name": "Morrison Ranch",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+            }
+          },
+          {
+            "name": "Agritopia",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+            }
+          },
+          {
+            "name": "The Islands",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "The Islands"
+            }
+          }
+        ],
+        "confidence": "high"
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Gilbert are issued by the Town of Gilbert’s Development Services department (Plan Review & Inspection). Applications, fees and inspection requests go through the Town’s OneStopShop portal.",
+          "Most of Gilbert is in SRP’s electric service area; APS serves a pocket between Guadalupe and Warner roads, from Cooper Road to Lindsay Road. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work; APS energizes a new, relocated or replaced meter only after the inspection authority approves the wiring. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "gilbert-permits",
+          "srp-ess-2026",
+          "aps-esrm-100"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": [
+        {
+          "name": "Higley",
+          "queries": "\"electrician higley az\" 53 impressions at position 4.5; \"electrician higley, az\" 16 at 2.9",
+          "note": "GNIS populated place inside Gilbert; not named in the business copy."
+        }
+      ]
+    },
+    "chandler": {
+      "city": "Chandler",
+      "county": {
+        "value": "Maricopa County",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "SRP",
+          "APS"
+        ],
+        "detail": "Most of Chandler is in SRP’s electric service area. APS serves parts of the city, including the area between Ray and Pecos roads from Alma School Road to McQueen Road, and a second small pocket near Arizona Avenue shown in a separate inset of the SRP map.",
+        "sources": [
+          "srp-ess-2026",
+          "aps-phx-metro-map",
+          "chandler-utilities"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "City of Chandler Development Services Department, Building Safety (plan review, permits and inspections)",
+        "url": "https://www.chandleraz.gov/government/departments/development-services/building-safety-plan-review-permits-and-inspections",
+        "codes": "2024 International Codes and 2023 NEC as amended by the city, for plans submitted on or after 2025-07-01",
+        "sources": [
+          "chandler-building-safety",
+          "chandler-homeowner-manual"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85224",
+          "85225",
+          "85226",
+          "85248",
+          "85249",
+          "85286"
+        ],
+        "partlyInCity": [
+          "85226",
+          "85248"
+        ],
+        "detail": [
+          {
+            "zip": "85224",
+            "pctOfZipLandInCity": 95.2,
+            "pctOfCityLand": 13.7
+          },
+          {
+            "zip": "85225",
+            "pctOfZipLandInCity": 98.7,
+            "pctOfCityLand": 19.2
+          },
+          {
+            "zip": "85226",
+            "pctOfZipLandInCity": 27.1,
+            "pctOfCityLand": 16
+          },
+          {
+            "zip": "85248",
+            "pctOfZipLandInCity": 21.9,
+            "pctOfCityLand": 10.3
+          },
+          {
+            "zip": "85249",
+            "pctOfZipLandInCity": 81.5,
+            "pctOfCityLand": 17.9
+          },
+          {
+            "zip": "85286",
+            "pctOfZipLandInCity": 93.9,
+            "pctOfCityLand": 22.9
+          }
+        ],
+        "nearbyNotIncluded": [],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high"
+      },
+      "geo": {
+        "value": {
+          "lat": 33.3062,
+          "lng": -111.8413
+        },
+        "gnisFeatureId": 2748,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/2748",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Ocotillo",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,"
+            }
+          },
+          {
+            "name": "Fulton Ranch",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,"
+            }
+          },
+          {
+            "name": "Downtown Chandler",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,"
+            }
+          },
+          {
+            "name": "Sun Groves",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Sun Groves"
+            }
+          },
+          {
+            "name": "Andersen Springs",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Andersen Springs"
+            }
+          }
+        ],
+        "confidence": "high",
+        "note": "Sun Groves (85249) verified in listing data; Andersen Springs appears as a Chandler subdivision name in listing data only."
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Chandler are issued by the City of Chandler Development Services Department (Building Safety: plan review, permits and inspections). Plans submitted on or after July 1, 2025 are reviewed under the 2024 International Codes and the 2023 National Electrical Code, as amended by the city.",
+          "For an electrical permit, the city’s homeowner permit manual asks for a panel schedule showing existing and new breakers, and load calculations may also be required.",
+          "Most of Chandler is in SRP’s electric service area; APS serves parts of the city, including the area between Ray and Pecos roads from Alma School Road to McQueen Road. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work; APS energizes a new, relocated or replaced meter only after the inspection authority approves the wiring. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "chandler-building-safety",
+          "chandler-homeowner-manual",
+          "srp-ess-2026",
+          "aps-esrm-100"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": [
+        {
+          "name": "Chandler Heights",
+          "queries": "\"electrician chandler heights az\" 27 at 10.5; \"electrical repair chandler heights az\" 23 at 37.1",
+          "note": "GNIS populated place (unincorporated area southeast of Chandler); confirm whether the business wants to name it."
+        },
+        {
+          "name": "Sun Lakes",
+          "queries": "\"commercial electrician sun lakes\" 45 at 48 (lands on /locations/tempe)",
+          "note": "Sun Lakes is an unincorporated community next to Chandler, not inside city limits."
+        }
+      ]
+    },
+    "scottsdale": {
+      "city": "Scottsdale",
+      "county": {
+        "value": "Maricopa County",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "SRP",
+          "APS"
+        ],
+        "detail": "SRP serves much of central and south Scottsdale. APS serves most of north Scottsdale and a pocket of south Scottsdale between Thomas and Chaparral roads, from 64th Street to Hayden Road.",
+        "sources": [
+          "srp-ess-2026",
+          "aps-phx-metro-map"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "City of Scottsdale Planning & Development (Permit Services, One Stop Shop, 7447 E. Indian School Road)",
+        "url": "https://www.scottsdaleaz.gov/planning-development/permit-services",
+        "portal": "Scottsdale SPUR",
+        "sources": [
+          "scottsdale-permit-services",
+          "scottsdale-home-improvement"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85250",
+          "85251",
+          "85255",
+          "85257",
+          "85258",
+          "85259",
+          "85260",
+          "85262",
+          "85266"
+        ],
+        "partlyInCity": [
+          "85250",
+          "85262"
+        ],
+        "detail": [
+          {
+            "zip": "85250",
+            "pctOfZipLandInCity": 45.4,
+            "pctOfCityLand": 2.1
+          },
+          {
+            "zip": "85251",
+            "pctOfZipLandInCity": 87.1,
+            "pctOfCityLand": 3.4
+          },
+          {
+            "zip": "85255",
+            "pctOfZipLandInCity": 57.5,
+            "pctOfCityLand": 27.6
+          },
+          {
+            "zip": "85257",
+            "pctOfZipLandInCity": 80.6,
+            "pctOfCityLand": 3
+          },
+          {
+            "zip": "85258",
+            "pctOfZipLandInCity": 78.1,
+            "pctOfCityLand": 4.4
+          },
+          {
+            "zip": "85259",
+            "pctOfZipLandInCity": 95.5,
+            "pctOfCityLand": 10.8
+          },
+          {
+            "zip": "85260",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 7.7
+          },
+          {
+            "zip": "85262",
+            "pctOfZipLandInCity": 35.7,
+            "pctOfCityLand": 30.1
+          },
+          {
+            "zip": "85266",
+            "pctOfZipLandInCity": 86.1,
+            "pctOfCityLand": 9.2
+          }
+        ],
+        "nearbyNotIncluded": [
+          {
+            "zip": "85253",
+            "pctOfZipLandInCity": 5.6,
+            "pctOfCityLand": 0.5
+          },
+          {
+            "zip": "85254",
+            "pctOfZipLandInCity": 13.9,
+            "pctOfCityLand": 1
+          }
+        ],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high",
+        "note": "85253 (Paradise Valley) and 85254 (mostly Phoenix) overlap Scottsdale only slightly and are not listed."
+      },
+      "geo": {
+        "value": {
+          "lat": 33.5092,
+          "lng": -111.899
+        },
+        "gnisFeatureId": 11029,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/11029",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "North Scottsdale",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+            }
+          },
+          {
+            "name": "DC Ranch",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+            }
+          },
+          {
+            "name": "McCormick Ranch",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+            }
+          },
+          {
+            "name": "Gainey Ranch",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+            }
+          },
+          {
+            "name": "Old Town Scottsdale",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Old Town Scottsdale"
+            }
+          }
+        ],
+        "confidence": "high"
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Scottsdale are issued by the City of Scottsdale Planning & Development department (Permit Services and the One Stop Shop at 7447 E. Indian School Road). Applications go through the city’s Scottsdale SPUR portal. The city fines work completed without a permit an amount equal to double the permit fee.",
+          "Scottsdale is split between two utilities: SRP serves much of central and south Scottsdale, and APS serves most of north Scottsdale plus a pocket of south Scottsdale between Thomas and Chaparral roads, from 64th Street to Hayden Road. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work; APS energizes a new, relocated or replaced meter only after the inspection authority approves the wiring. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "scottsdale-permit-services",
+          "srp-ess-2026",
+          "aps-esrm-100"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": [
+        {
+          "name": "Paradise Valley",
+          "queries": "\"electrician paradise valley az\" 12 at 1.0; \"ev charger installation paradise valley\" 65 at 18; several more",
+          "note": "Separate town (Town of Paradise Valley), not a Scottsdale neighborhood; would need its own service-area decision."
+        },
+        {
+          "name": "Kierland",
+          "queries": "recommended in gsc-queries.md; no direct query in the exports",
+          "note": "Named in the Scottsdale body as \"Kierland Commons\" (a landmark), not as a service area."
+        },
+        {
+          "name": "Grayhawk",
+          "queries": "recommended in gsc-queries.md; no direct query in the exports"
+        },
+        {
+          "name": "Carefree / Cave Creek",
+          "queries": "\"carefree residential electrician\" 17 at 71; \"electrician cave creek\" 14 at 83.9",
+          "note": "Separate towns."
+        }
+      ]
+    },
+    "tempe": {
+      "city": "Tempe",
+      "county": {
+        "value": "Maricopa County",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "SRP",
+          "APS"
+        ],
+        "detail": "Most of Tempe is in SRP’s electric service area. APS serves an area around downtown Tempe, roughly Broadway Road north to Weber Drive, between Beck Avenue and Dorsey Lane (SRP map inset; the inset labels the north edge \"Weber Rd.\").",
+        "sources": [
+          "srp-ess-2026",
+          "aps-phx-metro-map",
+          "tempe-new-resident"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "City of Tempe Community Development Department, Building Safety Division (Permit Center)",
+        "url": "https://www.tempe.gov/government/community-development/building-safety",
+        "portal": "Tempe Citizen Access Portal",
+        "sources": [
+          "tempe-building-safety"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85281",
+          "85282",
+          "85283",
+          "85284"
+        ],
+        "partlyInCity": [],
+        "detail": [
+          {
+            "zip": "85281",
+            "pctOfZipLandInCity": 98.2,
+            "pctOfCityLand": 32.7
+          },
+          {
+            "zip": "85282",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 27.8
+          },
+          {
+            "zip": "85283",
+            "pctOfZipLandInCity": 90.3,
+            "pctOfCityLand": 20
+          },
+          {
+            "zip": "85284",
+            "pctOfZipLandInCity": 98.9,
+            "pctOfCityLand": 19.4
+          }
+        ],
+        "nearbyNotIncluded": [],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high"
+      },
+      "geo": {
+        "value": {
+          "lat": 33.4148,
+          "lng": -111.9093
+        },
+        "gnisFeatureId": 12233,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/12233",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Downtown Tempe",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods."
+            }
+          },
+          {
+            "name": "South Tempe",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods."
+            }
+          },
+          {
+            "name": "The Lakes",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods."
+            }
+          },
+          {
+            "name": "North Tempe",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "North Tempe"
+            }
+          },
+          {
+            "name": "Maple-Ash",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Maple-Ash"
+            }
+          }
+        ],
+        "confidence": "high",
+        "note": "The tile phrase \"near ASU neighborhoods\" is not a neighborhood name and is not listed."
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Tempe are issued by the City of Tempe Community Development Department’s Building Safety Division (Permit Center). Applications are submitted, and inspections requested, through the Tempe Citizen Access Portal.",
+          "Most of Tempe is in SRP’s electric service area; APS serves an area around downtown Tempe, roughly Broadway Road north to Weber Drive, between Beck Avenue and Dorsey Lane. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work; APS energizes a new, relocated or replaced meter only after the inspection authority approves the wiring. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "tempe-building-safety",
+          "srp-ess-2026",
+          "aps-esrm-100"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": []
+    },
+    "phoenix": {
+      "city": "Phoenix",
+      "county": {
+        "value": "Maricopa County",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "APS",
+          "SRP"
+        ],
+        "detail": "Phoenix is split between APS and SRP. APS serves much of central and north Phoenix; SRP serves other parts of the city, including Ahwatukee.",
+        "sources": [
+          "srp-ess-2026",
+          "aps-phx-metro-map"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "City of Phoenix Planning and Development Department (PDD)",
+        "url": "https://www.phoenix.gov/administration/departments/pdd/residential-building.html",
+        "portal": "SHAPE PHX",
+        "sources": [
+          "phoenix-residential-building",
+          "phoenix-ev-trt-00311"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85003",
+          "85004",
+          "85006",
+          "85007",
+          "85008",
+          "85009",
+          "85012",
+          "85013",
+          "85014",
+          "85015",
+          "85016",
+          "85017",
+          "85018",
+          "85019",
+          "85020",
+          "85021",
+          "85022",
+          "85023",
+          "85024",
+          "85027",
+          "85028",
+          "85029",
+          "85031",
+          "85032",
+          "85033",
+          "85034",
+          "85035",
+          "85037",
+          "85040",
+          "85041",
+          "85042",
+          "85043",
+          "85044",
+          "85045",
+          "85048",
+          "85050",
+          "85051",
+          "85053",
+          "85054",
+          "85083",
+          "85085",
+          "85086",
+          "85254",
+          "85310",
+          "85353"
+        ],
+        "partlyInCity": [
+          "85086",
+          "85353"
+        ],
+        "detail": [
+          {
+            "zip": "85003",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.4
+          },
+          {
+            "zip": "85004",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.4
+          },
+          {
+            "zip": "85006",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.8
+          },
+          {
+            "zip": "85007",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.9
+          },
+          {
+            "zip": "85008",
+            "pctOfZipLandInCity": 99.9,
+            "pctOfCityLand": 2
+          },
+          {
+            "zip": "85009",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 2.8
+          },
+          {
+            "zip": "85012",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.4
+          },
+          {
+            "zip": "85013",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.7
+          },
+          {
+            "zip": "85014",
+            "pctOfZipLandInCity": 96.2,
+            "pctOfCityLand": 0.8
+          },
+          {
+            "zip": "85015",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.9
+          },
+          {
+            "zip": "85016",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.6
+          },
+          {
+            "zip": "85017",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1
+          },
+          {
+            "zip": "85018",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 2.9
+          },
+          {
+            "zip": "85019",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.7
+          },
+          {
+            "zip": "85020",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.7
+          },
+          {
+            "zip": "85021",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.3
+          },
+          {
+            "zip": "85022",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.8
+          },
+          {
+            "zip": "85023",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.4
+          },
+          {
+            "zip": "85024",
+            "pctOfZipLandInCity": 96.9,
+            "pctOfCityLand": 2.2
+          },
+          {
+            "zip": "85027",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 2.3
+          },
+          {
+            "zip": "85028",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.3
+          },
+          {
+            "zip": "85029",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.8
+          },
+          {
+            "zip": "85031",
+            "pctOfZipLandInCity": 99.7,
+            "pctOfCityLand": 0.8
+          },
+          {
+            "zip": "85032",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 2.4
+          },
+          {
+            "zip": "85033",
+            "pctOfZipLandInCity": 99.6,
+            "pctOfCityLand": 1.2
+          },
+          {
+            "zip": "85034",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 2.2
+          },
+          {
+            "zip": "85035",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.1
+          },
+          {
+            "zip": "85037",
+            "pctOfZipLandInCity": 94.5,
+            "pctOfCityLand": 1.5
+          },
+          {
+            "zip": "85040",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 2
+          },
+          {
+            "zip": "85041",
+            "pctOfZipLandInCity": 88.9,
+            "pctOfCityLand": 2.7
+          },
+          {
+            "zip": "85042",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 3.8
+          },
+          {
+            "zip": "85043",
+            "pctOfZipLandInCity": 86,
+            "pctOfCityLand": 3.4
+          },
+          {
+            "zip": "85044",
+            "pctOfZipLandInCity": 99.4,
+            "pctOfCityLand": 3.2
+          },
+          {
+            "zip": "85045",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 0.8
+          },
+          {
+            "zip": "85048",
+            "pctOfZipLandInCity": 99.5,
+            "pctOfCityLand": 1.9
+          },
+          {
+            "zip": "85050",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 2.9
+          },
+          {
+            "zip": "85051",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1.2
+          },
+          {
+            "zip": "85053",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 1
+          },
+          {
+            "zip": "85054",
+            "pctOfZipLandInCity": 99.8,
+            "pctOfCityLand": 1.7
+          },
+          {
+            "zip": "85083",
+            "pctOfZipLandInCity": 100,
+            "pctOfCityLand": 3.8
+          },
+          {
+            "zip": "85085",
+            "pctOfZipLandInCity": 91.6,
+            "pctOfCityLand": 6.7
+          },
+          {
+            "zip": "85086",
+            "pctOfZipLandInCity": 48.3,
+            "pctOfCityLand": 5.7
+          },
+          {
+            "zip": "85254",
+            "pctOfZipLandInCity": 86.1,
+            "pctOfCityLand": 2.3
+          },
+          {
+            "zip": "85310",
+            "pctOfZipLandInCity": 77.2,
+            "pctOfCityLand": 1.4
+          },
+          {
+            "zip": "85353",
+            "pctOfZipLandInCity": 41.8,
+            "pctOfCityLand": 1.7
+          }
+        ],
+        "nearbyNotIncluded": [
+          {
+            "zip": "85087",
+            "pctOfZipLandInCity": 20.2,
+            "pctOfCityLand": 3.4
+          },
+          {
+            "zip": "85251",
+            "pctOfZipLandInCity": 8.3,
+            "pctOfCityLand": 0.1
+          },
+          {
+            "zip": "85253",
+            "pctOfZipLandInCity": 7.1,
+            "pctOfCityLand": 0.2
+          },
+          {
+            "zip": "85255",
+            "pctOfZipLandInCity": 5.1,
+            "pctOfCityLand": 0.9
+          },
+          {
+            "zip": "85266",
+            "pctOfZipLandInCity": 13.8,
+            "pctOfCityLand": 0.5
+          },
+          {
+            "zip": "85304",
+            "pctOfZipLandInCity": 24.1,
+            "pctOfCityLand": 0.3
+          },
+          {
+            "zip": "85306",
+            "pctOfZipLandInCity": 37.1,
+            "pctOfCityLand": 0.4
+          },
+          {
+            "zip": "85307",
+            "pctOfZipLandInCity": 15,
+            "pctOfCityLand": 0.3
+          },
+          {
+            "zip": "85308",
+            "pctOfZipLandInCity": 29.9,
+            "pctOfCityLand": 1
+          },
+          {
+            "zip": "85331",
+            "pctOfZipLandInCity": 10.2,
+            "pctOfCityLand": 2.6
+          },
+          {
+            "zip": "85339",
+            "pctOfZipLandInCity": 8.6,
+            "pctOfCityLand": 4.3
+          },
+          {
+            "zip": "85383",
+            "pctOfZipLandInCity": 1.8,
+            "pctOfCityLand": 0.6
+          }
+        ],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high",
+        "note": "ZIPs with at least 40% of their land inside Phoenix city limits (or covering 5% of the city). Several have a different USPS city name (e.g. 85310 Glendale, 85353 Tolleson); 85339 (Laveen) and 85087 (New River) fall below the threshold."
+      },
+      "geo": {
+        "value": {
+          "lat": 33.4484,
+          "lng": -112.074
+        },
+        "gnisFeatureId": 44784,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/44784",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Arcadia",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+            }
+          },
+          {
+            "name": "Biltmore",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+            }
+          },
+          {
+            "name": "Ahwatukee",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+            }
+          },
+          {
+            "name": "North Phoenix",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+            }
+          },
+          {
+            "name": "Central City",
+            "evidence": {
+              "source": "business-homepage-tiles",
+              "quote": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+            }
+          },
+          {
+            "name": "Downtown Phoenix",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Downtown Phoenix"
+            }
+          }
+        ],
+        "confidence": "high",
+        "note": "The body copy says \"Biltmore Area\"; the tile says \"Biltmore\". Central City and Ahwatukee Foothills are official City of Phoenix urban villages."
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Phoenix are issued by the City of Phoenix Planning and Development Department (PDD). Under the Planning and Development Department’s EV charger guidance, a home charger can be reviewed and permitted over the counter when the existing electrical service is 200 amps single-phase or less and does not need an upgrade; a charger that requires upgrading the service beyond 200 amps single-phase goes to formal plan review.",
+          "Phoenix is split between APS and SRP: APS serves much of central and north Phoenix, and SRP serves other parts of the city, including Ahwatukee. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work; APS energizes a new, relocated or replaced meter only after the inspection authority approves the wiring."
+        ],
+        "sources": [
+          "phoenix-residential-building",
+          "phoenix-ev-trt-00311",
+          "srp-ess-2026",
+          "aps-esrm-100"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": [
+        {
+          "name": "Desert Ridge",
+          "queries": "recommended in gsc-queries.md; no direct query in the exports",
+          "note": "Named in the Phoenix body as \"Desert Ridge Marketplace\" (a landmark), not as a service area."
+        },
+        {
+          "name": "Laveen",
+          "queries": "\"electrical panel upgrade laveen\" 7 at 70.3",
+          "note": "Official Phoenix urban village."
+        }
+      ]
+    },
+    "ahwatukee": {
+      "city": "Ahwatukee",
+      "county": {
+        "value": "Maricopa County",
+        "note": "Ahwatukee Foothills is a City of Phoenix urban village, so it takes Phoenix’s county.",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "SRP"
+        ],
+        "detail": "Ahwatukee lies inside SRP’s electric service area and outside APS’s.",
+        "sources": [
+          "srp-ess-2026",
+          "aps-phx-metro-map"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "City of Phoenix Planning and Development Department (PDD) — Ahwatukee Foothills is one of Phoenix’s 15 urban villages",
+        "url": "https://www.phoenix.gov/administration/departments/pdd/residential-building.html",
+        "sources": [
+          "phoenix-villages",
+          "phoenix-residential-building",
+          "phoenix-ev-trt-00311"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85044",
+          "85045",
+          "85048"
+        ],
+        "detail": [
+          {
+            "zip": "85044",
+            "pctOfZipLandInVillage": 88.4
+          },
+          {
+            "zip": "85045",
+            "pctOfZipLandInVillage": 99.7
+          },
+          {
+            "zip": "85048",
+            "pctOfZipLandInVillage": 99.3
+          }
+        ],
+        "nearbyNotIncluded": [
+          {
+            "zip": "85042",
+            "pctOfZipLandInVillage": 25.6,
+            "note": "the overlap is entirely South Mountain Park land"
+          },
+          {
+            "zip": "85339",
+            "pctOfZipLandInVillage": 0.8,
+            "note": "the overlap is entirely South Mountain Park land"
+          }
+        ],
+        "method": "Official Ahwatukee Foothills village polygon (City of Phoenix Villages service) intersected with 2020 Census ZCTAs (TIGERweb) by point sampling.",
+        "sources": [
+          "phoenix-villages",
+          "census-tigerweb-zcta",
+          "phoenix-parks"
+        ],
+        "confidence": "high"
+      },
+      "geo": {
+        "value": {
+          "lat": 33.3417,
+          "lng": -111.984
+        },
+        "gnisFeatureId": 24705,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/24705",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Foothills Club West",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Foothills Club West"
+            }
+          },
+          {
+            "name": "Mountain Park Ranch",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Mountain Park Ranch"
+            }
+          },
+          {
+            "name": "Lakewood",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Lakewood"
+            }
+          },
+          {
+            "name": "Desert Foothills",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Desert Foothills"
+            }
+          }
+        ],
+        "heldBack": [
+          {
+            "name": "Center Court",
+            "reason": "Named in the business copy, but no Ahwatukee subdivision or area by this name could be found (the only match is Center Court Villas in Fountain Hills). Confirm the name with the owner."
+          }
+        ],
+        "confidence": "high"
+      },
+      "permitNotes": {
+        "value": [
+          "Ahwatukee Foothills is one of the City of Phoenix’s 15 urban villages, so residential electrical permits come from the City of Phoenix Planning and Development Department (PDD). Under the Planning and Development Department’s EV charger guidance, a home charger can be reviewed and permitted over the counter when the existing electrical service is 200 amps single-phase or less and does not need an upgrade; a charger that requires upgrading the service beyond 200 amps single-phase goes to formal plan review.",
+          "Ahwatukee is in SRP’s electric service area. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work."
+        ],
+        "sources": [
+          "phoenix-villages",
+          "phoenix-residential-building",
+          "phoenix-ev-trt-00311",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": []
+    },
+    "queen-creek": {
+      "city": "Queen Creek",
+      "county": {
+        "value": "Maricopa County",
+        "note": "Queen Creek lies in both Maricopa and Pinal counties (Census 2020 place-by-county). The single county field keeps Maricopa County; the split is stated in permitNotes.",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "counties": [
+        "Maricopa County",
+        "Pinal County"
+      ],
+      "utilityProviders": {
+        "value": [
+          "SRP"
+        ],
+        "detail": "The Town lists Salt River Project for electric service, and the town is inside SRP’s service area.",
+        "sources": [
+          "qc-resident-resources",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "Town of Queen Creek Development Services Department, Building Safety Division",
+        "url": "https://www.queencreekaz.gov/government/development-services/building-safety",
+        "portal": "Development Nexus (https://aca.accela.com/QC/Default.aspx)",
+        "sources": [
+          "qc-building-safety"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85140",
+          "85142"
+        ],
+        "partlyInCity": [
+          "85140",
+          "85142"
+        ],
+        "detail": [
+          {
+            "zip": "85140",
+            "pctOfZipLandInCity": 10.2,
+            "pctOfCityLand": 20.8
+          },
+          {
+            "zip": "85142",
+            "pctOfZipLandInCity": 31,
+            "pctOfCityLand": 77.9
+          }
+        ],
+        "nearbyNotIncluded": [
+          {
+            "zip": "85212",
+            "pctOfZipLandInCity": 1.3,
+            "pctOfCityLand": 1.3
+          }
+        ],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high",
+        "note": "Both ZIPs are shared with San Tan Valley. Based on 2020 town limits."
+      },
+      "geo": {
+        "value": {
+          "lat": 33.2487,
+          "lng": -111.6343
+        },
+        "gnisFeatureId": 9868,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/9868",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Queen Creek Marketplace Area",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Queen Creek Marketplace Area"
+            }
+          },
+          {
+            "name": "Sossaman Estates",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Sossaman Estates"
+            }
+          },
+          {
+            "name": "Montelena",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Montelena"
+            }
+          },
+          {
+            "name": "Ironwood Crossing",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Ironwood Crossing"
+            }
+          },
+          {
+            "name": "Hastings Farms",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Hastings Farms"
+            }
+          }
+        ],
+        "confidence": "high"
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Queen Creek are issued by the Town of Queen Creek Development Services Department’s Building Safety Division, which reviews plans against the town’s adopted building and electrical codes. Applications and inspections run through the Town’s Development Nexus portal. Queen Creek lies in both Maricopa and Pinal counties.",
+          "The Town lists SRP as its electric utility. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "qc-building-safety",
+          "census-place-county",
+          "qc-resident-resources",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": []
+    },
+    "san-tan-valley": {
+      "city": "San Tan Valley",
+      "county": {
+        "value": "Pinal County",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "incorporation": {
+        "value": "Incorporated as the Town of San Tan Valley: voters approved Proposition 495 on 2025-08-05; the Town officially incorporated 2025-09-17 and began direct municipal service on 2026-07-01.",
+        "sources": [
+          "mag-stv",
+          "usgs-gnis-az",
+          "pinal-stv-permitting-notice"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "SRP"
+        ],
+        "detail": "San Tan Valley lies inside SRP’s service area in northern Pinal County. ED3 (Electrical District No. 3) serves western Pinal County and was not found to serve San Tan Valley.",
+        "sources": [
+          "srp-ess-2026",
+          "ed3-history"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "Pinal County Community Development, Building Safety — handling plan review, permits and inspections for the Town of San Tan Valley under an intergovernmental agreement (currently scheduled through 2026-12-31)",
+        "url": "https://www.pinal.gov/189/Building-Safety",
+        "sources": [
+          "pinal-stv-permitting-notice",
+          "pinal-building-safety"
+        ],
+        "confidence": "high",
+        "reviewBy": "2026-12-31"
+      },
+      "zipCodes": {
+        "value": [
+          "85140",
+          "85142",
+          "85143"
+        ],
+        "partlyInCity": [
+          "85140",
+          "85142"
+        ],
+        "detail": [
+          {
+            "zip": "85140",
+            "pctOfZipLandInCity": 30.8,
+            "pctOfCityLand": 33.5
+          },
+          {
+            "zip": "85142",
+            "pctOfZipLandInCity": 25.4,
+            "pctOfCityLand": 34
+          },
+          {
+            "zip": "85143",
+            "pctOfZipLandInCity": 78.7,
+            "pctOfCityLand": 32.5
+          }
+        ],
+        "nearbyNotIncluded": [],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high",
+        "note": "Based on the 2020 San Tan Valley CDP; the incorporated town’s limits may differ. 85142 is shared with Queen Creek."
+      },
+      "geo": {
+        "value": {
+          "lat": 33.1911,
+          "lng": -111.528
+        },
+        "gnisFeatureId": 2576311,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/2576311",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Johnson Ranch",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Johnson Ranch"
+            }
+          },
+          {
+            "name": "San Tan Heights",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "San Tan Heights"
+            }
+          },
+          {
+            "name": "Copper Basin",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Copper Basin"
+            }
+          },
+          {
+            "name": "Morning Sun Farms",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Morning Sun Farms"
+            }
+          },
+          {
+            "name": "Pecan Creek",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Pecan Creek"
+            }
+          }
+        ],
+        "confidence": "high"
+      },
+      "permitNotes": {
+        "value": [
+          "San Tan Valley voted to incorporate as a town in 2025. During the transition, Pinal County Building Safety has handled building plan review, permits and inspections for the new Town of San Tan Valley under an intergovernmental agreement, so confirm which office is accepting applications before applying.",
+          "San Tan Valley is in Pinal County and inside SRP’s electric service area. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "pinal-stv-permitting-notice",
+          "mag-stv",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": []
+    },
+    "apache-junction": {
+      "city": "Apache Junction",
+      "county": {
+        "value": "Pinal County",
+        "note": "Apache Junction lies in both Pinal and Maricopa counties (Census 2020 place-by-county). The single county field keeps Pinal County; the split is stated in permitNotes.",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "counties": [
+        "Pinal County",
+        "Maricopa County"
+      ],
+      "utilityProviders": {
+        "value": [
+          "SRP"
+        ],
+        "detail": "The City says utility poles and power lines in Apache Junction are owned by SRP; the city is inside SRP’s service area.",
+        "sources": [
+          "aj-overhead-lines",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "City of Apache Junction Development Services Department, Division of Building Safety and Inspection",
+        "url": "https://www.apachejunctionaz.gov/85/Building-Safety-and-Inspection",
+        "portal": "MyGovernmentOnline (MGO)",
+        "sources": [
+          "aj-building-safety"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85119",
+          "85120"
+        ],
+        "partlyInCity": [
+          "85119"
+        ],
+        "detail": [
+          {
+            "zip": "85119",
+            "pctOfZipLandInCity": 49.6,
+            "pctOfCityLand": 64.7
+          },
+          {
+            "zip": "85120",
+            "pctOfZipLandInCity": 52.5,
+            "pctOfCityLand": 34.6
+          }
+        ],
+        "nearbyNotIncluded": [
+          {
+            "zip": "85118",
+            "pctOfZipLandInCity": 0.2,
+            "pctOfCityLand": 0.7
+          }
+        ],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high",
+        "note": "85118 (Gold Canyon) overlaps the city only at its edge and is not listed."
+      },
+      "geo": {
+        "value": {
+          "lat": 33.415,
+          "lng": -111.5496
+        },
+        "gnisFeatureId": 25702,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/25702",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Superstition Foothills",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Superstition Foothills"
+            }
+          },
+          {
+            "name": "Ironwood Estates",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Ironwood Estates"
+            }
+          },
+          {
+            "name": "Jacobs Ranch",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Jacobs Ranch"
+            }
+          }
+        ],
+        "heldBack": [
+          {
+            "name": "Cimmarron",
+            "reason": "Named in the business copy, but no Apache Junction neighborhood by this name (or \"Cimarron\") could be found; GNIS has a Cimarron populated place in Tempe. Confirm the name and spelling with the owner."
+          },
+          {
+            "name": "Renaissance Point",
+            "reason": "Named in the business copy, but no Apache Junction neighborhood by this name could be found. Confirm with the owner."
+          }
+        ],
+        "confidence": "high",
+        "note": "Listing data spells it \"Jacob’s Ranch\"; the business copy has \"Jacobs Ranch\"."
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Apache Junction are issued by the City of Apache Junction Development Services Department’s Division of Building Safety and Inspection, which takes permit applications and handles plan review and inspections online through MyGovernmentOnline (MGO). The city lies in both Pinal and Maricopa counties.",
+          "The city’s utility poles and power lines are owned by SRP. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "aj-building-safety",
+          "census-place-county",
+          "aj-overhead-lines",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": [
+        {
+          "name": "Gold Canyon",
+          "queries": "recommended in gsc-queries.md",
+          "note": "Unincorporated community (GNIS populated place, Pinal County) east of the city, ZIP 85118; the business body copy mentions \"Gold Canyon Golf Resort\" as a landmark."
+        },
+        {
+          "name": "Mountain Brook",
+          "queries": "recommended in gsc-queries.md",
+          "note": "Not verified."
+        }
+      ]
+    },
+    "fountain-hills": {
+      "city": "Fountain Hills",
+      "county": {
+        "value": "Maricopa County",
+        "sources": [
+          "census-place-county"
+        ],
+        "confidence": "high"
+      },
+      "utilityProviders": {
+        "value": [
+          "SRP"
+        ],
+        "detail": "The Town lists SRP for power emergencies, and the town is inside SRP’s service area.",
+        "sources": [
+          "fh-utility-contacts",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "permitAuthority": {
+        "name": "Town of Fountain Hills Development Services, Building Safety Division",
+        "url": "https://www.fountainhillsaz.gov/204/Building-Safety",
+        "portal": "TOPPS (Town’s Online Permitting and Planning System)",
+        "sources": [
+          "fh-building-safety"
+        ],
+        "confidence": "high"
+      },
+      "zipCodes": {
+        "value": [
+          "85268"
+        ],
+        "partlyInCity": [],
+        "detail": [
+          {
+            "zip": "85268",
+            "pctOfZipLandInCity": 99,
+            "pctOfCityLand": 100
+          }
+        ],
+        "nearbyNotIncluded": [],
+        "sources": [
+          "census-zcta-place"
+        ],
+        "confidence": "high"
+      },
+      "geo": {
+        "value": {
+          "lat": 33.6117,
+          "lng": -111.7174
+        },
+        "gnisFeatureId": 36980,
+        "sources": [
+          "usgs-gnis-az"
+        ],
+        "sourceUrl": "https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/36980",
+        "note": "USGS GNIS populated-place point (the traditional town center), rounded to 4 decimals.",
+        "confidence": "high"
+      },
+      "neighborhoods": {
+        "value": [
+          {
+            "name": "Fountain Park District",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Fountain Park District"
+            }
+          },
+          {
+            "name": "SunRidge Canyon",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "SunRidge Canyon"
+            }
+          },
+          {
+            "name": "Eagle Mountain",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Eagle Mountain"
+            }
+          },
+          {
+            "name": "North Heights",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "North Heights"
+            }
+          },
+          {
+            "name": "Firerock",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Firerock"
+            }
+          }
+        ],
+        "confidence": "high",
+        "note": "\"Fountain Park District\" is the business’s name for the area around Fountain Park (the town center), not a subdivision."
+      },
+      "permitNotes": {
+        "value": [
+          "Residential electrical permits in Fountain Hills are issued by the Town of Fountain Hills Development Services Building Safety Division. Applications, review status and inspection scheduling go through the Town’s Online Permitting and Planning System (TOPPS).",
+          "Fountain Hills is in SRP’s electric service area. For a panel upgrade, SRP’s service specifications say to contact both SRP and the permitting authority first, and SRP reconnects power once both approve the work. An EV charger that needs a larger service or a new panel follows the same steps."
+        ],
+        "sources": [
+          "fh-building-safety",
+          "fh-utility-contacts",
+          "srp-ess-2026"
+        ],
+        "confidence": "high"
+      },
+      "gscNeighborhoodDemand": [
+        {
+          "name": "Fort McDowell",
+          "queries": "\"electrician fort mcdowell az\" 60 at 14.5",
+          "note": "Fort McDowell Yavapai Nation, east of town; not part of Fountain Hills."
+        },
+        {
+          "name": "Hidden Hills",
+          "queries": "\"hidden hills electrician\" 46 at 24.6 (lands on /locations/fountain-hills)",
+          "note": "Location not verified."
+        }
+      ]
+    }
+  }
+}

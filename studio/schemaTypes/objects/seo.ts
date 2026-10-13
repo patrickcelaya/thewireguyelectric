@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import {altField} from '../shared/fields'
 
 export const seo = defineType({
   name: 'seo',
@@ -30,6 +31,7 @@ export const seo = defineType({
       type: 'image',
       description: '1200×630. Falls back to the main image, then the site default.',
       options: {hotspot: true},
+      fields: [altField('warning')],
     }),
     defineField({
       name: 'noIndex',

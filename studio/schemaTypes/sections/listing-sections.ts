@@ -141,7 +141,13 @@ export const postsSection = defineArrayMember({
       initialValue: false,
       description: 'Put posts marked "Featured" ahead of newer posts. Ignored when posts are picked.',
     }),
-    defineField({name: 'limit', type: 'number', initialValue: 3, description: 'How many posts to show. 0 = all.', validation: (rule) => rule.min(0).integer()}),
+    defineField({
+      name: 'limit',
+      type: 'number',
+      initialValue: 3,
+      description: 'How many of the newest posts to show. 0 = all. Ignored when posts are picked (every picked post is shown).',
+      validation: (rule) => rule.min(0).integer(),
+    }),
     defineField({name: 'cta', title: 'Button', type: 'linkItem', description: 'e.g. "Read the blog" → /blog'}),
   ],
   preview: {

@@ -29,6 +29,8 @@ import {contactSection, ctaSection, officeLocationsSection} from './contact-sect
 // - A section whose content resolves to nothing renders nothing.
 // See docs/CONTENT_MODEL.md.
 
+const sectionTypes = (sections: unknown) => ((sections ?? []) as Array<{_type?: string}>).map((s) => s._type)
+
 export const pageSections = defineType({
   name: 'pageSections',
   title: 'Sections',
@@ -69,12 +71,14 @@ export const pageSections = defineType({
       ],
     },
   },
-  validation: (rule) =>
-    rule.custom((sections) => {
-      const types = ((sections ?? []) as Array<{_type?: string}>).map((s) => s._type)
-      const heroes = types.filter((t) => t === 'heroSection').length
-      if (heroes > 1) return 'Use one hero per page'
-      if (heroes === 1 && types[0] !== 'heroSection') return {message: 'The hero should be the first section', level: 'warning'} as const
-      return true
-    }),
+  // Sanity takes the level from the rule, so the error and the warning are separate rules.
+  validation: (rule) => [
+    rule.custom((sections) => (sectionTypes(sections).filter((t) => t === 'heroSection').length > 1 ? 'Use one hero per page' : true)),
+    rule
+      .custom((sections) => {
+        const types = sectionTypes(sections)
+        return types.includes('heroSection') && types[0] !== 'heroSection' ? 'The hero should be the first section' : true
+      })
+      .warning(),
+  ],
 })

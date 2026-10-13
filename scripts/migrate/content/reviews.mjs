@@ -7,26 +7,36 @@
 // source the review schema does not list). Review text is never edited here.
 //
 // Location and service references are resolved by slug from the documents built
-// earlier in this run. The JSON keeps the matched phrase that justifies each tag.
+// earlier in this run. The JSON keeps the matched phrase that justifies each tag,
+// and this module checks that phrase is in the review text and, for a location,
+// that it names the city of the location document it points at.
 
 const DATA = 'migration/reviews/google-reviews.json'
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/
+// Mirrors the `source` options list in studio/schemaTypes/documents/review.ts.
+const SOURCES = ['Google', 'Yelp', 'Facebook', 'Nextdoor', 'Angi', 'Direct']
 
 export default async function reviews(ctx) {
   const {docs, push, idFor, readJson, report} = ctx
   const data = await readJson(DATA)
+  const fail = (r, msg) => {
+    throw new Error(`${DATA}: ${r.key ?? r.authorName}: ${msg}`)
+  }
 
   const bySlug = (type, slug) => docs.find((d) => d._type === type && d.slug?.current === slug)
+  // "Tempe, AZ" -> "Tempe"
+  const cityOf = (loc) => (loc.cityNameForSeo ?? loc.name ?? '').replace(/,\s*AZ$/i, '').trim()
   const unresolved = []
-  const refTo = (type, tag, review) => {
+  const refTo = (type, tag, r) => {
     if (!tag?.slug) return undefined
-    if (tag.evidence && !review.text.includes(tag.evidence)) {
-      throw new Error(`${DATA}: ${review.key}: ${type} evidence is not in the review text: ${tag.evidence}`)
-    }
+    if (!tag.evidence || !r.text.includes(tag.evidence)) fail(r, `${type} evidence is not in the review text: ${tag.evidence}`)
     const doc = bySlug(type, tag.slug)
     if (!doc) {
-      unresolved.push({review: review.key, type, slug: tag.slug})
+      unresolved.push({review: r.key, type, slug: tag.slug})
       return undefined
+    }
+    if (type === 'location' && !new RegExp(`\\b${cityOf(doc)}\\b`).test(tag.evidence)) {
+      fail(r, `location evidence does not name ${cityOf(doc)} (${tag.slug})`)
     }
     return {_type: 'reference', _ref: doc._id}
   }
@@ -44,12 +54,13 @@ export default async function reviews(ctx) {
       skipped.push({review: r.key, reason: 'no text'})
       continue
     }
-    if (!r.key?.startsWith(`review:${r.source.toLowerCase()}:`)) throw new Error(`${DATA}: bad key ${r.key}`)
-    if (keys.has(r.key)) throw new Error(`${DATA}: duplicate review ${r.key}`)
+    if (!r.authorName) fail(r, 'missing authorName')
+    if (!SOURCES.includes(r.source)) fail(r, `source "${r.source}" is not in the review schema's list`)
+    if (!Number.isInteger(r.rating) || r.rating < 1 || r.rating > 5) fail(r, `bad rating ${r.rating}`)
+    if (!ISO_DATE.test(r.date ?? '')) fail(r, `bad date ${r.date}`)
+    if (r.key !== `review:${r.source.toLowerCase()}:${r.authorName}:${r.date}`) fail(r, 'key is not review:<source>:<author>:<date>')
+    if (keys.has(r.key)) fail(r, 'duplicate review')
     keys.add(r.key)
-    if (!r.authorName) throw new Error(`${DATA}: ${r.key}: missing authorName`)
-    if (!Number.isInteger(r.rating) || r.rating < 1 || r.rating > 5) throw new Error(`${DATA}: ${r.key}: bad rating ${r.rating}`)
-    if (r.date && !ISO_DATE.test(r.date)) throw new Error(`${DATA}: ${r.key}: bad date ${r.date}`)
 
     const doc = {
       _id: idFor(r.key),

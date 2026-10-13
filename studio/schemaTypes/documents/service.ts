@@ -55,15 +55,22 @@ export const service = defineType({
         defineField({name: 'note', type: 'string', description: 'e.g. "Most 200A panel upgrades in Mesa"'}),
         defineField({name: 'asOf', title: 'Checked on', type: 'date', description: 'When this range was last confirmed. Shown as "as of {month year}".'}),
       ],
-      validation: (rule) =>
+      // Sanity takes the level from the rule, so the error and the warning are separate rules.
+      validation: (rule) => [
         rule.custom((value) => {
-          const v = value as {low?: number; high?: number; asOf?: string} | undefined
-          if (!v || (v.low === undefined && v.high === undefined)) return true
+          const v = value as {low?: number; high?: number} | undefined
+          if (!v || (v.low == null && v.high == null)) return true
           if (typeof v.low !== 'number' || typeof v.high !== 'number') return 'Enter both the low and high price'
-          if (v.high < v.low) return 'High must be at least low'
-          if (!v.asOf) return {message: 'Add the date this range was checked; prices are shown with it', level: 'warning'} as const
-          return true
+          return v.high < v.low ? 'High must be at least low' : true
         }),
+        rule
+          .custom((value) => {
+            const v = value as {low?: number; high?: number; asOf?: string} | undefined
+            if (!v || (v.low == null && v.high == null) || v.asOf) return true
+            return 'Add the date this range was checked; prices are shown with it'
+          })
+          .warning(),
+      ],
     }),
     defineField({name: 'faqs', title: 'FAQs', type: 'array', group: 'content', of: [defineArrayMember({type: 'faqItem'})]}),
     defineField({name: 'relatedServices', type: 'array', group: 'content', of: [defineArrayMember({type: 'reference', to: [{type: 'service'}]})]}),

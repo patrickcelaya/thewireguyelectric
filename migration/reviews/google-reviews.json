@@ -1,7 +1,10 @@
 {
   "$comment": "Real customer reviews of The Wire Guy Electric, copied verbatim (text, name, rating and date exactly as displayed) from the BrightLocal \"Showcase Reviews\" widget embedded on the live site. Nothing here is edited, shortened, combined or invented. Imported by scripts/migrate/content/reviews.mjs as one Sanity \"review\" document per review, except entries with excludedFromSanity.",
   "provenance": {
-    "pulledAt": "2026-10-13T01:07:13.916Z",
+    "pulledAt": "2026-10-13T02:23:20.989Z",
+    "identicalEarlierPulls": [
+      "2026-10-13T01:07:13.916Z"
+    ],
     "pulledFrom": "https://www.thewireguyelectric.com/",
     "widget": {
       "provider": "BrightLocal Showcase Reviews (local-marketing-reports.com)",
@@ -12,24 +15,33 @@
       "embeddedOnLivePages": [
         "/",
         "/commercial-electrician",
+        "/locations/ahwatukee",
+        "/locations/apache-junction",
         "/locations/chandler",
-        "/locations/gilbert"
+        "/locations/fountain-hills",
+        "/locations/gilbert",
+        "/locations/phoenix",
+        "/locations/queen-creek",
+        "/locations/san-tan-valley",
+        "/locations/scottsdale",
+        "/locations/tempe"
       ],
+      "embeddedOnLivePagesNote": "Checked by fetching each live page for the embed (2026-10-13). Not found on /about-us, /contact-us, /services, /residential-electrician, /blog, /services/panels or /services/exterior-electrical; the discovery inventory finds it only in the home, commercial and location templates. Every embed is the same widget (id 21435), so every page shows the same 50 reviews.",
       "business": {
         "name": "The Wire Guy Electric",
         "streetAddress": "1321 North 65th Street",
         "addressLocality": "Mesa",
         "addressRegion": "Arizona",
         "postalCode": "85205",
-        "note": "Business the widget is configured for, from the LocalBusiness JSON-LD the embed script injects (it contains no reviews: reviewCount 0, containsFirstPartyReviews false)."
+        "note": "Business the widget is configured for, from the createLdSchema({type: \"Electrician\", ...}) call in the embed script (which passes no reviews: reviewCount 0, ratingValue 0, containsFirstPartyReviews false)."
       }
     },
     "method": [
       "Playwright (Chromium) opened https://www.thewireguyelectric.com/, scrolled to #reviews so the lazy embed injected its iframe, scrolled the frame to the bottom, clicked every visible \"Read More\" (26 of 50 cards were truncated client-side at 140 characters), then read each .Review-container: star class (is-rating-N), .Review-date, directory icon, .Review-name and the full [data-target=\"read-more.text\"] textContent.",
-      "The same 50 cards are in the iframe's server-rendered HTML (migration/reviews/brightlocal-widget-snapshot.html); author names and full texts matched character for character.",
+      "The same 50 cards are in the iframe's server-rendered HTML (migration/reviews/brightlocal-widget-snapshot.html). Parsed with JavaScript disabled, its names, dates and full texts matched the rendered cards character for character; \"Read More\" only hides text client-side.",
       "Every request the widget made: the embed script, the iframe document, one stylesheet, widget.js and four images. There is no JSON API: widget.js makes no fetch/XHR calls, the page has no pagination or \"load more\" control, and page/offset/limit/per_page query parameters return the same 50 reviews.",
       "Dates are shown as MM.DD.YYYY (e.g. 02.20.2026) and stored as ISO dates.",
-      "Source platform comes from each card's directory icon (google.png or yahoo.png). The widget shows no per-review links, so Google reviews link to the Google Business Profile the live site links in its footer (\"Our contacts / Mesa, Arizona\")."
+      "Source platform comes from each card's directory icon (icons/google.png or icons/yahoo.png; the icon has no alt text or label). The widget shows no links at all, so Google reviews get sourceUrl = the Google Business Profile link the live site itself uses (see googleBusinessProfile)."
     ],
     "networkRequests": [
       "GET script https://www.local-marketing-reports.com/external/showcase-reviews/embed/599158c9201cda7d9f4a0e3aa733389a1ff4d538?id=21435",
@@ -43,7 +55,9 @@
     ],
     "googleBusinessProfile": {
       "url": "https://maps.app.goo.gl/j4qZJwx8ttVZo93w5",
-      "linkedFrom": "live site footer, \"Our contacts\" > \"Mesa, Arizona\"",
+      "linkedFrom": "footer of the live blog-category pages (e.g. https://www.thewireguyelectric.com/posts-categories/industrial): \"Our contacts\" > \"Mesa, Arizona\". The footer map icon there links https://maps.app.goo.gl/6qQ2iDaf8YGrdJuW8, which resolves to the same place.",
+      "placeId": "0x872ba8b087754aa3:0x3e4e9bf5bed91d08",
+      "matchesWidgetBusiness": "Same business name, and the place coordinates (33.4398269, -111.6898689) are in Mesa, the city of the address the widget is configured for.",
       "resolvesTo": "https://www.google.com/maps/place/The+Wire+Guy+Electric/@33.4398269,-111.6924438,17z/data=!3m1!4b1!4m6!3m5!1s0x872ba8b087754aa3:0x3e4e9bf5bed91d08!8m2!3d33.4398269!4d-111.6898689!16s%2Fg%2F11f04d6xl_"
     }
   },
@@ -64,8 +78,8 @@
       "5": 50
     },
     "notes": [
-      "The widget shows only the 50 most recent of its 333 total reviews; older reviews are not exposed by it.",
-      "Newest review shown is 2026-02-26: the widget has not synced new reviews since then (checked 2026-10-13).",
+      "The widget header says \"333 Total Reviews\" but it lists only 50 reviews (newest first). It has no paging, no \"load more\" and no API, so the other 283 are not exposed by it.",
+      "Date range of the reviews shown: 2025-12-17 to 2026-02-26. The newest is about seven months older than this pull (2026-10-13), so the widget appears to have stopped picking up new reviews; the Google profile likely has newer ones this pull cannot see.",
       "siteSettings.reviewSummary (from the live LocalBusiness JSON-LD) says 380 reviews, rating 5.0; the widget says 333.",
       "Every review the widget shows is 5 stars, so the featured picks being all 5 stars is not a selection effect."
     ]

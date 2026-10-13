@@ -21,11 +21,13 @@ export const post = defineType({
       description:
         'Answer-first summary shown above the article: 40–60 words that answer the title\'s question directly. Do not repeat the title. The first related service is linked right after it.',
       validation: (rule) =>
-        rule.custom((value) => {
-          const words = wordCount(value as string | undefined)
-          if (!words) return true
-          return words < 40 || words > 60 ? ({message: `${words} words; aim for 40–60`, level: 'warning'} as const) : true
-        }),
+        rule
+          .custom((value) => {
+            const words = wordCount(value as string | undefined)
+            if (!words) return true
+            return words < 40 || words > 60 ? `${words} words; aim for 40–60` : true
+          })
+          .warning(),
     }),
     imageField('mainImage', 'Main image', {group: 'content'}),
     defineField({name: 'body', type: 'richText', group: 'content'}),

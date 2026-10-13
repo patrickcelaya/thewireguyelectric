@@ -33,7 +33,13 @@ export const reviewsSection = defineArrayMember({
     }),
     defineField({name: 'location', title: 'Only reviews from this city', type: 'reference', to: [{type: 'location'}], description: 'Ignored when reviews are picked.'}),
     defineField({name: 'service', title: 'Only reviews about this service', type: 'reference', to: [{type: 'service'}], description: 'Ignored when reviews are picked.'}),
-    defineField({name: 'limit', type: 'number', initialValue: 6, description: 'Most reviews to show. 0 = all.', validation: (rule) => rule.min(0).integer()}),
+    defineField({
+      name: 'limit',
+      type: 'number',
+      initialValue: 6,
+      description: 'Most reviews to show. 0 = all. Ignored when reviews are picked (every picked review is shown).',
+      validation: (rule) => rule.min(0).integer(),
+    }),
     defineField({name: 'cta', title: 'Button', type: 'linkItem', description: 'e.g. "Get a Free Estimate Now" → /contact-us'}),
   ],
   preview: {

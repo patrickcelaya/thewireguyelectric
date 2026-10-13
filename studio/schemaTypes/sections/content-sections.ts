@@ -87,11 +87,13 @@ export const featureGridSection = defineArrayMember({
       of: [defineArrayMember({type: 'featureItem'})],
       hidden: ({parent}) => Boolean((parent as {siteList?: string} | undefined)?.siteList),
       validation: (rule) =>
-        rule.custom((items, context) => {
-          const parent = context.parent as {siteList?: string} | undefined
-          if (parent?.siteList || (Array.isArray(items) && items.length)) return true
-          return {message: 'Add items or pick a shared list, or the section will not show', level: 'warning'} as const
-        }),
+        rule
+          .custom((items, context) => {
+            const parent = context.parent as {siteList?: string} | undefined
+            if (parent?.siteList || (Array.isArray(items) && items.length)) return true
+            return 'Add items or pick a shared list, or the section will not show'
+          })
+          .warning(),
     }),
     defineField({name: 'cta', title: 'Button', type: 'linkItem'}),
   ],
