@@ -1,5 +1,5 @@
 {
-  "$comment": "post.relatedServices per blog post slug, applied by scripts/migrate/content/fixes.mjs. The first service is the primary (hub) service from the hub-and-spoke map in docs/SEO_STRATEGY.md §2 and redesign seo-requirements §4. Any further service is one the hub map names for that post, or one the post body already links to on the live site. See README.md.",
+  "$comment": "post.relatedServices per blog post slug, applied by scripts/migrate/content/fixes.mjs. The first service is the primary (hub) service from the hub-and-spoke map in docs/SEO_STRATEGY.md §2 and redesign seo-requirements §4. Any further service is one the hub map names for that post, one the post body already links to on the live site, or one whose live service page body links to the post (its 'Related Reading'). The single exception, can-hot-weather-cause-your-circuit-breaker-to-trip → panels, is a post whose own text is about the overheating panel. See README.md §4.",
   "posts": {
     "7-signs-you-need-an-electrical-panel-upgrade": ["panels"],
     "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell": ["panels"],

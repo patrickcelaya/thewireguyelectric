@@ -6,7 +6,7 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 |---|---|
 | `city-relations.json` | `location.name`, `cardBlurb`, `featuredServices` and `nearbyLocations` for the 10 cities; `siteSettings.homeCity.cardBlurb` for Mesa |
 | `faqs.json` | `question`, `answer`, `topic`, `order` and `services` on the 28 `faq` documents, copied verbatim from the visible `/faq` page |
-| `service-relations.json` | `priceRange` (3 services), `relatedServices` (21) and `relatedPosts` (14) |
+| `service-relations.json` | `priceRange` (3 services), `relatedServices` (21) and `relatedPosts` (15) |
 | `post-services.json` | `relatedServices` on all 53 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl` |
 
@@ -131,17 +131,36 @@ Every post is written for homeowners, so commercial services get posts only wher
 - the service's own description names the post's subject:
   - `commercial-electrical-troubleshooting` ("repeat trips … overheating terminations") → the breaker and hot-panel posts;
   - `outlets-and-switches` ("GFCI protection") → the GFCI posts;
-- the hub map places the service in the hub: `electrical-upgrades` → the panel cost, cutting-corners and hot-panel posts;
+- the hub map places the service in the hub:
+  - `electrical-upgrades` → the panel cost, cutting-corners and hot-panel posts (seo-requirements §4: "+ `/services/electrical-upgrades` for commercial");
+  - `led-lights` → the recessed-lighting and landscape-lighting posts. `docs/SEO_STRATEGY.md` §2 puts LED in the Lighting hub, and both posts make the LED case this page sells (LED vs. halogen/incandescent energy use and lifespan, LED-only fixtures, exterior LED). The ceiling-fan post, the third Lighting post, has nothing on LED and is left out;
 - a post links the service: `dedicated-circuits` ← the kitchen-remodel post. The mini-split post was added because dedicated-circuits names HVAC compressor loads.
 
-Seven commercial services have no real topical post and keep `relatedPosts` empty, rather than being padded: commercial-service, tenant-improvements, led-lights, storefront-lights, hanging-lights, emergency-exit-lights and ballast-replacement.
+Six commercial services keep `relatedPosts` empty rather than being padded: commercial-service, tenant-improvements, storefront-lights, hanging-lights, emergency-exit-lights and ballast-replacement. No post has a category, and a search of all 53 post bodies for their subjects (ballast, fluorescent, exit/emergency lighting, storefront, pendant, tenant improvement, office/retail/restaurant) turned up only passing mentions. The brief asked for 3–5 posts per service, but only where the relationship is real, so these stay empty until commercial posts exist. Several residential services also list fewer than 5 posts, because their hub has fewer.
 
 ### Post → related services (all 53)
 
-The first service is the primary hub service from the hub map. Further services are added only when:
+The first service is the primary hub service from the hub map (seo-requirements §4, which spells out the `docs/SEO_STRATEGY.md` §2 table post by post). Further services are added only when:
 - the hub map names them: casita → new-construction-wiring;
-- the post body already links them: `dryer-outlet-for-ev` → panels, `cost-to-rewire-house-arizona` → inspections and panels;
-- a service page's live "Related Reading" list points at the post: `federal-pacific-zinsco` ← inspections, `why-your-lights-flicker` ← fixture-replacements.
+- the post body already links them:
+  - `dryer-outlet-for-ev` → panels;
+  - `generator-interlock-in-arizona` → troubleshooting;
+  - `bathroom-or-garage-outlets-not-working-heres-how-to-fix` → panels;
+  - `ceiling-fan-installation-cost-arizona` → recessed;
+  - `landscape-lighting-installation-cost-phoenix` → custom-lighting;
+  - `pool-pump-electrical-requirements-arizona` → panels;
+  - `kitchen-remodel-electrical-circuits-arizona` → panels, dedicated-circuits;
+  - `cost-to-rewire-house-arizona` → inspections, panels;
+- a service page's live body (its "Related Reading" list or an in-text link) links the post:
+  - `federal-pacific-zinsco` ← inspections;
+  - `why-your-lights-flicker` ← fixture-replacements;
+  - `electrical-panel-hot-to-the-touch-arizona` ← troubleshooting;
+  - `why-does-my-breaker-keep-tripping` ← panels;
+  - `smart-thermostat-c-wire-arizona` ← new-construction-wiring;
+  - `phoenix-monsoon-electrical-damage-…` ← exterior-electrical;
+  - `aluminum-wiring-older-phoenix-homes` ← remodels.
+
+One exception: `can-hot-weather-cause-your-circuit-breaker-to-trip` → panels. Neither page links the other, but the post is about the panel itself. It names the panel about ten times: a hot panel in a garage or in direct sun, conductors loosening in the panel, "The electrical panel feels hot to the touch" as a reason to call. It sits with the hot-to-the-touch post, which is in the panel hub.
 
 Surge and generator posts sit under panels, as the hub map says ("until dedicated pages exist"). `/faq` lists generator installs among the services the company doesn't offer; the generator posts are about interlocks and standby units, which are wired at the panel.
 
@@ -202,7 +221,9 @@ The other five cities have no tile copy and stay empty; nothing is written for t
   - The live site links it from the footer of the blog-category pages.
   - The reviews module already uses it as every Google review's `sourceUrl`.
   - On 2026-10-13 it resolved to the Google Maps listing "The Wire Guy Electric" in Mesa (knowledge-graph id `/g/11f04d6xl_`).
+  - The same footer's Google icon link (`maps.app.goo.gl/6qQ2iDaf8YGrdJuW8`) resolves to the same place, so it is the same profile. The one the reviews already cite is kept.
   - The live copy has no direct "all reviews" link; this listing is where the reviews are shown.
+  - `sameAs` holds no Google URL (Facebook, Instagram, Yelp and BBB only). It is left alone; templates can add `googleBusinessProfileUrl` when they build `sameAs`.
 - **rocLicenseUrl:** the AZ ROC contractor-search link that the live `/faq` answers use for "ROC #365306".
 - **addresses[].googleMapsUrl.** The two links the live sitewide footer uses for each office address:
   - Mesa → `share.google/39FbblYQXkvLuozlw`, which resolves to the same `/g/11f04d6xl_` entity;
@@ -228,7 +249,19 @@ MIGRATE_OUT_DIR=/tmp/<scratch>/mig-fixes node scripts/migrate/webflow-to-sanity.
 A successful run means no dangling references, because the script exits on any. `report.json` → `fixes` summarises what changed:
 - 10 cities;
 - 28 FAQs updated, 5 renamed, 0 created, 0 unmatched;
-- 3 services priced;
+- 3 services priced, 15 with related posts;
 - 53 posts mapped.
 
-Compared with a run without this module, the only fields that change are the ones listed in this README. No title, H1, meta description or slug changes.
+Checked on 2026-10-13 against a run without this module. The only fields this module changes are:
+- `faq`: question (5), answer (28), topic (28), services (14);
+- `service`: priceRange (3), relatedServices (21), relatedPosts (15);
+- `post`: relatedServices (53);
+- `location`: name (10), cardBlurb (5), featuredServices (10), nearbyLocations (10);
+- `siteSettings`: the fields in §6 plus `homeCity.cardBlurb`.
+
+No title, H1, meta description or slug changes. Other checks on the output:
+- every array item has a unique `_key`;
+- every internal link in an FAQ answer resolves to a live route, relative and without a trailing slash;
+- no internal FAQ link opens in a new tab.
+
+A trial run with `MIGRATE_OUT_DIR` does not save new IDs to the committed `id-map.json`. Any document created by a module (none from this one today) gets a fresh ID on each trial run, until a normal run saves it.

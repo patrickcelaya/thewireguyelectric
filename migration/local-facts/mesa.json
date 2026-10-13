@@ -5,7 +5,7 @@
     "zipCodes": "Census 2020 ZCTA-to-place relationship file: a ZIP is listed when at least 40% of its land is inside the city limits, or it covers at least 5% of the city’s land (and at least 0.25 sq mi of overlap). ZIPs under 50% are listed in \"partlyInCity\". ZCTAs approximate USPS ZIP areas; USPS lookups were not reachable (bot protection), so USPS city names were not checked.",
     "geo": "USGS GNIS populated-place point (traditional town center), rounded to 4 decimals. Census 2025 Gazetteer internal points were used as a cross-check.",
     "utilityProviders": "Values use the schema list (SRP, APS, City of Mesa, TEP, ED3). Boundaries from SRP’s 2026 Electric Service Specifications map (which draws the APS pockets inside SRP’s area) and APS’s Metro Phoenix territory map, plus each city’s own utility listing where reachable. Utility territory is set by address; nuance goes in \"detail\" and permitNotes.",
-    "permitAuthority": "Official city/town/county pages. Several city sites (mesaaz.gov, gilbertaz.gov, tempe.gov, queencreekaz.gov, explore.pinal.gov, azmag.gov) return 403 to automated fetches; their content was confirmed through search-engine extracts of the official pages and is marked in the source note."
+    "permitAuthority": "Official city/town/county pages. Several official sites (gilbertaz.gov, tempe.gov, queencreekaz.gov, explore.pinal.gov, azmag.gov, ed3online.org) return 403 to automated fetches; their content was confirmed through search-engine extracts of the official pages (re-checked 2026-10-13, restricted to the official domain) and is marked in the source note."
   },
   "sources": {
     "census-zcta-place": {
@@ -56,7 +56,7 @@
       "title": "City of Mesa Development Services: Residential Construction",
       "publisher": "City of Mesa",
       "url": "https://www.mesaaz.gov/business/development-services/residential-construction",
-      "note": "mesaaz.gov returns 403 to automated fetches; content confirmed through search-engine extracts of the official page (Development Services issues construction permits, conducts plan reviews and performs inspections; installing or modifying electrical systems needs a construction permit; 2023 NEC adopted).",
+      "note": "Read directly on the 2026-10-13 re-check: \"Development Services is here to assist with all stages, including issuing construction permits\"; \"You need a construction permit for … Installing or modifying electrical, plumbing, or mechanical systems\"; the technical codes list includes \"2023 NEC\"; \"Use the DIMES system to apply for a Residential Construction Permit.\"",
       "accessed": "2026-10-13"
     },
     "business-homepage-tiles": {
@@ -92,11 +92,12 @@
     "permitAuthority": {
       "name": "City of Mesa Development Services Department",
       "url": "https://www.mesaaz.gov/business/development-services/residential-construction",
-      "codes": "2023 National Electrical Code (city adopted-codes list, via search extract)",
+      "codes": "2023 National Electrical Code (on the city’s list of technical codes)",
       "sources": [
         "mesa-residential-construction"
       ],
-      "confidence": "high"
+      "confidence": "high",
+      "portal": "DIMES"
     },
     "zipCodes": {
       "value": [
@@ -239,7 +240,7 @@
     },
     "permitNotes": {
       "value": [
-        "Residential electrical permits in Mesa are issued by the City of Mesa Development Services Department, which handles plan review, permits and inspections. Installing or modifying electrical systems is on the city’s list of work that needs a construction permit.",
+        "Residential electrical permits in Mesa are issued by the City of Mesa Development Services Department, which handles plan review, permits and inspections. Installing or modifying electrical systems is on the city’s list of work that needs a construction permit, and applications go through the city’s DIMES system.",
         "Mesa has two electric utilities: the City of Mesa serves a 5.5-square-mile area centered on downtown, and SRP serves the rest of the city. In SRP’s area, SRP’s service specifications say to contact both SRP and the permitting authority before a panel upgrade, and SRP reconnects power once both approve the work."
       ],
       "sources": [
@@ -273,5 +274,6 @@
         "note": "An area label, not a neighborhood."
       }
     ]
-  }
+  },
+  "recheckedAt": "2026-10-13"
 }

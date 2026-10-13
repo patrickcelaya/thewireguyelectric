@@ -608,5 +608,347 @@
       "doc": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
       "src": "https://assets.seobotai.com/thewireguyelectric.com/6806df84e572faef869989e9/0115400c5ed8dd17af953d5871652879.jpg"
     }
-  ]
+  ],
+  "fixes": {
+    "locations": [
+      {
+        "slug": "ahwatukee",
+        "name": "Ahwatukee",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "fountain-hills",
+        "name": "Fountain Hills",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "scottsdale",
+        "name": "Scottsdale",
+        "cardBlurb": true,
+        "featured": 8,
+        "nearby": 3
+      },
+      {
+        "slug": "tempe",
+        "name": "Tempe",
+        "cardBlurb": true,
+        "featured": 6,
+        "nearby": 4
+      },
+      {
+        "slug": "san-tan-valley",
+        "name": "San Tan Valley",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "queen-creek",
+        "name": "Queen Creek",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "chandler",
+        "name": "Chandler",
+        "cardBlurb": true,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "apache-junction",
+        "name": "Apache Junction",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "gilbert",
+        "name": "Gilbert",
+        "cardBlurb": true,
+        "featured": 7,
+        "nearby": 3
+      },
+      {
+        "slug": "phoenix",
+        "name": "Phoenix",
+        "cardBlurb": true,
+        "featured": 8,
+        "nearby": 3
+      }
+    ],
+    "faqs": {
+      "visible": 28,
+      "updated": 28,
+      "created": [],
+      "renamed": [
+        {
+          "from": "I want to upgrade my lighting, but I don't know what to do. Can you help me with the design?",
+          "to": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?"
+        },
+        {
+          "from": "Are there any services you don't offer?",
+          "to": "Are there any services you don’t offer?"
+        },
+        {
+          "from": "Can you refer me to someone for a non-electrical project?",
+          "to": "I have another non-electrical project but don’t know where to start. Can you refer me to someone?"
+        },
+        {
+          "from": "How much does an electrical panel upgrade cost in Arizona?",
+          "to": "How much does an electrical panel replacement cost in Arizona?"
+        },
+        {
+          "from": "How much does it cost to install recessed lighting?",
+          "to": "How much does it cost to install recessed can lighting?"
+        }
+      ],
+      "unmatched": []
+    },
+    "services": {
+      "priced": [
+        "ev-charger-installation 750-3500",
+        "panels 5200-6500",
+        "recessed-lights-installation 1050-1750"
+      ],
+      "withRelatedPosts": 15
+    },
+    "posts": {
+      "mapped": 53,
+      "unmapped": []
+    },
+    "siteSettings": [
+      "heroQuotes",
+      "valueProps",
+      "capabilities",
+      "ctaBand",
+      "availabilityNote",
+      "googleBusinessProfileUrl",
+      "reviewSummary.reviewsUrl",
+      "rocLicenseUrl",
+      "addresses[].googleMapsUrl",
+      "homeCity.cardBlurb"
+    ]
+  },
+  "reviews": {
+    "source": "migration/reviews/google-reviews.json",
+    "widgetTotal": "333 Total Reviews",
+    "pushed": 46,
+    "featured": 8,
+    "withLocation": 1,
+    "withService": 13,
+    "skipped": [
+      {
+        "review": "review:yahoo:Thai N.:2026-02-09",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct); the widget only shows a snippet ending in \"...\", not the full review"
+      },
+      {
+        "review": "review:yahoo:Matthew C.:2026-01-09",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct); the widget only shows a snippet ending in \"...\", not the full review; same review as review:google:Matthew Caswell:2026-01-09"
+      },
+      {
+        "review": "review:yahoo:Rob S.:2026-01-05",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct); the widget only shows a snippet ending in \"...\", not the full review"
+      },
+      {
+        "review": "review:yahoo:Matt K.:2025-12-18",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct)"
+      }
+    ],
+    "unresolved": []
+  },
+  "localFacts": {
+    "source": [
+      "migration/local-facts/locations.json",
+      "migration/local-facts/mesa.json"
+    ],
+    "applied": {
+      "gilbert": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "chandler": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "scottsdale": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "tempe": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "phoenix": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "ahwatukee": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "queen-creek": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "san-tan-valley": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "apache-junction": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ],
+      "fountain-hills": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "geo"
+      ]
+    },
+    "homeCity": [
+      "county",
+      "neighborhoods",
+      "utilityProviders"
+    ],
+    "heldBackNeighborhoods": [],
+    "skipped": [],
+    "missing": []
+  },
+  "pageSections": {
+    "pages": {
+      "index": [
+        "heroSection:hero",
+        "teamIntroSection:team-intro",
+        "featureGridSection:capabilities",
+        "featureGridSection:value-props",
+        "servicesSection:top-services",
+        "reviewsSection:reviews",
+        "locationsSection:areas",
+        "gallerySection:gallery",
+        "faqSection:faqs",
+        "ctaSection:cta"
+      ],
+      "about-us": [
+        "heroSection:hero",
+        "highlightsSection:family",
+        "trustBarSection:trust",
+        "teamSection:team",
+        "ctaSection:cta"
+      ],
+      "our-team": [
+        "heroSection:hero",
+        "teamSection:team",
+        "quoteSection:quote",
+        "faqSection:faqs",
+        "ctaSection:cta"
+      ],
+      "careers": [
+        "heroSection:hero",
+        "highlightsSection:why-us",
+        "jobsSection:openings",
+        "contactSection:apply-now"
+      ],
+      "faq": [
+        "heroSection:hero",
+        "faqSection:common",
+        "faqSection:customers",
+        "faqSection:topics",
+        "ctaSection:cta"
+      ],
+      "contact-us": [
+        "heroSection:hero",
+        "contactSection:contact",
+        "trustBarSection:trust",
+        "locationsSection:areas",
+        "faqSection:faqs"
+      ],
+      "services": [
+        "heroSection:hero",
+        "servicesSection:all-services",
+        "priceGuideSection:prices",
+        "locationsSection:areas",
+        "faqSection:faqs",
+        "ctaSection:cta"
+      ],
+      "blog": [
+        "heroSection:hero",
+        "postsSection:posts",
+        "ctaSection:cta"
+      ],
+      "commercial-electrician": [
+        "heroSection:hero",
+        "servicesSection:top-services",
+        "featureGridSection:capabilities",
+        "featureGridSection:value-props",
+        "reviewsSection:reviews",
+        "locationsSection:areas",
+        "gallerySection:gallery",
+        "ctaSection:cta"
+      ]
+    },
+    "created": [
+      {
+        "type": "teamMember",
+        "name": "Blake Thompson",
+        "role": "Service Tech"
+      },
+      {
+        "type": "teamMember",
+        "name": "Brandon Connelly",
+        "role": "Service Tech"
+      },
+      {
+        "type": "teamMember",
+        "name": "Stephanie Langford",
+        "role": "Dispatcher"
+      }
+    ],
+    "jobDescription": "jobOpening.description = visible /careers job copy",
+    "notes": [],
+    "assets": 21
+  }
 }

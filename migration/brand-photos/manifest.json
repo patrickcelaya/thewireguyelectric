@@ -1,0 +1,133 @@
+{
+  "about": "Real company photos used by the page-builder sections (scripts/migrate/content/page-sections.mjs). Sources are the live site's Webflow images (web/public/wf/a/), described in the 2026-10-13 asset audit (redesign/assets.md, section 3a). No stock images. `upload.mjs` copies each source here under `file`, uploads it to Sanity (idempotent: Sanity dedupes by content hash) and writes assets.json. `existing` lists photos that are already Sanity assets (service and post images); they are referenced by asset id and never re-uploaded.",
+  "photos": [
+    {
+      "source": "web/public/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif",
+      "file": "crew-portrait.avif",
+      "alt": "The Wire Guy Electric crew of six in matching gray company T-shirts, lined up in front of two white work trucks at the shop",
+      "intendedUse": "Home hero; /our-team FAQ section photo (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f6fc5f5eda8a0837b2d20b_Picture-folder-from-Celaya-Ventures.avif",
+      "file": "fleet-lineup.avif",
+      "alt": "Three wrapped Wire Guy Electric vans and a pickup parked in a desert lot, with technicians standing between them and mountains on the horizon",
+      "intendedUse": "/our-team hero and /commercial-electrician hero (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f7000ce57741d169baf95c_wire-guy-electric-fun-Large.avif",
+      "file": "crew-at-van.avif",
+      "alt": "Four Wire Guy Electric technicians in front of a company van wrapped with the logo, one of them pointing at it",
+      "intendedUse": "/about-us hero, /faq \"Customers frequently ask\" photo, commercial Troubleshooting card (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f594e71e40871ad2c5baa0_Wire-Guy-Electricians-On-Truck-comp.avif",
+      "file": "crew-tailgate.avif",
+      "alt": "Four Wire Guy Electric technicians leaning on the tailgate of the company's copper-wrapped pickup under a carport",
+      "intendedUse": "/about-us and /careers highlights photo, /our-team quote photo (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f595230f2163a622924cfb_Wire-Guy-Looking-At-Van.avif",
+      "file": "tech-looking-at-van.avif",
+      "alt": "Wire Guy Electric technician seen from behind, the company logo and phone number on his shirt, looking at a wrapped service van",
+      "intendedUse": "/careers hero (asset audit: primary Careers image)"
+    },
+    {
+      "source": "web/public/wf/a/66f6fa54a28b1af4d251f837_steven-and-cody-wire-guy-electric.avif",
+      "file": "steven-at-van.avif",
+      "alt": "Owner Steven Taylor standing beside a Wire Guy Electric service van with a ladder rack, a second technician behind him",
+      "intendedUse": "/contact-us hero (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f6fcc4c6e9916a8a3ac839_Picture-folder-from-Celaya-Ventures-1-.avif",
+      "file": "steven-van-logo-bw.avif",
+      "alt": "Black-and-white photo of owner Steven Taylor in front of The Wire Guy Electric logo on a company van",
+      "intendedUse": "/services hero, /faq \"The most common questions\" photo (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+      "file": "lighting-install-vaulted-ceiling.avif",
+      "alt": "Two Wire Guy Electric electricians on ladders installing lighting in a room with a vaulted, dark-beamed ceiling",
+      "intendedUse": "/faq hero; photo gallery (the live CTA-band background)"
+    },
+    {
+      "source": "web/public/wf/a/66f59b1dd36a289c7a2b05c6_electrician-troubleshooting.avif",
+      "file": "troubleshooting-ceiling-wiring.avif",
+      "alt": "Wire Guy Electric electrician in safety glasses working on wires at a light opening in a ceiling",
+      "intendedUse": "/blog hero, home Troubleshooting card (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f596be1d76adb6fa3130e2_EV-Chargers.avif",
+      "file": "ev-charger-garage.avif",
+      "alt": "Wire Guy Electric electrician kneeling beside a Tesla Model 3 in a home garage, wiring a box on the wall",
+      "intendedUse": "Home EV Chargers card (live)"
+    },
+    {
+      "source": "web/public/wf/a/66f59a5e4c615989162acc70_Recessed-Lighting.avif",
+      "file": "kitchen-recessed-lighting.avif",
+      "alt": "Remodeled kitchen at night lit by recessed ceiling lights, with white shaker cabinets and a marble-look island",
+      "intendedUse": "Home Recessed Lights card (replaces the stock Edison-bulb photo) and photo gallery"
+    },
+    {
+      "source": "web/public/wf/a/66f6ff5ac5733bb17e9c7d9d_electrician-cords-Large.avif",
+      "file": "tools-on-romex.avif",
+      "alt": "Klein wire strippers, linesman pliers and a voltage tester resting on a coil of yellow Romex cable",
+      "intendedUse": "Commercial Hanging Lights card (live)"
+    },
+    {
+      "source": "web/public/wf/a/697a78f44773da0cc1dccc2c_Screenshot-2026-01-28-at-2.00.25-PM.png",
+      "file": "commercial-ti-cable-pull.png",
+      "alt": "Two electricians pulling cable inside a new steel commercial building during a tenant improvement",
+      "intendedUse": "Commercial Panel Upgrades card (live) and photo gallery"
+    },
+    {
+      "source": "web/public/wf/a/6a4da2ccaf6070d367c2d679_DSC03474-Large.jpeg",
+      "file": "team-blake-thompson.jpg",
+      "alt": "Blake Thompson, Service Tech at The Wire Guy Electric",
+      "intendedUse": "teamMember photo (Blake Thompson), /our-team (live). The van door in this photo shows an older ROC number; crop it when shown large."
+    },
+    {
+      "source": "web/public/wf/a/6a4da2efac163dc7b39aea81_DSC03477-Large.jpeg",
+      "file": "team-brandon-connelly.jpg",
+      "alt": "Brandon Connelly, Service Tech at The Wire Guy Electric",
+      "intendedUse": "teamMember photo (Brandon Connelly), /our-team (live). The van door shows an older ROC number; crop it when shown large."
+    },
+    {
+      "source": "web/public/wf/a/6a4da30b6aa232e0cb1ba54f_DSC03483-Large.jpeg",
+      "file": "team-stephanie-langford.jpg",
+      "alt": "Stephanie Langford, Dispatcher at The Wire Guy Electric",
+      "intendedUse": "teamMember photo (Stephanie Langford), /our-team (live)"
+    }
+  ],
+  "existing": [
+    {
+      "assetId": "image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png",
+      "sourceDoc": "service panels → mainImage",
+      "alt": "New Siemens electrical panel with labeled breakers next to an SRP meter on a stucco wall",
+      "intendedUse": "Photo gallery"
+    },
+    {
+      "assetId": "image-06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088-png",
+      "sourceDoc": "post 7-signs-you-need-an-electrical-panel-upgrade → mainImage",
+      "alt": "Four Wire Guy Electric technicians giving a thumbs-up beside a newly installed electrical panel and meter on a block wall",
+      "intendedUse": "Photo gallery"
+    },
+    {
+      "assetId": "image-f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811-jpg",
+      "sourceDoc": "service custom-lighting → mainImage",
+      "alt": "Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters",
+      "intendedUse": "Photo gallery"
+    },
+    {
+      "assetId": "image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg",
+      "sourceDoc": "service fixture-replacements → mainImage",
+      "alt": "Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting",
+      "intendedUse": "Photo gallery"
+    },
+    {
+      "assetId": "image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg",
+      "sourceDoc": "service electrical-safety-inspections → mainImage",
+      "alt": "Two Wire Guy Electric technicians walking up a customer's front path in an Arizona neighborhood",
+      "intendedUse": "Photo gallery"
+    }
+  ]
+}

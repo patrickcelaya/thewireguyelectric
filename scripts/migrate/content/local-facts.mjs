@@ -11,7 +11,8 @@
 // Neighborhoods are only names the business already uses. Each one carries the quote
 // that names it, and this checks the quote is in the location's body copy or in the
 // live homepage snapshot (the city tiles), so a name cannot be added here without
-// first appearing in the business's own copy.
+// first appearing in the business's own copy. Every source id a fact cites (including
+// a neighborhood's "verifiedBy") must exist in that file's "sources".
 
 import {readFile} from 'node:fs/promises'
 
@@ -45,7 +46,8 @@ const blocksText = (blocks = []) =>
 export default async function localFacts(ctx) {
   const {docs, readJson, plainBlocks, p, report} = ctx
   const data = await readJson(LOCATIONS)
-  const mesa = (await readJson(MESA)).mesa
+  const mesaData = await readJson(MESA)
+  const mesa = mesaData.mesa
   const homepage = htmlText(await readFile(p(HOMEPAGE), 'utf8'))
 
   const fail = (where, msg) => {
@@ -74,6 +76,14 @@ export default async function localFacts(ctx) {
     if (!value || !Number.isFinite(value.lat) || !Number.isFinite(value.lng) || !inArizona(value)) fail(where, `bad geo ${JSON.stringify(value)}`)
     return {_type: 'geopoint', lat: value.lat, lng: value.lng}
   }
+  // Every cited source id must be defined, so no value is left pointing at a missing citation.
+  const checkSources = (where, facts, sources) => {
+    for (const [field, fact] of Object.entries(facts)) {
+      if (!fact || typeof fact !== 'object' || Array.isArray(fact)) continue
+      const ids = [...(fact.sources ?? []), ...(Array.isArray(fact.value) ? fact.value.flatMap((v) => v?.verifiedBy ?? []) : [])]
+      for (const id of ids) if (!sources[id]) fail(where, `${field} cites unknown source "${id}"`)
+    }
+  }
   const checkNeighborhoods = (where, items, bodyText) => {
     const names = []
     for (const {name, evidence} of items ?? []) {
@@ -97,6 +107,7 @@ export default async function localFacts(ctx) {
       continue
     }
     const where = `${LOCATIONS} ${slug}`
+    checkSources(where, facts, data.sources)
     const fields = []
     if (isHigh(slug, 'county', facts.county)) {
       if (!/ County$/.test(facts.county.value ?? '')) fail(where, `bad county "${facts.county.value}"`)
@@ -134,6 +145,7 @@ export default async function localFacts(ctx) {
   const homeCity = []
   if (settings) {
     const where = `${MESA} mesa`
+    checkSources(where, mesa, mesaData.sources)
     const next = {...(settings.homeCity ?? {})}
     next.name ??= mesa.city
     if (isHigh('mesa', 'county', mesa.county)) {

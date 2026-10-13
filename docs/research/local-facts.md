@@ -10,17 +10,27 @@ Researched 2026-10-13 for the redesign. These are the county, electric utility, 
 
 - **County**: U.S. Census Bureau 2020 place-by-county file. Queen Creek and Apache Junction each lie in both Maricopa and Pinal counties. The schema's `county` is a single string, so it keeps the county already used (Queen Creek: Maricopa; Apache Junction: Pinal), and the permit notes state the split.
 - **Electric utility**: SRP's 2026 Electric Service Specifications include an "SRP Electric Service Area" map (drawn in 2010 and republished in the 2026 edition). Its insets draw each APS pocket inside SRP's area and the City of Mesa's service area. APS's Metro Phoenix territory map and the cities' own utility listings agree with it. Values use the schema list (`SRP`, `APS`, `City of Mesa`, `TEP`, `ED3`), and the split is described in words. TEP serves Tucson and does not apply here. ED3 serves western Pinal County and was not found to serve San Tan Valley. The utility for a given home depends on its address.
-- **Permit authority**: the official city, town or county page. Several city sites block automated requests (mesaaz.gov, gilbertaz.gov, tempe.gov, queencreekaz.gov, explore.pinal.gov, azmag.gov). For those, the content was confirmed from search-engine extracts of the official pages, and each source note says so.
+- **Permit authority**: the official city, town or county page. Several official sites block automated requests (gilbertaz.gov, tempe.gov, queencreekaz.gov, explore.pinal.gov, azmag.gov, ed3online.org). For those, the content was confirmed from search-engine extracts of the official pages, restricted to the official domain, and each source note says so. mesaaz.gov could be read directly on the re-check.
 - **ZIP codes**: the Census 2020 ZCTA-to-place relationship file. A ZIP is listed when at least 40% of its land is inside city limits, or when it covers at least 5% of the city's land (with at least 0.25 sq mi of overlap). This is ZCTA level, which closely tracks USPS ZIP areas. USPS's own lookup blocks automated requests, so USPS city names were not checked. PO-box-only ZIPs have no ZCTA and are not listed. Ahwatukee is not a Census place. Its ZIPs come from intersecting the City of Phoenix's official Ahwatukee Foothills village boundary with the Census ZCTAs and dropping overlaps that are only South Mountain Park land.
 - **City center**: the USGS GNIS populated-place point, which marks the traditional town center, rounded to 4 decimals. It is used for `geo` and the `areaServed` schema. The Census 2025 Gazetteer internal points were checked too. They mark each city's geometric middle instead, which for Phoenix is north Phoenix rather than downtown.
-- **Neighborhoods**: only names the business already uses on its homepage city tiles or in the "Service Areas within {City} include" list on the location page. None were added. Three names could not be verified and are held back (see below).
+- **Neighborhoods**: only names the business already uses on its homepage city tiles or in the "Service Areas within {City} include" list on the location page. None were added. Three names matched no public record on the first pass (Center Court, Cimmarron, Renaissance Point). The re-check found each one as a subdivision name in MLS listing data, so all three are applied, and the listing is cited in `verifiedBy`.
+
+## Re-check (2026-10-13)
+
+The values from the first research pass were checked again before being applied:
+
+- **ZIP codes**: recomputed from the Census ZCTA-to-place file with the same thresholds. Every city's list came out the same.
+- **City centers**: all 11 coordinates match the GNIS file's populated-place points.
+- **Utilities**: the APS pockets described below match the white (APS) areas on APS's Metro Phoenix map: Gilbert (Guadalupe–Warner, Cooper–Lindsay), Chandler (Ray–Pecos, Alma School–McQueen), downtown Tempe and south Scottsdale. Gilbert's own Utilities page lists SRP and APS [36].
+- **Permit offices**: the Scottsdale, Chandler, Apache Junction, Fountain Hills and Phoenix wording was checked against the saved official pages. The Mesa page was read directly. Gilbert, Tempe and Queen Creek were confirmed again with searches restricted to their official domains. The San Tan Valley arrangement (Pinal County handling permits under an intergovernmental agreement through 2026-12-31) still holds.
+- **Neighborhoods**: every applied name is in the business's own copy: the tiles in the inventory and the live Sanity `location.body`.
 
 ## Summary
 
 | City | County | Electric utility | Permit authority | ZIP codes | City center (lat, lng) |
 |---|---|---|---|---|---|
 | Mesa (homepage) | Maricopa County [2] | SRP, City of Mesa [33][34][5] | [City of Mesa Development Services Department](https://www.mesaaz.gov/business/development-services/residential-construction) [35] | 85201, 85202, 85203, 85204, 85205, 85206, 85207, 85208, 85209, 85210, 85212, 85213, 85215* [1] | 33.4223, -111.8226 ([GNIS 7890](https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/7890)) |
-| Gilbert | Maricopa County [2] | SRP, APS [5][7][9] | [Town of Gilbert Development Services (Plan Review & Inspection)](https://www.gilbertaz.gov/departments/development-services/plan-review-inspection/permits-applications) [8] | 85233, 85234, 85295, 85296, 85297, 85298 [1] | 33.3528, -111.789 ([GNIS 5032](https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/5032)) |
+| Gilbert | Maricopa County [2] | SRP, APS [5][7][9][36] | [Town of Gilbert Development Services (Plan Review & Inspection)](https://www.gilbertaz.gov/departments/development-services/plan-review-inspection/permits-applications) [8] | 85233, 85234, 85295, 85296, 85297, 85298 [1] | 33.3528, -111.789 ([GNIS 5032](https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/5032)) |
 | Chandler | Maricopa County [2] | SRP, APS [5][7][12] | [City of Chandler Development Services Department, Building Safety (plan review, permits and inspections)](https://www.chandleraz.gov/government/departments/development-services/building-safety-plan-review-permits-and-inspections) [10][11] | 85224, 85225, 85226*, 85248*, 85249, 85286 [1] | 33.3062, -111.8413 ([GNIS 2748](https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/2748)) |
 | Scottsdale | Maricopa County [2] | SRP, APS [5][7] | [City of Scottsdale Planning & Development (Permit Services, One Stop Shop, 7447 E. Indian School Road)](https://www.scottsdaleaz.gov/planning-development/permit-services) [13][14] | 85250*, 85251, 85255, 85257, 85258, 85259, 85260, 85262*, 85266 [1] | 33.5092, -111.899 ([GNIS 11029](https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/11029)) |
 | Tempe | Maricopa County [2] | SRP, APS [5][7][16] | [City of Tempe Community Development Department, Building Safety Division (Permit Center)](https://www.tempe.gov/government/community-development/building-safety) [15] | 85281, 85282, 85283, 85284 [1] | 33.4148, -111.9093 ([GNIS 12233](https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/12233)) |
@@ -38,7 +48,7 @@ Researched 2026-10-13 for the redesign. These are the county, electric utility, 
 | City | Detail |
 |---|---|
 | Mesa (homepage) | The City of Mesa delivers electric service within a 5.5-square-mile Electric Service Area centered on and including downtown Mesa (more than 18,000 homes and businesses); SRP serves the rest of the city. [33][34][5] |
-| Gilbert | Most of Gilbert is in SRP’s electric service area. APS serves a pocket between Guadalupe and Warner roads, from Cooper Road to Lindsay Road. [5][7][9] |
+| Gilbert | Most of Gilbert is in SRP’s electric service area. APS serves a pocket between Guadalupe and Warner roads, from Cooper Road to Lindsay Road. [5][7][9][36] |
 | Chandler | Most of Chandler is in SRP’s electric service area. APS serves parts of the city, including the area between Ray and Pecos roads from Alma School Road to McQueen Road, and a second small pocket near Arizona Avenue shown in a separate inset of the SRP map. [5][7][12] |
 | Scottsdale | SRP serves much of central and south Scottsdale. APS serves most of north Scottsdale and a pocket of south Scottsdale between Thomas and Chaparral roads, from 64th Street to Hayden Road. [5][7] |
 | Tempe | Most of Tempe is in SRP’s electric service area. APS serves an area around downtown Tempe, roughly Broadway Road north to Weber Drive, between Beck Avenue and Dorsey Lane (SRP map inset; the inset labels the north edge "Weber Rd."). [5][7][16] |
@@ -51,27 +61,27 @@ Researched 2026-10-13 for the redesign. These are the county, electric utility, 
 
 ## Neighborhoods
 
-Only names the business already uses: the homepage city tiles (“tile”) or the “Service Areas within {City} include” list in the location body (“body”). The migration module re-checks each quote against that copy.
+Only names the business already uses: the homepage city tiles (“tile”) or the “Service Areas within {City} include” list in the location body (“body”). The migration module re-checks each quote against that copy. Every name the business uses is applied; none are held back.
 
-| City | Applied | Held back (confirm with owner) |
-|---|---|---|
-| Mesa (homepage) | Eastmark (tile), Las Sendas (tile), Red Mountain Ranch (tile), Dobson Ranch (tile) | – |
-| Gilbert | Power Ranch (tile), Val Vista Lakes (tile), Seville (tile), Morrison Ranch (tile), Agritopia (tile), The Islands (body) | – |
-| Chandler | Ocotillo (tile), Fulton Ranch (tile), Downtown Chandler (tile), Sun Groves (body), Andersen Springs (body) | – |
-| Scottsdale | North Scottsdale (tile), DC Ranch (tile), McCormick Ranch (tile), Gainey Ranch (tile), Old Town Scottsdale (body) | – |
-| Tempe | Downtown Tempe (tile), South Tempe (tile), The Lakes (tile), North Tempe (body), Maple-Ash (body) | – |
-| Phoenix | Arcadia (tile), Biltmore (tile), Ahwatukee (tile), North Phoenix (tile), Central City (tile), Downtown Phoenix (body) | – |
-| Ahwatukee | Foothills Club West (body), Mountain Park Ranch (body), Lakewood (body), Desert Foothills (body) | Center Court |
-| Queen Creek | Queen Creek Marketplace Area (body), Sossaman Estates (body), Montelena (body), Ironwood Crossing (body), Hastings Farms (body) | – |
-| San Tan Valley | Johnson Ranch (body), San Tan Heights (body), Copper Basin (body), Morning Sun Farms (body), Pecan Creek (body) | – |
-| Apache Junction | Superstition Foothills (body), Ironwood Estates (body), Jacobs Ranch (body) | Cimmarron; Renaissance Point |
-| Fountain Hills | Fountain Park District (body), SunRidge Canyon (body), Eagle Mountain (body), North Heights (body), Firerock (body) | – |
+| City | Applied |
+|---|---|
+| Mesa (homepage) | Eastmark (tile), Las Sendas (tile), Red Mountain Ranch (tile), Dobson Ranch (tile) |
+| Gilbert | Power Ranch (tile), Val Vista Lakes (tile), Seville (tile), Morrison Ranch (tile), Agritopia (tile), The Islands (body) |
+| Chandler | Ocotillo (tile), Fulton Ranch (tile), Downtown Chandler (tile), Sun Groves (body), Andersen Springs (body) |
+| Scottsdale | North Scottsdale (tile), DC Ranch (tile), McCormick Ranch (tile), Gainey Ranch (tile), Old Town Scottsdale (body) |
+| Tempe | Downtown Tempe (tile), South Tempe (tile), The Lakes (tile), North Tempe (body), Maple-Ash (body) |
+| Phoenix | Arcadia (tile), Biltmore (tile), Ahwatukee (tile), North Phoenix (tile), Central City (tile), Downtown Phoenix (body) |
+| Ahwatukee | Foothills Club West (body), Mountain Park Ranch (body), Lakewood (body), Desert Foothills (body), Center Court (body; listed as “Center Court at Ahwatukee” [37]) |
+| Queen Creek | Queen Creek Marketplace Area (body), Sossaman Estates (body), Montelena (body), Ironwood Crossing (body), Hastings Farms (body) |
+| San Tan Valley | Johnson Ranch (body), San Tan Heights (body), Copper Basin (body), Morning Sun Farms (body), Pecan Creek (body) |
+| Apache Junction | Superstition Foothills (body), Ironwood Estates (body), Cimmarron (body; subdivision in 85119 [38]), Jacobs Ranch (body), Renaissance Point (body; subdivision in 85120 [39]) |
+| Fountain Hills | Fountain Park District (body), SunRidge Canyon (body), Eagle Mountain (body), North Heights (body), Firerock (body) |
 
 ## Permit notes (as written to `permitNotes`)
 
 **Mesa (homepage)** (stored in mesa.json; Home city has no permitNotes field yet) [35][33][5]
 
-> Residential electrical permits in Mesa are issued by the City of Mesa Development Services Department, which handles plan review, permits and inspections. Installing or modifying electrical systems is on the city’s list of work that needs a construction permit.
+> Residential electrical permits in Mesa are issued by the City of Mesa Development Services Department, which handles plan review, permits and inspections. Installing or modifying electrical systems is on the city’s list of work that needs a construction permit, and applications go through the city’s DIMES system.
 >
 > Mesa has two electric utilities: the City of Mesa serves a 5.5-square-mile area centered on downtown, and SRP serves the rest of the city. In SRP’s area, SRP’s service specifications say to contact both SRP and the permitting authority before a panel upgrade, and SRP reconnects power once both approve the work.
 
@@ -141,22 +151,18 @@ Only names the business already uses: the homepage city tiles (“tile”) or th
 
 ## Confirm with owner
 
-1. **Held-back neighborhood names.** These are in the business's own copy, but no neighborhood by these names could be found, so they were not written to Sanity:
-   - Apache Junction: **"Cimmarron"**. GNIS's only "Cimarron" is in Tempe. Is the spelling or the name different?
-   - Apache Junction: **"Renaissance Point"**.
-   - Ahwatukee: **"Center Court"**. The only match found is Center Court Villas in Fountain Hills.
-2. **Neighborhoods with search demand that the business does not name yet** (from Google Search Console; not added):
+1. **Neighborhoods with search demand that the business does not name yet** (from Google Search Console; not added):
    - Mesa: Superstition Springs, Leisure World, Alta Mesa ("electrician alta mesa, az", 62 impressions), Cadence at Gateway, "East Mesa".
    - Gilbert: Higley ("electrician higley az", 53 impressions at position 4.5).
    - Chandler: Chandler Heights (unincorporated, next to the city) and Sun Lakes (unincorporated; a query for it lands on the Tempe page).
    - Scottsdale: Kierland and Grayhawk (both recommended in the GSC report). Paradise Valley, Carefree and Cave Creek have demand but are separate towns, so each would be a service-area decision, not a Scottsdale neighborhood.
    - Phoenix: Desert Ridge (named in the body only as "Desert Ridge Marketplace") and Laveen (an official Phoenix village).
-   - Fountain Hills: Fort McDowell (60 impressions; this is the Fort McDowell Yavapai Nation, not part of the town) and Hidden Hills (46 impressions; location not verified).
+   - Fountain Hills: Fort McDowell (60 impressions; this is the Fort McDowell Yavapai Nation, not part of the town), Hidden Hills (46 impressions; location not verified) and Rio Verde (an unincorporated community northeast of the town, named in the GSC report as a nearby area).
    - Apache Junction: Gold Canyon (an unincorporated community east of the city, ZIP 85118) and Mountain Brook.
-3. **San Tan Valley permitting.** Voters approved incorporating the Town of San Tan Valley in 2025. Under an intergovernmental agreement scheduled to run through **2026-12-31**, Pinal County currently takes the town's building permit applications. The permit note is worded to stay true after the agreement ends, but after January 2027 it should be updated to name whichever office then issues permits.
-4. **Spelling and labels.** "Jacobs Ranch": listing data spells it "Jacob's Ranch". "Fountain Park District" is the business's name for the area around Fountain Park (the town center), not a subdivision. "Andersen Springs" appears as a Chandler subdivision only in listing data. The Phoenix tile says "Biltmore" and the body says "Biltmore Area"; `neighborhoods` uses "Biltmore".
-5. **Phoenix ZIP list.** It has 45 ZIPs, including some whose USPS city name is not Phoenix but where at least 40% of the ZIP is inside Phoenix (85310 Glendale, 85353 Tolleson, 85086 Anthem area). Confirm the owner wants all of them shown, or show only part of the list on the page.
-6. **Landmarks in the existing body copy that may be outside the city** (copy not changed; check before reusing):
+2. **San Tan Valley permitting.** Voters approved incorporating the Town of San Tan Valley in 2025. Under an intergovernmental agreement scheduled to run through **2026-12-31**, Pinal County currently takes the town's building permit applications. The permit note is worded to stay true after the agreement ends, but after January 2027 it should be updated to name whichever office then issues permits.
+3. **Spelling and labels.** "Jacobs Ranch": listing data spells it "Jacob's Ranch". "Center Court" is listed as "Center Court at Ahwatukee". "Cimmarron" (double m) matches the listing's subdivision field, though some listing descriptions write "Cimarron". "Fountain Park District" is the business's name for the area around Fountain Park (the town center), not a subdivision. "Andersen Springs" appears as a Chandler subdivision only in listing data. The Phoenix tile says "Biltmore" and the body says "Biltmore Area"; `neighborhoods` uses "Biltmore".
+4. **Phoenix ZIP list.** It has 45 ZIPs, including some whose USPS city name is not Phoenix but where at least 40% of the ZIP is inside Phoenix (85310 Glendale, 85353 Tolleson, 85086 Anthem area). Confirm the owner wants all of them shown, or show only part of the list on the page. Two ZIPs fall just outside the rule: **85339 (Laveen)** and 85087 (New River). About 22 and 18 sq mi of them are inside Phoenix, but that is only about 9% and 20% of each ZIP's land. Laveen Village is an official Phoenix village, so 85339 can be added if the owner serves Laveen.
+5. **Landmarks in the existing body copy that may be outside the city** (copy not changed; check before reusing):
    - Fountain Hills mentions Desert Botanical Garden, which is in Phoenix's Papago Park.
    - San Tan Valley mentions Schnepf Farms, which is in Queen Creek.
    - Apache Junction mentions Gold Canyon Golf Resort, which is in Gold Canyon.
@@ -204,4 +210,8 @@ Only names the business already uses: the homepage city tiles (“tile”) or th
 32. [The Wire Guy Electric location page body, "Service Areas within {City} include" list (Sanity location.body)](https://www.thewireguyelectric.com/locations/{slug}). The Wire Guy Electric, accessed 2026-10-13.
 33. [Select Mesa (City of Mesa Office of Economic Development): Infrastructure](https://selectmesa.com/business-environment/infrastructure/). City of Mesa, accessed 2026-10-13.
 34. [City of Mesa Electric Service Area map ("Total Service Area: 5.5 Sq. Miles")](https://gis.mesaaz.gov/energy/serviceareas/Electric_Service_Area.pdf). City of Mesa, accessed 2026-10-13.
-35. [City of Mesa Development Services: Residential Construction](https://www.mesaaz.gov/business/development-services/residential-construction). City of Mesa, accessed 2026-10-13. Note: mesaaz.gov returns 403 to automated fetches; content confirmed through search-engine extracts of the official page (Development Services issues construction permits, conducts plan reviews and performs inspections; installing or modifying electrical systems needs a construction permit; 2023 NEC adopted).
+35. [City of Mesa Development Services: Residential Construction](https://www.mesaaz.gov/business/development-services/residential-construction). City of Mesa, accessed 2026-10-13. Note: read directly on the re-check: "Development Services is here to assist with all stages, including issuing construction permits"; "You need a construction permit for … Installing or modifying electrical, plumbing, or mechanical systems"; the technical codes list includes "2023 NEC"; "Use the DIMES system to apply for a Residential Construction Permit."
+36. [Town of Gilbert: Utilities](https://www.gilbertaz.gov/residents/utilities). Town of Gilbert, accessed 2026-10-13. Note: gilbertaz.gov returns 403 to automated fetches; search-engine extract of the official page: lists SRP and APS as residential electric providers, each with a service-area map.
+37. [MLS listing, 11623 S 46th St, Phoenix, AZ 85044: subdivision "Center Court At Ahwatukee"](https://lovingphoenixhomes.com/home/11623-46th-st-phoenix-az-85044-6927399). Also [4141 E Keresan St, 85044: "Center Court at Ahwatukee home on the golf course"](https://www.avail.com/l/60774472-fantastic-center-court-at-ahwatukee-home-on-the-golf-course). Accessed 2026-10-13. Listing data, used only to confirm a name the business already uses.
+38. [MLS listing, 896 E Graham Lane, Apache Junction, AZ 85119: subdivision "Cimmarron"](https://homeinfoaz.realgeeks.com/property/7053855/). Accessed 2026-10-13. Listing data, used only to confirm a name the business already uses.
+39. [MLS listing, 1993 S Mara Drive, Apache Junction, AZ 85120: subdivision "Renaissance Point"](https://homeinfoaz.realgeeks.com/property/7072685/). Accessed 2026-10-13. Listing data, used only to confirm a name the business already uses.

@@ -5,7 +5,8 @@
     "zipCodes": "Census 2020 ZCTA-to-place relationship file: a ZIP is listed when at least 40% of its land is inside the city limits, or it covers at least 5% of the city’s land (and at least 0.25 sq mi of overlap). ZIPs under 50% are listed in \"partlyInCity\". ZCTAs approximate USPS ZIP areas; USPS lookups were not reachable (bot protection), so USPS city names were not checked.",
     "geo": "USGS GNIS populated-place point (traditional town center), rounded to 4 decimals. Census 2025 Gazetteer internal points were used as a cross-check.",
     "utilityProviders": "Values use the schema list (SRP, APS, City of Mesa, TEP, ED3). Boundaries from SRP’s 2026 Electric Service Specifications map (which draws the APS pockets inside SRP’s area) and APS’s Metro Phoenix territory map, plus each city’s own utility listing where reachable. Utility territory is set by address; nuance goes in \"detail\" and permitNotes.",
-    "permitAuthority": "Official city/town/county pages. Several city sites (mesaaz.gov, gilbertaz.gov, tempe.gov, queencreekaz.gov, explore.pinal.gov, azmag.gov) return 403 to automated fetches; their content was confirmed through search-engine extracts of the official pages and is marked in the source note."
+    "permitAuthority": "Official city/town/county pages. Several official sites (gilbertaz.gov, tempe.gov, queencreekaz.gov, explore.pinal.gov, azmag.gov, ed3online.org) return 403 to automated fetches; their content was confirmed through search-engine extracts of the official pages (re-checked 2026-10-13, restricted to the official domain) and is marked in the source note.",
+    "neighborhoods": "Only names the business already uses (homepage city tiles or the \"Service Areas within {City} include\" list in the location body); none added. Each name carries the quote that names it, which the migration module re-checks. Names that no public record seemed to match were looked up again in MLS listing data, and the listing that shows the subdivision is recorded in \"verifiedBy\"."
   },
   "sources": {
     "census-zcta-place": {
@@ -181,7 +182,7 @@
       "title": "Pinal County, applicant information for permitting in the Town of San Tan Valley (Document Center 30892) and news flash 2439 (2026-06-10)",
       "publisher": "Pinal County",
       "url": "https://explore.pinal.gov/DocumentCenter/View/30892",
-      "note": "explore.pinal.gov returns 403 to automated fetches; content confirmed through two independent search-engine extracts: the Town has an IGA with Pinal County for building plan review, permitting, inspections and certificates of occupancy, currently scheduled to run through 2026-12-31; applicants submit building permit applications to Pinal County. The banner \"Important Permitting Information for the Town of San Tan Valley\" appears on https://www.pinal.gov/191/Applications-Information-Bulletins.",
+      "note": "explore.pinal.gov returns 403 to automated fetches; content confirmed through search-engine extracts (first pass and again on the 2026-10-13 re-check): the Town has an IGA with Pinal County for building plan review, permitting, inspections, final approval and certificates of occupancy, currently scheduled to run through 2026-12-31; applicants submit building permit applications to Pinal County, which reviews them under Pinal County codes. The banner \"Important Permitting Information for the Town of San Tan Valley\" appears on https://www.pinal.gov/191/Applications-Information-Bulletins.",
       "accessed": "2026-10-13"
     },
     "mag-stv": {
@@ -246,6 +247,34 @@
       "publisher": "The Wire Guy Electric",
       "url": "https://www.thewireguyelectric.com/locations/{slug}",
       "accessed": "2026-10-13"
+    },
+    "gilbert-utilities": {
+      "title": "Town of Gilbert: Utilities (residential electric providers SRP and APS, each with a service-area map)",
+      "publisher": "Town of Gilbert",
+      "url": "https://www.gilbertaz.gov/residents/utilities",
+      "note": "gilbertaz.gov returns 403 to automated fetches; search-engine extract of the official page: lists Salt River Project (SRP) and Arizona Public Service (APS) as residential electric providers.",
+      "accessed": "2026-10-13"
+    },
+    "listing-center-court": {
+      "title": "MLS listing, 11623 S 46th St, Phoenix, AZ 85044: subdivision \"Center Court At Ahwatukee\"",
+      "publisher": "ARMLS listing via lovingphoenixhomes.com",
+      "url": "https://lovingphoenixhomes.com/home/11623-46th-st-phoenix-az-85044-6927399",
+      "note": "Also: rental listing \"Fantastic Center Court at Ahwatukee home on the golf course\", 4141 E Keresan St, Phoenix, AZ 85044 (https://www.avail.com/l/60774472-fantastic-center-court-at-ahwatukee-home-on-the-golf-course). Listing data, not an official source; used only to confirm that a name the business already uses is a real Ahwatukee subdivision.",
+      "accessed": "2026-10-13"
+    },
+    "listing-cimmarron": {
+      "title": "MLS listing, 896 E Graham Lane, Apache Junction, AZ 85119: subdivision \"Cimmarron\"",
+      "publisher": "ARMLS listing via homeinfoaz.realgeeks.com",
+      "url": "https://homeinfoaz.realgeeks.com/property/7053855/",
+      "note": "Listing data, not an official source; used only to confirm that a name the business already uses (with the same double-m spelling) is a real Apache Junction subdivision.",
+      "accessed": "2026-10-13"
+    },
+    "listing-renaissance-point": {
+      "title": "MLS listing, 1993 S Mara Drive, Apache Junction, AZ 85120: subdivision \"Renaissance Point\"",
+      "publisher": "ARMLS listing via homeinfoaz.realgeeks.com",
+      "url": "https://homeinfoaz.realgeeks.com/property/7072685/",
+      "note": "Listing data, not an official source; used only to confirm that a name the business already uses is a real Apache Junction subdivision (other listings show \"Renaissance Point Unit 2\").",
+      "accessed": "2026-10-13"
     }
   },
   "locations": {
@@ -267,7 +296,8 @@
         "sources": [
           "srp-ess-2026",
           "aps-phx-metro-map",
-          "gilbert-power-outage"
+          "gilbert-power-outage",
+          "gilbert-utilities"
         ],
         "confidence": "high"
       },
@@ -1293,7 +1323,7 @@
           "census-zcta-place"
         ],
         "confidence": "high",
-        "note": "ZIPs with at least 40% of their land inside Phoenix city limits (or covering 5% of the city). Several have a different USPS city name (e.g. 85310 Glendale, 85353 Tolleson); 85339 (Laveen) and 85087 (New River) fall below the threshold."
+        "note": "ZIPs with at least 40% of their land inside Phoenix city limits (or covering 5% of the city). Several have a different USPS city name (e.g. 85310 Glendale, 85353 Tolleson). 85339 (Laveen) and 85087 (New River) fall below the threshold: about 22 and 18 sq mi of them are inside Phoenix, but that is only about 9% and 20% of each ZIP’s land. Laveen Village is an official Phoenix village, so 85339 is on the owner list."
       },
       "geo": {
         "value": {
@@ -1495,15 +1525,20 @@
               "source": "business-location-body",
               "quote": "Desert Foothills"
             }
-          }
-        ],
-        "heldBack": [
+          },
           {
             "name": "Center Court",
-            "reason": "Named in the business copy, but no Ahwatukee subdivision or area by this name could be found (the only match is Center Court Villas in Fountain Hills). Confirm the name with the owner."
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Center Court"
+            },
+            "verifiedBy": [
+              "listing-center-court"
+            ]
           }
         ],
-        "confidence": "high"
+        "confidence": "high",
+        "note": "The listing name is \"Center Court at Ahwatukee\"; the business copy says \"Center Court\"."
       },
       "permitNotes": {
         "value": [
@@ -1893,25 +1928,35 @@
             }
           },
           {
+            "name": "Cimmarron",
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Cimmarron"
+            },
+            "verifiedBy": [
+              "listing-cimmarron"
+            ]
+          },
+          {
             "name": "Jacobs Ranch",
             "evidence": {
               "source": "business-location-body",
               "quote": "Jacobs Ranch"
             }
-          }
-        ],
-        "heldBack": [
-          {
-            "name": "Cimmarron",
-            "reason": "Named in the business copy, but no Apache Junction neighborhood by this name (or \"Cimarron\") could be found; GNIS has a Cimarron populated place in Tempe. Confirm the name and spelling with the owner."
           },
           {
             "name": "Renaissance Point",
-            "reason": "Named in the business copy, but no Apache Junction neighborhood by this name could be found. Confirm with the owner."
+            "evidence": {
+              "source": "business-location-body",
+              "quote": "Renaissance Point"
+            },
+            "verifiedBy": [
+              "listing-renaissance-point"
+            ]
           }
         ],
         "confidence": "high",
-        "note": "Listing data spells it \"Jacob’s Ranch\"; the business copy has \"Jacobs Ranch\"."
+        "note": "Listing data spells it \"Jacob’s Ranch\"; the business copy has \"Jacobs Ranch\". \"Cimmarron\" is spelled with a double m both in the business copy and in the listing’s subdivision field."
       },
       "permitNotes": {
         "value": [
@@ -2062,8 +2107,14 @@
           "name": "Hidden Hills",
           "queries": "\"hidden hills electrician\" 46 at 24.6 (lands on /locations/fountain-hills)",
           "note": "Location not verified."
+        },
+        {
+          "name": "Rio Verde",
+          "queries": "Named in the GSC report as a nearby area with demand for the Fountain Hills page",
+          "note": "Unincorporated community northeast of Fountain Hills; not part of the town. A service-area decision."
         }
       ]
     }
-  }
+  },
+  "recheckedAt": "2026-10-13"
 }

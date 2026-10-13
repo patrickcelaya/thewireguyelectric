@@ -56,7 +56,7 @@
     "value": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. If you have an urgent situation, give us a call and we'll do our best to accommodate you."
   },
   "googleBusinessProfileUrl": {
-    "source": "Linked from the live footer of the blog-category pages ('Our contacts' > 'Mesa, Arizona'), and already the sourceUrl of every imported Google review (migration/reviews/google-reviews.json → provenance.googleBusinessProfile). Resolves (2026-10-13) to the Google Maps listing of 'The Wire Guy Electric', place 0x872ba8b087754aa3:0x3e4e9bf5bed91d08, knowledge-graph id /g/11f04d6xl_, in Mesa.",
+    "source": "Linked from the live footer of the blog-category pages ('Our contacts' > 'Mesa, Arizona'), and already the sourceUrl of every imported Google review (migration/reviews/google-reviews.json → provenance.googleBusinessProfile). Resolves (2026-10-13) to the Google Maps listing of 'The Wire Guy Electric', place 0x872ba8b087754aa3:0x3e4e9bf5bed91d08, knowledge-graph id /g/11f04d6xl_, in Mesa. The same footer's Google icon link (https://maps.app.goo.gl/6qQ2iDaf8YGrdJuW8, fa-google) resolves to the same place, so either works; this one is kept because the reviews already cite it. Not in sameAs (Facebook, Instagram, Yelp, BBB only).",
     "value": "https://maps.app.goo.gl/j4qZJwx8ttVZo93w5"
   },
   "reviewsUrl": {

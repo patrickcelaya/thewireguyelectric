@@ -1,0 +1,1167 @@
+{
+  "page": "our-team",
+  "url": "/our-team",
+  "capturedAt": "2026-10-13",
+  "source": "Discovery inventory our-team.json: the live page (thewireguyelectric.com/our-team) as served on 2026-10-13, verbatim",
+  "title": "Meet Our Electricians | The Wire Guy Electric Team",
+  "metaDescription": "Get to know the licensed electricians behind The Wire Guy Electric in Mesa, AZ. Real people, real expertise, and a real commitment to quality work.",
+  "h1": "The team of licensed electricians",
+  "sections": [
+    {
+      "index": 0,
+      "element": "div.section.banner-inner.custom-padding",
+      "purpose": "Page banner: H1 + intro paragraph over the fleet photo",
+      "source": "static",
+      "headings": [
+        {
+          "level": 1,
+          "text": "The team of licensed electricians"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.inner-wrapper.our-team",
+          "src": "/wf/a/66f6fc5f5eda8a0837b2d20b_Picture-folder-from-Celaya-Ventures.avif",
+          "cssSelector": ".inner-wrapper.our-team",
+          "role": "REAL photo: fleet line-up (3 wrapped vans + F-250) with 4 techs, Superstition Mountains, lots of sky (1086px, low-res)"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The team of licensed electricians"
+        },
+        {
+          "type": "paragraph",
+          "text": "With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients."
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6fc5f5eda8a0837b2d20b_Picture-folder-from-Celaya-Ventures.avif",
+          "alt": null,
+          "role": "REAL photo: fleet line-up (3 wrapped vans + F-250) with 4 techs, Superstition Mountains, lots of sky (1086px, low-res)",
+          "kind": "css background (.inner-wrapper.our-team)"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "index": 1,
+      "element": "div.section",
+      "purpose": "Team grid: H2 \"Our team\" + nine team cards (photo, H4 name, role, bio; last three have no bio)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Our team"
+        },
+        {
+          "level": 4,
+          "text": "Steven Taylor Owner"
+        },
+        {
+          "level": 4,
+          "text": "Cody Taylor Owner/Service Manager"
+        },
+        {
+          "level": 4,
+          "text": "Cade Reynolds Lead Technician"
+        },
+        {
+          "level": 4,
+          "text": "Wade Adams Service Tech"
+        },
+        {
+          "level": 4,
+          "text": "Emma Woolington Office Manager"
+        },
+        {
+          "level": 4,
+          "text": "Lauren Taylor Marketing"
+        },
+        {
+          "level": 4,
+          "text": "Blake Thompson Service Tech"
+        },
+        {
+          "level": 4,
+          "text": "Brandon Connelly Service Tech"
+        },
+        {
+          "level": 4,
+          "text": "Stephanie Langford Dispatcher"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Our team"
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6faaf6f0701b4a0add5ce_Team-Steven-Team.avif",
+              "alt": "",
+              "role": "Team portrait: Steven Taylor (CMU-wall series, 1280px)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Steven Taylor Owner",
+              "html": "Steven Taylor<br><span class=\"accent\">Owner</span>",
+              "accent": [
+                "Owner"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Steven founded The Wire Guy Electric in 2017, bringing over 12 years of experience to serve his community as a trusted resource. In his free time, he enjoys cooking, spending time with his fiance Emma and their dog Lulu, watching movies, and doing projects around their home."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fada20ca5a9c9281bc60_Cody-Team-1-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Cody Taylor (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Cody Taylor Owner/Service Manager",
+              "html": "Cody Taylor<br><span class=\"accent\">Owner/Service Manager</span>",
+              "accent": [
+                "Owner/Service Manager"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Cody has been with The Wire Guy Electric since its start in 2017, working closely with our team to deliver top-notch service. A proud Arizona native, Cody enjoys family time, cooking on his Blackstone, and riding his motorcycle with his wife, Lauren."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fb23e8fd7842d67264a4_Team-Cade-1-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Cade Reynolds (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Cade Reynolds Lead Technician",
+              "html": "Cade Reynolds<br><span class=\"accent\">Lead Technician</span>",
+              "accent": [
+                "Lead Technician"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Cade has been with us for about 6 years and has been a great addition to our team."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fb5b171fc1eb2b718897_Team-Wade-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Wade Adams (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Wade Adams Service Tech",
+              "html": "Wade Adams<br><span class=\"accent\">Service Tech</span>",
+              "accent": [
+                "Service Tech"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Wade is the newest member of our team, with a background in HVAC and home remodeling. Born and raised in Mesa, Arizona, he enjoys spending time with his wife and family, traveling, and snowboarding."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fb8728ffdc66b2710e9a_Team-Emma-1-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Emma Woolington (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Emma Woolington Office Manager",
+              "html": "Emma Woolington<br><span class=\"accent\">Office Manager</span>",
+              "accent": [
+                "Office Manager"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Emma has been with The Wire Guy for about 3 years and is the friendly voice you’ll hear on the phone. In her free time, she enjoys paddle boarding, cooking, trying new foods, crafting, and spending time with her fiance Steven and their dog Lulu."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fbb0cc162d0f867bb162_Lauren-Team-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Lauren Taylor (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Lauren Taylor Marketing",
+              "html": "Lauren Taylor<br><span class=\"accent\">Marketing</span>",
+              "accent": [
+                "Marketing"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Lauren has been with us for about a year, managing all things networking. An Arizona native, she loves living close to family. She and Cody married in September 2023 and are enjoying married life! Lauren enjoys Dr. Pepper, film photography, and sharing good food with Cody."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/6a4da2ccaf6070d367c2d679_DSC03474-Large.jpeg",
+              "alt": "",
+              "role": "Team photo: Blake Thompson at the van (van door shows an older ROC number)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Blake Thompson Service Tech",
+              "html": "Blake Thompson<br><span class=\"accent\">Service Tech</span>",
+              "accent": [
+                "Service Tech"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/6a4da2efac163dc7b39aea81_DSC03477-Large.jpeg",
+              "alt": "",
+              "role": "Team photo: Brandon Connelly at the van",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Brandon Connelly Service Tech",
+              "html": "Brandon Connelly<br><span class=\"accent\">Service Tech</span>",
+              "accent": [
+                "Service Tech"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/6a4da30b6aa232e0cb1ba54f_DSC03483-Large.jpeg",
+              "alt": "",
+              "role": "Team photo: Stephanie Langford",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Stephanie Langford Dispatcher",
+              "html": "Stephanie Langford<br><span class=\"accent\">Dispatcher</span>",
+              "accent": [
+                "Dispatcher"
+              ]
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6faaf6f0701b4a0add5ce_Team-Steven-Team.avif",
+          "alt": "",
+          "role": "Team portrait: Steven Taylor (CMU-wall series, 1280px)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fada20ca5a9c9281bc60_Cody-Team-1-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Cody Taylor (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fb23e8fd7842d67264a4_Team-Cade-1-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Cade Reynolds (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fb5b171fc1eb2b718897_Team-Wade-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Wade Adams (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fb8728ffdc66b2710e9a_Team-Emma-1-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Emma Woolington (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fbb0cc162d0f867bb162_Lauren-Team-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Lauren Taylor (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/6a4da2ccaf6070d367c2d679_DSC03474-Large.jpeg",
+          "alt": "",
+          "role": "Team photo: Blake Thompson at the van (van door shows an older ROC number)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/6a4da2efac163dc7b39aea81_DSC03477-Large.jpeg",
+          "alt": "",
+          "role": "Team photo: Brandon Connelly at the van",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/6a4da30b6aa232e0cb1ba54f_DSC03483-Large.jpeg",
+          "alt": "",
+          "role": "Team photo: Stephanie Langford",
+          "kind": "img"
+        }
+      ],
+      "ctas": [],
+      "notes": [
+        "First six cards match Sanity teamMember docs verbatim. Blake Thompson (Service Tech), Brandon Connelly (Service Tech) and Stephanie Langford (Dispatcher) have NO teamMember docs: create them before switching to teamSection.",
+        "Every team photo has empty alt; use \"{name}, {role} at The Wire Guy Electric\"."
+      ]
+    },
+    {
+      "index": 2,
+      "element": "div.section.light-background-padding",
+      "purpose": "Owner quote: eyebrow \"Since 2017\", H2, H3, quoted mission statement, Steven Taylor / Owner with avatar; left column is a lightbox link with a truck photo background (href=\"#\", no video)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 6,
+          "text": "Since 2017"
+        },
+        {
+          "level": 2,
+          "text": "We care about doing honest work for honest prices"
+        },
+        {
+          "level": 3,
+          "text": "Your satisfaction is our ultimate goal"
+        },
+        {
+          "level": 5,
+          "text": "Steven Taylor"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 6,
+          "text": "Since 2017",
+          "styleRole": "eyebrow (small caps label)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "We care about doing honest work for honest prices"
+        },
+        {
+          "type": "iconLink",
+          "href": "#",
+          "accessibleName": null
+        },
+        {
+          "type": "card",
+          "kind": "column",
+          "children": [
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Your satisfaction is our ultimate goal"
+            },
+            {
+              "type": "paragraph",
+              "text": "\"For all your electrical needs, The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical. Let us brighten your life with safety, efficiency, and expert craftsmanship.\""
+            },
+            {
+              "type": "card",
+              "kind": "quoteAttribution",
+              "children": [
+                {
+                  "type": "image",
+                  "src": "/wf/a/66f44e262c9f24104114b9ed_Steven-Team-Member.avif",
+                  "alt": "",
+                  "role": "Circular avatar: Steven",
+                  "class": "workflow-profile-photo"
+                },
+                {
+                  "type": "heading",
+                  "level": 5,
+                  "text": "Steven Taylor"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Owner"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f44e262c9f24104114b9ed_Steven-Team-Member.avif",
+          "alt": "",
+          "role": "Circular avatar: Steven",
+          "kind": "img"
+        }
+      ],
+      "ctas": [
+        {
+          "label": null,
+          "href": "#"
+        }
+      ],
+      "notes": [
+        "The lightbox anchor points to \"#\" (a Webflow video placeholder with no video). Use a plain image, or a real video if one exists."
+      ]
+    },
+    {
+      "index": 3,
+      "element": "section.section.light-background",
+      "purpose": "FAQ: wide photo, H2 \"Customers frequently ask\", six accordion FAQs in two columns",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Customers frequently ask"
+        }
+      ],
+      "content": [
+        {
+          "type": "image",
+          "src": "/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif",
+          "alt": "",
+          "role": "REAL photo: six-person crew portrait in branded tees in front of the fleet trucks (2542px, hero-grade)",
+          "class": "services-image"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Customers frequently ask"
+        },
+        {
+          "type": "faq",
+          "question": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. Contact us today to schedule a free estimate and turn the plan into a code-compliant installation.",
+            "html": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. <a href=\"/contact-us\">Contact us today</a> to schedule a free estimate and turn the plan into a code-compliant installation.",
+            "links": [
+              {
+                "text": "Contact us today",
+                "href": "/contact-us"
+              }
+            ]
+          },
+          "interaction": "accordion (Webflow dropdown; answer is inside <nav class=\"accordion-list\">, which the SEO crawler strips from wordCount)"
+        },
+        {
+          "type": "faq",
+          "question": "Do you have any hidden fees?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.",
+            "html": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.",
+            "links": []
+          },
+          "interaction": "accordion (Webflow dropdown; answer is inside <nav class=\"accordion-list\">, which the SEO crawler strips from wordCount)"
+        },
+        {
+          "type": "faq",
+          "question": "Are there any services you don’t offer?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "We do most electrical work, but not all. Here are some services we don't currently offer: generator installs, solar installs, hanging Christmas/bistro lights, standing lamp repairs, ethernet/data wiring, fiber internet wiring, speaker installs, camera installs, camera doorbell installs, and thermostats. Check out our full services page to see everything we do offer.",
+            "html": "We do most electrical work, but not all. Here are some services we don't currently offer: generator installs, solar installs, hanging Christmas/bistro lights, standing lamp repairs, ethernet/data wiring, fiber internet wiring, speaker installs, camera installs, camera doorbell installs, and thermostats. Check out our full <a href=\"/services\">services page</a> to see everything we do offer.",
+            "links": [
+              {
+                "text": "services page",
+                "href": "/services"
+              }
+            ]
+          },
+          "interaction": "accordion (Webflow dropdown; answer is inside <nav class=\"accordion-list\">, which the SEO crawler strips from wordCount)"
+        },
+        {
+          "type": "faq",
+          "question": "Can you tell me more about your business?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (ROC #365306). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our About Us page or meet our team.",
+            "html": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (<a href=\"https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB\">ROC #365306</a>). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our <a href=\"/about-us\">About Us</a> page or <a href=\"/our-team\">meet our team</a>.",
+            "links": [
+              {
+                "text": "ROC #365306",
+                "href": "https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB"
+              },
+              {
+                "text": "About Us",
+                "href": "/about-us"
+              },
+              {
+                "text": "meet our team",
+                "href": "/our-team"
+              }
+            ]
+          },
+          "interaction": "accordion (Webflow dropdown; answer is inside <nav class=\"accordion-list\">, which the SEO crawler strips from wordCount)"
+        },
+        {
+          "type": "faq",
+          "question": "Do you warranty your work?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Yes, we do. We offer a 2-year warranty on services we provide. Contact us for full warranty details.",
+            "html": "Yes, we do. We offer a 2-year warranty on services we provide. <a href=\"/contact-us\">Contact us</a> for full warranty details.",
+            "links": [
+              {
+                "text": "Contact us",
+                "href": "/contact-us"
+              }
+            ]
+          },
+          "interaction": "accordion (Webflow dropdown; answer is inside <nav class=\"accordion-list\">, which the SEO crawler strips from wordCount)"
+        },
+        {
+          "type": "faq",
+          "question": "I have another non-electrical project but don’t know where to start. Can you refer me to someone?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just reach out and we'll point you in the right direction.",
+            "html": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just <a href=\"/contact-us\">reach out</a> and we'll point you in the right direction.",
+            "links": [
+              {
+                "text": "reach out",
+                "href": "/contact-us"
+              }
+            ]
+          },
+          "interaction": "accordion (Webflow dropdown; answer is inside <nav class=\"accordion-list\">, which the SEO crawler strips from wordCount)"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif",
+          "alt": "",
+          "role": "REAL photo: six-person crew portrait in branded tees in front of the fleet trucks (2542px, hero-grade)",
+          "kind": "img"
+        }
+      ],
+      "ctas": [],
+      "notes": [
+        "Identical copy to the /faq \"Customers frequently ask\" group. Reference the same faq docs instead of duplicating."
+      ]
+    },
+    {
+      "index": 4,
+      "element": "div.section.without-space#reviews",
+      "purpose": "Empty #reviews anchor div (no widget on this page)",
+      "source": "static",
+      "headings": [],
+      "content": [],
+      "images": [],
+      "ctas": []
+    },
+    {
+      "index": 5,
+      "element": "section.section.subscribe.extra-padding",
+      "purpose": "Closing CTA band: H2 \"We're ready to work for you\", bulb-icon button to /contact-us, status line \"🟢 Active Now\" over a photo background",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "We're ready to work for you"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.section-testimonials.override",
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "cssSelector": ".section-testimonials.override",
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "We're ready to work for you"
+        },
+        {
+          "type": "button",
+          "label": "Get a Free Estimate",
+          "href": "/contact-us",
+          "variant": "secondary-button-with-icon",
+          "iconImage": {
+            "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+            "alt": "",
+            "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "🟢 Active Now"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "alt": null,
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)",
+          "kind": "css background (.section-testimonials.override)"
+        },
+        {
+          "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+          "alt": "",
+          "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative",
+          "kind": "img (inside button)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "Same band repeats on most pages; make it one shared default with per-page override.",
+        "Status line text differs by page (\"Free estimates available\" vs \"Active Now\"); keep as ctaSection.statusText."
+      ]
+    }
+  ],
+  "copy": [
+    {
+      "section": 0,
+      "tag": "h1",
+      "text": "The team of licensed electricians"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients."
+    },
+    {
+      "section": 1,
+      "tag": "h2",
+      "text": "Our team"
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Steven Taylor Owner",
+      "html": "Steven Taylor<br><span class=\"accent\">Owner</span>"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Steven founded The Wire Guy Electric in 2017, bringing over 12 years of experience to serve his community as a trusted resource. In his free time, he enjoys cooking, spending time with his fiance Emma and their dog Lulu, watching movies, and doing projects around their home."
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Cody Taylor Owner/Service Manager",
+      "html": "Cody Taylor<br><span class=\"accent\">Owner/Service Manager</span>"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Cody has been with The Wire Guy Electric since its start in 2017, working closely with our team to deliver top-notch service. A proud Arizona native, Cody enjoys family time, cooking on his Blackstone, and riding his motorcycle with his wife, Lauren."
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Cade Reynolds Lead Technician",
+      "html": "Cade Reynolds<br><span class=\"accent\">Lead Technician</span>"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Cade has been with us for about 6 years and has been a great addition to our team."
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Wade Adams Service Tech",
+      "html": "Wade Adams<br><span class=\"accent\">Service Tech</span>"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Wade is the newest member of our team, with a background in HVAC and home remodeling. Born and raised in Mesa, Arizona, he enjoys spending time with his wife and family, traveling, and snowboarding."
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Emma Woolington Office Manager",
+      "html": "Emma Woolington<br><span class=\"accent\">Office Manager</span>"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Emma has been with The Wire Guy for about 3 years and is the friendly voice you’ll hear on the phone. In her free time, she enjoys paddle boarding, cooking, trying new foods, crafting, and spending time with her fiance Steven and their dog Lulu."
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Lauren Taylor Marketing",
+      "html": "Lauren Taylor<br><span class=\"accent\">Marketing</span>"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Lauren has been with us for about a year, managing all things networking. An Arizona native, she loves living close to family. She and Cody married in September 2023 and are enjoying married life! Lauren enjoys Dr. Pepper, film photography, and sharing good food with Cody."
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Blake Thompson Service Tech",
+      "html": "Blake Thompson<br><span class=\"accent\">Service Tech</span>"
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Brandon Connelly Service Tech",
+      "html": "Brandon Connelly<br><span class=\"accent\">Service Tech</span>"
+    },
+    {
+      "section": 1,
+      "tag": "h4",
+      "text": "Stephanie Langford Dispatcher",
+      "html": "Stephanie Langford<br><span class=\"accent\">Dispatcher</span>"
+    },
+    {
+      "section": 2,
+      "tag": "h6",
+      "text": "Since 2017"
+    },
+    {
+      "section": 2,
+      "tag": "h2",
+      "text": "We care about doing honest work for honest prices"
+    },
+    {
+      "section": 2,
+      "tag": "icon-link",
+      "text": "[undefined]",
+      "href": "#"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Your satisfaction is our ultimate goal"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "\"For all your electrical needs, The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical. Let us brighten your life with safety, efficiency, and expert craftsmanship.\""
+    },
+    {
+      "section": 2,
+      "tag": "h5",
+      "text": "Steven Taylor"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "Owner"
+    },
+    {
+      "section": 3,
+      "tag": "h2",
+      "text": "Customers frequently ask"
+    },
+    {
+      "section": 3,
+      "tag": "faq-q (h5)",
+      "text": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?"
+    },
+    {
+      "section": 3,
+      "tag": "faq-a",
+      "text": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. Contact us today to schedule a free estimate and turn the plan into a code-compliant installation.",
+      "html": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. <a href=\"/contact-us\">Contact us today</a> to schedule a free estimate and turn the plan into a code-compliant installation."
+    },
+    {
+      "section": 3,
+      "tag": "faq-q (h5)",
+      "text": "Do you have any hidden fees?"
+    },
+    {
+      "section": 3,
+      "tag": "faq-a",
+      "text": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.",
+      "html": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review."
+    },
+    {
+      "section": 3,
+      "tag": "faq-q (h5)",
+      "text": "Are there any services you don’t offer?"
+    },
+    {
+      "section": 3,
+      "tag": "faq-a",
+      "text": "We do most electrical work, but not all. Here are some services we don't currently offer: generator installs, solar installs, hanging Christmas/bistro lights, standing lamp repairs, ethernet/data wiring, fiber internet wiring, speaker installs, camera installs, camera doorbell installs, and thermostats. Check out our full services page to see everything we do offer.",
+      "html": "We do most electrical work, but not all. Here are some services we don't currently offer: generator installs, solar installs, hanging Christmas/bistro lights, standing lamp repairs, ethernet/data wiring, fiber internet wiring, speaker installs, camera installs, camera doorbell installs, and thermostats. Check out our full <a href=\"/services\">services page</a> to see everything we do offer."
+    },
+    {
+      "section": 3,
+      "tag": "faq-q (h5)",
+      "text": "Can you tell me more about your business?"
+    },
+    {
+      "section": 3,
+      "tag": "faq-a",
+      "text": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (ROC #365306). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our About Us page or meet our team.",
+      "html": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (<a href=\"https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB\">ROC #365306</a>). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our <a href=\"/about-us\">About Us</a> page or <a href=\"/our-team\">meet our team</a>."
+    },
+    {
+      "section": 3,
+      "tag": "faq-q (h5)",
+      "text": "Do you warranty your work?"
+    },
+    {
+      "section": 3,
+      "tag": "faq-a",
+      "text": "Yes, we do. We offer a 2-year warranty on services we provide. Contact us for full warranty details.",
+      "html": "Yes, we do. We offer a 2-year warranty on services we provide. <a href=\"/contact-us\">Contact us</a> for full warranty details."
+    },
+    {
+      "section": 3,
+      "tag": "faq-q (h5)",
+      "text": "I have another non-electrical project but don’t know where to start. Can you refer me to someone?"
+    },
+    {
+      "section": 3,
+      "tag": "faq-a",
+      "text": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just reach out and we'll point you in the right direction.",
+      "html": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just <a href=\"/contact-us\">reach out</a> and we'll point you in the right direction."
+    },
+    {
+      "section": 5,
+      "tag": "h2",
+      "text": "We're ready to work for you"
+    },
+    {
+      "section": 5,
+      "tag": "button",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": 5,
+      "tag": "p",
+      "text": "🟢 Active Now"
+    }
+  ],
+  "links": [
+    {
+      "section": 2,
+      "text": "",
+      "href": "#",
+      "kind": "iconLink"
+    },
+    {
+      "section": 3,
+      "text": "Contact us today",
+      "href": "/contact-us",
+      "kind": "faqAnswerLink"
+    },
+    {
+      "section": 3,
+      "text": "services page",
+      "href": "/services",
+      "kind": "faqAnswerLink"
+    },
+    {
+      "section": 3,
+      "text": "ROC #365306",
+      "href": "https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB",
+      "kind": "faqAnswerLink"
+    },
+    {
+      "section": 3,
+      "text": "About Us",
+      "href": "/about-us",
+      "kind": "faqAnswerLink"
+    },
+    {
+      "section": 3,
+      "text": "meet our team",
+      "href": "/our-team",
+      "kind": "faqAnswerLink"
+    },
+    {
+      "section": 3,
+      "text": "Contact us",
+      "href": "/contact-us",
+      "kind": "faqAnswerLink"
+    },
+    {
+      "section": 3,
+      "text": "reach out",
+      "href": "/contact-us",
+      "kind": "faqAnswerLink"
+    },
+    {
+      "section": 5,
+      "text": "Get a Free Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    }
+  ],
+  "faqGroups": [
+    {
+      "heading": {
+        "level": 2,
+        "text": "Customers frequently ask"
+      },
+      "section": 3,
+      "suggestedTopic": "general",
+      "items": [
+        {
+          "order": 3,
+          "question": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. Contact us today to schedule a free estimate and turn the plan into a code-compliant installation.",
+            "html": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. <a href=\"/contact-us\">Contact us today</a> to schedule a free estimate and turn the plan into a code-compliant installation.",
+            "links": [
+              {
+                "text": "Contact us today",
+                "href": "/contact-us"
+              }
+            ]
+          },
+          "sanityDoc": {
+            "_id": "3b57aa5a-e39c-4275-9c3e-838ad7689f95",
+            "order": 3,
+            "question": "I want to upgrade my lighting, but I don't know what to do. Can you help me with the design?",
+            "questionMatches": true,
+            "answerMatches": false,
+            "answer": "Of course! Discussing design options with customers is one of our favorite parts of the job. We'll walk through your space with you, talk about what you want each room to feel like, and recommend the best layout, fixture types, and placement."
+          }
+        },
+        {
+          "order": 4,
+          "question": "Do you have any hidden fees?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.",
+            "html": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.",
+            "links": []
+          },
+          "sanityDoc": {
+            "_id": "963361d4-2efa-4c1b-9f42-04dede665d6d",
+            "order": 4,
+            "question": "Do you have any hidden fees?",
+            "questionMatches": true,
+            "answerMatches": true,
+            "answer": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review."
+          }
+        },
+        {
+          "order": 5,
+          "question": "Are there any services you don’t offer?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "We do most electrical work, but not all. Here are some services we don't currently offer: generator installs, solar installs, hanging Christmas/bistro lights, standing lamp repairs, ethernet/data wiring, fiber internet wiring, speaker installs, camera installs, camera doorbell installs, and thermostats. Check out our full services page to see everything we do offer.",
+            "html": "We do most electrical work, but not all. Here are some services we don't currently offer: generator installs, solar installs, hanging Christmas/bistro lights, standing lamp repairs, ethernet/data wiring, fiber internet wiring, speaker installs, camera installs, camera doorbell installs, and thermostats. Check out our full <a href=\"/services\">services page</a> to see everything we do offer.",
+            "links": [
+              {
+                "text": "services page",
+                "href": "/services"
+              }
+            ]
+          },
+          "sanityDoc": {
+            "_id": "2e155cac-9932-4e16-a194-f36db5a1dfba",
+            "order": 5,
+            "question": "Are there any services you don't offer?",
+            "questionMatches": true,
+            "answerMatches": false,
+            "answer": "We do most electrical work, but not all. Services we don't currently offer include generator installs, solar installs, hanging christmas/bistro lights, standing lamp repairs, ethernet/data wiring, and thermostats."
+          }
+        },
+        {
+          "order": 6,
+          "question": "Can you tell me more about your business?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (ROC #365306). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our About Us page or meet our team.",
+            "html": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (<a href=\"https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB\">ROC #365306</a>). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our <a href=\"/about-us\">About Us</a> page or <a href=\"/our-team\">meet our team</a>.",
+            "links": [
+              {
+                "text": "ROC #365306",
+                "href": "https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB"
+              },
+              {
+                "text": "About Us",
+                "href": "/about-us"
+              },
+              {
+                "text": "meet our team",
+                "href": "/our-team"
+              }
+            ]
+          },
+          "sanityDoc": {
+            "_id": "c84f870e-8bc7-4af6-9ce2-270186badbc6",
+            "order": 6,
+            "question": "Can you tell me more about your business?",
+            "questionMatches": true,
+            "answerMatches": false,
+            "answer": "We have been in business for over 7 years and take pride in being a local, family-run business in Mesa, Arizona. Our customers' happiness and our quality of work are our number one priorities. We are licensed, bonded, and insured (ROC #365306). We believe being a small business allows us to offer a more personalized experience for our customers."
+          }
+        },
+        {
+          "order": 7,
+          "question": "Do you warranty your work?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Yes, we do. We offer a 2-year warranty on services we provide. Contact us for full warranty details.",
+            "html": "Yes, we do. We offer a 2-year warranty on services we provide. <a href=\"/contact-us\">Contact us</a> for full warranty details.",
+            "links": [
+              {
+                "text": "Contact us",
+                "href": "/contact-us"
+              }
+            ]
+          },
+          "sanityDoc": {
+            "_id": "181a31e5-a638-40c6-8f5f-12cebbc05c60",
+            "order": 7,
+            "question": "Do you warranty your work?",
+            "questionMatches": true,
+            "answerMatches": true,
+            "answer": "Yes, we do. We offer a 2-year warranty on services we provide. Contact us for full warranty details."
+          }
+        },
+        {
+          "order": 8,
+          "question": "I have another non-electrical project but don’t know where to start. Can you refer me to someone?",
+          "questionTag": "h5",
+          "answer": {
+            "text": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just reach out and we'll point you in the right direction.",
+            "html": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just <a href=\"/contact-us\">reach out</a> and we'll point you in the right direction.",
+            "links": [
+              {
+                "text": "reach out",
+                "href": "/contact-us"
+              }
+            ]
+          },
+          "sanityDoc": {
+            "_id": "6c6c9b03-dd11-42d8-ab52-6c7928b5deb9",
+            "order": 8,
+            "question": "Can you refer me to someone for a non-electrical project?",
+            "questionMatches": false,
+            "answerMatches": false,
+            "answer": "Yes! We are happy to provide referrals for other services. Over the years we've built relationships with great contractors across the Phoenix valley in plumbing, HVAC, roofing, and more. Just ask and we'll point you in the right direction."
+          }
+        }
+      ]
+    }
+  ],
+  "pageBuilderMapping": [
+    {
+      "order": 1,
+      "sectionType": "heroSection",
+      "fromInventorySection": 0,
+      "fields": "heading = H1; text = banner paragraph; image = fleet line-up"
+    },
+    {
+      "order": 2,
+      "sectionType": "teamSection",
+      "fromInventorySection": 1,
+      "fields": "heading \"Our team\"; members = all teamMember docs incl. 3 new ones"
+    },
+    {
+      "order": 3,
+      "sectionType": "NEW quoteSection",
+      "fromInventorySection": 2,
+      "fields": "eyebrow \"Since 2017\"; heading \"We care about doing honest work for honest prices\"; subheading \"Your satisfaction is our ultimate goal\"; quote; person → Steven Taylor; image = truck photo"
+    },
+    {
+      "order": 4,
+      "sectionType": "faqSection",
+      "fromInventorySection": 3,
+      "fields": "heading \"Customers frequently ask\"; faqs = the 6 shared docs; image = crew portrait"
+    },
+    {
+      "order": 5,
+      "sectionType": "reviewsSection",
+      "fromInventorySection": null,
+      "fields": "Optional in redesign"
+    },
+    {
+      "order": 6,
+      "sectionType": "ctaSection",
+      "fromInventorySection": 5,
+      "fields": "statusText \"Active Now\""
+    }
+  ]
+}
