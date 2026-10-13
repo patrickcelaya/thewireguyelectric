@@ -55,7 +55,8 @@ export const POST: APIRoute = async ({request}) => {
   if (get('company_website') || (startedAt && Date.now() - startedAt < MIN_FILL_MS)) {
     return new Response(null, {status: 204})
   }
-  if (!get('name') || !get('phone') || !get('message')) {
+  // A name and a phone number are enough to call someone back; details are optional.
+  if (!get('name') || !get('phone')) {
     return new Response('Missing required fields', {status: 400})
   }
 
