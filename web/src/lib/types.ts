@@ -1,5 +1,10 @@
 // Shapes returned by the queries in ./queries.ts. (Replace with Sanity TypeGen
 // output once the project exists: `pnpm --filter studio typegen`.)
+//
+// Conventions: optional fields may also come back as `null` from GROQ when the
+// document has no value; lists that a section renders are always arrays (empty
+// when there is nothing to show, and an empty list means "render nothing").
+// See docs/CONTENT_MODEL.md for what every field is for.
 
 export type PortableTextValue = Array<{_type: string; _key: string; [key: string]: unknown}>
 
@@ -25,7 +30,39 @@ export interface LinkItem {
   href: string
 }
 
+/** A link target: a document's display name and slug. */
+export interface NamedLink {
+  name: string
+  slug: string
+}
+
+/** Icon tokens from the Studio's icon list; the design maps each to artwork. */
+export type IconName =
+  | 'bolt'
+  | 'bulb'
+  | 'plug'
+  | 'panel'
+  | 'evCharger'
+  | 'wrench'
+  | 'check'
+  | 'shield'
+  | 'badge'
+  | 'star'
+  | 'dollar'
+  | 'clock'
+  | 'calendar'
+  | 'clipboard'
+  | 'document'
+  | 'home'
+  | 'building'
+  | 'users'
+  | 'heart'
+  | 'thumbsUp'
+  | 'phone'
+  | 'pin'
+
 export interface PostalAddress {
+  _key?: string
   label?: string
   streetAddress?: string
   addressLocality?: string
@@ -40,6 +77,53 @@ export interface PostalAddress {
   appointmentOnly?: boolean
 }
 
+export interface OpeningHours {
+  days: string[]
+  opens: string
+  closes: string
+}
+
+/** callToAction object: CTA bands, Site settings → CTA band, inline rich-text CTAs. */
+export interface CallToAction {
+  heading?: string
+  text?: string
+  label?: string
+  href?: string
+  /** Short status line near the button, e.g. "Free estimates available". */
+  statusText?: string
+}
+
+/** A short quote from a real review (hero quotes). */
+export interface ReviewSnippet {
+  _key?: string
+  text: string
+  /** Rating of the original review, when known. Prefer `review.rating` when a review is linked. */
+  rating?: number | null
+  review?: Review | null
+}
+
+/** featureItem object: a value prop card or a capability checklist item. */
+export interface FeatureItem {
+  _key?: string
+  title: string
+  text?: string
+  icon?: IconName
+  /** When set, the title links to /services/<slug>. */
+  service?: NamedLink | null
+  /** Optional text link under the item. */
+  link?: LinkItem | null
+}
+
+/** Site settings → Home city: Mesa, which is the homepage rather than a location document. */
+export interface HomeCity {
+  name?: string
+  cardBlurb?: string
+  image?: ImageRef | null
+  neighborhoods?: string[]
+  county?: string
+  utilityProviders?: string[]
+}
+
 export interface SiteSettings {
   businessName: string
   legalName?: string
@@ -49,21 +133,36 @@ export interface SiteSettings {
   phoneE164: string
   email?: string
   addresses?: PostalAddress[]
-  openingHours?: Array<{days: string[]; opens: string; closes: string}>
+  openingHours?: OpeningHours[]
   emergencyService?: boolean
+  /** Honest hours / urgent-help line shown near phone numbers and forms. */
+  availabilityNote?: string
   priceRange?: string
   foundingDate?: string
   founders?: Array<{name: string; role?: string}>
   rocLicense?: string
+  /** Public AZ ROC lookup page for the license. */
+  rocLicenseUrl?: string
+  /** The main (Mesa) Google Business Profile. */
+  googleBusinessProfileUrl?: string
   reviewSummary?: {ratingValue?: number; reviewCount?: number; source?: string; reviewsUrl?: string}
   badges?: string[]
+  /** Shared hero quotes (city pages and any template without its own). */
+  heroQuotes?: ReviewSnippet[] | null
   sameAs?: string[]
   serviceAreas?: Array<{name: string; slug: string; geo?: {lat: number; lng: number}}>
+  homeCity?: HomeCity | null
   sisterCompanies?: LinkItem[]
   logo?: ImageRef
   headerNav?: LinkItem[]
   footerNav?: LinkItem[]
   primaryCta?: LinkItem
+  /** Shared closing CTA band. */
+  ctaBand?: CallToAction | null
+  /** Shared "why choose us" items. */
+  valueProps?: FeatureItem[] | null
+  /** Shared "what we do" checklist items. */
+  capabilities?: FeatureItem[] | null
   titleSuffix?: string
   defaultOgImage?: ImageRef
   ga4MeasurementId?: string
@@ -85,7 +184,14 @@ export interface Review {
   text: string
   date?: string
   source?: string
+  sourceUrl?: string
+  featured?: boolean
+  /** City name of the review, when tagged. */
   location?: string
+  locationSlug?: string
+  /** Service name of the review, when tagged. */
+  service?: string
+  serviceSlug?: string
 }
 
 export interface ServiceSummary {
@@ -95,6 +201,17 @@ export interface ServiceSummary {
   shortDescription?: string
   mainImage?: ImageRef
   category?: {name: string; slug: string}
+}
+
+/** A service card in a section: the service plus the card's display text (per-card overrides already applied). */
+export interface ServiceCard extends ServiceSummary {
+  _key?: string
+  /** Card title: the custom title, else the service name. */
+  title: string
+  /** Card text: the custom blurb, else the short description. */
+  text?: string
+  /** Card image: the custom image, else the main image. */
+  image?: ImageRef | null
 }
 
 export interface PostSummary {
@@ -108,14 +225,43 @@ export interface PostSummary {
   category?: {name: string; slug: string}
 }
 
+export interface LocationSummary {
+  _id: string
+  /** City name as stored (should be the bare city; see shortName). */
+  name: string
+  slug: string
+  /** Bare city name for chips, breadcrumbs and cards ("Gilbert"), derived from cityNameForSeo when set. */
+  shortName: string
+  cityNameForSeo?: string
+  cardBlurb?: string
+  description?: string
+  neighborhoods?: string[]
+  mainImage?: ImageRef | null
+}
+
+export interface TeamMemberSummary {
+  _id: string
+  name: string
+  role?: string
+  slug?: string
+  photo?: ImageRef | null
+}
+
 export interface ServiceDoc extends ServiceSummary {
   _updatedAt: string
   heading?: string
   body?: PortableTextValue
-  priceRange?: {low?: number; high?: number; note?: string}
+  /** Short label/value facts for the "At a glance" block. */
+  atAGlance?: Array<{_key: string; label: string; value: string}> | null
+  /** "Signs you need this" checklist. */
+  signs?: string[] | null
+  /** `asOf` is the date the range was last checked (show "as of {month year}"). */
+  priceRange?: {low?: number; high?: number; note?: string; asOf?: string}
   faqs?: FaqItem[]
   relatedServices?: ServiceSummary[]
   relatedPosts?: PostSummary[]
+  /** Reviews tagged with this service, featured first (max 6). */
+  reviews?: Review[]
   seo?: Seo
 }
 
@@ -135,9 +281,12 @@ export interface LocationDoc {
   _updatedAt: string
   name: string
   slug: string
+  /** Bare city name ("Gilbert"); see LocationSummary.shortName. */
+  shortName: string
   cityNameForSeo?: string
   heading?: string
   description?: string
+  cardBlurb?: string
   mainImage?: ImageRef
   body?: PortableTextValue
   geo?: {lat: number; lng: number}
@@ -147,7 +296,10 @@ export interface LocationDoc {
   utilityProviders?: string[]
   permitNotes?: PortableTextValue
   featuredServices?: ServiceSummary[]
+  /** Picked neighboring cities; null/empty means "list all other cities". */
+  nearbyLocations?: LocationSummary[] | null
   faqs?: FaqItem[]
+  /** Reviews tagged with this city, featured first (max 6). */
   reviews?: Review[]
   seo?: Seo
 }
@@ -155,10 +307,15 @@ export interface LocationDoc {
 export interface PostDoc extends PostSummary {
   _updatedAt: string
   updatedAt?: string
+  /** 40–60 word answer-first summary shown above the body. */
+  quickAnswer?: string
   body?: PortableTextValue
   author?: {name: string; role?: string; slug?: string; credentials?: string[]; photo?: ImageRef}
-  reviewedBy?: {name: string; role?: string}
+  reviewedBy?: {name: string; role?: string; slug?: string; credentials?: string[]; photo?: ImageRef}
+  /** The first one is the post's primary (hub) service. */
   relatedServices?: ServiceSummary[]
+  /** Other posts that support the same services, newest first (max 3). */
+  relatedPosts?: PostSummary[]
   faqs?: FaqItem[]
   seo?: Seo
 }
@@ -177,6 +334,7 @@ export interface TeamMember {
   _id: string
   name: string
   role?: string
+  slug?: string
   credentials?: string[]
   yearsExperience?: number
   bio?: PortableTextValue
@@ -193,13 +351,376 @@ export interface JobOpening {
   baseSalary?: {min?: number; max?: number; unit?: string}
 }
 
-export type PageSection = {_type: string; _key: string; [key: string]: any}
+/** A project photo (gallery) with alt text. */
+export interface GalleryPhoto extends ImageRef {
+  _key: string
+}
+
+export interface ProjectSummary {
+  _id: string
+  title: string
+  slug: string
+  summary?: string
+  completedAt?: string
+  neighborhood?: string
+  mainImage?: ImageRef | null
+  gallery?: GalleryPhoto[] | null
+  location?: {name: string; slug: string; shortName: string} | null
+  services?: NamedLink[] | null
+  review?: Review | null
+}
+
+// ---------------------------------------------------------------------------
+// Page builder sections (studio/schemaTypes/sections). Every section has _type
+// and _key. Headings render as H2; the page H1 always comes from page.heading.
+
+interface SectionBase {
+  _key: string
+}
+
+export interface HeroSection extends SectionBase {
+  _type: 'heroSection'
+  eyebrow?: string
+  /** @deprecated Ignored: the H1 always comes from page.heading. */
+  heading?: string
+  /** Words of page.heading to highlight. */
+  headingAccent?: string
+  text?: string
+  image?: ImageRef | null
+  primaryCta?: LinkItem | null
+  secondaryCta?: LinkItem | null
+  showPhone?: boolean
+  trustLine?: string
+  showTrustBar?: boolean
+  reviewSnippets: ReviewSnippet[]
+}
+
+export interface RichTextSection extends SectionBase {
+  _type: 'richTextSection'
+  heading?: string
+  body?: PortableTextValue
+}
+
+export interface MediaTextSection extends SectionBase {
+  _type: 'mediaTextSection'
+  heading?: string
+  body?: PortableTextValue
+  image?: ImageRef | null
+  imagePosition?: 'left' | 'right'
+  cta?: LinkItem | null
+}
+
+export interface ServiceCategoryGroup {
+  _id: string
+  name: string
+  slug: string
+  heading?: string
+  description?: PortableTextValue | null
+  /** This group's cards, in the section's order. */
+  services: ServiceCard[]
+}
+
+export interface ServicesSection extends SectionBase {
+  _type: 'servicesSection'
+  eyebrow?: string
+  heading?: string
+  headingAccent?: string
+  intro?: string
+  layout?: 'featured' | 'grid' | 'grouped'
+  category?: NamedLink | null
+  /** Picked cards, else the category's services, else every service (site order). */
+  services: ServiceCard[]
+  /** Only for layout "grouped": the cards grouped by category, in order of first appearance. */
+  groups?: ServiceCategoryGroup[]
+  cta?: LinkItem | null
+}
+
+export interface LocationsSection extends SectionBase {
+  _type: 'locationsSection'
+  eyebrow?: string
+  heading?: string
+  headingAccent?: string
+  intro?: string
+  /** Picked cities, else every city. */
+  locations: LocationSummary[]
+  includeHomeCity?: boolean
+  /** Mesa (links to /), when includeHomeCity is not false. */
+  homeCity?: HomeCity | null
+}
+
+export interface ReviewsSection extends SectionBase {
+  _type: 'reviewsSection'
+  eyebrow?: string
+  heading?: string
+  intro?: string
+  /** Picked reviews, else reviews matching the city/service filters, featured first; `limit` applied (default 6, 0 = all). */
+  reviews: Review[]
+  location?: NamedLink | null
+  service?: NamedLink | null
+  limit?: number
+  cta?: LinkItem | null
+}
+
+export interface FaqGroup {
+  _key: string
+  heading: string
+  topic?: string
+  faqs: FaqItem[]
+}
+
+export interface FaqSection extends SectionBase {
+  _type: 'faqSection'
+  eyebrow?: string
+  heading?: string
+  intro?: string
+  image?: ImageRef | null
+  topic?: string
+  /** Picked questions, else every question with `topic`. */
+  faqs: FaqItem[]
+  groups: FaqGroup[]
+}
+
+export interface TeamSection extends SectionBase {
+  _type: 'teamSection'
+  eyebrow?: string
+  heading?: string
+  intro?: string
+  /** Picked people, else everyone shown on the team page. */
+  members: TeamMember[]
+  showBios?: boolean
+  cta?: LinkItem | null
+}
+
+export interface PostsSection extends SectionBase {
+  _type: 'postsSection'
+  eyebrow?: string
+  heading?: string
+  intro?: string
+  /** Picked posts, else the newest posts (in `category`, featured first when asked); `limit` applied (default 3, 0 = all). */
+  posts: PostSummary[]
+  category?: NamedLink | null
+  featuredFirst?: boolean
+  limit?: number
+  cta?: LinkItem | null
+}
+
+export interface JobsSection extends SectionBase {
+  _type: 'jobsSection'
+  heading?: string
+  intro?: string
+  /** Open positions; hide the section when empty. */
+  jobs: JobOpening[]
+}
+
+export type ContactDetail = 'phone' | 'email' | 'offices' | 'hours'
+
+export interface ContactSection extends SectionBase {
+  _type: 'contactSection'
+  eyebrow?: string
+  heading?: string
+  text?: string
+  detailsHeading?: string
+  /** Which details from Site settings to show beside the form. */
+  contactDetails?: ContactDetail[]
+  formType?: 'estimate' | 'careers'
+  formHeading?: string
+  submitLabel?: string
+  successMessage?: string
+}
+
+export interface CtaSection extends SectionBase {
+  _type: 'ctaSection'
+  /** The section's own CTA when it has a heading, else Site settings → CTA band. */
+  cta: CallToAction | null
+}
+
+export type TrustFact = 'custom' | 'reviews' | 'license' | 'founded'
+
+export interface TrustItem {
+  _key: string
+  fact: TrustFact
+  value?: string
+  label?: string
+  href?: string
+  icon?: IconName
+}
+
+export interface TrustBarSection extends SectionBase {
+  _type: 'trustBarSection'
+  /** Empty = the standard strip. Use resolveTrustItems() to turn these into display values. */
+  items: TrustItem[]
+}
+
+/** A trust fact with its value filled in from Site settings (see resolveTrustItems). */
+export interface ResolvedTrustItem {
+  key: string
+  fact: TrustFact
+  /** Emphasized part, e.g. "5.0", "ROC #365306", "2017", "2-year". */
+  value?: string
+  label?: string
+  href?: string
+  icon?: IconName
+  /** For fact "reviews". */
+  rating?: number
+  reviewCount?: number
+  source?: string
+}
+
+export interface FeatureGridSection extends SectionBase {
+  _type: 'featureGridSection'
+  eyebrow?: string
+  heading?: string
+  headingAccent?: string
+  intro?: string
+  style?: 'cards' | 'checklist'
+  siteList?: 'valueProps' | 'capabilities'
+  /** The section's items, or the shared list from Site settings when siteList is set. */
+  items: FeatureItem[]
+  cta?: LinkItem | null
+}
+
+/** A teamMemberMention mark definition with its member resolved. */
+export interface TeamMemberMention {
+  _key: string
+  _type: 'teamMemberMention'
+  member: TeamMemberSummary | null
+}
+
+export interface TeamIntroSection extends SectionBase {
+  _type: 'teamIntroSection'
+  eyebrow?: string
+  /** Portable Text; markDefs of _type "teamMemberMention" carry a resolved `member`. */
+  body: PortableTextValue
+  /** Picked people, else the people mentioned in the text (deduplicated, in order). */
+  people: TeamMemberSummary[]
+  cta?: LinkItem | null
+}
+
+export interface QuoteSection extends SectionBase {
+  _type: 'quoteSection'
+  eyebrow?: string
+  heading?: string
+  subheading?: string
+  quote: string
+  person?: TeamMemberSummary | null
+  image?: ImageRef | null
+}
+
+export interface GalleryImage extends ImageRef {
+  _key: string
+  service?: NamedLink | null
+  location?: NamedLink | null
+}
+
+export interface GallerySection extends SectionBase {
+  _type: 'gallerySection'
+  eyebrow?: string
+  heading?: string
+  headingAccent?: string
+  intro?: string
+  images: GalleryImage[]
+  projects: ProjectSummary[]
+  cta?: LinkItem | null
+}
+
+export interface OfficeLocationsSection extends SectionBase {
+  _type: 'officeLocationsSection'
+  eyebrow?: string
+  heading?: string
+  intro?: string
+  /** The chosen offices from Site settings → Addresses (all when none were picked). */
+  offices: PostalAddress[]
+}
+
+export interface ProcessStep {
+  _key: string
+  title: string
+  text?: string
+  icon?: IconName
+}
+
+export interface ProcessStepsSection extends SectionBase {
+  _type: 'processStepsSection'
+  eyebrow?: string
+  heading?: string
+  intro?: string
+  steps: ProcessStep[]
+  cta?: LinkItem | null
+}
+
+export interface PriceRow {
+  _key: string
+  label: string
+  /** The row's price, else the linked service's priceRange. Skip rows where either is missing. */
+  low?: number | null
+  high?: number | null
+  unit?: string
+  note?: string
+  service?: NamedLink | null
+  guide?: {title: string; slug: string} | null
+}
+
+export interface PriceGuideSection extends SectionBase {
+  _type: 'priceGuideSection'
+  heading?: string
+  intro?: string
+  rows: PriceRow[]
+  disclaimer?: string
+  /** Date the prices were checked (YYYY-MM-DD); show "Prices as of {month year}". */
+  asOf?: string
+}
+
+export interface HighlightItem {
+  _key: string
+  lead?: string
+  text?: string
+}
+
+export interface HighlightsSection extends SectionBase {
+  _type: 'highlightsSection'
+  eyebrow?: string
+  heading?: string
+  checklist: HighlightItem[]
+  cta?: LinkItem | null
+  image?: ImageRef | null
+  asideHeading?: string
+  asideBody?: PortableTextValue | null
+}
+
+export type PageSection =
+  | HeroSection
+  | RichTextSection
+  | MediaTextSection
+  | ServicesSection
+  | LocationsSection
+  | ReviewsSection
+  | FaqSection
+  | TeamSection
+  | PostsSection
+  | JobsSection
+  | ContactSection
+  | CtaSection
+  | TrustBarSection
+  | FeatureGridSection
+  | TeamIntroSection
+  | QuoteSection
+  | GallerySection
+  | OfficeLocationsSection
+  | ProcessStepsSection
+  | PriceGuideSection
+  | HighlightsSection
+
+export type PageSectionType = PageSection['_type']
+
+/** The section type for a given _type, e.g. SectionOf<'heroSection'>. */
+export type SectionOf<T extends PageSectionType> = Extract<PageSection, {_type: T}>
 
 export interface PageDoc {
   _id: string
   _updatedAt: string
   title: string
   slug: string
+  /** The page H1. Never render a section heading as the H1. */
   heading?: string
   intro?: string
   sections?: PageSection[]

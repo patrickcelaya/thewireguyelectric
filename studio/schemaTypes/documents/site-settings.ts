@@ -1,5 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {CogIcon} from '@sanity/icons/Cog'
+import {UTILITY_PROVIDERS, imageField} from '../shared/fields'
 
 // Singleton. The single source of truth for NAP (name, address, phone), which
 // feeds the header, footer, contact page and every page's LocalBusiness schema.
@@ -12,6 +13,7 @@ export const siteSettings = defineType({
   groups: [
     {name: 'business', title: 'Business (NAP)', default: true},
     {name: 'trust', title: 'Trust & reviews'},
+    {name: 'shared', title: 'Shared copy'},
     {name: 'navigation', title: 'Navigation'},
     {name: 'seo', title: 'SEO defaults'},
     {name: 'tracking', title: 'Tracking'},
@@ -27,10 +29,32 @@ export const siteSettings = defineType({
     defineField({name: 'addresses', type: 'array', group: 'business', of: [defineArrayMember({type: 'postalAddress'})], validation: (rule) => rule.min(1)}),
     defineField({name: 'openingHours', type: 'array', group: 'business', of: [defineArrayMember({type: 'openingHours'})]}),
     defineField({name: 'emergencyService', type: 'boolean', group: 'business', description: 'Offers after-hours emergency service', initialValue: false}),
+    defineField({
+      name: 'availabilityNote',
+      type: 'text',
+      rows: 2,
+      group: 'business',
+      description:
+        'Honest line on when people can reach you and what happens with urgent requests, shown near phone numbers and forms, e.g. "Office hours Mon–Fri, 9 am–5 pm. We reply to requests within one business day." Never imply 24/7 or emergency service unless it is offered.',
+    }),
     defineField({name: 'priceRange', type: 'string', group: 'business', initialValue: '$$'}),
     defineField({name: 'foundingDate', type: 'string', group: 'business', initialValue: '2017'}),
     defineField({name: 'founders', type: 'array', group: 'business', of: [defineArrayMember({type: 'reference', to: [{type: 'teamMember'}]})]}),
     defineField({name: 'rocLicense', title: 'AZ ROC license number', type: 'string', group: 'trust', initialValue: '365306'}),
+    defineField({
+      name: 'rocLicenseUrl',
+      title: 'AZ ROC license lookup URL',
+      type: 'url',
+      group: 'trust',
+      description: 'The public AZ ROC page for this license. The license number links here wherever it is shown.',
+    }),
+    defineField({
+      name: 'googleBusinessProfileUrl',
+      title: 'Google Business Profile URL',
+      type: 'url',
+      group: 'trust',
+      description: 'The main (Mesa) Google Business Profile. Office-specific profile links live on each address.',
+    }),
     defineField({
       name: 'reviewSummary',
       type: 'object',
@@ -43,14 +67,67 @@ export const siteSettings = defineType({
         defineField({name: 'reviewsUrl', type: 'url', title: 'Link to reviews'}),
       ],
     }),
-    defineField({name: 'badges', type: 'array', group: 'trust', of: [defineArrayMember({type: 'string'})], description: 'e.g. "Licensed, bonded & insured", "Family owned since 2017"'}),
+    defineField({name: 'badges', type: 'array', group: 'trust', of: [defineArrayMember({type: 'string'})], description: 'e.g. "Licensed, bonded & insured", "Family owned since 2017". Part of the standard trust strip.'}),
+    defineField({
+      name: 'heroQuotes',
+      title: 'Hero review quotes',
+      type: 'array',
+      group: 'trust',
+      of: [defineArrayMember({type: 'reviewSnippet'})],
+      description: 'Short quotes from real reviews, shown in the hero of city pages (and any template without its own). Copy them verbatim from real reviews.',
+      validation: (rule) => rule.max(4).warning('Three quotes is plenty'),
+    }),
     defineField({name: 'sameAs', title: 'Profiles (sameAs)', type: 'array', group: 'trust', of: [defineArrayMember({type: 'url'})], description: 'Google Business Profile, Facebook, Instagram, Yelp, BBB, Nextdoor, etc. Helps Google and AI search connect the business entity.'}),
     defineField({name: 'serviceAreas', type: 'array', group: 'business', of: [defineArrayMember({type: 'reference', to: [{type: 'location'}]})]}),
+    defineField({
+      name: 'homeCity',
+      title: 'Home city (Mesa)',
+      type: 'object',
+      group: 'business',
+      description: 'The homepage is the Mesa page, so Mesa has no city document. City lists show it from here, linking to /.',
+      options: {collapsible: true, collapsed: true},
+      fields: [
+        defineField({name: 'name', title: 'City name', type: 'string', initialValue: 'Mesa'}),
+        defineField({name: 'cardBlurb', title: 'Card blurb', type: 'text', rows: 2, description: 'e.g. the neighborhood line shown on the Mesa tile'}),
+        imageField('image', 'Card image', {altRequired: 'error'}),
+        defineField({name: 'neighborhoods', type: 'array', of: [defineArrayMember({type: 'string'})]}),
+        defineField({name: 'county', type: 'string', initialValue: 'Maricopa County'}),
+        defineField({
+          name: 'utilityProviders',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+          options: {list: UTILITY_PROVIDERS},
+          description: 'Electric utilities serving Mesa. Only list utilities confirmed from a public source.',
+        }),
+      ],
+    }),
     defineField({name: 'sisterCompanies', type: 'array', group: 'business', of: [defineArrayMember({type: 'linkItem'})]}),
     defineField({name: 'logo', type: 'image', group: 'business'}),
     defineField({name: 'headerNav', type: 'array', group: 'navigation', of: [defineArrayMember({type: 'linkItem'})]}),
     defineField({name: 'footerNav', type: 'array', group: 'navigation', of: [defineArrayMember({type: 'linkItem'})]}),
     defineField({name: 'primaryCta', type: 'linkItem', group: 'navigation'}),
+    defineField({
+      name: 'ctaBand',
+      title: 'CTA band',
+      type: 'callToAction',
+      group: 'shared',
+      description: 'The closing band used on templates and on any "Call to action band" section left without a heading, e.g. "We\'re ready to work for you".',
+    }),
+    defineField({
+      name: 'valueProps',
+      title: 'Value props',
+      type: 'array',
+      group: 'shared',
+      of: [defineArrayMember({type: 'featureItem'})],
+      description: 'Why choose us (e.g. "No BS pricing", "Amazing Quality", "Client Satisfaction"). Used by templates and by Feature sections set to the shared list.',
+    }),
+    defineField({
+      name: 'capabilities',
+      type: 'array',
+      group: 'shared',
+      of: [defineArrayMember({type: 'featureItem'})],
+      description: 'What we do, as short checklist items (e.g. "Panel Upgrades" linked to its service). Used by templates and by Feature sections set to the shared list.',
+    }),
     defineField({name: 'titleSuffix', type: 'string', group: 'seo', initialValue: 'The Wire Guy Electric', description: 'Appended to page titles that do not set their own full meta title'}),
     defineField({name: 'defaultOgImage', type: 'image', group: 'seo'}),
     defineField({name: 'ga4MeasurementId', title: 'GA4 measurement ID', type: 'string', group: 'tracking', initialValue: 'G-4ZYV7JMRJH'}),
