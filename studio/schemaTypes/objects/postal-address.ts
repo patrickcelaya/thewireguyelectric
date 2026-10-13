@@ -32,7 +32,7 @@ export const postalAddress = defineType({
       title: 'Show only in the footer',
       type: 'boolean',
       initialValue: false,
-      description: 'For an address that must stay consistent for local SEO but should not be advertised (e.g. a home address): it appears in the footer and in search-engine data only, never in office cards, contact details, maps or directions links.',
+      description: 'For an address that must stay consistent for local SEO but should not be advertised (e.g. a home address): it appears only in the footer (linked to its Google Business Profile, like every footer address) and in search-engine data, never in office cards, contact details, maps or directions links on pages.',
     }),
   ],
   preview: {
