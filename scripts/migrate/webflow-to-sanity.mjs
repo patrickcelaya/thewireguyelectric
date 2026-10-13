@@ -29,8 +29,9 @@ const p = (rel) => new URL(rel, ROOT)
 const readJson = async (rel) => JSON.parse(await readFile(p(rel), 'utf8'))
 const items = (data) => (Array.isArray(data) ? data : data.items)
 
-const OUT_DIR = 'migration/sanity-import/'
-const ID_MAP_PATH = `${OUT_DIR}id-map.json`
+// MIGRATE_OUT_DIR lets a trial run write somewhere else; IDs always come from the committed map.
+const OUT_DIR = process.env.MIGRATE_OUT_DIR ? `${process.env.MIGRATE_OUT_DIR.replace(/\/$/, '')}/` : 'migration/sanity-import/'
+const ID_MAP_PATH = 'migration/sanity-import/id-map.json'
 const SITE = 'https://www.thewireguyelectric.com'
 
 // ---------------------------------------------------------------------------
@@ -471,6 +472,14 @@ push({
   googleSiteVerification: live('/')?.googleSiteVerification ?? undefined,
 })
 
+// Content added on top of the Webflow export: page-builder sections for the static
+// pages, data fixes, real reviews and sourced local facts. Each module receives the
+// document list and helpers and edits or adds documents in place.
+const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
+for (const name of ['fixes', 'reviews', 'local-facts', 'page-sections']) {
+  await (await import(`./content/${name}.mjs`)).default(ctx)
+}
+
 // Referential integrity: every reference must point at a document in this file.
 const ids = new Set(docs.map((d) => d._id))
 const dangling = []
@@ -488,7 +497,7 @@ if (dangling.length) {
 
 await mkdir(p(OUT_DIR), {recursive: true})
 await writeFile(p(`${OUT_DIR}production.ndjson`), docs.map((d) => JSON.stringify(d)).join('\n') + '\n')
-await writeFile(p(ID_MAP_PATH), JSON.stringify(idMap, null, 2) + '\n')
+await writeFile(p(`${OUT_DIR}id-map.json`), JSON.stringify(idMap, null, 2) + '\n')
 await writeFile(p(`${OUT_DIR}report.json`), JSON.stringify(report, null, 2) + '\n')
 
 const counts = docs.reduce((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {})
