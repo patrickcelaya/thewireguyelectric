@@ -909,7 +909,6 @@
       "services": [
         "heroSection:hero",
         "servicesSection:all-services",
-        "priceGuideSection:prices",
         "locationsSection:areas",
         "faqSection:faqs",
         "ctaSection:cta"

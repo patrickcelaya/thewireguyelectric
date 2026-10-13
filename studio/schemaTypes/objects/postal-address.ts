@@ -27,6 +27,13 @@ export const postalAddress = defineType({
     }),
     defineField({name: 'phone', title: 'Phone (if different)', type: 'string', description: 'E.164, e.g. +16027697892. Leave empty to use the main number.'}),
     defineField({name: 'appointmentOnly', title: 'By appointment only', type: 'boolean', initialValue: false}),
+    defineField({
+      name: 'footerOnly',
+      title: 'Show only in the footer',
+      type: 'boolean',
+      initialValue: false,
+      description: 'For an address that must stay consistent for local SEO but should not be advertised (e.g. a home address): it appears in the footer and in search-engine data only, never in office cards, contact details, maps or directions links.',
+    }),
   ],
   preview: {
     select: {title: 'label', street: 'streetAddress', city: 'addressLocality'},

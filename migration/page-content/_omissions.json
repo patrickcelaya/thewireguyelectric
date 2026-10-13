@@ -138,6 +138,18 @@
       "tag": "p",
       "text": "Emma has been with The Wire Guy for about 3 years and is the friendly voice you’ll hear on the phone. In her free time, she enjoys paddleboarding, cooking, trying new foods, crafting, and spending time with her partner Steven and their dog Lulu.",
       "reason": "Superseded older bio (\"paddleboarding\", \"partner Steven\"). Current bio (teamMember, /our-team): \"paddle boarding\", \"fiance Steven\"."
+    },
+    {
+      "page": "contact-us",
+      "tag": "link",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "careers",
+      "tag": "link",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
     }
   ],
   "links": [
@@ -166,6 +178,18 @@
       "text": "",
       "href": "#",
       "reason": "Webflow lightbox placeholder link (see the copy entry for icon-link)."
+    },
+    {
+      "page": "contact-us",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "href": "https://g.co/kgs/BQJ3i8D",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "careers",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "href": "https://g.co/kgs/BQJ3i8D",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
     }
   ],
   "changes": [

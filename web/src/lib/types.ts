@@ -75,6 +75,8 @@ export interface PostalAddress {
   locationSlug?: string
   phone?: string
   appointmentOnly?: boolean
+  /** Footer and structured data only; never office cards, contact details or maps (a home address). */
+  footerOnly?: boolean
 }
 
 export interface OpeningHours {

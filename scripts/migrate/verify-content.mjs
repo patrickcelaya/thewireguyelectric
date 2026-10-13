@@ -482,7 +482,8 @@ for (const file of files) {
     if (item.tag !== 'link') return null
     if (/^tel:/i.test(item.href ?? '')) return 'phone'
     if (/^mailto:/i.test(item.href ?? '')) return 'email'
-    if ((settings.addresses ?? []).some((a) => norm(addressText(a)) === norm(item.text))) return 'offices'
+    // Footer-only addresses (a home address) never render in contact blocks.
+    if ((settings.addresses ?? []).some((a) => !a.footerOnly && norm(addressText(a)) === norm(item.text))) return 'offices'
     return null
   }
   const napOk = (kind, item) => {

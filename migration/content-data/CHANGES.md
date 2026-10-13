@@ -23,7 +23,9 @@ These need your answer before launch. Each one says what the site shows today an
    | Whole-house surge protector | $300–$600 | Surge protector post: $400–$800 |
 
    Panel prices agree everywhere: $5,200–$6,500 for a standard 200-amp panel, and $6,400–$8,750 for a full service replacement.
-2. **The `/services` price table is new wording.** The heading "Typical prices" and the row labels are ours, taken from the `/faq` answers. The figures and the "Every home is different…" disclaimer are yours.
+2. **No price table anywhere.** Per your note of Oct 13, prices only appear where you already publish them, inside the `/faq` answers. The `/services` price table we had drafted is gone, and service pages have no price modules. The ranges stay stored on each service in Sanity (hidden) in case you ever want them.
+### Your address
+- **The Mesa street address shows only in the footer** (and in the search-engine data, which keeps your name/address/phone consistent for local SEO). It no longer appears in the Contact Us or Careers page content, office cards, maps or directions links. In Studio this is the new "Show only in the footer" switch on the address.
 
 ### Reviews and quotes
 3. **Hero quotes.** "Went above and beyond, great prices too!", "Could not be more pleased!" and "Excellent, polite and timely service!" (home page), and "On time and stayed on schedule", "Clear pricing and communication" and "Reliable electricians for our business" (`/commercial-electrician`). None of these matches the 50 reviews your reviews widget shows. Are they from real reviews? If you can name the reviewers, we'll link each quote to its review.

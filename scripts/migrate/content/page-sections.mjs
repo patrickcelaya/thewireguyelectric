@@ -654,10 +654,6 @@ export default async function pageSections(ctx) {
   {
     const slug = 'services'
     const c = copyOf(slug)
-    const panelsFaq = faqByQuestion('How much does an electrical panel replacement cost in Arizona?')
-    const panelAnswer = panelsFaq.answer.map((b) => b.children?.map((s) => s.text).join('')).join(' ')
-    const disclaimer = panelAnswer.match(/Every home is different[^.]*\./)?.[0]
-    if (!disclaimer) throw new Error('page-sections: panel FAQ no longer has the "Every home is different" sentence')
     sections[slug] = [
       {
         _type: 'heroSection',
@@ -669,22 +665,8 @@ export default async function pageSections(ctx) {
       },
       // Every service once, under its category (replaces the three hidden tab panes).
       {_type: 'servicesSection', _key: 'all-services', layout: 'grouped'},
-      {
-        // Ranges the live /faq publishes (same figures as service.priceRange, set by the
-        // fixes module with the same date). Row wording follows the /faq answers.
-        _type: 'priceGuideSection',
-        _key: 'prices',
-        heading: 'Typical prices',
-        rows: [
-          {_type: 'priceRow', _key: 'panel', label: 'Standard 200-amp panel replacement', service: reference(service('panels')), guide: reference(bySlug('post', 'electrical-panel-upgrade-cost-arizona'))},
-          {_type: 'priceRow', _key: 'panel-full', label: 'Full service replacement with a new all-in-one meter base and panel', low: 6400, high: 8750, service: reference(service('panels')), guide: reference(bySlug('post', 'electrical-panel-upgrade-cost-arizona'))},
-          {_type: 'priceRow', _key: 'recessed', label: 'Six recessed LED can lights in an existing room', service: reference(service('recessed-lights-installation')), guide: reference(bySlug('post', 'recessed-lighting-installation-phoenix'))},
-          {_type: 'priceRow', _key: 'ev', label: 'Level 2 EV charger (240-volt) at home', service: reference(service('ev-charger-installation'))},
-          {_type: 'priceRow', _key: 'surge', label: 'Whole house surge protector', low: 300, high: 600, guide: reference(bySlug('post', 'whole-house-surge-protector-guide-arizona'))},
-        ],
-        disclaimer,
-        asOf: '2026-10-13',
-      },
+      // No price table: the owner doesn't want à-la-carte pricing on the site (2026-10-13).
+      // Prices stay where the business already publishes them, inside the /faq answers.
       locationsSection('index', 7),
       {
         _type: 'faqSection',
