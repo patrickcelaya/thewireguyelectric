@@ -1,0 +1,44 @@
+{
+  "$comment": "Content the CMS templates (city, service and post pages) show, applied by scripts/migrate/content/cms-templates.mjs. Every value names its source; a quoted `evidence` must appear word for word in that source, or the migration stops.",
+  "featuredPosts": {
+    "source": "Search Console, 16 months: the Tier-1 posts by clicks (redesign spec, appendix A.2). `featured` puts them first in guide lists.",
+    "slugs": [
+      "can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "diy-electrical-work-in-arizona",
+      "permit-for-electrical-work",
+      "tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+      "electrical-panel-upgrade-cost-arizona",
+      "bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "outdated-wiring-in-older-phoenix-homes"
+    ]
+  },
+  "serviceImages": [
+    {
+      "service": "ev-charger-installation",
+      "asset": "image-c892be993e9cc5f76be656862cbf6badf2a285bb-926x976-avif",
+      "alt": "A Wire Guy Electric electrician kneeling beside a Tesla Model 3 in a home garage, wiring a box on the wall",
+      "source": "Replaces a stock photo of a driver at a charging station (redesign asset audit, section 4b) with the crew's own EV install (migration/brand-photos, ev-charger-garage.avif), the photo the live homepage's EV card uses."
+    }
+  ],
+  "serviceAlts": {
+    "source": "Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt.",
+    "alts": {
+      "panels": "A new Siemens electrical panel with labeled breakers next to an SRP meter on a stucco wall",
+      "custom-lighting": "Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters",
+      "fixture-replacements": "Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting",
+      "electrical-safety-inspections": "Two Wire Guy Electric technicians walking up a customer’s front path in an Arizona neighborhood",
+      "electrical-troubleshooting": "Pliers, wire strippers and a voltage tester on a coil of yellow wire",
+      "electrical-remodels": "A finished kitchen remodel with recessed lights, white cabinets and a stone island",
+      "exterior-electrical": "Lamp posts lighting a brick front walk lined with roses",
+      "recessed-lights-installation": "New recessed lights glowing in a vaulted kitchen ceiling"
+    }
+  },
+  "atAGlance": {
+    "panels": [
+      {"label": "Most common job", "value": "200-amp like-for-like replacement", "source": "body", "evidence": "200-amp like-for-like replacement. The job we do most often."},
+      {"label": "Panels we install", "value": "Square D, Siemens, or Eaton", "source": "body", "evidence": "new Square D, Siemens, or Eaton panel goes in"},
+      {"label": "Utility", "value": "APS or SRP, coordinated for you", "source": "body", "evidence": "We coordinate that for you. We submit the service request to APS or SRP"},
+      {"label": "Permits", "value": "We pull the permit and schedule the inspection", "source": "faq:Do I need a permit for electrical work in Arizona?", "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."}
+    ]
+  }
+}

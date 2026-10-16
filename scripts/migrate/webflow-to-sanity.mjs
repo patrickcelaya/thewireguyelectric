@@ -478,7 +478,7 @@ push({
 // pages, data fixes, real reviews and sourced local facts. Each module receives the
 // document list and helpers and edits or adds documents in place.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const name of ['fixes', 'reviews', 'local-facts', 'page-sections']) {
+for (const name of ['fixes', 'reviews', 'local-facts', 'page-sections', 'cms-templates']) {
   await (await import(`./content/${name}.mjs`)).default(ctx)
 }
 
