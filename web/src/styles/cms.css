@@ -22,9 +22,6 @@
   .ihero--office .itrust__card{gap:12px;padding:20px 22px;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),0 2px 4px rgb(58 20 6 / .06),0 18px 36px -22px rgb(58 20 6 / .4)}
 }
 
-/* phones: the service's trail (Home › Services › Residential › the service) keeps its middle crumbs whole; the current page's
-   name, which the H1 right below repeats, shortens with an ellipsis instead */
-@media (max-width:699px){.ihero--service .crumbs li:not(:last-child){flex:none}.ihero--service .crumbs li:last-child{flex:0 1 auto;min-width:0}.ihero--service .crumbs [aria-current]{display:block;overflow:hidden;text-overflow:ellipsis}}
 
 /* ===================================================================== the service hero without a company photo: copper light, the bulb drawn
    on it in warm glow (stock photos are never shown) */

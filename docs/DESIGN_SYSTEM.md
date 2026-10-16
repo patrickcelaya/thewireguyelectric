@@ -165,7 +165,7 @@ Props are typed in each file; the essentials are below. "settings" is always `Si
 | `Bulb` | `lead` left·right, `class?` | The wire-drawn bulb. Put `data-bulb-field` on the section (and optionally `data-bulb-edge` on the box whose edge the wire starts from). Lit by default; scope `.glow`/`.glass` opacity to change that (the 404 keeps it dark, /estimate lights it on send) |
 | `MiniBulb` | `class?` (default `mini-bulb`) | Lights on hover/focus inside `.tile`, `.svc-tile`, `.guide` |
 | `LitBulb` | `class` | The bulb as parts (the form's success state, `ok-bulb`) |
-| `Breadcrumbs` | `crumbs: Crumb[]`, `variant?` sky | Render with the same array you pass as `meta.breadcrumbs`, so the trail equals the `BreadcrumbList`. Inner pages only (CSS in `inner.css`) |
+| `Breadcrumbs` | `crumbs: Crumb[]`, `variant?` sky | Render with the same array you pass as `meta.breadcrumbs`, so the trail equals the `BreadcrumbList`. Inner pages only (CSS in `inner.css`). On phones the trail stays on one line: the links keep their whole names and the current page (which the H1 repeats) shortens with an ellipsis |
 | `SanityImage` | `image`, `widths?`, `sizes`, `aspect?`, `alt?`, `priority?`, `class?`, `style?`, `faces?` | See [Images](#7-images) |
 | `StaticPicture` | `src`, `avif?`, `webp?`, `sizes`, `width`, `height`, `alt`, `loading?`, `fetchpriority?` | Committed images with AVIF/WebP renditions |
 
@@ -373,12 +373,12 @@ Chapter numbers come from a counter in the page, so a section that renders nothi
 
 | File | Imported by | Holds |
 |---|---|---|
-| `styles/cms.css` | city, service and category pages | the office in the trust card (`.itrust__office`; the office's own styles are in `inner.css`), `.ihero--office` and the city hero's lower photo at 1100–1399 px (faces clear of the card and buttons), `.ihero--plain` and `.ihero--split` service heroes, the service trail on phones (the current name shortens, not the middle crumbs), `.local-note`, `.svc-rows`, the city and service prose variants, `.facts__status`, `.chero`, `.topic-hubs` |
+| `styles/cms.css` | city, service and category pages | the office in the trust card (`.itrust__office`; the office's own styles are in `inner.css`), `.ihero--office` and the city hero's lower photo at 1100–1399 px (faces clear of the card and buttons), `.ihero--plain` and `.ihero--split` service heroes, `.local-note`, `.svc-rows`, the city and service prose variants, `.facts__status`, `.chero`, `.topic-hubs` |
 | `styles/post.css` | post pages | the editorial head and cover, the quick answer, `.prose--post` (18 px, real H2/H3), the TOC, the sticky contact card, `.post-local`, `.post-nav` |
 
 ### Content the templates read (migration pipeline)
 
-`scripts/migrate/content/cms-templates.mjs` with `migration/content-data/cms-templates.json` (runs after `page-sections`): `post.featured` on the most-read guides, the EV charger service's crew photo in place of its stock image, alt text for the services' own photos, `service.atAGlance` facts (each quotes its evidence, which must be word for word in the service body or the named /faq answer, or the import fails), and removal of the SEO tool's `sbb-itb-…` marker headings from a post body.
+`scripts/migrate/content/cms-templates.mjs` with `migration/content-data/cms-templates.json` (runs after `page-sections`): `post.featured` on the most-read guides, the EV charger service's crew photo in place of its stock image, alt text for the services' own photos, `service.atAGlance` facts (each quotes its evidence, which must be word for word in the service body or the named /faq answer, or the import fails), `textFixes` (typing slips the export carries, e.g. "afternoon?The"; each must match exactly once) and removal of the SEO tool's `sbb-itb-…` marker headings from a post body.
 
 ### Checks (scratch tools, as run for this template set)
 

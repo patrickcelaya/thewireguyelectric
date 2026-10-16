@@ -14,6 +14,7 @@ import {getFaqs, getReviews, getSettings} from '../lib/queries'
 import {officeHours, telHref} from '../lib/site'
 import {faqNode, webPageNode} from '../lib/schema'
 import {resolveOgImage} from '../lib/seo'
+import {retargetLinks} from '../lib/portable-text'
 import type {FaqItem, PortableTextValue} from '../lib/types'
 import Breadcrumbs from '../components/ui/Breadcrumbs.astro'
 import Eyebrow from '../components/ui/Eyebrow.astro'
@@ -41,12 +42,7 @@ const crumbs = [
 const picked = ['Charles Boles', 'Becky Schoen', 'Eileen Black'].flatMap((name) => reviews.filter((r) => r.authorName === name).slice(0, 1))
 
 // The questions people ask before they book. "Contact us today" in an answer points at the form on this page.
-const toForm = (answer: PortableTextValue): PortableTextValue =>
-  answer.map((block) =>
-    Array.isArray(block.markDefs)
-      ? {...block, markDefs: (block.markDefs as Array<{_type: string; href?: string}>).map((d) => (d._type === 'link' && /^\/(contact-us|estimate)\/?$/.test(d.href ?? '') ? {...d, href: '#estimate'} : d))}
-      : block,
-  )
+const toForm = (answer: PortableTextValue) => retargetLinks(answer, (href) => /^\/(contact-us|estimate)\/?$/.test(href), '#estimate')
 const questions = ['Do you offer free estimates?', 'Do you have any hidden fees?', 'Are you licensed, bonded, and insured?', 'Do I need a permit for electrical work in Arizona?']
 const before: FaqItem[] = questions.flatMap((q) => faqs.filter((f) => f.question === q).slice(0, 1)).map((f) => ({...f, answer: toForm(f.answer)}))
 

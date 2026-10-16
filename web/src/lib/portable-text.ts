@@ -97,3 +97,15 @@ export function portableTextToHtml(blocks: PortableTextValue | null | undefined,
   }
   return toHTML(blocks as never, {components, onMissingComponent: false})
 }
+
+/**
+ * The same rich text with every link that `matches` pointed at `href` instead, e.g.
+ * "Contact us today" in an answer shown on the page that holds the form → "#estimate".
+ */
+export function retargetLinks(blocks: PortableTextValue, matches: (href: string) => boolean, href: string): PortableTextValue {
+  return blocks.map((block) => {
+    const defs = block.markDefs as Array<{_type: string; href?: string}> | undefined
+    if (!Array.isArray(defs)) return block
+    return {...block, markDefs: defs.map((d) => (d._type === 'link' && d.href && matches(d.href) ? {...d, href} : d))}
+  })
+}

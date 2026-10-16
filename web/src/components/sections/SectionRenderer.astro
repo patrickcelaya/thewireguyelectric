@@ -17,13 +17,14 @@
 // sections, as in a dataset not yet re-imported) still gets its hero and the
 // closing estimate band (lib/sections.ts withPageFrame). One form per page: a page
 // with a contact form leaves out the CTA band's form.
-import type {PageDoc, PageSection, SiteSettings} from '../../lib/types'
+import type {FaqItem, PageDoc, PageSection, SiteSettings} from '../../lib/types'
 import type {Crumb} from '../../lib/seo'
 import {planSections, withPageFrame} from '../../lib/sections'
 import {serviceAreaCities, HOME_CITY_SLUG} from '../../lib/cities'
 import {ctaHref} from '../../lib/site'
 import {getNavModel} from '../../lib/nav'
 import {getRedirectMap} from '../../lib/queries'
+import {retargetLinks} from '../../lib/portable-text'
 import HeroHome from './HeroHome.astro'
 import HeroInner from './HeroInner.astro'
 import TeamIntro from './TeamIntro.astro'
@@ -86,6 +87,10 @@ if (contact && sections.some((s) => s._type === 'ctaSection')) {
 }
 // "Apply Now" on a job goes to the application form when the page has one.
 const applyHref = contact?._type === 'contactSection' && contact.formType === 'careers' ? `#${contact._key}` : undefined
+// On a page with a form, an answer's link to the page itself ("Contact us today" on
+// /contact-us) goes to the form instead.
+const toForm = (faqs: FaqItem[]) =>
+  contact ? faqs.map((f) => ({...f, answer: retargetLinks(f.answer, (href) => href.replace(/\/$/, '') === path, `#${contact._key}`)})) : faqs
 
 const citiesOf = (s: Extract<PageSection, {_type: 'locationsSection'}>) => {
   const cities = serviceAreaCities(s.homeCity, s.locations)
@@ -110,7 +115,7 @@ plan.forEach((item, i) => {
           <div class="wrap">
             {faq && faq.faqs.length > 0 && (
               <FaqBlock
-                faqs={faq.faqs}
+                faqs={toForm(faq.faqs)}
                 heading={faq.heading ?? 'Questions and answers'}
                 intro={faq.intro}
                 id={`${faq._key}-h`}
@@ -121,7 +126,11 @@ plan.forEach((item, i) => {
               />
             )}
             {faq && faq.groups.some((g) => g.faqs.length) && (
-              <FaqTopics section={faq} number={faq.faqs.length ? undefined : numbers.faq} nested={faq.faqs.length > 0} />
+              <FaqTopics
+                section={{...faq, groups: faq.groups.map((g) => ({...g, faqs: toForm(g.faqs)}))}}
+                number={faq.faqs.length ? undefined : numbers.faq}
+                nested={faq.faqs.length > 0}
+              />
             )}
             {posts && <GuidesBlock section={posts} number={numbers.posts} />}
           </div>

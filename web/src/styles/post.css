@@ -6,8 +6,6 @@
 
 /* ===================================================================== the head: the words beside the cover */
 .post-head{padding-top:clamp(28px,3vw,56px)}
-/* phones: the trail stays on one line; the current post's title (the H1 right below) shortens with an ellipsis */
-@media (max-width:699px){.post-head .crumbs li:not(:last-child){flex:none}.post-head .crumbs li:last-child{flex:0 1 auto;min-width:0}.post-head .crumbs [aria-current]{display:block;overflow:hidden;text-overflow:ellipsis}}
 .post-head__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.78fr);gap:32px clamp(40px,5vw,96px);align-items:center;margin-top:clamp(24px,2.4vw,40px)}
 .post-kicker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:clamp(16px,1.6vw,24px);font:600 var(--fs-small)/1.3 var(--font-text);color:var(--muted)}
 .post-topic{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 12px;border-radius:var(--r-pill);background:var(--wash);color:var(--copper-700);font-weight:650}
