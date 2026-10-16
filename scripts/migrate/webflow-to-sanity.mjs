@@ -135,12 +135,14 @@ function normalizeHref(href, docPath) {
 }
 
 // Owner rule: every "Free Estimate" link goes to the Free Estimate page. The live copy links "Get a free estimate",
-// "request a free estimate", "free estimates" … to /contact-us; those become /estimate (the same phrase test as
-// ctaHref in web/src/lib/site.ts, plural included). Other links to /contact-us ("Contact us") stay.
+// "request a free estimate", "free estimates" … to /contact-us (or to the old homepage form, /#contact); those become
+// /estimate (the same phrase test as ctaHref in web/src/lib/site.ts, plural included). Other links to /contact-us
+// ("Contact us") stay.
 const ESTIMATE_TEXT = /\bfree\b(?:\s+\w+){0,3}?\s+estimates?\b/i
+const CONTACT_FORM = /^(?:\/contact-us(?:[#?]|$)|\/#contact$)/
 function estimateHref(href, text, docPath) {
   const words = (text ?? '').replace(/\s+/g, ' ').trim()
-  if (!ESTIMATE_TEXT.test(words) || !/^\/contact-us(?:[#?]|$)/.test(href ?? '')) return href
+  if (!ESTIMATE_TEXT.test(words) || !CONTACT_FORM.test(href ?? '')) return href
   report.fixedLinks.push({doc: docPath, from: href, to: '/estimate', text: words})
   return '/estimate'
 }

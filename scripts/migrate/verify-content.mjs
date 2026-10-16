@@ -65,12 +65,13 @@ const normHref = (href) => {
   }
   return h.replace(/\/+$/, '')
 }
-// A live "free estimate" link to /contact-us goes to the Free Estimate page now (owner rule; the migration's
-// estimateHref in webflow-to-sanity.mjs).
+// A live "free estimate" link to /contact-us (or the old homepage form, /#contact) goes to the Free Estimate page
+// now (owner rule; the migration's estimateHref in webflow-to-sanity.mjs).
 const ESTIMATE_TEXT = /\bfree\b(?:\s+\w+){0,3}?\s+estimates?\b/i
+const CONTACT_FORM = /^(?:\/contact-us(?:[#?]|$)|\/#contact$)/
 const liveHref = (text, href) => {
   const h = normHref(href)
-  return ESTIMATE_TEXT.test(String(text ?? '')) && /^\/contact-us(?:[#?]|$)/.test(h) ? '/estimate' : h
+  return ESTIMATE_TEXT.test(String(text ?? '')) && CONTACT_FORM.test(h) ? '/estimate' : h
 }
 const digits = (s) => String(s ?? '').replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '')
 

@@ -438,6 +438,12 @@
       "to": "/#contact"
     },
     {
+      "doc": "/blog-posts/installing-car-charger",
+      "from": "/#contact",
+      "to": "/estimate",
+      "text": "Please click here to get a free estimate for installation."
+    },
+    {
       "doc": "/faq",
       "from": "/contact-us",
       "to": "/estimate",
