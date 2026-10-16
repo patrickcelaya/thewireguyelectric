@@ -855,6 +855,9 @@
     "atAGlance": [
       "panels"
     ],
+    "textFixes": [
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature"
+    ],
     "markersRemovedFrom": [
       "level-1-vs-level-2-ev-chargers-which-to-choose"
     ]

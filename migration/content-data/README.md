@@ -42,6 +42,8 @@ The module stops if a city is missing `heading` or `cityNameForSeo`, because the
 
 `faqs.json` was generated from the inventory, so the question and answer HTML are character-for-character the visible copy, curly apostrophes included.
 
+**Two edits by the owner's standing rules** (each listed in `migration/page-content/_omissions.json` with its reason): "What cities do you service?" drops "over 11 different" (no area count), and "Do you work on weekends or offer emergency service?" drops the "For true emergencies…" sentence. Every other word and link is the live copy. Prices in answers stay: the owner keeps prices where the business already published them.
+
 **Matching.** Each visible question is matched to its existing document by question text, ignoring apostrophe style. Three questions were worded differently in the old JSON-LD; `legacyQuestion` records the old wording so the match still works. All 28 matched, so no document was created and every ID stays the same. A visible question with no document would get the ID `idFor('faq:visible:<question>')`.
 
 **Answers.** Answers are converted with `ctx.toPortableText`, so their links keep working: 54 internal links, 2 `tel:` links and 4 external links (AZ ROC). Internal links are relative with no trailing slash. They are already written that way in the live copy, and `normalizeHref` enforces it. Three answers opened internal links in a new tab (`target="_blank"`): aluminum wiring, EV DIY and adding outlets. Those links now open in the same tab. External links keep their original attributes.
@@ -281,5 +283,6 @@ Applied by `scripts/migrate/content/cms-templates.mjs`, which runs last (after `
 | `serviceImages` | `service.mainImage` for `ev-charger-installation`: the crew's own install photo in place of a stock image (the asset must be in the dataset) | `migration/brand-photos` |
 | `serviceAlts` | alt text for the services' own photos (all were empty) | the asset audit and the brand-photos manifest |
 | `atAGlance` | `service.atAGlance` facts for `panels` (most common job, panels installed, utility, permits) | each fact quotes `evidence` that must appear word for word in the service body or the named `/faq` answer |
+| `textFixes` | typing slips in a post body the live page carries too ("afternoon?The" in `can-hot-weather-cause-your-circuit-breaker-to-trip`) | the post itself; each `find` must occur exactly once in that post's text |
 
-It also removes the SEO tool's tracking markers (`sbb-itb-…`) that the Webflow export carried into a post body as a heading of their own (`level-1-vs-level-2-ev-chargers-which-to-choose`). `report.json` → `cmsTemplates` lists what it set. The migration stops if a slug, an asset or a FAQ is missing, a replacement image has no alt, or a fact's evidence is not in its source.
+It also removes the SEO tool's tracking markers (`sbb-itb-…`) that the Webflow export carried into a post body as a heading of their own (`level-1-vs-level-2-ev-chargers-which-to-choose`). `report.json` → `cmsTemplates` lists what it set. The migration stops if a slug, an asset or a FAQ is missing, a replacement image has no alt, a fact's evidence is not in its source, or a text fix does not match exactly once.

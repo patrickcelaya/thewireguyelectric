@@ -150,6 +150,18 @@
       "tag": "link",
       "text": "1321 N 65th St, Mesa, AZ 85205",
       "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "faq",
+      "tag": "faq-a",
+      "text": "We travel all over the Phoenix Valley to over 11 different cities and areas including Mesa, Gilbert, Chandler, Scottsdale, Phoenix, Tempe, Queen Creek, San Tan Valley, Apache Junction, Fountain Hills, and Ahwatukee. If you don't see your city listed, don't worry! Just give us a call and we'll let you know if you're in our service radius.",
+      "reason": "Owner (redesign reviews, binding): no area count. The answer keeps every word and city link but \"over 11 different\" (migration/content-data/faqs.json), so the same answer on /faq, the service pages and the city pages no longer counts the areas."
+    },
+    {
+      "page": "faq",
+      "tag": "faq-a",
+      "text": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. However, we understand that electrical issues don't always happen during business hours. If you have an urgent situation, give us a call at 602-769-7892 and we'll do our best to accommodate you. For true emergencies like sparking outlets, burning smells, or a panel that's hot to the touch, don't wait. Call us right away or call 911 if there's an immediate safety threat. You can also reach us through our contact page.",
+      "reason": "Owner (round-3 review, binding): \"For true emergencies, let's get rid of that line.\" The answer keeps every other sentence and link (migration/content-data/faqs.json)."
     }
   ],
   "links": [

@@ -9,6 +9,9 @@
 //   atAGlance       service.atAGlance facts; each one quotes its evidence, which must be
 //                   word for word in the service body or the named /faq answer
 //
+//   textFixes       typing slips in a post body ("afternoon?The"); each must occur exactly
+//                   once in that post's text
+//
 // It also drops the SEO tool's tracking markers ("sbb-itb-f8419aa") that the Webflow
 // export carried into a post body as a heading of their own.
 //
@@ -57,6 +60,13 @@ export default async function cmsTemplates(ctx) {
     })
   }
 
+  for (const {post, find, replace} of data.textFixes.fixes) {
+    const spans = (bySlug('post', post).body ?? []).flatMap((b) => (b._type === 'block' ? (b.children ?? []) : [])).filter((c) => c.text?.includes(find))
+    const count = spans.reduce((n, c) => n + c.text.split(find).length - 1, 0)
+    if (count !== 1) fail(`${post}: "${find}" occurs ${count} times in the body, not once`)
+    spans[0].text = spans[0].text.replace(find, replace)
+  }
+
   // a block whose only text is the SEO tool's marker is not content
   const MARKER = /^sbb-itb-[0-9a-f]{7}$/
   const markers = []
@@ -72,6 +82,7 @@ export default async function cmsTemplates(ctx) {
     serviceImages: data.serviceImages.map((s) => s.service),
     serviceAlts: Object.keys(data.serviceAlts.alts),
     atAGlance: Object.keys(data.atAGlance),
+    textFixes: data.textFixes.fixes.map((f) => `${f.post}: ${f.replace}`),
     markersRemovedFrom: markers,
   }
 }

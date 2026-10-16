@@ -19,7 +19,7 @@
       "group": "The most common questions",
       "topic": "General",
       "question": "What cities do you service?",
-      "answerHtml": "We travel all over the Phoenix Valley to over 11 different cities and areas including <a href=\"/\">Mesa</a>, <a href=\"/locations/gilbert\">Gilbert</a>, <a href=\"/locations/chandler\">Chandler</a>, <a href=\"/locations/scottsdale\">Scottsdale</a>, <a href=\"/locations/phoenix\">Phoenix</a>, <a href=\"/locations/tempe\">Tempe</a>, <a href=\"/locations/queen-creek\">Queen Creek</a>, <a href=\"/locations/san-tan-valley\">San Tan Valley</a>, <a href=\"/locations/apache-junction\">Apache Junction</a>, <a href=\"/locations/fountain-hills\">Fountain Hills</a>, and <a href=\"/locations/ahwatukee\">Ahwatukee</a>. If you don't see your city listed, don't worry! Just <a href=\"/contact-us\">give us a call</a> and we'll let you know if you're in our service radius.",
+      "answerHtml": "We travel all over the Phoenix Valley to cities and areas including <a href=\"/\">Mesa</a>, <a href=\"/locations/gilbert\">Gilbert</a>, <a href=\"/locations/chandler\">Chandler</a>, <a href=\"/locations/scottsdale\">Scottsdale</a>, <a href=\"/locations/phoenix\">Phoenix</a>, <a href=\"/locations/tempe\">Tempe</a>, <a href=\"/locations/queen-creek\">Queen Creek</a>, <a href=\"/locations/san-tan-valley\">San Tan Valley</a>, <a href=\"/locations/apache-junction\">Apache Junction</a>, <a href=\"/locations/fountain-hills\">Fountain Hills</a>, and <a href=\"/locations/ahwatukee\">Ahwatukee</a>. If you don't see your city listed, don't worry! Just <a href=\"/contact-us\">give us a call</a> and we'll let you know if you're in our service radius.",
       "services": [],
       "shownOn": [
         "/faq",
@@ -346,7 +346,7 @@
       "group": "Hiring and Trust Questions",
       "topic": "Hiring",
       "question": "Do you work on weekends or offer emergency service?",
-      "answerHtml": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. However, we understand that electrical issues don't always happen during business hours. If you have an urgent situation, give us a call at <a href=\"tel:+16027697892\">602-769-7892</a> and we'll do our best to accommodate you. For true emergencies like sparking outlets, burning smells, or a panel that's hot to the touch, don't wait. Call us right away or call 911 if there's an immediate safety threat. You can also reach us through our <a href=\"/contact-us\">contact page</a>.",
+      "answerHtml": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. However, we understand that electrical issues don't always happen during business hours. If you have an urgent situation, give us a call at <a href=\"tel:+16027697892\">602-769-7892</a> and we'll do our best to accommodate you. You can also reach us through our <a href=\"/contact-us\">contact page</a>.",
       "services": [],
       "shownOn": [
         "/faq"

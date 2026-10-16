@@ -40,5 +40,11 @@
       {"label": "Utility", "value": "APS or SRP, coordinated for you", "source": "body", "evidence": "We coordinate that for you. We submit the service request to APS or SRP"},
       {"label": "Permits", "value": "We pull the permit and schedule the inspection", "source": "faq:Do I need a permit for electrical work in Arizona?", "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."}
     ]
+  },
+  "textFixes": {
+    "source": "Typing slips in post bodies that the Webflow export (and the live page) carry. Each `find` must occur exactly once in that post's body text, or the migration stops.",
+    "fixes": [
+      {"post": "can-hot-weather-cause-your-circuit-breaker-to-trip", "find": "all afternoon?The temperature", "replace": "all afternoon? The temperature"}
+    ]
   }
 }
