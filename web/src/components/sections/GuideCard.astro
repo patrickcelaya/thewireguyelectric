@@ -25,7 +25,7 @@ const {post, label = post.category?.name ?? 'Guide', coverWords, focus, as: Titl
 <li class="guide">
   <div class="cover" aria-hidden="true">
     <SanityImage image={post.mainImage} widths={[420, 640, 900]} aspect={1.6} sizes="(max-width:899px) 92vw, 30vw" alt="" style={focus && `object-position:${focus}`} />
-    <span class="lab">{label}</span>
+    <span class="lab">{label}</span>{' '}
     {coverWords && <span class="big">{coverWords}</span>}
     <MiniBulb />
   </div>

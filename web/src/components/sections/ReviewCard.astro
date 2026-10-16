@@ -20,7 +20,7 @@ const size = words <= 14 ? 's' : words <= 42 ? 'm' : 'l'
 <li class:list={['rv', isStatic && 'rv--static', `rv--${size}`]}>
   <blockquote>{text}</blockquote>
   <p class="rv__by">
-    <cite>{review.authorName}</cite>
+    <cite>{review.authorName}</cite>{' '}
     {review.source ?? 'Google'} review{review.date && <> · {formatDate(review.date, 'short')}</>}
   </p>
 </li>

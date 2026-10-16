@@ -33,7 +33,7 @@ const hours = officeHours(settings).line
         <h1 id="nf-h" class="display">Something’s <span class="accent">not right.</span></h1>
         <p class="ehero__lede">We can’t find the page you’re looking for. It may have moved, or the link may be out of date. Here’s where most people are headed.</p>
         <div class="btn-row nf-hero__btns">
-          <Button href="/" icon="go">Back to homepage</Button>
+          <Button href="/" icon="go">Back to homepage</Button>{' '}
           <Button href={telHref(settings)} variant="ghost" icon="tel" class="nf-hero__call"><span class="tnum">Call {settings.phone}</span></Button>
         </div>
       </div>
@@ -78,7 +78,7 @@ const hours = officeHours(settings).line
         {hours && <p class="hub__hours">Our Office Hours: {hours}</p>}
         <RatingLine settings={settings} variant="quiet" />
         <div class="btn-row hub__btns">
-          <Button href={ESTIMATE_PATH} icon="go" size="md">Get a Free Estimate</Button>
+          <Button href={ESTIMATE_PATH} icon="go" size="md">Get a Free Estimate</Button>{' '}
           <TextLink href="/contact-us">Contact Us</TextLink>
         </div>
       </article>

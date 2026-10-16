@@ -13,6 +13,6 @@ const n = typeof number === 'number' ? String(number).padStart(2, '0') : number
 ---
 
 <p class:list={['kicker', variant && `kicker--${variant}`, className]}>
-  {n && <span class="kicker__n" aria-hidden="true">{n}</span>}
+  {n && <><span class="kicker__n" aria-hidden="true">{n}</span>{' '}</>}
   <span class="kicker__t"><slot /></span>
 </p>
