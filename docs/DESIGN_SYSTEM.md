@@ -44,12 +44,15 @@ web/src/
     Seo.astro      every SEO <head> tag (unchanged from the port)
     PortableText.astro
     site/          the chrome: SiteHeader, SiteFooter, CallBar, HeadGate, SvgSprite, Logo
-    ui/            atoms: Button, TextLink, ExternalLink, Eyebrow, SectionHeader, Stars, RatingLine, ScoreBlock, RocLink,
+    ui/            atoms: Button, TextLink, ExternalLink, Eyebrow, SectionHeader, Accent, Stars, RatingLine, ScoreBlock, RocLink,
                    OfficeStatus, Bulb, MiniBulb, LitBulb, Breadcrumbs, SanityImage, StaticPicture, CtaButtons
-    sections/      EstimateForm, CtaBand, ReviewsCarousel, ReviewsStatic, ReviewCard, Valley, FaqList, FaqBlock, GuideCard
+    sections/      SectionRenderer (page.sections → components) and the sections: HeroHome, TeamIntro, ValueCards,
+                   Capabilities, ServicesMosaic, PullQuote, ProcessSteps, Gallery, GuidesBlock, EstimateForm, CtaBand,
+                   ReviewsCarousel, ReviewsStatic, ReviewCard, Valley, FaqList, FaqBlock, GuideCard
   scripts/         site.ts (entry) + site/*.ts (header, motion, bulb, valley, reviews, forms, video, util)
+  middleware.ts    a line break after every block-level closing tag of every HTML page (see §12)
   lib/             queries, types, schema, seo (unchanged roles) + image, site, nav, cities, hours, valley, bulb,
-                   portable-text, links, brand-photos, format
+                   portable-text, links, brand-photos, format, sections (the renderer's plan), hero (the hero photo's renditions)
   data/            relief.json (valley map), legacy-images.json (Webflow URL → Sanity asset), webflow-mirror.json
 web/public/img/    logo renditions, relief renditions, sister-brand logos, fleet poster enlargements
 ```
@@ -102,7 +105,7 @@ import Valley from '../components/sections/Valley.astro'   // brings atlas.css a
 ---
 ```
 
-Page-specific styles that don't belong to a reusable pattern go at the end of the layer file under a heading comment, the way the 404 block does. Keep the budget in mind (the spec asks for about 15 KB brotli per page). Measured on this build: tokens + core 11.0 KB, `inner.css` 5.4 KB, `home.css` 7.7 KB, `atlas.css` 4.0 KB, so an inner page ships about 16.4 KB (20.4 KB with the map) and the homepage about 22.6 KB, as in the mockups (open question 6 of the round-5 rationale). While the 404 is the only page on this layout, Vite merges its CSS into one 14.9 KB file.
+Page-specific styles that don't belong to a reusable pattern go at the end of the layer file under a heading comment, the way the 404 block does. Keep the budget in mind (the spec asks for about 15 KB brotli per page). Measured on this build: tokens + core 11.0 KB, `inner.css` 5.4 KB, `home.css` 7.7 KB, `atlas.css` 4.0 KB, so an inner page ships about 16.4 KB (20.4 KB with the map) and the homepage about 22.6 KB, as in the mockups (open question 6 of the round-5 rationale). The homepage build ships two files: the shared core chunk (11.0 KB) and its own (`home.css` + `atlas.css`, 10.9 KB), 21.9 KB in all, cached per page type.
 
 ---
 
@@ -152,7 +155,8 @@ Props are typed in each file; the essentials are below. "settings" is always `Si
 | `TextLink` | `href`, `icon?` go, `external?`, `tone?` cream | Underlined link that retracts on hover; "View All Services" |
 | `ExternalLink` | `href`, `rel?` (default noopener), attributes | New tab + "(opens in a new tab)" for screen readers. Use for every external link |
 | `Eyebrow` | `number?` (zero-padded), `variant?` pill·cream·sky | The kicker above a heading, always a `<p>` |
-| `SectionHeader` | `heading`, `accent?`, `id?`, `eyebrow?`, `number?`, `size` display·h2, `as` h2·h3, `intro?`, `layout` split·stack, slot `more` | `<SectionHeader eyebrow="Guides" number={8} heading="Plain answers" accent="answers" id="guides-h" intro="…"><TextLink slot="more" href="/blog" icon="go">All guides on the blog</TextLink></SectionHeader>` |
+| `SectionHeader` | `heading`, `accent?`, `id?`, `eyebrow?`, `number?`, `size` display·h2, `as` h2·h3, `intro?`, `layout` split·stack, `reveal?` (data-reveal on the heading), slot `more` | `<SectionHeader eyebrow="Guides" number={8} heading="Plain answers" accent="answers" id="guides-h" intro="…"><TextLink slot="more" href="/blog" icon="go">All guides on the blog</TextLink></SectionHeader>` |
+| `Accent` | `text`, `accent?`, `tone?` accent·glow-word·hl | A heading's text with its highlighted words wrapped: `<h2><Accent text={s.heading} accent={s.headingAccent} /></h2>` (copper; `glow-word` on the copper band, `hl` on the tools photo) |
 | `Stars` | `size?` px | Decorative (aria-hidden); the rating is always stated in text nearby |
 | `RatingLine` | `settings`, `variant?` quiet·foot | "★★★★★ 5.0 from 380+ Google reviews · Read our reviews on Google ↗". Nothing if Site settings has no rating |
 | `ScoreBlock` | `settings`, default slot (extra links) | The big copper 5.0 (never clipped), stars, count and the Google link |
@@ -170,7 +174,7 @@ Props are typed in each file; the essentials are below. "settings" is always `Si
 |---|---|---|
 | `EstimateForm` | `settings`, `id` (field-id prefix), `title?`, `titleTag?`, `hint?`, `anchor?` | Posts to `/api/contact` (honeypot `company_website`, `startedAt` timing, `formType`). Works without JS (303 back to `#sent` / `#send-error`); with JS validates inline, one request per submit, focuses the confirmation, fires `generate_lead`. **One per page** (fixed ids `sent`, `send-error`) |
 | `CtaBand` | `settings`, `heading?` (default Site settings → CTA band), `text?`, `number?`, `formId?` | The closing estimate band: van photo stage, words on the wall, bulb, "Prefer to talk?", the form card (`#estimate`). Counts as the page's estimate form |
-| `ReviewsCarousel` | `settings`, `reviews`, `heading?`, `accent?`, `number?`, `id?` | Homepage: every review in two lanes, pause/prev/next before the lanes, reduced-motion safe, all text in the DOM, "Read the full review" dialog. Needs `home.css` |
+| `ReviewsCarousel` | `settings`, `reviews`, `heading?`, `accent?`, `number?`, `id?` (default `reviews`: inner pages link to `/#reviews`), `cta?` `{label, href}` (default "Get a Free Estimate Now" → `/estimate`) | Homepage: every review in two lanes, pause/prev/next before the lanes, reduced-motion safe, all text in the DOM, "Read the full review" dialog. Needs `home.css` |
 | `ReviewsStatic` | `settings`, `reviews` (pick 3), `heading`, `intro?`, `number?`, `id?`, `tone?` sand | Inner pages: picked reviews under the 5.0. Needs `inner.css` |
 | `ReviewCard` | `review`, `static?` | One card (`<li>`); used by the two above |
 | `Valley` | `settings`, `cities` (from `serviceAreaCities`), `variant` home·inner, `heading`, `accent?`, `intro?`, `current?` (city slug), `eyebrow?`, `number?`, `id?`, `note?` | See [Valley map](#10-the-valley-map). Home variant needs `home.css` for the sky |
@@ -179,7 +183,41 @@ Props are typed in each file; the essentials are below. "settings" is always `Si
 | `GuideCard` | `post`, `label?`, `coverWords?`, `focus?`, `as?` | Inside `<ul class="guides" role="list">` |
 | `PortableText` (`components/`) | `value`, `class?` (usually `prose`), `figureSizes?` | See [Rich text](#8-rich-text) |
 
-The mockups also define page-specific patterns (title-card hero, proof card, services mosaic, who-we-are, value cards, process, gallery, at-a-glance, warning signs, contact card, /estimate hero). Their CSS is ported in `home.css` / `inner.css` with the mockups' class names; build them as page or section components from the mockup HTML when converting those pages, reusing the atoms above.
+The inner-page patterns (photo heroes, at-a-glance, warning signs, contact card, /estimate hero and steps) are ported as CSS in `inner.css` with the mockups' class names; build them as section components from the mockup HTML when converting those pages, reusing the atoms above, and map them in `SectionRenderer` (below).
+
+### Page-builder sections (`components/sections/`, the homepage's in round 5)
+
+Pages composed in Sanity (`page.sections`) render through **`SectionRenderer`** `{page, settings}`:
+
+```astro
+<SiteLayout meta={meta} schema={[webPageNode({...}), faqNode(path, collectPageFaqs(page))]} bodyClass="over">
+  <SectionRenderer page={page} settings={settings} />
+</SiteLayout>
+```
+
+- **Frame** (`withPageFrame`): the H1 is never missing. A page without a hero section gets one (the page heading, the estimate button and Call), and a page with no sections at all (content written before the page builder, as in a dataset not yet re-imported) also closes with the estimate band. Without a photo the hero drops the title card (`hero--bare`): the words and the proof card sit on the page.
+- **Plan** (`lib/sections.ts` `planSections`): empty sections render nothing and take no number (`isEmptySection`; `priceGuideSection` is always empty: owner rule). Chapters are numbered in order (the eyebrow's "01", "02", …); the hero, the value cards on the copper band and a pulled review quote are interludes without a number. A questions section and the guides after it share one sand band (`section answers`); either alone gets the band too.
+- **Variant** comes from the section's own fields and the page: the homepage (`slug` `index`) gets the title-card hero, the review lanes and the valley with its sky; other pages get the inner variants.
+- **Not built yet = build error.** A `_type` or variant no converted page uses yet (rich text, image + text, team, jobs, contact, trust strip, office locations, highlights, the inner hero, services `grid`/`grouped`, a team member's quote, FAQ groups) stops the build with a message naming it, instead of being dropped: build its component when converting the page that first uses it and map it in `SectionRenderer`.
+- Every link a section stores goes through `ctaHref(link, redirects)` (`lib/site.ts`): estimate buttons go to `/estimate` (owner rule) whatever their stored href; other hrefs are rewritten past redirects.
+- Section ids are `${section._key}-h` (unique per page). Below-the-fold sections carry `cv` (`content-visibility: auto`, see `core.css`).
+- The homepage's composition is content: page `index`, written by `scripts/migrate/content/page-sections.mjs` (order, eyebrows, headings, accents, picks). Change it there (or in Studio), not in the template.
+
+| `_type` → component | Props | Notes |
+|---|---|---|
+| `heroSection` → `HeroHome` (home) | `section`, `heading` (page.heading), `settings` | Title card on the crew photo: eyebrow pill, the H1 in two balanced lines (`balancedLines`, never splitting the accent words), primary button (→ `/estimate`), Call, the `ctaNotes` line under both, Emma's status (tablets and phones), the photo as a `<picture>` (phone and wide sources from `lib/hero.ts` `HERO_SOURCES`; the page preloads the same with `heroPreloads`), the glass proof card (5.0 + Google link + `trustLine` linked to the ROC lookup when it states the licence + the `reviewSnippets`), and under the hero the `text`: first sentence as the lit statement, the rest as a quiet lede. Nothing animates in |
+| `teamIntroSection` → `TeamIntro` | `section`, `settings`, `number?` | "Who we are": eyebrow, H2 + accent, `businessSummary(settings)` when `showSummary`, the body (mentions link to `/our-team`), the button + text link, one photo with its caption (runs off the right edge on desktop). No portrait cards |
+| `featureGridSection` `cards` → `ValueCards` | `section` | The copper band: cream eyebrow, H2 with the accent glowing, the lit bulb (`LitBulb`), numbered glass cards (title, text, cream text link; a `service` links the title) |
+| `featureGridSection` `checklist` → `Capabilities` | `section`, `categories` (nav `serviceGroups`), `number?` | Huge type on the section's `image` in a copper tint: items with a `service` are numbered linked rows (arrow, small bulb on hover), items without are the same rows unlinked, items that only carry a `link` ("+ More!") close the list as a text link; the lede and a link per category under the heading |
+| `servicesSection` `featured` → `ServicesMosaic` | `section`, `number?` | Eight cards fill the round-5 mosaic (slots `t-panel` … `t-com`, tuned to those photos: keep people out of the narrow tiles' word band); any other count sits in an even grid (`bento--even`). The title is the card's one link. Head: intro, the `cta` and "Browse" links to the categories of the cards shown; phones: a swipe row with previous/next (`data-rail`) |
+| `quoteSection` with `review` → `PullQuote` | `section`, `settings` | The excerpt huge on the photo (ink on a bright photo), stars, name, review date and service, Google link on a glass caption |
+| `processStepsSection` → `ProcessSteps` | `section`, `settings`, `number?` | One copper wire through the steps into the bulb it builds, pinned and scroll-driven on desktop (any number of steps: `--steps`, `--k`), simply drawn and lit elsewhere. `showContact` adds the phone, the hours and "Request a free estimate" |
+| `reviewsSection` → `ReviewsCarousel` (home) / `ReviewsStatic` | | Home: every review (`limit: 0`), heading accent, the section's `cta` |
+| `locationsSection` → `Valley` | | `home` on the homepage, `inner` elsewhere; cities from the section (`serviceAreaCities`), Mesa left out when `includeHomeCity` is false |
+| `gallerySection` → `Gallery` | `section`, `number?` | Six photos fill the round-5 mosaic (three columns flush at the foot; rows of two on tablets; captions under the photos on phones); other counts fill the same columns in turn. Projects add their main photo. The `cta` (Instagram) opens a new tab |
+| `faqSection` → `FaqBlock` | | In the answers band |
+| `postsSection` → `GuidesBlock` | `section`, `number?` | The guides head and `GuideCard`s; a `postCard` brings its own cover photo, topic and cover words |
+| `ctaSection` → `CtaBand` | | The section's own heading/text, else Site settings → CTA band |
 
 ---
 
@@ -200,6 +238,8 @@ The mockups also define page-specific patterns (title-card hero, proof card, ser
 - Helpers: `resolveImage`, `hasImage`, `imageDimensions`, `imageUrl(image, {width, height, format, quality})`, `imageSrcSet(image, widths, aspect?)`, `imagePreload`, `ogImageUrl`.
 
 **Fixed brand photos** that a component is designed around (the crop keeps faces clear) are Sanity assets listed in `lib/brand-photos.ts` (`VAN_PHOTO`, `FLEET_PHOTO`, with `faces` boxes for QA). Add new ones there (they come from `migration/brand-photos`).
+
+**Faces and focus.** `lib/brand-photos.ts` also lists the head boxes of every company photo of people by asset (`PHOTO_FACES`, read by `facesOf(image)`); `SanityImage` writes them to `data-faces` wherever the photo appears, so the QA face check covers every use. Add a photo's boxes there when you add a photo of people. When a frame crops a photo with `object-fit: cover` (and no `aspect`), `SanityImage` turns the editor's **hotspot** into `object-position` (`imageFocus`), so editors choose what stays in view; with `aspect` the CDN crop is already centred on the hotspot.
 
 **Static art** lives in `public/img` (logo renditions, relief renditions, sister-brand logos, the fleet poster's enlarged copies) and renders with `Logo` / `StaticPicture` or plain `<img>` with explicit dimensions.
 
@@ -268,6 +308,10 @@ Together the header and footer carry the 19 sitewide chrome links on every page.
 ---
 
 ## 12. Checks before you commit
+
+Two build details every page relies on:
+- **Words stay apart.** Astro drops whitespace that contains a newline, so `src/middleware.ts` adds a line break after every block-level closing tag of every HTML page (not inside script, style, textarea or pre); between inline elements that carry words, still write `{' '}`. Check with cheerio `.text()`: no `wordWord` glue.
+- **CSS targets.** `astro.config.mjs` sets `vite.build.cssTarget` (Baseline widely available). Without it the CSS minifier folds `animation-timeline` into the `animation` shorthand, which browsers reject, and every scroll-driven animation silently stops.
 
 - `pnpm --filter web check` → 0 errors.
 - Build from the local dataset: `PUBLIC_SANITY_PROJECT_ID= SITE_INDEXABLE=true pnpm --filter web build` (the log says it uses the local dataset).
