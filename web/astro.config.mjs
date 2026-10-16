@@ -24,4 +24,13 @@ export default defineConfig({
   redirects: flattenRedirects({...LEGACY_REDIRECTS, ...sanityRedirects}),
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},
+  vite: {
+    build: {
+      // The browsers the CSS is written for (Vite's "baseline widely available"). Without
+      // targets the CSS minifier assumes the newest syntax and folds animation-timeline
+      // into the animation shorthand, which browsers reject, so every scroll-driven
+      // animation (reveals, the lit statement, the process wire) silently never runs.
+      cssTarget: ['chrome111', 'edge111', 'firefox114', 'safari16.4'],
+    },
+  },
 })
