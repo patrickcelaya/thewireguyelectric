@@ -108,9 +108,9 @@ const compiled = Schema.compile({
 const blockContentType = compiled.get('holder').fields.find((f) => f.name === 'body').type
 
 // Known-broken internal links on the live site, fixed at the source (redirects
-// also exist, but a direct link avoids a hop).
+// also exist, but a direct link avoids a hop). /estimate is a real page now (the
+// Free Estimate page every estimate link goes to), so links to it are kept.
 const LINK_FIXES = {
-  '/estimate': '/contact-us',
   '/locations/mesa': '/',
   '/services/electrical-panels': '/services/panels',
 }

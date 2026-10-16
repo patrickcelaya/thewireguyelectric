@@ -1,111 +1,6 @@
 {
   "fixedLinks": [
     {
-      "doc": "/services/commercial-service",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/new-construction-wiring",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/tenant-improvements",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/exterior-electrical",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/fixture-replacements",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/custom-lighting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/led-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/outlets-and-switches",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/storefront-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/hanging-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-upgrades",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/commercial-electrical-troubleshooting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/emergency-exit-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/dedicated-circuits",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/ballast-replacement-fluorescent-lighting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-safety-inspections",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/ev-charger-installation",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-troubleshooting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-remodels",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/panels",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/recessed-lights-installation",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
       "doc": "/locations/fountain-hills",
       "from": "https://www.thewireguyelectric.com",
       "to": "/"
@@ -151,74 +46,9 @@
       "to": "/"
     },
     {
-      "doc": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/pool-pump-electrical-requirements-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/casita-adu-electrical-requirements-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/swamp-cooler-to-ac-conversion-electrical-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/ac-disconnect-box-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/smart-thermostat-c-wire-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/mini-split-electrical-requirements-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
       "doc": "/blog-posts/federal-pacific-zinsco-panels-arizona",
       "from": "/services/electrical-panels",
       "to": "/services/panels"
-    },
-    {
-      "doc": "/blog-posts/federal-pacific-zinsco-panels-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/why-is-my-electric-bill-so-high-phoenix-summer",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/half-house-lost-power-heat-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/electrical-panel-hot-to-the-touch-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/ac-keeps-tripping-breaker-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
     },
     {
       "doc": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
@@ -229,31 +59,6 @@
       "doc": "/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
       "from": "/blog/ev-charger-hardwired-vs-plug-in-phoenix",
       "to": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix"
-    },
-    {
-      "doc": "/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/aluminum-wiring-older-phoenix-homes",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/whole-home-standby-generator-installation-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
     },
     {
       "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
@@ -881,6 +686,7 @@
         "highlightsSection:family",
         "trustBarSection:trust",
         "teamSection:team",
+        "locationsSection:areas",
         "ctaSection:cta"
       ],
       "our-team": [
@@ -894,6 +700,7 @@
         "heroSection:hero",
         "highlightsSection:why-us",
         "jobsSection:openings",
+        "teamSection:team",
         "contactSection:apply-now"
       ],
       "faq": [
@@ -913,12 +720,14 @@
       "services": [
         "heroSection:hero",
         "servicesSection:all-services",
+        "processStepsSection:how-it-works",
         "locationsSection:areas",
         "faqSection:faqs",
         "ctaSection:cta"
       ],
       "blog": [
         "heroSection:hero",
+        "postsSection:most-read",
         "postsSection:posts",
         "ctaSection:cta"
       ],
@@ -926,8 +735,9 @@
         "heroSection:hero",
         "servicesSection:top-services",
         "featureGridSection:capabilities",
-        "featureGridSection:value-props",
         "reviewsSection:reviews",
+        "featureGridSection:value-props",
+        "servicesSection:all-commercial",
         "locationsSection:areas",
         "gallerySection:gallery",
         "ctaSection:cta"
@@ -952,6 +762,6 @@
     ],
     "jobDescription": "jobOpening.description = visible /careers job copy",
     "notes": [],
-    "assets": 21
+    "assets": 20
   }
 }

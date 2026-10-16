@@ -553,6 +553,41 @@ export default async function pageSections(ctx) {
     ]
   }
 
+  // ---------------------------------------------------------------------------
+  // The other eight pages, composed for the round-5 design (the inner hero with its
+  // trail, then the sections). Live copy is looked up as everywhere in this module;
+  // copy from the business's other pages goes through fromPage() and reviews are found
+  // by their author, so a retyped word fails the run. The few strings typed here
+  // are short eyebrows, section headings and cover words in the approved mockups'
+  // manner; they state no new fact. No "2-year warranty" tag anywhere (owner, round 2).
+
+  const fromPage = (source, text) => {
+    if (!pages[source].copy.some((item) => norm(item.text).includes(norm(text)))) throw new Error(`page-sections: "${text}" is not on the live /${source} page`)
+    return text
+  }
+  const reviewNamed = (name) => {
+    const doc = ofType('review').find((r) => r.authorName === name)
+    if (!doc) throw new Error(`page-sections: no review by ${name}`)
+    return doc
+  }
+  // The image a service or post already has, with this section's own alt text.
+  const imageFrom = (type, docSlug, alt, extra = {}) => {
+    const source = bySlug(type, docSlug).mainImage?._sanityAsset
+    if (!source) throw new Error(`page-sections: ${type} ${docSlug} has no main image`)
+    return {_type: 'image', _sanityAsset: source, alt, ...extra}
+  }
+  const hotspot = (x, y) => ({hotspot: {_type: 'sanity.imageHotspot', x, y, width: 0.3, height: 0.3}})
+  // A crop rectangle in source pixels (x, y, width, height) of a W x H original.
+  const cropRect = ([x, y, w, h], [W, H]) => ({crop: {_type: 'sanity.imageCrop', top: y / H, bottom: 1 - (y + h) / H, left: x / W, right: 1 - (x + w) / W}})
+  const guide = (postSlug, label, coverWords, image) => ({_type: 'postCard', _key: postSlug, post: reference(bySlug('post', postSlug)), label, coverWords, image})
+  // The live process steps (the homepage's "how it works", /faq answers word for word).
+  const processSteps = () => [
+    {_type: 'processStep', _key: 'call', title: 'Call or send the form', text: "Call us, or send the form and we'll call you back.", showContact: true},
+    {_type: 'processStep', _key: 'estimate', title: 'Free estimate', text: fromPage('faq', "We'll come out, look at the job, and give you a straight answer on what it'll cost. No pressure and no obligation.")},
+    {_type: 'processStep', _key: 'flat-rate', title: 'Flat-rate pricing', text: fromPage('faq', "We use flat-rate pricing, which means we quote you a price before we start and that's what you pay. No surprises.")},
+  ]
+  const estimateCta = (label = 'Get a Free Estimate') => link(label, '/estimate')
+
   // About us -------------------------------------------------------------------
   {
     const slug = 'about-us'
@@ -574,6 +609,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'highlightsSection',
         _key: 'family',
+        eyebrow: 'Who we are',
         heading: c.text(1, 'h3', 0),
         checklist: c.texts(1, 'li').map((text, i) => ({_type: 'highlightItem', _key: `point${i}`, text})),
         // Live: "See all services" pointed at /contact-us; the label is kept and the
@@ -584,15 +620,14 @@ export default async function pageSections(ctx) {
         asideBody: plainBlocks(c.text(1, 'p')),
       },
       {
-        // Facts already on the site: founded 2017, ROC license and rating (Site settings),
-        // "over 30 years of combined experience" (this page) and the 2-year warranty (/faq).
+        // Facts already on the site: founded 2017, the ROC license and the rating (Site
+        // settings) and "over 30 years of combined experience" (this page).
         _type: 'trustBarSection',
         _key: 'trust',
         items: [
           {_type: 'trustItem', _key: 'founded', fact: 'founded', icon: 'calendar'},
           {_type: 'trustItem', _key: 'experience', fact: 'custom', value: '30+', label: 'years of combined experience', icon: 'clock'},
           {_type: 'trustItem', _key: 'license', fact: 'license', label: 'Licensed, bonded, and insured', icon: 'badge'},
-          {_type: 'trustItem', _key: 'warranty', fact: 'custom', value: '2-year', label: 'warranty on services we provide', icon: 'shield'},
           {_type: 'trustItem', _key: 'reviews', fact: 'reviews', icon: 'star'},
         ],
       },
@@ -607,6 +642,8 @@ export default async function pageSections(ctx) {
         showBios: true,
         cta: link(c.text(2, 'button'), c.item(2, 'button').href),
       },
+      // Every city we serve, on the valley's atlas (the live tiles' wording).
+      {...locationsSection('index', 7), eyebrow: 'Where we work'},
       ctaBandShared(),
     ]
   }
@@ -620,13 +657,14 @@ export default async function pageSections(ctx) {
       {
         _type: 'heroSection',
         _key: 'hero',
+        eyebrow: 'Family-owned · Since 2017',
         text: c.text(0, 'p'),
         image: photo('fleet-lineup.avif'),
         showPhone: false,
         showTrustBar: false,
       },
       // Everyone marked "show on team page", by order: the 9 people this page lists.
-      {_type: 'teamSection', _key: 'team', heading: c.text(1, 'h2'), showBios: true},
+      {_type: 'teamSection', _key: 'team', eyebrow: 'The people', heading: c.text(1, 'h2'), showBios: true},
       {
         _type: 'quoteSection',
         _key: 'quote',
@@ -640,6 +678,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'faqSection',
         _key: 'faqs',
+        eyebrow: 'Questions',
         heading: c.text(3, 'h2'),
         image: photo('crew-portrait.avif'),
         faqs: faqRefs(c.texts(3, 'faq-q (h5)')),
@@ -660,6 +699,7 @@ export default async function pageSections(ctx) {
       return {_type: 'highlightItem', _key: `point${i}`, lead: text(m[1]), text: text(m[2])}
     })
     const success = c.items(2, 'form-success')[0]
+    const apply = c.item(1, 'button')
     sections[slug] = [
       {
         _type: 'heroSection',
@@ -667,20 +707,31 @@ export default async function pageSections(ctx) {
         eyebrow: c.text(0, 'h5'),
         text: c.text(0, 'p'),
         image: photo('tech-looking-at-van.avif'),
+        primaryCta: link(apply.text, '#apply-now'),
         showPhone: false,
         showTrustBar: false,
       },
       {
         _type: 'highlightsSection',
         _key: 'why-us',
+        eyebrow: 'Why us',
         heading: c.text(1, 'h3', 0),
         checklist: points,
-        cta: link(c.text(1, 'button'), c.item(1, 'button').href),
+        cta: link(apply.text, apply.href),
         image: photo('crew-tailgate.avif'),
       },
       // The job itself (title, Full-time, duties, requirements) renders from the
       // jobOpening document, which also feeds the JobPosting structured data.
       {_type: 'jobsSection', _key: 'openings', heading: c.text(1, 'h3', 1), intro: pages.careers.jobIntro},
+      {
+        // The people you'd work with (their portraits; bios on /our-team).
+        _type: 'teamSection',
+        _key: 'team',
+        eyebrow: 'The team',
+        heading: 'Who you’d work with',
+        showBios: false,
+        cta: link('Meet the team', '/our-team'),
+      },
       {
         // _key doubles as the anchor the "Apply Now" button targets (#apply-now).
         _type: 'contactSection',
@@ -724,6 +775,8 @@ export default async function pageSections(ctx) {
       {
         _type: 'heroSection',
         _key: 'hero',
+        // the live meta description's words
+        eyebrow: 'Straight answers from a licensed Mesa electrician',
         image: photo('lighting-install-vaulted-ceiling.avif'),
         showPhone: false,
         showTrustBar: false,
@@ -731,6 +784,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'faqSection',
         _key: 'common',
+        eyebrow: 'The basics',
         heading: common.heading.text,
         image: photo('steven-van-logo-bw.avif'),
         topic: topicOf(common.items.map((q) => q.question)),
@@ -738,6 +792,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'faqSection',
         _key: 'customers',
+        eyebrow: 'From our customers',
         heading: customers.heading.text,
         image: photo('crew-at-van.avif'),
         topic: topicOf(customers.items.map((q) => q.question)),
@@ -746,6 +801,7 @@ export default async function pageSections(ctx) {
         // The five topic groups had H3 headings and no section heading on the live page.
         _type: 'faqSection',
         _key: 'topics',
+        eyebrow: 'Questions by topic',
         groups: topicGroups.map((g, i) => ({
           _type: 'faqGroup',
           _key: `group${i}`,
@@ -765,8 +821,11 @@ export default async function pageSections(ctx) {
       {
         _type: 'heroSection',
         _key: 'hero',
+        eyebrow: 'Free estimates · No pressure and no obligation',
         text: c.text(0, 'p'),
         image: photo('steven-at-van.avif'),
+        // to the form below (the section's key is its anchor)
+        primaryCta: link(c.text(1, 'h3', 1), '#contact'),
         showPhone: true,
         showTrustBar: false,
       },
@@ -777,8 +836,9 @@ export default async function pageSections(ctx) {
         heading: c.text(1, 'h3', 0),
         text: c.text(1, 'p'),
         detailsHeading: c.text(1, 'h5'),
-        // The live block showed the Mesa address, phone and email; both offices and the
-        // office hours now come from Site settings.
+        // The live block showed the Mesa address, phone and email; the Scottsdale office
+        // (the Mesa address is the owners' home: footer only) and the hours now come from
+        // Site settings.
         contactDetails: ['offices', 'phone', 'email', 'hours'],
         formType: 'estimate',
         formHeading: c.text(1, 'h3', 1),
@@ -788,20 +848,21 @@ export default async function pageSections(ctx) {
       {
         // Reassurance next to the form, each fact from live copy: "Free estimates
         // available" (CTA band), "Flat-rate pricing with no hidden fees" (this page's
-        // meta description), the 2-year warranty (/faq) and the ROC license (Site settings).
+        // meta description), the ROC license and the rating (Site settings).
         _type: 'trustBarSection',
         _key: 'trust',
         items: [
-          {_type: 'trustItem', _key: 'estimates', fact: 'custom', label: 'Free estimates available', icon: 'clipboard'},
-          {_type: 'trustItem', _key: 'pricing', fact: 'custom', label: 'Flat-rate pricing with no hidden fees', icon: 'dollar'},
-          {_type: 'trustItem', _key: 'warranty', fact: 'custom', value: '2-year', label: 'warranty on services we provide', icon: 'shield'},
+          {_type: 'trustItem', _key: 'estimates', fact: 'custom', value: 'Free', label: 'estimates available', icon: 'clipboard'},
+          {_type: 'trustItem', _key: 'pricing', fact: 'custom', value: 'Flat-rate', label: 'pricing with no hidden fees', icon: 'dollar'},
           {_type: 'trustItem', _key: 'license', fact: 'license', icon: 'badge'},
+          {_type: 'trustItem', _key: 'reviews', fact: 'reviews', icon: 'star'},
         ],
       },
-      locationsSection('index', 7),
+      {...locationsSection('index', 7), eyebrow: 'Where we work'},
       {
         _type: 'faqSection',
         _key: 'faqs',
+        eyebrow: 'Questions',
         heading: copyOf('faq').text(1, 'h2'),
         faqs: faqRefs([
           'Do you offer free estimates?',
@@ -820,24 +881,38 @@ export default async function pageSections(ctx) {
       {
         _type: 'heroSection',
         _key: 'hero',
+        eyebrow: 'Residential and commercial',
         text: c.text(0, 'p'),
         image: photo('steven-van-logo-bw.avif'),
-        showPhone: false,
+        primaryCta: estimateCta(),
+        showPhone: true,
         showTrustBar: false,
       },
       // Every service once, under its category (replaces the three hidden tab panes).
-      {_type: 'servicesSection', _key: 'all-services', layout: 'grouped'},
+      {_type: 'servicesSection', _key: 'all-services', eyebrow: 'Every service', layout: 'grouped'},
+      // How an estimate and the price work, in the business's own words (/faq).
+      {
+        _type: 'processStepsSection',
+        _key: 'how-it-works',
+        eyebrow: 'How it works',
+        heading: 'From the first call to a flat-rate price',
+        headingAccent: 'flat-rate price',
+        intro: fromPage('faq', 'Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get.'),
+        steps: processSteps(),
+      },
       // No price table: the owner doesn't want à-la-carte pricing on the site (2026-10-13).
       // Prices stay where the business already publishes them, inside the /faq answers.
-      locationsSection('index', 7),
+      {...locationsSection('index', 7), eyebrow: 'Where we work'},
       {
         _type: 'faqSection',
         _key: 'faqs',
+        eyebrow: 'Questions',
         heading: copyOf('faq').text(2, 'h2'),
         faqs: faqRefs([
           'What types of electrical services do you offer?',
           'Are there any services you don’t offer?',
           'Do you offer free estimates?',
+          'Do you have any hidden fees?',
         ]),
       },
       // Live status line "Active Now" is not carried over (see _omissions.json).
@@ -853,13 +928,26 @@ export default async function pageSections(ctx) {
       {
         _type: 'heroSection',
         _key: 'hero',
+        eyebrow: 'Guides from our electricians',
         text: c.text(0, 'p'),
         image: photo('troubleshooting-ceiling-wiring.avif'),
         showPhone: false,
         showTrustBar: false,
       },
-      // Every post, newest first, on one page (limit 0 = all).
-      {_type: 'postsSection', _key: 'posts', limit: 0, featuredFirst: false},
+      {
+        // The three most-read guides (Search Console), each on a real job photo.
+        _type: 'postsSection',
+        _key: 'most-read',
+        eyebrow: 'Most read',
+        heading: 'The guides homeowners read most',
+        posts: [
+          guide('can-hot-weather-cause-your-circuit-breaker-to-trip', 'Troubleshooting', 'Heat and breakers', {...photo('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png'), ...hotspot(0.5, 0.42)}),
+          guide('diy-electrical-work-in-arizona', 'Safety and the law', 'DIY in Arizona', imageFrom('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', hotspot(0.5, 0.52))),
+          guide('permit-for-electrical-work', 'Permits', 'Permits in Arizona', imageFrom('service', 'new-construction-wiring', 'New wiring run through the open studs of a home under construction', hotspot(0.5, 0.5))),
+        ],
+      },
+      // Every post, on one page, under the service it supports (limit 0 = all).
+      {_type: 'postsSection', _key: 'posts', eyebrow: 'Every guide', heading: 'Guides by topic', layout: 'byService', limit: 0, featuredFirst: false},
       ctaBandShared(),
     ]
   }
@@ -876,10 +964,13 @@ export default async function pageSections(ctx) {
       'Tenant Improvements': 'tenant-improvements',
     }
     const viewAll = c.items(1, 'button').at(-1)
+    const commercial = docs.find((d) => d._type === 'serviceCategory' && d.slug?.current === 'commercial')
+    if (!commercial) throw new Error('page-sections: no Commercial service category')
     sections[slug] = [
       {
         _type: 'heroSection',
         _key: 'hero',
+        eyebrow: 'Commercial electrical · Phoenix valley',
         text: heroText,
         image: photo('fleet-lineup.avif'),
         primaryCta: link(c.text(0, 'button'), c.item(0, 'button').href),
@@ -891,7 +982,9 @@ export default async function pageSections(ctx) {
       {
         _type: 'servicesSection',
         _key: 'top-services',
+        eyebrow: 'Services',
         heading: c.text(1, 'h2'),
+        headingAccent: 'commercial services',
         layout: 'featured',
         // Live "Panel Upgrades" card linked to commercial troubleshooting (and its photo
         // to EV chargers); its copy describes commercial panel and service upgrades, so it
@@ -906,7 +999,9 @@ export default async function pageSections(ctx) {
       {
         _type: 'featureGridSection',
         _key: 'capabilities',
+        eyebrow: 'What we do',
         heading: c.text(2, 'h2'),
+        headingAccent: 'your business',
         style: 'checklist',
         items: c.texts(2, 'h3').map((title, i) => ({
           _type: 'featureItem',
@@ -916,27 +1011,59 @@ export default async function pageSections(ctx) {
           ...(checklistLinks[title] ? {service: reference(service(checklistLinks[title]))} : {}),
           ...(title === '+ More!' ? {link: link(viewAll.text, viewAll.href)} : {}),
         })),
+        image: imageFrom('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', cropRect([0, 1500, 3924, 2616], [3924, 5887])),
       },
-      {_type: 'featureGridSection', _key: 'value-props', style: 'cards', items: featureCards(slug, 3)},
       {
+        // Three reviews from customers who mention their business or shop, word for word.
         _type: 'reviewsSection',
         _key: 'reviews',
+        eyebrow: 'Reviews',
         heading: c.text(4, 'h3'),
+        reviews: ['Lisa Ayotte', 'Brandon Vardy', 'Scott Collinge'].map((name) => reference(reviewNamed(name), name.toLowerCase().replace(/\W+/g, '-'))),
         cta: link(c.text(4, 'button'), c.item(4, 'button').href),
       },
-      locationsSection(slug, 6),
+      {
+        _type: 'featureGridSection',
+        _key: 'value-props',
+        eyebrow: 'Our promise',
+        // lifted from the Great Service card: "so your project stays on track from start to finish"
+        heading: 'On track from start to finish.',
+        headingAccent: 'start to finish.',
+        style: 'cards',
+        items: featureCards(slug, 3),
+      },
+      // Every commercial service, linked (the live page linked three of them).
+      {
+        _type: 'servicesSection',
+        _key: 'all-commercial',
+        eyebrow: 'Every commercial service',
+        heading: 'Commercial services',
+        layout: 'grid',
+        category: reference(commercial),
+        cta: link('Commercial services overview', '/services-categories/commercial'),
+      },
+      {...locationsSection(slug, 6), eyebrow: 'Where we work'},
       {
         _type: 'gallerySection',
         _key: 'gallery',
+        eyebrow: 'Our work',
         heading: c.text('7.0', 'h2'),
         headingAccent: c.accent('7.0', 'h2'),
         images: [
-          galleryImage('commercial-ti-cable-pull.png', 'tenant-improvements', 'ti'),
+          // the cells crop: each people photo is framed on its heads
+          {...galleryImage('commercial-ti-cable-pull.png', 'tenant-improvements', 'ti'), ...hotspot(0.6, 0.34)},
           galleryImage('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'panels', 'panel'),
-          galleryImage('image-06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088-png', 'panels', 'panel-crew'),
-          galleryImage('lighting-install-vaulted-ceiling.avif', 'custom-lighting', 'vaulted'),
+          // the business's own pendant work in a restaurant (the panel crew photo it replaces has a hat touching
+          // the photo's top edge, so no frame could keep that head clear)
+          {
+            ...imageFrom('service', 'hanging-lights', 'Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling'),
+            _type: 'galleryImage',
+            _key: 'pendants',
+            service: reference(service('hanging-lights')),
+          },
+          {...galleryImage('lighting-install-vaulted-ceiling.avif', 'custom-lighting', 'vaulted'), ...hotspot(0.35, 0.34)},
           galleryImage('kitchen-recessed-lighting.avif', 'recessed-lights-installation', 'kitchen'),
-          galleryImage('image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg', 'electrical-safety-inspections', 'walkup'),
+          {...galleryImage('image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg', 'electrical-safety-inspections', 'walkup'), ...hotspot(0.46, 0.47)},
         ],
       },
       ctaBand(slug, '7.1'),

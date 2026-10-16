@@ -52,7 +52,7 @@ const norm = (s) => {
   return t
 }
 
-const LINK_FIXES = {'/estimate': '/contact-us', '/locations/mesa': '/', '/services/electrical-panels': '/services/panels'}
+const LINK_FIXES = {'/locations/mesa': '/', '/services/electrical-panels': '/services/panels'}
 const normHref = (href) => {
   let h = String(href ?? '').trim()
   h = h.replace(/^https?:\/\/(www\.)?thewireguyelectric\.com/i, '') || '/'
