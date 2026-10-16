@@ -12,7 +12,7 @@
 //                         relatedServices, relatedPosts
 //   post-services.json    post.relatedServices (hub-and-spoke map)
 //   site-settings.json    heroQuotes, valueProps, capabilities, ctaBand, availabilityNote,
-//                         Google Business Profile / reviews / ROC / office map links
+//                         Google Business Profile / reviews / ROC / office map links and their text
 //
 // Data files name documents by slug; this module resolves them to references and
 // fails on anything it cannot resolve, so a typo never becomes a dangling or
@@ -215,11 +215,17 @@ export default async function fixes(ctx) {
       if (!address) fail(file, `addressMapsUrls: no ${city} address in siteSettings.addresses`)
       address.googleMapsUrl = url
     }
+    for (const [city, text] of Object.entries(settingsData.addressLinkText.byCity)) {
+      const address = settings.addresses?.find((a) => a.addressLocality === city)
+      if (!address) fail(file, `addressLinkText: no ${city} address in siteSettings.addresses`)
+      if (!address.streetAddress || !text.startsWith(address.streetAddress.split(',')[0])) fail(file, `addressLinkText: "${text}" does not start with the ${city} street address`)
+      address.mapLinkText = text
+    }
 
     // Mesa is the homepage, not a location document; its tile blurb lives here. Merge,
     // so a later module that adds local facts (neighborhoods, utilities) keeps it.
     settings.homeCity = {...settings.homeCity, name: settings.homeCity?.name ?? cityData.homeCity.name, cardBlurb: settings.homeCity?.cardBlurb ?? cityData.homeCity.cardBlurb}
-    out.siteSettings = ['heroQuotes', 'valueProps', 'capabilities', 'ctaBand', 'availabilityNote', 'googleBusinessProfileUrl', 'reviewSummary.reviewsUrl', 'rocLicenseUrl', 'addresses[].googleMapsUrl', 'homeCity.cardBlurb']
+    out.siteSettings = ['heroQuotes', 'valueProps', 'capabilities', 'ctaBand', 'availabilityNote', 'googleBusinessProfileUrl', 'reviewSummary.reviewsUrl', 'rocLicenseUrl', 'addresses[].googleMapsUrl', 'addresses[].mapLinkText', 'homeCity.cardBlurb']
   }
 
   if (seoSnapshot() !== before) throw new Error('fixes: a title, H1, meta description or slug changed; that must never happen here')

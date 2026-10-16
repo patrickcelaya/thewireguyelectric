@@ -73,5 +73,12 @@
       "Mesa": "https://share.google/39FbblYQXkvLuozlw",
       "Scottsdale": "https://share.google/6sZyf6wyKExyHzHnF"
     }
+  },
+  "addressLinkText": {
+    "source": "Live sitewide footer 'Our contact info': the visible text of each office's Google Business Profile link, verbatim (snapshot 2026-10-12, web/src/legacy/chrome/footer.html). The owner asked to keep it exactly (round 3).",
+    "byCity": {
+      "Mesa": "1321 N 65th St, Mesa, AZ 85205 - Mesa Location",
+      "Scottsdale": "8555 E Raintree Dr, Unit 117 Scottsdale, AZ 85260 - Scottsdale Location"
+    }
   }
 }

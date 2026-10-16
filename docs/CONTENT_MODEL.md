@@ -296,7 +296,7 @@ The `Review` shape the queries return flattens the tags: `location` is the bare 
 | **featureItem** | title, text, icon, service (ref), link (linkItem) | Value props and capability checklists. When `service` is set, the title links to that service |
 | **reviewSnippet** | text, review (ref), rating | Short hero quotes from real reviews |
 | faqItem | question, answer | Inline Q&As on services, cities and posts |
-| postalAddress | label, streetAddress, addressLocality, addressRegion, postalCode, geo, googleMapsUrl, gbpName, locationPage, phone, appointmentOnly | Offices in Site settings |
+| postalAddress | label, streetAddress, addressLocality, addressRegion, postalCode, geo, googleMapsUrl, **mapLinkText** (new), gbpName, locationPage, phone, appointmentOnly, footerOnly | Offices in Site settings. `mapLinkText` is the footer link's wording to the office's Google Business Profile, verbatim from the live footer ("8555 E Raintree Dr, Unit 117 Scottsdale, AZ 85260 - Scottsdale Location"); empty = the formatted address. `footerOnly` (the Mesa home address): footer and structured data only |
 | openingHours | days[], opens, closes | Hours in Site settings |
 | table | caption, rows[{cells[]}], hasHeaderRow | Rich-text tables |
 | videoEmbed | url, title | YouTube or Vimeo facade |

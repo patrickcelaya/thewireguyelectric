@@ -732,6 +732,7 @@
       "reviewSummary.reviewsUrl",
       "rocLicenseUrl",
       "addresses[].googleMapsUrl",
+      "addresses[].mapLinkText",
       "homeCity.cardBlurb"
     ]
   },

@@ -70,6 +70,8 @@ export interface PostalAddress {
   postalCode?: string
   geo?: {lat: number; lng: number}
   googleMapsUrl?: string
+  /** Text of the footer link to googleMapsUrl (the live footer's wording); empty = the formatted address. */
+  mapLinkText?: string
   gbpName?: string
   /** Slug of the city page this office's Google Business Profile links to. */
   locationSlug?: string

@@ -13,6 +13,12 @@ export const postalAddress = defineType({
     defineField({name: 'geo', type: 'geopoint', description: 'Exact pin location of the office'}),
     defineField({name: 'googleMapsUrl', type: 'url', title: 'Google Business Profile / Maps URL'}),
     defineField({
+      name: 'mapLinkText',
+      title: 'Map link text',
+      type: 'string',
+      description: 'The words of the footer link to this office\'s Google Business Profile, e.g. "1321 N 65th St, Mesa, AZ 85205 - Mesa Location". Leave empty to show the address.',
+    }),
+    defineField({
       name: 'gbpName',
       title: 'Name on Google Business Profile',
       type: 'string',

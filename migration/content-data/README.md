@@ -8,7 +8,7 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 | `faqs.json` | `question`, `answer`, `topic`, `order` and `services` on the 28 `faq` documents, copied verbatim from the visible `/faq` page |
 | `service-relations.json` | `priceRange` (3 services), `relatedServices` (21) and `relatedPosts` (15) |
 | `post-services.json` | `relatedServices` on all 53 posts |
-| `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl` |
+| `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
 The data files use slugs, not document IDs. The module turns each slug into a reference. The migration stops with an error naming the file and entry if any of these happens:
 
@@ -228,6 +228,11 @@ The other five cities have no tile copy and stay empty; nothing is written for t
 - **addresses[].googleMapsUrl.** The two links the live sitewide footer uses for each office address:
   - Mesa → `share.google/39FbblYQXkvLuozlw`, which resolves to the same `/g/11f04d6xl_` entity;
   - Scottsdale → `share.google/6sZyf6wyKExyHzHnF`, which resolves to "The Wire Guy Electric of Scottsdale" (`/g/11xgv_scn6`).
+- **addresses[].mapLinkText.** The visible text of those two footer links, verbatim, because the owner asked for the footer addresses to read exactly as they do today:
+  - "1321 N 65th St, Mesa, AZ 85205 - Mesa Location";
+  - "8555 E Raintree Dr, Unit 117 Scottsdale, AZ 85260 - Scottsdale Location" (the live text has no comma after "Unit 117").
+
+  The module checks that each text starts with its office's street address.
 
 ## 7. Questions for the owner
 
