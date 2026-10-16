@@ -326,6 +326,12 @@ export interface PostDoc extends PostSummary {
   seo?: Seo
 }
 
+/** A post with the slugs of the services it supports and its body as plain text (getPostIndex). */
+export interface PostIndexEntry extends PostSummary {
+  services: string[]
+  text: string
+}
+
 export interface PostCategoryDoc {
   _id: string
   _updatedAt: string

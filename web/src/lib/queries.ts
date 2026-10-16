@@ -13,6 +13,7 @@ import type {
   PostCategoryDoc,
   PostDoc,
   PostCard,
+  PostIndexEntry,
   PostSummary,
   ProjectSummary,
   ResolvedTrustItem,
@@ -608,6 +609,23 @@ export function getPost(slug: string) {
   )
 }
 
+/**
+ * Every post with the slugs of the services it supports and its body as plain text,
+ * built once per build: the CMS templates pick guides from it (a city's guides are the
+ * posts that name the city; see lib/cms.ts).
+ */
+export const getPostIndex = memo(() =>
+  fetchQuery<PostIndexEntry[]>(
+    defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc){
+      _id, title, "slug": slug.current, excerpt, publishedAt, featured,
+      "mainImage": mainImage${IMAGE},
+      "category": category->{name, "slug": slug.current},
+      "services": coalesce(relatedServices[]->slug.current, []),
+      "text": coalesce(pt::text(body), "")
+    }`),
+  ),
+)
+
 export function getPostCategories() {
   return fetchQuery<PostCategoryDoc[]>(
     defineQuery(`*[_type == "postCategory" && defined(slug.current)] | order(name asc){
@@ -633,6 +651,16 @@ export function getFaqs(topic?: string) {
       _id, question, answer${RICH_TEXT}, topic
     }`),
     {topic: topic ?? null},
+  )
+}
+
+/** Shared questions (faq documents) tagged with a service (faq.services), in /faq order. */
+export function getServiceFaqs(serviceId: string) {
+  return fetchQuery<FaqItem[]>(
+    defineQuery(`*[_type == "faq" && $id in services[]._ref] | order(coalesce(order, 999) asc){
+      _id, question, answer${RICH_TEXT}, topic
+    }`),
+    {id: serviceId},
   )
 }
 
