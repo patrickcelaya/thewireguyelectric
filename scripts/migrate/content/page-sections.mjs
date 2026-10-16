@@ -864,10 +864,13 @@ export default async function pageSections(ctx) {
         _key: 'faqs',
         eyebrow: 'Questions',
         heading: copyOf('faq').text(1, 'h2'),
+        // The "can you help me with this?" questions people ask before they get in touch. Not "What cities do you
+        // service?" (its answer counts the cities; the valley above names every one) nor the weekends question (its
+        // answer carries the "For true emergencies…" line the owner removed).
         faqs: faqRefs([
           'Do you offer free estimates?',
-          'What cities do you service?',
-          'Do you work on weekends or offer emergency service?',
+          'I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?',
+          'I have another non-electrical project but don’t know where to start. Can you refer me to someone?',
         ]),
       },
     ]
