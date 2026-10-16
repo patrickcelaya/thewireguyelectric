@@ -1,0 +1,50 @@
+---
+// A few bytes in <head>, before first paint:
+//   html.js      the site script will run (styles that need it are scoped under it);
+//   html.motion  the visitor allows motion (reveal styles that hide anything need it);
+//   html.oo      the office is open now / html.oc closed, + oc-far when it next opens
+//                more than a day from now (a weekend), from Site settings → openingHours,
+//                in Arizona time. Without JS none is set and the status lines show only
+//                the published hours.
+import type {OpeningHours} from '../../lib/types'
+import {officeGate} from '../../lib/hours'
+
+interface Props {
+  openingHours?: OpeningHours[] | null
+}
+
+const gate = officeGate(Astro.props.openingHours)
+---
+
+<script is:inline define:vars={{gate}}>
+  ;(function (h) {
+    h.classList.add('js')
+    try {
+      if (matchMedia('(prefers-reduced-motion: no-preference)').matches) h.classList.add('motion')
+    } catch (e) {}
+    try {
+      var day = -1
+      var now = 0
+      new Intl.DateTimeFormat('en-US', {timeZone: gate.timeZone, weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23'})
+        .formatToParts(new Date())
+        .forEach(function (p) {
+          if (p.type === 'weekday') day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(p.value)
+          if (p.type === 'hour') now += 60 * (+p.value % 24)
+          if (p.type === 'minute') now += +p.value
+        })
+      if (day < 0 || !gate.slots.length) return
+      var open = gate.slots.some(function (s) {
+        return s[0] === day && now >= s[1] && now < s[2]
+      })
+      if (open) {
+        h.classList.add('oo')
+        return
+      }
+      h.classList.add('oc')
+      var soon = gate.slots.some(function (s) {
+        return (s[0] === day && now < s[1]) || s[0] === (day + 1) % 7
+      })
+      if (!soon) h.classList.add('oc-far')
+    } catch (e) {}
+  })(document.documentElement)
+</script>

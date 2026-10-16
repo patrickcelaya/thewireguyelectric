@@ -1,6 +1,7 @@
 // GROQ queries and typed fetchers. Every page's data comes through here.
 import {defineQuery} from 'groq'
 import {fetchQuery} from './sanity'
+import {buildRedirectMap} from './links'
 import type {
   FaqItem,
   ImageRef,
@@ -666,5 +667,16 @@ export async function getProjects(options: {location?: string; service?: string;
 export function getOpenJobs() {
   return fetchQuery<JobOpening[]>(defineQuery(`*[_type == "jobOpening" && isOpen != false] | order(datePosted desc)${JOB}`))
 }
+
+/**
+ * Every redirect the site serves (the legacy table plus enabled `redirect`
+ * documents), source → destination, one hop. Content links are rewritten through
+ * it so no internal link points at a redirect (lib/links.ts).
+ */
+export const getRedirectMap = memo(() =>
+  fetchQuery<Array<{source: string; destination: string}>>(
+    defineQuery(`*[_type == "redirect" && isEnabled != false && defined(source) && defined(destination)]{source, destination}`),
+  ).then((docs) => buildRedirectMap(Object.fromEntries(docs.map((r) => [r.source.replace(/\/$/, '') || '/', r.destination])))),
+)
 
 export type {ImageRef}

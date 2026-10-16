@@ -1,0 +1,31 @@
+---
+// The licence, linked to the AZ ROC lookup: "Licensed, bonded, and insured · ROC
+// #365306". The words are the live site's; the number and link come from Site settings.
+import type {SiteSettings} from '../../lib/types'
+import {licence} from '../../lib/site'
+import ExternalLink from './ExternalLink.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** "·" between the claim and the number (default), or "." as in the footer's sentence. */
+  separator?: '·' | '.'
+  class?: string
+}
+
+const {settings, separator = '·', class: className} = Astro.props
+const roc = licence(settings)
+---
+
+{
+  roc?.href ? (
+    <ExternalLink class={className} href={roc.href}>
+      Licensed, bonded, and insured{separator === '.' ? '. ' : ' · '}
+      <span class="nw">{roc.number}</span>
+    </ExternalLink>
+  ) : roc ? (
+    <span class={className}>
+      Licensed, bonded, and insured{separator === '.' ? '. ' : ' · '}
+      <span class="nw">{roc.number}</span>
+    </span>
+  ) : null
+}

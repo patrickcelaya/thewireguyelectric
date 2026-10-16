@@ -1,0 +1,21 @@
+---
+// The bulb drawn as parts (halo, glass, line, base) so CSS can switch it on: the
+// estimate form's success state uses it. Decorative.
+import {BULB_BARS, BULB_CAP, BULB_PATH} from '../../lib/bulb'
+
+interface Props {
+  class: string
+}
+
+const {class: className} = Astro.props
+---
+
+<svg class={className} viewBox="-40 -40 380 470" aria-hidden="true" focusable="false">
+  <ellipse class="halo" cx="150" cy="150" rx="190" ry="190" fill="url(#bulbglow)"></ellipse>
+  <path class="glass" d={`${BULB_PATH} Z`}></path>
+  <path class="line" pathLength="1" d={BULB_PATH}></path>
+  <g class="bars">
+    {BULB_BARS.map(([x, y, width, height]) => <rect x={x} y={y} width={width} height={height} rx="10" />)}
+    <path d={BULB_CAP}></path>
+  </g>
+</svg>

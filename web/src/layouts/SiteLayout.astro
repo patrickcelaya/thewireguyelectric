@@ -1,0 +1,104 @@
+---
+// The page shell of the new design. Every page renders inside it:
+//   <head>: the head gate, the SEO tags (components/Seo.astro, unchanged: canonical to
+//     production, SITE_INDEXABLE gating, OG/Twitter), one JSON-LD @graph (the business
+//     with both offices and the full NAP, the website, the page's own nodes, the
+//     breadcrumbs), the display-face preload, icons and GA4 (loaded after the page is idle);
+//   <body>: the sprite, the header, <main id="main">, the footer, the phone call bar
+//     and the site script.
+// Pages import their page-type layer after this layout (styles/home.css or
+// styles/inner.css), then their section components. See docs/DESIGN_SYSTEM.md.
+import '../styles/tokens.css'
+import '../styles/core.css'
+import displayFont from '../assets/fonts/redhat-display-latin.woff2?url'
+import Seo from '../components/Seo.astro'
+import HeadGate from '../components/site/HeadGate.astro'
+import SvgSprite from '../components/site/SvgSprite.astro'
+import SiteHeader from '../components/site/SiteHeader.astro'
+import SiteFooter from '../components/site/SiteFooter.astro'
+import CallBar from '../components/site/CallBar.astro'
+import {getServices, getSettings} from '../lib/queries'
+import {getNavModel} from '../lib/nav'
+import {businessNode, breadcrumbNode, graph, websiteNode} from '../lib/schema'
+import type {PageMeta} from '../lib/seo'
+
+interface Props {
+  meta: PageMeta
+  /** Extra JSON-LD nodes for this page (merged into one @graph with the business entity). */
+  schema?: Array<Record<string, unknown> | undefined | false>
+  /** Classes on <body>: "inner" for inner pages; "over" when the header sits over a full-bleed hero photo. */
+  bodyClass?: string
+  /** Path marked as current in the menus (default: meta.path). */
+  current?: string
+  /** Where the phone call bar's Free Estimate goes ("#estimate" when the form is the page). */
+  callbarEstimateHref?: string
+}
+
+const {meta, schema = [], bodyClass, current = meta.path, callbarEstimateHref} = Astro.props
+const [settings, services, nav] = await Promise.all([getSettings(), getServices(), getNavModel()])
+const ld = graph([
+  businessNode(settings, services),
+  websiteNode(settings),
+  ...schema.filter((n): n is Record<string, unknown> => Boolean(n)),
+  meta.breadcrumbs?.length ? breadcrumbNode(meta.path, meta.breadcrumbs) : undefined,
+])
+const ga = settings.ga4MeasurementId
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <HeadGate openingHours={settings.openingHours} />
+    <Seo meta={{...meta, jsonLd: [ld, ...(meta.jsonLd ?? [])]}} settings={settings} />
+    <slot name="head" />
+    <link rel="preload" as="font" type="font/woff2" href={displayFont} crossorigin />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#F7F3EC" />
+    {
+      ga && (
+        <script is:inline define:vars={{ga}}>
+          // GA4 without blocking the page: events queue in dataLayer at once (phone_call_click,
+          // generate_lead); gtag.js loads once the page is idle after load, or on the first
+          // interaction, whichever comes first.
+          window.dataLayer = window.dataLayer || []
+          window.gtag = function () {
+            dataLayer.push(arguments)
+          }
+          gtag('js', new Date())
+          gtag('config', ga)
+          var loaded = false
+          function load() {
+            if (loaded) return
+            loaded = true
+            var s = document.createElement('script')
+            s.async = true
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga
+            document.head.appendChild(s)
+          }
+          addEventListener('load', function () {
+            if (window.requestIdleCallback) requestIdleCallback(load, {timeout: 3000})
+            else setTimeout(load, 1500)
+          })
+          ;['pointerdown', 'keydown', 'scroll'].forEach(function (e) {
+            addEventListener(e, load, {once: true, passive: true})
+          })
+        </script>
+      )
+    }
+  </head>
+  <body class={bodyClass}>
+    <SvgSprite />
+    <SiteHeader settings={settings} nav={nav} current={current} />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter settings={settings} nav={nav} />
+    <CallBar settings={settings} estimateHref={callbarEstimateHref} />
+    <script>
+      import '../scripts/site'
+    </script>
+  </body>
+</html>

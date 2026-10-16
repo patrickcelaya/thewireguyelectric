@@ -1,0 +1,12 @@
+---
+// Five stars, one CSS mask. Decorative: the rating is always stated in text beside it.
+interface Props {
+  /** Star height in px (default 15). */
+  size?: number
+  class?: string
+}
+
+const {size, class: className} = Astro.props
+---
+
+<span class:list={['stars', className]} style={size ? `--s:${size}px` : undefined} aria-hidden="true"></span>

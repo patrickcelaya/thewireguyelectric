@@ -1,0 +1,37 @@
+---
+// The visible breadcrumb trail. Render it from the same `crumbs` array the page
+// passes to SiteLayout as meta.breadcrumbs (which becomes the BreadcrumbList), so
+// the trail and the structured data always match. The last crumb is the current
+// page (not a link). On phones the middle crumbs shorten with an ellipsis; the
+// full text stays in the HTML.
+import type {Crumb} from '../../lib/seo'
+
+interface Props {
+  crumbs: Crumb[]
+  /** White text, for a trail over a photo. */
+  variant?: 'sky'
+  class?: string
+}
+
+const {crumbs, variant, class: className} = Astro.props
+---
+
+{
+  crumbs.length > 1 && (
+    <nav class:list={['crumbs', variant && `crumbs--${variant}`, className]} aria-label="Breadcrumb">
+      <ol>
+        {crumbs.map((c, i) =>
+          i === crumbs.length - 1 ? (
+            <li>
+              <span aria-current="page">{c.name}</span>
+            </li>
+          ) : (
+            <li>
+              <a href={c.path}>{c.name}</a>
+            </li>
+          ),
+        )}
+      </ol>
+    </nav>
+  )
+}

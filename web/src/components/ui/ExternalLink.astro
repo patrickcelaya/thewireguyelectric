@@ -1,0 +1,11 @@
+---
+// A link that opens a new tab, and says so to screen readers.
+import type {HTMLAttributes} from 'astro/types'
+import {NEW_TAB_NOTE} from '../../lib/site'
+
+type Props = Omit<HTMLAttributes<'a'>, 'target'> & {href: string}
+
+const {rel = 'noopener', ...attrs} = Astro.props
+---
+
+<a {...attrs} target="_blank" rel={rel}><slot /><span class="sr-only">{NEW_TAB_NOTE}</span></a>

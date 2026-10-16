@@ -1,0 +1,51 @@
+---
+// Inner pages: a few reviews picked for the page, word for word, under the copper 5.0.
+// Styles: styles/inner.css.
+import type {Review, SiteSettings} from '../../lib/types'
+import Eyebrow from '../ui/Eyebrow.astro'
+import ScoreBlock from '../ui/ScoreBlock.astro'
+import ReviewCard from './ReviewCard.astro'
+
+interface Props {
+  settings: SiteSettings
+  reviews: Review[]
+  heading: string
+  intro?: string
+  number?: number | string
+  id?: string
+  /** Background: bone (default) or sand. */
+  tone?: 'sand'
+}
+
+const {settings, reviews, heading, intro, number, id = 'reviews-h', tone} = Astro.props
+---
+
+{
+  reviews.length > 0 && (
+    <section class:list={['section reviews reviews--static', tone && `reviews--${tone}`]} aria-labelledby={id}>
+      <div class="wrap">
+        <div class="reviews__head">
+          <div>
+            <Eyebrow number={number}>Reviews</Eyebrow>
+            <h2 class="h2" id={id}>
+              {heading}
+            </h2>
+            <p class="reviews__intro">
+              {intro} <span class="sr-only">Each review shown is rated 5 out of 5 stars.</span>
+            </p>
+          </div>
+          <ScoreBlock settings={settings}>
+            <a class="link link--go" href="/#reviews">
+              More reviews on our homepage
+            </a>
+          </ScoreBlock>
+        </div>
+        <ul class="rv-row" role="list">
+          {reviews.map((r) => (
+            <ReviewCard review={r} static />
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

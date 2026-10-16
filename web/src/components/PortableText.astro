@@ -1,0 +1,21 @@
+---
+// Rich text from Sanity in the site's design (lib/portable-text.ts): headings,
+// lists, links (internal ones rewritten past redirects), figures, tables, the video
+// facade and CTA blocks. With `class` (usually "prose", styled in styles/inner.css)
+// it renders a wrapping <div>; without, just the blocks (e.g. inside an FAQ answer).
+import type {PortableTextValue} from '../lib/types'
+import {getRedirectMap} from '../lib/queries'
+import {portableTextToHtml} from '../lib/portable-text'
+
+interface Props {
+  value: PortableTextValue | null | undefined
+  class?: string
+  /** `sizes` for figures; defaults to the long-form measure. */
+  figureSizes?: string
+}
+
+const {value, class: className, figureSizes} = Astro.props
+const html = value?.length ? portableTextToHtml(value, {redirects: await getRedirectMap(), figureSizes}) : ''
+---
+
+{html && (className ? <div class={className} set:html={html} /> : <Fragment set:html={html} />)}

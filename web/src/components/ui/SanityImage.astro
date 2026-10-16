@@ -1,0 +1,54 @@
+---
+// A CMS image from Sanity's image CDN: srcset over `widths` (AVIF/WebP picked by the
+// CDN), width and height from the asset (or the crop ratio), lazy by default.
+// `priority` is for the one LCP image per page: eager, fetchpriority=high,
+// decoding=sync (also add a preload with lib/image's helpers if it sits low in the HTML).
+// Renders nothing when the image can't be served (see lib/image.ts).
+import type {ImageRef} from '../../lib/types'
+import {hasImage, imageDimensions, imageSrcSet, imageUrl} from '../../lib/image'
+
+interface Props {
+  image: ImageRef | null | undefined
+  /** Rendition widths, capped at the image's own width. */
+  widths?: number[]
+  /** Must match the layout, e.g. "(min-width: 1024px) 384px, 92vw". */
+  sizes: string
+  /** Crop every rendition to this ratio (width / height). */
+  aspect?: number
+  /** Alt text; defaults to the image's own. Pass "" for a decorative image beside its caption or title. */
+  alt?: string
+  priority?: boolean
+  class?: string
+  style?: string
+  /** Head boxes the layout keeps clear ("x0,y0,x1,y1;…"), read by the QA face checks. */
+  faces?: string
+}
+
+const {image, widths = [480, 768, 1080, 1440, 1920], sizes, aspect, alt, priority = false, class: className, style, faces} = Astro.props
+const ok = hasImage(image)
+const own = ok ? imageDimensions(image) : undefined
+const width = own?.width
+const height = own && (aspect ? Math.round(own.width / aspect) : own.height)
+const fallbackWidth = Math.min(own?.width ?? 1080, 1080)
+const src = ok ? imageUrl(image, {width: fallbackWidth, height: aspect ? fallbackWidth / aspect : undefined}) : ''
+const srcset = ok ? imageSrcSet(image, widths, aspect) : undefined
+---
+
+{
+  ok && (
+    <img
+      src={src}
+      srcset={srcset}
+      sizes={srcset ? sizes : undefined}
+      width={width}
+      height={height}
+      alt={alt ?? image.alt ?? ''}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding={priority ? 'sync' : 'async'}
+      fetchpriority={priority ? 'high' : undefined}
+      class={className}
+      style={style}
+      data-faces={faces}
+    />
+  )
+}

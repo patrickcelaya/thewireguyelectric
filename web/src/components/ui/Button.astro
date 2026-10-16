@@ -1,0 +1,15 @@
+---
+// A link styled as a button. `icon="go"` adds the arrow, `icon="tel"` the phone glyph.
+import type {HTMLAttributes} from 'astro/types'
+
+type Props = HTMLAttributes<'a'> & {
+  href: string
+  variant?: 'primary' | 'ghost' | 'paper' | 'cream'
+  size?: 'md' | 'lg'
+  icon?: 'go' | 'tel'
+}
+
+const {variant = 'primary', size = 'lg', icon, class: className, ...attrs} = Astro.props
+---
+
+<a {...attrs} class:list={['btn', `btn--${variant}`, size === 'lg' && 'btn--lg', icon && `btn--${icon}`, className]}><slot /></a>

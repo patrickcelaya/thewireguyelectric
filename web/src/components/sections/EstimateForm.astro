@@ -1,0 +1,78 @@
+---
+// The estimate form. Posts to /api/contact; works without JS (the API answers 303
+// back to #sent or #send-error, which CSS shows) and, with JS (scripts/site/forms.ts),
+// validates inline, sends once, and focuses the confirmation while its bulb switches
+// on. A honeypot and a fill-time field keep bots out. One per page: the confirmation
+// and the failure line carry the fixed ids the API redirects to.
+import type {SiteSettings} from '../../lib/types'
+import {officeHours, telHref} from '../../lib/site'
+import LitBulb from '../ui/LitBulb.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** Prefix for the field ids (unique on the page). */
+  id: string
+  title?: string
+  titleTag?: 'h2' | 'h3'
+  hint?: string
+  /** An id on the card, e.g. "estimate" when the page links to the form. */
+  anchor?: string
+}
+
+const {settings, id, title = 'Get a Free Estimate', titleTag: Title = 'h2', hint = 'No pressure and no obligation.', anchor} = Astro.props
+const tel = telHref(settings)
+const hours = officeHours(settings).prose
+---
+
+<div class="est" data-est id={anchor}>
+  <div class="est__head">
+    <Title class="est__title">{title}</Title>
+    {hint && <p class="hint">{hint}</p>}
+  </div>
+  <form action="/api/contact" method="post" aria-label={title}>
+    <div class="est__alert" role="alert" data-est-alert></div>
+    <p class="est__fail" id="send-error" data-est-fail>We couldn’t send that. Please call <a href={tel}>{settings.phone}</a>, or try again in a moment.</p>
+    <input type="hidden" name="formType" value="estimate" />
+    <input type="hidden" name="startedAt" value="" data-started />
+    <div class="hp" aria-hidden="true">
+      <label for={`${id}-cw`}>Company website</label>
+      <input id={`${id}-cw`} name="company_website" tabindex="-1" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for={`${id}-name`}>Name <span class="req">(required)</span></label>
+      <input id={`${id}-name`} name="name" autocomplete="name" required aria-required="true" />
+      <span class="err" id={`${id}-name-e`} hidden>Please enter your name.</span>
+    </div>
+    <div class="field">
+      <label for={`${id}-phone`}>Phone <span class="req">(required)</span></label>
+      <input id={`${id}-phone`} name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-required="true" />
+      <span class="err" id={`${id}-phone-e`} hidden>Please enter a phone number we can call.</span>
+    </div>
+    <div class="field">
+      <label for={`${id}-email`}>Email <span class="req">(optional)</span></label>
+      <input id={`${id}-email`} name="email" type="email" autocomplete="email" />
+      <span class="err" id={`${id}-email-e`} hidden>Please check the email address, or leave it blank.</span>
+    </div>
+    <div class="field">
+      <label for={`${id}-zip`}>City or ZIP</label>
+      <input id={`${id}-zip`} name="zip" autocomplete="postal-code" placeholder="Gilbert or 85233" />
+    </div>
+    <div class="field field--full">
+      <label for={`${id}-message`}>What’s going on? <span class="req">(optional)</span></label>
+      <textarea id={`${id}-message`} name="message" rows="3" placeholder="Breaker keeps tripping, new EV charger, more lights in the kitchen…"></textarea>
+    </div>
+    <div class="submit">
+      <button class="btn btn--primary btn--lg btn--go" type="submit"><span data-submit-label>Request my free estimate</span></button>
+    </div>
+    {hours && <p class="promise">We call back during office hours, {hours}.</p>}
+  </form>
+  <div class="done" id="sent" role="status" tabindex="-1" data-est-done>
+    <LitBulb class="ok-bulb" />
+    <div>
+      <p class="done__h">Your request is in.</p>
+      <p>
+        Thanks! We’ll call you during office hours to schedule your free estimate. Prefer to talk now? Call <a href={tel} class="tnum">{settings.phone}</a>.
+      </p>
+    </div>
+  </div>
+</div>
