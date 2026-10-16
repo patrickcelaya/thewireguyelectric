@@ -13,7 +13,6 @@ import {createClient} from '@sanity/client'
 /** @type {Record<string, string>} */
 export const LEGACY_REDIRECTS = {
   // Broken internal links on the live site.
-  '/estimate': '/contact-us',
   '/locations/mesa': '/',
   '/services/electrical-panels': '/services/panels',
   '/blog/[slug]': '/blog-posts/[slug]',

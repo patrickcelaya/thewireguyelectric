@@ -18,7 +18,8 @@ export const GET: APIRoute = async () => {
     // Posts carry real publish/update dates; prefer them over _updatedAt (which the import resets).
     lastmod: d.updatedAt ?? d.publishedAt ?? d._updatedAt,
   }))
-  for (const fixed of ['/', '/services', '/blog']) if (!entries.some((e) => e.path === fixed)) entries.push({path: fixed})
+  // /estimate is a code route (the owner asked for a separate Free Estimate page, round 2), not a Sanity document
+  for (const fixed of ['/', '/services', '/blog', '/estimate']) if (!entries.some((e) => e.path === fixed)) entries.push({path: fixed})
   entries.sort((a, b) => (a.path === '/' ? -1 : b.path === '/' ? 1 : a.path.localeCompare(b.path)))
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>
