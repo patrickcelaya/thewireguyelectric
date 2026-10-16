@@ -322,70 +322,232 @@ export default async function pageSections(ctx) {
       return {_type: 'featureItem', _key: `item${i}`, title, icon: 'check', ...(shared?.service ? {service: shared.service} : {}), ...(shared?.link ? {link: shared.link} : {})}
     })
 
+    // The composition of the approved round-5 homepage (redesign/round5/final/home.html):
+    //   hero · 01 who we are · our promise · 02 services · 03 what we do · a review pulled
+    //   out over the lights it praises · 04 how it works · 05 reviews · 06 the valley ·
+    //   07 our work · 08 questions · 09 guides · 10 the estimate band.
+    // Live copy is looked up as everywhere in this module. Copy from the business's
+    // other pages goes through verbatim(), and the review excerpt through quoted(), so
+    // a retyped word fails the run. The few strings typed here are the mockup's short
+    // headings, eyebrows and captions (NEW in round 5, approved by the owner); they
+    // state no new fact. Owner, round 5: minimise permit talk on the homepage, so no
+    // permit step, question, guide or heading here (permits stay on the service, city,
+    // FAQ and blog pages).
+    const verbatim = (source, text) => {
+      if (!pages[source].copy.some((item) => norm(item.text).includes(norm(text)))) throw new Error(`page-sections: "${text}" is not on the live /${source} page`)
+      return text
+    }
+    const reviewBy = (name) => {
+      const doc = ofType('review').find((r) => r.authorName === name)
+      if (!doc) throw new Error(`page-sections: no review by ${name}`)
+      return doc
+    }
+    const quoted = (review, text) => {
+      if (!norm(review.text).includes(norm(text))) throw new Error(`page-sections: "${text}" is not in ${review.authorName}'s review`)
+      return text
+    }
+    // The image a service or post already has (pre-import: "image@<webflow url>", which the
+    // site maps to the same Sanity asset), with this section's own alt text.
+    const imageOf = (type, docSlug, alt, extra = {}) => {
+      const source = bySlug(type, docSlug).mainImage?._sanityAsset
+      if (!source) throw new Error(`page-sections: ${type} ${docSlug} has no main image`)
+      return {_type: 'image', _sanityAsset: source, alt, ...extra}
+    }
+    // Where the photo sits in a frame that crops it (object-fit), as a hotspot centre.
+    const focus = (x, y) => ({hotspot: {_type: 'sanity.imageHotspot', x, y, width: 0.3, height: 0.3}})
+    // A crop rectangle in source pixels (x, y, width, height) of a W x H original.
+    const crop = ([x, y, w, h], [W, H]) => ({crop: {_type: 'sanity.imageCrop', top: y / H, bottom: 1 - (y + h) / H, left: x / W, right: 1 - (x + w) / W}})
+    const card = (serviceSlug, overrides = {}) => ({_type: 'serviceCard', _key: serviceSlug, service: reference(service(serviceSlug)), ...overrides})
+    const liveCards = serviceCards(slug, 5, [
+      {service: 'ev-charger-installation', image: 'ev-charger-garage.avif'},
+      {service: 'recessed-lights-installation', image: 'kitchen-recessed-lighting.avif'},
+      {service: 'electrical-troubleshooting', image: 'troubleshooting-ceiling-wiring.avif'},
+    ])
+    const liveCard = (serviceSlug, x, y) => {
+      const live = liveCards.find((k) => k._key === serviceSlug)
+      return {...live, image: {...live.image, ...focus(x, y)}}
+    }
+    const lastSentence = (text) => text.match(/[^.!?]+[.!?]$/)?.[0].trim() ?? text
+    const post = (postSlug) => bySlug('post', postSlug)
+    const postCard = (postSlug, label, coverWords, image) => ({_type: 'postCard', _key: postSlug, post: reference(post(postSlug)), label, coverWords, image})
+    const susan = reviewBy('Susan Chambers')
+
     sections[slug] = [
       {
         _type: 'heroSection',
         _key: 'hero',
+        eyebrow: 'Family-owned in Mesa, Arizona · Since 2017',
         headingAccent: c.accent(0, 'h1'),
         text: heroText,
         image: photo('crew-portrait.avif'),
         primaryCta: link(c.text(0, 'button'), c.item(0, 'button').href),
+        // Owner, round 4: a line under the buttons, in the business's own words
+        // ("free estimates", "flat-rate pricing", "No pressure and no obligation.").
+        ctaNotes: ['Free estimates and flat-rate pricing.', verbatim('faq', 'No pressure and no obligation.')],
         showPhone: true,
         trustLine,
         showTrustBar: true,
         reviewSnippets: heroQuotes,
       },
-      {_type: 'teamIntroSection', _key: 'team-intro', body: introBody, cta: link(c.text(1, 'button'), c.item(1, 'button').href)},
+      {
+        _type: 'teamIntroSection',
+        _key: 'team-intro',
+        eyebrow: 'Who we are',
+        heading: 'The family behind the trucks.',
+        headingAccent: 'the trucks.',
+        showSummary: true,
+        body: introBody,
+        image: {...photo('lighting-install-vaulted-ceiling.avif'), caption: 'Our crew on the job'},
+        cta: link(c.text(1, 'button'), c.item(1, 'button').href),
+        secondaryCta: link('Meet the team', '/our-team'),
+      },
       {
         _type: 'featureGridSection',
-        _key: 'capabilities',
-        heading: c.text(2, 'h2'),
-        headingAccent: c.accent(2, 'h2'),
-        style: 'checklist',
-        ...(sameCaps ? {siteList: 'capabilities'} : {items: capabilityItems}),
+        _key: 'value-props',
+        eyebrow: 'Our promise',
+        // lifted from the Amazing Quality card: "get it done right the first time"
+        heading: 'Done right the first time.',
+        headingAccent: 'first time.',
+        style: 'cards',
+        ...(sameCards ? {siteList: 'valueProps'} : {items: cards}),
       },
-      {_type: 'featureGridSection', _key: 'value-props', style: 'cards', ...(sameCards ? {siteList: 'valueProps'} : {items: cards})},
       {
         _type: 'servicesSection',
         _key: 'top-services',
+        eyebrow: 'Services',
         heading: c.text(5, 'h2'),
+        headingAccent: 'services',
+        intro: 'Residential and commercial electrical work, from small repairs to entire remodels.',
         layout: 'featured',
-        services: serviceCards(slug, 5, [
-          {service: 'ev-charger-installation', image: 'ev-charger-garage.avif'},
-          {service: 'recessed-lights-installation', image: 'kitchen-recessed-lighting.avif'},
-          {service: 'electrical-troubleshooting', image: 'troubleshooting-ceiling-wiring.avif'},
-        ]),
+        // The live three (EV Chargers, Recessed Lights, Troubleshooting: their own titles,
+        // blurbs and photos) among five more, each on a real photo. The small tiles carry the
+        // last sentence of the service's own description; the commercial tile uses the photo
+        // of the business's own pendant work (its service record has a stock photo).
+        services: [
+          card('panels', {image: {...photo('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png'), ...focus(0.5, 0.34)}}),
+          liveCard('ev-charger-installation', 0.6, 0.3),
+          liveCard('electrical-troubleshooting', 0.26, 0.3),
+          card('electrical-safety-inspections', {image: {...photo('image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg'), ...focus(0.46, 1)}}),
+          liveCard('recessed-lights-installation', 0.5, 0.4),
+          card('custom-lighting', {
+            text: lastSentence(service('custom-lighting').shortDescription),
+            image: {...photo('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg'), ...focus(0.5, 0.3)},
+          }),
+          card('exterior-electrical', {
+            text: lastSentence(service('exterior-electrical').shortDescription),
+            image: imageOf('service', 'exterior-electrical', 'Lamp posts lighting a brick front walk lined with roses', focus(0.5, 0.56)),
+          }),
+          card('commercial-service', {
+            image: imageOf('service', 'hanging-lights', 'Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling', focus(0.5, 0.3)),
+          }),
+        ],
         cta: link(c.texts(5, 'button').at(-1), c.items(5, 'button').at(-1).href),
+      },
+      {
+        _type: 'featureGridSection',
+        _key: 'capabilities',
+        eyebrow: 'What we do',
+        heading: c.text(2, 'h2'),
+        headingAccent: c.accent(2, 'h2'),
+        intro: verbatim('faq', 'From entire remodels to small repairs, we do it all!'),
+        style: 'checklist',
+        ...(sameCaps ? {siteList: 'capabilities'} : {items: capabilityItems}),
+        image: imageOf('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', crop([0, 1500, 3924, 2616], [3924, 5887])),
+      },
+      {
+        _type: 'quoteSection',
+        _key: 'pull-quote',
+        quote: quoted(susan, 'A-maz-ing work! Everything looks like it was always there.'),
+        review: reference(susan),
+        image: imageOf('service', 'recessed-lights-installation', 'New recessed lights glowing in a vaulted kitchen ceiling', crop([0, 560, 4284, 3300], [4284, 5712])),
+      },
+      {
+        _type: 'processStepsSection',
+        _key: 'how-it-works',
+        eyebrow: 'How it works',
+        heading: 'From the first call to the finished job',
+        headingAccent: 'finished job',
+        intro: verbatim('faq', 'Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get.'),
+        // Only steps the business describes itself (the estimate band, /faq). No permit
+        // step on the homepage (owner, round 5) and no warranty tag (owner, round 2).
+        steps: [
+          {_type: 'processStep', _key: 'call', title: 'Call or send the form', text: "Call us, or send the form and we'll call you back.", showContact: true},
+          {_type: 'processStep', _key: 'estimate', title: 'Free estimate', text: verbatim('faq', "We'll come out, look at the job, and give you a straight answer on what it'll cost. No pressure and no obligation.")},
+          {_type: 'processStep', _key: 'flat-rate', title: 'Flat-rate pricing', text: verbatim('faq', "We use flat-rate pricing, which means we quote you a price before we start and that's what you pay. No surprises.")},
+        ],
       },
       {
         _type: 'reviewsSection',
         _key: 'reviews',
+        eyebrow: 'Reviews',
         heading: c.text(4, 'h3'),
+        headingAccent: 'speak for themselves',
+        // every review, in the moving lanes
+        limit: 0,
         cta: link(c.text(4, 'button'), c.item(4, 'button').href),
       },
-      locationsSection(slug, 7),
+      {
+        ...locationsSection(slug, 7),
+        eyebrow: 'Serving the whole Phoenix valley',
+        intro: `${verbatim('faq', 'We travel all over the Phoenix Valley')}, for homes and businesses alike.`,
+      },
       {
         _type: 'gallerySection',
         _key: 'gallery',
+        eyebrow: 'Our work',
         heading: c.text('8.0', 'h2'),
         headingAccent: c.accent('8.0', 'h2'),
+        intro: 'Real jobs and our own crew. No stock photos.',
+        // in the mosaic's column order: the van and the kitchen, the charger and the tub,
+        // the pickup and Steven with Cody
         images: [
-          galleryImage('kitchen-recessed-lighting.avif', 'recessed-lights-installation', 'kitchen'),
-          galleryImage('lighting-install-vaulted-ceiling.avif', 'custom-lighting', 'vaulted'),
-          galleryImage('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'panels', 'panel'),
-          galleryImage('image-06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088-png', 'panels', 'panel-crew'),
-          galleryImage('image-f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811-jpg', 'custom-lighting', 'tub'),
-          galleryImage('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg', 'fixture-replacements', 'chandelier'),
-          galleryImage('image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg', 'electrical-safety-inspections', 'walkup'),
-          galleryImage('commercial-ti-cable-pull.png', 'tenant-improvements', 'ti'),
+          {...galleryImage('crew-at-van.avif', undefined, 'van'), caption: 'The crew and the van', ...focus(0.5, 0.4)},
+          {
+            ...imageOf('service', 'electrical-remodels', 'A finished kitchen remodel with recessed lights, white cabinets and a stone island', focus(0.5, 0.5)),
+            _type: 'galleryImage',
+            _key: 'kitchen',
+            caption: 'Kitchen remodel, new circuits and lighting',
+          },
+          {...imageOf('post', 'installing-car-charger', 'A Tesla Wall Connector installed on a garage wall', focus(0.5, 0.4)), _type: 'galleryImage', _key: 'charger', caption: 'Tesla Wall Connector in a garage'},
+          {...galleryImage('image-f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811-jpg', undefined, 'tub'), caption: 'LED cove lighting around a tub', ...focus(0.5, 0.55)},
+          {...galleryImage('crew-tailgate.avif', undefined, 'pickup'), caption: 'The crew and a company pickup', ...focus(0.5, 0.4)},
+          {...galleryImage('steven-at-van.avif', undefined, 'steven-cody'), caption: 'Steven and Cody at the vans', ...focus(0.5, 0.42)},
         ],
+        cta: link('Follow @thewireguyelectric', settings.sameAs.find((u) => /instagram\.com/.test(u))),
       },
       {
-        // The three general questions from /faq (the same ones every service page shows).
         _type: 'faqSection',
         _key: 'faqs',
-        heading: copyOf('faq').text(1, 'h2'),
-        faqs: faqRefs(copyOf('faq').texts(1, 'faq-q (h5)')),
+        eyebrow: 'Questions',
+        heading: 'Good questions, straight answers',
+        intro: 'The things homeowners across the valley ask us most, answered by the people who do the work.',
+        // No permit question here (owner, round 5), and not "What cities do you service?":
+        // its answer counts the cities, and the valley above lists every one of them.
+        faqs: faqRefs([
+          'Do you offer free estimates?',
+          'What types of electrical services do you offer?',
+          'Do you have any hidden fees?',
+          'Are you licensed, bonded, and insured?',
+          'Can you tell me more about your business?',
+        ]),
+      },
+      {
+        _type: 'postsSection',
+        _key: 'guides',
+        eyebrow: 'Guides',
+        heading: 'Guides from our electricians',
+        intro: 'Plain-English answers to the questions Arizona homeowners ask us most.',
+        // Tier-1 guides (Search Console), each on a real job photo. The permit guide stays on
+        // the blog, the service pages and the city pages (owner, round 5).
+        posts: [
+          postCard('can-hot-weather-cause-your-circuit-breaker-to-trip', 'Troubleshooting', 'Heat and breakers', {
+            ...photo('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png'),
+            ...focus(0.5, 0.42),
+          }),
+          postCard('diy-electrical-work-in-arizona', 'Safety and the law', 'DIY in Arizona', imageOf('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', focus(0.5, 0.52))),
+          postCard('tesla-wall-connector-vs-chargepoint-home-flex-phoenix', 'EV chargers', 'Tesla or ChargePoint', imageOf('post', 'installing-car-charger', 'A Tesla Wall Connector installed on a garage wall', focus(0.5, 0.42))),
+        ],
+        cta: link('All guides on the blog', '/blog'),
       },
       ctaBand(slug, '8.1'),
     ]

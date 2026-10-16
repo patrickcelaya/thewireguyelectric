@@ -864,13 +864,16 @@
       "index": [
         "heroSection:hero",
         "teamIntroSection:team-intro",
-        "featureGridSection:capabilities",
         "featureGridSection:value-props",
         "servicesSection:top-services",
+        "featureGridSection:capabilities",
+        "quoteSection:pull-quote",
+        "processStepsSection:how-it-works",
         "reviewsSection:reviews",
         "locationsSection:areas",
         "gallerySection:gallery",
         "faqSection:faqs",
+        "postsSection:guides",
         "ctaSection:cta"
       ],
       "about-us": [
