@@ -228,6 +228,8 @@ export interface PostSummary {
   featured?: boolean
   mainImage?: ImageRef
   category?: {name: string; slug: string}
+  /** The service page the post supports (its first related service), when it has one. */
+  service?: NamedLink | null
 }
 
 export interface LocationSummary {
@@ -527,6 +529,8 @@ export interface PostsSection extends SectionBase {
   category?: NamedLink | null
   featuredFirst?: boolean
   limit?: number
+  /** "byService": every post under the service it supports, each group linking to that service page (the blog). Default "cards". */
+  layout?: 'cards' | 'byService'
   cta?: LinkItem | null
 }
 

@@ -168,6 +168,19 @@
 .tile--card:hover h3{color:var(--copper-700)}
 @media (max-width:899px){.tiles3{grid-template-columns:minmax(0,1fr)}}
 
+/* ===================================================================== OFFICE: an office as an <address> (components/sections/OfficeCard;
+   framed as a card in styles/pages.css, inside the city hero's trust card in styles/cms.css) */
+.office{display:grid;gap:6px;font-style:normal}
+.office__k{font:650 var(--fs-meta)/1.3 var(--font-text);color:var(--copper-700)}
+.office__name{font:700 1.0625rem/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.office__appt{font-weight:600;color:var(--text)}
+.office__lines{font-size:var(--fs-small);line-height:1.55;color:var(--text)}
+.office__lines span{display:block}
+.office__note{color:var(--muted)}
+.office__tel a{font-weight:650;color:var(--ink);text-decoration:none}
+.office__tel a:hover{color:var(--copper-700)}
+.office__map .link{display:inline-block;min-height:24px;padding-block:2px;font-size:var(--fs-small);font-weight:600}
+
 /* ===================================================================== the CMS article beside the contact card
    Round-5 QA ("the least premium block"): a 20 px lede, a 68-character measure, the H3s as copper kickers, copper sockets
    instead of dashes (the valley index's language), the Gilbert neighbourhoods in two columns, and the contact card as the

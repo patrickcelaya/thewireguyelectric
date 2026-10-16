@@ -172,6 +172,21 @@ export const postsSection = defineArrayMember({
       description: 'How many of the newest posts to show. 0 = all. Ignored when posts are picked (every picked post is shown).',
       validation: (rule) => rule.min(0).integer(),
     }),
+    defineField({
+      name: 'layout',
+      type: 'string',
+      description:
+        'Cards: one row of guide cards. By service: every post under the service it supports (its first related service), each group linking to that service page, as on the blog.',
+      options: {
+        list: [
+          {title: 'Cards', value: 'cards'},
+          {title: 'By service', value: 'byService'},
+        ],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+      initialValue: 'cards',
+    }),
     defineField({name: 'cta', title: 'Button', type: 'linkItem', description: 'e.g. "Read the blog" → /blog'}),
   ],
   preview: {

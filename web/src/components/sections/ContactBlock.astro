@@ -1,0 +1,110 @@
+---
+// A contact section: the form beside the ways to reach us. Left: the eyebrow, the H2,
+// the section's text and a glass card with the details the section asks for from Site
+// settings (the phone with Emma's status, the office hours, the email, the offices the
+// page may show: never the Mesa home address) plus the rating and the licence. Right:
+// the estimate form, or the job application on /careers. The section's key is its
+// anchor ("#apply-now"). One form per page (the CTA band's form is left out of a page
+// that has this section: components/sections/SectionRenderer.astro).
+// Styles: styles/pages.css "CONTACT".
+import type {ContactDetail, ContactSection, SiteSettings} from '../../lib/types'
+import {officeHours, telHref} from '../../lib/site'
+import {visibleOffices} from '../../lib/offices'
+import {sectionLabel} from '../../lib/sections'
+import Eyebrow from '../ui/Eyebrow.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import RatingLine from '../ui/RatingLine.astro'
+import RocLink from '../ui/RocLink.astro'
+import EstimateForm from './EstimateForm.astro'
+import ApplicationForm from './ApplicationForm.astro'
+import OfficeCard from './OfficeCard.astro'
+
+interface Props {
+  section: ContactSection
+  settings: SiteSettings
+  number?: number
+}
+
+const {section, settings, number} = Astro.props
+const id = `${section._key}-h`
+const show = new Set<ContactDetail>(section.contactDetails?.length ? section.contactDetails : ['phone', 'email', 'offices', 'hours'])
+const hours = officeHours(settings)
+const offices = show.has('offices') ? visibleOffices(settings.addresses) : []
+const careers = section.formType === 'careers'
+const formTitle = section.formHeading ?? (careers ? 'Apply Now' : 'Start a request')
+---
+
+<section class="section contact-s" id={section._key} {...sectionLabel(id, section.heading, section.eyebrow)}>
+  <div class="wrap contact">
+    <div class="contact__intro">
+      {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
+      {
+        section.heading && (
+          <h2 class="h2 contact__h" id={id}>
+            {section.heading}
+          </h2>
+        )
+      }
+      {section.text && <p class="contact__text">{section.text}</p>}
+      <div class="contact__card">
+        {section.detailsHeading && <h3 class="contact__k">{section.detailsHeading}</h3>}
+        {
+          show.has('phone') && (
+            <div class="contact__phone">
+              <p class="cta__talk-k">Prefer to talk?</p>
+              <p class="contact__tel">
+                <a class="tnum" href={telHref(settings)}>
+                  <span class="sr-only">Call </span>
+                  {settings.phone}
+                </a>
+              </p>
+              <p class="contact__status">
+                <OfficeStatus settings={settings} />
+              </p>
+            </div>
+          )
+        }
+        {show.has('hours') && hours.line && <p class="contact__hours">Our Office Hours: {hours.line}</p>}
+        {
+          show.has('email') && settings.email && (
+            <p class="contact__mail">
+              <a class="link" href={`mailto:${settings.email}`}>
+                {settings.email}
+              </a>
+            </p>
+          )
+        }
+        {
+          offices.length > 0 && (
+            <div class="contact__offices">
+              {offices.map((office) => (
+                <OfficeCard office={office} settings={settings} as="p" />
+              ))}
+            </div>
+          )
+        }
+        <div class="contact__trust">
+          <RatingLine settings={settings} variant="quiet" />
+          <p class="cta__roc"><RocLink settings={settings} /></p>
+        </div>
+      </div>
+    </div>
+    <div class="contact__form">
+      {
+        careers ? (
+          <ApplicationForm settings={settings} id={section._key} title={formTitle} submitLabel={section.submitLabel} successMessage={section.successMessage} />
+        ) : (
+          <EstimateForm
+            settings={settings}
+            id={section._key}
+            title={formTitle}
+            titleTag="h3"
+            hint="Name and phone are all we need. Everything else helps us bring the right parts."
+            submitLabel={section.submitLabel}
+            successMessage={section.successMessage}
+          />
+        )
+      }
+    </div>
+  </div>
+</section>

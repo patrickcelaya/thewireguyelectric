@@ -66,7 +66,18 @@ const size = imageDimensions(fleet)
       <p class="ihero__status"><OfficeStatus settings={settings} /></p>
     </div>
     <TrustCard settings={settings}>
-      {office && <OfficeCard settings={settings} office={office} class="itrust__office" />}
+      {
+        office && (
+          <OfficeCard
+            settings={settings}
+            office={office}
+            as="p"
+            kicker={`Our ${office.addressLocality} office`}
+            note={office.appointmentOnly ? 'Office visits by appointment only. We come to you.' : undefined}
+            class="itrust__office"
+          />
+        )
+      }
     </TrustCard>
   </div>
 </section>

@@ -425,13 +425,14 @@ The top of the page. **It renders the page H1 from `page.heading`; it has no hea
 | **category** | Only this category (ignored when posts are picked) |
 | **featuredFirst** | Featured posts ahead of newer ones |
 | limit | Default 3; **0 = all** (/blog lists every post). Only limits the automatic list: picked posts are all shown |
+| **layout** | **New (page conversions).** `cards` (default): one row of guide cards. `byService`: every post under the service it supports (its first related service, `post.relatedServices[0]`), each group linking to that service page, largest topics first: the /blog archive. Posts without a related service close the list under "More guides" |
 | **cta** | |
 
-**Returns:** `posts: PostCard[]`: every picked post in order (with `label`, `coverWords` and `cover` from a `postCard`), else the newest posts with the limit applied.
+**Returns:** `posts: PostCard[]`: every picked post in order (with `label`, `coverWords` and `cover` from a `postCard`), else the newest posts with the limit applied. Every post card (and every `PostSummary` from `getPosts()`) carries **`service`** `{name, slug}`: its first related service, or null.
 
 ### jobsSection (Job openings): `JobsSection`
 
-`heading`, **`intro`** (new). **Returns:** `jobs: JobOpening[]` (open jobs, newest first). Hide the section when empty. Visible jobs must equal the JobPosting nodes.
+`heading`, **`intro`** (new). **Returns:** `jobs: JobOpening[]` (open jobs, newest first). Hide the section when empty. Visible jobs must equal the JobPosting nodes: the template shows, and marks up, only jobs whose `validThrough` hasn't passed at build time (`web/src/lib/jobs.ts` `currentJobs`).
 
 ### contactSection (Contact form): `ContactSection`
 

@@ -1,21 +1,33 @@
 ---
-// All posts on one page. Webflow paginated with ?f384d0a1_page=N; one list gives
-// every post a link from /blog, and the old query URLs canonicalize here.
-import WebflowLayout from '../layouts/WebflowLayout.astro'
+// /blog: every post on one page (Webflow paginated with ?f384d0a1_page=N; the old
+// query URLs canonicalize here), composed in Sanity (page "blog") and drawn by the
+// section renderer: the most-read guides, then the whole archive under the service
+// each post supports. Title, description, H1 and the CollectionPage and Blog types are
+// unchanged from the live site. A page document without a posts list (content written
+// before the page builder) still lists every post, so no post loses its link from /blog.
+import PageBuilderPage from '../components/PageBuilderPage.astro'
 import {getPage, getPosts, getSettings} from '../lib/queries'
-import {legacyPage, renderBlogPage} from '../lib/legacy'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
-import {blogNode, webPageNode} from '../lib/schema'
+import {blogNode} from '../lib/schema'
+import {pageSchema} from '../lib/page-schema'
+import type {PageSection} from '../lib/types'
 
 const [settings, page, posts] = await Promise.all([getSettings(), getPage('blog'), getPosts()])
-const title = resolveTitle(page?.seo, `Electrical Tips & Guides | ${settings.businessName} Blog`)
-const description = resolveDescription(page?.seo, page?.intro)
-const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}]
+if (!page) throw new Error('The /blog page document (page "blog") is missing from the dataset')
+const title = resolveTitle(page.seo, `Electrical Tips & Guides | ${settings.businessName} Blog`)
+const description = resolveDescription(page.seo, page.intro)
+const path = '/blog'
+const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path}]
+
+const sections = page.sections ?? []
+const archive: PageSection = {_type: 'postsSection', _key: 'archive', layout: 'byService', limit: 0, posts}
+const listsAll = sections.some((s) => s._type === 'postsSection' && s.limit === 0)
+const shown = listsAll ? page : {...page, sections: [...sections.filter((s) => s._type === 'heroSection'), archive, ...sections.filter((s) => s._type !== 'heroSection')]}
 ---
 
-<WebflowLayout
-  meta={{title, description, path: '/blog', ogImage: resolveOgImage(settings, page?.seo?.ogImage), breadcrumbs: crumbs}}
-  schema={[webPageNode({path: '/blog', title, description, type: 'CollectionPage', breadcrumbs: crumbs}), blogNode(settings, posts)]}
->
-  <Fragment set:html={renderBlogPage(legacyPage('blog')!, posts)} />
-</WebflowLayout>
+<PageBuilderPage
+  page={shown}
+  settings={settings}
+  meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), breadcrumbs: crumbs}}
+  schema={pageSchema({page: shown, settings, path, title, description, type: 'CollectionPage', crumbs, extra: [blogNode(settings, posts)]})}
+/>

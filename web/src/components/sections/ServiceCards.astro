@@ -1,14 +1,13 @@
 ---
 // Service cards for the CMS templates: services that have one of the company's own
-// photos (lib/brand-photos) as whole photo cards, three to a row (round-5 mockups),
-// and every other service as a row in a two-column index below them (name, short
-// description, arrow), so no stock photo is ever shown and no row is left with an
+// photos (lib/brand-photos) as whole photo cards (ServiceTile), three to a row (round-5
+// mockups), and every other service as a row in a two-column index below them (name,
+// short description, arrow), so no stock photo is ever shown and no row is left with an
 // orphan card. Each card's title is its one link. Styles: styles/inner.css (.tiles3,
 // .tile--card) and styles/cms.css (.svc-rows).
 import type {ServiceSummary} from '../../lib/types'
 import {companyPhoto} from '../../lib/brand-photos'
-import MiniBulb from '../ui/MiniBulb.astro'
-import SanityImage from '../ui/SanityImage.astro'
+import ServiceTile from './ServiceTile.astro'
 
 interface Props {
   services: ServiceSummary[]
@@ -27,21 +26,7 @@ const rows = services.filter((s) => !cards.includes(s))
   cards.length > 0 && (
     <ul class="tiles3" role="list">
       {cards.map((s) => (
-        <li class="tile tile--card">
-          <div class="tile__media">
-            <SanityImage image={s.mainImage} widths={[480, 720, 1080]} sizes="(max-width:899px) 92vw, 32vw" aspect={4 / 3} alt="" />
-          </div>
-          <div class="tile__body">
-            <h3>
-              <a href={`/services/${s.slug}`}>{s.name}</a>
-            </h3>{' '}
-            {s.shortDescription && <p>{s.shortDescription}</p>}{' '}
-            <span class="tile__go" aria-hidden="true">
-              Learn more
-            </span>
-            <MiniBulb />
-          </div>
-        </li>
+        <ServiceTile href={`/services/${s.slug}`} title={s.name} text={s.shortDescription} image={s.mainImage} />
       ))}
     </ul>
   )

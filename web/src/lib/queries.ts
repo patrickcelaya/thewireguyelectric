@@ -103,7 +103,8 @@ const POST_CARD = /* groq */ `{
   publishedAt,
   featured,
   "mainImage": mainImage${IMAGE},
-  "category": category->{name, "slug": slug.current}
+  "category": category->{name, "slug": slug.current},
+  "service": relatedServices[0]->${NAMED_LINK}
 }`
 
 const LOCATION_CARD = /* groq */ `{

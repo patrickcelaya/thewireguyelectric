@@ -1,0 +1,29 @@
+---
+// The shell of every page composed in Sanity except the homepage (the static pages,
+// /services and /blog): SiteLayout, the stylesheets their sections use, and the
+// section renderer with the page's breadcrumb trail (the inner hero shows it; it is
+// the same array as meta.breadcrumbs, so the trail equals the BreadcrumbList).
+// The routes keep their own title, description and JSON-LD expressions.
+import SiteLayout from '../layouts/SiteLayout.astro'
+import '../styles/inner.css'
+// the homepage's sections a page can reuse (services mosaic, the checklist on its photo,
+// the value cards on copper, the process wire, the gallery)
+import '../styles/home.css'
+import '../styles/pages.css'
+import SectionRenderer from './sections/SectionRenderer.astro'
+import type {PageDoc, SiteSettings} from '../lib/types'
+import type {PageMeta} from '../lib/seo'
+
+interface Props {
+  page: Pick<PageDoc, 'slug' | 'heading' | 'title' | 'sections'>
+  settings: SiteSettings
+  meta: PageMeta
+  schema?: Array<Record<string, unknown> | undefined | false>
+}
+
+const {page, settings, meta, schema} = Astro.props
+---
+
+<SiteLayout meta={meta} schema={schema} bodyClass={`inner page-${page.slug}`}>
+  <SectionRenderer page={page} settings={settings} crumbs={meta.breadcrumbs} />
+</SiteLayout>

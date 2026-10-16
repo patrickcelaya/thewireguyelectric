@@ -59,6 +59,22 @@ const PHOTO_FACES: Record<string, string> = {
   'image-51d3154248a973b707481de374e6ec157bb85546-1280x853-avif': '0.25,0.31,0.33,0.46;0.40,0.34,0.485,0.46;0.60,0.30,0.67,0.44;0.74,0.32,0.815,0.45',
   // Steven, with Cody behind him, at the vans
   'image-2c9400de0ad740f382a00e4d7ec354818f6c0a5b-724x1086-avif': '0.355,0.355,0.46,0.46;0.725,0.445,0.795,0.5',
+  // owner Steven Taylor in black and white at the van's logo (/services, /faq)
+  'image-5e79d62040719ac1ff05cd89850d18710d0e18aa-1086x724-avif': '0.55,0.24,0.64,0.425',
+  // tenant improvement cable pull: the electrician at the panel and one in the doorway (the man at the left
+  // edge faces away from the camera)
+  'image-006950d5c7c46bf87a6b88cc37a3407d93f31809-1080x1236-png': '0.60,0.27,0.67,0.34;0.505,0.335,0.545,0.375',
+  // team portraits (/our-team, /about-us, /careers): Steven, Cody, Cade, Wade, Emma, Lauren at the block wall,
+  // Blake and Brandon at a van, Stephanie
+  'image-670f75dc6fee57481242beee31390bce48dccf2b-1280x1280-avif': '0.41,0.12,0.59,0.35',
+  'image-a30bc40663b4594c58a9438436fc2f2114f8541c-1280x1280-avif': '0.41,0.19,0.59,0.40',
+  'image-b949dcb5714cacc742d0b3510df1819740666e02-1280x1280-avif': '0.42,0.19,0.58,0.39',
+  'image-0603eb2e57308ea387e15ef783bd34f3fbf1fc92-1280x1280-avif': '0.39,0.20,0.56,0.40',
+  'image-273b8e2ee4862226cb9abdad24a43110fd162481-1280x1280-avif': '0.40,0.25,0.61,0.49',
+  'image-bc51135bd08e5fee5d91ba562c6ce65b8884e307-1280x1280-avif': '0.39,0.25,0.59,0.49',
+  'image-93e149ea8e7a592e9d305c197b9c5b235c40e141-1280x960-jpg': '0.41,0.255,0.485,0.38',
+  'image-630b928b18849bf1ee4a32a0fc96b32a5fccc28a-1280x960-jpg': '0.36,0.25,0.44,0.385',
+  'image-7f5550e12af844babb390fc349948db55fb34598-1280x960-jpg': '0.40,0.23,0.62,0.44',
   [VAN_PHOTO.image.asset!._id]: VAN_PHOTO.faces,
   [FLEET_PHOTO.image.asset!._id]: FLEET_PHOTO.faces,
 }

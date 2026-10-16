@@ -15,12 +15,12 @@ export const NEW_TAB_NOTE = ' (opens in a new tab)'
 
 /**
  * Where a button or link from Sanity goes. Estimate buttons ("Get a Free Estimate",
- * "Get a Free Estimate Now") go to the estimate page whatever their stored href says
- * (owner rule; some content still says /contact-us). Every other href is rewritten
- * past redirects (lib/links.ts).
+ * "Get a Free Estimate Now", "Get a Free Commercial Electrical Estimate") go to the
+ * estimate page whatever their stored href says (owner rule; some content still says
+ * /contact-us). Every other href is rewritten past redirects (lib/links.ts).
  */
 export function ctaHref(link: LinkItem, redirects: RedirectMap) {
-  return /\bfree estimate\b/i.test(link.label) ? ESTIMATE_PATH : resolveHref(link.href, redirects)
+  return /\bfree\b(?:\s+\w+){0,3}?\s+estimate\b/i.test(link.label) ? ESTIMATE_PATH : resolveHref(link.href, redirects)
 }
 
 /**
