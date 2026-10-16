@@ -1,0 +1,41 @@
+---
+// A service's warning signs as big numbered type (round-5 Panels mockup): the body's
+// own "Signs …" heading huge and sticky on the left with the paragraph that followed
+// the list ("More detail here: …"), the signs as numbered rows on the right. The words
+// and links are the body's (lib/cms.ts liftSigns), moved out of the article, not copied.
+// Styles: styles/inner.css (.signs).
+import type {SignsSection} from '../../lib/cms'
+import Eyebrow from '../ui/Eyebrow.astro'
+import PortableText from '../PortableText.astro'
+
+interface Props {
+  signs: SignsSection
+  number?: number
+}
+
+const {signs, number} = Astro.props
+// each list item renders as a plain paragraph inside its numbered row
+const asParagraph = (block: SignsSection['items'][number]) => [{...block, listItem: undefined, level: undefined}]
+---
+
+<section class="section signs-s" aria-labelledby="signs-h">
+  <div class="wrap signs">
+    <div class="signs__head">
+      <Eyebrow number={number}>Know the warning signs</Eyebrow>
+      <h2 class="display" id="signs-h">{signs.heading}</h2>
+      {signs.after.length > 0 && <PortableText value={signs.after} class="signs__more" />}
+    </div>
+    <ol class="signs__list">
+      {
+        signs.items.map((item, i) => (
+          <li>
+            <span class="signs__n" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>{' '}
+            <PortableText value={asParagraph(item)} class="signs__t" />
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+// Previous and next post by publish date, at the foot of a post. Styles: styles/post.css.
+import type {PostSummary} from '../../lib/types'
+
+interface Props {
+  /** The next older post. */
+  prev?: PostSummary
+  /** The next newer post. */
+  next?: PostSummary
+}
+
+const {prev, next} = Astro.props
+---
+
+{
+  (prev || next) && (
+    <nav class="wrap post-nav" aria-label="More posts">
+      {prev && (
+        <a class="post-nav__a post-nav__a--prev" href={`/blog-posts/${prev.slug}`}>
+          <span class="post-nav__k">Previous post</span> <span class="post-nav__t">{prev.title}</span>
+        </a>
+      )}{' '}
+      {next && (
+        <a class="post-nav__a post-nav__a--next" href={`/blog-posts/${next.slug}`}>
+          <span class="post-nav__k">Next post</span> <span class="post-nav__t">{next.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}

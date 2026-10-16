@@ -1,0 +1,37 @@
+---
+// A city's or a service's long-form body, verbatim from Sanity (every block, link and
+// figure), set as the round-5 article: a 68-character measure, the H3s as copper
+// kickers, beside a sticky aside (slot "aside": the contact card). The body's own H2
+// names the section. Styles: styles/inner.css (.article, .prose) and styles/cms.css.
+import type {PortableTextValue} from '../../lib/types'
+import {getRedirectMap} from '../../lib/queries'
+import {articleHtml} from '../../lib/cms'
+
+interface Props {
+  body: PortableTextValue | null | undefined
+  /** The section's name when the body has no H2. */
+  label: string
+  /** A prose variant for the page type ("city", "service"). */
+  variant?: string
+  class?: string
+}
+
+const {body, label, variant, class: className} = Astro.props
+const {html, anchors} = articleHtml(body, {redirects: await getRedirectMap(), figureSizes: '(min-width:1100px) 680px, 92vw'})
+const named = anchors[0] ? {'aria-labelledby': anchors[0].id} : {'aria-label': label}
+---
+
+{
+  html && (
+    <section class:list={['section article-s', className]} {...named}>
+      <div class="wrap article">
+        <div class:list={['prose', variant && `prose--${variant}`]} set:html={html} />
+        {Astro.slots.has('aside') && (
+          <aside class="aside" aria-label="Contact">
+            <slot name="aside" />
+          </aside>
+        )}
+      </div>
+    </section>
+  )
+}

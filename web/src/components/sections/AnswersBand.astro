@@ -1,0 +1,43 @@
+---
+// The sand "answers" band of the CMS templates (round-5 mockups): the page's questions
+// (FaqBlock, native details) and, under them, its guides (GuidesBlock cards). Either
+// alone still gets the band; both empty render nothing. The page builds its one
+// FAQPage node from the same `faqs`. Styles: core.css (.answers, .faq, .guides).
+import type {FaqItem, PostCard, PostsSection} from '../../lib/types'
+import FaqBlock from './FaqBlock.astro'
+import GuidesBlock from './GuidesBlock.astro'
+
+interface Props {
+  faqs: FaqItem[]
+  faqHeading: string
+  faqIntro?: string
+  posts: PostCard[]
+  guidesHeading: string
+  guidesIntro?: string
+  /** Chapter numbers for the two eyebrows. */
+  numbers?: {faq?: number; guides?: number}
+}
+
+const {faqs, faqHeading, faqIntro, posts, guidesHeading, guidesIntro, numbers = {}} = Astro.props
+const guides: PostsSection = {
+  _type: 'postsSection',
+  _key: 'guides',
+  eyebrow: 'Guides',
+  heading: guidesHeading,
+  intro: guidesIntro,
+  posts,
+  cta: {label: 'All guides on the blog', href: '/blog'},
+}
+const label = faqs.length ? {'aria-labelledby': 'faq-h'} : {'aria-labelledby': 'guides-h'}
+---
+
+{
+  (faqs.length > 0 || posts.length > 0) && (
+    <section class="section answers cv" {...label}>
+      <div class="wrap">
+        <FaqBlock faqs={faqs} heading={faqHeading} intro={faqIntro} number={numbers.faq} />
+        <GuidesBlock section={guides} number={numbers.guides} />
+      </div>
+    </section>
+  )
+}

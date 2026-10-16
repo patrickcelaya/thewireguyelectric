@@ -1,0 +1,62 @@
+---
+// Service cards for the CMS templates: services that have one of the company's own
+// photos (lib/brand-photos) as whole photo cards, three to a row (round-5 mockups),
+// and every other service as a row in a two-column index below them (name, short
+// description, arrow), so no stock photo is ever shown and no row is left with an
+// orphan card. Each card's title is its one link. Styles: styles/inner.css (.tiles3,
+// .tile--card) and styles/cms.css (.svc-rows).
+import type {ServiceSummary} from '../../lib/types'
+import {companyPhoto} from '../../lib/brand-photos'
+import MiniBulb from '../ui/MiniBulb.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  services: ServiceSummary[]
+  /** Photo cards at most (rounded down to whole rows of three). */
+  maxCards?: number
+}
+
+const {services, maxCards = 6} = Astro.props
+const withPhoto = services.filter((s) => companyPhoto(s.mainImage))
+const cardCount = Math.min(maxCards, withPhoto.length - (withPhoto.length % 3))
+const cards = withPhoto.slice(0, cardCount)
+const rows = services.filter((s) => !cards.includes(s))
+---
+
+{
+  cards.length > 0 && (
+    <ul class="tiles3" role="list">
+      {cards.map((s) => (
+        <li class="tile tile--card">
+          <div class="tile__media">
+            <SanityImage image={s.mainImage} widths={[480, 720, 1080]} sizes="(max-width:899px) 92vw, 32vw" aspect={4 / 3} alt="" />
+          </div>
+          <div class="tile__body">
+            <h3>
+              <a href={`/services/${s.slug}`}>{s.name}</a>
+            </h3>{' '}
+            {s.shortDescription && <p>{s.shortDescription}</p>}{' '}
+            <span class="tile__go" aria-hidden="true">
+              Learn more
+            </span>
+            <MiniBulb />
+          </div>
+        </li>
+      ))}
+    </ul>
+  )
+}
+{
+  rows.length > 0 && (
+    <ul class:list={['svc-rows', cards.length > 0 && 'svc-rows--after']} role="list">
+      {rows.map((s) => (
+        <li class="svc-row">
+          <h3>
+            <a href={`/services/${s.slug}`}>{s.name}</a>
+          </h3>{' '}
+          {s.shortDescription && <p>{s.shortDescription}</p>}
+        </li>
+      ))}
+    </ul>
+  )
+}

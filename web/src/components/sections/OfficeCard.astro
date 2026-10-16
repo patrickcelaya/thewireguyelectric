@@ -1,0 +1,45 @@
+---
+// An office with its own Google Business Profile (the Scottsdale office), as an
+// <address>: the profile's name ("… (by appointment)"), the street address, the phone
+// and a "Get directions" link to the profile. Never the home address: an office marked
+// footerOnly renders nothing. Hours are left out until they are confirmed to match the
+// profile. Values from Site settings → Addresses. Styles: styles/cms.css.
+import type {PostalAddress, SiteSettings} from '../../lib/types'
+import {formatAddress, telHref} from '../../lib/site'
+import ExternalLink from '../ui/ExternalLink.astro'
+
+interface Props {
+  settings: SiteSettings
+  office: PostalAddress
+  class?: string
+}
+
+const {settings, office, class: className} = Astro.props
+const name = office.gbpName ?? `${settings.businessName}, ${office.addressLocality}`
+const phone = office.phone ?? settings.phone
+const tel = office.phone ? `tel:${office.phone.replace(/[^\d+]/g, '')}` : telHref(settings)
+---
+
+{
+  !office.footerOnly && office.streetAddress && (
+    <address class:list={['office', className]}>
+      <p class="office__k">Our {office.addressLocality} office</p>
+      <p class="office__name">
+        {name}
+        {office.appointmentOnly && <span class="office__appt"> (by appointment)</span>}
+      </p>
+      <p class="office__addr">{formatAddress(office)}</p>
+      {office.appointmentOnly && <p class="office__note">Office visits by appointment only. We come to you.</p>}
+      <p class="office__tel">
+        <a class="tnum" href={tel}>{phone}</a>
+      </p>
+      {office.googleMapsUrl && (
+        <p class="office__map">
+          <ExternalLink class="link link--ext" href={office.googleMapsUrl}>
+            Get directions
+          </ExternalLink>
+        </p>
+      )}
+    </address>
+  )
+}
