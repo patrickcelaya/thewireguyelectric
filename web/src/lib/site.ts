@@ -1,7 +1,8 @@
 // Display values for the site chrome (header, footer, call bar, trust lines),
 // derived from Site settings so NAP, hours, rating and licence never drift.
-import type {PostalAddress, SiteSettings} from './types'
+import type {LinkItem, PostalAddress, SiteSettings} from './types'
 import {formatHours, nextOpening} from './hours'
+import {resolveHref, type RedirectMap} from './links'
 
 /**
  * Every "Free Estimate" link goes to the estimate page (owner rule). It is a code
@@ -11,6 +12,30 @@ export const ESTIMATE_PATH = '/estimate'
 
 /** Appended to the text of every link that opens a new tab (screen readers). */
 export const NEW_TAB_NOTE = ' (opens in a new tab)'
+
+/**
+ * Where a button or link from Sanity goes. Estimate buttons ("Get a Free Estimate",
+ * "Get a Free Estimate Now") go to the estimate page whatever their stored href says
+ * (owner rule; some content still says /contact-us). Every other href is rewritten
+ * past redirects (lib/links.ts).
+ */
+export function ctaHref(link: LinkItem, redirects: RedirectMap) {
+  return /\bfree estimate\b/i.test(link.label) ? ESTIMATE_PATH : resolveHref(link.href, redirects)
+}
+
+/**
+ * One answer-first sentence about the business, written from Site settings so its
+ * facts never drift: "The Wire Guy Electric is a family-owned, licensed electrician
+ * (AZ ROC #365306) based in Mesa, Arizona, serving homes and businesses across the
+ * Phoenix valley since 2017." Undefined without a home city.
+ */
+export function businessSummary(settings: SiteSettings) {
+  const city = settings.homeCity?.name || settings.addresses?.find((a) => !a.locationSlug)?.addressLocality
+  if (!city) return undefined
+  const licensed = settings.rocLicense ? `licensed electrician (AZ ROC #${settings.rocLicense})` : 'electrician'
+  const since = settings.foundingDate ? ` since ${settings.foundingDate}` : ''
+  return `${settings.businessName} is a family-owned, ${licensed} based in ${city}, Arizona, serving homes and businesses across the Phoenix valley${since}.`
+}
 
 export function telHref(settings: SiteSettings) {
   return `tel:${settings.phoneE164}`

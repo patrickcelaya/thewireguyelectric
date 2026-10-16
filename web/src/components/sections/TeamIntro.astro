@@ -1,0 +1,71 @@
+---
+// "Who we are": the family in words, beside one photo of the crew at work (owner,
+// round 4: no portrait cards on the homepage; the team lives on /our-team).
+// Optionally opens with one answer-first sentence written from Site settings, then
+// the section's own text, where every mentioned name links to /our-team.
+// Desktop: the words on the page grid, the photo running off the right edge.
+// Phones: the words, then the photo. Styles: styles/home.css "WHO WE ARE".
+import type {SiteSettings, TeamIntroSection} from '../../lib/types'
+import {businessSummary, ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import PortableText from '../PortableText.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Accent from '../ui/Accent.astro'
+import Button from '../ui/Button.astro'
+import TextLink from '../ui/TextLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  section: TeamIntroSection
+  settings: SiteSettings
+  number?: number
+}
+
+const {section, settings, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const summary = section.showSummary ? businessSummary(settings) : undefined
+const {cta, secondaryCta, image} = section
+---
+
+{
+  section.body.length > 0 && (
+    <section class="section team" {...sectionLabel(id, section.heading, section.eyebrow)}>
+      <div class:list={['team__grid', !image && 'team__grid--solo']}>
+        <div class="team__copy">
+          {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
+          {section.heading && (
+            <h2 class="display" id={id} data-reveal>
+              <Accent text={section.heading} accent={section.headingAccent} />
+            </h2>
+          )}
+          {summary && <p class="team__answer">{summary}</p>}
+          <div class="team__more">
+            <PortableText value={section.body} />
+          </div>
+          {(cta || secondaryCta) && (
+            <div class="btn-row">
+              {cta && (
+                <Button href={ctaHref(cta, redirects)} variant="ghost" size="md">
+                  {cta.label}
+                </Button>
+              )}{' '}
+              {secondaryCta && (
+                <TextLink href={ctaHref(secondaryCta, redirects)} icon="go">
+                  {secondaryCta.label}
+                </TextLink>
+              )}
+            </div>
+          )}
+        </div>
+        {image && (
+          <figure class="team__photo">
+            <SanityImage image={image} widths={[640, 828, 1086]} sizes="(max-width:980px) 100vw, 50vw" />
+            {image.caption && <figcaption>{image.caption}</figcaption>}
+          </figure>
+        )}
+      </div>
+    </section>
+  )
+}

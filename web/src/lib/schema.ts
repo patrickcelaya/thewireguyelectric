@@ -112,7 +112,7 @@ export function websiteNode(s: SiteSettings): Node {
   return {'@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: s.businessName, publisher: {'@id': BUSINESS_ID}, inLanguage: 'en-US'}
 }
 
-export function webPageNode(opts: {path: string; title: string; description?: string; type?: string; breadcrumbs?: Crumb[]}): Node {
+export function webPageNode(opts: {path: string; title: string; description?: string; type?: string; breadcrumbs?: Crumb[]; primaryImage?: string}): Node {
   const url = absoluteUrl(opts.path)
   return {
     '@type': opts.type ?? 'WebPage',
@@ -122,6 +122,7 @@ export function webPageNode(opts: {path: string; title: string; description?: st
     description: opts.description,
     isPartOf: {'@id': WEBSITE_ID},
     about: {'@id': BUSINESS_ID},
+    primaryImageOfPage: opts.primaryImage ? {'@type': 'ImageObject', url: opts.primaryImage} : undefined,
     breadcrumb: opts.breadcrumbs?.length ? {'@id': `${url}#breadcrumb`} : undefined,
     inLanguage: 'en-US',
   }

@@ -69,7 +69,7 @@ const fleetSrcset = [imageSrcSet(fleet, [640, 828, 1086]), ...FLEET_PHOTO.enlarg
 
 {
   cities.length > 0 && (
-    <section class={variant === 'home' ? 'valley' : 'areas'} aria-labelledby={id} data-valley data-eager-photos>
+    <section class={`${variant === 'home' ? 'valley' : 'areas'} cv`} aria-labelledby={id} data-valley data-eager-photos>
       {variant === 'home' && (
         <div class="vy-sky">
           <figure class="vy-photo">
@@ -128,22 +128,26 @@ const fleetSrcset = [imageSrcSet(fleet, [640, 828, 1086]), ...FLEET_PHOTO.enlarg
                 </g>
               </svg>
               {geo.ranges.map((r) => (
-                <span class={`vy-mtn vy-mtn--${r.key}`} style={`--x:${r.x};--y:${r.y}`}>
-                  {r.label}
-                </span>
+                <>
+                  <span class={`vy-mtn vy-mtn--${r.key}`} style={`--x:${r.x};--y:${r.y}`}>
+                    {r.label}
+                  </span>{' '}
+                </>
               ))}
               {geo.pins.map((p) => (
-                <span
-                  class:list={['vy-pin', p.slug === current && 'is-here']}
-                  data-pin={p.slug}
-                  data-d={p.sides.d}
-                  data-t={p.sides.t}
-                  data-m={p.sides.m}
-                  style={`--x:${p.x};--y:${p.y};--t:${p.t}`}
-                >
-                  <i />
-                  <b>{p.name}</b>
-                </span>
+                <>
+                  <span
+                    class:list={['vy-pin', p.slug === current && 'is-here']}
+                    data-pin={p.slug}
+                    data-d={p.sides.d}
+                    data-t={p.sides.t}
+                    data-m={p.sides.m}
+                    style={`--x:${p.x};--y:${p.y};--t:${p.t}`}
+                  >
+                    <i />
+                    <b>{p.name}</b>
+                  </span>{' '}
+                </>
               ))}
             </div>
           </div>

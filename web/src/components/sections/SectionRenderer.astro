@@ -1,0 +1,150 @@
+---
+// Renders a page's page-builder sections (page.sections) in the round-5 design.
+// Each _type maps to one section component; the variant comes from the section's own
+// fields (a feature grid's style, a services list's layout, a quote's source) and the
+// page (the homepage gets the title-card hero, the review lanes and the valley with
+// its sky). Empty sections render nothing; chapters are numbered in order and the
+// questions and guides share one band (lib/sections.ts). The page H1 is page.heading,
+// shown by the hero; no section renders an H1.
+//
+// A section type or variant no converted page uses yet stops the build with a clear
+// message instead of being dropped silently (content must never disappear): build
+// its component when converting the page that first uses it, and map it here.
+import type {PageDoc, PageSection, SiteSettings} from '../../lib/types'
+import {planSections} from '../../lib/sections'
+import {serviceAreaCities, HOME_CITY_SLUG} from '../../lib/cities'
+import {ctaHref} from '../../lib/site'
+import {getNavModel} from '../../lib/nav'
+import {getRedirectMap} from '../../lib/queries'
+import HeroHome from './HeroHome.astro'
+import TeamIntro from './TeamIntro.astro'
+import ValueCards from './ValueCards.astro'
+import Capabilities from './Capabilities.astro'
+import ServicesMosaic from './ServicesMosaic.astro'
+import PullQuote from './PullQuote.astro'
+import ProcessSteps from './ProcessSteps.astro'
+import ReviewsCarousel from './ReviewsCarousel.astro'
+import ReviewsStatic from './ReviewsStatic.astro'
+import Valley from './Valley.astro'
+import Gallery from './Gallery.astro'
+import FaqBlock from './FaqBlock.astro'
+import GuidesBlock from './GuidesBlock.astro'
+import CtaBand from './CtaBand.astro'
+
+interface Props {
+  page: Pick<PageDoc, 'slug' | 'heading' | 'title' | 'sections'>
+  settings: SiteSettings
+}
+
+const {page, settings} = Astro.props
+const home = page.slug === 'index'
+const [nav, redirects] = await Promise.all([getNavModel(), getRedirectMap()])
+
+function unbuilt(section: PageSection, variant?: string): never {
+  const what = variant ? `${section._type} (${variant})` : section._type
+  throw new Error(`SectionRenderer: no component for ${what} on /${page.slug === 'index' ? '' : page.slug} yet. Build it in components/sections and map it here.`)
+}
+
+// Fail at build time on anything this renderer can't draw yet (see the note above).
+const plan = planSections(page.sections ?? [])
+for (const item of plan) {
+  if (item.kind === 'answers') {
+    if (item.faq?.groups.some((g) => g.faqs.length)) unbuilt(item.faq, 'headed groups')
+    continue
+  }
+  const s = item.section
+  switch (s._type) {
+    case 'heroSection':
+      if (!home) unbuilt(s, 'inner page hero')
+      break
+    case 'servicesSection':
+      if (s.layout !== 'featured') unbuilt(s, `layout ${s.layout ?? 'grid'}`)
+      break
+    case 'quoteSection':
+      if (!s.review) unbuilt(s, 'a team member’s words')
+      break
+    case 'reviewsSection':
+      if (!home && !s.heading) unbuilt(s, 'without a heading')
+      break
+    case 'teamIntroSection':
+    case 'featureGridSection':
+    case 'processStepsSection':
+    case 'locationsSection':
+    case 'gallerySection':
+    case 'ctaSection':
+      break
+    default:
+      unbuilt(s)
+  }
+}
+
+const citiesOf = (s: Extract<PageSection, {_type: 'locationsSection'}>) => {
+  const cities = serviceAreaCities(s.homeCity, s.locations)
+  return s.includeHomeCity === false ? cities.filter((c) => c.slug !== HOME_CITY_SLUG) : cities
+}
+---
+
+{
+  plan.map((item) => {
+    if (item.kind === 'answers') {
+      const {faq, posts, numbers} = item
+      return (
+        <section class="section answers cv" aria-labelledby={faq?.heading ? `${faq._key}-h` : posts?.heading ? `${posts._key}-h` : undefined}>
+          <div class="wrap">
+            {faq && (
+              <FaqBlock faqs={faq.faqs} heading={faq.heading ?? ''} intro={faq.intro} id={`${faq._key}-h`} eyebrow={faq.eyebrow} number={numbers.faq} />
+            )}
+            {posts && <GuidesBlock section={posts} number={numbers.posts} />}
+          </div>
+        </section>
+      )
+    }
+    const {section: s, number} = item
+    switch (s._type) {
+      case 'heroSection':
+        return <HeroHome section={s} heading={page.heading ?? page.title} settings={settings} />
+      case 'teamIntroSection':
+        return <TeamIntro section={s} settings={settings} number={number} />
+      case 'featureGridSection':
+        return s.style === 'checklist' ? <Capabilities section={s} categories={nav.serviceGroups} number={number} /> : <ValueCards section={s} />
+      case 'servicesSection':
+        return <ServicesMosaic section={s} number={number} />
+      case 'quoteSection':
+        return s.review && <PullQuote section={{...s, review: s.review}} settings={settings} />
+      case 'processStepsSection':
+        return <ProcessSteps section={s} settings={settings} number={number} />
+      case 'reviewsSection':
+        return home ? (
+          <ReviewsCarousel
+            settings={settings}
+            reviews={s.reviews}
+            heading={s.heading}
+            accent={s.headingAccent}
+            number={number}
+            cta={s.cta ? {label: s.cta.label, href: ctaHref(s.cta, redirects)} : undefined}
+          />
+        ) : (
+          <ReviewsStatic settings={settings} reviews={s.reviews} heading={s.heading!} intro={s.intro} number={number} id={`${s._key}-h`} />
+        )
+      case 'locationsSection':
+        return (
+          <Valley
+            settings={settings}
+            cities={citiesOf(s)}
+            variant={home ? 'home' : 'inner'}
+            heading={s.heading ?? ''}
+            accent={s.headingAccent}
+            intro={s.intro}
+            eyebrow={s.eyebrow}
+            number={number}
+          />
+        )
+      case 'gallerySection':
+        return <Gallery section={s} number={number} />
+      case 'ctaSection':
+        return s.cta && <CtaBand settings={settings} heading={s.cta.heading} text={s.cta.text} number={number} />
+      default:
+        return null
+    }
+  })
+}

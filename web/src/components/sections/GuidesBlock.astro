@@ -1,0 +1,43 @@
+---
+// Blog posts as guide cards under an editorial head (eyebrow, H2, intro, a link to
+// the blog). A card picked with its own cover shows that photo, topic and cover words
+// here; the post page keeps its own image. Renders the block only: the page puts it
+// in a section (on the homepage it shares the sand "answers" band with the questions).
+import type {PostsSection} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import SectionHeader from '../ui/SectionHeader.astro'
+import TextLink from '../ui/TextLink.astro'
+import GuideCard from './GuideCard.astro'
+
+interface Props {
+  section: PostsSection
+  number?: number
+}
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const {cta} = section
+---
+
+{
+  section.posts.length > 0 && (
+    <div class="guides-block">
+      {section.heading && (
+        <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+          {cta && (
+            <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+              {cta.label}
+            </TextLink>
+          )}
+        </SectionHeader>
+      )}
+      <ul class="guides" role="list">
+        {section.posts.map((post) => (
+          <GuideCard post={{...post, mainImage: post.cover ?? post.mainImage}} label={post.label ?? undefined} coverWords={post.coverWords ?? undefined} />
+        ))}
+      </ul>
+    </div>
+  )
+}

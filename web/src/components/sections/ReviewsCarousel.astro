@@ -7,6 +7,7 @@
 import type {Review, SiteSettings} from '../../lib/types'
 import {ESTIMATE_PATH} from '../../lib/site'
 import Eyebrow from '../ui/Eyebrow.astro'
+import Accent from '../ui/Accent.astro'
 import ScoreBlock from '../ui/ScoreBlock.astro'
 import Button from '../ui/Button.astro'
 import ReviewCard from './ReviewCard.astro'
@@ -19,11 +20,19 @@ interface Props {
   accent?: string
   number?: number | string
   id?: string
+  /** The button under the 5.0 (default "Get a Free Estimate Now" → the estimate page). */
+  cta?: {label: string; href: string}
 }
 
-const {settings, reviews, heading = 'Let our reviews speak for themselves', accent = 'speak for themselves', number, id = 'reviews'} = Astro.props
-const at = heading.indexOf(accent)
-const [lead, accented, rest] = at >= 0 ? [heading.slice(0, at), accent, heading.slice(at + accent.length)] : [heading, '', '']
+const {
+  settings,
+  reviews,
+  heading = 'Let our reviews speak for themselves',
+  accent = 'speak for themselves',
+  number,
+  id = 'reviews',
+  cta = {label: 'Get a Free Estimate Now', href: ESTIMATE_PATH},
+} = Astro.props
 const laneA = reviews.filter((_, i) => i % 2 === 0)
 const laneB = reviews.filter((_, i) => i % 2 === 1)
 const icon = {
@@ -36,26 +45,24 @@ const icon = {
 
 {
   reviews.length > 0 && (
-    <section class="section reviews" id={id} aria-labelledby={`${id}-h`}>
+    <section class="section reviews cv" id={id} aria-labelledby={`${id}-h`}>
       <div class="wrap reviews__head">
         <div class="reviews__title">
           <Eyebrow number={number}>Reviews</Eyebrow>
           <h2 class="display" id={`${id}-h`}>
-            {lead}
-            {accented && <span class="accent">{accented}</span>}
-            {rest}
+            <Accent text={heading} accent={accent} />
           </h2>
         </div>
         <div class="reviews__score">
           <ScoreBlock settings={settings} />
           <p class="reviews__cta">
-            <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate Now</Button>
+            <Button href={cta.href} icon="go">{cta.label}</Button>
           </p>
         </div>
       </div>
       <div class="wrap reviews__bar">
         <p class="reviews__note">
-          Real Google reviews, shown word for word, with each reviewer’s name as it appears on Google.
+          Real Google reviews, shown word for word, with each reviewer’s name as it appears on Google.{' '}
           <span class="sr-only">Every review shown is rated 5 out of 5 stars.</span>
         </p>
         <div class="mq-ctrl" role="group" aria-label="Review carousel">

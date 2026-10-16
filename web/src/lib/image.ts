@@ -88,6 +88,20 @@ function sanityUrl(r: Extract<ResolvedImage, {kind: 'sanity'}>, opts: ImageUrlOp
   return b.url()
 }
 
+/**
+ * The editor's hotspot as a CSS object-position ("50% 34%"), relative to the
+ * rendition (after the crop), for photos a frame crops with object-fit: cover.
+ * Undefined when the image has no hotspot.
+ */
+export function imageFocus(image?: ImageRef | null) {
+  const h = image?.hotspot
+  if (!h) return undefined
+  const c = image?.crop
+  const along = (v: number, start = 0, end = 0) => Math.min(100, Math.max(0, ((v - start) / (1 - start - end)) * 100))
+  const pct = (n: number) => `${Math.round(n * 10) / 10}%`
+  return `${pct(along(h.x, c?.left, c?.right))} ${pct(along(h.y, c?.top, c?.bottom))}`
+}
+
 /** URL for one rendition. */
 export function imageUrl(image: ImageRef | null | undefined, opts: ImageUrlOptions = {}) {
   const r = resolveImage(image)

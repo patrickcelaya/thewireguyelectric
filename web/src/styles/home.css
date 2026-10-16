@@ -203,9 +203,12 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
 .team{background:var(--paper);overflow:clip}
 .team__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(48px,6vw,120px);padding-left:var(--pad-x)}
 .team__copy{display:grid;gap:0;justify-items:start;max-width:40rem;padding-block:clamp(8px,1vw,24px)}
+.team__grid--solo{grid-template-columns:minmax(0,1fr);padding-right:var(--pad-x)}   /* no photo: the words alone */
 .team__copy .display{max-width:12ch}
 .team__answer{margin-top:clamp(28px,2.6vw,44px);font:500 var(--fs-stand)/1.38 var(--font-display);letter-spacing:-.018em;color:var(--ink);max-width:24em}
 .team__more{margin-top:22px;font-size:var(--fs-lede);line-height:1.62;color:var(--text);max-width:var(--measure)}
+.team__more a{color:var(--copper-700);text-decoration-thickness:1.5px;text-underline-offset:.2em}
+.team__more a:hover{color:var(--copper-800)}
 .team__copy .btn-row{margin-top:clamp(28px,2.4vw,40px);gap:24px}
 .team__photo{position:relative;margin:0;height:clamp(460px,44vw,760px);overflow:hidden;border-radius:var(--r-xl) 0 0 var(--r-xl);background:var(--sand);box-shadow:var(--shadow-2)}
 .team__photo img{width:100%;height:100%;object-fit:cover;object-position:44% 50%;transition:transform 1.4s var(--ease-out)}
@@ -256,6 +259,7 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
 .t-custom,.t-ext,.t-com{grid-row:span 3}
 .t-com{grid-column:3/5}
 .t-com .tile__body{--feather:64px}
+.bento--even{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));grid-auto-rows:clamp(320px,26vw,420px)}
 /* the section's links (round-5 QA: they used to fill a text-only tile): View All Services, then Residential · Commercial */
 .svc-links{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 22px;margin-top:20px}
 .svc-links__by{display:inline-flex;align-items:baseline;gap:8px;font-size:.9375rem;color:var(--muted)}
@@ -297,7 +301,7 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
 .solutions :focus-visible{outline-color:var(--cream)}
 .sol{border-top:1px solid rgb(255 244 236 / .3)}
 .sol li{border-bottom:1px solid rgb(255 244 236 / .3)}
-.sol a{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:8px 16px;min-height:clamp(80px,7vw,116px);color:#fff;text-decoration:none}
+.sol a,.sol__row{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:8px 16px;min-height:clamp(80px,7vw,116px);color:#fff;text-decoration:none}
 .sol a::after{content:"";width:26px;height:26px;background:var(--glow);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .3s var(--ease)}
 .sol__k{font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;color:var(--glow)}
 .sol h3{color:#fff;font-size:clamp(1.5rem,1.1rem + 1.4vw,2.75rem);letter-spacing:-.034em;line-height:1.05;transition:transform .35s var(--ease)}
@@ -308,7 +312,7 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
 .sol-bulb{position:absolute;right:48px;top:50%;width:26px;height:auto;overflow:visible;opacity:0;transform:translateY(-50%) scale(.9);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none;--mb-line:var(--glow);--mb-glass:var(--glow);filter:drop-shadow(0 0 10px rgb(255 214 150 / .9))}
 .sol a:is(:hover,:focus-visible) .sol-bulb{opacity:1;transform:translateY(-50%) scale(1)}
 @media (hover:none){.sol-bulb{display:none}}
-@media (max-width:980px){.solutions__grid{grid-template-columns:minmax(0,1fr)}.sol a{grid-template-columns:40px minmax(0,1fr) auto}}
+@media (max-width:980px){.solutions__grid{grid-template-columns:minmax(0,1fr)}.sol a,.sol__row{grid-template-columns:40px minmax(0,1fr) auto}}
 
 /* ===================================================================== PULL-QUOTE: Susan's words on the ceiling she had lit (no dark tint: ink on a bright ceiling)
    About 70% of the window tall; the quote is centred on the clean ceiling between two rows of new lights, with the
@@ -333,13 +337,14 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
 .process__head .display{max-width:13ch}
 .process__lede{font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:28rem}
 @media (min-width:981px){.process__head{padding-right:calc(clamp(104px,9.4vw,150px) * 1.35)}}
-.process__body{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) var(--bcol);gap:40px clamp(24px,3vw,56px);margin-top:clamp(80px,7.5vw,128px);--node:56px;--bcol:clamp(104px,9.4vw,150px);--bw:calc(var(--bcol) * .92)}
+.process__body{position:relative;display:grid;grid-template-columns:repeat(var(--steps,4),minmax(0,1fr)) var(--bcol);gap:40px clamp(24px,3vw,56px);margin-top:clamp(80px,7.5vw,128px);--node:56px;--bcol:clamp(104px,9.4vw,150px);--bw:calc(var(--bcol) * .92)}
 .process__wire{position:absolute;left:calc(-1 * var(--pad-x));right:calc(var(--bcol) / 2);top:calc(var(--node) / 2 - 1.25px);height:2.5px;border-radius:2px;background:linear-gradient(90deg,rgb(170 80 46 / 0),var(--copper) 18%,var(--copper));pointer-events:none;transform-origin:0 50%}
 .steps{display:contents}
 .step{position:relative;display:flex;flex-direction:column;gap:14px}
 .step__n{position:relative;z-index:1;display:grid;place-items:center;width:var(--node);height:var(--node);border-radius:50%;background:var(--copper);color:#fff;font:750 1rem/1 var(--font-display);letter-spacing:.02em;box-shadow:0 0 0 8px var(--bone)}
 .step h3{margin-top:14px;font-size:clamp(1.375rem,1.15rem + .7vw,1.875rem);letter-spacing:-.026em}
 .step p{color:var(--text);max-width:22em}
+.step__contact{margin-top:-4px}
 /* the bulb stands on the end of the wire: its base sits on the line (the base's foot is 91.5% down the bulb's box) */
 .process__bulb{position:relative;align-self:start;justify-self:center;width:var(--bw);margin-top:calc(var(--node) / 2 - var(--bw) * 1.2368 * .915)}
 .process__bulb::before{content:"";position:absolute;left:50%;top:40%;width:250%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgb(255 214 150 / .55),rgb(255 196 120 / .22) 45%,rgb(255 196 120 / 0));pointer-events:none}
@@ -485,18 +490,13 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
     @keyframes bar-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
     .pb .glass,.pb .halo,.process__bulb::before{animation:on linear both;animation-timeline:--proc;animation-range:var(--r-glow)}
     .process{view-timeline:--proc block;--r-wire:cover 20% cover 50%;--r-line:cover 46% cover 56%;--r-bars:cover 54% cover 59%;--r-glow:cover 58% cover 66%}
-    .step:nth-child(1) .step__n{animation-range:cover 24% cover 27%}
-    .step:nth-child(2) .step__n{animation-range:cover 31% cover 34%}
-    .step:nth-child(3) .step__n{animation-range:cover 38% cover 41%}
-    .step:nth-child(4) .step__n{animation-range:cover 45% cover 48%}
+    /* each number fills as the wire reaches it: step --k of --steps, spread over the wire's run */
+    .step__n{animation-range:cover calc(24% + var(--k,0) * 28% / var(--steps,4)) cover calc(27% + var(--k,0) * 28% / var(--steps,4))}
     @media (min-width:981px) and (min-height:700px){
       .process{height:calc(100svh - var(--hdr-c) + 80vh);view-timeline-inset:var(--hdr-c) 0;--r-wire:contain 4% contain 52%;--r-line:contain 52% contain 70%;--r-bars:contain 68% contain 78%;--r-glow:contain 78% contain 92%}
       .process__pin{position:sticky;top:var(--hdr-c);height:calc(100svh - var(--hdr-c));display:flex;flex-direction:column;justify-content:center;padding-block:clamp(24px,4vh,56px)}
       .process__body{margin-top:clamp(64px,9vh,128px)}
-      .step:nth-child(1) .step__n{animation-range:contain 8% contain 12%}
-      .step:nth-child(2) .step__n{animation-range:contain 20% contain 24%}
-      .step:nth-child(3) .step__n{animation-range:contain 32% contain 36%}
-      .step:nth-child(4) .step__n{animation-range:contain 44% contain 48%}
+      .step__n{animation-range:contain calc(8% + var(--k,0) * 48% / var(--steps,4)) contain calc(12% + var(--k,0) * 48% / var(--steps,4))}
     }
     @media (max-width:980px){@keyframes wire-x{from{transform:scaleY(0)}to{transform:scaleY(1)}}}
   }

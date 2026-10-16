@@ -54,7 +54,8 @@ function rails() {
     if (!track) continue
     for (const btn of all('[data-rail-step]', rail)) {
       btn.addEventListener('click', () => {
-        const card = track.firstElementChild as HTMLElement | null
+        // one card: the first list item (a list inside the scroller), else its first child
+        const card = track.querySelector<HTMLElement>('li') ?? (track.firstElementChild as HTMLElement | null)
         const step = Number(btn.getAttribute('data-rail-step'))
         track.scrollBy({left: step * ((card?.offsetWidth ?? 300) + 12), behavior: reduceMotion ? 'auto' : 'smooth'})
       })

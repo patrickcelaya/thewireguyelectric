@@ -1,0 +1,71 @@
+---
+// Recent photos of our work: real jobs and the crew (no stock), each with its
+// caption. Six photos fill the round-5 mosaic (three columns flush at the foot that
+// drift as you arrive; three rows of two on tablets; the crew photos and the kitchen
+// full width on phones, captions under the photos); any other number sits in the same
+// three columns in turn. Projects add their main photo, captioned with their title.
+// Styles: styles/home.css "RECENT PHOTOS".
+import type {GallerySection, ImageRef} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {isExternal} from '../../lib/links'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import SectionHeader from '../ui/SectionHeader.astro'
+import TextLink from '../ui/TextLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  section: GallerySection
+  number?: number
+}
+
+/** The mosaic's cells, in photo order: column, cell shape, and the order on phones (o) and tablets (ot). */
+const MOSAIC = [
+  {col: 'a', cell: 'g-wide g-full', o: 1, ot: 1},
+  {col: 'a', cell: 'g-wide g-full g-kit', o: 5, ot: 5},
+  {col: 'b', cell: 'g-tall g-half', o: 2, ot: 3},
+  {col: 'b', cell: 'g-sq g-half', o: 3, ot: 4},
+  {col: 'c', cell: 'g-wide g-full', o: 4, ot: 2},
+  {col: 'c', cell: 'g-tall g-half g-sc', o: 6, ot: 6},
+]
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const photos: Array<{key: string; image: ImageRef; caption?: string}> = [
+  ...section.images.map((image) => ({key: image._key, image, caption: image.caption})),
+  ...section.projects.flatMap((p) => (p.mainImage ? [{key: p._id, image: p.mainImage, caption: p.title}] : [])),
+]
+const mosaic = photos.length === MOSAIC.length
+const cells = photos.map((photo, i) => ({...photo, ...(mosaic ? MOSAIC[i] : {col: 'abc'[i % 3], cell: 'g-half', o: i + 1, ot: i + 1})}))
+const columns = ['a', 'b', 'c'].map((col) => ({col, cells: cells.filter((c) => c.col === col)})).filter((c) => c.cells.length)
+const {cta} = section
+---
+
+{
+  photos.length > 0 && (
+    <section class="section work cv" {...sectionLabel(id, section.heading, section.eyebrow)} data-eager-photos>
+      {section.heading && (
+        <SectionHeader class="wrap" heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} number={number} size="display" intro={section.intro} reveal>
+          {cta && (
+            <TextLink slot="more" href={ctaHref(cta, redirects)} external={isExternal(cta.href)}>
+              {cta.label}
+            </TextLink>
+          )}
+        </SectionHeader>
+      )}
+      <div class="wrap mosaic">
+        {columns.map(({col, cells}) => (
+          <div class={`mosaic__col mosaic__col--${col}`}>
+            {cells.map((c) => (
+              <figure class={c.cell} style={`--o:${c.o};--ot:${c.ot}`}>
+                <SanityImage image={c.image} widths={[480, 828, 1200]} sizes="(max-width:899px) 50vw, 32vw" />
+                {c.caption && <figcaption>{c.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}

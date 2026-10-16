@@ -1,0 +1,125 @@
+---
+// The featured services as a mosaic of real photos, the words on the photos (a
+// feathered tint only under the words, so the photos stay bright; it ends below every
+// face). Eight cards fill the round-5 mosaic (two wide rows and a short one); any
+// other number sits in an even grid. Each card's title is its one link (stretched
+// over the card). Phones: a swipe row of whole cards with previous / next buttons.
+// The head links to every service and to each category of the cards shown.
+// Styles: core.css (.tile) and styles/home.css "SERVICES".
+import type {ServicesSection} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Accent from '../ui/Accent.astro'
+import TextLink from '../ui/TextLink.astro'
+import MiniBulb from '../ui/MiniBulb.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  section: ServicesSection
+  number?: number
+}
+
+/** The mosaic's slots, in card order: their place in the grid (styles/home.css) and how wide they are. */
+const MOSAIC = [
+  {slot: 't-panel', wide: true},
+  {slot: 't-ev', wide: false},
+  {slot: 't-trouble', wide: false},
+  {slot: 't-safety', wide: true},
+  {slot: 't-recessed', wide: true},
+  {slot: 't-custom', wide: false},
+  {slot: 't-ext', wide: false},
+  {slot: 't-com', wide: true},
+]
+const SIZES = {
+  wide: '(max-width:699px) 92vw, (max-width:1099px) 92vw, 50vw',
+  narrow: '(max-width:699px) 92vw, (max-width:1099px) 48vw, 25vw',
+}
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const cards = section.services
+const mosaic = cards.length === MOSAIC.length
+const categories = [...new Map(cards.flatMap((c) => (c.category ? [[c.category.slug, c.category] as const] : []))).values()]
+const icon = {prev: 'M15 5.5 8.5 12l6.5 6.5', next: 'm9 5.5 6.5 6.5L9 18.5'}
+---
+
+{
+  cards.length > 0 && (
+    <section class="section services cv" {...sectionLabel(id, section.heading, section.eyebrow)} data-rail>
+      <div class="wrap head">
+        <div>
+          {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
+          {section.heading && (
+            <h2 class="display" id={id} data-reveal>
+              <Accent text={section.heading} accent={section.headingAccent} />
+            </h2>
+          )}
+        </div>
+        <div class="intro">
+          {section.intro && <p>{section.intro}</p>}
+          {(section.cta || categories.length > 0) && (
+            <p class="svc-links">
+              {section.cta && (
+                <TextLink href={ctaHref(section.cta, redirects)} icon="go">
+                  {section.cta.label}
+                </TextLink>
+              )}{' '}
+              {categories.length > 0 && (
+                <span class="svc-links__by">
+                  <span>Browse</span>{' '}
+                  {categories.map((c, i) => (
+                    <>
+                      {i > 0 && (
+                        <>
+                          <span aria-hidden="true">·</span>{' '}
+                        </>
+                      )}
+                      <a class="link" href={`/services-categories/${c.slug}`}>
+                        {c.name}
+                      </a>{' '}
+                    </>
+                  ))}
+                </span>
+              )}
+            </p>
+          )}
+          <div class="rail-nav" role="group" aria-label="Services row">
+            <button class="mq-btn" type="button" data-rail-step="-1" aria-label="Previous services">
+              <svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d={icon.prev} /></svg>
+            </button>{' '}
+            <button class="mq-btn" type="button" data-rail-step="1" aria-label="Next services">
+              <svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d={icon.next} /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="wrap bento-wrap" data-rail-track>
+        <ul class:list={['bento', !mosaic && 'bento--even']} role="list">
+          {cards.map((card, i) => {
+            const place = mosaic ? MOSAIC[i] : undefined
+            return (
+              <li class:list={['tile', place?.slot]}>
+                <div class="tile__media">
+                  <SanityImage image={card.image} widths={[480, 720, 1080, 1440]} sizes={place?.wide === false ? SIZES.narrow : SIZES.wide} />
+                </div>
+                <div class="tile__body">
+                  <h3>
+                    <a href={`/services/${card.slug}`}>{card.title}</a>
+                  </h3>{' '}
+                  {card.text && <p>{card.text}</p>}{' '}
+                  <span class="tile__go" aria-hidden="true">
+                    Read more
+                  </span>
+                  <MiniBulb />
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    </section>
+  )
+}
