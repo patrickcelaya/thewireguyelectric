@@ -334,7 +334,8 @@ The top of the page. **It renders the page H1 from `page.heading`; it has no hea
 | headingAccent | **New.** Words of `page.heading` to highlight, e.g. "top choice" |
 | text | The paragraph under the H1 |
 | image | Photo, alt required |
-| primaryCta, **secondaryCta** | Buttons |
+| primaryCta, **secondaryCta** | Buttons. A button labelled "…Free Estimate…" always goes to the estimate page (`/estimate`, owner rule), whatever its stored href |
+| **ctaNotes** | **New (round 5).** One or two short phrases under the buttons, e.g. "Free estimates and flat-rate pricing." and "No pressure and no obligation." (string[]) |
 | showPhone | Adds a Call button (number from Site settings) |
 | **trustLine** | **New.** One credentials line, e.g. "Licensed, bonded, and insured · ROC #365306" |
 | showTrustBar | Show the standard trust strip with the hero |
@@ -372,18 +373,18 @@ The top of the page. **It renders the page H1 from `page.heading`; it has no hea
 | Field | Purpose |
 |---|---|
 | **eyebrow**, heading, **headingAccent**, intro | |
-| **locations** | Picked cities in order. Empty = all cities |
+| **locations** | Picked cities in order. Empty = all cities. (The design lists them in the valley map's route order) |
 | **includeHomeCity** | Default on. Lists Mesa first, linking to `/`, from `siteSettings.homeCity` |
 
 **Returns:**
-- `locations: LocationSummary[]` (`shortName`, `cardBlurb`, `neighborhoods`, `mainImage`, …);
+- `locations: LocationSummary[]` (`shortName`, `cardBlurb`, `neighborhoods`, `geo`, `mainImage`, …);
 - `homeCity` (or null).
 
 ### reviewsSection (Reviews): `ReviewsSection`
 
 | Field | Purpose |
 |---|---|
-| **eyebrow**, heading, **intro** | |
+| **eyebrow**, heading, **headingAccent** (round 5), **intro** | |
 | reviews | Picked reviews |
 | **location**, **service** | Filters used when nothing is picked |
 | **limit** | Default 6; 0 = all. Only limits the automatic list: picked reviews are all shown |
@@ -420,13 +421,13 @@ The top of the page. **It renders the page H1 from `page.heading`; it has no hea
 | Field | Purpose |
 |---|---|
 | **eyebrow**, heading, **intro** | |
-| **posts** | Picked posts |
+| **posts** | Picked posts. Each entry is a plain **reference** or a **`postCard`** `{post, label?, coverWords?, image?}` (round 5): the card's own topic pill, a few words set large on the cover ("Heat and breakers") and a real job photo for the cover (alt required). The post page keeps its own main image |
 | **category** | Only this category (ignored when posts are picked) |
 | **featuredFirst** | Featured posts ahead of newer ones |
 | limit | Default 3; **0 = all** (/blog lists every post). Only limits the automatic list: picked posts are all shown |
 | **cta** | |
 
-**Returns:** `posts: PostSummary[]`: every picked post in order, else the newest posts with the limit applied.
+**Returns:** `posts: PostCard[]`: every picked post in order (with `label`, `coverWords` and `cover` from a `postCard`), else the newest posts with the limit applied.
 
 ### jobsSection (Job openings): `JobsSection`
 
@@ -478,6 +479,7 @@ Reasons to choose us, or a checklist of what we do.
 |---|---|
 | eyebrow, heading, headingAccent, intro | e.g. "Electrician solutions tailored to your needs" (accent "your needs") |
 | style | `cards` (title, text, optional link) or `checklist` (short items with a check mark). The one presentational switch |
+| **image** | **Round 5.** Optional background photo (alt required), set behind the checklist in a warm tint. No people in it: words sit on top |
 | siteList | Optional: `valueProps` or `capabilities`. Uses the shared list from Site settings instead of `items`, so copy stays identical everywhere |
 | items | featureItem[] |
 | cta | |
@@ -490,10 +492,13 @@ A paragraph introducing the people, e.g. "At The Wire Guy Electric, Steven leads
 
 | Field | Purpose |
 |---|---|
-| eyebrow | |
+| eyebrow, **heading**, **headingAccent** | Heading fields are round 5, e.g. "The family behind the trucks." |
+| **showSummary** | **Round 5.** Start with one answer-first sentence about the business, written from Site settings at render time (name, ROC licence, home city, year founded), so nothing is typed twice |
 | body | textWithMentions. Mark each name with a **Team member** annotation |
+| **image** | **Round 5.** One real photo of the crew at work (alt required, optional caption shown on the photo). Not a portrait grid |
 | people | Optional photo row. Empty = the people mentioned |
 | cta | e.g. "About Us" → /about-us |
+| **secondaryCta** | **Round 5.** A text link beside the button, e.g. "Meet the team" → /our-team |
 
 **Returns:**
 - `body` with each `teamMemberMention` mark definition carrying a resolved `member` `{_id, name, role, slug, photo}`. Render the marked text as a link to /our-team with the person's avatar.
@@ -503,7 +508,9 @@ A paragraph introducing the people, e.g. "At The Wire Guy Electric, Steven leads
 
 A statement from the team, e.g. the owner's quote on /our-team.
 
-`eyebrow` ("Since 2017"), `heading` (H2), `subheading` (H3), `quote` (required), `person` (ref teamMember: name, role, photo shown), `image` (alt required).
+`eyebrow` ("Since 2017"), `heading` (H2), `subheading` (H3), `quote` (required), `person` (ref teamMember: name, role, photo shown), **`review`** (round 5: ref review, instead of a person: a customer's words pulled out of their review; the quote must be an excerpt, word for word, which Studio checks; the reviewer's name, the review date and service and the link to our reviews are shown), `image` (alt required).
+
+**Returns:** `person` (TeamMemberSummary) and `review` (Review), resolved.
 
 ### gallerySection (Photo gallery, new): `GallerySection`
 
@@ -538,9 +545,9 @@ Office cards from `siteSettings.addresses`.
 
 ### processStepsSection (Process steps, new): `ProcessStepsSection`
 
-How working with us goes. Only steps the business really follows, from live copy: free estimate, flat-rate quote, permit and inspection, 2-year warranty.
+How working with us goes. Only steps the business really follows, from live copy: call or send the form, free estimate, flat-rate quote (and, on service and city pages, permit and inspection). Never a warranty tag (owner, round 2), and no permit step on the homepage (owner, round 5).
 
-`eyebrow`, `heading`, `intro`, `steps: processStep[]` `{title, text, icon}` (Studio warns under 2), `cta`. Render as an ordered list.
+`eyebrow`, `heading`, **`headingAccent`** (round 5), `intro`, `steps: processStep[]` `{title, text, icon, showContact}` (Studio warns under 2), `cta`. Render as an ordered list. **`showContact`** (round 5) adds the phone number and office hours from Site settings and a link to the estimate page under that step, so no step stores its own copy of the NAP.
 
 ### priceGuideSection (Price guide, new): `PriceGuideSection`
 
@@ -618,6 +625,7 @@ The content modules in `scripts/migrate/content/*.mjs` write NDJSON directly, so
 | `trustBarSection.items[]` | `trustItem` |
 | `gallerySection.images[]` | `galleryImage` (an image: `asset` or `_sanityAsset: "image@<url>"`, plus `alt`) |
 | `processStepsSection.steps[]` | `processStep` |
+| `postsSection.posts[]` | `reference` (to post) or `postCard` |
 | `priceGuideSection.rows[]` | `priceRow` |
 | `highlightsSection.checklist[]` | `highlightItem` |
 | `service.atAGlance[]` | `glanceFact` |

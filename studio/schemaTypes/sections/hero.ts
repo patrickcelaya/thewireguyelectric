@@ -25,6 +25,15 @@ export const heroSection = defineArrayMember({
     defineField({name: 'primaryCta', title: 'Main button', type: 'linkItem', description: 'e.g. "Get a Free Estimate" → /contact-us'}),
     defineField({name: 'secondaryCta', title: 'Second button', type: 'linkItem', description: 'Optional, e.g. "View All Services" → /services'}),
     defineField({
+      name: 'ctaNotes',
+      title: 'Under the buttons',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      description:
+        'Optional. One or two short phrases shown under the buttons, e.g. "Free estimates and flat-rate pricing." and "No pressure and no obligation." Only promise what the office really does.',
+      validation: (rule) => rule.max(3).warning('Two short phrases read best under the buttons'),
+    }),
+    defineField({
       name: 'showPhone',
       title: 'Show call button',
       type: 'boolean',

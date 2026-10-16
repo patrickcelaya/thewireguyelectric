@@ -5,6 +5,7 @@ import {CheckmarkCircleIcon} from '@sanity/icons/CheckmarkCircle'
 import {
   FAQ_TOPICS,
   eyebrowField,
+  headingAccentField,
   iconField,
   sectionHeadingField,
   sectionImageField,
@@ -23,6 +24,7 @@ export const reviewsSection = defineArrayMember({
   fields: [
     eyebrowField,
     sectionHeadingField(),
+    headingAccentField(),
     defineField({name: 'intro', type: 'text', rows: 2}),
     defineField({
       name: 'reviews',
@@ -40,7 +42,7 @@ export const reviewsSection = defineArrayMember({
       description: 'Most reviews to show. 0 = all. Ignored when reviews are picked (every picked review is shown).',
       validation: (rule) => rule.min(0).integer(),
     }),
-    defineField({name: 'cta', title: 'Button', type: 'linkItem', description: 'e.g. "Get a Free Estimate Now" → /contact-us'}),
+    defineField({name: 'cta', title: 'Button', type: 'linkItem', description: 'e.g. "Get a Free Estimate Now" → /estimate'}),
   ],
   preview: {
     select: {title: 'heading', reviews: 'reviews', location: 'location.name', service: 'service.name'},

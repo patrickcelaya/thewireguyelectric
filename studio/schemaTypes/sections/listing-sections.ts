@@ -129,8 +129,32 @@ export const postsSection = defineArrayMember({
     defineField({
       name: 'posts',
       type: 'array',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'post'}]})],
-      description: 'Optional. Pick posts in the order to show them. Leave empty to show the newest posts.',
+      of: [
+        defineArrayMember({type: 'reference', to: [{type: 'post'}]}),
+        defineArrayMember({
+          name: 'postCard',
+          title: 'Post with its own cover',
+          type: 'object',
+          icon: DocumentTextIcon,
+          fields: [
+            defineField({name: 'post', type: 'reference', to: [{type: 'post'}], validation: (rule) => rule.required()}),
+            defineField({name: 'label', title: 'Topic label', type: 'string', description: 'Optional pill on the cover, e.g. "Troubleshooting". Defaults to the post\'s category.'}),
+            defineField({
+              name: 'coverWords',
+              title: 'Cover words',
+              type: 'string',
+              description: 'Optional. Two or three words set large on the cover, e.g. "Heat and breakers". The post title stays the link below.',
+              validation: (rule) => rule.max(28).warning('Keep the cover words short'),
+            }),
+            sectionImageField('image', 'Cover photo', 'Optional. A real job photo for this card, replacing the post\'s main image here (the post page keeps its own).'),
+          ],
+          preview: {
+            select: {title: 'post.title', words: 'coverWords', media: 'image', postMedia: 'post.mainImage'},
+            prepare: ({title, words, media, postMedia}) => ({title, subtitle: words ? `Cover: ${words}` : 'Own cover', media: media ?? postMedia}),
+          },
+        }),
+      ],
+      description: 'Optional. Pick posts in the order to show them. Use "Post with its own cover" for a card with a real job photo or cover words. Leave empty to show the newest posts.',
       validation: (rule) => rule.unique(),
     }),
     defineField({name: 'category', type: 'reference', to: [{type: 'postCategory'}], description: 'Only posts in this category. Ignored when posts are picked.'}),

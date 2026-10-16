@@ -10,12 +10,15 @@ import {
   eyebrowField,
   headingAccentField,
   iconField,
+  imageField,
   sectionHeadingField,
   sectionImageField,
 } from '../shared/fields'
 import {countLabel, sectionPreview} from './preview'
 
 // Editorial sections: copy, images, lists of reasons, steps and quotes.
+
+const API_VERSION = '2026-10-01'
 
 export const richTextSection = defineArrayMember({
   name: 'richTextSection',
@@ -96,9 +99,14 @@ export const featureGridSection = defineArrayMember({
           .warning(),
     }),
     defineField({name: 'cta', title: 'Button', type: 'linkItem'}),
+    sectionImageField(
+      'image',
+      'Background photo',
+      'Optional. A real photo set behind the section in a warm tint (the checklist style uses it), e.g. tools on a coil of wire. Keep people out of it: words sit on top.',
+    ),
   ],
   preview: {
-    select: {title: 'heading', style: 'style', siteList: 'siteList', items: 'items'},
+    select: {title: 'heading', style: 'style', siteList: 'siteList', items: 'items', media: 'image'},
     prepare: sectionPreview('Features', (v) => (v.siteList ? `shared ${v.siteList}` : [v.style, countLabel(v.items, 'item')].filter(Boolean).join(', '))),
   },
 })
@@ -150,10 +158,11 @@ export const processStepsSection = defineArrayMember({
   title: 'Process steps',
   type: 'object',
   icon: OlistIcon,
-  description: 'How working with us goes, step by step (free estimate → flat-rate quote → permit → warranty). Only describe steps the business really follows.',
+  description: 'How working with us goes, step by step (call or send the form → free estimate → flat-rate quote). Only describe steps the business really follows.',
   fields: [
     eyebrowField,
     sectionHeadingField(),
+    headingAccentField(),
     defineField({name: 'intro', type: 'text', rows: 2}),
     defineField({
       name: 'steps',
@@ -167,6 +176,13 @@ export const processStepsSection = defineArrayMember({
           fields: [
             defineField({name: 'title', type: 'string', description: 'e.g. "Free estimate"', validation: (rule) => rule.required()}),
             defineField({name: 'text', type: 'text', rows: 2}),
+            defineField({
+              name: 'showContact',
+              title: 'Show how to reach us',
+              type: 'boolean',
+              initialValue: false,
+              description: 'Adds the phone number and office hours from Site settings, and a link to the estimate form, under this step (e.g. on "Call or send the form").',
+            }),
             iconField(),
           ],
           preview: {select: {title: 'title', subtitle: 'text'}},
@@ -184,18 +200,53 @@ export const quoteSection = defineArrayMember({
   title: 'Quote',
   type: 'object',
   icon: DoubleQuoteIcon,
-  description: 'A statement from someone on the team, e.g. the owner\'s "We care about doing honest work for honest prices".',
+  description:
+    'A statement from someone on the team (e.g. the owner\'s "We care about doing honest work for honest prices"), or a customer\'s words pulled from one of their reviews.',
   fields: [
     eyebrowField,
     sectionHeadingField(),
     defineField({name: 'subheading', type: 'string', description: 'Optional second line, rendered as an H3.'}),
-    defineField({name: 'quote', type: 'text', rows: 4, description: 'Their words, without quotation marks.', validation: (rule) => rule.required()}),
-    defineField({name: 'person', type: 'reference', to: [{type: 'teamMember'}], description: 'Who said it. Their name, role and photo are shown.'}),
+    defineField({
+      name: 'quote',
+      type: 'text',
+      rows: 4,
+      description: 'Their words, without quotation marks. For a review, copy a short excerpt word for word.',
+      validation: (rule) => [
+        rule.required(),
+        rule
+          .custom(async (quote, context) => {
+            const ref = (context.parent as {review?: {_ref?: string}} | undefined)?.review?._ref
+            if (!quote || !ref) return true
+            const text = await context.getClient({apiVersion: API_VERSION}).fetch<string | null>('*[_id == $id][0].text', {id: ref})
+            const flat = (s: string) => s.replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ').trim().toLowerCase()
+            return !text || flat(text).includes(flat(quote)) ? true : 'The quote is not word for word from the review'
+          })
+          .warning(),
+      ],
+    }),
+    defineField({
+      name: 'person',
+      type: 'reference',
+      to: [{type: 'teamMember'}],
+      description: 'Who said it, when it is someone on the team. Their name, role and photo are shown.',
+      hidden: ({parent}) => Boolean((parent as {review?: unknown} | undefined)?.review),
+    }),
+    defineField({
+      name: 'review',
+      type: 'reference',
+      to: [{type: 'review'}],
+      description: 'Or the customer review the quote comes from. Their name, the review date and service, and a link to our reviews are shown.',
+      hidden: ({parent}) => Boolean((parent as {person?: unknown} | undefined)?.person),
+    }),
     sectionImageField(),
   ],
   preview: {
-    select: {title: 'heading', quote: 'quote', person: 'person.name', media: 'image'},
-    prepare: (value) => sectionPreview('Quote', (v) => v.person as string | undefined)({...value, title: (value.title as string | undefined) || (value.quote as string | undefined)?.slice(0, 60)}),
+    select: {title: 'heading', quote: 'quote', person: 'person.name', reviewer: 'review.authorName', media: 'image'},
+    prepare: (value) =>
+      sectionPreview('Quote', (v) => (v.person ?? v.reviewer) as string | undefined)({
+        ...value,
+        title: (value.title as string | undefined) || (value.quote as string | undefined)?.slice(0, 60),
+      }),
   },
 })
 
@@ -204,10 +255,25 @@ export const teamIntroSection = defineArrayMember({
   title: 'Team intro',
   type: 'object',
   icon: UsersIcon,
-  description: 'A short paragraph introducing the people behind the business. Mark names as "Team member" so they show with their photo and link to /our-team.',
+  description: 'A short paragraph introducing the people behind the business. Mark names as "Team member" so they link to /our-team.',
   fields: [
     eyebrowField,
+    sectionHeadingField(),
+    headingAccentField(),
+    defineField({
+      name: 'showSummary',
+      title: 'Start with the business in one sentence',
+      type: 'boolean',
+      initialValue: false,
+      description:
+        'Adds one answer-first sentence above the text: who the business is, its license, its home city and the year it was founded. The facts come from Site settings, so nothing is typed twice.',
+    }),
     defineField({name: 'body', type: 'textWithMentions', validation: (rule) => rule.required()}),
+    imageField('image', 'Photo', {
+      altRequired: 'error',
+      caption: true,
+      description: 'Optional. One real photo of the crew at work (no portrait grid). The caption sits on the photo.',
+    }),
     defineField({
       name: 'people',
       type: 'array',
@@ -216,13 +282,17 @@ export const teamIntroSection = defineArrayMember({
       validation: (rule) => rule.unique(),
     }),
     defineField({name: 'cta', title: 'Button', type: 'linkItem', description: 'e.g. "About Us" → /about-us'}),
+    defineField({name: 'secondaryCta', title: 'Text link', type: 'linkItem', description: 'Optional, beside the button, e.g. "Meet the team" → /our-team'}),
   ],
   preview: {
-    select: {body: 'body', eyebrow: 'eyebrow'},
+    select: {body: 'body', eyebrow: 'eyebrow', heading: 'heading', media: 'image'},
     prepare: (value) => {
       const blocks = (value.body as Array<{children?: Array<{text?: string}>}> | undefined) ?? []
       const text = blocks.flatMap((b) => b.children ?? []).map((c) => c.text ?? '').join('')
-      return sectionPreview('Team intro')({title: (value.eyebrow as string | undefined) || text.slice(0, 60)})
+      return sectionPreview('Team intro')({
+        title: (value.heading as string | undefined) || (value.eyebrow as string | undefined) || text.slice(0, 60),
+        media: value.media,
+      })
     },
   },
 })

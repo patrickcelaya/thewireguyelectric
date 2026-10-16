@@ -242,6 +242,7 @@ export interface LocationSummary {
   description?: string
   neighborhoods?: string[]
   mainImage?: ImageRef | null
+  geo?: {lat: number; lng: number} | null
 }
 
 export interface TeamMemberSummary {
@@ -394,6 +395,8 @@ export interface HeroSection extends SectionBase {
   image?: ImageRef | null
   primaryCta?: LinkItem | null
   secondaryCta?: LinkItem | null
+  /** Short phrases under the buttons ("Free estimates and flat-rate pricing."). */
+  ctaNotes?: string[] | null
   showPhone?: boolean
   trustLine?: string
   showTrustBar?: boolean
@@ -457,6 +460,7 @@ export interface ReviewsSection extends SectionBase {
   _type: 'reviewsSection'
   eyebrow?: string
   heading?: string
+  headingAccent?: string
   intro?: string
   /** Picked reviews (all of them, in order), else reviews matching the city/service filters, featured first, with `limit` applied (default 6, 0 = all). */
   reviews: Review[]
@@ -496,13 +500,24 @@ export interface TeamSection extends SectionBase {
   cta?: LinkItem | null
 }
 
+/** A post as a card in a section: the summary plus the card's own cover, when the editor gave it one. */
+export interface PostCard extends PostSummary {
+  _key?: string
+  /** The topic pill on the cover (else the post's category). */
+  label?: string
+  /** A few words set large on the cover. */
+  coverWords?: string
+  /** A cover photo for this card (else the post's main image). */
+  cover?: ImageRef | null
+}
+
 export interface PostsSection extends SectionBase {
   _type: 'postsSection'
   eyebrow?: string
   heading?: string
   intro?: string
   /** Picked posts (all of them, in order), else the newest posts (in `category`, featured first when asked) with `limit` applied (default 3, 0 = all). */
-  posts: PostSummary[]
+  posts: PostCard[]
   category?: NamedLink | null
   featuredFirst?: boolean
   limit?: number
@@ -582,6 +597,8 @@ export interface FeatureGridSection extends SectionBase {
   /** The section's items, or the shared list from Site settings when siteList is set. */
   items: FeatureItem[]
   cta?: LinkItem | null
+  /** Background photo (the checklist style). */
+  image?: ImageRef | null
 }
 
 /** A teamMemberMention mark definition with its member resolved. */
@@ -594,11 +611,19 @@ export interface TeamMemberMention {
 export interface TeamIntroSection extends SectionBase {
   _type: 'teamIntroSection'
   eyebrow?: string
+  heading?: string
+  headingAccent?: string
+  /** Start with one sentence about the business, written from Site settings (lib/site.ts businessSummary). */
+  showSummary?: boolean
   /** Portable Text; markDefs of _type "teamMemberMention" carry a resolved `member`. */
   body: PortableTextValue
+  /** One photo of the crew at work (alt and caption). */
+  image?: ImageRef | null
   /** Picked people, else the people mentioned in the text (deduplicated, in order). */
   people: TeamMemberSummary[]
   cta?: LinkItem | null
+  /** A text link beside the button. */
+  secondaryCta?: LinkItem | null
 }
 
 export interface QuoteSection extends SectionBase {
@@ -608,6 +633,8 @@ export interface QuoteSection extends SectionBase {
   subheading?: string
   quote: string
   person?: TeamMemberSummary | null
+  /** The customer review the quote is an excerpt of (instead of a team member). */
+  review?: Review | null
   image?: ImageRef | null
 }
 
@@ -641,6 +668,8 @@ export interface ProcessStep {
   _key: string
   title: string
   text?: string
+  /** Add the phone number and office hours from Site settings, and the estimate link. */
+  showContact?: boolean
   icon?: IconName
 }
 
@@ -648,6 +677,7 @@ export interface ProcessStepsSection extends SectionBase {
   _type: 'processStepsSection'
   eyebrow?: string
   heading?: string
+  headingAccent?: string
   intro?: string
   steps: ProcessStep[]
   cta?: LinkItem | null

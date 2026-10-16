@@ -12,6 +12,7 @@ import type {
   PageSection,
   PostCategoryDoc,
   PostDoc,
+  PostCard,
   PostSummary,
   ProjectSummary,
   ResolvedTrustItem,
@@ -113,6 +114,7 @@ const LOCATION_CARD = /* groq */ `{
   cardBlurb,
   description,
   neighborhoods,
+  geo,
   "mainImage": mainImage${IMAGE}
 }`
 
@@ -237,7 +239,11 @@ const SECTIONS = /* groq */ `sections[]{
     "category": category->${NAMED_LINK},
     "picked": count(coalesce(posts, [])) > 0,
     "posts": coalesce(select(
-      count(posts) > 0 => posts[]->${POST_CARD},
+      count(posts) > 0 => posts[]{
+        _key,
+        _type == "reference" => @->${POST_CARD},
+        _type == "postCard" => {...post->${POST_CARD}, label, coverWords, "cover": image${IMAGE}}
+      },
       featuredFirst == true => *[_type == "post" && defined(slug.current) && defined(publishedAt) && (!defined(^.category) || category._ref == ^.category._ref)]
         | order(coalesce(featured, false) desc, publishedAt desc)${POST_CARD},
       *[_type == "post" && defined(slug.current) && defined(publishedAt) && (!defined(^.category) || category._ref == ^.category._ref)]
@@ -252,6 +258,7 @@ const SECTIONS = /* groq */ `sections[]{
   },
   _type == "trustBarSection" => {"items": coalesce(items, [])},
   _type == "featureGridSection" => {
+    "image": image${IMAGE},
     "items": coalesce(select(
       siteList == "valueProps" => ${SITE_SETTINGS}.valueProps[]${FEATURE_ITEM},
       siteList == "capabilities" => ${SITE_SETTINGS}.capabilities[]${FEATURE_ITEM},
@@ -259,6 +266,7 @@ const SECTIONS = /* groq */ `sections[]{
     ), [])
   },
   _type == "teamIntroSection" => {
+    "image": image${IMAGE},
     "body": coalesce(body[]{
       ...,
       markDefs[]{
@@ -273,6 +281,7 @@ const SECTIONS = /* groq */ `sections[]{
   },
   _type == "quoteSection" => {
     "person": person->${TEAM_CARD},
+    "review": review->${REVIEW},
     "image": image${IMAGE}
   },
   _type == "gallerySection" => {
@@ -428,7 +437,7 @@ function normalizeSections(sections: PageSection[] | null | undefined): PageSect
         return {...section, members: present<TeamMember>(section.members)}
       case 'postsSection': {
         const {picked, ...rest} = section as RawPicked<typeof section>
-        const posts = present<PostSummary>(section.posts)
+        const posts = present<PostCard>(section.posts)
         return {...rest, posts: picked ? posts : applyLimit(posts, section.limit, DEFAULT_LIMITS.postsSection)}
       }
       case 'jobsSection':

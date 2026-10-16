@@ -169,6 +169,7 @@ function resolveSection(c, s) {
     case 'heroSection':
       c.linkItem(s.primaryCta)
       c.linkItem(s.secondaryCta)
+      s.ctaNotes?.forEach(c.text)
       for (const q of s.reviewSnippets ?? []) {
         c.text(q.text)
         const review = deref(q.review)
@@ -259,7 +260,8 @@ function resolveSection(c, s) {
     }
     case 'postsSection': {
       let posts
-      if (s.posts?.length) posts = s.posts.map(deref).filter(Boolean)
+      // a picked post is a reference, or a postCard (the post plus its own cover)
+      if (s.posts?.length) posts = s.posts.map((item) => deref(item._type === 'postCard' ? item.post : item)).filter(Boolean)
       else {
         const list = ofType('post').filter((p) => p.slug?.current && p.publishedAt && (!s.category || p.category?._ref === s.category._ref))
         posts = sortBy(
@@ -320,6 +322,8 @@ function resolveSection(c, s) {
     }
     case 'teamIntroSection':
       c.portable(s.body)
+      c.linkItem(s.secondaryCta)
+      c.text(s.image?.caption)
       for (const p of (s.people ?? []).map(deref).filter(Boolean)) c.text(p.name)
       break
     case 'quoteSection': {
@@ -328,6 +332,8 @@ function resolveSection(c, s) {
         c.text(person.name)
         c.text(person.role)
       }
+      const review = deref(s.review)
+      if (review) c.text(review.authorName)
       break
     }
     case 'gallerySection':
