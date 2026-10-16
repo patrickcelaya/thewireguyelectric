@@ -1,0 +1,45 @@
+---
+// The head of a category page (services or blog topics): the type-led hero of /estimate
+// and the 404 on bone, with the breadcrumb, the eyebrow, the H1 (the category's name),
+// the lede, the estimate and call buttons, the rating and licence lines, and the bulb
+// drawn by its wire on the right. Styles: styles/inner.css (.ehero) and styles/cms.css.
+import type {SiteSettings} from '../../lib/types'
+import type {Crumb} from '../../lib/seo'
+import Breadcrumbs from '../ui/Breadcrumbs.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import CtaButtons from '../ui/CtaButtons.astro'
+import RatingLine from '../ui/RatingLine.astro'
+import RocLink from '../ui/RocLink.astro'
+import Bulb from '../ui/Bulb.astro'
+
+interface Props {
+  settings: SiteSettings
+  crumbs: Crumb[]
+  eyebrow: string
+  heading: string
+  /** The lede under the H1 (plain text); or pass rich text in the default slot. */
+  lede?: string
+}
+
+const {settings, crumbs, eyebrow, heading, lede} = Astro.props
+---
+
+<section class="ehero chero" aria-labelledby="hero-h" data-bulb-field>
+  <div class="wrap">
+    <Breadcrumbs crumbs={crumbs} />
+    <div class="ehero__grid">
+      <div class="ehero__copy">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h1 id="hero-h" class="display">{heading}</h1>
+        {lede && <p class="ehero__lede">{lede}</p>}
+        {Astro.slots.has('default') && <div class="ehero__lede chero__rich"><slot /></div>}
+        <CtaButtons settings={settings} class="chero__btns" />
+        <div class="chero__proof">
+          <RatingLine settings={settings} />
+          <p class="chero__roc"><RocLink settings={settings} /></p>
+        </div>
+      </div>
+      <Bulb lead="right" class="chero__bulb" />
+    </div>
+  </div>
+</section>

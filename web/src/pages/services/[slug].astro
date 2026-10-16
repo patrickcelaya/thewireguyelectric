@@ -1,9 +1,34 @@
 ---
-import WebflowLayout from '../../layouts/WebflowLayout.astro'
-import {getService, getServices, getSettings} from '../../lib/queries'
-import {renderService} from '../../lib/legacy'
+// A service page (round-5 Panels mockup), built from the service document: the copper
+// hero (the crew's own photo when there is one), the short version (the service's
+// confirmed facts, then the standard ones), the warning signs when the body lists them,
+// the body verbatim beside the contact card, real reviews (the service's own first),
+// questions (the service's, then the ones /faq tags with it, then the three the live
+// template carried) with guides, related services, the valley map and the estimate band.
+// No price module: a price shows only where the body or an FAQ answer already states it.
+// Title, description, canonical, H1 and crumbs are unchanged from the live site.
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import '../../styles/inner.css'
+import '../../styles/cms.css'
+import ServiceHero from '../../components/sections/ServiceHero.astro'
+import ServiceGlance from '../../components/sections/ServiceGlance.astro'
+import WarningSigns from '../../components/sections/WarningSigns.astro'
+import LongForm from '../../components/sections/LongForm.astro'
+import ContactCard from '../../components/sections/ContactCard.astro'
+import ReviewsStatic from '../../components/sections/ReviewsStatic.astro'
+import AnswersBand from '../../components/sections/AnswersBand.astro'
+import ServiceCards from '../../components/sections/ServiceCards.astro'
+import Valley from '../../components/sections/Valley.astro'
+import CtaBand from '../../components/sections/CtaBand.astro'
+import SectionHeader from '../../components/ui/SectionHeader.astro'
+import TextLink from '../../components/ui/TextLink.astro'
+import {getFaqs, getLocations, getPostIndex, getReviews, getService, getServiceFaqs, getServices, getSettings} from '../../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
 import {faqNode, serviceNode, webPageNode} from '../../lib/schema'
+import {absoluteUrl} from '../../lib/seo'
+import {serviceAreaCities} from '../../lib/cities'
+import {imagePreload} from '../../lib/image'
+import {SERVICE_HERO_IMAGE, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, serviceGuides} from '../../lib/cms'
 
 export async function getStaticPaths() {
   return (await getServices()).map((s) => ({params: {slug: s.slug}}))
@@ -11,6 +36,14 @@ export async function getStaticPaths() {
 
 const [settings, service] = await Promise.all([getSettings(), getService(Astro.params.slug!)])
 if (!service) throw new Error(`service ${Astro.params.slug} not found`)
+const [services, locations, allReviews, taggedFaqs, commonFaqs, postIndex] = await Promise.all([
+  getServices(),
+  getLocations(),
+  getReviews(),
+  getServiceFaqs(service._id),
+  getFaqs('General'),
+  getPostIndex(),
+])
 const path = `/services/${service.slug}`
 // Same template Webflow used: "{name} in Mesa, AZ | The Wire Guy"
 const title = resolveTitle(service.seo, `${service.name} in Mesa, AZ | The Wire Guy`)
@@ -21,11 +54,99 @@ const crumbs = [
   ...(service.category ? [{name: service.category.name, path: `/services-categories/${service.category.slug}`}] : []),
   {name: service.name, path},
 ]
+const heading = service.heading ?? service.name
+
+const {signs, rest: body} = liftSigns(service.body)
+const seed = Math.max(0, services.findIndex((s) => s.slug === service.slug))
+const {reviews, local} = pickReviews(service.reviews ?? [], allReviews.filter((r) => !r.serviceSlug), seed)
+const reviewsIntro =
+  local === reviews.length && local > 0
+    ? `Google reviews from customers we did ${service.name.toLowerCase()} work for, shown word for word.`
+    : 'Google reviews from customers across the Phoenix valley, shown word for word.'
+const faqs = mergeFaqs([service.faqs, taggedFaqs, commonFaqs])
+const guides = guideCards(serviceGuides(service.relatedPosts, service.slug, postIndex), postIndex, services, seed)
+const related = service.relatedServices ?? []
+const cities = serviceAreaCities(settings.homeCity, locations)
+
+// chapter numbers, in page order, for the sections that have content
+let chapter = 0
+const next = () => ++chapter
+const n = {
+  glance: next(),
+  signs: signs ? next() : undefined,
+  reviews: reviews.length ? next() : undefined,
+  faq: faqs.length ? next() : undefined,
+  guides: guides.length ? next() : undefined,
+  related: related.length ? next() : undefined,
+  areas: next(),
+  cta: next(),
+}
+
+const staging = heroStaging(service.mainImage)
+const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
+const preload = hero && imagePreload(service.mainImage, [...hero.widths], hero.sizes)
+const serviceId = `${absoluteUrl(path)}#service`
 ---
 
-<WebflowLayout
+<SiteLayout
   meta={{title, description, path, ogImage: resolveOgImage(settings, service.seo?.ogImage, service.mainImage), noIndex: service.seo?.noIndex, breadcrumbs: crumbs}}
-  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), serviceNode(service, settings, description), faqNode(path, service.faqs ?? [])]}
+  schema={[
+    {...webPageNode({path, title, description, breadcrumbs: crumbs}), mainEntity: {'@id': serviceId}},
+    serviceNode(service, settings, description),
+    faqNode(path, faqs),
+  ]}
+  bodyClass="inner"
 >
-  <Fragment set:html={renderService(service)} />
-</WebflowLayout>
+  <Fragment slot="head">
+    {preload && <link rel="preload" as="image" imagesrcset={preload.imagesrcset} imagesizes={preload.imagesizes} fetchpriority="high" />}
+  </Fragment>
+
+  <ServiceHero service={service} heading={heading} settings={settings} crumbs={crumbs} />
+  <ServiceGlance service={service} settings={settings} number={n.glance} />
+  {signs && <WarningSigns signs={signs} number={n.signs} />}
+
+  <LongForm body={body} label={heading} variant="service">
+    <ContactCard slot="aside" settings={settings} />
+  </LongForm>
+
+  <ReviewsStatic settings={settings} reviews={reviews} heading="What our customers say" intro={reviewsIntro} number={n.reviews} />
+
+  <AnswersBand
+    faqs={faqs}
+    faqHeading="Questions, answered"
+    faqIntro="From our FAQ, written by the electricians who do the work."
+    posts={guides}
+    guidesHeading="Guides from our blog"
+    guidesIntro="Before you call, read up on the details, from licensed electricians."
+    numbers={{faq: n.faq, guides: n.guides}}
+  />
+
+  {
+    related.length > 0 && (
+      <section class="section isvc cv" aria-labelledby="rel-h">
+        <div class="wrap">
+          <SectionHeader eyebrow="Related services" number={n.related} heading="More ways we can help" id="rel-h">
+            <Fragment slot="more">
+              <TextLink href={service.category ? `/services-categories/${service.category.slug}` : '/services'} icon="go">
+                {service.category ? `All ${service.category.name.toLowerCase()} services` : 'View All Services'}
+              </TextLink>
+              {service.category?.slug === 'commercial' && (
+                <>
+                  {' '}
+                  <TextLink href="/commercial-electrician" icon="go">
+                    Commercial electricians
+                  </TextLink>
+                </>
+              )}
+            </Fragment>
+          </SectionHeader>
+          <ServiceCards services={related} maxCards={3} />
+        </div>
+      </section>
+    )
+  }
+
+  <Valley settings={settings} cities={cities} variant="inner" heading={`${heading} across the valley`} number={n.areas} />
+
+  <CtaBand settings={settings} number={n.cta} />
+</SiteLayout>

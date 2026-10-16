@@ -1,9 +1,32 @@
 ---
-import WebflowLayout from '../../layouts/WebflowLayout.astro'
-import {getPost, getPosts, getSettings} from '../../lib/queries'
-import {renderPost} from '../../lib/legacy'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+// A blog post (the site's biggest traffic tier), as a premium editorial article: the
+// head (breadcrumb, topic, H1, byline and dates) beside a real photo as the cover (the
+// post's own when it is the crew's; stock is never shown), the quick answer with the
+// early link to the post's hub service, the body verbatim (tables, figures, videos,
+// CTA blocks) beside "In this article" and the contact card, a local link when the post
+// is about one city, questions and related articles, the services the post mentions,
+// previous and next posts, and the estimate band.
+// Title, description, canonical, H1 and crumbs are unchanged from the live site.
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import '../../styles/inner.css'
+import '../../styles/cms.css'
+import '../../styles/post.css'
+import PostHeader from '../../components/sections/PostHeader.astro'
+import QuickAnswer from '../../components/sections/QuickAnswer.astro'
+import ArticleToc from '../../components/sections/ArticleToc.astro'
+import ContactCard from '../../components/sections/ContactCard.astro'
+import AnswersBand from '../../components/sections/AnswersBand.astro'
+import ServiceCards from '../../components/sections/ServiceCards.astro'
+import PostNav from '../../components/sections/PostNav.astro'
+import CtaBand from '../../components/sections/CtaBand.astro'
+import SectionHeader from '../../components/ui/SectionHeader.astro'
+import TextLink from '../../components/ui/TextLink.astro'
+import {getLocations, getPost, getPostIndex, getPosts, getRedirectMap, getServiceFaqs, getServices, getSettings} from '../../lib/queries'
+import {absoluteUrl, resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
 import {blogPostingNode, faqNode, webPageNode} from '../../lib/schema'
+import {serviceAreaCities} from '../../lib/cities'
+import {imageDimensions, imagePreload, imageUrl} from '../../lib/image'
+import {POST_COVER, articleHtml, guideCards, mergeFaqs, postCity, postCover, postTopic, readingMinutes, withoutTitleHeading} from '../../lib/cms'
 
 export async function getStaticPaths() {
   return (await getPosts()).map((p) => ({params: {slug: p.slug}}))
@@ -11,14 +34,48 @@ export async function getStaticPaths() {
 
 const [settings, post] = await Promise.all([getSettings(), getPost(Astro.params.slug!)])
 if (!post) throw new Error(`post ${Astro.params.slug} not found`)
+const [posts, postIndex, services, locations, redirects] = await Promise.all([getPosts(), getPostIndex(), getServices(), getLocations(), getRedirectMap()])
 const path = `/blog-posts/${post.slug}`
 // Same template Webflow used: "{name} | The Wire Guy Electric"
 const title = resolveTitle(post.seo, `${post.title} | ${settings.businessName}`)
 const description = resolveDescription(post.seo, post.excerpt)
 const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}, {name: post.title, path}]
+
+const hub = post.relatedServices?.[0]
+const entry = postIndex.find((p) => p.slug === post.slug)
+const topic = postTopic(post, postIndex, services)
+const {html, anchors} = articleHtml(withoutTitleHeading(post.body, post.title), {redirects, figureSizes: '(min-width:1100px) 720px, 92vw'})
+// questions: the post's own, else the /faq questions about its hub service
+const faqs = mergeFaqs([post.faqs?.length ? post.faqs : hub ? (await getServiceFaqs(hub._id)).slice(0, 3) : []], 5)
+const seed = Math.max(0, posts.findIndex((p) => p.slug === post.slug))
+const at = posts.findIndex((p) => p.slug === post.slug)
+const newer = at > 0 ? posts[at - 1] : undefined
+const older = at >= 0 ? posts[at + 1] : undefined
+const city = postCity(post.title, serviceAreaCities(settings.homeCity, locations))
+
+// the cover: a real photo (the post's own when it is the crew's), also the article's image;
+// the related articles' covers are other photos
+const shown = new Set<string>()
+const cover = postCover(post, postIndex, services, {tinted: false, seed, taken: shown})
+const related = guideCards(post.relatedPosts ?? [], postIndex, services, seed + 1, shown)
+const preload = imagePreload(cover, POST_COVER.widths, POST_COVER.sizes)
+const coverSize = imageDimensions(cover)
+const imageWidth = Math.min(1200, coverSize?.width ?? 1200)
+const image = coverSize && {
+  '@type': 'ImageObject',
+  url: imageUrl(cover, {width: imageWidth, format: 'jpg'}),
+  width: imageWidth,
+  height: Math.round((imageWidth / coverSize.width) * coverSize.height),
+}
+const article = {
+  ...blogPostingNode(post, description),
+  image,
+  isPartOf: {'@id': `${absoluteUrl('/blog')}#blog`},
+  about: post.relatedServices?.length ? post.relatedServices.map((s) => ({'@id': `${absoluteUrl(`/services/${s.slug}`)}#service`})) : undefined,
+}
 ---
 
-<WebflowLayout
+<SiteLayout
   meta={{
     title,
     description,
@@ -30,7 +87,60 @@ const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}, {name:
     publishedTime: post.publishedAt,
     modifiedTime: post.updatedAt ?? post.publishedAt,
   }}
-  schema={[webPageNode({path, title, description, breadcrumbs: crumbs}), blogPostingNode(post, description), faqNode(path, post.faqs ?? [])]}
+  schema={[{...webPageNode({path, title, description, breadcrumbs: crumbs}), mainEntity: {'@id': `${absoluteUrl(path)}#article`}}, article, faqNode(path, faqs)]}
+  bodyClass="inner page-post"
 >
-  <Fragment set:html={renderPost(post)} />
-</WebflowLayout>
+  <Fragment slot="head">
+    {preload && <link rel="preload" as="image" imagesrcset={preload.imagesrcset} imagesizes={preload.imagesizes} fetchpriority="high" />}
+  </Fragment>
+
+  <article class="post" aria-labelledby="post-h">
+    <PostHeader post={post} settings={settings} crumbs={crumbs} topic={topic} minutes={readingMinutes(entry?.text ?? '')} cover={cover} />
+    <div class="wrap post-grid">
+      <div class="post-main">
+        <QuickAnswer text={post.quickAnswer || post.excerpt || description || ''} service={hub} />
+        <div class="prose prose--post" set:html={html} />
+        {
+          city && (
+            <p class="post-local">
+              <span class="post-local__k">Local help</span>{' '}
+              <a href={city.href}>Electrician in {city.name}, AZ</a>
+            </p>
+          )
+        }
+      </div>
+      <aside class="post-aside" aria-label="In this article and contact">
+        <ArticleToc anchors={anchors} />
+        <ContactCard settings={settings} />
+      </aside>
+    </div>
+  </article>
+
+  <AnswersBand
+    faqs={faqs}
+    faqHeading={post.faqs?.length ? 'Questions about this topic' : 'Related questions'}
+    faqIntro="From our FAQ, written by the electricians who do the work."
+    posts={related}
+    guidesHeading="Related articles"
+    guidesIntro="More from licensed electricians on the same topic."
+  />
+
+  {
+    (post.relatedServices?.length ?? 0) > 0 && (
+      <section class="section isvc cv" aria-labelledby="svc-h">
+        <div class="wrap">
+          <SectionHeader eyebrow="Services" heading="Services mentioned in this article" id="svc-h">
+            <TextLink slot="more" href="/services" icon="go">
+              View All Services
+            </TextLink>
+          </SectionHeader>
+          <ServiceCards services={post.relatedServices ?? []} maxCards={3} />
+        </div>
+      </section>
+    )
+  }
+
+  <PostNav prev={older} next={newer} />
+
+  <CtaBand settings={settings} />
+</SiteLayout>

@@ -270,3 +270,16 @@ No title, H1, meta description or slug changes. Other checks on the output:
 - no internal FAQ link opens in a new tab.
 
 A trial run with `MIGRATE_OUT_DIR` does not save new IDs to the committed `id-map.json`. Any document created by a module (none from this one today) gets a fresh ID on each trial run, until a normal run saves it.
+
+## 9. CMS templates (`cms-templates.json`)
+
+Applied by `scripts/migrate/content/cms-templates.mjs`, which runs last (after `page-sections`). It feeds the city, service and post templates (see `docs/DESIGN_SYSTEM.md` §13) and never touches a title, H1, meta description or slug.
+
+| Key | What it sets | Source |
+|---|---|---|
+| `featuredPosts` | `post.featured` on 7 posts, so guide lists on city and service pages lead with them | Search Console, the Tier-1 posts by clicks |
+| `serviceImages` | `service.mainImage` for `ev-charger-installation`: the crew's own install photo in place of a stock image (the asset must be in the dataset) | `migration/brand-photos` |
+| `serviceAlts` | alt text for the services' own photos (all were empty) | the asset audit and the brand-photos manifest |
+| `atAGlance` | `service.atAGlance` facts for `panels` (most common job, panels installed, utility, permits) | each fact quotes `evidence` that must appear word for word in the service body or the named `/faq` answer |
+
+It also removes the SEO tool's tracking markers (`sbb-itb-…`) that the Webflow export carried into a post body as a heading of their own (`level-1-vs-level-2-ev-chargers-which-to-choose`). `report.json` → `cmsTemplates` lists what it set. The migration stops if a slug, an asset or a FAQ is missing, a replacement image has no alt, or a fact's evidence is not in its source.

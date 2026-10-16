@@ -319,3 +319,66 @@ Two build details every page relies on:
 - Look at the page at 390, 768, 1024, 1440 and 2560, with motion, reduced motion and without JS; compare with the mockups.
 - axe (WCAG 2.2 AA) at 390 and 1440: 0 violations.
 - The page also renders from the Sanity production dataset (stale until re-import): every component tolerates missing fields.
+
+---
+
+## 13. CMS templates: city, service, post and category pages
+
+The four collection routes render the round-5 Gilbert (`city.html`) and Panels (`service.html`) mockups from Sanity, on `SiteLayout` with the shared atoms and sections above. Titles, meta descriptions, H1s, breadcrumbs and URLs are unchanged from the port (parity checks them per URL).
+
+| Route | Pages | Order of sections |
+|---|---|---|
+| `pages/locations/[slug].astro` | 10 cities | `LocationHero` (fleet under the sky, trust card; Scottsdale adds its office) · `LocationGlance` 01 · services 02 (`ServiceCards`, featured services else the residential ones) · `LongForm` with `ContactCard` · `ReviewsStatic` 03 · `AnswersBand` 04/05 · `Valley` inner (current city lit) · `CtaBand` |
+| `pages/services/[slug].astro` | 21 services | `ServiceHero` (staged by its photo) · `ServiceGlance` 01 · `WarningSigns` (when the body has a "Signs …" list) · `LongForm` with `ContactCard` · `ReviewsStatic` · `AnswersBand` · related services (`ServiceCards`) · `Valley` inner · `CtaBand` |
+| `pages/blog-posts/[slug].astro` | 53 posts | `PostHeader` (crumbs, topic pill, reading time, H1, byline, dates, cover) · `QuickAnswer` · the article (`prose prose--post`, H2 anchors) with `ArticleToc` + sticky `ContactCard` · the city link when the title names one · `AnswersBand` (the post's FAQs, else its hub service's) · "Services mentioned in this article" · `PostNav` · `CtaBand` |
+| `pages/services-categories/[slug].astro` | 2 | `CategoryHero` · the category's services (`ServiceCards`) · `Valley` inner · `CtaBand` |
+| `pages/posts-categories/[slug].astro` | 3 (noindex) | `CategoryHero` · the category's guides (else the latest three, said so) · the services the guides cover (`hub__chips`) · `CtaBand` |
+
+Chapter numbers come from a counter in the page, so a section that renders nothing (no signs, no FAQs, no guides) takes no number. JSON-LD (the layout adds `BreadcrumbList` and the business): city = `WebPage` + `Service` areaServed (+ the Scottsdale office as an `Electrician` branch with `hasMap`) + `FAQPage`; service = `WebPage` (mainEntity `#service`) + `Service` + `FAQPage`; post = `BlogPosting` (image, `isPartOf` `/blog#blog`, `about` its services) + `WebPage`; service categories = `CollectionPage` with an `ItemList` of its services; post categories = `CollectionPage`.
+
+### Components (`components/sections/`)
+
+| Component | Props | Notes |
+|---|---|---|
+| `LocationHero` | `location`, `heading`, `settings`, `crumbs`, `office?` | `.ihero--sky`: `FLEET_PHOTO` eager/high priority (the page preloads `FLEET_HERO`), town in the H1 coloured (`cityAccent`), estimate + Call, Emma's status, `TrustCard` (+ `OfficeCard` → `.ihero--office`) |
+| `TrustCard` | `settings`, `class?`, slot | The glass card: 5.0, stars, Google link, the ROC lookup line; the slot adds rows (the office) |
+| `OfficeCard` | `settings`, `office`, `class?` | `<address>`: "Our {city} office", the GBP name + "(by appointment)", street address, the appointment note, phone + "Get directions" (the profile). Renders nothing for an office marked `footerOnly` (Mesa) |
+| `LocationGlance` | `location`, `settings`, `number?`, `office?` | "{City} at a glance": the answer sentence (summary + neighbourhoods), facts (electric utility, county, ZIP codes, office hours), the walk-up photo (`WALK_PHOTO`, 4:5, "We come to you") unless the city has a company photo of its own, and "Permits and power in {city}" from `permitNotes` |
+| `ServiceCards` | `services`, `maxCards?` (6) | Photo cards (`.tiles3`) in whole rows of three for services with a company photo; the rest as text rows (`.svc-rows`). Stock photos are never shown |
+| `ContactCard` | `settings`, `label?` | "Ready to Schedule Service?": score, phone, email, hours, the button → `/estimate` |
+| `LongForm` | `body`, `label`, `variant?` (`city`, `service`, `post`), `class?`, slot (aside) | The page's own article (`articleHtml`), labelled by its first H2 |
+| `WarningSigns` | `signs` (from `liftSigns`), `number?` | The body's "Signs …" heading as the section H2, the list as numbered rows, the paragraphs after it |
+| `ServiceGlance` | `service`, `settings`, `number?` | "{Service}, the short version": the summary, then `service.atAGlance` facts and the standard rows (estimates, licence + ROC link, office hours with the live status) |
+| `ServiceHero` | `service`, `heading`, `settings`, `crumbs` | `.ihero--copper` staged by `heroStaging(mainImage)`: `tint` (a job photo under the copper tint, priority), `split` (a photo of the crew in natural colour beside the words, framed on faces; on phones it comes first, under the header, so no face sits behind the call bar), `plain` (no company photo: copper light and the lit bulb) |
+| `AnswersBand` | `faqs`, `faqHeading`, `faqIntro?`, `posts` (`PostCard[]`), `guidesHeading`, `guidesIntro?`, `numbers?` | One sand band: `FaqBlock` then `GuidesBlock` ("All guides on the blog"); either alone still gets the band; both empty render nothing |
+| `PostHeader` | `post`, `settings`, `crumbs`, `topic`, `minutes`, `cover` | The editorial head: crumbs (the title shortens with an ellipsis on phones), topic pill, "N min read", H1 `#post-h`, "By The Wire Guy Electric" (→ /about-us) or the author (→ /our-team), Published/Updated, "Reviewed by" only when set, the cover (4:3; alt only when it is the post's own image) |
+| `QuickAnswer` | `text`, `service?` | The excerpt as the quick answer, with "See our {Service} service" |
+| `ArticleToc` | `anchors` | "In this article", from three H2s up; hidden under 1000 px |
+| `PostNav` | `prev?`, `next?` | Older / newer post |
+| `CategoryHero` | `settings`, `crumbs`, `eyebrow`, `heading`, `lede?`, slot | `.ehero.chero`: crumbs, eyebrow, display H1, lede (or rich text in the slot), the buttons (hidden on phones, where the call bar has them), rating and ROC lines, the bulb |
+
+### Helpers (`lib/cms.ts`)
+
+- **Photos.** `heroStaging(image)`; `SERVICE_HERO_IMAGE` and `POST_COVER` (widths and sizes shared by the `<img>` and the preload); `FLEET_HERO` (the city hero's srcset incl. the enlarged fleet copies); `facesFocus(faces)` (an `object-position` that keeps every head in frame); `postCover(post, index, services, {tinted, taken, seed})`: the post's own image when it is a company photo, else its services' photos, else a job photo; `taken` keeps a row (and the post's own cover) free of repeats.
+- **Picks.** `pickReviews(tagged, pool, seed)` (the page's own reviews first, 50–600 characters, rotated by `seed` so neighbouring pages differ), `cityGuides` / `serviceGuides` (featured posts first: `post.featured`), `guideCards(posts, index, services, seed, taken)` (covers + topic labels), `postTopic`, `postCity`, `readingMinutes`, `mergeFaqs(lists, max = 7)` (own first, each question once).
+- **Text.** `liftSigns(body)` (lifts a "Signs …" heading with three or more list items out of the body), `articleHtml(body, options)` (rich text with ids on every H2), `headingAnchors(body)`, `withoutTitleHeading(body, title)` (drops a body H2 that repeats the H1), `cityAccent`, `listOf`, `blockText`.
+- **Queries** (`lib/queries.ts`): `getServiceFaqs(serviceId)` (FAQs tagged with a service) and `getPostIndex()` (every post with its services' slugs and plain text, memoised, for topics, covers and reading time).
+
+### Company photos only (`lib/brand-photos.ts`)
+
+`companyPhoto(image)` answers `'people'` (a photo with head boxes in `PHOTO_FACES`), `'job'` (listed in `JOB_PHOTOS`) or `undefined` (stock, or unknown): the templates show only the first two, so **a new job photo must be added to `JOB_PHOTOS`** (and a new photo of people to `PHOTO_FACES`) before cards, heroes and covers use it. `WALK_PHOTO` is the city glance photo.
+
+### Styles
+
+| File | Imported by | Holds |
+|---|---|---|
+| `styles/cms.css` | city, service and category pages | the office in the trust card, `.ihero--office` and the city hero's lower photo at 1100–1399 px (faces clear of the card and buttons), `.ihero--plain` and `.ihero--split` service heroes, the service trail on phones (the current name shortens, not the middle crumbs), `.local-note`, `.svc-rows`, the city and service prose variants, `.facts__status`, `.chero`, `.topic-hubs` |
+| `styles/post.css` | post pages | the editorial head and cover, the quick answer, `.prose--post` (18 px, real H2/H3), the TOC, the sticky contact card, `.post-local`, `.post-nav` |
+
+### Content the templates read (migration pipeline)
+
+`scripts/migrate/content/cms-templates.mjs` with `migration/content-data/cms-templates.json` (runs after `page-sections`): `post.featured` on the most-read guides, the EV charger service's crew photo in place of its stock image, alt text for the services' own photos, `service.atAGlance` facts (each quotes its evidence, which must be word for word in the service body or the named /faq answer, or the import fails), and removal of the SEO tool's `sbb-itb-…` marker headings from a post body.
+
+### Checks (scratch tools, as run for this template set)
+
+Overflow at 360/390/768/1024 on all 89 URLs, faces (heroes at 26 sizes plus 1100–1400 px), glyph clipping (15 states), axe at 390 and 1440 (with and without JS), JS-off text and visibility against JS-on, and glued words: see the T1 CMS hand-off for the numbers.

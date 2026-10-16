@@ -953,5 +953,28 @@
     "jobDescription": "jobOpening.description = visible /careers job copy",
     "notes": [],
     "assets": 21
+  },
+  "cmsTemplates": {
+    "source": "migration/content-data/cms-templates.json",
+    "featuredPosts": 7,
+    "serviceImages": [
+      "ev-charger-installation"
+    ],
+    "serviceAlts": [
+      "panels",
+      "custom-lighting",
+      "fixture-replacements",
+      "electrical-safety-inspections",
+      "electrical-troubleshooting",
+      "electrical-remodels",
+      "exterior-electrical",
+      "recessed-lights-installation"
+    ],
+    "atAGlance": [
+      "panels"
+    ],
+    "markersRemovedFrom": [
+      "level-1-vs-level-2-ev-chargers-which-to-choose"
+    ]
   }
 }

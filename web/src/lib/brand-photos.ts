@@ -68,3 +68,44 @@ export function facesOf(image: ImageRef | null | undefined) {
   const r = resolveImage(image)
   return r?.kind === 'sanity' ? PHOTO_FACES[r.ref] : undefined
 }
+
+/** Two of the crew walking up a customer's front path: "we come to you" (city pages). */
+export const WALK_PHOTO = {
+  image: asset(
+    'image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg',
+    'Two Wire Guy Electric technicians walking up a customer’s front path in an Arizona neighborhood',
+  ),
+}
+
+/**
+ * The company's own job photos without people (finished rooms, panels, tools): the only
+ * photos a template may lay a full copper tint over, and the covers the CMS templates
+ * give a guide whose own image is stock. Most service and post images imported from
+ * Webflow are stock (redesign asset audit, section 4), so a template shows a CMS photo
+ * large only when it is listed here or in PHOTO_FACES. Add new job photos here.
+ */
+export const JOB_PHOTOS: ImageRef[] = [
+  asset('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'A new Siemens panel with labeled breakers next to an SRP meter on a stucco wall'),
+  asset('image-1a1a63ffa572abef13cc6693c8bf6e80602a0a7d-3924x5887-jpg', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire'),
+  asset('image-8ac78ca58f507beef3cc08a6e092ec742956e3e2-1280x960-jpg', 'A remodeled kitchen with recessed lights over a marble-look island'),
+  asset('image-77b2debafc6c3cd45ac8cfbf5109126a1c0e2574-1536x2048-webp', 'A Tesla Wall Connector installed on a garage wall'),
+  asset('image-f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811-jpg', 'Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters'),
+  asset('image-8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536-jpg', 'A front walk lined with lamp posts and roses at a brick home'),
+  asset('image-ed1de73427c40093df37f55b742ec7dbede75d0c-4284x5712-jpg', 'Recessed lights in the vaulted ceiling of a kitchen'),
+  asset('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg', 'Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting'),
+  asset('image-d338d7dc5dae879faa96751651f476d868aa99e6-1186x1120-avif', 'A remodeled kitchen at night lit by recessed ceiling lights'),
+  asset('image-d11c56eea7e73639905734cb2b5137587ae500d0-853x1280-avif', 'Klein wire strippers, linesman pliers and a voltage tester on a coil of yellow Romex cable'),
+]
+const JOB_PHOTO_IDS = new Set(JOB_PHOTOS.map((p) => p.asset!._id))
+
+/**
+ * Whether a CMS image is one of the company's own photos, and whether people are in
+ * it: "job" (no people: may sit under a full tint), "people" (faces listed above:
+ * shown in natural colour, faces in frame) or undefined (stock, or not known).
+ */
+export function companyPhoto(image: ImageRef | null | undefined): 'job' | 'people' | undefined {
+  const r = resolveImage(image)
+  if (r?.kind !== 'sanity') return undefined
+  if (PHOTO_FACES[r.ref]) return 'people'
+  return JOB_PHOTO_IDS.has(r.ref) ? 'job' : undefined
+}
