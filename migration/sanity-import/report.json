@@ -67,6 +67,12 @@
     },
     {
       "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "contact us for a free estimate"
+    },
+    {
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
       "from": "https://www.thewireguyelectric.com/",
       "to": "/"
     },
@@ -181,6 +187,12 @@
       "to": "/contact-us"
     },
     {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "give us a call or request a free estimate"
+    },
+    {
       "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
       "from": "https://www.thewireguyelectric.com/services/panels",
       "to": "/services/panels"
@@ -199,6 +211,12 @@
       "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "contact us for a free estimate"
     },
     {
       "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
@@ -234,6 +252,12 @@
       "doc": "/blog-posts/whole-house-surge-protector-guide-arizona",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/whole-house-surge-protector-guide-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Get a free estimate"
     },
     {
       "doc": "/blog-posts/recessed-lighting-installation-phoenix",
@@ -361,14 +385,32 @@
       "to": "/contact-us"
     },
     {
+      "doc": "/blog-posts/diy-electrical-work-in-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Book a free estimate with us"
+    },
+    {
       "doc": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
     },
     {
+      "doc": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "free estimate with us"
+    },
+    {
       "doc": "/blog-posts/summer-electrical-tips",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/summer-electrical-tips",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Book a free estimate"
     },
     {
       "doc": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
@@ -394,6 +436,36 @@
       "doc": "/blog-posts/installing-car-charger",
       "from": "https://www.thewireguyelectric.com/#contact",
       "to": "/#contact"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Get a free estimate"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "getting a free estimate"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "free estimates"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "free estimate"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "request a free estimate"
     }
   ],
   "droppedScripts": [

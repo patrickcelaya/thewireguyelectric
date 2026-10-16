@@ -134,6 +134,17 @@ function normalizeHref(href, docPath) {
   return out
 }
 
+// Owner rule: every "Free Estimate" link goes to the Free Estimate page. The live copy links "Get a free estimate",
+// "request a free estimate", "free estimates" … to /contact-us; those become /estimate (the same phrase test as
+// ctaHref in web/src/lib/site.ts, plural included). Other links to /contact-us ("Contact us") stay.
+const ESTIMATE_TEXT = /\bfree\b(?:\s+\w+){0,3}?\s+estimates?\b/i
+function estimateHref(href, text, docPath) {
+  const words = (text ?? '').replace(/\s+/g, ' ').trim()
+  if (!ESTIMATE_TEXT.test(words) || !/^\/contact-us(?:[#?]|$)/.test(href ?? '')) return href
+  report.fixedLinks.push({doc: docPath, from: href, to: '/estimate', text: words})
+  return '/estimate'
+}
+
 function youtubeUrl(src) {
   const id = src?.match(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/)?.[1]
   return id ? `https://www.youtube.com/watch?v=${id}` : src
@@ -198,7 +209,7 @@ function toPortableText(html, docPath) {
             if (!href) return undefined
             return {
               _type: '__annotation',
-              markDef: {_key: keyGenerator(), _type: 'link', href: normalizeHref(href, docPath), openInNewTab: el.getAttribute('target') === '_blank' || undefined},
+              markDef: {_key: keyGenerator(), _type: 'link', href: estimateHref(normalizeHref(href, docPath), el.textContent, docPath), openInNewTab: el.getAttribute('target') === '_blank' || undefined},
               children: next(el.childNodes),
             }
           }

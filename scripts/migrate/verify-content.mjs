@@ -65,6 +65,13 @@ const normHref = (href) => {
   }
   return h.replace(/\/+$/, '')
 }
+// A live "free estimate" link to /contact-us goes to the Free Estimate page now (owner rule; the migration's
+// estimateHref in webflow-to-sanity.mjs).
+const ESTIMATE_TEXT = /\bfree\b(?:\s+\w+){0,3}?\s+estimates?\b/i
+const liveHref = (text, href) => {
+  const h = normHref(href)
+  return ESTIMATE_TEXT.test(String(text ?? '')) && /^\/contact-us(?:[#?]|$)/.test(h) ? '/estimate' : h
+}
 const digits = (s) => String(s ?? '').replace(/\D/g, '').replace(/^1(?=\d{10}$)/, '')
 
 // ---------------------------------------------------------------------------
@@ -478,7 +485,8 @@ for (const file of files) {
   for (const s of page.sections ?? []) resolveSection(c, s)
   const fieldSet = new Set(c.fields)
   const targets = new Set(c.links.map((l) => l.href))
-  const hasLink = (text, href) => c.links.some((l) => l.href === normHref(href) && l.text === norm(text))
+  // (a stored button href may still read /contact-us: ctaHref sends it to /estimate when it renders)
+  const hasLink = (text, href) => c.links.some((l) => liveHref(l.text, l.href) === liveHref(text, href) && l.text === norm(text))
 
   const problems = structuralProblems(page)
 
