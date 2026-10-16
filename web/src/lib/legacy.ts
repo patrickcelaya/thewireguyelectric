@@ -12,7 +12,7 @@ import locationTpl from '../legacy/templates/location.html?raw'
 import serviceCategoryTpl from '../legacy/templates/service-category.html?raw'
 import postCategoryTpl from '../legacy/templates/post-category.html?raw'
 import blogPage from '../legacy/pages/blog.html?raw'
-import {hasImage, imageUrl} from './image'
+import {hasImage, imageSrcSet, imageUrl} from './image'
 import type {ImageRef, LocationDoc, PortableTextValue, PostDoc, PostSummary, ServiceDoc, ServiceSummary} from './types'
 
 const pages = import.meta.glob<string>('../legacy/pages/*.html', {query: '?raw', import: 'default', eager: true})
@@ -116,7 +116,8 @@ function setImage(img: Sel, image: ImageRef | undefined, alt: string) {
   if (!hasImage(image)) return
   img.attr('src', imageUrl(image, {width: 800}))
   img.attr('alt', image.alt || alt)
-  if (image.asset?._id) img.attr('srcset', [500, 800, 1080].map((w) => `${imageUrl(image, {width: w})} ${w}w`).join(', '))
+  const srcset = imageSrcSet(image, [500, 800, 1080])
+  if (srcset) img.attr('srcset', srcset)
   else img.removeAttr('srcset')
 }
 

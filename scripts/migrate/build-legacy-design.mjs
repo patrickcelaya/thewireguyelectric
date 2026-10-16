@@ -23,6 +23,8 @@ const ROOT = new URL('../../', import.meta.url).pathname
 const SNAP = path.join(ROOT, 'migration/live-snapshots')
 const PUBLIC = path.join(ROOT, 'web/public/wf')
 const LEGACY = path.join(ROOT, 'web/src/legacy')
+// Webflow CDN URL -> local mirror path; web/src/lib/image.ts reads it, so it lives outside the legacy folder.
+const MIRROR_MAP = path.join(ROOT, 'web/src/data/webflow-mirror.json')
 const SITE = 'https://www.thewireguyelectric.com'
 
 const STATIC_PAGES = ['index', 'about-us', 'our-team', 'careers', 'faq', 'contact-us', 'commercial-electrician', 'services', 'blog', '404']
@@ -256,7 +258,7 @@ async function main() {
       }),
     )
   }
-  await writeFile(path.join(LEGACY, 'assets-map.json'), JSON.stringify(Object.fromEntries(entries), null, 2) + '\n')
+  await writeFile(MIRROR_MAP, JSON.stringify(Object.fromEntries(entries), null, 2) + '\n')
   console.log(`assets: ${entries.length} referenced, ${results.ok} downloaded, ${results.cached} cached, ${results.failed.length} failed`)
   if (results.failed.length) console.log(results.failed.join('\n'))
 }
