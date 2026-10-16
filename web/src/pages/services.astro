@@ -1,19 +1,38 @@
 ---
-import WebflowLayout from '../layouts/WebflowLayout.astro'
-import {getPage, getServices, getSettings} from '../lib/queries'
-import {legacyPage, renderServicesPage} from '../lib/legacy'
+// /services: every service, visible and grouped by category (the live page hid them in
+// tabs), composed in Sanity (page "services") and drawn by the section renderer.
+// Title, description, H1 and the CollectionPage type are unchanged from the live site.
+// A page document without a services list (content written before the page builder)
+// still lists every service by category, so none loses its link from /services.
+import PageBuilderPage from '../components/PageBuilderPage.astro'
+import {getPage, getServiceCategories, getServices, getSettings} from '../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
-import {webPageNode} from '../lib/schema'
+import {pageSchema} from '../lib/page-schema'
+import type {PageSection, ServiceSummary} from '../lib/types'
 
-const [settings, page, services] = await Promise.all([getSettings(), getPage('services'), getServices()])
-const title = resolveTitle(page?.seo, `Electrical Services | ${settings.businessName}`)
-const description = resolveDescription(page?.seo, page?.intro)
-const crumbs = [{name: 'Home', path: '/'}, {name: 'Services', path: '/services'}]
+const [settings, page, services, categories] = await Promise.all([getSettings(), getPage('services'), getServices(), getServiceCategories()])
+if (!page) throw new Error('The /services page document (page "services") is missing from the dataset')
+const title = resolveTitle(page.seo, `Electrical Services | ${settings.businessName}`)
+const description = resolveDescription(page.seo, page.intro)
+const path = '/services'
+const crumbs = [{name: 'Home', path: '/'}, {name: 'Services', path}]
+
+const sections = page.sections ?? []
+const card = (s: ServiceSummary) => ({...s, title: s.name, text: s.shortDescription, image: s.mainImage})
+// every service in site order, grouped by category in order of first appearance (as the query does for a grouped list)
+const cards = services.map(card)
+const groups = [...new Set(cards.map((c) => c.category?.slug))].flatMap((slug) => {
+  const info = categories.find((c) => c.slug === slug)
+  return info ? [{...info, services: cards.filter((c) => c.category?.slug === slug)}] : []
+})
+const directory: PageSection = {_type: 'servicesSection', _key: 'all-services', layout: 'grouped', services: cards, groups}
+const listsAll = sections.some((s) => s._type === 'servicesSection' && s.layout === 'grouped')
+const shown = listsAll ? page : {...page, sections: [...sections.filter((s) => s._type === 'heroSection'), directory, ...sections.filter((s) => s._type !== 'heroSection')]}
 ---
 
-<WebflowLayout
-  meta={{title, description, path: '/services', ogImage: resolveOgImage(settings, page?.seo?.ogImage), breadcrumbs: crumbs}}
-  schema={[webPageNode({path: '/services', title, description, type: 'CollectionPage', breadcrumbs: crumbs})]}
->
-  <Fragment set:html={renderServicesPage(legacyPage('services')!, services)} />
-</WebflowLayout>
+<PageBuilderPage
+  page={shown}
+  settings={settings}
+  meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), breadcrumbs: crumbs}}
+  schema={pageSchema({page: shown, settings, path, title, description, type: 'CollectionPage', crumbs})}
+/>

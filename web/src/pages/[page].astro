@@ -1,11 +1,13 @@
 ---
-// Standalone pages (about-us, contact-us, faq, careers, our-team, commercial-electrician).
-// /, /services and /blog have their own routes.
-import WebflowLayout from '../layouts/WebflowLayout.astro'
-import {getFaqs, getOpenJobs, getPage, getPageSlugs, getSettings} from '../lib/queries'
-import {legacyPage} from '../lib/legacy'
+// Standalone pages (about-us, contact-us, faq, careers, our-team, commercial-electrician),
+// composed in Sanity and drawn by the section renderer in the round-5 design.
+// /, /services and /blog have their own routes. Title, description, canonical, H1
+// and the page's JSON-LD types are unchanged from the live site; the structured data
+// describes what the page shows (people, open jobs, the visible questions).
+import PageBuilderPage from '../components/PageBuilderPage.astro'
+import {getPage, getPageSlugs, getSettings} from '../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
-import {faqNode, jobPostingNode, webPageNode} from '../lib/schema'
+import {pageSchema} from '../lib/page-schema'
 
 export async function getStaticPaths() {
   const reserved = new Set(['index', 'services', 'blog'])
@@ -16,19 +18,18 @@ export async function getStaticPaths() {
 const slug = Astro.params.page!
 const [settings, page] = await Promise.all([getSettings(), getPage(slug)])
 if (!page) throw new Error(`page ${slug} not found`)
-const html = legacyPage(slug)
-if (!html) throw new Error(`no design template for /${slug}; add one to src/legacy/pages`)
 
 const title = resolveTitle(page.seo, `${page.title} | ${settings.titleSuffix ?? settings.businessName}`)
 const description = resolveDescription(page.seo, page.intro)
 const path = `/${slug}`
 const crumbs = [{name: 'Home', path: '/'}, {name: page.title, path}]
-const PAGE_TYPES: Record<string, string> = {'about-us': 'AboutPage', 'contact-us': 'ContactPage', faq: 'FAQPage', 'our-team': 'AboutPage'}
-const schema: Array<Record<string, unknown> | undefined> = [webPageNode({path, title, description, type: PAGE_TYPES[slug], breadcrumbs: crumbs})]
-if (slug === 'faq') schema.push(faqNode(path, await getFaqs()))
-if (slug === 'careers') schema.push(...(await getOpenJobs()).map((j) => jobPostingNode(j, settings)))
+// /faq is a WebPage whose questions are the one FAQPage node (no second FAQPage-typed page node).
+const PAGE_TYPES: Record<string, string> = {'about-us': 'AboutPage', 'contact-us': 'ContactPage', 'our-team': 'AboutPage'}
 ---
 
-<WebflowLayout meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex, breadcrumbs: crumbs}} schema={schema}>
-  <Fragment set:html={html} />
-</WebflowLayout>
+<PageBuilderPage
+  page={page}
+  settings={settings}
+  meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex, breadcrumbs: crumbs}}
+  schema={pageSchema({page, settings, path, title, description, type: PAGE_TYPES[slug], crumbs})}
+/>
