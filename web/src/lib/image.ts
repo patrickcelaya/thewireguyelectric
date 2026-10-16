@@ -4,15 +4,13 @@
 // - Images whose asset is in the dataset (asset._id) use it directly.
 // - Images the local dataset still stores as "image@<webflow url>" (not imported
 //   yet there) are mapped to the Sanity asset the production import made from the
-//   same file (data/legacy-images.json, from scripts/migrate/legacy-image-map.mjs),
-//   or, failing that, to the local mirror of Webflow's files under /wf/a
-//   (data/webflow-mirror.json). An image with neither is treated as missing:
-//   nothing is ever loaded from Webflow's CDN.
+//   same file (data/legacy-images.json, from scripts/migrate/legacy-image-map.mjs).
+//   An image with no such asset is treated as missing: nothing is ever loaded from
+//   Webflow's CDN.
 import {createImageUrlBuilder} from '@sanity/image-url'
 import type {ImageRef} from './types'
 import {sanityDataset, sanityProjectId} from './sanity'
 import legacyImages from '../data/legacy-images.json'
-import webflowMirror from '../data/webflow-mirror.json'
 
 /** The project whose CDN serves the images, also when the build reads the local dataset. */
 export const IMAGE_PROJECT_ID = sanityProjectId || 'qhi2uf0l'
@@ -20,14 +18,17 @@ export const IMAGE_PROJECT_ID = sanityProjectId || 'qhi2uf0l'
 const builder = createImageUrlBuilder({projectId: IMAGE_PROJECT_ID, dataset: sanityDataset})
 
 const LEGACY = legacyImages as Record<string, {asset: string; width: number; height: number}>
-const MIRROR = webflowMirror as Record<string, string>
 
 type Crop = NonNullable<ImageRef['crop']>
 
-/** An image resolved to something we can serve. */
-export type ResolvedImage =
-  | {kind: 'sanity'; ref: string; width: number; height: number; crop?: Crop; hotspot?: ImageRef['hotspot']}
-  | {kind: 'static'; src: string}
+/** An image resolved to the Sanity asset that serves it. */
+export interface ResolvedImage {
+  ref: string
+  width: number
+  height: number
+  crop?: Crop
+  hotspot?: ImageRef['hotspot']
+}
 
 export interface ImageUrlOptions {
   width?: number
@@ -52,16 +53,15 @@ export function resolveImage(image?: ImageRef | null): ResolvedImage | undefined
   const id = image.asset?._id
   if (id) {
     const size = image.asset?.metadata?.dimensions ?? sizeFromId(id)
-    if (size) return {kind: 'sanity', ref: id, width: size.width, height: size.height, crop, hotspot}
+    if (size) return {ref: id, width: size.width, height: size.height, crop, hotspot}
   }
   const legacy = image.legacyUrl?.replace(/^image@/, '')
   if (!legacy) return undefined
   const mapped = LEGACY[legacy]
-  if (mapped) return {kind: 'sanity', ref: mapped.asset, width: mapped.width, height: mapped.height, crop, hotspot}
-  if (MIRROR[legacy]) return {kind: 'static', src: MIRROR[legacy]}
+  if (mapped) return {ref: mapped.asset, width: mapped.width, height: mapped.height, crop, hotspot}
   if (!warned.has(legacy)) {
     warned.add(legacy)
-    console.warn(`[image] no Sanity asset or local copy for ${legacy}; run scripts/migrate/legacy-image-map.mjs`)
+    console.warn(`[image] no Sanity asset for ${legacy}; run scripts/migrate/legacy-image-map.mjs`)
   }
   return undefined
 }
@@ -73,14 +73,14 @@ export function hasImage(image?: ImageRef | null): image is ImageRef {
 /** The displayed size of the whole image (after the editor's crop), for width/height attributes. */
 export function imageDimensions(image?: ImageRef | null) {
   const r = resolveImage(image)
-  if (r?.kind !== 'sanity') return undefined
+  if (!r) return undefined
   const c = r.crop
   const width = Math.round(r.width * (1 - (c ? c.left + c.right : 0)))
   const height = Math.round(r.height * (1 - (c ? c.top + c.bottom : 0)))
   return {width, height}
 }
 
-function sanityUrl(r: Extract<ResolvedImage, {kind: 'sanity'}>, opts: ImageUrlOptions) {
+function sanityUrl(r: ResolvedImage, opts: ImageUrlOptions) {
   let b = builder.image({asset: {_ref: r.ref}, crop: r.crop, hotspot: r.hotspot} as never).quality(opts.quality ?? 75)
   b = opts.format ? b.format(opts.format) : b.auto('format')
   if (opts.width) b = b.width(Math.round(opts.width))
@@ -105,18 +105,17 @@ export function imageFocus(image?: ImageRef | null) {
 /** URL for one rendition. */
 export function imageUrl(image: ImageRef | null | undefined, opts: ImageUrlOptions = {}) {
   const r = resolveImage(image)
-  if (!r) return ''
-  return r.kind === 'sanity' ? sanityUrl(r, opts) : r.src
+  return r ? sanityUrl(r, opts) : ''
 }
 
 /**
  * srcset over `widths`, capped at the image's own width (no upscaled copies). With
- * `aspect` (width / height) every rendition is cropped to that ratio. Undefined for
- * images that can't be resized (the local mirror).
+ * `aspect` (width / height) every rendition is cropped to that ratio. Undefined when
+ * the image can't be served.
  */
 export function imageSrcSet(image: ImageRef | null | undefined, widths: number[], aspect?: number) {
   const r = resolveImage(image)
-  if (r?.kind !== 'sanity') return undefined
+  if (!r) return undefined
   const own = imageDimensions(image)?.width ?? r.width
   const usable = [...new Set(widths.map((w) => Math.min(w, own)))].sort((a, b) => a - b)
   return usable.map((w) => `${sanityUrl(r, {width: w, height: aspect ? w / aspect : undefined})} ${w}w`).join(', ')

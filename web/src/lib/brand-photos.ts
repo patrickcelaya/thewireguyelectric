@@ -81,8 +81,8 @@ const PHOTO_FACES: Record<string, string> = {
 
 /** The head boxes of a company photo of people, for data-faces (undefined for every other image). */
 export function facesOf(image: ImageRef | null | undefined) {
-  const r = resolveImage(image)
-  return r?.kind === 'sanity' ? PHOTO_FACES[r.ref] : undefined
+  const ref = resolveImage(image)?.ref
+  return ref ? PHOTO_FACES[ref] : undefined
 }
 
 /** Two of the crew walking up a customer's front path: "we come to you" (city pages). */
@@ -120,8 +120,8 @@ const JOB_PHOTO_IDS = new Set(JOB_PHOTOS.map((p) => p.asset!._id))
  * shown in natural colour, faces in frame) or undefined (stock, or not known).
  */
 export function companyPhoto(image: ImageRef | null | undefined): 'job' | 'people' | undefined {
-  const r = resolveImage(image)
-  if (r?.kind !== 'sanity') return undefined
-  if (PHOTO_FACES[r.ref]) return 'people'
-  return JOB_PHOTO_IDS.has(r.ref) ? 'job' : undefined
+  const ref = resolveImage(image)?.ref
+  if (!ref) return undefined
+  if (PHOTO_FACES[ref]) return 'people'
+  return JOB_PHOTO_IDS.has(ref) ? 'job' : undefined
 }

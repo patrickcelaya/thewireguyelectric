@@ -107,10 +107,7 @@ export function postCover(
   const fallback = [...JOB_PHOTOS.slice(seed % JOB_PHOTOS.length), ...JOB_PHOTOS.slice(0, seed % JOB_PHOTOS.length)]
   const candidates = [post.mainImage, ...own.map((slug) => services.find((s) => s.slug === slug)?.mainImage), ...fallback]
   // the same photo may be an asset reference or a pre-import Webflow URL: compare what it resolves to
-  const id = (image: ImageRef | null | undefined) => {
-    const r = resolveImage(image)
-    return r?.kind === 'sanity' ? r.ref : (r?.src ?? '')
-  }
+  const id = (image: ImageRef | null | undefined) => resolveImage(image)?.ref ?? ''
   const fits = (image: ImageRef | null | undefined): image is ImageRef => (tinted ? companyPhoto(image) === 'job' : Boolean(companyPhoto(image)))
   const usable = candidates.filter(fits)
   const cover = usable.find((image) => !taken.has(id(image))) ?? usable[0]

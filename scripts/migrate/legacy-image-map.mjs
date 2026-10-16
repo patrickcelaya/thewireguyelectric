@@ -12,8 +12,8 @@
 // reads the public production dataset (read-only, no token) and writes
 // web/src/data/legacy-images.json: {<webflow url>: {asset, width, height}}.
 // web/src/lib/image.ts then renders those images through Sanity's image CDN
-// (sized, AVIF/WebP). URLs with no Sanity asset fall back to the local mirror in
-// web/src/data/webflow-mirror.json; the script fails if a URL has neither.
+// (sized, AVIF/WebP). The script fails if a URL has no Sanity asset: nothing is
+// ever served from Webflow's CDN.
 //
 // Re-run it after a dataset import that adds images.
 
@@ -23,14 +23,12 @@ import {fileURLToPath} from 'node:url'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const DATASET = path.join(ROOT, 'migration/sanity-import/production.ndjson')
-const MIRROR = path.join(ROOT, 'web/src/data/webflow-mirror.json')
 const OUT = path.join(ROOT, 'web/src/data/legacy-images.json')
 const PROJECT_ID = 'qhi2uf0l'
 const DATASET_NAME = 'production'
 
 const text = await readFile(DATASET, 'utf8')
 const urls = [...new Set([...text.matchAll(/"image@(https?:\/\/[^"]+)"/g)].map((m) => m[1]))].sort()
-const mirror = JSON.parse(await readFile(MIRROR, 'utf8'))
 
 const query = encodeURIComponent('*[_type == "sanity.imageAsset"]{_id, originalFilename, "width": metadata.dimensions.width, "height": metadata.dimensions.height}')
 const res = await fetch(`https://${PROJECT_ID}.apicdn.sanity.io/v2026-10-01/data/query/${DATASET_NAME}?query=${query}&perspective=published`)
@@ -57,12 +55,12 @@ for (const url of urls) {
   const name = url.split('/').pop()
   const asset = byName.get(name) ?? byName.get(decode(name))
   if (asset) out[url] = {asset: asset._id, width: asset.width, height: asset.height}
-  else if (!mirror[url]) missing.push(url)
+  else missing.push(url)
 }
 
 await writeFile(OUT, JSON.stringify(out, null, 2) + '\n')
-console.log(`legacy images: ${urls.length} in the dataset, ${Object.keys(out).length} mapped to Sanity assets, ${urls.length - Object.keys(out).length - missing.length} served from the local mirror`)
+console.log(`legacy images: ${urls.length} in the dataset, ${Object.keys(out).length} mapped to Sanity assets`)
 if (missing.length) {
-  console.error(`No Sanity asset and no local copy for:\n  ${missing.join('\n  ')}`)
+  console.error(`No Sanity asset for:\n  ${missing.join('\n  ')}`)
   process.exit(1)
 }

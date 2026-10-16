@@ -665,12 +665,6 @@ export function getServiceFaqs(serviceId: string) {
   )
 }
 
-export function getFeaturedReviews(limit = 6) {
-  return fetchQuery<Review[]>(
-    defineQuery(`*[_type == "review"] | order(featured desc, date desc)[0...12]{_id, authorName, rating, text, date, source, "location": location->name}`),
-  ).then((r) => r.slice(0, limit))
-}
-
 /**
  * Reviews, featured first then newest. `location` and `service` accept a document
  * _id or a slug. `limit` 0 or empty = all.
@@ -707,8 +701,8 @@ export function getOpenJobs() {
 }
 
 /**
- * Every redirect the site serves (the legacy table plus enabled `redirect`
- * documents), source → destination, one hop. Content links are rewritten through
+ * Every redirect the site serves (the code table in config/redirects.mjs plus
+ * enabled `redirect` documents), source → destination, one hop. Content links are rewritten through
  * it so no internal link points at a redirect (lib/links.ts).
  */
 export const getRedirectMap = memo(() =>

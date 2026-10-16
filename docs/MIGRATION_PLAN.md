@@ -23,11 +23,11 @@ These are fixed in the new build:
 
 - **No canonical tags on any page** (0 of 105). The new site emits a self-referencing absolute canonical on every indexable page.
 - **Broken internal links:**
-  - 39 links to `/estimate`, which 404s. The CMS posts link there.
+  - 39 links to `/estimate`, which 404s. The CMS posts link there. `/estimate` is now a real page (the Free Estimate form), so those links work as written.
   - Links to `/locations/mesa` and `/services/electrical-panels`, both 404.
   - One link to `/blog/...` instead of `/blog-posts/...`.
 
-  All are rewritten at import and also 301-redirected.
+  The last two kinds are rewritten at import and also 301-redirected.
 - **Junk URLs in the sitemap that return 200:** `/checkout`, `/paypal-checkout`, `/order-confirmation`, `/search`, plus 9 indexable `/product/*` and `/category/*` pages (Webflow e-commerce filler). The utility pages now 404. The product and category pages 301 to `/services`.
 - **Missing structured data:** blog posts had no `BlogPosting`, service pages had no `Service`, city pages had nothing. All now get a connected `@graph`, with the business entity, breadcrumbs and page-type schema.
 - **Duplicate H1s:** on `/services-categories/*` and one blog post.
@@ -39,31 +39,16 @@ Deliberate changes:
 - The self-serving `aggregateRating` in the homepage schema is removed, because Google never shows stars for a business's own ratings. The rating stays visible on the page.
 - The `/blog` list is no longer paginated by query string.
 
-## Design: ported from Webflow (October 2026)
+## Design (October 2026)
 
-The site renders the **published Webflow design itself**, not a re-creation:
-- Webflow's compiled CSS.
-- The original navbar and footer.
-- The page markup.
-- All 107 design images and fonts, downloaded into `web/public/wf/`.
-
-`scripts/migrate/build-legacy-design.mjs` generates `web/src/legacy/` from the live HTML snapshots. `web/src/lib/legacy.ts` fills the CMS spots (headlines, intros, rich text, service and blog lists) from Sanity at build time, the same way Webflow's templates do.
-
-Webflow's runtime (jQuery plus about 700 KB of JS) is replaced by `web/src/scripts/webflow-lite.ts`, about 5 KB. It handles:
-- the mobile menu, dropdowns, the FAQ accordions and the tabs;
-- scroll-in animations;
-- lazy-loaded review and Instagram widgets;
-- form submissions.
-
-Side-by-side screenshots match the live site, with identical page heights on desktop. The parity check reports 0 errors and 0 warnings. The full-page copy on About, Team, Contact, Careers, Commercial and Services is back.
+The first build rendered the published Webflow design itself (its compiled CSS, navbar, footer and page markup, generated from the live HTML snapshots), so SEO parity could be proven before any design changed. That port is gone. Every page now renders the owner-approved round-5 redesign on `web/src/layouts/SiteLayout.astro` (see `docs/DESIGN_SYSTEM.md`), from the same Sanity content, with the same titles, meta descriptions, H1s, canonicals, structured-data types and URLs. The parity check reports 0 errors and 0 warnings, and every page carries more words and internal links than the live one.
 
 Deliberate differences from the live site:
 - "All Services" lists every service. Webflow's list was capped at 16, which hid Panels, EV Chargers, Recessed Lighting, Troubleshooting and Remodels.
 - The blog index lists every post, instead of 6 per page.
 - Duplicate H1s are demoted to H2.
 - The "Buy this Template" leftovers from the purchased Webflow template are removed.
-
-The design refresh builds on this foundation, section by section.
+- `/estimate` is a real, indexable page with the estimate form (it used to 404); every "Free Estimate" link goes there.
 
 ## Phases
 

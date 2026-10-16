@@ -255,7 +255,6 @@ The `Review` shape the queries return flattens the tags: `location` is the bare 
 
 **Queries:**
 - `getReviews({location?, service?, featuredOnly?, limit?})`: `location` and `service` accept an `_id` or a slug. Featured first, then newest.
-- `getFeaturedReviews(limit)`: unchanged.
 
 ### project (real jobs)
 
@@ -598,9 +597,10 @@ Every list a section renders is always an array.
 | `getServices()`, `getService(slug)`, `getServiceCategories()` | Services |
 | `getLocations()` | Cities (memoized) |
 | `getPosts()`, `getPost(slug)`, `getPostCategories()` | Blog |
+| `getPostIndex()` | Every post with its services' slugs and plain text (memoized): topics, covers and reading time on the CMS templates |
 | `getTeam()`, `getFaqs(topic?)`, `getOpenJobs()` | Team, FAQs, jobs |
+| `getServiceFaqs(serviceId)` | The FAQs tagged with a service (`faq.services`), for its service page |
 | `getReviews({location?, service?, featuredOnly?, limit?})` | Reviews, featured first. `location` and `service` take an `_id` or a slug |
-| `getFeaturedReviews(limit)` | Unchanged legacy helper |
 | `getProjects({location?, service?, limit?})` | Projects, newest first |
 
 **Types:**

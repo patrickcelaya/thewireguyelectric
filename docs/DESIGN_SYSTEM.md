@@ -12,7 +12,7 @@ These come from the owner (all rounds) and the SEO spec. They are not style pref
 
 **Content and SEO**
 - **One H1, from the document** (`page.heading`, `service.heading ?? service.name`, `location.heading`, `post.title`), plain text, no `<br>`, no eyebrow inside it, never inside `<header>`. Section headings are H2; inside a section, H3. (`docs/CONTENT_MODEL.md` §1.)
-- **Keep every page's `title`, `description`, `path` and `crumbs` expressions exactly as the legacy route has them.** Only the body changes. `scripts/seo/parity.mjs` must stay at 0 errors.
+- **Keep every page's `title`, `description`, `path` and `crumbs` exactly as the live site has them** (`migration/seo-baseline.json`). Only the body changes. `scripts/seo/parity.mjs` must stay at 0 errors.
 - **Word counts and internal links never drop** (floors in `migration/seo-baseline.json` and the redesign spec). The `<header>`, `<nav>` and `<footer>` don't count toward words: main content must carry them.
 - **Empty means nothing.** A section whose data is empty renders nothing (no heading, no wrapper). Never fill a gap with invented copy, reviews, prices, stats or neighbourhoods.
 - **All text is HTML text** in the initial HTML (no text in images, no JS-only content, nothing hidden in tabs). Text on photos is real text over a feathered tint.
@@ -39,25 +39,27 @@ These come from the owner (all rounds) and the SEO spec. They are not style pref
 web/src/
   styles/          tokens.css, core.css (every page), home.css, inner.css, atlas.css (page-type layers)
   assets/fonts/    Red Hat Display + Red Hat Text, latin subset woff2 (hashed by Vite)
-  layouts/         SiteLayout.astro (the new design)   WebflowLayout.astro (legacy port, until every route is converted)
+  layouts/         SiteLayout.astro (every page)
   components/
-    Seo.astro      every SEO <head> tag (unchanged from the port)
+    Seo.astro      every SEO <head> tag
+    PageBuilderPage.astro  the shell of the pages composed in Sanity (§14)
     PortableText.astro
     site/          the chrome: SiteHeader, SiteFooter, CallBar, HeadGate, SvgSprite, Logo
     ui/            atoms: Button, TextLink, ExternalLink, Eyebrow, SectionHeader, Accent, Stars, RatingLine, ScoreBlock, RocLink,
                    OfficeStatus, Bulb, MiniBulb, LitBulb, Breadcrumbs, SanityImage, StaticPicture, CtaButtons
-    sections/      SectionRenderer (page.sections → components) and the sections: HeroHome, TeamIntro, ValueCards,
-                   Capabilities, ServicesMosaic, PullQuote, ProcessSteps, Gallery, GuidesBlock, EstimateForm, CtaBand,
-                   ReviewsCarousel, ReviewsStatic, ReviewCard, Valley, FaqList, FaqBlock, GuideCard
+    sections/      SectionRenderer (page.sections → components) and the sections: the homepage's (HeroHome, TeamIntro,
+                   ValueCards, Capabilities, ServicesMosaic, PullQuote, ProcessSteps, Gallery, GuidesBlock, EstimateForm,
+                   CtaBand, ReviewsCarousel, ReviewsStatic, ReviewCard, Valley, FaqList, FaqBlock, GuideCard), the CMS
+                   templates' (§13) and the inner pages' (§14)
   scripts/         site.ts (entry) + site/*.ts (header, motion, bulb, valley, reviews, forms, video, util)
   middleware.ts    a line break after every block-level closing tag of every HTML page (see §12)
   lib/             queries, types, schema, seo (unchanged roles) + image, site, nav, cities, hours, valley, bulb,
                    portable-text, links, brand-photos, format, sections (the renderer's plan), hero (the hero photo's renditions)
-  data/            relief.json (valley map), legacy-images.json (Webflow URL → Sanity asset), webflow-mirror.json
+  data/            relief.json (valley map), legacy-images.json (Webflow URL → Sanity asset)
 web/public/img/    logo renditions, relief renditions, sister-brand logos, fleet poster enlargements
 ```
 
-`web/src/legacy`, `lib/legacy.ts`, `layouts/WebflowLayout.astro`, `scripts/webflow-lite.ts` and `public/wf/css` belong to the Webflow port and go away once the last route is converted. `public/wf/a` (the mirror of Webflow's files) stays: `lib/image.ts` falls back to it.
+Every route renders on `SiteLayout`; the Webflow port (its HTML, stylesheet, fonts, `WebflowLayout` and runtime) is gone. `public/wf/a` keeps only the Webflow files the private review bundle (`public/design-review`) still shows: delete both together.
 
 ---
 
@@ -94,6 +96,9 @@ Vite bundles each page's imports into cached, fingerprinted stylesheets (shared 
 | `home.css` | the homepage | the review lanes and dialog (moved out of core), the title-card hero, "who we are", the services mosaic, the valley sky (fleet poster), gallery and the rest of the homepage sections |
 | `inner.css` | every other page | the breadcrumb and static reviews (moved out of core), photo heroes (`.ihero`), trust card, at-a-glance facts, service cards, the long-form article and contact card, `.prose` (rich text, incl. tables, video, CTA blocks), warning signs, the /estimate hero and steps, the 404 and link hub (`.hub`) |
 | `atlas.css` | any page with `<Valley>` (imported by the component) | the relief map, wire, lights, labels, index panel, callout and their motion |
+| `cms.css` | city, service and category pages (after `inner.css`) | the CMS templates' additions (§13) |
+| `post.css` | blog posts (after `inner.css` and `cms.css`) | the editorial post layout (§13) |
+| `pages.css` | the page-builder pages via `PageBuilderPage` (after `inner.css` and `home.css`) | the inner-page sections (§14) |
 
 **How a page imports them:** the layout first, then the page-type layer, then section components (CSS order follows import order):
 
@@ -231,7 +236,7 @@ Pages composed in Sanity (`page.sections`) render through **`SectionRenderer`** 
 ```
 
 - Sanity's image CDN serves every rendition (`auto=format` → AVIF/WebP, q 75, crop and hotspot honoured, `fit=crop` only with `aspect`), project `qhi2uf0l` **even when the build reads the local dataset** (`IMAGE_PROJECT_ID`).
-- The local dataset still stores some images as `image@<webflow url>`; `resolveImage()` maps them to the Sanity asset the production import made from the same file (`data/legacy-images.json`, regenerate with `node scripts/migrate/legacy-image-map.mjs` after an import that adds images), else to the local mirror `/wf/a/…` (`data/webflow-mirror.json`). An image with neither renders nothing and logs a build warning: **nothing is ever loaded from Webflow's CDN**.
+- The local dataset still stores some images as `image@<webflow url>`; `resolveImage()` maps them to the Sanity asset the production import made from the same file (`data/legacy-images.json`, regenerate with `node scripts/migrate/legacy-image-map.mjs` after an import that adds images), An image with no such asset renders nothing and logs a build warning: **nothing is ever loaded from Webflow's CDN**.
 - `width`/`height` come from the asset (after the editor's crop) or from `aspect`. Widths are capped at the original (no upscaled copies).
 - `alt`: the image's own alt by default; pass `alt=""` for a thumbnail beside its own title.
 - LCP: `priority` (eager, `fetchpriority=high`, `decoding=sync`) on exactly one image per page; if it sits low in the HTML also preload it with `imagePreload(image, widths, sizes, aspect)` in the layout's `head` slot.
@@ -324,7 +329,7 @@ Two build details every page relies on:
 
 ## 13. CMS templates: city, service, post and category pages
 
-The four collection routes render the round-5 Gilbert (`city.html`) and Panels (`service.html`) mockups from Sanity, on `SiteLayout` with the shared atoms and sections above. Titles, meta descriptions, H1s, breadcrumbs and URLs are unchanged from the port (parity checks them per URL).
+The four collection routes render the round-5 Gilbert (`city.html`) and Panels (`service.html`) mockups from Sanity, on `SiteLayout` with the shared atoms and sections above. Titles, meta descriptions, H1s, breadcrumbs and URLs are unchanged from the live site (parity checks them per URL).
 
 | Route | Pages | Order of sections |
 |---|---|---|
