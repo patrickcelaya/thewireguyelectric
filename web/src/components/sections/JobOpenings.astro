@@ -1,0 +1,70 @@
+---
+// Open positions (jobsSection) on /careers: the section's heading and intro, then
+// each open job as a card (employment type, posted and closing dates, title, the
+// job's description and the apply button). The page marks up exactly these jobs as
+// JobPosting (lib/jobs.ts currentJobs; lib/page-schema.ts), so the structured data
+// never lists a job the page doesn't show. No open job, no section.
+// Styles: styles/pages.css "JOBS".
+import type {JobsSection} from '../../lib/types'
+import {currentJobs, employmentLabel} from '../../lib/jobs'
+import {formatDate, isoDate} from '../../lib/format'
+import {sectionLabel} from '../../lib/sections'
+import PortableText from '../PortableText.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Button from '../ui/Button.astro'
+
+interface Props {
+  section: JobsSection
+  number?: number
+  /** Where "Apply Now" goes: the application form on the page ("#apply-now"), else the contact page. */
+  applyHref?: string
+}
+
+const {section, number, applyHref = '/contact-us'} = Astro.props
+const id = `${section._key}-h`
+const jobs = currentJobs(section.jobs)
+---
+
+{
+  jobs.length > 0 && (
+    <section class="section jobs-s" {...sectionLabel(id, section.heading, 'Current openings')}>
+      <div class="wrap jobs">
+        <div class="jobs__head">
+          <Eyebrow number={number}>{jobs.length === 1 ? 'Now hiring' : `${jobs.length} open positions`}</Eyebrow>
+          {section.heading && (
+            <h2 class="h2" id={id}>
+              {section.heading}
+            </h2>
+          )}
+          {section.intro && <p class="jobs__intro">{section.intro}</p>}
+        </div>
+        <ul class="jobs__list" role="list">
+          {jobs.map((job) => (
+            <li class="job">
+              <p class="job__meta">
+                {employmentLabel(job.employmentType) && <span class="job__type">{employmentLabel(job.employmentType)}</span>}{' '}
+                {job.datePosted && (
+                  <span>
+                    Posted <time datetime={isoDate(job.datePosted)}>{formatDate(job.datePosted, 'short')}</time>
+                  </span>
+                )}{' '}
+                {job.validThrough && (
+                  <span>
+                    Apply by <time datetime={isoDate(job.validThrough)}>{formatDate(job.validThrough, 'short')}</time>
+                  </span>
+                )}
+              </p>
+              <h3 class="job__title">{job.title}</h3>
+              <PortableText value={job.description} class="job__desc" />
+              <div class="btn-row job__cta">
+                <Button href={applyHref} icon="go" size="md">
+                  Apply Now<span class="sr-only">: {job.title}</span>
+                </Button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

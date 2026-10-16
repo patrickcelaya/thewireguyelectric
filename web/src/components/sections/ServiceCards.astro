@@ -1,0 +1,62 @@
+---
+// Featured services on an inner page (servicesSection, layout "featured", any page but
+// the homepage, whose eight-tile mosaic is ServicesMosaic): whole cards on real photos,
+// as on the city page. The photo on top, the words on paper under it, so no word ever
+// sits on a face; the title is the card's one link and the small bulb lights on hover.
+// Three to a row (two, then one, on smaller screens). The head carries the section's
+// intro and its link. Styles: styles/inner.css "services on real photos".
+import type {ServicesSection} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import SectionHeader from '../ui/SectionHeader.astro'
+import TextLink from '../ui/TextLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+import MiniBulb from '../ui/MiniBulb.astro'
+
+interface Props {
+  section: ServicesSection
+  number?: number
+}
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const {cta} = section
+const heading = section.heading ?? 'Our services'
+---
+
+{
+  section.services.length > 0 && (
+    <section class="section isvc" {...sectionLabel(id, heading)}>
+      <div class="wrap">
+        <SectionHeader heading={heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+          {cta && (
+            <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+              {cta.label}
+            </TextLink>
+          )}
+        </SectionHeader>
+        <ul class="tiles3" role="list">
+          {section.services.map((s) => (
+            <li class="tile tile--card">
+              <div class="tile__media">
+                <SanityImage image={s.image ?? s.mainImage} widths={[480, 720, 1080]} sizes="(max-width:899px) 92vw, 32vw" alt="" />
+              </div>
+              <div class="tile__body">
+                <h3>
+                  <a href={`/services/${s.slug}`}>{s.title}</a>
+                </h3>{' '}
+                {s.text && <p>{s.text}</p>}{' '}
+                <span class="tile__go" aria-hidden="true">
+                  Learn more
+                </span>
+                <MiniBulb />
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

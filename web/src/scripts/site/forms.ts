@@ -75,7 +75,8 @@ function enhance(box: HTMLElement) {
           if (!res.ok) throw new Error(String(res.status))
           busy(false)
           showSent(box)
-          track('generate_lead')
+          // a job application (data-est="careers") is not a lead
+          if (box.dataset.est !== 'careers') track('generate_lead')
         })
         .catch(() => {
           busy(false)

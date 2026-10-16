@@ -1,0 +1,72 @@
+---
+// The trust strip: a row of short, verifiable facts, each a big copper value over
+// its words (the 5.0 with its stars and the Google link, the ROC licence linked to the
+// state lookup, the year founded, the section's own facts). Values come from Site
+// settings through resolveTrustItems(), so they never drift; facts without a source
+// value are left out. No review markup: the rating is text. Styles: styles/pages.css
+// "TRUST STRIP".
+import type {SiteSettings, TrustBarSection} from '../../lib/types'
+import {resolveTrustItems} from '../../lib/queries'
+import {isExternal} from '../../lib/links'
+import ExternalLink from '../ui/ExternalLink.astro'
+import Stars from '../ui/Stars.astro'
+
+interface Props {
+  section: TrustBarSection
+  settings: SiteSettings
+}
+
+const {section, settings} = Astro.props
+const items = resolveTrustItems(section.items, settings)
+
+/** The words under a value when the editor left them empty. */
+function defaultLabel(item: (typeof items)[number]) {
+  if (item.fact === 'reviews') return `from ${item.reviewCount ? `${item.reviewCount}+ ` : ''}${item.source ?? 'Google'} reviews`
+  if (item.fact === 'license') return 'Licensed, bonded, and insured'
+  if (item.fact === 'founded') return 'Year founded'
+  return undefined
+}
+---
+
+{
+  items.length > 0 && (
+    <section class="trust-s" aria-label={`${settings.businessName} at a glance`}>
+      <ul class="wrap trust" role="list">
+        {items.map((item) => {
+          const label = item.label ?? defaultLabel(item)
+          return (
+            <li class:list={['trust__item', `trust__item--${item.fact}`]}>
+              {item.value && (
+                <p class="trust__v">
+                  {item.fact === 'reviews' ? (
+                    <>
+                      <span aria-hidden="true">{item.value}</span>
+                      <span class="sr-only">Rated {item.value} out of 5</span> <Stars size={18} />
+                    </>
+                  ) : (
+                    item.value
+                  )}
+                </p>
+              )}
+              {label && (
+                <p class="trust__l">
+                  {item.href && isExternal(item.href) ? (
+                    <ExternalLink class="link link--ext" href={item.href}>
+                      {label}
+                    </ExternalLink>
+                  ) : item.href ? (
+                    <a class="link" href={item.href}>
+                      {label}
+                    </a>
+                  ) : (
+                    label
+                  )}
+                </p>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}

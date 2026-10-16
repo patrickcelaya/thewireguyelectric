@@ -2,9 +2,10 @@
 // A questions section's two columns: the eyebrow, H2, intro and a link to /faq on
 // the left; the questions on the right (FaqList). Wrap it in a <section> with the
 // background the page wants (e.g. `section answers`).
-import type {FaqItem} from '../../lib/types'
+import type {FaqItem, ImageRef} from '../../lib/types'
 import Eyebrow from '../ui/Eyebrow.astro'
 import TextLink from '../ui/TextLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
 import FaqList from './FaqList.astro'
 
 interface Props {
@@ -16,9 +17,11 @@ interface Props {
   number?: number | string
   /** The link under the intro; pass null to leave it out (e.g. on /faq itself). */
   more?: {href: string; label: string} | null
+  /** A photo under the aside (the section's image), shown whole. */
+  image?: ImageRef | null
 }
 
-const {faqs, heading, intro, id = 'faq-h', eyebrow = 'Questions', number, more = {href: '/faq', label: 'All questions on our FAQ'}} = Astro.props
+const {faqs, heading, intro, id = 'faq-h', eyebrow = 'Questions', number, more = {href: '/faq', label: 'All questions on our FAQ'}, image} = Astro.props
 ---
 
 {
@@ -36,6 +39,11 @@ const {faqs, heading, intro, id = 'faq-h', eyebrow = 'Questions', number, more =
               {more.label}
             </TextLink>
           </p>
+        )}
+        {image && (
+          <figure class="faq__photo">
+            <SanityImage image={image} widths={[480, 720, 960]} sizes="(max-width:880px) 92vw, 34vw" />
+          </figure>
         )}
       </div>
       <FaqList faqs={faqs} />

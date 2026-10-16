@@ -17,9 +17,22 @@ interface Props {
   hint?: string
   /** An id on the card, e.g. "estimate" when the page links to the form. */
   anchor?: string
+  /** The submit button's words (a contact section's own label). */
+  submitLabel?: string
+  /** The confirmation's text (a contact section's own success message). */
+  successMessage?: string
 }
 
-const {settings, id, title = 'Get a Free Estimate', titleTag: Title = 'h2', hint = 'No pressure and no obligation.', anchor} = Astro.props
+const {
+  settings,
+  id,
+  title = 'Get a Free Estimate',
+  titleTag: Title = 'h2',
+  hint = 'No pressure and no obligation.',
+  anchor,
+  submitLabel = 'Request my free estimate',
+  successMessage,
+} = Astro.props
 const tel = telHref(settings)
 const hours = officeHours(settings).prose
 ---
@@ -62,7 +75,7 @@ const hours = officeHours(settings).prose
       <textarea id={`${id}-message`} name="message" rows="3" placeholder="Breaker keeps tripping, new EV charger, more lights in the kitchen…"></textarea>
     </div>
     <div class="submit">
-      <button class="btn btn--primary btn--lg btn--go" type="submit"><span data-submit-label>Request my free estimate</span></button>
+      <button class="btn btn--primary btn--lg btn--go" type="submit"><span data-submit-label>{submitLabel}</span></button>
     </div>
     {hours && <p class="promise">We call back during office hours, {hours}.</p>}
   </form>
@@ -71,7 +84,8 @@ const hours = officeHours(settings).prose
     <div>
       <p class="done__h">Your request is in.</p>
       <p>
-        Thanks! We’ll call you during office hours to schedule your free estimate. Prefer to talk now? Call <a href={tel} class="tnum">{settings.phone}</a>.
+        {successMessage ?? 'Thanks! We’ll call you during office hours to schedule your free estimate.'} Prefer to talk now? Call{' '}
+        <a href={tel} class="tnum">{settings.phone}</a>.
       </p>
     </div>
   </div>

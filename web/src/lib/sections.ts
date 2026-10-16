@@ -2,8 +2,10 @@
 // which ones render, which are numbered chapters, and which share a band.
 import type {PageSection, SectionOf, SiteSettings} from './types'
 import {ESTIMATE_PATH} from './site'
+import {visibleOffices} from './offices'
+import {currentJobs} from './jobs'
 
-/** One thing the renderer draws: a section, or the questions-and-guides band. */
+/** One thing the renderer draws: a section, or the questions-and-guides band (a blog archive by service is a section of its own). */
 export type SectionPlanItem =
   | {kind: 'section'; section: PageSection; number?: number}
   | {
@@ -43,7 +45,15 @@ export function isEmptySection(section: PageSection): boolean {
     case 'teamSection':
       return !section.members.length
     case 'jobsSection':
-      return !section.jobs.length
+      return !currentJobs(section.jobs).length
+    case 'richTextSection':
+      return !section.body?.length
+    case 'mediaTextSection':
+      return !section.body?.length && !section.image
+    case 'highlightsSection':
+      return !section.checklist.some((c) => c.lead || c.text) && !section.asideBody?.length
+    case 'officeLocationsSection':
+      return !visibleOffices(section.offices).length
     // Owner: no price modules on any page; prices stay in FAQ answers and posts.
     case 'priceGuideSection':
       return true
@@ -54,13 +64,15 @@ export function isEmptySection(section: PageSection): boolean {
 
 /**
  * Sections set between the numbered chapters: the hero, the value cards on the copper
- * band and a quote pulled out on its photo. Every other section's eyebrow carries the
- * next chapter number ("01", "02", …), as in the round-5 mockups.
+ * band, a quote (pulled out on its photo, or a team member's statement on copper) and
+ * the trust strip. Every other section's eyebrow carries the next chapter number
+ * ("01", "02", …), as in the round-5 mockups.
  */
-function isInterlude(section: PageSection) {
+export function isInterlude(section: PageSection) {
   return (
     section._type === 'heroSection' ||
     section._type === 'quoteSection' ||
+    section._type === 'trustBarSection' ||
     (section._type === 'featureGridSection' && section.style !== 'checklist')
   )
 }
@@ -91,7 +103,7 @@ export function planSections(sections: PageSection[]): SectionPlanItem[] {
   for (const section of sections.filter((s) => !isEmptySection(s))) {
     if (section._type === 'faqSection') {
       plan.push({kind: 'answers', faq: section, numbers: {faq: next()}})
-    } else if (section._type === 'postsSection') {
+    } else if (section._type === 'postsSection' && section.layout !== 'byService') {
       const last = plan.at(-1)
       if (last?.kind === 'answers' && last.faq && !last.posts) {
         last.posts = section

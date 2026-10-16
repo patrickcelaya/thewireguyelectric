@@ -1,0 +1,36 @@
+---
+// A text section (richTextSection): the heading beside the copy on wide screens
+// (sticky, as the warning signs on a service page), above it on phones. The copy is
+// the long-form prose (lists, figures, tables, video, CTA blocks); its own headings
+// keep the levels authored in Sanity. Styles: styles/pages.css "RICH TEXT".
+import type {RichTextSection} from '../../lib/types'
+import {sectionLabel} from '../../lib/sections'
+import PortableText from '../PortableText.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+
+interface Props {
+  section: RichTextSection
+  number?: number
+}
+
+const {section, number} = Astro.props
+const id = `${section._key}-h`
+---
+
+{
+  section.body && section.body.length > 0 && (
+    <section class:list={['section rt-s', !section.heading && 'rt-s--solo']} {...sectionLabel(id, section.heading, 'Text')}>
+      <div class="wrap rt">
+        {section.heading && (
+          <div class="rt__head">
+            {number !== undefined && <Eyebrow number={number} />}
+            <h2 class="h2" id={id}>
+              {section.heading}
+            </h2>
+          </div>
+        )}
+        <PortableText value={section.body} class="prose rt__body" figureSizes="(max-width:980px) 92vw, 52vw" />
+      </div>
+    </section>
+  )
+}

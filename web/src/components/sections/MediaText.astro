@@ -1,0 +1,59 @@
+---
+// Image + text (mediaTextSection): the words on the page grid beside one real photo
+// that runs off the screen's edge on its side (left or right, the section's
+// `imagePosition`), as the homepage's "who we are". The photo keeps its proportions
+// (never cropped). Phones: the words, then the photo edge to edge.
+// Styles: styles/pages.css "IMAGE + TEXT".
+import type {MediaTextSection} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import PortableText from '../PortableText.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Button from '../ui/Button.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  section: MediaTextSection
+  number?: number
+}
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const {image, cta} = section
+const left = section.imagePosition === 'left'
+---
+
+<section class:list={['section mt-s', left && 'mt-s--left', !image && 'mt-s--solo']} {...sectionLabel(id, section.heading, 'Image and text')}>
+  <div class="mt">
+    <div class="mt__copy">
+      {number !== undefined && <Eyebrow number={number} />}
+      {
+        section.heading && (
+          <h2 class="h2" id={id}>
+            {section.heading}
+          </h2>
+        )
+      }
+      <PortableText value={section.body} class="prose mt__body" />
+      {
+        cta && (
+          <div class="btn-row mt__cta">
+            <Button href={ctaHref(cta, redirects)} variant="ghost" size="md" icon="go">
+              {cta.label}
+            </Button>
+          </div>
+        )
+      }
+    </div>
+    {
+      image && (
+        <figure class="mt__photo">
+          <SanityImage image={image} widths={[640, 828, 1086, 1280]} sizes="(max-width:980px) 100vw, 50vw" />
+          {image.caption && <figcaption>{image.caption}</figcaption>}
+        </figure>
+      )
+    }
+  </div>
+</section>

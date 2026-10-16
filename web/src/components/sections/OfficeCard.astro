@@ -1,0 +1,47 @@
+---
+// One office as an <address> card: its Google Business Profile name ("The Wire Guy
+// Electric of Scottsdale (by appointment)"), the street address, the phone (the main
+// number when the office has none) and a link to its profile on Google. Offices come
+// from Site settings through lib/offices.ts visibleOffices(): the Mesa home address
+// (footerOnly) is never passed here. Hours are not shown: the profiles' hours are not
+// confirmed per office. Styles: styles/pages.css "OFFICES".
+import type {PostalAddress, SiteSettings} from '../../lib/types'
+import {addressLines, officeName} from '../../lib/offices'
+import {telHref} from '../../lib/site'
+import ExternalLink from '../ui/ExternalLink.astro'
+
+interface Props {
+  office: PostalAddress
+  settings: SiteSettings
+  /** The office name's heading level in the surrounding outline. */
+  as?: 'h3' | 'h4' | 'p'
+}
+
+const {office, settings, as: Name = 'h3'} = Astro.props
+const phone = office.phone || settings.phone
+// an office's own number, else the main line (whose tel: form is in Site settings)
+const tel = office.phone ? `tel:+1${office.phone.replace(/\D/g, '').slice(-10)}` : telHref(settings)
+---
+
+<address class="office">
+  <Name class="office__name">{officeName(office, settings)}</Name>
+  <p class="office__lines">
+    {
+      addressLines(office).map((line) => (
+        <>
+          <span>{line}</span>{' '}
+        </>
+      ))
+    }
+  </p>
+  <p class="office__tel"><a class="tnum" href={tel}>{phone}</a></p>
+  {
+    office.googleMapsUrl && (
+      <p class="office__map">
+        <ExternalLink class="link link--ext" href={office.googleMapsUrl}>
+          Find us on Google
+        </ExternalLink>
+      </p>
+    )
+  }
+</address>
