@@ -24,7 +24,7 @@ import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getFaqs, getLocations, getPostIndex, getReviews, getServices, getSettings} from '../../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
-import {branchFor, branchNode, faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
+import {branchFor, branchId, faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
 import {CITY_ORDER, serviceAreaCities} from '../../lib/cities'
 import {FLEET_HERO, cityGuides, guideCards, listOf, mergeFaqs, pickReviews} from '../../lib/cms'
 import type {LocationDoc} from '../../lib/types'
@@ -73,16 +73,14 @@ const guides = guideCards(
 const cities = serviceAreaCities(settings.homeCity, locations)
 const nearby = (location.nearbyLocations ?? []).map((l) => l.shortName || l.name)
 
-// the office's own entity (its Google Business Profile as the map), which this page is about
-const branch: Record<string, unknown> | undefined = office && {...branchNode(settings, office), hasMap: office.googleMapsUrl}
 ---
 
 <SiteLayout
   meta={{title, description, path, ogImage: resolveOgImage(settings, location.seo?.ogImage, location.mainImage), noIndex: location.seo?.noIndex, breadcrumbs: crumbs}}
   schema={[
-    {...webPageNode({path, title, description, breadcrumbs: crumbs}), ...(branch && {about: {'@id': branch['@id']}})},
+    // the office whose Google Business Profile lands here (its entity is in every page's graph, see SiteLayout)
+    {...webPageNode({path, title, description, breadcrumbs: crumbs}), ...(office && {about: {'@id': branchId(office)}})},
     locationServiceNode(location),
-    branch,
     faqNode(path, faqs),
   ]}
   bodyClass="inner"

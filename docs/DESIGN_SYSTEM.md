@@ -126,7 +126,7 @@ Page-specific styles that don't belong to a reusable pattern go at the end of th
 | Prop | Type | What it does |
 |---|---|---|
 | `meta` | `PageMeta` (`lib/seo.ts`) | title, description, path, ogImage, noIndex, breadcrumbs, published/modified times. Passed to `Seo.astro` unchanged |
-| `schema` | JSON-LD nodes | merged into the one `@graph` after `businessNode` (both offices, full NAP incl. the Mesa street address) and `websiteNode`; `breadcrumbNode` is added from `meta.breadcrumbs` |
+| `schema` | JSON-LD nodes | merged into the one `@graph` after `businessNode` (the Mesa headquarters with its full NAP), `branchNodes` (each office with its own Google Business Profile, e.g. Scottsdale, as an `Electrician` with `parentOrganization` and `hasMap`, so both offices' full NAP is on every page) and `websiteNode`; `breadcrumbNode` is added from `meta.breadcrumbs` |
 | `bodyClass` | string | `inner` on inner pages (plus a page class such as `page-est`, `page-404`); `over` when the header sits over a full-bleed hero photo (the homepage): the header glass is then transparent until the page scrolls and `main` gets no top padding |
 | `current` | path | marks the current link (`aria-current`) and puts the copper wire under its section (default `meta.path`; Gilbert → Locations, Panels → Services) |
 | `callbarEstimateHref` | string | the call bar's Free Estimate target (`#estimate` on /estimate) |
@@ -339,7 +339,7 @@ The four collection routes render the round-5 Gilbert (`city.html`) and Panels (
 | `pages/services-categories/[slug].astro` | 2 | `CategoryHero` · the category's services (`ServiceCards`) · `Valley` inner · `CtaBand` |
 | `pages/posts-categories/[slug].astro` | 3 (noindex) | `CategoryHero` · the category's guides (else the latest three, said so) · the services the guides cover (`hub__chips`) · `CtaBand` |
 
-Chapter numbers come from a counter in the page, so a section that renders nothing (no signs, no FAQs, no guides) takes no number. JSON-LD (the layout adds `BreadcrumbList` and the business): city = `WebPage` + `Service` areaServed (+ the Scottsdale office as an `Electrician` branch with `hasMap`) + `FAQPage`; service = `WebPage` (mainEntity `#service`) + `Service` + `FAQPage`; post = `BlogPosting` (image, `isPartOf` `/blog#blog`, `about` its services) + `WebPage`; service categories = `CollectionPage` with an `ItemList` of its services; post categories = `CollectionPage`.
+Chapter numbers come from a counter in the page, so a section that renders nothing (no signs, no FAQs, no guides) takes no number. JSON-LD (the layout adds `BreadcrumbList` and the business): city = `WebPage` + `Service` areaServed (Scottsdale's `WebPage` is `about` its office's entity, which the layout adds on every page) + `FAQPage`; service = `WebPage` (mainEntity `#service`) + `Service` + `FAQPage`; post = `BlogPosting` (image, `isPartOf` `/blog#blog`, `about` its services) + `WebPage`; service categories = `CollectionPage` with an `ItemList` of its services; post categories = `CollectionPage`.
 
 ### Components (`components/sections/`)
 

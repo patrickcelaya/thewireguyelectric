@@ -41,7 +41,7 @@ export function businessNode(s: SiteSettings, services?: Array<{name: string; sl
     logo: {'@type': 'ImageObject', url: `${SITE_URL}/logo.png`, width: 500, height: 447},
     identifier: s.rocLicense ? {'@type': 'PropertyValue', name: 'ROC License', value: s.rocLicense} : undefined,
     // The main entity is the headquarters. Offices with their own Google Business
-    // Profile get their own entity on their city page (see branchNode).
+    // Profile are entities of their own (branchNodes), in every page's graph.
     address: mainAddresses(s).map(postalAddressNode),
     geo: mainAddresses(s)[0]?.geo ? {'@type': 'GeoCoordinates', latitude: mainAddresses(s)[0].geo!.lat, longitude: mainAddresses(s)[0].geo!.lng} : undefined,
     subOrganization: branchAddresses(s).length ? branchAddresses(s).map((a) => ({'@id': branchId(a)})) : undefined,
@@ -79,7 +79,8 @@ function postalAddressNode(a: PostalAddress) {
 
 const mainAddresses = (s: SiteSettings) => (s.addresses ?? []).filter((a) => !a.locationSlug)
 const branchAddresses = (s: SiteSettings) => (s.addresses ?? []).filter((a) => a.locationSlug)
-const branchId = (a: PostalAddress) => `${absoluteUrl(`/locations/${a.locationSlug}`)}#business`
+/** The @id of an office with its own Google Business Profile (its city page's #business). */
+export const branchId = (a: PostalAddress) => `${absoluteUrl(`/locations/${a.locationSlug}`)}#business`
 
 /** The office whose Google Business Profile links to this city page, if any. */
 export function branchFor(s: SiteSettings, locationSlug: string) {
@@ -105,7 +106,13 @@ export function branchNode(s: SiteSettings, a: PostalAddress): Node {
     parentOrganization: {'@id': BUSINESS_ID},
     identifier: s.rocLicense ? {'@type': 'PropertyValue', name: 'ROC License', value: s.rocLicense} : undefined,
     sameAs: a.googleMapsUrl ? [a.googleMapsUrl] : undefined,
+    hasMap: a.googleMapsUrl,
   }
+}
+
+/** Every office with its own Google Business Profile, so the graph carries both offices' full NAP on every page. */
+export function branchNodes(s: SiteSettings): Node[] {
+  return branchAddresses(s).map((a) => branchNode(s, a))
 }
 
 export function websiteNode(s: SiteSettings): Node {
