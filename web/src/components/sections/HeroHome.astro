@@ -11,6 +11,7 @@
 // section); its accent words come from the section. Under the hero, the live hero
 // paragraph: its first sentence as the lit statement, the rest as a quiet lede.
 // Geometry: styles/home.css "HERO"; the stacking safety net: scripts/site/motion.ts.
+// Without a photo the words and the proof card simply sit on the page (hero--bare).
 import type {HeroSection, SiteSettings} from '../../lib/types'
 import {ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
 import {balancedLines, firstSentence} from '../../lib/format'
@@ -57,7 +58,7 @@ const size = imageDimensions(photo)
 const [phone, wide] = HERO_SOURCES
 ---
 
-<section class="hero" aria-labelledby={id}>
+<section class:list={['hero', !photo && 'hero--bare']} aria-labelledby={id}>
   <div class="hero__copy" data-hero-copy>
     <div class="hero__inner">
       {section.eyebrow && <Eyebrow class="hero__kicker">{section.eyebrow}</Eyebrow>}

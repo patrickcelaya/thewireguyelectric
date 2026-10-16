@@ -10,8 +10,12 @@
 // A section type or variant no converted page uses yet stops the build with a clear
 // message instead of being dropped silently (content must never disappear): build
 // its component when converting the page that first uses it, and map it here.
+//
+// The H1 is never missing: a page whose content predates the page builder (no
+// sections, as in a dataset not yet re-imported) still gets its hero and the
+// closing estimate band (lib/sections.ts withPageFrame).
 import type {PageDoc, PageSection, SiteSettings} from '../../lib/types'
-import {planSections} from '../../lib/sections'
+import {planSections, withPageFrame} from '../../lib/sections'
 import {serviceAreaCities, HOME_CITY_SLUG} from '../../lib/cities'
 import {ctaHref} from '../../lib/site'
 import {getNavModel} from '../../lib/nav'
@@ -46,7 +50,7 @@ function unbuilt(section: PageSection, variant?: string): never {
 }
 
 // Fail at build time on anything this renderer can't draw yet (see the note above).
-const plan = planSections(page.sections ?? [])
+const plan = planSections(withPageFrame(page.sections ?? [], settings))
 for (const item of plan) {
   if (item.kind === 'answers') {
     if (item.faq?.groups.some((g) => g.faqs.length)) unbuilt(item.faq, 'headed groups')

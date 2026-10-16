@@ -121,6 +121,10 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
   /* the light under the last row stays inside the wall (it ends 1.5% of the photo above the tallest head) */
   .hero__sub-in::before{inset:-4px -22px;filter:blur(5px)}
 }
+/* no photo (content not yet given one): no title card, the words and the proof card sit on the page */
+.hero--bare .hero__copy{position:static;height:auto;padding-block:calc(var(--hdr-h) + clamp(32px,4vw,64px)) clamp(36px,4vw,64px)}
+.hero--bare .proof{margin-top:0}
+@media (max-width:899px){.hero__inner>h1:first-child{margin-top:calc(var(--hdr-h) + 16px)}.hero--bare .proof__score{margin-top:20px}}
 /* safety net (site.js): if the words ever outgrow the wall (very large text zoom), they move above the photo */
 .hero--stacked .hero__copy{position:static;height:auto;padding-block:calc(var(--hdr-h) + 24px) 32px}
 .hero--stacked .hero__photo::after{display:none}
