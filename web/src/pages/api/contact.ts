@@ -44,20 +44,34 @@ async function toResend(apiKey: string, to: string, lead: Lead) {
   if (!res.ok) throw new Error(`Resend ${res.status}`)
 }
 
+// A form posted without JavaScript asks for a page, not JSON: send the browser back to the page it came from (same
+// origin only), where CSS shows the success block (#sent) or the failure line (#send-error). Fetch callers (site.js)
+// send Accept: application/json and keep getting status codes.
+function back(request: Request, ok: boolean) {
+  let path = '/estimate'
+  try {
+    const ref = new URL(request.headers.get('referer') ?? '', request.url)
+    if (ref.origin === new URL(request.url).origin) path = ref.pathname
+  } catch {}
+  return new Response(null, {status: 303, headers: {location: `${path}?${ok ? 'sent' : 'error'}=1#${ok ? 'sent' : 'send-error'}`}})
+}
+
 const subject = (lead: Lead) => `${lead.formType === 'careers' ? 'Job application' : 'Estimate request'}: ${lead.name} (${lead.zip || 'no zip'})`
 
 export const POST: APIRoute = async ({request}) => {
+  const json = (request.headers.get('accept') ?? '').includes('application/json')
+  const reply = (status: number, body: string | null = null) => (json ? new Response(body, {status}) : back(request, status < 300))
   const data = await request.formData()
   const get = (k: string) => String(data.get(k) ?? '').trim().slice(0, 5000)
 
   // Bots fill the hidden field or submit instantly. Pretend success so they move on.
   const startedAt = Number(get('startedAt'))
   if (get('company_website') || (startedAt && Date.now() - startedAt < MIN_FILL_MS)) {
-    return new Response(null, {status: 204})
+    return reply(204)
   }
   // A name and a phone number are enough to call someone back; details are optional.
   if (!get('name') || !get('phone')) {
-    return new Response('Missing required fields', {status: 400})
+    return reply(400, 'Missing required fields')
   }
 
   const lead = Object.fromEntries([
@@ -73,10 +87,10 @@ export const POST: APIRoute = async ({request}) => {
 
   if (!deliveries.length) {
     console.error('[contact] no delivery configured (FORMSPARK_FORM_ID, LEAD_WEBHOOK_URL or RESEND_API_KEY); lead not delivered')
-    return new Response('Form not configured', {status: 503})
+    return reply(503, 'Form not configured')
   }
   const results = await Promise.allSettled(deliveries)
   const failed = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected')
   failed.forEach((f) => console.error('[contact] delivery failed:', f.reason))
-  return failed.length === results.length ? new Response('Delivery failed', {status: 502}) : new Response(null, {status: 204})
+  return failed.length === results.length ? reply(502, 'Delivery failed') : reply(204)
 }
