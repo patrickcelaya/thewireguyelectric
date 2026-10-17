@@ -2,13 +2,16 @@
 // Compares a crawl of the new site against the live-site baseline and fails on
 // anything that could cost rankings.
 //
-//   node scripts/seo/parity.mjs --baseline migration/seo-baseline.json --candidate migration/seo-candidate.json [--allow-noindex] [--out report.json]
+//   node scripts/seo/parity.mjs --baseline migration/seo-baseline.json --candidate migration/seo-candidate.json [--allow-noindex] [--allow file] [--out report.json]
 //
 // ERRORS (exit 1): an indexable URL that no longer returns 200 or a 301 to a
-// sensible page; a changed <title>, meta description or H1; a missing or wrong
-// canonical; noindex on a page that's indexable today; lost JSON-LD types that
-// weren't deliberately removed.
-// WARNINGS: big word-count drops, fewer internal links, more images without alt.
+// sensible page; a changed <title>, meta description or H1 (unless it changed to
+// the value approved in migration/seo-intentional-changes.json); an approved
+// change that is missing, or that shipped before its planned date; a missing or
+// wrong canonical; noindex on a page that's indexable today; lost JSON-LD types
+// that weren't deliberately removed.
+// WARNINGS: big word-count drops, fewer internal links, more images without alt,
+// approved changes held back on purpose (notDeployed).
 
 import {readFile, writeFile} from 'node:fs/promises'
 
@@ -31,6 +34,9 @@ const allowFile = await readFile(ALLOW_FILE, 'utf8').then((t) => JSON.parse(t), 
 const allow = allowFile.changes ?? {}
 // Tier 1 pages (most of today's clicks): their title and H1 can never be approved for a change.
 const FROZEN = new Set(allowFile.frozenTitleAndH1 ?? [])
+// Approved changes held back on purpose ({path: when and why}, e.g. the wave 2 city titles): pending until
+// then, and an error if one ships early. Every other approved change must be live.
+const NOT_DEPLOYED = allowFile.notDeployed ?? {}
 const FIELDS = {title: 'title', meta: 'description', h1: 'h1'}
 
 // Schema types removed on purpose (see docs/SEO_STRATEGY.md).
@@ -81,9 +87,14 @@ for (const [path, before] of Object.entries(baseline.pages)) {
   const compare = (field, was, now, levelIfChanged) => {
     const check = FIELDS[field]
     if (approved[field] !== undefined) {
-      if (norm(now) === norm(approved[field])) add('info', path, check, `approved change: "${was ?? ''}" -> "${now ?? ''}"`)
-      else if (norm(now) === norm(was)) add('warn', path, `${check}-pending`, `approved change not deployed yet: still "${was ?? ''}"`)
-      else add('error', path, check, `changed, but not to the approved value: "${now ?? ''}" (approved "${approved[field]}")`)
+      const held = NOT_DEPLOYED[path]
+      if (norm(now) === norm(approved[field])) {
+        if (held) add('error', path, `${check}-early`, `approved for later (${held}), but already live: "${now ?? ''}"`)
+        else add('info', path, check, `approved change: "${was ?? ''}" -> "${now ?? ''}"`)
+      } else if (norm(now) === norm(was)) {
+        if (held) add('warn', path, `${check}-pending`, `approved change not deployed yet (${held}): still "${was ?? ''}"`)
+        else add('error', path, `${check}-not-deployed`, `approved change missing: still "${was ?? ''}" (approved "${approved[field]}")`)
+      } else add('error', path, check, `changed, but not to the approved value: "${now ?? ''}" (approved "${approved[field]}")`)
       return
     }
     if (norm(was) !== norm(now)) add(levelIfChanged, path, check, `"${was ?? ''}" -> "${now ?? ''}"`)
@@ -116,6 +127,7 @@ for (const [path, fields] of Object.entries(allow)) {
   for (const f of Object.keys(fields)) if (!FIELDS[f]) add('error', path, 'allowlist', `unknown field "${f}" (use title, meta or h1)`)
   for (const f of ['title', 'h1']) if (fields[f] !== undefined && FROZEN.has(path)) add('error', path, 'allowlist', `${f} of a Tier 1 page is frozen and cannot be approved`)
 }
+for (const path of Object.keys(NOT_DEPLOYED)) if (!allow[path]) add('error', path, 'allowlist', 'held back in notDeployed, but no change is approved for it')
 
 // New URLs (not on the live site) are fine but worth listing.
 for (const path of Object.keys(candidate.pages)) {

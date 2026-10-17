@@ -16,11 +16,11 @@
     "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it"
   ],
   "notDeployed": {
-    "/locations/ahwatukee": "wave 2: city title and meta, about 4 weeks after launch, once wave 1 core-query CTR is compared (docs/SEO_STRATEGY.md)",
-    "/locations/chandler": "wave 2: city title and meta, about 4 weeks after launch, once wave 1 core-query CTR is compared (docs/SEO_STRATEGY.md)",
-    "/locations/phoenix": "wave 2: city title and meta, about 4 weeks after launch, once wave 1 core-query CTR is compared (docs/SEO_STRATEGY.md)",
-    "/locations/san-tan-valley": "wave 2: city title and meta, about 4 weeks after launch, once wave 1 core-query CTR is compared (docs/SEO_STRATEGY.md)",
-    "/locations/scottsdale": "wave 2: city title and meta, about 4 weeks after launch, once wave 1 core-query CTR is compared (docs/SEO_STRATEGY.md)"
+    "/locations/ahwatukee": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/chandler": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/phoenix": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/san-tan-valley": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/scottsdale": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)"
   },
   "changes": {
     "/locations/scottsdale": {
