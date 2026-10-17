@@ -1,21 +1,22 @@
 // 301 redirects, applied by the Vercel adapter at build time.
 //
-// Two sources:
+// Three sources:
 // 1. LEGACY_REDIRECTS: URLs that 404 or exist only as Webflow filler today
 //    (measured 2026-10-12, see migration/seo-equity/redirect-candidates.json).
-// 2. `redirect` documents in Sanity, so editors can add redirects without a deploy
+// 2. postRedirects: the old /blog/<slug> path of every published post.
+// 3. `redirect` documents in Sanity, so editors can add redirects without a deploy
 //    of code (a publish triggers a rebuild).
 //
 // Webflow had no 301 redirects configured (confirmed by the owner, 2026-10-12),
 // so there is no legacy rule list to carry over.
 import {createClient} from '@sanity/client'
+import {readFile} from 'node:fs/promises'
 
 /** @type {Record<string, string>} */
 export const LEGACY_REDIRECTS = {
   // Broken internal links on the live site.
   '/locations/mesa': '/',
   '/services/electrical-panels': '/services/panels',
-  '/blog/[slug]': '/blog-posts/[slug]',
   '/index.html': '/',
 
   // Misspelled URLs that Google has seen (Search Console, last 16 months) and
@@ -67,7 +68,7 @@ export function flattenRedirects(map) {
   for (const [source, value] of Object.entries(map)) {
     let target = dest(value)
     const seen = new Set([source])
-    while (map[target] !== undefined && !target.includes('[')) {
+    while (map[target] !== undefined) {
       if (seen.has(target)) throw new Error(`Redirect loop: ${[...seen, target].join(' -> ')}`)
       seen.add(target)
       target = dest(map[target])
@@ -89,4 +90,35 @@ export async function loadSanityRedirects({projectId, dataset, token}) {
   return Object.fromEntries(
     docs.map((/** @type {{source: string, destination: string, permanent?: boolean}} */ r) => [r.source.replace(/\/$/, '') || '/', {status: r.permanent === false ? 302 : 301, destination: r.destination}]),
   )
+}
+
+/**
+ * `/blog/<slug>` → `/blog-posts/<slug>` for each published post (live pages linked
+ * some posts by that path). Only real posts redirect, so an unknown /blog/ URL is a
+ * plain 404 instead of a redirect to one.
+ * @param {string[]} slugs
+ * @returns {Record<string, string>}
+ */
+export function postRedirects(slugs) {
+  return Object.fromEntries(slugs.map((slug) => [`/blog/${slug}`, `/blog-posts/${slug}`]))
+}
+
+/**
+ * Every published post's slug: from Sanity when it's configured, else from the local
+ * dataset the site builds from (see lib/sanity.ts).
+ * @param {{projectId?: string, dataset: string, token?: string, localDataset: URL}} options
+ * @returns {Promise<string[]>}
+ */
+export async function loadPostSlugs({projectId, dataset, token, localDataset}) {
+  if (projectId) {
+    const client = createClient({projectId, dataset, token, apiVersion: '2026-10-01', useCdn: false, perspective: 'published'})
+    return client.fetch(`*[_type == "post" && defined(slug.current)].slug.current`)
+  }
+  const text = await readFile(localDataset, 'utf8').catch(() => '')
+  return text
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line))
+    .filter((doc) => doc._type === 'post' && !String(doc._id).startsWith('drafts.') && doc.slug?.current)
+    .map((doc) => doc.slug.current)
 }

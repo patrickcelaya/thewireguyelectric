@@ -701,14 +701,20 @@ export function getOpenJobs() {
 }
 
 /**
- * Every redirect the site serves (the code table in config/redirects.mjs plus
- * enabled `redirect` documents), source → destination, one hop. Content links are rewritten through
- * it so no internal link points at a redirect (lib/links.ts).
+ * Every redirect the site serves (the code table in config/redirects.mjs, the posts'
+ * old /blog/ paths and enabled `redirect` documents), source → destination, one hop.
+ * Content links are rewritten through it so no internal link points at a redirect
+ * (lib/links.ts).
  */
 export const getRedirectMap = memo(() =>
-  fetchQuery<Array<{source: string; destination: string}>>(
-    defineQuery(`*[_type == "redirect" && isEnabled != false && defined(source) && defined(destination)]{source, destination}`),
-  ).then((docs) => buildRedirectMap(Object.fromEntries(docs.map((r) => [r.source.replace(/\/$/, '') || '/', r.destination])))),
+  fetchQuery<{redirects: Array<{source: string; destination: string}>; postSlugs: string[]}>(
+    defineQuery(`{
+      "redirects": *[_type == "redirect" && isEnabled != false && defined(source) && defined(destination)]{source, destination},
+      "postSlugs": *[_type == "post" && defined(slug.current)].slug.current
+    }`),
+  ).then(({redirects, postSlugs}) =>
+    buildRedirectMap(Object.fromEntries(redirects.map((r) => [r.source.replace(/\/$/, '') || '/', r.destination])), postSlugs),
+  ),
 )
 
 export type {ImageRef}
