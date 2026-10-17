@@ -19,6 +19,8 @@ const {section, number} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const {cta} = section
+// three to a row; four and five have layouts of their own (styles/cms.css)
+const count = section.posts.length
 ---
 
 {
@@ -33,7 +35,7 @@ const {cta} = section
           )}
         </SectionHeader>
       )}
-      <ul class="guides" role="list">
+      <ul class:list={['guides', (count === 4 || count === 5) && `guides--${count}`]} role="list">
         {section.posts.map((post) => (
           <GuideCard post={{...post, mainImage: post.cover ?? post.mainImage}} label={post.label ?? undefined} coverWords={post.coverWords ?? undefined} />
         ))}

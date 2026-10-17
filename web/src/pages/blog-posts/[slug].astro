@@ -19,7 +19,7 @@ import PostNav from '../../components/sections/PostNav.astro'
 import CtaBand from '../../components/sections/CtaBand.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
-import {getLocations, getPost, getPostIndex, getPosts, getRedirectMap, getServiceFaqs, getServices, getSettings} from '../../lib/queries'
+import {getLocations, getPost, getPostIndex, getPosts, getRedirectMap, getServiceFaqs, getServicePillars, getServices, getSettings} from '../../lib/queries'
 import {absoluteUrl, ogImageMeta, resolveDescription, resolveTitle} from '../../lib/seo'
 import {blogPostingNode, faqNode, imageObjectNode, webPageNode} from '../../lib/schema'
 import {serviceAreaCities} from '../../lib/cities'
@@ -33,6 +33,7 @@ import {
   postCover,
   postTopic,
   readingMinutes,
+  relatedArticles,
   serviceTopic,
   withoutTitleHeading,
 } from '../../lib/cms'
@@ -43,7 +44,14 @@ export async function getStaticPaths() {
 
 const [settings, post] = await Promise.all([getSettings(), getPost(Astro.params.slug!)])
 if (!post) throw new Error(`post ${Astro.params.slug} not found`)
-const [posts, postIndex, services, locations, redirects] = await Promise.all([getPosts(), getPostIndex(), getServices(), getLocations(), getRedirectMap()])
+const [posts, postIndex, services, locations, redirects, pillars] = await Promise.all([
+  getPosts(),
+  getPostIndex(),
+  getServices(),
+  getLocations(),
+  getRedirectMap(),
+  getServicePillars(),
+])
 const path = `/blog-posts/${post.slug}`
 // Same template Webflow used: "{name} | The Wire Guy Electric"
 const title = resolveTitle(post.seo, `${post.title} | ${settings.businessName}`)
@@ -63,10 +71,11 @@ const older = at >= 0 ? posts[at + 1] : undefined
 const city = postCity(post.title, serviceAreaCities(settings.homeCity, locations))
 
 // the cover: a real photo (the post's own when it is the crew's), also the article's image
-// (the page's primary image) and its share image; the related articles' covers are other photos
+// (the page's primary image) and its share image; the related articles (picked by the
+// post's hub services) show other photos
 const shown = new Set<string>()
 const cover = postCover(post, postIndex, services, {tinted: false, seed, taken: shown})
-const related = guideCards(post.relatedPosts ?? [], postIndex, services, seed + 1, shown)
+const related = guideCards(relatedArticles(post.slug, postIndex, pillars), postIndex, services, seed + 1, shown)
 const preload = imagePreload(cover, POST_COVER.widths, POST_COVER.sizes)
 const primaryImageId = `${absoluteUrl(path)}#primaryimage`
 const image = imageObjectNode(cover, {id: primaryImageId})

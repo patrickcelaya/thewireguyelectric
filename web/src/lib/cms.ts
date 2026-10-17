@@ -83,9 +83,15 @@ export function cityGuides(city: string, serviceSlugs: string[], index: PostInde
 /**
  * A service's guides: its related posts (picked, or posts that reference it), then the
  * featured and newest posts that support it, then the most-read guides, so the block is
- * never empty or short on a service no post is written around yet.
+ * never empty or short on a service no post is written around yet. Every picked post
+ * shows, up to five (GuidesBlock lays out four and five); otherwise three.
  */
-export function serviceGuides(related: PostSummary[] | null | undefined, serviceSlug: string, index: PostIndexEntry[], count = 3): PostSummary[] {
+export function serviceGuides(
+  related: PostSummary[] | null | undefined,
+  serviceSlug: string,
+  index: PostIndexEntry[],
+  count = Math.min(5, Math.max(3, related?.length ?? 0)),
+): PostSummary[] {
   const mostRead = index.filter((p) => p.featured)
   return uniqueBy([...(related ?? []), ...supporting([serviceSlug], index), ...mostRead], (p) => p.slug).slice(0, count)
 }
@@ -93,6 +99,65 @@ export function serviceGuides(related: PostSummary[] | null | undefined, service
 /** Whether every one of `posts` supports the service (lists it among its related services). */
 export function allSupport(posts: PostSummary[], serviceSlug: string, index: PostIndexEntry[]) {
   return posts.length > 0 && posts.every((p) => index.find((e) => e.slug === p.slug)?.services.includes(serviceSlug))
+}
+
+const newestFirst = (a: PostIndexEntry, b: PostIndexEntry) => b.publishedAt.localeCompare(a.publishedAt) || a._id.localeCompare(b._id)
+const oldestFirst = (a: PostIndexEntry, b: PostIndexEntry) => a.publishedAt.localeCompare(b.publishedAt) || a._id.localeCompare(b._id)
+const featuredFirst = (a: PostIndexEntry, b: PostIndexEntry) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || newestFirst(a, b)
+
+/**
+ * A post's related articles, picked by the services it supports (its hubs: the first is
+ * its primary), not by date, so every post is someone's neighbour:
+ *   1. the pillar of its primary hub (that service's first picked guide that isn't this post);
+ *   2. the next post with the same primary hub, by publish date, wrapping round (a ring);
+ *   3. the pillar of its second hub when it has one, else the next sibling in the ring.
+ * Short lists fill with posts whose primary hub is one of its hubs (featured first, then
+ * newest), then posts in its blog topic (lighting), then any post sharing a hub.
+ * `pillars` maps a service slug to its picked guides (service.relatedPosts), in order.
+ */
+export function relatedArticles(slug: string, index: PostIndexEntry[], pillars: Record<string, string[]>, count = 3): PostIndexEntry[] {
+  const post = index.find((p) => p.slug === slug)
+  if (!post) return []
+  const bySlug = new Map(index.map((p) => [p.slug, p]))
+  const hubs = post.services
+  const out: PostIndexEntry[] = []
+  const add = (p: PostIndexEntry | undefined) => {
+    if (p && p.slug !== slug && !out.includes(p) && out.length < count) out.push(p)
+  }
+  const pillar = (hub: string | undefined) =>
+    hub ? (pillars[hub] ?? []).map((s) => bySlug.get(s)).find((p) => p && p.slug !== slug && !out.includes(p)) : undefined
+  const group = hubs[0] ? index.filter((p) => p.services[0] === hubs[0]).sort(oldestFirst) : []
+  const at = group.indexOf(post)
+  const ring = at < 0 ? [] : Array.from({length: group.length - 1}, (_, k) => group[(at + k + 1) % group.length])
+  add(pillar(hubs[0]))
+  add(ring.find((p) => !out.includes(p)))
+  add(pillar(hubs[1]))
+  ring.forEach(add)
+  index.filter((p) => hubs.includes(p.services[0])).sort(featuredFirst).forEach(add)
+  const topic = post.category?.slug
+  if (topic) index.filter((p) => p.category?.slug === topic).sort(newestFirst).forEach(add)
+  index.filter((p) => p.services.some((h) => hubs.includes(h))).sort(featuredFirst).forEach(add)
+  return out
+}
+
+/**
+ * The words of the early link from a post to its hub service ("See our {label} service"):
+ * the service's own link label when it has one, else the wording the service page uses
+ * in its own H2, else its name. Searchers say "electrical troubleshooting", not "Troubleshooting".
+ */
+const HUB_LINK_LABELS: Record<string, string> = {
+  'electrical-troubleshooting': 'electrical troubleshooting',
+  panels: 'electrical panel replacement',
+  'electrical-safety-inspections': 'electrical safety inspection',
+  'ev-charger-installation': 'EV charger installation',
+  'exterior-electrical': 'exterior electrical',
+  'recessed-lights-installation': 'recessed lighting installation',
+  'fixture-replacements': 'light fixture replacement',
+  'electrical-remodels': 'remodel electrical',
+}
+
+export function hubLinkLabel(service: Pick<ServiceSummary, 'slug' | 'name' | 'linkLabel'>) {
+  return service.linkLabel?.trim() || HUB_LINK_LABELS[service.slug] || service.name
 }
 
 /** Where a heading names a service mid-sentence, the words that read naturally ("Questions about exterior electrical work"). */

@@ -205,6 +205,8 @@ export interface ServiceSummary {
   _id: string
   name: string
   slug: string
+  /** The words of the early link from a post to this service ("See our {linkLabel} service"); empty = lib/cms.ts hubLinkLabel. */
+  linkLabel?: string | null
   shortDescription?: string
   mainImage?: ImageRef
   category?: {name: string; slug: string}
@@ -326,8 +328,6 @@ export interface PostDoc extends PostSummary {
   reviewedBy?: {name: string; role?: string; slug?: string; credentials?: string[]; photo?: ImageRef}
   /** The first one is the post's primary (hub) service. */
   relatedServices?: ServiceSummary[]
-  /** Other posts that support the same services, newest first (max 3). */
-  relatedPosts?: PostSummary[]
   faqs?: FaqItem[]
   seo?: Seo
 }

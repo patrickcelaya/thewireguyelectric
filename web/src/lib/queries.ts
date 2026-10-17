@@ -81,6 +81,7 @@ const SERVICE_FIELDS = /* groq */ `
   _id,
   name,
   "slug": slug.current,
+  linkLabel,
   shortDescription,
   "mainImage": mainImage${IMAGE},
   "category": category->{name, "slug": slug.current}`
@@ -601,8 +602,6 @@ export function getPost(slug: string) {
       "author": author->{name, role, "slug": slug.current, credentials, "photo": photo${IMAGE}},
       "reviewedBy": reviewedBy->{name, role, "slug": slug.current, credentials, "photo": photo${IMAGE}},
       "relatedServices": relatedServices[]->${SERVICE_CARD},
-      "relatedPosts": *[_type == "post" && _id != ^._id && defined(slug.current) && defined(publishedAt) && references(^.relatedServices[]._ref)]
-        | order(publishedAt desc, _id asc)[0...3]${POST_CARD},
       ${FAQS},
       ${SEO}
     }`),
@@ -625,6 +624,20 @@ export const getPostIndex = memo(() =>
       "text": coalesce(pt::text(body), "")
     }`),
   ),
+)
+
+/**
+ * Each service's picked guides (service.relatedPosts slugs, in order), built once per
+ * build: the first is the service's pillar post, which a post's related articles start
+ * from (lib/cms.ts relatedArticles).
+ */
+export const getServicePillars = memo(() =>
+  fetchQuery<Array<{slug: string; posts: string[]}>>(
+    defineQuery(`*[_type == "service" && defined(slug.current)] | order(_id asc){
+      "slug": slug.current,
+      "posts": coalesce(relatedPosts[]->slug.current, [])
+    }`),
+  ).then((list) => Object.fromEntries(list.map((s) => [s.slug, s.posts.filter(Boolean)])) as Record<string, string[]>),
 )
 
 export function getPostCategories() {
