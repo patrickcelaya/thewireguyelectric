@@ -991,7 +991,8 @@ export default async function pageSections(ctx) {
         showPhone: true,
         trustLine,
         showTrustBar: true,
-        reviewSnippets: quotes(slug, 3),
+        // No quote snippets: the live hero's three starred one-liners match no review the business has
+        // (decision D3, 2026-10-17; see _omissions.json). The trust line is live copy, word for word.
       },
       {
         _type: 'servicesSection',

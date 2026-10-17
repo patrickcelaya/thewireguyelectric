@@ -494,6 +494,24 @@
       "reason": "Launch copy pass (2026-10-17): slop-pages-034 in migration/content-edits/pages.json. \"comprehensive range of electrical solutions that address the needs of\". The replacement names the services listed on the page."
     },
     {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "“On time and stayed on schedule”",
+      "reason": "Launch copy pass (2026-10-17), decision D3: the live hero shows this starred one-liner as a customer quote, but it matches none of the business's reviews (migration/reviews), so it is not carried over (FTC rule on fake reviews). The hero keeps its live trust line, \"Trusted by 100+ Arizona businesses\", word for word. Owner to confirm (migration/content-edits/README.md)."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "“Clear pricing and communication”",
+      "reason": "Launch copy pass (2026-10-17), decision D3: the live hero shows this starred one-liner as a customer quote, but it matches none of the business's reviews (migration/reviews), so it is not carried over (FTC rule on fake reviews). The hero keeps its live trust line, \"Trusted by 100+ Arizona businesses\", word for word. Owner to confirm (migration/content-edits/README.md)."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "“Reliable electricians for our business”",
+      "reason": "Launch copy pass (2026-10-17), decision D3: the live hero shows this starred one-liner as a customer quote, but it matches none of the business's reviews (migration/reviews), so it is not carried over (FTC rule on fake reviews). The hero keeps its live trust line, \"Trusted by 100+ Arizona businesses\", word for word. Owner to confirm (migration/content-edits/README.md)."
+    },
+    {
       "page": "*",
       "tag": "h2",
       "text": "We're ready to work for you",
