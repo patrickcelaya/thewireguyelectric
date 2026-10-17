@@ -50,6 +50,12 @@
       "ballast-replacement-fluorescent-lighting": "Rows of fluorescent tube lights across a commercial drop ceiling"
     }
   },
+  "postAlts": {
+    "source": "Alt text for a post's own main image when it is one of the crew's photos and has none: the post page shows it as its cover (its main image, the article's image and its share image), so it keeps a description of the photo (schema-technical ST-15), never the post's title. Worded as web/src/lib/brand-photos.ts records the photo.",
+    "alts": {
+      "installing-car-charger": "A Tesla Wall Connector installed on a garage wall"
+    }
+  },
   "atAGlance": {
     "panels": [
       {"label": "Most common job", "value": "200-amp like-for-like replacement", "detail": "Same service size, fresh equipment, all new breakers.", "source": "body", "evidence": "200-amp like-for-like replacement. The job we do most often. Old 200-amp panel comes out, new Square D, Siemens, or Eaton panel goes in. Same service size, fresh equipment, all new breakers."},

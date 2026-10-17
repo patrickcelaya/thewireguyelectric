@@ -6,6 +6,8 @@
 //   serviceImages   a service's main image replaced by the crew's own photo of that work
 //                   where the export had a stock photo (the asset must be in the dataset)
 //   serviceAlts     alt text for the services' own photos (all were empty)
+//   postAlts        alt text for a post's own main image when it is a crew photo shown as the
+//                   post's cover (it had none)
 //   atAGlance       service.atAGlance facts (with an optional supporting line); each one
 //                   quotes its evidence, which must be word for word in the service body
 //                   or the named /faq answer
@@ -71,6 +73,13 @@ export default async function cmsTemplates(ctx) {
     if (replaced.has(service)) fail(`${service}: has a replacement image; its alt belongs in serviceImages`)
     const doc = bySlug('service', service)
     if (!doc.mainImage) fail(`${service}: has no main image to describe`)
+    doc.mainImage = {...doc.mainImage, alt}
+  }
+
+  for (const [post, alt] of Object.entries(data.postAlts.alts)) {
+    const doc = bySlug('post', post)
+    if (!doc.mainImage) fail(`postAlts ${post}: has no main image to describe`)
+    if (doc.mainImage.alt) fail(`postAlts ${post}: the main image already has alt text "${doc.mainImage.alt}"`)
     doc.mainImage = {...doc.mainImage, alt}
   }
 
@@ -189,6 +198,7 @@ export default async function cmsTemplates(ctx) {
     featuredPosts: data.featuredPosts.slugs.length,
     serviceImages: data.serviceImages.map((s) => s.service),
     serviceAlts: Object.keys(data.serviceAlts.alts),
+    postAlts: Object.keys(data.postAlts.alts),
     atAGlance: Object.keys(data.atAGlance),
     quickAnswers: Object.keys(data.quickAnswers.answers),
     bodyEdits: edited,
