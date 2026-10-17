@@ -505,7 +505,7 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .est.is-sent form,.est:has(.done:target) form{display:none}
 .est.is-sent .done,.est .done:target{display:flex;margin-top:18px}
 @media (max-width:560px){.est form{grid-template-columns:minmax(0,1fr)}.est .submit .btn{padding-inline:18px;font-size:1rem;gap:10px}}
-@media (max-width:360px){.est .submit .btn{white-space:normal;text-align:center;line-height:1.2}.est .done{flex-direction:column;align-items:flex-start}}
+@media (max-width:360px){.est .submit .btn{white-space:normal;text-align:center;line-height:1.2}}
 /* the success state switches the bulb on (Copper & Ink's signature, the last time you see it) */
 .ok-bulb{flex:none;width:124px;height:auto;overflow:visible}
 .ok-bulb .halo{opacity:0}
@@ -516,6 +516,8 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .is-sent .ok-bulb .glass,.done:target .ok-bulb .glass{animation:glass-fill .9s .3s var(--ease) forwards}
 @keyframes glass-fill{to{fill-opacity:1}}
 @media (prefers-reduced-motion:reduce){.is-sent .ok-bulb .halo{animation:none;opacity:.85}.is-sent .ok-bulb .glass{animation:none;fill-opacity:1}}
+/* phones: the bulb above the words, smaller, so the message keeps the card's full width (beside it, it was a 150 px column) */
+@media (max-width:560px){.est .done{flex-direction:column;align-items:flex-start;gap:12px}.ok-bulb{width:84px;margin-left:-8px}}
 
 /* ===================================================================== footer: light and rich; the logo large; both Google Business Profiles linked */
 .site-footer{background:var(--sand);color:var(--text);padding-top:clamp(72px,7vw,120px)}
