@@ -10,6 +10,8 @@ import type {APIRoute} from 'astro'
 export const prerender = false
 
 const MIN_FILL_MS = 2500
+/** Each destination gets this long; a provider that hangs counts as failed, so the visitor never waits on it for good. */
+const PROVIDER_TIMEOUT_MS = 8000
 const FIELDS = ['name', 'phone', 'email', 'zip', 'experience', 'fullTime', 'startDate', 'message'] as const
 
 type Lead = Record<(typeof FIELDS)[number] | 'formType' | 'page', string>
@@ -19,12 +21,18 @@ async function toFormspark(formId: string, lead: Lead) {
     method: 'POST',
     headers: {'content-type': 'application/json', accept: 'application/json'},
     body: JSON.stringify({...lead, _email: {subject: subject(lead)}}),
+    signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
   })
   if (!res.ok) throw new Error(`Formspark ${res.status}`)
 }
 
 async function toWebhook(url: string, lead: Lead) {
-  const res = await fetch(url, {method: 'POST', headers: {'content-type': 'application/json'}, body: JSON.stringify(lead)})
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {'content-type': 'application/json'},
+    body: JSON.stringify(lead),
+    signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
+  })
   if (!res.ok) throw new Error(`Webhook ${res.status}`)
 }
 
@@ -40,6 +48,7 @@ async function toResend(apiKey: string, to: string, lead: Lead) {
       subject: subject(lead),
       text: `${lines.join('\n')}\n\nPage: ${lead.page}`,
     }),
+    signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
   })
   if (!res.ok) throw new Error(`Resend ${res.status}`)
 }
@@ -58,16 +67,22 @@ function back(request: Request, ok: boolean) {
 
 const subject = (lead: Lead) => `${lead.formType === 'careers' ? 'Job application' : 'Estimate request'}: ${lead.name} (${lead.zip || 'no zip'})`
 
+// Status codes: 204 delivered; 202 dropped as a bot (it still looks like success, but scripts/site/forms.ts counts a
+// lead only on 204); 400 missing name or phone; 502 every destination failed; 503 none set.
 export const POST: APIRoute = async ({request}) => {
   const json = (request.headers.get('accept') ?? '').includes('application/json')
   const reply = (status: number, body: string | null = null) => (json ? new Response(body, {status}) : back(request, status < 300))
   const data = await request.formData()
   const get = (k: string) => String(data.get(k) ?? '').trim().slice(0, 5000)
 
-  // Bots fill the hidden field or submit instantly. Pretend success so they move on.
-  const startedAt = Number(get('startedAt'))
-  if (get('company_website') || (startedAt && Date.now() - startedAt < MIN_FILL_MS)) {
-    return reply(204)
+  // Bots fill the hidden field or submit instantly. Pretend success so they move on. The fill time is measured in the
+  // browser on one clock (forms.ts), so a visitor whose device clock is off is never mistaken for a bot; a form posted
+  // without JavaScript sends none.
+  const fillMs = Number(get('fillMs'))
+  const honeypot = Boolean(get('company_website'))
+  if (honeypot || (Number.isFinite(fillMs) && fillMs > 0 && fillMs < MIN_FILL_MS)) {
+    console.warn('[contact] dropped as bot', {honeypot, fillMs: get('fillMs')})
+    return reply(202)
   }
   // A name and a phone number are enough to call someone back; details are optional.
   if (!get('name') || !get('phone')) {

@@ -471,7 +471,7 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 /* ===================================================================== the estimate form */
 .est{background:var(--paper);color:var(--text);border-radius:var(--r-xl);padding:clamp(24px,2.6vw,40px);box-shadow:var(--shadow-3)}
 /* scrolled into view (the confirmation, a #sent return), the card clears the condensed header */
-.est,.est [data-est-done]{scroll-margin-top:calc(var(--hdr-c) + 16px)}
+.est,.est [data-est-done],.est__alert{scroll-margin-top:calc(var(--hdr-c) + 16px)}
 .est__title{color:var(--ink);font-size:clamp(1.625rem,1.3rem + .8vw,2.125rem);font-weight:740;letter-spacing:-.03em}
 .est .hint{margin-top:4px;font-size:var(--fs-small);color:var(--muted)}
 .est form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}

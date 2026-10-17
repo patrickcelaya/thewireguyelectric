@@ -2,11 +2,14 @@
 // enhancement over a normal POST to /api/contact. Without JS the browser validates
 // the required fields and posts; the API answers 303 back to this page's #sent (or
 // #send-error), which CSS shows. With JS: inline errors (described only once shown),
-// one request per submit, the confirmation focused and its bulb switched on.
+// one request per submit, the confirmation focused and its bulb switched on, and a
+// failure brought into view.
 import {all, reduceMotion, track} from './util'
 
 /** Bots that submit faster than a person can are ignored by the API; wait out the rest of this. */
 const MIN_FILL_MS = 2600
+/** The API gives each destination 8 s; past this the visitor gets the failure line with the phone number. */
+const SEND_TIMEOUT_MS = 15000
 
 function showSent(box: HTMLElement) {
   const done = box.querySelector<HTMLElement>('[data-est-done]')
@@ -21,16 +24,17 @@ function showSent(box: HTMLElement) {
 
 function enhance(box: HTMLElement) {
   const form = box.querySelector('form')
-  const started = form?.querySelector<HTMLInputElement>('[data-started]')
+  const fill = form?.querySelector<HTMLInputElement>('[data-fill]')
   const alert = form?.querySelector<HTMLElement>('[data-est-alert]')
   const submit = form?.querySelector<HTMLButtonElement>('[type=submit]')
   const submitLabel = submit?.querySelector('[data-submit-label]')
-  if (!form || !started || !alert || !submit || !submitLabel) return
+  if (!form || !fill || !alert || !submit || !submitLabel) return
   const idleLabel = submitLabel.textContent
   const failure = box.querySelector('[data-est-fail]')?.innerHTML ?? ''
+  // the fill time is measured on this one clock (never the wall clock, which may be off on the visitor's device)
+  const t0 = performance.now()
   let sending = false
   form.noValidate = true
-  started.value = String(Date.now())
 
   const busy = (on: boolean) => {
     sending = on
@@ -39,6 +43,36 @@ function enhance(box: HTMLElement) {
       else submit.removeAttribute(a)
     }
     submitLabel.textContent = on ? 'Sending…' : idleLabel
+  }
+
+  // the failure line (with the phone number) where the visitor can see it: the alert sits at the top of the form,
+  // above the screen on a phone once the thumb is on the button
+  const fail = (message: string) => {
+    busy(false)
+    alert.innerHTML = message
+    alert.tabIndex = -1
+    alert.focus({preventScroll: true})
+    alert.scrollIntoView({block: 'center', behavior: reduceMotion ? 'auto' : 'smooth'})
+  }
+
+  const send = () => {
+    fill.value = String(Math.round(performance.now() - t0))
+    const data = new FormData(form)
+    const message = form.querySelector<HTMLTextAreaElement>('textarea[name=message]')
+    if (message && !message.value.trim()) data.set('message', 'No details given')
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), SEND_TIMEOUT_MS)
+    fetch(form.action, {method: 'POST', body: data, headers: {Accept: 'application/json'}, signal: controller.signal})
+      .then((res) => {
+        if (!res.ok) throw new Error(String(res.status))
+        busy(false)
+        showSent(box)
+        // a lead only when it was delivered (204; the API answers 202 to what it drops as a bot), and a job
+        // application (data-est="careers") is not a lead
+        if (res.status === 204 && box.dataset.est !== 'careers') track('generate_lead')
+      })
+      .catch(() => fail(failure))
+      .finally(() => clearTimeout(timer))
   }
 
   form.addEventListener('submit', (e) => {
@@ -64,25 +98,8 @@ function enhance(box: HTMLElement) {
       return
     }
     alert.textContent = ''
-    const data = new FormData(form)
-    const message = form.querySelector<HTMLTextAreaElement>('textarea[name=message]')
-    if (message && !message.value.trim()) data.set('message', 'No details given')
     busy(true)
-    const wait = Math.max(0, MIN_FILL_MS - (Date.now() - Number(started.value)))
-    setTimeout(() => {
-      fetch(form.action, {method: 'POST', body: data, headers: {Accept: 'application/json'}})
-        .then((res) => {
-          if (!res.ok) throw new Error(String(res.status))
-          busy(false)
-          showSent(box)
-          // a job application (data-est="careers") is not a lead
-          if (box.dataset.est !== 'careers') track('generate_lead')
-        })
-        .catch(() => {
-          busy(false)
-          alert.innerHTML = failure
-        })
-    }, wait)
+    setTimeout(send, Math.max(0, MIN_FILL_MS - (performance.now() - t0)))
   })
 }
 
