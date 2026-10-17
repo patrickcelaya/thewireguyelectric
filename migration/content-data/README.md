@@ -299,3 +299,23 @@ Applied by `scripts/migrate/content/cms-templates.mjs`, which runs last (after `
 | `bodyRemovals` | two body blocks taken out: the Panels "Related Reading" item for the archived 2023 post (it redirects to `/services/panels`, so it linked the page to itself), and the screenshot of the retired Webflow homepage in `level-1-vs-level-2-ev-chargers-which-to-choose` (its heading and paragraphs stay) | the documents themselves; each removal names one block by its exact text or image URL and must match exactly once |
 
 It also removes the SEO tool's tracking markers (`sbb-itb-…`) that the Webflow export carried into a post body as a heading of their own (`level-1-vs-level-2-ev-chargers-which-to-choose`). `report.json` → `cmsTemplates` lists what it set. The migration stops if a slug, an asset or a FAQ is missing, a replacement image has no alt, a fact's or answer's evidence is not in its source, an edit, link, text fix or removal does not match exactly once, or a service body still names a price.
+
+## 10. Titles, meta descriptions and H1s (`titles-meta.json`)
+
+Applied by `scripts/migrate/content/titles-meta.mjs`, the last content module (after the copy edits, whose guard forbids these fields). The rows are the verified titles-meta review of 2026-10-17: 70 approved changes on 42 pages (60 accepted, 4 amended, 6 added by the verifier; the DIY post's meta was rejected and is not here). Four metas state the Google review count; they read "560+" (decision D7).
+
+Each row names the page, the field Google reads (`title`, `meta` or `h1`), the document (`type:slug`), the field that sets it, the value Google shows today (`old`) and the approved value (`new`):
+
+| Page | Title | Meta | H1 |
+|---|---|---|---|
+| City | `location.seo.title` (new; the template's "Electrician in {city}, AZ \| …" until now) | `location.seo.description` | — |
+| Service | `service.seo.title` (new) | `service.seo.description` (new; it fell back to `shortDescription`, the hero lede) | `service.heading` (new; it fell back to `name`) |
+| Post | `post.seo.title` (new) | `post.seo.description` (new; it fell back to `excerpt`, the card text) | `post.title` (also the card title, breadcrumb and BlogPosting headline) |
+| `/blog`, `/our-team` | — | `page.seo.description` | — |
+| Service category | `serviceCategory.seo.title` (new) | `serviceCategory.seo.description` (new; also the hero lede, which showed the template's "Top-rated …") | — |
+
+Every value is an explicit field, so a later edit to a lede, card text or name never moves a title or meta. The 13 Tier 1 pages keep their titles and H1s (four of them get a new meta).
+
+**Wave 2.** The rows with `hold` (Chandler, Scottsdale, Ahwatukee, San Tan Valley and Phoenix, title and meta) are approved but not deployed: they ship about four weeks after launch, once the wave 1 cities (Gilbert, Tempe, Queen Creek, Apache Junction, Fountain Hills) can be compared with them on core-query click-through. To ship them, delete `hold` from their rows and their paths from `notDeployed` in `migration/seo-intentional-changes.json`.
+
+**The parity gate's allowlist** (`migration/seo-intentional-changes.json`) holds the same values. The module stops if the two disagree in either direction (a value, a row the allowlist lacks, an approval without a row, a row held back in one and not the other), if `old` is not the live value in `migration/seo-baseline.json`, if the field already holds something other than `old`, or if a row would change a Tier 1 title or H1. `scripts/seo/parity.mjs` then reports each change as approved, the wave 2 ones as pending, and anything else as an error.

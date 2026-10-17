@@ -1000,5 +1000,21 @@
       "slop-cities-059 web/src/pages/locations/[slug].astro"
     ]
   },
+  "titlesMeta": {
+    "source": "migration/content-data/titles-meta.json",
+    "applied": 60,
+    "held": [
+      "/locations/ahwatukee title",
+      "/locations/ahwatukee meta",
+      "/locations/chandler title",
+      "/locations/chandler meta",
+      "/locations/phoenix title",
+      "/locations/phoenix meta",
+      "/locations/san-tan-valley title",
+      "/locations/san-tan-valley meta",
+      "/locations/scottsdale title",
+      "/locations/scottsdale meta"
+    ]
+  },
   "contentDates": []
 }
