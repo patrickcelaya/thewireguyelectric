@@ -206,9 +206,9 @@ It refuses to run until the key file answers on www (on 2026-10-17 it correctly 
 **L13, Owner: deploy hook for `main`.** A deploy hook builds one branch. The existing hook was made for the old production branch.
 1. Vercel → Settings → Git → Deploy Hooks → name `Sanity publish (main)`, branch `main` → **Create Hook**. Copy the URL. Treat it like a password.
 2. https://www.sanity.io/manage → **The Wire Guy Electric** → **API** → **Webhooks** → edit the site webhook → paste the new URL → save. Keep the filter `!(_id in path("drafts.**"))` and the create, update and delete triggers.
-3. GitHub → https://github.com/patrickcelaya/thewireguyelectric/settings/secrets/actions → **New repository secret** → Name `VERCEL_DEPLOY_HOOK_URL`, Secret: the same URL. The daily rebuild (`.github/workflows/scheduled-rebuild.yml`, 6:07 am Arizona) uses it.
+3. GitHub → https://github.com/patrickcelaya/thewireguyelectric/settings/secrets/actions → **New repository secret** → Name `VERCEL_DEPLOY_HOOK_URL`, Secret: the same URL. The daily rebuild (`.github/workflows/daily-rebuild.yml`, 00:17 Arizona time) uses it.
 4. Delete the old hook in Vercel.
-5. Test: publish any small change in Studio, or run the **Scheduled rebuild** workflow by hand (GitHub → Actions → Scheduled rebuild → Run workflow). A production deployment should appear.
+5. Test: publish any small change in Studio, or run the **Daily rebuild** workflow by hand (GitHub → Actions → Daily rebuild → Run workflow): its log should read "Deploy hook answered 200" (or 201). A production deployment should appear.
 
 **L14, Owner.** Edit the Mesa profile's website only after L9 passes (it reaches the site through two redirects today). See the [off-site list](#off-site-fixes-for-the-owner) for the other profiles.
 
@@ -325,7 +325,7 @@ To roll back only the code (DNS stays on Vercel): project overview → Productio
 
 ### Job posting expiry
 
-The /careers job ("Residential Service Electrician") has `validThrough` **2026-11-18**. The site removes it, and its JobPosting markup, at the first build on or after 2026-11-19. The daily rebuild does that on 2026-11-19 at 6:07 am Arizona, once `VERCEL_DEPLOY_HOOK_URL` is set (L13).
+The /careers job ("Residential Service Electrician") has `validThrough` **2026-11-18**. The site removes it, and its JobPosting markup, at the first build on or after 2026-11-19. The daily rebuild does that on 2026-11-19 at 00:17 Arizona time, once `VERCEL_DEPLOY_HOOK_URL` is set (L13). If the site was rebuilt for another reason in the 20 hours before that call, the Ignored Build Step skips the call and the job leaves at the next one.
 - **To keep it open:** before 2026-11-18, extend `validThrough` in Studio (Job openings). Studio isn't hosted yet, so either deploy it (MIGRATION_PLAN, Phase 1) or ask Claude to change it through the pipeline.
 - **Pay range:** Google recommends one (`baseSalary`). The site shows none unless the owner gives one.
 
