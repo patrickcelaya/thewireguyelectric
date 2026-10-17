@@ -5,11 +5,10 @@
 // the same array as meta.breadcrumbs, so the trail equals the BreadcrumbList).
 // The routes keep their own title, description and JSON-LD expressions.
 import SiteLayout from '../layouts/SiteLayout.astro'
-import '../styles/inner.css'
-// the homepage's sections a page can reuse (services mosaic, the checklist on its photo,
-// the value cards on copper, the process wire, the gallery)
-import '../styles/home.css'
-import '../styles/pages.css'
+// one stylesheet for every page-builder page: the inner parts, the sections shared with the
+// homepage (the checklist on its photo, the value cards, the process wire, the gallery), the
+// inner sections and the valley
+import '../styles/bundles/page-builder.css'
 import SectionRenderer from './sections/SectionRenderer.astro'
 import type {PageDoc, SiteSettings} from '../lib/types'
 import type {PageMeta} from '../lib/seo'

@@ -208,55 +208,6 @@ html:not(.js) .track .rv{width:auto;min-height:0;margin-bottom:20px;break-inside
 }
 @media (min-width:600px) and (max-width:899px){.hero__copy,.hero__photo,.proof{--hw:118cqw}.hero__photo img{left:calc(var(--hw) * -.09)}.proof__quotes{grid-template-columns:repeat(3,minmax(0,1fr))}.proof__quotes li{grid-template-columns:1fr}.proof__score{align-self:flex-start}}
 
-/* ===================================================================== 01 · WHO WE ARE: the family in words, beside one photo of the crew at work
-   (owner, round 4: no portrait cards on the homepage; the team lives on /our-team). Desktop: the words on the page grid,
-   the photo running off the right edge of the screen (full bleed on its side). Phones: the words, then the photo. */
-.team{background:var(--paper);overflow:clip}
-.team__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(48px,6vw,120px);padding-left:var(--pad-x)}
-.team__copy{display:grid;gap:0;justify-items:start;max-width:40rem;padding-block:clamp(8px,1vw,24px)}
-.team__grid--solo{grid-template-columns:minmax(0,1fr);padding-right:var(--pad-x)}   /* no photo: the words alone */
-.team__copy .display{max-width:12ch}
-.team__answer{margin-top:clamp(28px,2.6vw,44px);font:500 var(--fs-stand)/1.38 var(--font-display);letter-spacing:-.018em;color:var(--ink);max-width:24em}
-.team__more{margin-top:22px;font-size:var(--fs-lede);line-height:1.62;color:var(--text);max-width:var(--measure)}
-.team__more a{color:var(--copper-700);text-decoration-thickness:1.5px;text-underline-offset:.2em}
-.team__more a:hover{color:var(--copper-800)}
-.team__copy .btn-row{margin-top:clamp(28px,2.4vw,40px);gap:24px}
-.team__photo{position:relative;margin:0;height:clamp(460px,44vw,760px);overflow:hidden;border-radius:var(--r-xl) 0 0 var(--r-xl);background:var(--sand);box-shadow:var(--shadow-2)}
-.team__photo img{width:100%;height:100%;object-fit:cover;object-position:44% 50%;transition:transform 1.4s var(--ease-out)}
-.team__photo figcaption{position:absolute;left:18px;bottom:18px;padding:8px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:650 .875rem/1.2 var(--font-text);color:var(--ink)}
-@media (hover:hover){.team__photo:hover img{transform:scale(1.025)}}
-@media (max-width:980px){
-  .team__grid{grid-template-columns:minmax(0,1fr);padding-left:0;gap:48px}
-  .team__copy{width:min(100% - 2 * var(--gutter),var(--max));max-width:none;margin-inline:auto}
-  .team__photo{height:auto;aspect-ratio:3/2;border-radius:0}
-  .team__photo img{object-position:50% 50%}
-}
-
-/* ===================================================================== OUR PROMISE on copper */
-.vals{position:relative;isolation:isolate;overflow:clip;background:var(--grad-copper);color:#fff;padding-block:var(--section-y)}
-.vals::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 88% 8%,rgb(255 214 170 / .26),transparent 70%),radial-gradient(55% 70% at 0% 100%,rgb(58 20 6 / .32),transparent 70%)}
-.vals__leak{position:absolute;right:-8%;top:-24%;width:56%;aspect-ratio:1;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(255 214 160 / .32),rgb(255 190 130 / 0));pointer-events:none}
-.vals__head{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px 48px}
-.vals__head .kicker{grid-column:1/-1;margin:0}
-.vals h2{color:#fff;max-width:11ch}
-.glow-word{color:var(--glow);text-shadow:0 0 42px rgb(255 214 160 / .5)}
-.vals__bulb{width:clamp(110px,11vw,190px);height:auto;overflow:visible;margin-bottom:-6px}
-.vals__bulb .line{fill:none;stroke:var(--cream);stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
-.vals__bulb .bars>*{fill:var(--cream)}
-.vals__bulb .glass{fill:var(--glow);fill-opacity:.9}
-.vals__bulb .halo{opacity:.9}
-.vcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,26px);margin-top:clamp(56px,6vw,96px)}
-.vcard{position:relative;display:flex;flex-direction:column;gap:14px;padding:clamp(28px,2.8vw,44px) clamp(24px,2.4vw,38px) clamp(26px,2.6vw,38px);border-radius:var(--r-xl);background:linear-gradient(160deg,rgb(58 20 6 / .16),rgb(58 20 6 / .3));box-shadow:inset 0 0 0 1px rgb(255 236 220 / .22),0 30px 60px -40px rgb(40 14 4 / .6);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .35s var(--ease),background-color .35s var(--ease)}
-.vcard:hover{transform:translateY(-6px)}
-.vcard__n{display:flex;align-items:center;gap:12px;font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;color:var(--glow);margin-bottom:clamp(18px,2.4vw,40px)}
-.vcard__n::after{content:"";height:1.5px;flex:1;max-width:64px;background:currentColor;opacity:.6}
-.vcard h3{font-size:clamp(1.625rem,1.3rem + 1vw,2.375rem);font-weight:750;letter-spacing:-.03em;color:#fff}
-.vcard p{color:#fff;font-size:1.0625rem;line-height:1.6}
-.vcard strong{color:#fff;font-weight:750}
-.vcard .textlink{margin-top:auto;align-self:flex-start}
-.vals :focus-visible{outline-color:#fff}
-@media (max-width:900px){.vcards{grid-template-columns:1fr}.vals__bulb{width:96px}}
-
 /* ===================================================================== 02 · SERVICES: the bento (words on the photos, a feathered tint under the words only) */
 .services{background:var(--sand)}
 .services .head .display{max-width:12ch}
@@ -297,81 +248,6 @@ html:not(.js) .track .rv{width:auto;min-height:0;margin-bottom:20px;break-inside
   .bento-wrap::-webkit-scrollbar{display:none}
   .bento{display:flex;gap:12px;width:max-content}
   .bento .tile{width:calc(100vw - 2 * var(--gutter));flex:none;scroll-snap-align:start}
-}
-
-/* ===================================================================== 03 · SOLUTIONS: huge type on a copper-toned photo of the tools */
-.solutions{position:relative;isolation:isolate;overflow:clip;color:#fff;padding-block:var(--section-y);background:var(--copper-800)}
-.solutions__media{position:absolute;inset:-14% 0;z-index:-2}
-.solutions__media img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
-.solutions::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgb(78 34 19 / .95) 0%,rgb(106 46 25 / .92) 38%,rgb(142 64 36 / .84) 70%,rgb(170 80 46 / .74) 100%)}
-.solutions__grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:56px clamp(56px,7vw,140px);align-items:start}
-.solutions .display{color:#fff;max-width:11ch}
-.solutions .hl{color:var(--glow)}
-.solutions__lede{margin-top:28px;font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;color:var(--cream);max-width:20em}
-.solutions__cats{display:flex;flex-wrap:wrap;gap:18px 32px;margin-top:40px}
-.solutions :focus-visible{outline-color:var(--cream)}
-.sol{border-top:1px solid rgb(255 244 236 / .3)}
-.sol li{border-bottom:1px solid rgb(255 244 236 / .3)}
-.sol a,.sol__row{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:8px 16px;min-height:clamp(80px,7vw,116px);color:#fff;text-decoration:none}
-.sol a::after{content:"";width:26px;height:26px;background:var(--glow);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .3s var(--ease)}
-.sol__k{font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;color:var(--glow)}
-.sol h3{color:#fff;font-size:clamp(1.5rem,1.1rem + 1.4vw,2.75rem);letter-spacing:-.034em;line-height:1.05;transition:transform .35s var(--ease)}
-.sol a:hover h3{transform:translateX(10px)}
-.sol a:hover::after{transform:translateX(6px)}
-/* the list's closing link (round-5 QA: "+ More!" no longer dressed as a numbered service row) */
-.sol__more{margin-top:22px}.sol__more .textlink{font-size:1rem}
-.sol-bulb{position:absolute;right:48px;top:50%;width:26px;height:auto;overflow:visible;opacity:0;transform:translateY(-50%) scale(.9);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none;--mb-line:var(--glow);--mb-glass:var(--glow);filter:drop-shadow(0 0 10px rgb(255 214 150 / .9))}
-.sol a:is(:hover,:focus-visible) .sol-bulb{opacity:1;transform:translateY(-50%) scale(1)}
-@media (hover:none){.sol-bulb{display:none}}
-@media (max-width:980px){.solutions__grid{grid-template-columns:minmax(0,1fr)}.sol a,.sol__row{grid-template-columns:40px minmax(0,1fr) auto}}
-
-/* ===================================================================== PULL-QUOTE: Susan's words on the ceiling she had lit (no dark tint: ink on a bright ceiling)
-   About 70% of the window tall; the quote is centred on the clean ceiling between two rows of new lights, with the
-   stars, her name and the Google link on a light glass caption. */
-.pull{position:relative;isolation:isolate;overflow:clip;display:grid;align-items:center;height:clamp(460px,70vh,720px);background:#e9e5de}
-.pull__media{position:absolute;inset:0;z-index:-1}
-.pull__media img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
-.pull__media::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 58% 46% at 34% 50%,rgb(247 243 236 / .55),rgb(247 243 236 / .3) 60%,rgb(247 243 236 / 0) 100%)}
-.pull__fig{max-width:min(15em,100%);font-size:clamp(2.125rem,1rem + 3.6vw,5.75rem)}
-.pull blockquote p{font:740 1em/1 var(--font-display);letter-spacing:-.045em;color:var(--ink);text-wrap:balance}
-.pull figcaption{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:clamp(20px,2.2vw,32px);padding:10px 18px;border-radius:16px;background:rgb(253 251 247 / .86);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .7),0 12px 30px -20px rgb(15 42 53 / .45);font:400 1rem/1.4 var(--font-text);letter-spacing:0;color:var(--ink)}
-.pull figcaption .stars{--s:15px}
-.pull cite{font-style:normal;font-weight:700}
-.pull__meta{color:var(--text)}
-.pull__g{font-weight:650}
-@media (max-width:699px){.pull{height:auto;aspect-ratio:4/5;padding-block:32px}.pull__media img{object-position:38% 50%}.pull figcaption{font-size:.9375rem;padding:10px 14px}}
-
-/* ===================================================================== 04 · HOW IT WORKS: one copper wire through four steps, ending in the bulb it builds */
-.process{position:relative;background:var(--bone)}
-.process__pin{padding-block:var(--section-y);overflow:clip}
-.process__head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:24px 72px;align-items:end}
-.process__head .display{max-width:13ch}
-.process__lede{font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:28rem}
-@media (min-width:981px){.process__head{padding-right:calc(clamp(104px,9.4vw,150px) * 1.35)}}
-.process__body{position:relative;display:grid;grid-template-columns:repeat(var(--steps,4),minmax(0,1fr)) var(--bcol);gap:40px clamp(24px,3vw,56px);margin-top:clamp(80px,7.5vw,128px);--node:56px;--bcol:clamp(104px,9.4vw,150px);--bw:calc(var(--bcol) * .92)}
-.process__wire{position:absolute;left:calc(-1 * var(--pad-x));right:calc(var(--bcol) / 2);top:calc(var(--node) / 2 - 1.25px);height:2.5px;border-radius:2px;background:linear-gradient(90deg,rgb(170 80 46 / 0),var(--copper) 18%,var(--copper));pointer-events:none;transform-origin:0 50%}
-.steps{display:contents}
-.step{position:relative;display:flex;flex-direction:column;gap:14px}
-.step__n{position:relative;z-index:1;display:grid;place-items:center;width:var(--node);height:var(--node);border-radius:50%;background:var(--copper);color:#fff;font:750 1rem/1 var(--font-display);letter-spacing:.02em;box-shadow:0 0 0 8px var(--bone)}
-.step h3{margin-top:14px;font-size:clamp(1.375rem,1.15rem + .7vw,1.875rem);letter-spacing:-.026em}
-.step p{color:var(--text);max-width:22em}
-.step__contact{margin-top:-4px}
-/* the bulb stands on the end of the wire: its base sits on the line (the base's foot is 91.5% down the bulb's box) */
-.process__bulb{position:relative;align-self:start;justify-self:center;width:var(--bw);margin-top:calc(var(--node) / 2 - var(--bw) * 1.2368 * .915)}
-.process__bulb::before{content:"";position:absolute;left:50%;top:40%;width:250%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgb(255 214 150 / .55),rgb(255 196 120 / .22) 45%,rgb(255 196 120 / 0));pointer-events:none}
-.pb{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 18px rgb(255 190 110 / .5))}
-.pb .line{fill:none;stroke:var(--copper);stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
-.pb .bars>*{fill:var(--copper)}
-.pb .glass{fill:var(--glow)}
-@media (max-width:980px){
-  .process__head{grid-template-columns:minmax(0,1fr)}
-  .process__body{grid-template-columns:var(--node) minmax(0,1fr);gap:40px 22px;--node:48px;--bw:64px}
-  .process__wire{left:calc(var(--node) / 2 - 1.25px);right:auto;top:calc(var(--node) / 2);bottom:72px;width:2.5px;height:auto;background:var(--copper);transform-origin:50% 0}
-  .step{grid-column:1/-1;display:grid;grid-template-columns:var(--node) minmax(0,1fr);column-gap:22px}
-  .step__n{grid-row:1/span 2}
-  .step h3{margin-top:10px}
-  .step p{grid-column:2}
-  .process__bulb{grid-column:1;justify-self:center;margin-top:-6px;width:var(--bw)}
 }
 
 /* ===================================================================== 06 · THE VALLEY, part 1: the fleet under the real Arizona sky (explore-b).
@@ -428,36 +304,6 @@ html:not(.js) .track .rv{width:auto;min-height:0;margin-bottom:20px;break-inside
 }
 @media (max-width:599px){.vy-sky{--pw:176cqw}.kicker--pill{gap:8px;padding:7px 13px 7px 12px;font-size:.8125rem}.kicker--pill .kicker__n::after{width:18px;margin-left:8px}.kicker--pill .kicker__t{gap:7px}}
 
-/* ===================================================================== 07 · RECENT PHOTOS: three columns on the page grid, flush at the foot
-   Every column is the same height and its photos share it (object-fit), so the mosaic ends on one straight line. The
-   columns drift as you arrive and settle exactly flush by the time the section is in the middle of the screen. */
-.work{background:var(--bone);overflow:clip}
-.mosaic{--gap:clamp(10px,1.1vw,18px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.85fr) minmax(0,1.15fr);gap:var(--gap);height:clamp(520px,49vw,860px)}
-.mosaic__col{display:flex;flex-direction:column;gap:var(--gap);min-height:0}
-.mosaic figure{position:relative;flex:1 1 0;min-height:0;overflow:hidden;border-radius:var(--r-md);background:var(--sand)}
-.mosaic .g-tall{flex-grow:1.33}
-.mosaic img{width:100%;height:100%;object-fit:cover;background:var(--sand-2);transition:transform 1.2s var(--ease-out)}   /* sand until the photo decodes */
-.mosaic figcaption{position:absolute;left:14px;bottom:14px;max-width:calc(100% - 28px);padding:7px 13px;border-radius:12px;background:rgb(253 251 247 / .92);color:var(--ink);font-size:.8125rem;font-weight:650;line-height:1.3;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-@media (hover:hover){.mosaic figure:hover img{transform:scale(1.02)}}
-/* tablets: three rows of two, each pair the same height */
-@media (max-width:899px){
-  .mosaic{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);height:auto}
-  .mosaic__col{display:contents}
-  .mosaic figure{order:var(--ot);flex:none}
-  .mosaic img{height:auto}
-  .mosaic .g-wide img{aspect-ratio:3/2}
-  .mosaic .g-half img,.mosaic .g-kit img{aspect-ratio:4/5}
-}
-/* phones: the crew photos and the kitchen full width, the charger and the tub side by side; captions under the photos */
-@media (max-width:599px){
-  .mosaic .g-full{grid-column:1/-1}
-  .mosaic .g-kit{grid-column:auto}
-  .mosaic figure{order:var(--o)}
-  .mosaic figure{overflow:visible;background:none;border-radius:0}
-  .mosaic img{border-radius:var(--r-md)}
-  .mosaic figcaption{position:static;max-width:none;margin-top:8px;padding:0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;font-size:.8125rem;color:var(--text)}
-}
-
 /* ===================================================================== scroll-driven motion (transform, opacity, colour). The resting state
    is the finished page: without support, without JS or with reduced motion everything is simply there. */
 @supports (animation-timeline: view()){
@@ -469,46 +315,5 @@ html:not(.js) .track .rv{width:auto;min-height:0;margin-bottom:20px;break-inside
     .statement{view-timeline:--stmt block}
     .motion .statement .w{animation:lit linear both;animation-timeline:--stmt;animation-range:cover calc(14% + var(--i) * 5%) cover calc(24% + var(--i) * 5%)}
     @keyframes lit{from{color:var(--dim)}to{color:var(--ink)}}
-    /* the copper band's bulb switches on as the band arrives */
-    .vals{view-timeline:--vals block}
-    .vals__bulb .halo,.vals__bulb .glass{animation:on linear both;animation-timeline:--vals;animation-range:cover 18% cover 40%}
-    @keyframes on{0%{opacity:0}45%{opacity:.85}55%{opacity:.25}75%{opacity:1}100%{opacity:1}}
-    .motion .vcard{animation:rise-card linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
-    .motion .vcard:nth-child(2){animation-range:entry 8% entry 88%}.motion .vcard:nth-child(3){animation-range:entry 16% entry 96%}
-    /* phones (round-5 QA): the cards finish rising within the first third of their entry, so no text sits faded mid-screen */
-    @media (max-width:699px){.motion .vcard,.motion .vcard:nth-child(2),.motion .vcard:nth-child(3){animation-range:entry 0% entry 35%}}
-    @keyframes rise-card{from{opacity:0;transform:translateY(72px)}to{opacity:1;transform:none}}
-    .motion .tile{animation:tile-in linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
-    @keyframes tile-in{from{transform:translateY(56px) scale(.97)}to{transform:none}}   /* photos of people: movement only, never faded */
-    .solutions__media{animation:par-y linear both;animation-timeline:view();animation-range:cover}
-    @keyframes par-y{from{transform:translateY(-7%)}to{transform:translateY(7%)}}
-    .motion .sol li{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
-    .pull__media img{animation:settle linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
-    @keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
-    @media (min-width:900px){
-      .mosaic__col{animation:drift linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
-      .mosaic__col--a{--d:28px}.mosaic__col--b{--d:72px}.mosaic__col--c{--d:44px}
-    }
-    @keyframes drift{from{transform:translateY(var(--d))}to{transform:none}}
-    /* how it works: pinned under the header while the wire runs and the bulb builds itself */
-    .process__wire{animation:wire-x linear both;animation-timeline:--proc;animation-range:var(--r-wire)}
-    @keyframes wire-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-    .step__n{animation:node-on steps(1,jump-end) both;animation-timeline:--proc}
-    @keyframes node-on{from{background-color:var(--bone);color:var(--copper-700);box-shadow:0 0 0 8px var(--bone),inset 0 0 0 2px var(--copper)}to{background-color:var(--copper);color:#fff;box-shadow:0 0 0 8px var(--bone),inset 0 0 0 2px var(--copper)}}
-    .pb .line{stroke-dasharray:1;animation:draw linear both;animation-timeline:--proc;animation-range:var(--r-line)}
-    @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-    .pb .bars>*{transform-box:fill-box;animation:bar-in linear both;animation-timeline:--proc;animation-range:var(--r-bars)}
-    @keyframes bar-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-    .pb .glass,.pb .halo,.process__bulb::before{animation:on linear both;animation-timeline:--proc;animation-range:var(--r-glow)}
-    .process{view-timeline:--proc block;--r-wire:cover 20% cover 50%;--r-line:cover 46% cover 56%;--r-bars:cover 54% cover 59%;--r-glow:cover 58% cover 66%}
-    /* each number fills as the wire reaches it: step --k of --steps, spread over the wire's run */
-    .step__n{animation-range:cover calc(24% + var(--k,0) * 28% / var(--steps,4)) cover calc(27% + var(--k,0) * 28% / var(--steps,4))}
-    @media (min-width:981px) and (min-height:700px){
-      .process{height:calc(100svh - var(--hdr-c) + 80vh);view-timeline-inset:var(--hdr-c) 0;--r-wire:contain 4% contain 52%;--r-line:contain 52% contain 70%;--r-bars:contain 68% contain 78%;--r-glow:contain 78% contain 92%}
-      .process__pin{position:sticky;top:var(--hdr-c);height:calc(100svh - var(--hdr-c));display:flex;flex-direction:column;justify-content:center;padding-block:clamp(24px,4vh,56px)}
-      .process__body{margin-top:clamp(64px,9vh,128px)}
-      .step__n{animation-range:contain calc(8% + var(--k,0) * 48% / var(--steps,4)) contain calc(12% + var(--k,0) * 48% / var(--steps,4))}
-    }
-    @media (max-width:980px){@keyframes wire-x{from{transform:scaleY(0)}to{transform:scaleY(1)}}}
   }
 }

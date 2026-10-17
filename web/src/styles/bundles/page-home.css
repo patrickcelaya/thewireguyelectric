@@ -1,0 +1,5 @@
+/* The homepage's stylesheet (after tokens.css and core.css, which every page shares): its own sections, the sections
+   it shares with the page-builder pages, and the valley. One file per page type, so a page blocks on two stylesheets. */
+@import '../home.css';
+@import '../sections.css';
+@import '../atlas.css';

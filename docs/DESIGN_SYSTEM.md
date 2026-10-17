@@ -37,7 +37,8 @@ These come from the owner (all rounds) and the SEO spec. They are not style pref
 
 ```
 web/src/
-  styles/          tokens.css, core.css (every page), home.css, inner.css, atlas.css (page-type layers)
+  styles/          tokens.css, core.css (every page); the layers home.css, sections.css, inner.css, cms.css, post.css,
+                   pages.css, atlas.css; bundles/ (one stylesheet per page type, built from the layers)
   assets/fonts/    Red Hat Display + Red Hat Text, latin subset woff2 (hashed by Vite)
   layouts/         SiteLayout.astro (every page)
   components/
@@ -88,29 +89,30 @@ Fonts: `tokens.css` declares the two variable woff2 files (relative URLs, so Vit
 
 ## 4. CSS per page type
 
-Vite bundles each page's imports into cached, fingerprinted stylesheets (shared chunks are reused across pages).
+Every page blocks on two stylesheets: the shared core (cached once for the whole site) and the one bundle of its page type (cached per type). A bundle in `styles/bundles/` is a list of `@import`s of the layers, which Vite inlines into one fingerprinted file, so the cascade order is the import order and nothing else.
 
-| File | Ships on | Holds |
+| Layer | Holds |
+|---|---|
+| `tokens.css` + `core.css` | every page (imported by `SiteLayout`): base, type, buttons, links, kicker, status, rating, the header (both tiers, dropdowns, menu sheet), section heads, tiles, review cards and the score block, FAQ (`details`), guide cards, the estimate band and form, the footer, the call bar, reveals |
+| `home.css` | the homepage's own sections: the review lanes and dialog, the title-card hero, the services mosaic, the valley sky (fleet poster) |
+| `sections.css` | the sections the homepage shares with the page-builder pages: "who we are", the value cards on copper, the checklist on its photo, the pulled-out review, how it works, the photo mosaic (and their scroll-driven motion) |
+| `inner.css` | every other page: the breadcrumb and static reviews, photo heroes (`.ihero`), trust card, at-a-glance facts, service cards, the long-form article and contact card, `.prose` (rich text, incl. tables, video, CTA blocks), warning signs, the /estimate hero and steps, the 404 and link hub (`.hub`) |
+| `cms.css` | the CMS templates' additions (§13) |
+| `post.css` | the editorial post layout (§13) |
+| `pages.css` | the inner-page sections (§14) |
+| `atlas.css` | the valley: relief map, wire, lights, labels, index panel, callout and their motion |
+
+| Bundle (`styles/bundles/`) | Imported by | Layers, in cascade order |
 |---|---|---|
-| `tokens.css` + `core.css` | every page (imported by `SiteLayout`) | base, type, buttons, links, kicker, status, rating, the header (both tiers, dropdowns, menu sheet), section heads, tiles, review cards and the score block, FAQ (`details`), guide cards, the estimate band and form, the footer, the call bar, reveals |
-| `home.css` | the homepage | the review lanes and dialog (moved out of core), the title-card hero, "who we are", the services mosaic, the valley sky (fleet poster), gallery and the rest of the homepage sections |
-| `inner.css` | every other page | the breadcrumb and static reviews (moved out of core), photo heroes (`.ihero`), trust card, at-a-glance facts, service cards, the long-form article and contact card, `.prose` (rich text, incl. tables, video, CTA blocks), warning signs, the /estimate hero and steps, the 404 and link hub (`.hub`) |
-| `atlas.css` | any page with `<Valley>` (imported by the component) | the relief map, wire, lights, labels, index panel, callout and their motion |
-| `cms.css` | city, service and category pages (after `inner.css`) | the CMS templates' additions (§13) |
-| `post.css` | blog posts (after `inner.css` and `cms.css`) | the editorial post layout (§13) |
-| `pages.css` | the page-builder pages via `PageBuilderPage` (after `inner.css` and `home.css`) | the inner-page sections (§14) |
+| `page-home.css` | `pages/index.astro` | home, sections, atlas |
+| `page-builder.css` | `components/PageBuilderPage.astro` (about us, our team, careers, FAQ, contact, commercial, /services, /blog) | inner, sections, pages, atlas |
+| `page-cms.css` | city, service, service-category and post-category pages | inner, cms, atlas |
+| `page-post.css` | blog posts | inner, cms, post |
+| (`inner.css` alone) | /estimate and the 404 | inner |
 
-**How a page imports them:** the layout first, then the page-type layer, then section components (CSS order follows import order):
+A component never imports a stylesheet: Astro bundles the CSS of every component a page *imports*, rendered or not, and the section renderer imports every section, so per-component CSS would put every section's styles on every page anyway. Add a new section's styles to the layer it belongs to, and a layer to the bundles of the page types that can show it.
 
-```astro
----
-import SiteLayout from '../layouts/SiteLayout.astro'
-import '../styles/inner.css'            // or '../styles/home.css' on the homepage
-import Valley from '../components/sections/Valley.astro'   // brings atlas.css after the layer
----
-```
-
-Page-specific styles that don't belong to a reusable pattern go at the end of the layer file under a heading comment, the way the 404 block does. Keep the budget in mind (the spec asks for about 15 KB brotli per page). Measured on this build: tokens + core 11.0 KB, `inner.css` 5.4 KB, `home.css` 7.7 KB, `atlas.css` 4.0 KB, so an inner page ships about 16.4 KB (20.4 KB with the map) and the homepage about 22.6 KB, as in the mockups (open question 6 of the round-5 rationale). The homepage build ships two files: the shared core chunk (11.0 KB) and its own (`home.css` + `atlas.css`, 10.9 KB), 21.9 KB in all, cached per page type.
+Page-specific styles that don't belong to a reusable pattern go at the end of the layer file under a heading comment, the way the 404 block does. Budget (the spec asks for 15 KB brotli and one blocking sheet): measured on the local build of 2026-10-17, core 11.0 KB; the homepage 22.1 KB, a page-builder page 25.8 KB, a city or service page 20.9 KB, a post 18.6 KB and /estimate 16.7 KB, each in two files. The core alone is most of the budget (the header, footer, estimate band and form are on every page), so meeting 15 KB needs critical CSS inlined in the HTML and the rest loaded late, a build step not in place yet.
 
 ---
 

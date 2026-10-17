@@ -9,8 +9,8 @@
 //     other town linked on the glass panel.
 // The map is aria-hidden; the index is the accessible, crawlable version. Geometry:
 // lib/valley.ts (computed at build time). Motion: scripts/site/valley.ts. Styles:
-// styles/atlas.css (imported here) plus the sky in styles/home.css.
-import '../../styles/atlas.css'
+// styles/atlas.css (in the stylesheet of every page type that shows the valley,
+// styles/bundles) plus the sky in styles/home.css.
 import type {SiteSettings} from '../../lib/types'
 import type {City} from '../../lib/cities'
 import {RELIEF, valleyGeometry} from '../../lib/valley'
