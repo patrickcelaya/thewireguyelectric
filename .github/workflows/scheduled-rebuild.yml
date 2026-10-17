@@ -1,0 +1,31 @@
+name: Scheduled rebuild
+
+# Rebuilds production once a day through the Vercel deploy hook, so content that expires
+# by date leaves the site on the day it expires: a job opening past its validThrough drops
+# off /careers together with its JobPosting markup (web/src/lib/jobs.ts filters at build
+# time). Needs the repository secret VERCEL_DEPLOY_HOOK_URL (the production deploy hook);
+# without it the job does nothing. The project's Ignored Build Step must let this build
+# run on an unchanged commit (a content-aware check that rebuilds when the last build is
+# older than a day, not a plain "same commit, skip" guard), or Vercel cancels it.
+
+on:
+  schedule:
+    # 13:07 UTC = 6:07 am in Arizona (no daylight saving)
+    - cron: '7 13 * * *'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger the production deploy hook
+        env:
+          DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "VERCEL_DEPLOY_HOOK_URL is not set; nothing to rebuild."
+            exit 0
+          fi
+          curl -fsS -X POST "$DEPLOY_HOOK" > /dev/null
+          echo "Production rebuild requested."
