@@ -1016,6 +1016,12 @@
       "slop-cities-059 web/src/pages/locations/[slug].astro"
     ]
   },
+  "internalLinks": {
+    "source": "migration/content-data/internal-links.json",
+    "added": 124,
+    "documents": 59,
+    "moved": 1
+  },
   "titlesMeta": {
     "source": "migration/content-data/titles-meta.json",
     "applied": 60,

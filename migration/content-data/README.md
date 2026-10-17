@@ -10,7 +10,7 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 | `post-services.json` | `relatedServices` on all 53 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
-Three later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10) and `profiles.json` (§11).
+Four later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11) and `internal-links.json` (§12).
 
 The data files use slugs, not document IDs. The module turns each slug into a reference. The migration stops with an error naming the file and entry if any of these happens:
 
@@ -160,7 +160,7 @@ The first service is the primary hub service from the hub map (seo-requirements 
   - `ceiling-fan-installation-cost-arizona` → recessed;
   - `landscape-lighting-installation-cost-phoenix` → custom-lighting;
   - `pool-pump-electrical-requirements-arizona` → panels;
-  - `kitchen-remodel-electrical-circuits-arizona` → panels, dedicated-circuits;
+  - `kitchen-remodel-electrical-circuits-arizona` → panels (and custom-lighting since D14, below);
   - `cost-to-rewire-house-arizona` → inspections, panels;
 - a service page's live body (its "Related Reading" list or an in-text link) links the post:
   - `federal-pacific-zinsco` ← inspections;
@@ -176,6 +176,13 @@ One exception: `can-hot-weather-cause-your-circuit-breaker-to-trip` → panels. 
 Surge and generator posts sit under panels, as the hub map says ("until dedicated pages exist"). `/faq` lists generator installs among the services the company doesn't offer; the generator posts are about interlocks and standby units, which are wired at the panel.
 
 `common-electrical-issues-in-scottsdale-homes` hubs on `/locations/scottsdale`, which can't be a `relatedServices` target, so its service is electrical-troubleshooting.
+
+### Internal-links review (decision D14, 2026-10-17)
+
+The verified internal-links review changed both lists; no post's primary service moved, so the quick-answer link target, the `/blog` grouping and the cover photos stay.
+
+- **Post → related services** (its `hub_map_final`): 10 posts gain a service their body discusses. Panels joins `half-house-lost-power-heat-arizona`, `ac-keeps-tripping-breaker-arizona`, `tesla-wall-connector-vs-chargepoint-home-flex-phoenix`, `hot-tub-electrical-installation-cost-arizona`, `breaker-trips-ac`, `permit-for-electrical-work`, `why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it` and `why-does-my-breaker-keep-tripping-in-the-summer`; `diy-electrical-work-in-arizona` gains panels and fixture-replacements (the two things its lists name); `kitchen-remodel-electrical-circuits-arizona` swaps the commercial Dedicated Circuits page for Custom Lighting (under-cabinet and recessed lighting). The review rejected Custom Lighting on the outdoor-lighting post (an indoor page).
+- **Service → related posts** (its T3, amended): the first post is the hub's pillar, which a post's related articles start from, so four hubs lead with the Tier 1 posts they own. Safety inspections: DIY, outdated wiring, pre-sale inspection, permits, aluminum wiring. EV charger installation: Tesla vs ChargePoint, installing a car charger (fifth before, so the guides block never showed it), Level 1 vs 2, hardwired vs plug-in, dryer outlet. Troubleshooting: the five Tier 1 posts it owns (heat and breakers, dead outlets, afternoon flicker, how heat affects wiring, summer breaker trips). Remodels: the rewire cost guide first.
 
 ## 5. Cities (`city-relations.json`)
 
@@ -340,3 +347,11 @@ The footer keeps its `share.google` links and their text (`googleMapsUrl`, `mapL
 **Not set:** the Scottsdale office's opening hours. Its profile shows Mon–Fri 9–5, but the page says office visits are by appointment, so the hours wait until the owner confirms the office is staffed (citations R3, amended).
 
 The business description in Site settings states the count too; it reads "560+" through decision D7-01 in `migration/content-edits/decisions.json`. The ROC lookup link in the FAQ "How do I choose a good electrician in Phoenix?" goes to `https://roc.az.gov/`, the Registrar's own host, and the next answer names it the same way (decision D13: `linkFixes` in `cms-templates.json`, D13-01).
+
+## 12. Contextual internal links (`internal-links.json`)
+
+Applied by `scripts/migrate/content/internal-links.mjs`, after the copy edits and before the titles. The 125 links are the verified internal-links review (decision D14): 71 post → service, 28 city → service, 10 service → post and 15 post → post links, each a link mark on words already in the body, and 1 retarget (the generator post's "service upgrade" goes to `/services/panels` instead of `/services`). The words never change.
+
+Each entry names the document (`type:slug`), the block (`_key`), the anchor as the block reads after the copy pass (where a copy edit rewrote the sentence, the review gave the anchor that survives) and the target. The module finds the anchor by its text, splits the spans at its edges and links the middle; it stops if an anchor occurs other than exactly once in its block, the block is a heading or a quote, the anchor overlaps a link, the body already links the target, a post would get more than 3 new service links, or the block's text changes.
+
+Left out: the "same-visit repair" link the review rejected (not a service name, in a price clause), and two retargets of closing calls to action (`why-your-lights-flicker`, `breaker-trips-ac`) to the troubleshooting page: the copy pass already sends them to `/estimate` (decision D5, `linkFixes` in `cms-templates.json`). The review's nine deferred city CTAs to the homepage are in the copy pass's `linkFixes` under D5 too.

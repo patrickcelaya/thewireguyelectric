@@ -538,12 +538,12 @@ push({
 })
 
 // Content added on top of the Webflow export: page-builder sections for the static
-// pages, data fixes, real reviews, sourced local facts, the launch copy edits and the
-// approved titles, meta descriptions and H1s. Each module receives the document list and
+// pages, data fixes, real reviews, sourced local facts, the launch copy edits, contextual
+// internal links and the approved titles, meta descriptions and H1s. Each module receives the document list and
 // helpers and edits or adds documents in place. content-edits runs at several points
 // ("module:stage"); its header says why, and cms-templates runs its service stage itself.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'titles-meta']) {
+for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'internal-links', 'titles-meta']) {
   const [name, stage] = step.split(':')
   await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }

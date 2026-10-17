@@ -1,0 +1,986 @@
+{
+  "$comment": "Contextual internal links from the verified internal-links review (2026-10-17, decision D14): post to service, service to post, city to service and post to post, each a link mark on words already in the body (no word changes). Applied by scripts/migrate/content/internal-links.mjs after the copy edits. Each entry names the document (type:slug), the block (_key), the anchor (the words as they read after the copy pass) and the target; a retarget names the link it moves (from). See README.md section 12.",
+  "source": "scratchpad seo/internal-links/verified.json `contextual` (verdicts accept/amend, the amended anchor or target where amended; the rejected \"same-visit repair\" link left out). Two retargets of closing calls to action are not here: the copy pass already sends them to /estimate (decision D5).",
+  "links": [
+    {
+      "doc": "post:kitchen-remodel-electrical-circuits-arizona",
+      "block": "k00y",
+      "anchor": "under-cabinet lighting",
+      "href": "/services/custom-lighting",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:kitchen-remodel-electrical-circuits-arizona",
+      "block": "k01y",
+      "anchor": "EV charger",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:pool-pump-electrical-requirements-arizona",
+      "block": "k03d",
+      "anchor": "pool equipment circuits",
+      "href": "/services/exterior-electrical",
+      "kind": "post-to-service",
+      "why": "the hub; Exterior Electrical lists \"Pool and spa equipment circuits, including bonding and disconnects\""
+    },
+    {
+      "doc": "post:casita-adu-electrical-requirements-arizona",
+      "block": "k006",
+      "anchor": "mother-in-law casita",
+      "href": "/services/new-construction-wiring",
+      "kind": "post-to-service",
+      "why": "New Construction Wiring covers casitas"
+    },
+    {
+      "doc": "post:casita-adu-electrical-requirements-arizona",
+      "block": "k01f",
+      "anchor": "EV charger",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:swamp-cooler-to-ac-conversion-electrical-arizona",
+      "block": "k00z",
+      "anchor": "panel replacement",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "why": "the hub; first service mention"
+    },
+    {
+      "doc": "post:why-is-my-electric-bill-so-high-phoenix-summer",
+      "block": "k022",
+      "anchor": "adding an EV charger",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:half-house-lost-power-heat-arizona",
+      "block": "k014",
+      "anchor": "200-amp like-for-like replacement",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:electrical-panel-hot-to-the-touch-arizona",
+      "block": "k014",
+      "anchor": "panel replacement",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "why": "the hub; \"a panel replacement is the real answer\""
+    },
+    {
+      "doc": "post:ac-keeps-tripping-breaker-arizona",
+      "block": "k015",
+      "anchor": "200-amp like-for-like panel replacement",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:cutting-corners-panel-upgrades-phoenix",
+      "block": "k00m",
+      "anchor": "EV chargers",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+      "block": "k024",
+      "anchor": "panels that cannot accept that load without an upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:aluminum-wiring-older-phoenix-homes",
+      "block": "k02m",
+      "anchor": "major remodel",
+      "href": "/services/electrical-remodels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:hot-tub-electrical-installation-cost-arizona",
+      "block": "k007",
+      "anchor": "Hot tub electrical work",
+      "href": "/services/exterior-electrical",
+      "kind": "post-to-service",
+      "why": "the hub; Exterior Electrical lists spa equipment circuits"
+    },
+    {
+      "doc": "post:hot-tub-electrical-installation-cost-arizona",
+      "block": "k02m",
+      "anchor": "panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:ceiling-fan-installation-cost-arizona",
+      "block": "k00c",
+      "anchor": "install ceiling fans",
+      "href": "/services/fixture-replacements",
+      "kind": "post-to-service",
+      "why": "the hub; Fixture Replacements covers ceiling fan replacement"
+    },
+    {
+      "doc": "post:whole-house-surge-protector-guide-arizona",
+      "block": "k022",
+      "anchor": "panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:recessed-lighting-installation-phoenix",
+      "block": "k002",
+      "anchor": "recessed lighting",
+      "href": "/services/recessed-lights-installation",
+      "kind": "post-to-service",
+      "why": "the hub; first sentence"
+    },
+    {
+      "doc": "post:recessed-lighting-installation-phoenix",
+      "block": "k00a",
+      "anchor": "during a remodel",
+      "href": "/services/electrical-remodels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:recessed-lighting-installation-phoenix",
+      "block": "k00w",
+      "anchor": "under-cabinet LEDs",
+      "href": "/services/custom-lighting",
+      "kind": "post-to-service",
+      "why": "custom cabinet lighting is the Custom Lighting page's specialty"
+    },
+    {
+      "doc": "post:electrical-panel-upgrade-cost-arizona",
+      "block": "k006",
+      "anchor": "electrical panel replacement",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true,
+      "why": "the hub; the body has no service link today"
+    },
+    {
+      "doc": "post:electrical-panel-upgrade-cost-arizona",
+      "block": "k00e",
+      "anchor": "EV chargers",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:electrical-panel-upgrade-cost-arizona",
+      "block": "k00t",
+      "anchor": "kitchen remodel",
+      "href": "/services/electrical-remodels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:why-your-lights-flicker",
+      "block": "k01b",
+      "anchor": "panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:breaker-trips-ac",
+      "block": "k019",
+      "anchor": "professional inspection",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:breaker-trips-ac",
+      "block": "k01h",
+      "anchor": "panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:emfs-in-your-phoenix-home",
+      "block": "k01d",
+      "anchor": "full electrical inspection",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:emfs-in-your-phoenix-home",
+      "block": "k01f",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "block": "k02y",
+      "anchor": "Inspecting your panel",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "block": "k030",
+      "anchor": "Tracing short circuits inside walls",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "block": "k037",
+      "anchor": "breakers that won't stay on",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "tier1": true,
+      "why": "the hub; earlier \"electrical panel\" mentions (k008, k00z, k01o) name the box, not a service"
+    },
+    {
+      "doc": "post:can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "block": "k037",
+      "anchor": "electrical panels",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true,
+      "why": "\"Dealing with electrical panels ... is dangerous work\": the first mention of panel work"
+    },
+    {
+      "doc": "post:is-whole-house-surge-protection-necessary",
+      "block": "k01s",
+      "anchor": "electrical panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:electrical-inspection-before-selling-a-home",
+      "block": "k000",
+      "anchor": "professional electrical inspection",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service",
+      "why": "the hub; first sentence"
+    },
+    {
+      "doc": "post:why-does-my-breaker-keep-tripping",
+      "block": "k00h",
+      "anchor": "upgrade your panel",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:why-does-my-breaker-keep-tripping",
+      "block": "k00w",
+      "anchor": "find and repair the fault",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "block": "k001",
+      "anchor": "outdoor lighting",
+      "href": "/services/exterior-electrical",
+      "kind": "post-to-service",
+      "why": "the hub; first paragraph"
+    },
+    {
+      "doc": "post:phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "block": "k018",
+      "anchor": "Have it inspected for capacity and safety",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "block": "k02r",
+      "anchor": "upgrade panels",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "block": "k005",
+      "anchor": "outdoor outlets",
+      "href": "/services/exterior-electrical",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "block": "k02c",
+      "anchor": "check for water damage, dust buildup, or loose connections",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service",
+      "why": "The proposed anchor sits in the bullet \"Free post-storm safety inspections\". The free offer is unconfirmed (the slop-posts-b verifier flagged it and \"free safety check\" for owner confirmation, see slop-posts-b-085), and /services/electrical-safety-inspections offers a free estimate, not a free inspection. A link would tie an unconfirmed \"free\" claim to the service page. k02c, under the H4 \"Schedule a Panel Inspection After Major Storms\", describes the same inspection with no offer attached. No slop edit touches k02c. If the owner confirms free post-storm inspections, the original anchor can come back instead."
+    },
+    {
+      "doc": "post:permit-for-electrical-work",
+      "block": "k002",
+      "anchor": "replacing your panel",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:permit-for-electrical-work",
+      "block": "k00q",
+      "anchor": "remodels",
+      "href": "/services/electrical-remodels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:permit-for-electrical-work",
+      "block": "k00s",
+      "anchor": "EV charger",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "block": "k01q",
+      "anchor": "panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "block": "k027",
+      "anchor": "diagnose the cause",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "tier1": true,
+      "why": "the hub"
+    },
+    {
+      "doc": "post:how-phoenix-heat-affects-your-homes-electrical-system",
+      "block": "k001",
+      "anchor": "outdoor electrical components",
+      "href": "/services/exterior-electrical",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:how-phoenix-heat-affects-your-homes-electrical-system",
+      "block": "k02j",
+      "anchor": "panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:how-phoenix-heat-affects-your-homes-electrical-system",
+      "block": "k02q",
+      "anchor": "electrical inspections",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:why-does-my-breaker-keep-tripping-in-the-summer",
+      "block": "k00h",
+      "anchor": "panel upgrade",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:why-does-my-breaker-keep-tripping-in-the-summer",
+      "block": "k01l",
+      "anchor": "troubleshooting",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "tier1": true,
+      "why": "the hub; \"✅ Schedule an Electrical Inspection\" (k012) is skipped because it reads as a heading"
+    },
+    {
+      "doc": "post:do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "block": "k002",
+      "anchor": "upgrade panels",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "block": "k00f",
+      "anchor": "EV charger",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "block": "k00j",
+      "anchor": "Outdated or damaged electrical panels",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "block": "k012",
+      "anchor": "full diagnostic",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:diy-electrical-work-in-arizona",
+      "block": "k00m",
+      "anchor": "Replacing light fixtures",
+      "href": "/services/fixture-replacements",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:diy-electrical-work-in-arizona",
+      "block": "k01c",
+      "anchor": "Electrical panel upgrades",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:diy-electrical-work-in-arizona",
+      "block": "k01i",
+      "anchor": "Installing EV chargers",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:outdated-wiring-in-older-phoenix-homes",
+      "block": "k005",
+      "anchor": "electrical inspection",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service",
+      "tier1": true,
+      "why": "the hub; first paragraph"
+    },
+    {
+      "doc": "post:outdated-wiring-in-older-phoenix-homes",
+      "block": "k021",
+      "anchor": "Upgrade panels",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "tier1": true
+    },
+    {
+      "doc": "post:summer-electrical-tips",
+      "block": "k00c",
+      "anchor": "upgrade your panel",
+      "href": "/services/panels",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:summer-electrical-tips",
+      "block": "k010",
+      "anchor": "LED landscape lighting",
+      "href": "/services/exterior-electrical",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:summer-electrical-tips",
+      "block": "k017",
+      "anchor": "electrical inspection",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:common-electrical-issues-in-scottsdale-homes",
+      "block": "k031",
+      "anchor": "regular electrical inspection",
+      "href": "/services/electrical-safety-inspections",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:common-electrical-issues-in-scottsdale-homes",
+      "block": "k066",
+      "anchor": "troubleshooting",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:level-1-vs-level-2-ev-chargers-which-to-choose",
+      "block": "k06i",
+      "anchor": "install EV chargers",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service",
+      "why": "the hub"
+    },
+    {
+      "doc": "post:level-1-vs-level-2-ev-chargers-which-to-choose",
+      "block": "k06m",
+      "anchor": "panel upgrade",
+      "href": "/services/electrical-upgrades",
+      "kind": "post-to-service",
+      "why": "the \"For businesses\" bullet, so the commercial Electrical Upgrades page"
+    },
+    {
+      "doc": "post:7-signs-you-need-an-electrical-panel-upgrade",
+      "block": "k078",
+      "anchor": "Upgrading your panel",
+      "href": "/services/panels",
+      "kind": "post-to-service",
+      "why": "the hub; the body has no link to the Panels page today. k05q (\"the next step is to upgrade your panel\") is earlier, but slop-posts-a-015 rewrites it to \"do the upgrade\"; \"Upgrading your panel\" is in k078 before and after slop-posts-a-024"
+    },
+    {
+      "doc": "post:7-signs-you-need-an-electrical-panel-upgrade",
+      "block": "k06o",
+      "anchor": "commercial panel upgrades",
+      "href": "/services/electrical-upgrades",
+      "kind": "post-to-service"
+    },
+    {
+      "doc": "post:installing-car-charger",
+      "block": "k00z",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "post-to-service",
+      "tier1": true,
+      "why": "the hub. The first mention (k003, \"the installation of electric car chargers\") is rewritten by slop-posts-b-001; its replacement phrase \"an electric car charger at home\" repeats this post's own title keyword, so it should not point at the service page. k00z keeps \"EV charger installations\" before and after slop-posts-b-003"
+    },
+    {
+      "doc": "post:whole-home-standby-generator-installation-phoenix",
+      "block": "k028",
+      "anchor": "service upgrade",
+      "href": "/services/panels",
+      "from": "/services",
+      "kind": "retarget",
+      "why": "a service upgrade is Panels work (\"Service upgrades (200 to 400 amp)\")"
+    },
+    {
+      "doc": "post:electrical-safety-tips",
+      "block": "k00m",
+      "anchor": "DIY electrical work",
+      "href": "/blog-posts/diy-electrical-work-in-arizona",
+      "kind": "post-to-post",
+      "why": "Tier 1 target with no inbound body link today"
+    },
+    {
+      "doc": "post:ceiling-fan-installation-cost-arizona",
+      "block": "k01r",
+      "anchor": "Arizona allows homeowners to do it themselves",
+      "href": "/blog-posts/diy-electrical-work-in-arizona",
+      "kind": "post-to-post",
+      "why": "Tier 1 target with no inbound body link today"
+    },
+    {
+      "doc": "post:common-electrical-issues-in-scottsdale-homes",
+      "block": "k03l",
+      "anchor": "DIY electrical repairs",
+      "href": "/blog-posts/diy-electrical-work-in-arizona",
+      "kind": "post-to-post",
+      "why": "Tier 1 target"
+    },
+    {
+      "doc": "post:how-phoenix-heat-affects-your-homes-electrical-system",
+      "block": "k00z",
+      "anchor": "cause breakers to trip frequently",
+      "href": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "kind": "post-to-post",
+      "tier1": true,
+      "why": "The anchor \"cause breakers to trip frequently\" is the query of the #1 page (can-hot-weather-cause-your-circuit-breaker-to-trip: 1,348 clicks, position 5.5, 80,278 impressions in the 16-month TSV). Pointing it at why-does-my-breaker-keep-tripping-in-the-summer (28 clicks, position 8.1) hands an exact-intent anchor to a sibling that competes for the same query, in the breaker cluster SEO_STRATEGY §2 plans to consolidate into its strongest post. The heat post body does not link the #1 page today (checked on the preview and in the NDJSON). Trade-off: the summer-breaker post keeps no inbound body link; it still gets prev/next from this post, two \"Related articles\" slots after T2, and a guide card on the Troubleshooting page under the amended T3."
+    },
+    {
+      "doc": "post:how-phoenix-heat-affects-your-homes-electrical-system",
+      "block": "k01k",
+      "anchor": "Lights dimming when AC or pool pump turns on",
+      "href": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "kind": "post-to-post",
+      "tier1": true,
+      "why": "Tier 1 to Tier 1; the target has no inbound body link"
+    },
+    {
+      "doc": "post:why-does-my-breaker-keep-tripping",
+      "block": "k013",
+      "anchor": "Federal Pacific or Zinsco panels",
+      "href": "/blog-posts/federal-pacific-zinsco-panels-arizona",
+      "kind": "post-to-post"
+    },
+    {
+      "doc": "post:electrical-inspection-before-selling-a-home",
+      "block": "k00j",
+      "anchor": "Outdated panels (Federal Pacific, Zinsco, etc.)",
+      "href": "/blog-posts/federal-pacific-zinsco-panels-arizona",
+      "kind": "post-to-post"
+    },
+    {
+      "doc": "post:generator-interlock-in-arizona",
+      "block": "k01p",
+      "anchor": "standby generator",
+      "href": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "kind": "post-to-post",
+      "why": "the target has no inbound body link today"
+    },
+    {
+      "doc": "post:top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "block": "k03m",
+      "anchor": "Landscape & Hardscape Lighting",
+      "href": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "kind": "post-to-post"
+    },
+    {
+      "doc": "post:do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "block": "k00f",
+      "anchor": "hot tub",
+      "href": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
+      "kind": "post-to-post",
+      "why": "the target has no inbound body link today"
+    },
+    {
+      "doc": "post:phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "block": "k022",
+      "anchor": "surge protector installed at your main panel",
+      "href": "/blog-posts/whole-house-surge-protector-guide-arizona",
+      "kind": "post-to-post"
+    },
+    {
+      "doc": "post:electrical-panel-upgrade-cost-arizona",
+      "block": "k01i",
+      "anchor": "cut corners",
+      "href": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "kind": "post-to-post",
+      "tier1": true,
+      "why": "the cost guide's \"A Note on Cheap Quotes\" section; the target (the cheap-quotes post) has no inbound body link"
+    },
+    {
+      "doc": "post:outdated-wiring-in-older-phoenix-homes",
+      "block": "k019",
+      "anchor": "Single strand aluminum wiring",
+      "href": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "kind": "post-to-post",
+      "tier1": true
+    },
+    {
+      "doc": "service:electrical-troubleshooting",
+      "block": "k00n",
+      "anchor": "Lights that flicker or dim",
+      "href": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "kind": "service-to-post",
+      "why": "\"Lights that flicker or dim when large appliances start\" describes the afternoon post (lights dimming when the AC starts; Tier 1, 25 clicks, position 6.8, no inbound body link today). The proposed target why-your-lights-flicker has 2 clicks, is already on this page as a guide card, and is the kind of weaker flicker post SEO_STRATEGY §2 plans to merge into the strongest one."
+    },
+    {
+      "doc": "service:electrical-troubleshooting",
+      "block": "k01b",
+      "anchor": "Arizona heat is hard on connections",
+      "href": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "kind": "service-to-post",
+      "why": "Tier 1 target"
+    },
+    {
+      "doc": "service:ev-charger-installation",
+      "block": "k009",
+      "anchor": "Tesla Wall Connector",
+      "href": "/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+      "kind": "service-to-post",
+      "why": "Tier 1 target (163 clicks) with no inbound body link today"
+    },
+    {
+      "doc": "service:ev-charger-installation",
+      "block": "k009",
+      "anchor": "NEMA 14-50 outlets",
+      "href": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "kind": "service-to-post"
+    },
+    {
+      "doc": "service:panels",
+      "block": "k00n",
+      "anchor": "casita",
+      "href": "/blog-posts/casita-adu-electrical-requirements-arizona",
+      "kind": "service-to-post",
+      "why": "service capacity for a casita is the post's subject"
+    },
+    {
+      "doc": "service:electrical-safety-inspections",
+      "block": "k00z",
+      "anchor": "single strand aluminum branch wiring",
+      "href": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "kind": "service-to-post"
+    },
+    {
+      "doc": "service:exterior-electrical",
+      "block": "k00t",
+      "anchor": "Pool and spa equipment circuits",
+      "href": "/blog-posts/pool-pump-electrical-requirements-arizona",
+      "kind": "service-to-post"
+    },
+    {
+      "doc": "service:electrical-remodels",
+      "block": "k01p",
+      "anchor": "kitchen remodel usually adds several circuits",
+      "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+      "kind": "service-to-post",
+      "why": "the post answers \"How many circuits does a kitchen need?\""
+    },
+    {
+      "doc": "service:new-construction-wiring",
+      "block": "k01o",
+      "anchor": "Casitas, shops, and detached garages",
+      "href": "/blog-posts/casita-adu-electrical-requirements-arizona",
+      "kind": "service-to-post"
+    },
+    {
+      "doc": "location:ahwatukee",
+      "block": "k002",
+      "anchor": "electrical panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:ahwatukee",
+      "block": "k002",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:fountain-hills",
+      "block": "k004",
+      "anchor": "electrical panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:fountain-hills",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:fountain-hills",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:scottsdale",
+      "block": "k003",
+      "anchor": "electrical panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:scottsdale",
+      "block": "k003",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:tempe",
+      "block": "k004",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:tempe",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:tempe",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:san-tan-valley",
+      "block": "k004",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:san-tan-valley",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:san-tan-valley",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:queen-creek",
+      "block": "k004",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:queen-creek",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:queen-creek",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:chandler",
+      "block": "k004",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:chandler",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:chandler",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:apache-junction",
+      "block": "k004",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:apache-junction",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:apache-junction",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:gilbert",
+      "block": "k004",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:gilbert",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:gilbert",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:phoenix",
+      "block": "k004",
+      "anchor": "panel upgrades",
+      "href": "/services/panels",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:phoenix",
+      "block": "k004",
+      "anchor": "EV charger installations",
+      "href": "/services/ev-charger-installation",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "location:phoenix",
+      "block": "k004",
+      "anchor": "electrical repairs",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "city-to-service",
+      "why": "the featured-services cards already link this service; this adds an in-copy link with a descriptive anchor. The anchor is also in the slop-cities rewrite of this paragraph."
+    },
+    {
+      "doc": "post:phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "block": "k035",
+      "anchor": "troubleshooting",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "post-to-service",
+      "why": "Missed: Troubleshooting is this post's primary hub and its body never links it. The researcher skipped k035 because it read \"Emergency troubleshooting\" (owner rule), but slop-posts-b-085 (accepted) rewrites it to \"Electrical troubleshooting\", which is a clean anchor in the \"We offer:\" list. Mark \"Electrical troubleshooting\" if that edit is applied first; otherwise mark only \"troubleshooting\" (never \"Emergency\"). This is the post's third new service link, the cap."
+    },
+    {
+      "doc": "post:diy-electrical-work-in-arizona",
+      "block": "k023",
+      "anchor": "need a permit from your city or county building department",
+      "href": "/blog-posts/permit-for-electrical-work",
+      "kind": "post-to-post",
+      "tier1": true,
+      "why": "Missed: the two Tier 1 \"Arizona rules\" posts do not link each other in body copy. DIY (942 clicks, position 5.8) has a section \"Permits Are Often Required—Even for DIY\"; the sentence that closes its list (k023) is the natural place to send readers to the permit post (279 clicks, position 9.4, 21,539 impressions, the closest Tier 1 post to the top 5). A permit anchor from the DIY page also makes the topical split between the two clearer, which limits overlap on \"permit\" queries. Link mark only on a Tier 1 post, outside the first 100 words, no words change. Not homepage content, so the \"no permit content on the homepage\" rule does not apply. No slop edit touches k023."
+    },
+    {
+      "doc": "post:outdated-wiring-in-older-phoenix-homes",
+      "block": "k023",
+      "anchor": "Replace hazardous wiring with copper",
+      "href": "/blog-posts/cost-to-rewire-house-arizona",
+      "kind": "post-to-post",
+      "tier1": true,
+      "why": "Missed: the outdated-wiring post (Tier 1, 53 clicks) names rewiring as the fix but never links the rewire cost guide (Tier 1, 26 clicks, position 9.6), whose only inbound body link is from the aluminum post. The bullet sits next to \"Upgrade panels for modern usage\" (#60); both are items of the list under the H3 \"What Can Be Done (Without Tearing Up Your House)\". This would be the fourth new link on this Tier 1 post (2 service, 1 aluminum), so it is optional."
+    },
+    {
+      "doc": "service:electrical-troubleshooting",
+      "block": "k00h",
+      "anchor": "A breaker trips repeatedly, sometimes on a schedule, sometimes only in the heat",
+      "href": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "kind": "service-to-post",
+      "why": "Missed: the hub service page's own list (\"What We Get Called For\") names tripping \"only in the heat\", which is exactly the #1 page's subject (1,348 clicks). Today the page links that post only from the guide module; a contextual link from the hub body is the strongest internal signal the site can send it. The body already links why-does-my-breaker-keep-tripping, half-house and the outlets post from its \"Related Reading\" list at the end, not from this bullet. With #87 and #88 this list gets two links to different posts. Check slop-services: no edit touches k00h."
+    }
+  ]
+}
