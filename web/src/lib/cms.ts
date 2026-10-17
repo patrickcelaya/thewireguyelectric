@@ -78,9 +78,14 @@ export function cityGuides(city: string, serviceSlugs: string[], index: PostInde
   return uniqueBy(picks, (p) => p.slug).slice(0, count)
 }
 
-/** A service's guides: its related posts (picked, or posts that reference it), then the featured and newest posts that support it. */
+/**
+ * A service's guides: its related posts (picked, or posts that reference it), then the
+ * featured and newest posts that support it, then the most-read guides, so the block is
+ * never empty or short on a service no post is written around yet.
+ */
 export function serviceGuides(related: PostSummary[] | null | undefined, serviceSlug: string, index: PostIndexEntry[], count = 3): PostSummary[] {
-  return uniqueBy([...(related ?? []), ...supporting([serviceSlug], index)], (p) => p.slug).slice(0, count)
+  const mostRead = index.filter((p) => p.featured)
+  return uniqueBy([...(related ?? []), ...supporting([serviceSlug], index), ...mostRead], (p) => p.slug).slice(0, count)
 }
 
 /** A post's topic for its label: its category, else the first service it supports, else "Guide". */
@@ -141,6 +146,25 @@ export function mergeFaqs(lists: Array<FaqItem[] | null | undefined>, max = 7): 
   const all = lists.flatMap((l) => l ?? []).filter((f) => f.question && f.answer?.length)
   return uniqueBy(all, (f) => f.question.trim().toLowerCase()).slice(0, max)
 }
+
+/** Price questions after the others, so the open first answer is never a price (owner: no prices up front). */
+export function pricesLast(faqs: FaqItem[]): FaqItem[] {
+  return [...faqs.filter((f) => f.topic !== 'Pricing'), ...faqs.filter((f) => f.topic === 'Pricing')]
+}
+
+const sameQuestion = (a: string, b: string) => a.replace(/[‘’]/g, "'").trim().toLowerCase() === b.replace(/[‘’]/g, "'").trim().toLowerCase()
+
+/** The shared questions named in `questions`, in that order; any that no longer exist are skipped. */
+export function pickFaqs(all: FaqItem[], questions: readonly string[]): FaqItem[] {
+  return questions.map((q) => all.find((f) => sameQuestion(f.question, q))).filter((f): f is FaqItem => Boolean(f))
+}
+
+/**
+ * The shared questions a city page adds after its own (round-5 Gilbert mockup): permits,
+ * free estimates and fees. Not "What cities do you service?": on a city page that answer
+ * lists every other city and the valley map already shows them.
+ */
+export const CITY_SHARED_QUESTIONS = ['Do I need a permit for electrical work in Arizona?', 'Do you offer free estimates?', 'Do you have any hidden fees?'] as const
 
 // ---------------------------------------------------------------------------
 // Photos and headings
@@ -233,6 +257,18 @@ export function articleHtml(body: PortableTextValue | null | undefined, options:
   let n = 0
   const html = portableTextToHtml(body, options).replace(/<h2>/g, () => `<h2 id="${anchors[n++]?.id ?? `section-${n}`}">`)
   return {html, anchors}
+}
+
+/**
+ * `insert` placed in an article's HTML before its middle H3 (the 4th of 6), so a photo
+ * breaks up the long run of text halfway down. Bodies with fewer than three H3s get it
+ * at the end. Portable Text renders top-level blocks, so an <h3 is never inside a list.
+ */
+export function insertMidArticle(html: string, insert: string) {
+  const starts = [...html.matchAll(/<h3[\s>]/g)].map((m) => m.index!)
+  if (starts.length < 3) return html + insert
+  const at = starts[Math.floor(starts.length / 2)]
+  return html.slice(0, at) + insert + html.slice(at)
 }
 
 /** A post body without an opening heading that only repeats the post's title (the page's H1 already says it). */

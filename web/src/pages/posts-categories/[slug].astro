@@ -1,7 +1,7 @@
 ---
 // A blog topic page (noindex, as live; out of the sitemap): the type-led hero, the
-// topic's posts as guide cards, and, while a topic has none, the way into the guides:
-// the latest posts, the blog, and the services the guides are written around.
+// topic's posts as guide cards (while a topic has none, simply the latest guides), the
+// blog, and the services the guides are written around.
 import SiteLayout from '../../layouts/SiteLayout.astro'
 import '../../styles/inner.css'
 import '../../styles/cms.css'
@@ -50,8 +50,7 @@ const hubs = services.filter((s) => postIndex.some((p) => p.services[0] === s.sl
           _type: 'postsSection',
           _key: 'guides',
           eyebrow: own ? `${category.name} guides` : 'Latest guides',
-          heading: own ? `${category.name} articles` : 'Start with our latest guides',
-          intro: own ? undefined : `No ${category.name.toLowerCase()} articles yet. Here is what our electricians wrote most recently.`,
+          heading: own ? `${category.name} articles` : 'Latest guides from our electricians',
           posts,
           cta: {label: 'All guides on the blog', href: '/blog'},
         }}

@@ -1,5 +1,6 @@
 ---
-// A service category (Residential, Commercial): the type-led hero with the trust lines,
+// A service category (Residential, Commercial): the type-led hero (its lede is the page's
+// own description, or the category's rich-text intro when an editor writes one) with the trust lines,
 // every service in the category (photo cards where the crew has a photo, the rest in the
 // index), links to the other category, all services and the commercial page, the valley
 // map and the estimate band. The H1 is the category's name, exactly as live.
@@ -17,7 +18,6 @@ import TextLink from '../../components/ui/TextLink.astro'
 import {getLocations, getServiceCategories, getSettings} from '../../lib/queries'
 import {absoluteUrl, resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
 import {webPageNode} from '../../lib/schema'
-import {businessSummary} from '../../lib/site'
 import {serviceAreaCities} from '../../lib/cities'
 import type {ServiceCategoryDoc} from '../../lib/types'
 
@@ -54,7 +54,7 @@ const itemList = {
         <PortableText value={category.description} />
       </CategoryHero>
     ) : (
-      <CategoryHero settings={settings} crumbs={crumbs} eyebrow="Services" heading={heading} lede={businessSummary(settings)} />
+      <CategoryHero settings={settings} crumbs={crumbs} eyebrow="Services" heading={heading} lede={description} />
     )
   }
 

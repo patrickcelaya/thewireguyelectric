@@ -26,7 +26,7 @@ import {getFaqs, getLocations, getPostIndex, getReviews, getServices, getSetting
 import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
 import {branchFor, branchId, faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
 import {CITY_ORDER, serviceAreaCities} from '../../lib/cities'
-import {FLEET_HERO, cityGuides, guideCards, listOf, mergeFaqs, pickReviews} from '../../lib/cms'
+import {CITY_SHARED_QUESTIONS, FLEET_HERO, cityGuides, guideCards, listOf, mergeFaqs, pickFaqs, pickReviews} from '../../lib/cms'
 import type {LocationDoc} from '../../lib/types'
 
 export async function getStaticPaths() {
@@ -34,12 +34,12 @@ export async function getStaticPaths() {
 }
 
 const {location} = Astro.props as {location: LocationDoc}
-const [settings, locations, services, allReviews, commonFaqs, postIndex] = await Promise.all([
+const [settings, locations, services, allReviews, sharedFaqs, postIndex] = await Promise.all([
   getSettings(),
   getLocations(),
   getServices(),
   getReviews(),
-  getFaqs('General'),
+  getFaqs(),
   getPostIndex(),
 ])
 const path = `/locations/${location.slug}`
@@ -63,7 +63,9 @@ const {reviews, local} = pickReviews(
 const reviewsIntro = local
   ? `Google reviews from ${city} customers and others across the Phoenix valley, shown word for word.`
   : 'Google reviews from customers across the Phoenix valley, shown word for word.'
-const faqs = mergeFaqs([location.faqs, commonFaqs])
+// the city's own questions (its utility and permit office, from the sourced local facts), then the shared ones
+const ownFaqs = location.faqs ?? []
+const faqs = mergeFaqs([ownFaqs, pickFaqs(sharedFaqs, CITY_SHARED_QUESTIONS)])
 const guides = guideCards(
   cityGuides(city, featured.map((s) => s.slug), postIndex),
   postIndex,
@@ -90,7 +92,7 @@ const nearby = (location.nearbyLocations ?? []).map((l) => l.shortName || l.name
   </Fragment>
 
   <LocationHero location={location} heading={heading} settings={settings} crumbs={crumbs} office={office} />
-  <LocationGlance location={location} settings={settings} number={1} office={office} />
+  <LocationGlance location={location} settings={settings} number={1} office={office} faqs={ownFaqs} />
 
   {
     featured.length > 0 && (
@@ -116,8 +118,8 @@ const nearby = (location.nearbyLocations ?? []).map((l) => l.shortName || l.name
 
   <AnswersBand
     faqs={faqs}
-    faqHeading={location.faqs?.length ? `${city} electrical questions` : 'Questions, answered'}
-    faqIntro="Straight answers from the electricians who do the work."
+    faqHeading={ownFaqs.length ? `${city} electrical questions` : 'Questions, answered'}
+    faqIntro={ownFaqs.length ? 'Utility, permits, estimates and pricing: straight answers before you call.' : 'Straight answers from the electricians who do the work.'}
     posts={guides}
     guidesHeading="Guides from our blog"
     guidesIntro="Plain-English answers to the questions Arizona homeowners ask us most."

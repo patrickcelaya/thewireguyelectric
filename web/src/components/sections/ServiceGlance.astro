@@ -1,9 +1,10 @@
 ---
 // "{Service}, the short version" (round-5 Panels mockup): the answer-first line on the
-// left, the facts on the right. The service's own "At a glance" facts come first (only
-// what the business confirmed, from Sanity); the verifiable standard facts fill the
-// grid to four: free estimates, the licence (linked to the ROC lookup) and the office
-// hours with Emma's status. No price is ever shown here (owner rule).
+// left (the service's own quick answer, else a line about the business), the facts on
+// the right. The service's own "At a glance" facts come first (only what the business
+// confirmed, from Sanity, each with its supporting line); the verifiable standard facts
+// fill the grid to four: free estimates, the licence (linked to the ROC lookup) and the
+// office hours with Emma's status. No price is ever shown here (owner rule).
 // Styles: styles/inner.css (.glance--wide, .facts--grid) and styles/cms.css.
 import type {ServiceDoc, SiteSettings} from '../../lib/types'
 import {businessSummary, licence, officeHours} from '../../lib/site'
@@ -26,9 +27,9 @@ const standard = [
   {key: 'estimate', label: 'Estimates', value: 'Free, with flat-rate pricing'},
   roc && {key: 'licence', label: 'License', value: 'Licensed, bonded, and insured'},
   hours && {key: 'hours', label: 'Office hours', value: hours},
-].filter((f): f is {key: string; label: string; value: string} => Boolean(f))
-const facts = [...own.map((f) => ({key: f._key, label: f.label, value: f.value})), ...standard].slice(0, Math.max(4, own.length))
-const summary = businessSummary(settings)
+].filter((f): f is {key: string; label: string; value: string; detail?: string} => Boolean(f))
+const facts = [...own.map((f) => ({key: f._key, label: f.label, value: f.value, detail: f.detail ?? undefined})), ...standard].slice(0, Math.max(4, own.length))
+const summary = service.quickAnswer?.trim() || businessSummary(settings)
 ---
 
 <section class="section glance-s" aria-labelledby="glance-h">
@@ -45,6 +46,7 @@ const summary = businessSummary(settings)
             <dt>{f.label}</dt>{' '}
             <dd>
               <b>{f.value}</b>
+              {f.detail && <>{' '}{f.detail}</>}
               {f.key === 'estimate' && <>{' '}No pressure and no obligation.</>}
               {f.key === 'licence' && roc && (
                 <>

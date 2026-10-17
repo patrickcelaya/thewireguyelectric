@@ -2,7 +2,7 @@
 // A service page (round-5 Panels mockup), built from the service document: the copper
 // hero (the crew's own photo when there is one), the short version (the service's
 // confirmed facts, then the standard ones), the warning signs when the body lists them,
-// the body verbatim beside the contact card, real reviews (the service's own first),
+// the body verbatim beside the contact card (its job photo halfway down), real reviews (the service's own first),
 // questions (the service's, then the ones /faq tags with it, then the three the live
 // template carried) with guides, related services, the valley map and the estimate band.
 // No price module: a price shows only where the body or an FAQ answer already states it.
@@ -28,7 +28,7 @@ import {faqNode, serviceNode, webPageNode} from '../../lib/schema'
 import {absoluteUrl} from '../../lib/seo'
 import {serviceAreaCities} from '../../lib/cities'
 import {imagePreload} from '../../lib/image'
-import {SERVICE_HERO_IMAGE, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, serviceGuides} from '../../lib/cms'
+import {SERVICE_HERO_IMAGE, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, pricesLast, serviceGuides} from '../../lib/cms'
 
 export async function getStaticPaths() {
   return (await getServices()).map((s) => ({params: {slug: s.slug}}))
@@ -63,7 +63,7 @@ const reviewsIntro =
   local === reviews.length && local > 0
     ? `Google reviews from customers we did ${service.name.toLowerCase()} work for, shown word for word.`
     : 'Google reviews from customers across the Phoenix valley, shown word for word.'
-const faqs = mergeFaqs([service.faqs, taggedFaqs, commonFaqs])
+const faqs = mergeFaqs([service.faqs, pricesLast(taggedFaqs), commonFaqs])
 const guides = guideCards(serviceGuides(service.relatedPosts, service.slug, postIndex), postIndex, services, seed)
 const related = service.relatedServices ?? []
 const cities = serviceAreaCities(settings.homeCity, locations)
@@ -84,6 +84,10 @@ const n = {
 
 const staging = heroStaging(service.mainImage)
 const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
+// The job photo the hero sets under its copper tint, shown in true colour halfway down the
+// article; its caption describes it, so the image itself is decorative there.
+const jobPhoto = staging === 'tint' && service.mainImage?.alt ? service.mainImage : undefined
+const inlineFigure = jobPhoto && {...jobPhoto, alt: '', caption: `Our work: ${jobPhoto.alt!.charAt(0).toLowerCase()}${jobPhoto.alt!.slice(1).replace(/\.$/, '')}.`}
 const preload = hero && imagePreload(service.mainImage, [...hero.widths], hero.sizes)
 const serviceId = `${absoluteUrl(path)}#service`
 ---
@@ -105,7 +109,7 @@ const serviceId = `${absoluteUrl(path)}#service`
   <ServiceGlance service={service} settings={settings} number={n.glance} />
   {signs && <WarningSigns signs={signs} number={n.signs} />}
 
-  <LongForm body={body} label={heading} variant="service">
+  <LongForm body={body} label={heading} variant="service" figure={inlineFigure}>
     <ContactCard slot="aside" settings={settings} />
   </LongForm>
 

@@ -62,7 +62,7 @@
 /* ===================================================================== city at a glance: the permit and power notes under the facts */
 .local-note{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,1fr);gap:20px clamp(32px,5vw,96px);padding-top:clamp(28px,2.6vw,40px);border-top:1.5px solid var(--ink)}
 .local-note__h{font-size:clamp(1.5rem,1.15rem + 1vw,2.25rem);letter-spacing:-.03em;line-height:1.08;max-width:11em}
-.local-note__text{columns:2 20rem;column-gap:clamp(28px,3vw,56px);font-size:var(--fs-small);line-height:1.7;color:var(--text)}
+.local-note__text{columns:2 22rem;column-gap:clamp(28px,3vw,56px);font-size:var(--fs-body);line-height:1.65;color:var(--text)}
 .local-note__text p{margin-bottom:14px}
 @media (max-width:899px){.local-note{grid-template-columns:minmax(0,1fr)}}
 
