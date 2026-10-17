@@ -11,6 +11,7 @@
 //   sanity-import/production.ndjson  import with:
 //     npx sanity dataset import migration/sanity-import/production.ndjson production --replace
 //   sanity-import/id-map.json        stable document IDs across re-runs
+//   sanity-import/content-dates.json what each document's updatedAt describes (content-dates.mjs)
 //
 // Images are emitted as `_sanityAsset: "image@<webflow url>"`, which the Sanity
 // importer downloads and re-hosts, so nothing depends on Webflow's CDN afterwards.
@@ -23,6 +24,7 @@ import {JSDOM} from 'jsdom'
 import {Schema} from '@sanity/schema'
 import {htmlToBlocks} from '@portabletext/block-tools'
 import * as cheerio from 'cheerio'
+import {BASELINE_PATH, stampContentDates} from './content-dates.mjs'
 
 const ROOT = new URL('../../', import.meta.url)
 const p = (rel) => new URL(rel, ROOT)
@@ -561,31 +563,18 @@ if (dangling.length) {
   process.exit(1)
 }
 
-// Content dates for the sitemap's <lastmod>: a page, service, city or service category
-// keeps the date from the last run unless its content changed, so the date only moves when
-// the migration really changes the document (a dataset import resets Sanity's _updatedAt
-// on every document, so that can't say it). Posts carry their own publish/update dates.
-const STAMPED = new Set(['page', 'service', 'location', 'serviceCategory'])
-const previousPath = p('migration/sanity-import/production.ndjson')
-const previous = new Map(
-  existsSync(previousPath)
-    ? (await readFile(previousPath, 'utf8'))
-        .split('\n')
-        .filter(Boolean)
-        .map((line) => JSON.parse(line))
-        .map(({updatedAt, ...content}) => [content._id, {updatedAt, content: JSON.stringify(content)}])
-    : [],
-)
-const now = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z')
-for (const doc of docs.filter((d) => STAMPED.has(d._type))) {
-  const before = previous.get(doc._id)
-  delete doc.updatedAt
-  doc.updatedAt = before?.updatedAt && before.content === JSON.stringify(doc) ? before.updatedAt : now
-}
+// Content dates (updatedAt) for the sitemap's <lastmod> and posts' dateModified: a page, service,
+// city, service category or post keeps its date unless its content changed materially since it was
+// dated (content-dates.mjs: 5% of its words, a heading or its FAQs), so the date only moves for a
+// real change (a dataset import resets Sanity's _updatedAt on every document, so that can't say it).
+const datesPath = BASELINE_PATH
+const dates = stampContentDates(docs, existsSync(p(datesPath)) ? await readJson(datesPath) : {})
+report.contentDates = dates.dated
 
 await mkdir(p(OUT_DIR), {recursive: true})
 await writeFile(p(`${OUT_DIR}production.ndjson`), docs.map((d) => JSON.stringify(d)).join('\n') + '\n')
 await writeFile(p(`${OUT_DIR}id-map.json`), JSON.stringify(idMap, null, 2) + '\n')
+await writeFile(p(`${OUT_DIR}content-dates.json`), JSON.stringify(dates.baseline, null, 1) + '\n')
 await writeFile(p(`${OUT_DIR}report.json`), JSON.stringify(report, null, 2) + '\n')
 
 const counts = docs.reduce((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {})

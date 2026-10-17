@@ -106,7 +106,7 @@ Standalone pages: `index` (home), about-us, our-team, careers, faq, contact-us, 
 | intro | text | Meta description fallback |
 | sections | pageSections | The page builder (§4). The production build (SITE_INDEXABLE=true) stops when a composed page has none: that is pre-redesign content (re-import the dataset first) |
 | seo | seo | Meta title and description (frozen to the live values) |
-| **updatedAt** | datetime | **New.** When the content last changed materially: the sitemap's `<lastmod>`. The migration stamps it when it changes the document; editors update it with real edits. Same field on service, location and serviceCategory |
+| **updatedAt** | datetime | **New.** When the content last changed materially: the sitemap's `<lastmod>`. The migration stamps it when it changes the content materially (5% of the words, a heading or the FAQs, counted since the last date: `scripts/migrate/content-dates.mjs`); editors update it with real edits. Same field on service, location, serviceCategory and post |
 
 **Query:** `getPage(slug)` returns the page with every section's references resolved and lists cleaned up (§5). `getPageSlugs()` returns all slugs.
 
@@ -195,7 +195,7 @@ Not routed in this PR. Fields: service, location, heading, intro, mainImage, bod
 | author | ref teamMember | Show a Person byline only when set (the default byline is the business) |
 | reviewedBy | ref teamMember | "Reviewed by {name}, {role}" only when set |
 | publishedAt | datetime | Visible date |
-| updatedAt | datetime | Set only for material updates. Shown as "Updated …" and used for `dateModified` |
+| updatedAt | datetime | Set only for material updates (the migration uses the rule above). Shown as "Updated …" and used for `dateModified` |
 | featured | boolean | Promotes the post in "featured first" lists |
 | relatedServices | ref service[] | The hub service pages the post supports. **The first one is the primary service** |
 | faqs | faqItem[] | Post Q&As |
