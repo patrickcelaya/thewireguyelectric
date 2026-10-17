@@ -9,6 +9,8 @@ import {resolveHref, type RedirectMap} from './links'
  * route, so its path lives here rather than in Sanity.
  */
 export const ESTIMATE_PATH = '/estimate'
+/** When the Free Estimate page (a code route, not a Sanity document) last changed: its sitemap <lastmod>. */
+export const ESTIMATE_PAGE_UPDATED = '2026-10-16'
 
 /** Appended to the text of every link that opens a new tab (screen readers). */
 export const NEW_TAB_NOTE = ' (opens in a new tab)'

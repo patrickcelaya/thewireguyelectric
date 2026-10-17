@@ -11,7 +11,7 @@ import SiteLayout from '../layouts/SiteLayout.astro'
 import '../styles/bundles/page-builder.css'
 import SectionRenderer from './sections/SectionRenderer.astro'
 import type {PageDoc, SiteSettings} from '../lib/types'
-import type {PageMeta} from '../lib/seo'
+import {requireComposed, type PageMeta} from '../lib/seo'
 import {innerHeroPreload} from '../lib/hero'
 
 interface Props {
@@ -22,6 +22,7 @@ interface Props {
 }
 
 const {page, settings, meta, schema} = Astro.props
+requireComposed(page)
 // the hero photo is the LCP image: fetched from the head, before the parser reaches it
 const preload = innerHeroPreload(page.sections)
 ---

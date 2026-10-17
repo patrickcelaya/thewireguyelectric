@@ -5,9 +5,10 @@
 // and the page's JSON-LD types are unchanged from the live site; the structured data
 // describes what the page shows (people, open jobs, the visible questions).
 import PageBuilderPage from '../components/PageBuilderPage.astro'
-import {getPage, getPageSlugs, getSettings} from '../lib/queries'
+import {getPage, getPageSlugs, getServices, getSettings} from '../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
 import {pageSchema} from '../lib/page-schema'
+import {BUSINESS_ID, commercialServiceNode} from '../lib/schema'
 
 export async function getStaticPaths() {
   const reserved = new Set(['index', 'services', 'blog'])
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 }
 
 const slug = Astro.params.page!
-const [settings, page] = await Promise.all([getSettings(), getPage(slug)])
+const [settings, page, services] = await Promise.all([getSettings(), getPage(slug), getServices()])
 if (!page) throw new Error(`page ${slug} not found`)
 
 const title = resolveTitle(page.seo, `${page.title} | ${settings.titleSuffix ?? settings.businessName}`)
@@ -25,11 +26,15 @@ const path = `/${slug}`
 const crumbs = [{name: 'Home', path: '/'}, {name: page.title, path}]
 // /faq is a WebPage whose questions are the one FAQPage node (no second FAQPage-typed page node).
 const PAGE_TYPES: Record<string, string> = {'about-us': 'AboutPage', 'contact-us': 'ContactPage', 'our-team': 'AboutPage'}
+// /about-us is about the business; /commercial-electrician offers its commercial services
+const mainEntity = slug === 'about-us' ? {'@id': BUSINESS_ID} : undefined
+const commercial = services.filter((s) => s.category?.slug === 'commercial')
+const extra = slug === 'commercial-electrician' ? [commercialServiceNode(path, settings, commercial)] : []
 ---
 
 <PageBuilderPage
   page={page}
   settings={settings}
   meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex, breadcrumbs: crumbs}}
-  schema={pageSchema({page, settings, path, title, description, type: PAGE_TYPES[slug], crumbs})}
+  schema={pageSchema({page, settings, path, title, description, type: PAGE_TYPES[slug], crumbs, mainEntity, extra})}
 />

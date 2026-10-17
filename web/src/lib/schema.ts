@@ -44,6 +44,11 @@ export function businessNode(s: SiteSettings, services?: Array<{name: string; sl
     // Profile are entities of their own (branchNodes), in every page's graph.
     address: mainAddresses(s).map(postalAddressNode),
     geo: mainAddresses(s)[0]?.geo ? {'@type': 'GeoCoordinates', latitude: mainAddresses(s)[0].geo!.lat, longitude: mainAddresses(s)[0].geo!.lng} : undefined,
+    // the headquarters' Google Business Profile (the footer links the same profile)
+    hasMap: mainAddresses(s)[0]?.googleMapsUrl,
+    contactPoint: s.phoneE164
+      ? {'@type': 'ContactPoint', telephone: s.phoneE164, email: s.email, contactType: 'customer service', areaServed: 'US-AZ', availableLanguage: 'en'}
+      : undefined,
     subOrganization: branchAddresses(s).length ? branchAddresses(s).map((a) => ({'@id': branchId(a)})) : undefined,
     openingHoursSpecification: s.openingHours?.map((h) => ({
       '@type': 'OpeningHoursSpecification',
@@ -101,7 +106,8 @@ export function branchNode(s: SiteSettings, a: PostalAddress): Node {
     image: `${SITE_URL}/logo.png`,
     address: postalAddressNode(a),
     geo: a.geo ? {'@type': 'GeoCoordinates', latitude: a.geo.lat, longitude: a.geo.lng} : undefined,
-    openingHoursSpecification: s.openingHours?.map((h) => ({'@type': 'OpeningHoursSpecification', dayOfWeek: h.days, opens: h.opens, closes: h.closes})),
+    // No opening hours: the office is by appointment, and its own profile's hours aren't confirmed
+    // (seo-requirements §3.5: state hours for an office only when they match its Google Business Profile).
     areaServed: {'@type': 'City', name: a.addressLocality},
     parentOrganization: {'@id': BUSINESS_ID},
     identifier: s.rocLicense ? {'@type': 'PropertyValue', name: 'ROC License', value: s.rocLicense} : undefined,
@@ -116,7 +122,16 @@ export function branchNodes(s: SiteSettings): Node[] {
 }
 
 export function websiteNode(s: SiteSettings): Node {
-  return {'@type': 'WebSite', '@id': WEBSITE_ID, url: SITE_URL, name: s.businessName, publisher: {'@id': BUSINESS_ID}, inLanguage: 'en-US'}
+  return {
+    '@type': 'WebSite',
+    '@id': WEBSITE_ID,
+    url: SITE_URL,
+    name: s.businessName,
+    // the shorter names people search for the business by
+    alternateName: ['The Wire Guy', 'Wire Guy Electric'],
+    publisher: {'@id': BUSINESS_ID},
+    inLanguage: 'en-US',
+  }
 }
 
 export function webPageNode(opts: {path: string; title: string; description?: string; type?: string; breadcrumbs?: Crumb[]; primaryImage?: string}): Node {
@@ -143,7 +158,8 @@ export function blogNode(s: SiteSettings, posts: Array<{title: string; slug: str
     url,
     name: `${s.businessName} Blog`,
     publisher: {'@id': BUSINESS_ID},
-    blogPost: posts.slice(0, 20).map((p) => ({'@type': 'BlogPosting', headline: p.title, url: absoluteUrl(`/blog-posts/${p.slug}`), datePublished: p.publishedAt})),
+    // every post /blog lists (all of them, on one page)
+    blogPost: posts.map((p) => ({'@type': 'BlogPosting', headline: p.title, url: absoluteUrl(`/blog-posts/${p.slug}`), datePublished: p.publishedAt})),
   }
 }
 
@@ -172,6 +188,35 @@ export function serviceNode(service: ServiceDoc, s: SiteSettings, description?: 
       service.priceRange?.low && service.priceRange?.high
         ? {'@type': 'AggregateOffer', priceCurrency: 'USD', lowPrice: service.priceRange.low, highPrice: service.priceRange.high}
         : undefined,
+  }
+}
+
+/** Services as an ItemList (a CollectionPage's mainEntity): each one's name and page. */
+export function serviceListNode(services: Array<{name: string; slug: string}>): Node {
+  return {
+    '@type': 'ItemList',
+    itemListElement: services.map((sv, i) => ({'@type': 'ListItem', position: i + 1, name: sv.name, url: absoluteUrl(`/services/${sv.slug}`)})),
+  }
+}
+
+/** The commercial landing page's service: commercial electrical work, by the business, across its service area. */
+export function commercialServiceNode(path: string, s: SiteSettings, services: Array<{name: string; slug: string}>): Node {
+  const url = absoluteUrl(path)
+  return {
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: 'Commercial electrical services',
+    serviceType: 'Commercial electrician',
+    url,
+    provider: {'@id': BUSINESS_ID},
+    areaServed: s.serviceAreas?.map((a) => ({'@type': 'City', name: a.name})),
+    hasOfferCatalog: services.length
+      ? {
+          '@type': 'OfferCatalog',
+          name: 'Commercial electrical services',
+          itemListElement: services.map((sv) => ({'@type': 'Offer', itemOffered: {'@type': 'Service', name: sv.name, url: absoluteUrl(`/services/${sv.slug}`)}})),
+        }
+      : undefined,
   }
 }
 
@@ -233,7 +278,8 @@ export function jobPostingNode(job: JobOpening, s: SiteSettings): Node {
     datePosted: job.datePosted,
     validThrough: job.validThrough,
     employmentType: job.employmentType,
-    hiringOrganization: {'@id': BUSINESS_ID, '@type': 'Organization', name: s.businessName, sameAs: SITE_URL},
+    // inline, not the business's @id: a second definition of that node would conflict with the Electrician one
+    hiringOrganization: {'@type': 'Organization', name: s.businessName, url: SITE_URL, logo: `${SITE_URL}/logo.png`},
     jobLocation: addr
       ? {'@type': 'Place', address: {'@type': 'PostalAddress', streetAddress: addr.streetAddress, addressLocality: addr.addressLocality, addressRegion: addr.addressRegion, postalCode: addr.postalCode, addressCountry: 'US'}}
       : undefined,

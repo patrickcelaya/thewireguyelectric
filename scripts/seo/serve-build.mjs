@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 // Serves web/.vercel/output the way Vercel's router does (redirect routes,
 // filesystem lookup with directory index, 404 fallback), so the SEO parity
-// crawl can run against a local build before anything is deployed.
+// crawl can run against a local build before anything is deployed. Text responses
+// are compressed (brotli, else gzip) and hashed assets cached as Vercel does, so
+// local Lighthouse runs measure what visitors will get.
 //
 //   node scripts/seo/serve-build.mjs [--port 4321] [--dir web/.vercel/output]
 //
@@ -12,6 +14,7 @@
 import http from 'node:http'
 import {readFile, stat} from 'node:fs/promises'
 import path from 'node:path'
+import zlib from 'node:zlib'
 
 const args = Object.fromEntries(process.argv.slice(2).reduce((acc, a, i, all) => (a.startsWith('--') ? [...acc, [a.slice(2), all[i + 1]]] : acc), []))
 const port = Number(args.port ?? 4321)
@@ -33,9 +36,26 @@ async function findFile(pathname) {
   return null
 }
 
-async function send(res, file, status = 200, extraHeaders = {}) {
-  const body = await readFile(file)
-  res.writeHead(status, {'content-type': TYPES[path.extname(file)] ?? 'application/octet-stream', ...extraHeaders})
+const COMPRESSIBLE = /^(text\/|application\/(xml|json)|image\/svg)/
+const compressed = new Map()
+
+/** The file's bytes in the best encoding the client accepts (compressed once per version of the file, then cached). */
+function encode(file, version, body, type, accept = '') {
+  if (!COMPRESSIBLE.test(type)) return {body}
+  const encoding = /\bbr\b/.test(accept) ? 'br' : /\bgzip\b/.test(accept) ? 'gzip' : undefined
+  if (!encoding) return {body}
+  const key = `${encoding}:${file}:${version}`
+  if (!compressed.has(key)) {
+    compressed.set(key, encoding === 'br' ? zlib.brotliCompressSync(body, {params: {[zlib.constants.BROTLI_PARAM_QUALITY]: 11}}) : zlib.gzipSync(body, {level: 9}))
+  }
+  return {body: compressed.get(key), encoding}
+}
+
+async function send(req, res, file, status = 200, extraHeaders = {}) {
+  const type = TYPES[path.extname(file)] ?? 'application/octet-stream'
+  const {mtimeMs, size} = await stat(file)
+  const {body, encoding} = encode(file, `${mtimeMs}:${size}`, await readFile(file), type, req.headers['accept-encoding'])
+  res.writeHead(status, {'content-type': type, ...(encoding ? {'content-encoding': encoding, vary: 'accept-encoding'} : {}), ...extraHeaders})
   res.end(body)
 }
 
@@ -48,7 +68,7 @@ http
     for (const route of config.routes) {
       if (route.handle === 'filesystem') {
         const file = await findFile(pathname)
-        if (file) return send(res, file, 200, headers)
+        if (file) return send(req, res, file, 200, headers)
         afterFilesystem = true
         continue
       }
@@ -66,7 +86,7 @@ http
       if (afterFilesystem && route.dest) {
         if (route.dest.startsWith('/')) {
           const file = await findFile(route.dest)
-          if (file) return send(res, file, route.status ?? 200, headers)
+          if (file) return send(req, res, file, route.status ?? 200, headers)
         }
         res.writeHead(501, {'content-type': 'text/plain'})
         return res.end(`function route ${route.dest} is not emulated locally`)

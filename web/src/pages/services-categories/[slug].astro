@@ -15,8 +15,8 @@ import PortableText from '../../components/PortableText.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getLocations, getServiceCategories, getSettings} from '../../lib/queries'
-import {absoluteUrl, resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
-import {webPageNode} from '../../lib/schema'
+import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {serviceListNode, webPageNode} from '../../lib/schema'
 import {serviceAreaCities} from '../../lib/cities'
 import type {ServiceCategoryDoc} from '../../lib/types'
 
@@ -36,15 +36,11 @@ const description = resolveDescription(
 const crumbs = [{name: 'Home', path: '/'}, {name: 'Services', path: '/services'}, {name: category.name, path}]
 const heading = category.heading ?? category.name
 const name = category.name.toLowerCase()
-const itemList = {
-  '@type': 'ItemList',
-  itemListElement: category.services.map((s, i) => ({'@type': 'ListItem', position: i + 1, name: s.name, url: absoluteUrl(`/services/${s.slug}`)})),
-}
 ---
 
 <SiteLayout
   meta={{title, description, path, ogImage: resolveOgImage(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
-  schema={[{...webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs}), mainEntity: itemList}]}
+  schema={[{...webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs}), mainEntity: serviceListNode(category.services)}]}
   bodyClass="inner page-cat"
 >
   {

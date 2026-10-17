@@ -11,6 +11,19 @@ export const SITE_URL = 'https://www.thewireguyelectric.com'
  */
 export const SITE_INDEXABLE = process.env.SITE_INDEXABLE === 'true'
 
+/**
+ * The production build stops when a page composed in Sanity has no sections: that is
+ * the content from before the redesign (the dataset was not re-imported), and shipping
+ * it would drop the page's copy below its SEO floors. Every other build (previews, local)
+ * renders what the dataset holds and only warns.
+ */
+export function requireComposed(page: {slug: string; sections?: unknown[] | null}) {
+  if (page.sections?.length) return
+  const message = `page "${page.slug}" has no sections: the dataset holds the content from before the redesign. Import migration/sanity-import/production.ndjson, then run validate-dataset and verify-content.`
+  if (SITE_INDEXABLE) throw new Error(`Production build stopped: ${message}`)
+  console.warn(`[content] ${message}`)
+}
+
 export interface Crumb {
   name: string
   path: string

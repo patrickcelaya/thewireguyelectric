@@ -8,6 +8,7 @@ import PageBuilderPage from '../components/PageBuilderPage.astro'
 import {getPage, getServiceCategories, getServices, getSettings} from '../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
 import {pageSchema} from '../lib/page-schema'
+import {serviceListNode} from '../lib/schema'
 import type {PageSection, ServiceSummary} from '../lib/types'
 
 const [settings, page, services, categories] = await Promise.all([getSettings(), getPage('services'), getServices(), getServiceCategories()])
@@ -34,5 +35,5 @@ const shown = listsAll ? page : {...page, sections: [...sections.filter((s) => s
   page={shown}
   settings={settings}
   meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), breadcrumbs: crumbs}}
-  schema={pageSchema({page: shown, settings, path, title, description, type: 'CollectionPage', crumbs})}
+  schema={pageSchema({page: shown, settings, path, title, description, type: 'CollectionPage', crumbs, mainEntity: serviceListNode(services)})}
 />

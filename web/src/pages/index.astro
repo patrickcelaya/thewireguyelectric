@@ -8,13 +8,14 @@ import SiteLayout from '../layouts/SiteLayout.astro'
 import '../styles/bundles/page-home.css'
 import SectionRenderer from '../components/sections/SectionRenderer.astro'
 import {collectPageFaqs, getPage, getSettings} from '../lib/queries'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
+import {requireComposed, resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
 import {faqNode, webPageNode} from '../lib/schema'
 import {heroPreloads} from '../lib/hero'
 import {hasImage, imageUrl} from '../lib/image'
 
 const [settings, page] = await Promise.all([getSettings(), getPage('index')])
 if (!page) throw new Error('The homepage document (page "index") is missing from the dataset')
+requireComposed(page)
 
 const title = resolveTitle(page.seo, `${settings.businessName} | Licensed Electrician in Mesa, AZ`)
 const description = resolveDescription(page.seo, page.intro, settings.description)

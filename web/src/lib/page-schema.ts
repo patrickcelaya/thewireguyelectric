@@ -56,11 +56,13 @@ export function pageSchema(opts: {
   description?: string
   type?: string
   crumbs?: Crumb[]
+  /** What the page is about, e.g. the business (/about-us) or the list it shows (/services). */
+  mainEntity?: Node
   extra?: Array<Node | undefined>
 }): Array<Node | undefined> {
-  const {page, settings, path, title, description, type, crumbs, extra = []} = opts
+  const {page, settings, path, title, description, type, crumbs, mainEntity, extra = []} = opts
   return [
-    webPageNode({path, title, description, type, breadcrumbs: crumbs}),
+    {...webPageNode({path, title, description, type, breadcrumbs: crumbs}), ...(mainEntity ? {mainEntity} : {})},
     ...personNodes(page),
     ...jobNodes(page, settings),
     faqNode(path, collectPageFaqs(page)),

@@ -134,7 +134,7 @@ Page-specific styles that don't belong to a reusable pattern go at the end of th
 | `callbarEstimateHref` | string | the call bar's Free Estimate target (`#estimate` on /estimate) |
 | slot `head` | | extra `<head>` tags (an LCP preload) |
 
-It renders: the head gate (`HeadGate`: `html.js`, `html.motion`, `html.oo`/`html.oc`/`html.oc-far` before first paint), `Seo`, the font preload, icons, `theme-color`, GA4 (events queue at once; `gtag.js` loads after the page is idle or on first interaction), then the sprite, the header, `<main id="main">`, the footer, the call bar and the site script.
+It renders: the head gate (`HeadGate`: `html.js`, `html.motion`, `html.oo`/`html.oc`/`html.oc-far` before first paint), `Seo`, the font preload, icons (`/favicon.svg`, the bulb on copper, plus 48 and 192 px PNGs for search results), `theme-color`, GA4 (only in the production build, SITE_INDEXABLE=true, and only on www.thewireguyelectric.com, so previews, local and QA builds send nothing; events queue at once; `gtag.js` loads after the page is idle or on first interaction), then the sprite, the header, `<main id="main">`, the footer, the call bar and the site script.
 
 Without `bodyClass="over"`, `main` is padded by the header height, so content starts below the bar.
 

@@ -3,6 +3,7 @@ import {defineConfig} from 'astro/config'
 import vercel from '@astrojs/vercel'
 import {loadEnv} from 'vite'
 import {LEGACY_REDIRECTS, flattenRedirects, loadSanityRedirects} from './src/config/redirects.mjs'
+import {oneHopRedirects} from './src/config/one-hop-redirects.mjs'
 
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '')
 
@@ -21,6 +22,8 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'static',
   adapter: vercel(),
+  // after the adapter: every redirect matches with or without a trailing slash, in one hop
+  integrations: [oneHopRedirects()],
   redirects: flattenRedirects({...LEGACY_REDIRECTS, ...sanityRedirects}),
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},

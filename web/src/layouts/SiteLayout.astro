@@ -20,7 +20,7 @@ import CallBar from '../components/site/CallBar.astro'
 import {getServices, getSettings} from '../lib/queries'
 import {getNavModel} from '../lib/nav'
 import {branchNodes, businessNode, breadcrumbNode, graph, websiteNode} from '../lib/schema'
-import type {PageMeta} from '../lib/seo'
+import {SITE_INDEXABLE, SITE_URL, type PageMeta} from '../lib/seo'
 
 interface Props {
   meta: PageMeta
@@ -43,7 +43,10 @@ const ld = graph([
   ...schema.filter((n): n is Record<string, unknown> => Boolean(n)),
   meta.breadcrumbs?.length ? breadcrumbNode(meta.path, meta.breadcrumbs) : undefined,
 ])
-const ga = settings.ga4MeasurementId
+// GA4 only on the production build, and only on the production host: previews, local and QA
+// builds (even one built indexable for the parity crawl) never send traffic or test leads
+const ga = SITE_INDEXABLE ? settings.ga4MeasurementId : undefined
+const gaHost = new URL(SITE_URL).hostname
 ---
 
 <!doctype html>
@@ -55,37 +58,42 @@ const ga = settings.ga4MeasurementId
     <Seo meta={{...meta, jsonLd: [ld, ...(meta.jsonLd ?? [])]}} settings={settings} />
     <slot name="head" />
     <link rel="preload" as="font" type="font/woff2" href={displayFont} crossorigin />
-    <link rel="icon" href="/favicon.png" type="image/png" />
+    <!-- the bulb on copper: SVG where supported; PNGs at multiples of 48 px for search results -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png" />
+    <link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#F7F3EC" />
     {
       ga && (
-        <script is:inline define:vars={{ga}}>
+        <script is:inline define:vars={{ga, gaHost}}>
           // GA4 without blocking the page: events queue in dataLayer at once (phone_call_click,
           // generate_lead); gtag.js loads once the page is idle after load, or on the first
-          // interaction, whichever comes first.
-          window.dataLayer = window.dataLayer || []
-          window.gtag = function () {
-            dataLayer.push(arguments)
+          // interaction, whichever comes first. Nothing at all on any other host.
+          if (location.hostname === gaHost) {
+            window.dataLayer = window.dataLayer || []
+            window.gtag = function () {
+              dataLayer.push(arguments)
+            }
+            gtag('js', new Date())
+            gtag('config', ga)
+            var loaded = false
+            var load = function () {
+              if (loaded) return
+              loaded = true
+              var s = document.createElement('script')
+              s.async = true
+              s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga
+              document.head.appendChild(s)
+            }
+            addEventListener('load', function () {
+              if (window.requestIdleCallback) requestIdleCallback(load, {timeout: 3000})
+              else setTimeout(load, 1500)
+            })
+            ;['pointerdown', 'keydown', 'scroll'].forEach(function (e) {
+              addEventListener(e, load, {once: true, passive: true})
+            })
           }
-          gtag('js', new Date())
-          gtag('config', ga)
-          var loaded = false
-          function load() {
-            if (loaded) return
-            loaded = true
-            var s = document.createElement('script')
-            s.async = true
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga
-            document.head.appendChild(s)
-          }
-          addEventListener('load', function () {
-            if (window.requestIdleCallback) requestIdleCallback(load, {timeout: 3000})
-            else setTimeout(load, 1500)
-          })
-          ;['pointerdown', 'keydown', 'scroll'].forEach(function (e) {
-            addEventListener(e, load, {once: true, passive: true})
-          })
         </script>
       )
     }
