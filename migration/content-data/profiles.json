@@ -1,0 +1,31 @@
+{
+  "$comment": "The business's own profiles on other sites and the facts read from them: the entity's sameAs, each office's own profiles and map pin, and the Google rating. Applied by scripts/migrate/content/profiles.mjs. Unlike site-settings.json (copied from the live site), these come from the profiles themselves, each verified on 2026-10-17 (citations review, scratchpad seo/citations/verified.json, and schema-technical ST-10/ST-14). See README.md section 11.",
+  "checkedOn": "2026-10-17",
+  "sameAs": {
+    "source": "Citations review R1 (amended: added through this intake, ST-10). The live JSON-LD already lists Facebook, Instagram, Yelp and BBB (webflow-to-sanity.mjs copies them); these three are added after them. Google Business Profile: the Mesa place card by its stable CID (maps.app.goo.gl/j4qZJwx8ttVZo93w5 redirects to CID 0x3e4e9bf5bed91d08 = 4489697358306155784, kgmid /g/11f04d6xl_). LinkedIn: the company page links https://www.thewireguyelectric.com/ and says founded 2017. Nextdoor: same phone and email, ROC #365306, founder Steven Taylor.",
+    "add": [
+      "https://www.google.com/maps?cid=4489697358306155784",
+      "https://www.linkedin.com/company/the-wire-guy-electric",
+      "https://nextdoor.com/pages/the-wire-guy-electric-llc-mesa-az/"
+    ]
+  },
+  "offices": {
+    "Mesa": {
+      "source": "Decision D12 / citations R4: the Google Business Profile pin, confirmed by the maps.app.goo.gl redirect (33.4398269,-111.6898689). The address stays footer-only (the owners' home); the pin is already public on Google.",
+      "geo": {"lat": 33.4398269, "lng": -111.6898689}
+    },
+    "Scottsdale": {
+      "source": "Decision D12 / citations R4: the Google Business Profile pin of \"The Wire Guy Electric of Scottsdale\" (Apple's pin is within about 20 m; plus code J493+4J). Profiles, citations R2: its Google place card by CID (0x97b9543bdf398359 = 10932862186543481689, kgmid /g/11xgv_scn6), replacing the share.google shortener in structured data (ST-10, amended); and this office's Yelp listing (Yelp answers bots with 403, so a link check flags it). The footer keeps its share.google link and text. Opening hours are not set: the profile shows Mon-Fri 9-5, but the page says office visits are by appointment, so they wait for the owner to confirm the office is staffed (citations R3, amended).",
+      "geo": {"lat": 33.6177653, "lng": -111.8959617},
+      "sameAs": [
+        "https://www.google.com/maps?cid=10932862186543481689",
+        "https://www.yelp.com/biz/the-wire-guy-electric-scottsdale-scottsdale"
+      ]
+    }
+  },
+  "reviewSummary": {
+    "source": "Decision D7 / citations R5: the Mesa Google Business Profile shows 5.0 from 567 reviews on 2026-10-17; \"560+\" is a floor that stays true as reviews come in. The rating links the Mesa profile, so Scottsdale's reviews are not added. Shown as visible text only (no aggregateRating markup).",
+    "ratingValue": 5,
+    "reviewCount": 560
+  }
+}

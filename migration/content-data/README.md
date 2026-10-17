@@ -10,6 +10,8 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 | `post-services.json` | `relatedServices` on all 53 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
+Three later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10) and `profiles.json` (§11).
+
 The data files use slugs, not document IDs. The module turns each slug into a reference. The migration stops with an error naming the file and entry if any of these happens:
 
 - a slug doesn't match a document;
@@ -319,3 +321,21 @@ Every value is an explicit field, so a later edit to a lede, card text or name n
 **Wave 2.** The rows with `hold` (Chandler, Scottsdale, Ahwatukee, San Tan Valley and Phoenix, title and meta) are approved but not deployed: they ship about four weeks after launch, once the wave 1 cities (Gilbert, Tempe, Queen Creek, Apache Junction, Fountain Hills) can be compared with them on core-query click-through. To ship them, delete `hold` from their rows and their paths from `notDeployed` in `migration/seo-intentional-changes.json`.
 
 **The parity gate's allowlist** (`migration/seo-intentional-changes.json`) holds the same values. The module stops if the two disagree in either direction (a value, a row the allowlist lacks, an approval without a row, a row held back in one and not the other), if `old` is not the live value in `migration/seo-baseline.json`, if the field already holds something other than `old`, or if a row would change a Tier 1 title or H1. `scripts/seo/parity.mjs` then reports each change as approved, the wave 2 ones as pending, and anything else as an error.
+
+## 11. Profiles, office pins and the rating (`profiles.json`)
+
+Applied by `scripts/migrate/content/profiles.mjs`, right after `fixes`. Unlike `site-settings.json` (copied from the live site), these values come from the business's own profiles, each checked on 2026-10-17 (the citations review and schema-technical ST-10/ST-14):
+
+| Key | What it sets | Source |
+|---|---|---|
+| `sameAs.add` | appended to `siteSettings.sameAs`, after the live JSON-LD's Facebook, Instagram, Yelp and BBB: the Mesa Google Business Profile by its stable `?cid=` URL, LinkedIn and Nextdoor | citations R1 (through this intake, ST-10) |
+| `offices.Mesa.geo` | `addresses[Mesa].geo`, the profile pin | decision D12 (citations R4) |
+| `offices.Scottsdale.geo` | `addresses[Scottsdale].geo`, the profile pin | decision D12 (citations R4) |
+| `offices.Scottsdale.sameAs` | `addresses[Scottsdale].sameAs` (new field): its Google place card by `?cid=` and its own Yelp listing, the branch's structured data | citations R2, ST-10 |
+| `reviewSummary` | `siteSettings.reviewSummary.ratingValue` 5 and `reviewCount` 560, shown as "5.0 from 560+ Google reviews" | decision D7 (citations R5: the Mesa profile shows 567 reviews) |
+
+The footer keeps its `share.google` links and their text (`googleMapsUrl`, `mapLinkText`): they are map links, not profiles. Profile URLs must be full https URLs, never a link shortener (`share.google`, `goo.gl`, `bit.ly`), and never listed twice; the module and `validate-dataset.mjs` both check (`--check-profiles` also requests each one, warning only, since Facebook, Instagram, Yelp and BBB refuse bots).
+
+**Not set:** the Scottsdale office's opening hours. Its profile shows Mon–Fri 9–5, but the page says office visits are by appointment, so the hours wait until the owner confirms the office is staffed (citations R3, amended).
+
+The business description in Site settings states the count too; it reads "560+" through decision D7-01 in `migration/content-edits/decisions.json`. The ROC lookup link in the FAQ "How do I choose a good electrician in Phoenix?" goes to `https://roc.az.gov/`, the Registrar's own host, and the next answer names it the same way (decision D13: `linkFixes` in `cms-templates.json`, D13-01).

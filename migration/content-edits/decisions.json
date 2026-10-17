@@ -1,5 +1,5 @@
 {
-  "about": "Copy changes the lead decided on (FIX_BRIEF, 2026-10-17): D1 homepage and shared headings, D6 minimal factual corrections, and D5's split of the one-block Ahwatukee body. Same format as the slop files; these run after them, so an edit here may change a slop edit's new text.",
+  "about": "Copy changes the lead decided on (FIX_BRIEF, 2026-10-17): D1 homepage and shared headings, D6 minimal factual corrections, D5's split of the one-block Ahwatukee body, D7's review count in the business description and D13's ROC lookup site. Same format as the slop files; these run after them, so an edit here may change a slop edit's new text.",
   "edits": [
     {
       "id": "D1-01",
@@ -135,6 +135,24 @@
       "new_text": "Line-voltage (120 V) lines go deeper.",
       "tier": "normal",
       "reason": "D6: as D6-03; applies to slop-posts-b-124's sentence."
+    },
+    {
+      "id": "D7-01",
+      "url": "",
+      "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "description"},
+      "old_text": "380+ Google reviews",
+      "new_text": "560+ Google reviews",
+      "tier": "normal",
+      "reason": "D7 (citations R5, amended): the Mesa Google Business Profile shows 5.0 from 567 reviews on 2026-10-17, so the count reads 560+ wherever it is stated. Applies to slop-pages-069's new text, as R5 asks; Site settings' reviewSummary.reviewCount comes from migration/content-data/profiles.json."
+    },
+    {
+      "id": "D13-01",
+      "url": "/faq",
+      "target": {"kind": "ndjson", "doc_id": "d977727a-fa88-4735-b5e2-7215bca2a88b", "field": "answer"},
+      "old_text": "which you can verify at azroc.gov",
+      "new_text": "which you can verify at roc.az.gov",
+      "tier": "normal",
+      "reason": "D13 (citations R6, amended): roc.az.gov is the Registrar of Contractors' own host (www.azroc.gov 301s to it). The link in \"How do I choose a good electrician in Phoenix?\" now points there (linkFixes in migration/content-data/cms-templates.json), so this answer names the same site."
     }
   ],
   "splits": [

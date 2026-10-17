@@ -619,6 +619,18 @@
       "homeCity.cardBlurb"
     ]
   },
+  "profiles": {
+    "sameAsAdded": [
+      "https://www.google.com/maps?cid=4489697358306155784",
+      "https://www.linkedin.com/company/the-wire-guy-electric",
+      "https://nextdoor.com/pages/the-wire-guy-electric-llc-mesa-az/"
+    ],
+    "offices": {
+      "Mesa": "geo",
+      "Scottsdale": "geo, 2 profiles"
+    },
+    "reviewSummary": "5 from 560+"
+  },
   "reviews": {
     "source": "migration/reviews/google-reviews.json",
     "widgetTotal": "333 Total Reviews",
@@ -936,7 +948,8 @@
       "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?: \"Contact us today\" → /estimate",
       "How much does it cost to install an EV charger at home?: \"give us a call\" → /estimate",
       "How long does it take to install recessed lighting?: \"contact us\" → /estimate",
-      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"National Fire Protection Association (NFPA)\" → https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home"
+      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"National Fire Protection Association (NFPA)\" → https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home",
+      "How do I choose a good electrician in Phoenix?: \"Arizona Registrar of Contractors (ROC) website\" → https://roc.az.gov/"
     ],
     "postCategories": {
       "lighting": 6
@@ -962,7 +975,7 @@
     "applied": {
       "pages": 64,
       "cities": 58,
-      "decisions": 15,
+      "decisions": 17,
       "services": 79,
       "posts-a": 251,
       "posts-b": 179

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Checks the generated dataset against the Studio schema, field by field.
 //
-//   node scripts/migrate/validate-dataset.mjs [path/to/production.ndjson]
+//   node scripts/migrate/validate-dataset.mjs [path/to/production.ndjson] [--check-profiles]
 //
 // `sanity documents validate --file` runs the schema's validation rules (required
 // fields, alt text, list values) but does not report fields the schema doesn't
@@ -16,7 +16,9 @@
 //     doesn't allow; values outside an options.list;
 //   - references to a missing document or to a type the field doesn't allow;
 //   - images without an asset, and missing alt where the schema requires it;
-//   - Portable Text marks that are neither a decorator nor a markDef.
+//   - Portable Text marks that are neither a decorator nor a markDef;
+//   - profile URLs (sameAs) that aren't full https URLs, are link shorteners or repeat,
+//     and image alts that are Webflow's placeholder (see "Content rules" below).
 //
 // Exits 1 on any problem. The schema is read from studio/schemaTypes, so it never
 // drifts from what editors see.
@@ -26,6 +28,7 @@ import {createRequire} from 'node:module'
 import {fileURLToPath} from 'node:url'
 import {Rule, Schema} from '@sanity/schema'
 import {builtinTypes} from '@sanity/schema/_internal'
+import {profileProblems} from './content/profiles.mjs'
 
 const ROOT = new URL('../../', import.meta.url)
 const STUDIO = fileURLToPath(new URL('studio/', ROOT))
@@ -170,6 +173,34 @@ for (const doc of docs) {
   }
   if (!/^[A-Za-z0-9._-]+$/.test(doc._id ?? '')) problem(doc, '_id', `bad _id "${doc._id}"`)
   check(doc, doc, type, '')
+}
+
+// Content rules the schema can't express:
+//   - profile URLs (Site settings' sameAs and each office's): full https URLs, never a link
+//     shortener, none listed twice (content/profiles.mjs profileProblems);
+//   - no image alt is Webflow's "inherit" placeholder (__wf_reserved_inherit), which is not
+//     a description.
+const settingsDoc = byId.get('siteSettings')
+if (settingsDoc) {
+  for (const msg of profileProblems(settingsDoc.sameAs)) problem(settingsDoc, '.sameAs', msg)
+  for (const a of settingsDoc.addresses ?? []) for (const msg of profileProblems(a.sameAs)) problem(settingsDoc, `.addresses[${a._key}].sameAs`, msg)
+}
+const walkAlts = (doc, node, path) => {
+  if (Array.isArray(node)) return node.forEach((n, i) => walkAlts(doc, n, `${path}[${n?._key ?? i}]`))
+  if (!node || typeof node !== 'object') return
+  if (typeof node.alt === 'string' && /^__wf_/.test(node.alt)) problem(doc, `${path}.alt`, `"${node.alt}" is Webflow's placeholder, not alt text`)
+  for (const [k, v] of Object.entries(node)) if (k !== 'alt') walkAlts(doc, v, `${path}.${k}`)
+}
+for (const doc of docs) walkAlts(doc, doc, '')
+
+// --check-profiles: also request every profile URL (warnings only: Facebook, Instagram and Yelp
+// often refuse bots).
+if (process.argv.includes('--check-profiles') && settingsDoc) {
+  const urls = [...(settingsDoc.sameAs ?? []), ...(settingsDoc.addresses ?? []).flatMap((a) => a.sameAs ?? [])]
+  for (const url of urls) {
+    const status = await fetch(url, {redirect: 'follow', signal: AbortSignal.timeout(15000), headers: {'user-agent': 'Mozilla/5.0'}}).then((r) => r.status, (e) => e.name)
+    if (status !== 200) console.log(`  warning: profile ${url} answered ${status}`)
+  }
 }
 
 console.log(`Checked ${docs.length} documents against the Studio schema:`, counts)

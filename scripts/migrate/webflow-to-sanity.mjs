@@ -543,7 +543,7 @@ push({
 // helpers and edits or adds documents in place. content-edits runs at several points
 // ("module:stage"); its header says why, and cms-templates runs its service stage itself.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const step of ['fixes', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'titles-meta']) {
+for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'titles-meta']) {
   const [name, stage] = step.split(':')
   await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }

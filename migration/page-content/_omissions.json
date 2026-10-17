@@ -558,6 +558,12 @@
       "tag": "h2",
       "text": "We proudly serve the entire valley!",
       "reason": "Launch copy pass (2026-10-17), decision D1 (D1-05 in migration/content-edits/decisions.json): \"proudly serve\" plus exclamation; now \"We serve the entire Phoenix valley\", as on the other pages that show the valley."
+    },
+    {
+      "page": "faq",
+      "tag": "faq-a",
+      "text": "Yes. The Wire Guy Electric is fully licensed, bonded, and insured in the state of Arizona. Our ROC (Registrar of Contractors) license number is 365306, which you can verify at azroc.gov. This protects you as the homeowner because it means our work is backed by the state's contractor recovery fund, and our insurance covers any accidents or damage on the job. Never hire an electrician who can't provide proof of licensing and insurance. Learn more about us.",
+      "reason": "Decision D13 (citations R6, amended): \"which you can verify at azroc.gov\" reads \"roc.az.gov\", the Registrar of Contractors' own host, the site the ROC link in \"How do I choose a good electrician in Phoenix?\" now goes to (D13-01 in migration/content-edits/decisions.json). Every other word and link is unchanged."
     }
   ],
   "links": [
@@ -622,6 +628,12 @@
       "text": "contact us",
       "href": "/contact-us",
       "reason": "Launch copy pass (2026-10-17), decision D5: in the FAQ \"How long does it take to install recessed lighting?\" the link asks for a free estimate, so it goes to /estimate (owner rule; linkFixes in migration/content-data/cms-templates.json). /contact-us stays linked from the page's other links."
+    },
+    {
+      "page": "faq",
+      "text": "Arizona Registrar of Contractors (ROC) website",
+      "href": "https://azroc.gov",
+      "reason": "Decision D13 (citations R6, amended): the link keeps its words and goes to https://roc.az.gov/, the Registrar's own host (www.azroc.gov 301s to it); linkFixes in migration/content-data/cms-templates.json."
     }
   ],
   "changes": [
