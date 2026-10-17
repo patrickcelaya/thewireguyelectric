@@ -9,6 +9,7 @@ import type {ImageRef, PortableTextValue} from '../../lib/types'
 import {getRedirectMap} from '../../lib/queries'
 import {articleHtml, insertMidArticle} from '../../lib/cms'
 import {portableTextToHtml} from '../../lib/portable-text'
+import {resolveHref} from '../../lib/links'
 
 interface Props {
   body: PortableTextValue | null | undefined
@@ -22,7 +23,7 @@ interface Props {
 }
 
 const {body, label, variant, figure, class: className} = Astro.props
-const options = {redirects: await getRedirectMap(), figureSizes: '(min-width:1100px) 680px, 92vw'}
+const options = {redirects: await getRedirectMap(), figureSizes: '(min-width:1100px) 680px, 92vw', currentPath: resolveHref(Astro.url.pathname)}
 const article = articleHtml(body, options)
 const anchors = article.anchors
 const html = figure && article.html ? insertMidArticle(article.html, portableTextToHtml([{...figure, _type: 'figure', _key: 'inline'}] as PortableTextValue, options)) : article.html

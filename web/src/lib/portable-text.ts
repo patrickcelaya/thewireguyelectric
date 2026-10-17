@@ -14,6 +14,12 @@ export interface PortableTextOptions {
   redirects?: RedirectMap
   /** `sizes` for figures (the measure of the column they sit in). */
   figureSizes?: string
+  /**
+   * The path of the page the text renders on ("/services/panels"). A link to that page
+   * renders as plain text: answers and bodies shared across pages never link a page
+   * to itself (links to an anchor on it stay).
+   */
+  currentPath?: string
 }
 
 const attr = (s: string) => escapeHTML(s)
@@ -103,6 +109,7 @@ export function portableTextToHtml(blocks: PortableTextValue | null | undefined,
   const redirects = options.redirects ?? {}
   const sizes = options.figureSizes ?? '(min-width: 1100px) 760px, 92vw'
   const labels = tableLabels(blocks)
+  const isSelf = (href: string) => options.currentPath !== undefined && href === options.currentPath
   const components: Partial<PortableTextHtmlComponents> = {
     block: {h1: ({children}) => `<h2>${children}</h2>`},
     types: {
@@ -119,10 +126,10 @@ export function portableTextToHtml(blocks: PortableTextValue | null | undefined,
         const raw = (value as {href?: string} | undefined)?.href
         if (!raw) return children
         const href = resolveHref(raw, redirects)
-        return uriLooksSafe(href) ? link(href, children, (value as {openInNewTab?: boolean}).openInNewTab) : children
+        return uriLooksSafe(href) && !isSelf(href) ? link(href, children, (value as {openInNewTab?: boolean}).openInNewTab) : children
       },
       // a mention of a team member (textWithMentions) links to the team page
-      teamMemberMention: ({children}) => `<a href="/our-team">${children}</a>`,
+      teamMemberMention: ({children}) => (isSelf('/our-team') ? children : `<a href="/our-team">${children}</a>`),
       sup: ({children}) => `<sup>${children}</sup>`,
       sub: ({children}) => `<sub>${children}</sub>`,
     },

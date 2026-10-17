@@ -257,7 +257,7 @@ Pages composed in Sanity (`page.sections`) render through **`SectionRenderer`** 
 `<PortableText value={doc.body} class="prose" />` renders Portable Text through `lib/portable-text.ts`:
 
 - blocks: paragraphs, H2–H6 (an `h1` block becomes H2: content never adds an H1), blockquote, bullet and numbered lists (nested);
-- marks: bold, italic, underline, sup, sub, links (internal links become root-relative, lose a trailing slash and are rewritten past redirects using `getRedirectMap()`; external links open a new tab and say so), team-member mentions (→ `/our-team`);
+- marks: bold, italic, underline, sup, sub, links (internal links become root-relative, lose a trailing slash and are rewritten past redirects using `getRedirectMap()`; a link to the page the text renders on, as in an FAQ answer shared across pages, is plain text there (`currentPath`); external links open a new tab and say so), team-member mentions (→ `/our-team`);
 - types: `figure` (sized Sanity image + caption), `table` (header row as `th scope=col`, first cell as `th scope=row`, wrapped in a focusable scrolling region), `videoEmbed` (YouTube facade: a link to the video with its poster; the site script swaps in the `youtube-nocookie` player on click), `callToAction` (a wash block with a primary button; `href` defaults to `/estimate`).
 
 Without `class` it renders just the blocks (FAQ answers inside `.qa .a`). `.prose` is styled in `inner.css`.
