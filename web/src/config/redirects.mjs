@@ -120,5 +120,7 @@ export async function loadPostSlugs({projectId, dataset, token, localDataset}) {
     .filter(Boolean)
     .map((line) => JSON.parse(line))
     .filter((doc) => doc._type === 'post' && !String(doc._id).startsWith('drafts.') && doc.slug?.current)
+    // _id order, as Sanity returns them
+    .sort((a, b) => (a._id < b._id ? -1 : a._id > b._id ? 1 : 0))
     .map((doc) => doc.slug.current)
 }
