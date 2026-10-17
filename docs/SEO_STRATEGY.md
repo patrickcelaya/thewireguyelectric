@@ -33,6 +33,36 @@ The new stack makes all four cheap to do well and consistently.
   - a `noIndex` switch documented as "never on a page that ranks";
   - Redirect documents.
 
+## Shipped with the launch (October 2026)
+
+The owner asked for SEO work, and for every trace of AI-written filler to go, before launch rather than after. Each change below was researched, then checked by a second reviewer; only accepted or amended items shipped. The homepage title and H1, and the titles and H1s of the Tier 1 posts, did not change.
+
+| Area | What changed | Where it's recorded |
+|---|---|---|
+| Filler removed | 655 verified edits: 78 on the homepage, the page-builder pages and shared interface text; 88 on service pages; 59 on city pages; 430 on posts. Gone: stock benefit lines, "not X but Y" turns, signposts, slogan closers, emoji. Kept: every fact, number, link, safety warning and call to action. Tier 1 posts only lost sentences. City bodies now carry each city's own utility and permit facts instead of a template with the name swapped | `migration/content-edits/`, applied by `scripts/migrate/content/content-edits.mjs`; every replaced live string has a reason in `_omissions.json` |
+| Copy decisions | Plain homepage headings and CTA band (D1); unattributed quote snippets removed from the commercial hero (D3); no emergency wording (D4); estimate CTAs → /estimate, typos and run-on words fixed, the Ahwatukee body split into paragraphs (D5); four factual fixes: the car's onboard charger, line voltage, Mountain America Stadium, the NFPA link (D6); hanging lights ships its published copy (D10) | `migration/content-edits/README.md` |
+| Titles, metas and H1s: wave 1 | 60 approved changes on 37 pages. Service titles and H1s use the words people search ("panel upgrade", "EV charger installation"); post and category metas are rewritten where their click rate trailed similar pages; five cities (Gilbert, Tempe, Queen Creek, Apache Junction, Fountain Hills) get "Electrician in {City}, AZ \| Free Estimates \| The Wire Guy" and a meta naming their own neighbourhoods and services. The Google review count reads 560+ (the Mesa profile showed 567 on 2026-10-17) | `migration/seo-intentional-changes.json`: the parity gate accepts exactly these values and fails on any other change |
+| Structured data | One connected graph per page. Mesa (missing before) and the 10 service areas are City entities with their Wikipedia and Wikidata pages. The business carries its ROC credential, services, founder, map URL, the Google profile pins as geo, and 7 verified profiles as sameAs; the Scottsdale office has its own. Service pages have no prices or offers (owner rule). City pages list their services; posts point to their hub service; /careers has an HTML job description and an identifier. Share images are photos the page shows, and image files are named for what they show. `pnpm seo:schema` in CI fails on a regression | `web/src/lib/schema.ts`, `web/src/data/places.json`, `scripts/seo/check-structured-data.mjs` |
+| Internal links | Related articles are picked by the service a post supports, not by date, so every post now appears somewhere. Hub links read the way people search ("See our electrical troubleshooting service"). Service pages show up to five guides. 127 verified in-body links (post → service, service → post, city → service), with no change to the words | `web/src/lib/cms.ts`, the content pipeline |
+| Citations on the site | sameAs for the business (Facebook, Instagram, Yelp, BBB, the Mesa Google profile, LinkedIn, Nextdoor) and for the Scottsdale office (its Google profile and Yelp). The ROC lookup links roc.az.gov. The off-site fixes are the owner's list in [`LAUNCH_RUNBOOK.md`](LAUNCH_RUNBOOK.md#off-site-fixes-for-the-owner) | Site settings, through the content pipeline |
+| Technical | `X-Robots-Tag: noindex` on every host but www, so the `.vercel.app` aliases stay out of the index; the live site's clickjacking headers; `/x/index.html` → `/x` | `web/src/config/one-hop-redirects.mjs` |
+
+## Deferred, and when
+
+| Item | When | Why |
+|---|---|---|
+| **Wave-2 city titles and metas:** Chandler, Scottsdale, Ahwatukee, San Tan Valley, Phoenix (approved, not deployed) | Decide on **Thursday 2026-11-19**, 4 weeks after the 2026-10-22 launch. Ship that week if wave 1's click rate on its core searches is not worse than wave 2's at similar positions | A control group: if the new pattern hurts, only half the cities are affected and the cause is clear. Ahwatukee, the best-converting city, is the natural control. The values wait in the allowlist as "approved change not deployed yet" warnings; their metas take the review count current on the day they ship |
+| **The nine city closing links to the homepage** | Shipped at launch, to /estimate (D5) | The link review had deferred them to protect the homepage's inbound links. If the homepage slips in the first weeks, check these first |
+| **Image sitemap** (ST-16) | Not doing | Images live on cdn.sanity.io, and Google accepts cross-domain image sitemap entries only when both domains are verified in Search Console; this one can't be. Google finds the images in the pages. Revisit only if images move to the site's own host |
+| **Post quick-answer boxes** | From 2026-12-03 (6 weeks after launch) | A post shows its excerpt in the quick-answer box, and the excerpt is also its meta description; several are filler. Write a 40–60 word `quickAnswer` per post from its own facts; the metas stay |
+| **Rewrites and merges:** `level-1-vs-level-2-ev-chargers` (an SEO-tool article with price tables that disagree), `common-electrical-issues-in-scottsdale-homes` (thin once the filler is out), the 6 breaker-tripping and 3 flickering-lights posts | From 2026-12-03, guided by Search Console | Rewriting many posts at launch would blur the migration's signal, and consolidation needs post-launch data |
+| **Links to competitors' blogs** (7-signs' [1]–[9] markers, can-hot-weather's sentence links) | With those rewrites | A link-policy decision, not a copy edit |
+| **Category page descriptions** | With the growth roadmap | Both category pages show their meta as the visible lede; an owner-approved description fixes both |
+| **`llms.txt`** | Not doing | The live file is wrong (Phoenix, emergency service, links that 404) and Google ignores it. The URL 404s after launch |
+| **New parity baseline** | After wave 2 ships | Re-crawl production (`pnpm seo:baseline`) so the gate protects the new values |
+| **San Tan Valley permit note** | January 2027 | Pinal County's agreement for the new town runs through 2026-12-31 |
+| **Dated wording:** "over 9 years" (business FAQ), "2026" in the hot tub meta | January 2027, or when re-priced | Goes stale |
+
 ## What Search Console says (last 16 months, via OpenSEO)
 
 `migration/seo-equity/gsc-pages-16mo.tsv`
@@ -54,7 +84,7 @@ The new stack makes all four cheap to do well and consistently.
   | Tempe | 67k | 10.7 |
   | Phoenix | 71k | 38 |
 
-  This is the single biggest growth lever. After launch, give each city page real local proof (jobs, reviews, utility and permit specifics). Then rewrite titles and descriptions for click-through, in batches, measuring each one.
+  This is the single biggest growth lever. Give each city page real local proof (jobs, reviews, utility and permit specifics). The click-through titles and descriptions ship in two waves, measured against each other: five cities at launch, five on 2026-11-19 (see [Deferred, and when](#deferred-and-when)).
 - **Service pages are weak:** most rank 18–50, and EV charger installation sits at position 33 with 38k impressions. They're thin today. Deepening them (step 1 below) is the second lever.
 - **Brand and navigation pages** (`/about-us`, `/our-team`, `/faq`) rank around position 4 with 55k–64k impressions but almost no clicks. These are mostly brand-query sitelinks, so they're less of a lever.
 
@@ -68,7 +98,7 @@ Each service page becomes the hub for its topic. For each page:
 
 - **Who it's for, and when to call.** Include safety triggers: burning smell, hot panel, tripping under load.
 - **The process,** in real steps (permit, utility coordination with SRP or APS, inspection).
-- **An honest price range** with what drives it. Use the `priceRange` field, and date it.
+- **What drives the price**, without a price: the owner's rule (October 2026) keeps prices off service pages. Prices live in the cost guides and on `/faq`, and the service page links to its cost guide.
 - **2–4 real jobs,** using the `project` documents, and relevant reviews.
 - **3–6 FAQs** taken from what customers actually ask.
 - **Links:** to its cost guide, its problem posts, and the cities where it's in demand.
