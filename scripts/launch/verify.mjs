@@ -20,8 +20,9 @@
 //              /blog/<slug> post redirect and every enabled Sanity Redirect document: one hop,
 //              right status, right target, target answers 200; same for the trailing-slash spelling.
 //              Intentionally removed URLs answer 404/410; an unknown URL answers 404 (no soft 404s)
-//   form       GET /api/contact answers 405 with Allow: POST (404 = the endpoint predates that: WARN);
-//              an empty POST answers 400 (stops at validation, so no lead is created)
+//   form       GET /api/contact answers 405 with Allow: POST; an empty POST answers 400 (stops at
+//              validation, so no lead is created); build-info.json says at least one lead
+//              destination (FORMSPARK_FORM_ID, a webhook or email) was set for the build
 //   hygiene    WARN only: frame headers (X-Frame-Options, CSP frame-ancestors) as the live site sends,
 //              /x/index.html 301s to /x, /favicon.ico answers, /build-info.json is served (the Ignored
 //              Build Step reads it), and on www: the production .vercel.app alias is not indexable
@@ -301,8 +302,8 @@ async function checkForm() {
   await g.arrayBuffer().catch(() => {})
   const allow = g.headers.get('allow') ?? ''
   if (emulated(g.status)) record('form', 'INFO', 'GET /api/contact not emulated by serve-build.mjs', `${g.status}`)
-  else if (g.status === 405) record('form', /\bPOST\b/i.test(allow) ? 'PASS' : 'WARN', 'GET /api/contact answers 405 with Allow: POST', `405, allow: ${allow || 'missing'}`)
-  else if (g.status === 404) record('form', 'WARN', 'GET /api/contact answers 405 with Allow: POST', '404: this build predates the 405 handler (Astro answers 404 for a method the endpoint does not export); the POST check below shows whether the function is deployed')
+  else if (g.status === 405) record('form', /\bPOST\b/i.test(allow) ? 'PASS' : 'FAIL', 'GET /api/contact answers 405 with Allow: POST', `405, allow: ${allow || 'missing'}`)
+  else if (g.status === 404) record('form', 'FAIL', 'GET /api/contact answers 405 with Allow: POST', '404: a build from before the 405 handler (Astro answers 404 for a method the endpoint does not export), or no function deployed')
   else record('form', 'FAIL', 'GET /api/contact answers 405 with Allow: POST', `${g.status}`)
 
   // An empty POST stops at validation (400) before any delivery code runs: it proves the function is
@@ -313,6 +314,18 @@ async function checkForm() {
   else if (p.status === 400) record('form', 'PASS', 'POST /api/contact (empty form) answers 400: the function is deployed', `400 "${text}"`)
   else if (p.status === 404 || p.status >= 500) record('form', 'FAIL', 'POST /api/contact (empty form) answers 400: the function is deployed', `${p.status} "${text}"`)
   else record('form', 'WARN', 'POST /api/contact (empty form) answers 400: the function is deployed', `${p.status} "${text}"`)
+
+  // Without a destination every lead answers 503 ("please call"). build-info.json records only whether
+  // each variable was set for the build, never its value (web/src/config/build-info.mjs).
+  // (a local build has none unless its shell had them, so that is INFO there, as before launch)
+  const info = await get(at('/build-info.json'))
+  const delivery = (await info.json().catch(() => null))?.delivery
+  if (!info.ok || !delivery) record('form', 'WARN', 'build-info.json lists the lead destinations set for this build', `${info.status}: no delivery field`)
+  else {
+    const set = Object.keys(delivery).filter((name) => delivery[name])
+    const usable = delivery.FORMSPARK_FORM_ID || delivery.LEAD_WEBHOOK_URL || (delivery.RESEND_API_KEY && delivery.LEADS_TO_EMAIL)
+    record('form', usable ? 'PASS' : allowNoindex || isLocal ? 'INFO' : 'FAIL', 'a lead destination is set for this build (else every form answers 503)', set.length ? set.join(', ') : 'none set')
+  }
   record('form', 'INFO', 'delivery is not tested here', 'submit /estimate and /careers by hand and confirm the lead arrives (Formspark / webhook / email)')
 }
 

@@ -178,7 +178,8 @@ Scheduled workflows run from the default branch.
 - robots.txt, the sitemap's 96 URLs and their lastmod;
 - 200, no noindex and one www canonical on every sitemap page;
 - GA on every page;
-- `GET /api/contact` answering 405 (a 404 from a build that predates that is a warning) and an empty POST answering 400;
+- `GET /api/contact` answering 405 with `Allow: POST` and an empty POST answering 400;
+- at least one lead destination set for the build, read from `build-info.json`'s `delivery` (without one every form answers 503);
 - the parity crawl.
 
 It exits 1 on any failure and writes a JSON report.
@@ -189,7 +190,7 @@ node scripts/launch/verify.mjs --base https://thewireguyelectric.vercel.app --al
 PUBLIC_SANITY_PROJECT_ID= node scripts/launch/verify.mjs --base http://localhost:4321          # serve-build.mjs, local-dataset build
 ```
 
-`--allow-noindex` reports a blocking robots.txt, noindex and the missing GA tag as INFO, for a build before launch. A few hygiene checks only warn: the frame headers the live site sends, `/x/index.html` → `/x`, `/favicon.ico`, `/build-info.json`, and on www, that the `.vercel.app` alias is not an indexable duplicate. Expected redirects come from Sanity unless `PUBLIC_SANITY_PROJECT_ID` is set; set it empty for a local-dataset build. The script's header lists the options for skipping a group.
+`--allow-noindex` reports a blocking robots.txt, noindex, the missing GA tag and a build with no lead destination as INFO, for a build before launch. A few hygiene checks only warn: the frame headers the live site sends, `/x/index.html` → `/x`, `/favicon.ico`, `/build-info.json`, and on www, that the `.vercel.app` alias is not an indexable duplicate. Expected redirects come from Sanity unless `PUBLIC_SANITY_PROJECT_ID` is set; set it empty for a local-dataset build. The script's header lists the options for skipping a group.
 
 `scripts/launch/indexnow.mjs` submits the sitemap to IndexNow, which reaches Bing, Yandex, Seznam, Naver and Yep (Google does not take part). The key is public by design. It lives in `web/public/5177a4ccdcf3567e8a2b870a351c63a9.txt`, served from the site root, and the script checks that the live file answers with the key before sending anything. Run it once verify.mjs passes on www, and again after a batch of content changes:
 
