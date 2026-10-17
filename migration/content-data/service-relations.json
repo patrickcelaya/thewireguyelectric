@@ -1,0 +1,162 @@
+{
+  "$comment": "Per-service price ranges, related services and related posts, applied by scripts/migrate/content/fixes.mjs. Slugs only; the module resolves them to references and fails on any slug that is not a live document. Every price is a figure the live site publishes today, quoted in `source`. Rationale for every list is in README.md.",
+  "priceAsOf": "2026-10-13",
+  "services": {
+    "panels": {
+      "priceRange": {
+        "low": 5200,
+        "high": 6500,
+        "note": "Standard 200-amp like-for-like panel replacement in the Phoenix metro. A full service replacement with a new all-in-one meter base and panel is typically $6,400–$8,750. Published on /faq and /services/panels, Oct 2026.",
+        "source": [
+          "/faq, 'How much does an electrical panel replacement cost in Arizona?': \"most electrical panel replacements fall between $5,200 and $6,500 for a standard 200-amp panel. If you need a full service replacement that includes a new all-in-one meter base and panel, that range is typically $6,400 to $8,750\"",
+          "/services/panels body, 'What It Costs': \"For a standard 200-amp like-for-like panel replacement in the Phoenix metro, expect $5,200 to $6,500 ... the range is typically $6,400 to $8,750\"",
+          "Same figures in /services/electrical-remodels, /services/new-construction-wiring and /blog-posts/electrical-panel-upgrade-cost-arizona"
+        ]
+      },
+      "relatedServices": ["ev-charger-installation", "electrical-safety-inspections", "electrical-troubleshooting", "electrical-upgrades"],
+      "relatedPosts": [
+        "electrical-panel-upgrade-cost-arizona",
+        "7-signs-you-need-an-electrical-panel-upgrade",
+        "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+        "federal-pacific-zinsco-panels-arizona",
+        "electrical-panel-hot-to-the-touch-arizona"
+      ]
+    },
+    "recessed-lights-installation": {
+      "priceRange": {
+        "low": 1050,
+        "high": 1750,
+        "note": "Typical installation of six recessed LED can lights in an existing room, including fixtures, wiring, switches and labor. Published on /faq, Oct 2026.",
+        "source": [
+          "/faq, 'How much does it cost to install recessed can lighting?': \"For a typical installation of six recessed LED can lights in an existing room, most homeowners in the Phoenix valley can expect to pay somewhere between $1,050 and $1,750. That includes the fixtures, wiring, switches, and labor.\""
+        ]
+      },
+      "relatedServices": ["custom-lighting", "fixture-replacements", "led-lights", "electrical-remodels"],
+      "relatedPosts": ["recessed-lighting-installation-phoenix", "why-your-lights-flicker", "ceiling-fan-installation-cost-arizona"]
+    },
+    "ev-charger-installation": {
+      "priceRange": {
+        "low": 750,
+        "high": 3500,
+        "note": "Level 2 (240-volt) charger at a home in the Phoenix area, depending on the distance from the panel and whether the panel has room for a new circuit; a panel upgrade adds to it. Published on /faq, Oct 2026.",
+        "source": [
+          "/faq, 'How much does it cost to install an EV charger at home?': \"Installing a Level 2 EV charger (240-volt) at a home in the Phoenix area typically costs between $750 and $3,500 depending on the distance from your panel to the charging location and whether your panel has room for a new circuit. If your panel needs an upgrade to support the charger, that adds to the cost.\""
+        ]
+      },
+      "relatedServices": ["panels", "exterior-electrical", "new-construction-wiring"],
+      "relatedPosts": [
+        "tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+        "level-1-vs-level-2-ev-chargers-which-to-choose",
+        "ev-charger-hardwired-vs-plug-in-phoenix",
+        "dryer-outlet-for-ev",
+        "installing-car-charger"
+      ]
+    },
+    "electrical-safety-inspections": {
+      "relatedServices": ["panels", "electrical-troubleshooting", "electrical-remodels"],
+      "relatedPosts": [
+        "electrical-inspection-before-selling-a-home",
+        "outdated-wiring-in-older-phoenix-homes",
+        "7-signs-you-need-an-electrical-panel-upgrade",
+        "federal-pacific-zinsco-panels-arizona",
+        "aluminum-wiring-older-phoenix-homes"
+      ]
+    },
+    "exterior-electrical": {
+      "relatedServices": ["custom-lighting", "ev-charger-installation", "fixture-replacements"],
+      "relatedPosts": [
+        "landscape-lighting-installation-cost-phoenix",
+        "pool-pump-electrical-requirements-arizona",
+        "hot-tub-electrical-installation-cost-arizona",
+        "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+        "phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system"
+      ]
+    },
+    "fixture-replacements": {
+      "relatedServices": ["recessed-lights-installation", "custom-lighting", "hanging-lights"],
+      "relatedPosts": ["ceiling-fan-installation-cost-arizona", "recessed-lighting-installation-phoenix", "why-your-lights-flicker"]
+    },
+    "electrical-troubleshooting": {
+      "relatedServices": ["panels", "electrical-safety-inspections", "commercial-electrical-troubleshooting"],
+      "relatedPosts": [
+        "can-hot-weather-cause-your-circuit-breaker-to-trip",
+        "why-does-my-breaker-keep-tripping",
+        "half-house-lost-power-heat-arizona",
+        "bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+        "why-your-lights-flicker"
+      ]
+    },
+    "new-construction-wiring": {
+      "relatedServices": ["electrical-remodels", "panels", "ev-charger-installation", "custom-lighting"],
+      "relatedPosts": [
+        "casita-adu-electrical-requirements-arizona",
+        "electrical-panel-upgrade-cost-arizona",
+        "level-1-vs-level-2-ev-chargers-which-to-choose",
+        "smart-thermostat-c-wire-arizona"
+      ]
+    },
+    "custom-lighting": {
+      "relatedServices": ["recessed-lights-installation", "fixture-replacements", "exterior-electrical", "electrical-remodels"],
+      "relatedPosts": ["recessed-lighting-installation-phoenix", "ceiling-fan-installation-cost-arizona", "landscape-lighting-installation-cost-phoenix"]
+    },
+    "electrical-remodels": {
+      "relatedServices": ["new-construction-wiring", "panels", "custom-lighting", "recessed-lights-installation"],
+      "relatedPosts": [
+        "kitchen-remodel-electrical-circuits-arizona",
+        "cost-to-rewire-house-arizona",
+        "aluminum-wiring-older-phoenix-homes",
+        "electrical-panel-upgrade-cost-arizona",
+        "recessed-lighting-installation-phoenix"
+      ]
+    },
+    "commercial-service": {
+      "relatedServices": ["tenant-improvements", "commercial-electrical-troubleshooting", "electrical-upgrades", "dedicated-circuits"],
+      "relatedPosts": ["electrical-panel-hot-to-the-touch-arizona", "why-does-my-breaker-keep-tripping", "electrical-safety-tips"]
+    },
+    "tenant-improvements": {
+      "relatedServices": ["commercial-service", "electrical-upgrades", "dedicated-circuits", "led-lights"],
+      "relatedPosts": ["cutting-corners-panel-upgrades-phoenix", "electrical-panel-hot-to-the-touch-arizona", "electrical-safety-tips"]
+    },
+    "led-lights": {
+      "relatedServices": ["commercial-service", "tenant-improvements", "ballast-replacement-fluorescent-lighting", "storefront-lights"],
+      "relatedPosts": ["recessed-lighting-installation-phoenix", "landscape-lighting-installation-cost-phoenix", "why-your-lights-flicker"]
+    },
+    "outlets-and-switches": {
+      "relatedServices": ["commercial-service", "tenant-improvements", "dedicated-circuits", "commercial-electrical-troubleshooting"],
+      "relatedPosts": ["how-to-wire-a-gfci-outlet", "bathroom-or-garage-outlets-not-working-heres-how-to-fix", "why-does-my-breaker-keep-tripping"]
+    },
+    "storefront-lights": {
+      "relatedServices": ["commercial-service", "led-lights", "tenant-improvements"],
+      "relatedPosts": ["landscape-lighting-installation-cost-phoenix", "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall", "phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system"]
+    },
+    "hanging-lights": {
+      "relatedServices": ["led-lights", "tenant-improvements", "commercial-service"],
+      "relatedPosts": ["recessed-lighting-installation-phoenix", "why-your-lights-flicker", "ceiling-fan-installation-cost-arizona"]
+    },
+    "electrical-upgrades": {
+      "relatedServices": ["commercial-service", "tenant-improvements", "dedicated-circuits", "led-lights"],
+      "relatedPosts": ["electrical-panel-upgrade-cost-arizona", "cutting-corners-panel-upgrades-phoenix", "electrical-panel-hot-to-the-touch-arizona"]
+    },
+    "commercial-electrical-troubleshooting": {
+      "relatedServices": ["commercial-service", "electrical-upgrades", "dedicated-circuits"],
+      "relatedPosts": ["why-does-my-breaker-keep-tripping", "can-hot-weather-cause-your-circuit-breaker-to-trip", "electrical-panel-hot-to-the-touch-arizona"]
+    },
+    "emergency-exit-lights": {
+      "relatedServices": ["commercial-service", "tenant-improvements", "led-lights"],
+      "relatedPosts": ["electrical-safety-tips", "how-phoenix-heat-affects-your-homes-electrical-system", "electrical-inspection-before-selling-a-home"]
+    },
+    "dedicated-circuits": {
+      "relatedServices": ["commercial-service", "electrical-upgrades", "tenant-improvements", "outlets-and-switches"],
+      "relatedPosts": ["kitchen-remodel-electrical-circuits-arizona", "mini-split-electrical-requirements-arizona", "why-does-my-breaker-keep-tripping"]
+    },
+    "ballast-replacement-fluorescent-lighting": {
+      "relatedServices": ["led-lights", "commercial-service", "tenant-improvements"],
+      "relatedPosts": ["why-your-lights-flicker", "why-you-should-never-ignore-flickering-lights-in-your-arizona-home", "recessed-lighting-installation-phoenix"]
+    }
+  },
+  "notPriced": {
+    "surge protection": "/faq publishes \"typically between $300 and $600 installed\" for a whole-house surge protector, but there is no surge protection service document to attach it to (and /blog-posts/whole-house-surge-protector-guide-arizona says $400 to $800). Left out.",
+    "hourly rates": "/faq quotes \"$125 and $375 per hour\" as what other Phoenix electricians charge, not a price of this business. Left out.",
+    "electrical-upgrades": "The /faq panel figures are for a home's 200-amp panel; electrical-upgrades is the commercial panel, feeder and service upgrade page. Left unpriced."
+  }
+}

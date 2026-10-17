@@ -1,18 +1,38 @@
 ---
-import WebflowLayout from '../layouts/WebflowLayout.astro'
-import {getPage, getSettings} from '../lib/queries'
-import {legacyPage} from '../lib/legacy'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
-import {webPageNode} from '../lib/schema'
+// The homepage (the Mesa page and the Mesa Google Business Profile's landing page),
+// composed in Sanity (page "index") and drawn by the section renderer in the round-5
+// design. Title, description, canonical and H1 are unchanged from the live site; the
+// JSON-LD is the business graph, the WebPage and one FAQPage from the questions shown.
+// The crew photo is the LCP: it is preloaded with the same renditions the hero uses.
+import SiteLayout from '../layouts/SiteLayout.astro'
+import '../styles/bundles/page-home.css'
+import SectionRenderer from '../components/sections/SectionRenderer.astro'
+import {collectPageFaqs, getPage, getSettings} from '../lib/queries'
+import {requireComposed, resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
+import {faqNode, webPageNode} from '../lib/schema'
+import {heroPreloads} from '../lib/hero'
+import {hasImage, imageUrl} from '../lib/image'
 
 const [settings, page] = await Promise.all([getSettings(), getPage('index')])
-const title = resolveTitle(page?.seo, `${settings.businessName} | Licensed Electrician in Mesa, AZ`)
-const description = resolveDescription(page?.seo, page?.intro, settings.description)
+if (!page) throw new Error('The homepage document (page "index") is missing from the dataset')
+requireComposed(page)
+
+const title = resolveTitle(page.seo, `${settings.businessName} | Licensed Electrician in Mesa, AZ`)
+const description = resolveDescription(page.seo, page.intro, settings.description)
+const heroImage = page.sections?.find((s) => s._type === 'heroSection')?.image
+const preloads = heroPreloads(heroImage)
 ---
 
-<WebflowLayout
-  meta={{title, description, path: '/', ogImage: resolveOgImage(settings, page?.seo?.ogImage), noIndex: page?.seo?.noIndex}}
-  schema={[webPageNode({path: '/', title, description})]}
+<SiteLayout
+  meta={{title, description, path: '/', ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex}}
+  schema={[
+    webPageNode({path: '/', title, description, primaryImage: hasImage(heroImage) ? imageUrl(heroImage, {width: 1200, format: 'jpg'}) : undefined}),
+    faqNode('/', collectPageFaqs(page)),
+  ]}
+  bodyClass="over"
 >
-  <Fragment set:html={legacyPage('index')} />
-</WebflowLayout>
+  <Fragment slot="head">
+    {preloads.map((p) => <link rel="preload" as="image" media={p.media} imagesrcset={p.imagesrcset} imagesizes={p.imagesizes} fetchpriority="high" />)}
+  </Fragment>
+  <SectionRenderer page={page} settings={settings} />
+</SiteLayout>

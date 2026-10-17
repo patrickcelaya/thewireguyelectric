@@ -1,0 +1,36 @@
+---
+// One service as a whole photo card in a .tiles3 list (round-5 city and service
+// mockups): the photo on top, the words on paper under it, so no word ever sits on a
+// face; the title is the card's one link and the small bulb lights on hover. The photo
+// is cropped to the frame's 4:3 on the editor's hotspot. Used by ServiceCards (the CMS
+// templates) and FeaturedServices (servicesSection "featured" on inner pages).
+// Styles: styles/core.css (.tile) and styles/inner.css (.tiles3, .tile--card).
+import type {ImageRef} from '../../lib/types'
+import MiniBulb from '../ui/MiniBulb.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  href: string
+  title: string
+  text?: string
+  image: ImageRef | null | undefined
+}
+
+const {href, title, text, image} = Astro.props
+---
+
+<li class="tile tile--card">
+  <div class="tile__media">
+    <SanityImage image={image} widths={[480, 720, 1080]} sizes="(max-width:899px) 92vw, 32vw" aspect={4 / 3} alt="" />
+  </div>
+  <div class="tile__body">
+    <h3>
+      <a href={href}>{title}</a>
+    </h3>{' '}
+    {text && <p>{text}</p>}{' '}
+    <span class="tile__go" aria-hidden="true">
+      Learn more
+    </span>
+    <MiniBulb />
+  </div>
+</li>

@@ -1,11 +1,14 @@
 import {callToAction} from './objects/call-to-action'
 import {faqItem} from './objects/faq-item'
+import {featureItem} from './objects/feature-item'
 import {linkItem} from './objects/link-item'
 import {openingHours} from './objects/opening-hours'
 import {postalAddress} from './objects/postal-address'
+import {reviewSnippet} from './objects/review-snippet'
 import {richText} from './objects/rich-text'
 import {seo} from './objects/seo'
 import {table} from './objects/table'
+import {textWithMentions} from './objects/text-with-mentions'
 import {videoEmbed} from './objects/video-embed'
 import {pageSections} from './sections/page-sections'
 import {faq} from './documents/faq'
@@ -34,6 +37,9 @@ export const schemaTypes = [
   openingHours,
   faqItem,
   linkItem,
+  featureItem,
+  reviewSnippet,
+  textWithMentions,
   pageSections,
   // documents
   siteSettings,

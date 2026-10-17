@@ -1,0 +1,59 @@
+---
+// Questions in headed topic groups (a faqSection's `groups`): the five topics on /faq.
+// Beside the groups (sticky on wide screens) an index jumps to each topic; each group
+// is its heading and its questions as native <details>, the first one open, every
+// answer in the HTML. Group headings sit one level below the section heading (H2
+// when the section has none). The page's one FAQPage node includes these questions
+// (collectPageFaqs). Render inside the answers band. Styles: styles/pages.css "FAQ TOPICS".
+import type {FaqSection} from '../../lib/types'
+import Eyebrow from '../ui/Eyebrow.astro'
+import FaqList from './FaqList.astro'
+
+interface Props {
+  section: FaqSection
+  number?: number
+  /** Below the section's own questions (FaqBlock): the aside is only the index, and the groups sit under its H2. */
+  nested?: boolean
+}
+
+const {section, number, nested = false} = Astro.props
+const groups = section.groups.filter((g) => g.faqs.length)
+const Title = section.heading || nested ? 'h3' : 'h2'
+const showHead = !nested
+const anchor = (key: string) => `${section._key}-${key}`
+---
+
+{
+  groups.length > 0 && (
+    <div class:list={['faqt', nested && 'faqt--nested']}>
+      <div class="faqt__aside">
+        {showHead && <Eyebrow number={number}>{section.eyebrow ?? 'Questions by topic'}</Eyebrow>}
+        {showHead && section.heading && (
+          <h2 class="h2" id={`${section._key}-h`}>
+            {section.heading}
+          </h2>
+        )}
+        {showHead && section.intro && <p class="faq__intro">{section.intro}</p>}
+        <nav class="faqt__nav" aria-label="Questions by topic">
+          <ol role="list">
+            {groups.map((g) => (
+              <li>
+                <a href={`#${anchor(g._key)}`}>
+                  {g.heading} <span class="faqt__n">{g.faqs.length}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      </div>
+      <div class="faqt__groups">
+        {groups.map((g) => (
+          <div class="faqt__group" id={anchor(g._key)}>
+            <Title class="faqt__h">{g.heading}</Title>
+            <FaqList faqs={g.faqs} />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

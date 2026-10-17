@@ -1,0 +1,18 @@
+---
+// The editorial kicker above a heading: an optional section number and hairline,
+// the small bulb mark, then the label. Always a <p>, never part of the heading.
+interface Props {
+  /** Section number ("06"); numbers are zero-padded. */
+  number?: number | string
+  variant?: 'pill' | 'cream' | 'sky'
+  class?: string
+}
+
+const {number, variant, class: className} = Astro.props
+const n = typeof number === 'number' ? String(number).padStart(2, '0') : number
+---
+
+<p class:list={['kicker', variant && `kicker--${variant}`, className]}>
+  {n && <><span class="kicker__n" aria-hidden="true">{n}</span>{' '}</>}
+  <span class="kicker__t"><slot /></span>
+</p>

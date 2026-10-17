@@ -23,11 +23,11 @@ These are fixed in the new build:
 
 - **No canonical tags on any page** (0 of 105). The new site emits a self-referencing absolute canonical on every indexable page.
 - **Broken internal links:**
-  - 39 links to `/estimate`, which 404s. The CMS posts link there.
+  - 39 links to `/estimate`, which 404s. The CMS posts link there. `/estimate` is now a real page (the Free Estimate form), so those links work as written.
   - Links to `/locations/mesa` and `/services/electrical-panels`, both 404.
   - One link to `/blog/...` instead of `/blog-posts/...`.
 
-  All are rewritten at import and also 301-redirected.
+  The last two kinds are rewritten at import and also 301-redirected.
 - **Junk URLs in the sitemap that return 200:** `/checkout`, `/paypal-checkout`, `/order-confirmation`, `/search`, plus 9 indexable `/product/*` and `/category/*` pages (Webflow e-commerce filler). The utility pages now 404. The product and category pages 301 to `/services`.
 - **Missing structured data:** blog posts had no `BlogPosting`, service pages had no `Service`, city pages had nothing. All now get a connected `@graph`, with the business entity, breadcrumbs and page-type schema.
 - **Duplicate H1s:** on `/services-categories/*` and one blog post.
@@ -39,31 +39,16 @@ Deliberate changes:
 - The self-serving `aggregateRating` in the homepage schema is removed, because Google never shows stars for a business's own ratings. The rating stays visible on the page.
 - The `/blog` list is no longer paginated by query string.
 
-## Design: ported from Webflow (October 2026)
+## Design (October 2026)
 
-The site renders the **published Webflow design itself**, not a re-creation:
-- Webflow's compiled CSS.
-- The original navbar and footer.
-- The page markup.
-- All 107 design images and fonts, downloaded into `web/public/wf/`.
-
-`scripts/migrate/build-legacy-design.mjs` generates `web/src/legacy/` from the live HTML snapshots. `web/src/lib/legacy.ts` fills the CMS spots (headlines, intros, rich text, service and blog lists) from Sanity at build time, the same way Webflow's templates do.
-
-Webflow's runtime (jQuery plus about 700 KB of JS) is replaced by `web/src/scripts/webflow-lite.ts`, about 5 KB. It handles:
-- the mobile menu, dropdowns, the FAQ accordions and the tabs;
-- scroll-in animations;
-- lazy-loaded review and Instagram widgets;
-- form submissions.
-
-Side-by-side screenshots match the live site, with identical page heights on desktop. The parity check reports 0 errors and 0 warnings. The full-page copy on About, Team, Contact, Careers, Commercial and Services is back.
+The first build rendered the published Webflow design itself (its compiled CSS, navbar, footer and page markup, generated from the live HTML snapshots), so SEO parity could be proven before any design changed. That port is gone. Every page now renders the owner-approved round-5 redesign on `web/src/layouts/SiteLayout.astro` (see `docs/DESIGN_SYSTEM.md`), from the same Sanity content, with the same titles, meta descriptions, H1s, canonicals, structured-data types and URLs. The parity check reports 0 errors and 0 warnings, and every page carries more words and internal links than the live one.
 
 Deliberate differences from the live site:
 - "All Services" lists every service. Webflow's list was capped at 16, which hid Panels, EV Chargers, Recessed Lighting, Troubleshooting and Remodels.
 - The blog index lists every post, instead of 6 per page.
 - Duplicate H1s are demoted to H2.
 - The "Buy this Template" leftovers from the purchased Webflow template are removed.
-
-The design refresh builds on this foundation, section by section.
+- `/estimate` is a real, indexable page with the estimate form (it used to 404); every "Free Estimate" link goes there.
 
 ## Phases
 
@@ -73,9 +58,9 @@ The design refresh builds on this foundation, section by section.
 |---|---|
 | Webflow 301 redirects | **None existed** (confirmed by the owner). No legacy rules to carry over. |
 | Search Console data | Pulled through OpenSEO (16 months, 107 URLs): `migration/seo-equity/gsc-pages-16mo.tsv`. 11 misspelled URLs that Google has seen and that 404 today now 301 to the right posts. |
-| Sanity project | **Created:** "The Wire Guy Electric" (`qhi2uf0l`, dataset `production`), in the Celaya Ventures org. All 134 documents imported, with 83 images re-hosted on Sanity's CDN. The build output has zero references to Webflow's CDN. |
+| Sanity project | **Created:** "The Wire Guy Electric" (`qhi2uf0l`, dataset `production`), in the Celaya Ventures org. On 2026-10-17 the redesign's content (201 documents: page sections, 46 reviews, local facts, service answers) was imported with `--replace`, after a backup export of the previous dataset. Images are on Sanity's CDN; the build output has zero references to Webflow's CDN. |
 | Sanity Studio hosting | **Waiting on a token.** Create one in sanity.io/manage → project → API → Tokens with "Deploy Studio" permission, save it as GitHub secret `SANITY_AUTH_TOKEN`, then run the "Deploy Sanity Studio" workflow. Alternatively, run `pnpm --filter studio deploy` from a machine logged in to Sanity. |
-| Vercel | **Live preview.** Project `thewireguyelectric` in the celaya-ventures team, root directory `web`, with Sanity env vars set. It deploys on every push to https://thewireguyelectric.vercel.app, behind Vercel Authentication and noindexed. The parity check against this real deployment reports 0 errors. A "Protection Bypass for Automation" secret exists for the crawler; revoke it after launch. **Still to do (dashboard):** create a Deploy Hook and point a Sanity webhook at it, so publishing rebuilds the site. |
+| Vercel | **Live preview.** Project `thewireguyelectric` in the celaya-ventures team, root directory `web`, with Sanity env vars set. It deploys on every push to https://thewireguyelectric.vercel.app, noindexed and behind Vercel Authentication for all deployments (set to "All deployments" on 2026-10-13, because the default left the production `.vercel.app` address public; switch back at cutover). The parity check against this real deployment reports 0 errors. A "Protection Bypass for Automation" secret exists for the crawler; revoke it after launch. **Still to do (dashboard):** create a Deploy Hook and point a Sanity webhook at it, so publishing rebuilds the site. |
 | Scottsdale office | A real, appointment-only office with its own Google Business Profile. It's modeled as its own `Electrician` entity on `/locations/scottsdale` (linked to the main business), and shown in the footer as "by appointment". **To do:** enter the exact Google Business Profile name in Studio → Site settings → Addresses, and point that profile's website link at `/locations/scottsdale`. |
 | Form delivery | `/api/contact` delivers to Formspark (`FORMSPARK_FORM_ID`), any webhook (`LEAD_WEBHOOK_URL`, e.g. Zapier → Housecall Pro) and/or email (Resend). Configure at least one before launch. |
 | Blog authors | None shown (owner's choice). Schema attributes posts to the business. |
@@ -122,7 +107,7 @@ Pick a date outside a Google core-update rollout (check the [Search Status Dashb
 
 **Launch:**
 1. In Vercel, add `www.thewireguyelectric.com` as primary and `thewireguyelectric.com` → redirect to www. Confirm SSL.
-2. Set `SITE_INDEXABLE=true` on **Production only** and redeploy.
+2. Set `SITE_INDEXABLE=true` on **Production only**. Set Vercel Authentication (Settings → Deployment Protection) back from "All deployments" to "Standard protection" (all except custom domains), or the real domain will ask visitors to log in to Vercel. Then redeploy.
 3. Switch DNS to Vercel.
 4. Verify:
    - `curl -sI https://www.thewireguyelectric.com/` gives 200 with no `x-robots-tag`;

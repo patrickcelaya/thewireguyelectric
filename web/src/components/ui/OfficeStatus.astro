@@ -1,0 +1,41 @@
+---
+// Emma, as a subtle status line. The <head> gate (site/HeadGate.astro) sets
+// html.oo (open) or html.oc (closed, + oc-far at weekends) before first paint, and
+// CSS shows the matching words. Without JS only the published hours show, so the
+// line never claims "ready" at 10 pm.
+//   line: ● Emma is ready for your call | ● Office opens [Monday ]at 9 am | the hours
+//   util: the header's utility line: the hours sit beside it, so it has no hours of its own
+import type {SiteSettings} from '../../lib/types'
+import {officeHours} from '../../lib/site'
+
+interface Props {
+  settings: SiteSettings
+  variant?: 'line' | 'util'
+  class?: string
+}
+
+const {settings, variant = 'line', class: className} = Astro.props
+const {line, next} = officeHours(settings)
+---
+
+{
+  next && (
+    <span class:list={['status', variant === 'util' && 'status--util', className]} data-office>
+      <span class="dot" aria-hidden="true" />{' '}
+      <span class="st-open">Emma is ready for your call</span>{' '}
+      {variant === 'util' ? (
+        <span class="st-closed">
+          <b>After hours</b>
+          <span class="sep" aria-hidden="true"> · </span>Office opens <span class="st-day">{next.day} </span>at {next.time}
+        </span>
+      ) : (
+        <>
+          <span class="st-closed">
+            Office opens <span class="st-day">{next.day} </span>at {next.time}
+          </span>{' '}
+          <span class="st-hours">{line}</span>
+        </>
+      )}
+    </span>
+  )
+}

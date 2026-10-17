@@ -11,20 +11,45 @@ The prime directive of this migration is **no SEO loss**: every URL, title, meta
 ## Repository layout
 
 ```
-web/        Astro site (deployed to Vercel; Vercel root directory = web)
-studio/     Sanity Studio (deployed to <host>.sanity.studio)
+web/        Astro site (static, deployed to Vercel; Vercel root directory = web)
+  src/layouts/SiteLayout.astro   the one layout: <head> + SEO, header, footer, call bar, JSON-LD @graph
+  src/pages/                     routes (see "How pages are built")
+  src/components/                site/ (chrome), ui/ (atoms), sections/ (page sections), PageBuilderPage, Seo, PortableText
+  src/lib/                       queries.ts (GROQ), types.ts, schema.ts (JSON-LD), seo.ts, image.ts, site.ts (NAP helpers) ...
+  src/styles/                    tokens.css, core.css (every page) + one layer per page type (home, inner, cms, post, pages, atlas)
+  src/scripts/                   site.ts: the one small progressive-enhancement script
+studio/     Sanity Studio (schemaTypes/ = the content model)
 scripts/
   seo/      crawl.mjs (SEO crawler), parity.mjs (old vs new diff), serve-build.mjs (local Vercel emulator)
-  migrate/  webflow-to-sanity.mjs (Webflow export → Sanity NDJSON)
+  migrate/  webflow-to-sanity.mjs (Webflow export → Sanity NDJSON) and its content/ modules, validate-dataset.mjs,
+            verify-content.mjs, legacy-image-map.mjs
+  valley/   relief.py (the valley map's relief asset)
 migration/
   webflow-cms/      Raw Webflow CMS export (API JSON + CSV) and forms/scripts metadata
   live-snapshots/   Published HTML of the static pages (source for porting their copy)
+  page-content/     The live pages' visible copy and links, which verify-content.mjs checks the sections against
+  content-data/     Sourced data the migration applies (FAQs, relations, local facts, CMS template content); README explains each
   seo-baseline.json Crawl of the live site on 2026-10-12: the parity target
   seo-equity/       Redirect candidates and SEO-equity notes
   sanity-import/    Generated Sanity dataset (production.ndjson) + stable ID map
-docs/               Plans, strategy, research
+docs/               Design system, content model, plans, strategy, research
 .claude/skills/     OpenSEO skills (from every-app/open-seo@89e5a00); they use the OpenSEO connector
 ```
+
+## How pages are built
+
+Every page renders the round-5 design on `SiteLayout` from Sanity content (`docs/DESIGN_SYSTEM.md` is the reference for components, CSS and rules; `docs/CONTENT_MODEL.md` for the content).
+
+| Route | Built by | Content |
+|---|---|---|
+| `/` | `pages/index.astro` → `SectionRenderer` | the `index` page document's sections |
+| `/about-us`, `/our-team`, `/careers`, `/faq`, `/contact-us`, `/commercial-electrician` | `pages/[page].astro` → `PageBuilderPage` → `SectionRenderer` | each page document's sections |
+| `/services`, `/blog` | `pages/services.astro`, `pages/blog.astro` → `PageBuilderPage` | the page document, plus every service or post when it has no list yet |
+| `/services/[slug]`, `/locations/[slug]`, `/blog-posts/[slug]`, `/services-categories/[slug]`, `/posts-categories/[slug]` | the route file, composing the CMS template sections (`docs/DESIGN_SYSTEM.md` §13) | the service, location, post or category document |
+| `/estimate` | `pages/estimate.astro` (code route: the form is the page) | Site settings, reviews and FAQs |
+| `/404`, `/sitemap.xml`, `/robots.txt`, `/api/contact` | their route files | |
+
+Each page keeps the live site's title, meta description, H1, canonical and URL; `scripts/seo/parity.mjs` enforces it. Templates render nothing for empty data, so a page also builds from a dataset that lacks newer fields.
 
 ## Getting started
 
@@ -60,13 +85,22 @@ node scripts/migrate/webflow-to-sanity.mjs                  # regenerate migrati
 cd studio && npx sanity dataset import ../migration/sanity-import/production.ndjson production --replace
 ```
 
-The import downloads every image from Webflow's CDN into Sanity (`_sanityAsset`), so nothing depends on Webflow afterwards. Document IDs are stable across re-runs (`id-map.json`), so the import can be repeated safely until launch. The script also fixes the broken internal links found on the live site (`/estimate`, `/locations/mesa`, ...) and normalizes absolute links to relative paths. See `migration/sanity-import/report.json`.
+The import downloads every image from Webflow's CDN into Sanity (`_sanityAsset`), so nothing depends on Webflow afterwards. Document IDs are stable across re-runs (`id-map.json`), so the import can be repeated safely until launch. The script also fixes the broken internal links found on the live site (`/locations/mesa`, `/services/electrical-panels`, ...), sends links worded as a free estimate to `/estimate` and normalizes absolute links to relative paths. See `migration/sanity-import/report.json`.
+
+Content changes go through the pipeline, never by editing the NDJSON: edit a module in `scripts/migrate/content/` (`fixes`, `reviews`, `local-facts`, `page-sections`, `cms-templates`, applied in that order) or its data in `migration/content-data/`, regenerate, then check:
+
+```bash
+node scripts/migrate/webflow-to-sanity.mjs
+node scripts/migrate/validate-dataset.mjs   # every document, section and field matches the Studio schema
+node scripts/migrate/verify-content.mjs     # every live string and link is in the sections (or in _omissions.json with a reason)
+node scripts/migrate/legacy-image-map.mjs   # after an import that adds images: Webflow URL → Sanity asset map
+```
 
 ## SEO parity check
 
 ```bash
 pnpm seo:baseline                                     # re-crawl the live Webflow site (only before launch)
-SITE_INDEXABLE=true pnpm build
+PUBLIC_SANITY_PROJECT_ID= SITE_INDEXABLE=true pnpm build   # the local dataset; drop the first variable to build from Sanity
 node scripts/seo/serve-build.mjs &                    # serve web/.vercel/output like Vercel does
 node scripts/seo/crawl.mjs --base http://localhost:4321 --paths-from migration/seo-baseline.json --out migration/seo-candidate.json
 node scripts/seo/parity.mjs                           # exits 1 on any SEO regression

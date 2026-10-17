@@ -1,0 +1,33 @@
+---
+// The signature: a copper wire runs in from the edge of its field and draws the
+// bulb (the logo's outline); then the base clicks in and the glass switches on.
+// A faint full outline is there from the first frame, so it is never half drawn
+// without JS or with reduced motion. site.ts measures the field (the closest
+// [data-bulb-field]) and starts the lead-in exactly at its edge when the bulb
+// scrolls into view (class is-in). Decorative: aria-hidden.
+import {BULB_BARS, BULB_CAP, BULB_LEAD, BULB_PATH, BULB_PATH_REVERSED} from '../../lib/bulb'
+
+interface Props {
+  /** The side the wire comes in from. */
+  lead?: 'left' | 'right'
+  class?: string
+}
+
+const {lead = 'left', class: className} = Astro.props
+const body = lead === 'left' ? BULB_PATH : BULB_PATH_REVERSED
+const leadPath = BULB_LEAD[lead]
+---
+
+<div class:list={['bulb', className]} data-lead={lead} aria-hidden="true">
+  <svg viewBox="0 0 300 430">
+    <ellipse class="glow" cx="150" cy="148" rx="182" ry="176" fill="url(#bulbglow)"></ellipse>
+    <path class="glass" d={`${BULB_PATH} Z`}></path>
+    <g class="ghost"><path data-lead-path d={leadPath}></path><path d={body}></path></g>
+    <path class="wire wire--lead" pathLength="1" data-lead-path d={leadPath}></path>
+    <path class="wire wire--bulb" pathLength="1" d={body}></path>
+    <g class="bars">
+      {BULB_BARS.map(([x, y, width, height]) => <rect x={x} y={y} width={width} height={height} rx="10" />)}
+      <path d={BULB_CAP}></path>
+    </g>
+  </svg>
+</div>

@@ -1,0 +1,200 @@
+{
+  "page": "blog",
+  "url": "/blog",
+  "capturedAt": "2026-10-13",
+  "source": "Discovery inventory blog.json: the live page (thewireguyelectric.com/blog) as served on 2026-10-13, verbatim",
+  "title": "Electrical Tips & Guides | The Wire Guy Electric Blog",
+  "metaDescription": "Helpful electrical tips, cost guides, and expert advice from a licensed Phoenix electrician. Panel upgrades, lighting, surge protection, and more.",
+  "h1": "The Wire Guy Blog",
+  "sections": [
+    {
+      "index": 0,
+      "element": "div.section.banner-inner",
+      "purpose": "Page banner: H1 \"The Wire Guy Blog\" + paragraph",
+      "source": "static",
+      "headings": [
+        {
+          "level": 1,
+          "text": "The Wire Guy Blog"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.inner-wrapper.blog",
+          "src": "/wf/a/66f59b1dd36a289c7a2b05c6_electrician-troubleshooting.avif",
+          "cssSelector": ".inner-wrapper.blog",
+          "role": "REAL photo: tech working wires out of a recessed-can hole (1160px)"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The Wire Guy Blog"
+        },
+        {
+          "type": "paragraph",
+          "text": "This blog explains the fundamental concepts of home wiring, from outlets and switches to circuit breakers, helping homeowners grasp the essentials of their electrical systems."
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f59b1dd36a289c7a2b05c6_electrician-troubleshooting.avif",
+          "alt": null,
+          "role": "REAL photo: tech working wires out of a recessed-can hole (1160px)",
+          "kind": "css background (.inner-wrapper.blog)"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "index": 1,
+      "element": "div.section",
+      "purpose": "Post grid: CMS list of post cards (cover image, title link, excerpt, \"Read More\")",
+      "source": "cms",
+      "headings": [],
+      "content": [
+        {
+          "type": "cmsList",
+          "note": "Webflow collection list; legacy.ts fillList() re-renders it from Sanity using the first item as the card template. The card below is the sample/template item.",
+          "cardTemplate": [
+            {
+              "type": "card",
+              "kind": "postListCard",
+              "children": [
+                {
+                  "type": "linkWrapper",
+                  "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+                  "children": [
+                    {
+                      "type": "image",
+                      "src": "/wf/a/6ab08ce609bc9f37283bdbfb_Screenshot-2026-09-20-at-6.48.10-PM.png",
+                      "alt": "Blog",
+                      "role": "CMS sample: blog cover image",
+                      "class": "services-list-image"
+                    }
+                  ],
+                  "cms": "all published posts, newest first (getPosts) — 53 today; Webflow paginated with ?f384d0a1_page=N"
+                },
+                {
+                  "type": "link",
+                  "text": "How Many Circuits Does a Kitchen Need? An Arizona Remodel Wiring Guide",
+                  "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "A modern kitchen needs seven or eight circuits. Most Valley kitchens built before 2000 have three. Here is what a remodel actually requires and when to wire it.",
+                  "cms": "all published posts, newest first (getPosts) — 53 today; Webflow paginated with ?f384d0a1_page=N"
+                },
+                {
+                  "type": "button",
+                  "label": "Read More",
+                  "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+                  "variant": "icon-link",
+                  "icon": "fa-arrow-right",
+                  "cms": "all published posts, newest first (getPosts) — 53 today; Webflow paginated with ?f384d0a1_page=N"
+                }
+              ],
+              "cms": "all published posts, newest first (getPosts) — 53 today; Webflow paginated with ?f384d0a1_page=N"
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/6ab08ce609bc9f37283bdbfb_Screenshot-2026-09-20-at-6.48.10-PM.png",
+          "alt": "Blog",
+          "role": "CMS sample: blog cover image",
+          "kind": "img"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Read More",
+          "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+          "cms": "all published posts, newest first (getPosts) — 53 today; Webflow paginated with ?f384d0a1_page=N"
+        }
+      ],
+      "notes": [
+        "Card images carry alt \"Blog\" in the Webflow markup (port uses the post title).",
+        "No category filter, no dates on cards, no featured post."
+      ]
+    }
+  ],
+  "copy": [
+    {
+      "section": 0,
+      "tag": "h1",
+      "text": "The Wire Guy Blog"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "This blog explains the fundamental concepts of home wiring, from outlets and switches to circuit breakers, helping homeowners grasp the essentials of their electrical systems."
+    },
+    {
+      "section": 1,
+      "tag": "img-alt",
+      "text": "Blog",
+      "src": "/wf/a/6ab08ce609bc9f37283bdbfb_Screenshot-2026-09-20-at-6.48.10-PM.png"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "How Many Circuits Does a Kitchen Need? An Arizona Remodel Wiring Guide",
+      "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "A modern kitchen needs seven or eight circuits. Most Valley kitchens built before 2000 have three. Here is what a remodel actually requires and when to wire it.",
+      "cms": "all published posts, newest first (getPosts) — 53 today; Webflow paginated with ?f384d0a1_page=N"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Read More",
+      "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+      "cms": "all published posts, newest first (getPosts) — 53 today; Webflow paginated with ?f384d0a1_page=N"
+    }
+  ],
+  "links": [
+    {
+      "section": 1,
+      "text": "",
+      "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+      "kind": "cardLink"
+    },
+    {
+      "section": 1,
+      "text": "How Many Circuits Does a Kitchen Need? An Arizona Remodel Wiring Guide",
+      "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "Read More",
+      "href": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
+      "kind": "button"
+    }
+  ],
+  "pageBuilderMapping": [
+    {
+      "order": 1,
+      "sectionType": "heroSection",
+      "fromInventorySection": 0,
+      "fields": "heading = H1; text = banner paragraph"
+    },
+    {
+      "order": 2,
+      "sectionType": "postsSection",
+      "fromInventorySection": 1,
+      "fields": "limit: all; show date + category; optional featured first post; category filter once posts have categories (0 of 53 do today)"
+    },
+    {
+      "order": 3,
+      "sectionType": "ctaSection",
+      "fromInventorySection": null,
+      "fields": "Shared CTA band (current page has none)"
+    }
+  ]
+}

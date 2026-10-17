@@ -1,0 +1,171 @@
+---
+// The hero of every page-builder page except the homepage (about us, our team,
+// careers, FAQ, contact, services, blog, commercial), in the language of the
+// homepage's "who we are": the words on the page grid, one real photo running off
+// the right edge of the screen. The photo is shown whole at its own proportions, so
+// no face is ever cropped, tinted or covered at any width; a portrait photo stands
+// in a narrower column. Phones: the trail, the words, then the photo edge to edge
+// (the call bar is the button pair there, as on the city and service heroes).
+//
+// The H1 is the page heading (never the section's); its accent words come from the
+// section. With the trust strip on, the glass trust card (the 5.0, the Google link,
+// the licence, the section's credentials line and up to three review quotes) closes
+// the hero. Nothing animates in. Styles: styles/pages.css "INNER HERO".
+import type {HeroSection, SiteSettings} from '../../lib/types'
+import type {Crumb} from '../../lib/seo'
+import {ESTIMATE_PATH, ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
+import {hasImage} from '../../lib/image'
+import {innerHeroImage} from '../../lib/hero'
+import {getRedirectMap} from '../../lib/queries'
+import Breadcrumbs from '../ui/Breadcrumbs.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Accent from '../ui/Accent.astro'
+import Button from '../ui/Button.astro'
+import ExternalLink from '../ui/ExternalLink.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import RocLink from '../ui/RocLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+import Stars from '../ui/Stars.astro'
+
+interface Props {
+  section: HeroSection
+  /** The page H1 (page.heading). */
+  heading: string
+  settings: SiteSettings
+  /** The page's breadcrumb trail (the same array as meta.breadcrumbs). */
+  crumbs?: Crumb[]
+}
+
+const {section, heading, settings, crumbs} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const photo = hasImage(section.image) ? section.image : undefined
+// people who stand low in the frame under a big sky (the fleet): a wide band below the words up to 1,179 px (styles/pages.css)
+const frame = innerHeroImage(photo)
+const {tall, low} = frame
+// Long headings ("Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ") set a size smaller.
+const long = heading.length > 44
+const notes = (section.ctaNotes ?? []).filter(Boolean)
+const rating = section.showTrustBar ? siteRating(settings) : undefined
+const quotes = section.reviewSnippets.filter((q) => q.text).slice(0, 3)
+const {primaryCta, secondaryCta} = section
+const showPhone = section.showPhone === true
+const hasButtons = Boolean(primaryCta || secondaryCta || showPhone)
+const primaryHref = primaryCta ? ctaHref(primaryCta, redirects) : undefined
+const secondaryHref = secondaryCta ? ctaHref(secondaryCta, redirects) : undefined
+// on phones the call bar carries the estimate and call pair, so those two buttons step aside there
+const est = (href?: string) => (href === ESTIMATE_PATH ? 'phero__est' : undefined)
+---
+
+<section class:list={['phero', !photo && 'phero--bare', tall && 'phero--tall', low && 'phero--low']} aria-labelledby={id}>
+  <div class="phero__grid">
+    <div class="phero__copy">
+      {crumbs && <Breadcrumbs crumbs={crumbs} class="phero__crumbs" />}
+      {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
+      <h1 id={id} class:list={['phero__h', long && 'phero__h--long']}><Accent text={heading} accent={section.headingAccent} /></h1>
+      {section.text && <p class="phero__lede">{section.text}</p>}
+      {
+        hasButtons && (
+          <div class="btn-row phero__btns">
+            {primaryCta && primaryHref && (
+              <Button href={primaryHref} icon="go" class={est(primaryHref)}>
+                {primaryCta.label}
+              </Button>
+            )}{' '}
+            {secondaryCta && secondaryHref && (
+              <Button href={secondaryHref} variant="ghost" class={est(secondaryHref)}>
+                {secondaryCta.label}
+              </Button>
+            )}{' '}
+            {showPhone && (
+              <Button href={telHref(settings)} variant="paper" icon="tel">
+                <span class="tnum">Call {settings.phone}</span>
+              </Button>
+            )}
+          </div>
+        )
+      }
+      {
+        notes.length > 0 && (
+          <p class="phero__notes">
+            {notes.map((note) => (
+              <>
+                <span>{note}</span>{' '}
+              </>
+            ))}
+          </p>
+        )
+      }
+      {
+        showPhone && (
+          <p class="phero__status">
+            <OfficeStatus settings={settings} />
+          </p>
+        )
+      }
+    </div>
+    {
+      photo && (
+        <figure class="phero__photo">
+          <SanityImage
+            image={photo}
+            widths={frame.widths}
+            sizes={frame.sizes}
+            priority
+          />
+          {photo.caption && <figcaption>{photo.caption}</figcaption>}
+        </figure>
+      )
+    }
+  </div>
+  {
+    (rating || quotes.length > 0 || section.trustLine) && (
+      <div class="wrap phero__proof">
+        <div class="itrust__card phero__card">
+          {rating && (
+            <div class="phero__score">
+              <p class="itrust__num" aria-hidden="true">
+                {rating.value}
+              </p>
+              <div class="itrust__meta">
+                <p class="itrust__rating">
+                  <Stars />{' '}
+                  <span>
+                    <span class="sr-only">Rated {rating.value} out of 5 </span>
+                    {ratingSummary(rating)}
+                  </span>
+                </p>
+                {rating.href && (
+                  <p>
+                    <ExternalLink class="link link--ext" href={rating.href}>
+                      Read our reviews on {rating.source}
+                    </ExternalLink>
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+          {(settings.rocLicense || section.trustLine) && (
+            <div class="phero__creds">
+              {settings.rocLicense && (
+                <p class="itrust__roc">
+                  <RocLink settings={settings} />
+                </p>
+              )}
+              {section.trustLine && <p class="phero__line">{section.trustLine}</p>}
+            </div>
+          )}
+          {quotes.length > 0 && (
+            <ul class="phero__quotes" role="list" aria-label="What customers say">
+              {quotes.map((q) => (
+                <li>
+                  <Stars /> <p>“{q.text}”</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    )
+  }
+</section>

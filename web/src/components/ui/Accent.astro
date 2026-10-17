@@ -1,0 +1,17 @@
+---
+// A heading's text with its highlighted words wrapped (copper by default; the copper
+// bands use "glow-word" or "hl"). Plain text when the words aren't in the heading.
+import {accentParts} from '../../lib/format'
+
+interface Props {
+  text: string
+  accent?: string | null
+  /** The highlight's class: "accent" (copper), "glow-word" or "hl" (light on copper). */
+  tone?: 'accent' | 'glow-word' | 'hl'
+}
+
+const {text, accent, tone = 'accent'} = Astro.props
+const [before, words, after] = accentParts(text, accent)
+---
+
+{before}{words && <span class={tone}>{words}</span>}{after}

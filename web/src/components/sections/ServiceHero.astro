@@ -1,0 +1,78 @@
+---
+// A service page's hero (round-5 Panels mockup): the H1 huge in white on copper, the
+// short description as the lede, the estimate and call buttons, Emma's status, and the
+// glass trust card hanging off its foot. How the service's photo is staged depends on
+// what it is (lib/cms.ts heroStaging):
+//   tint:  one of the crew's own job photos without people, full bleed under the copper tint;
+//   split: a company photo of people, in natural colour on the right, framed on their
+//          faces; on phones it comes first, right under the header, so no face ever sits
+//          behind the call bar at the foot of the screen;
+//   plain: no photo (stock is never shown): the copper light with the bulb drawn on it.
+// Styles: styles/inner.css (.ihero--copper) and styles/cms.css.
+import type {ServiceDoc, SiteSettings} from '../../lib/types'
+import type {Crumb} from '../../lib/seo'
+import {ESTIMATE_PATH, telHref} from '../../lib/site'
+import {facesOf} from '../../lib/brand-photos'
+import {SERVICE_HERO_IMAGE, facesFocus, heroStaging} from '../../lib/cms'
+import Breadcrumbs from '../ui/Breadcrumbs.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Button from '../ui/Button.astro'
+import Bulb from '../ui/Bulb.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import SanityImage from '../ui/SanityImage.astro'
+import TrustCard from './TrustCard.astro'
+
+interface Props {
+  service: ServiceDoc
+  /** The page H1 (service.heading ?? service.name). */
+  heading: string
+  settings: SiteSettings
+  crumbs: Crumb[]
+}
+
+const {service, heading, settings, crumbs} = Astro.props
+const staging = heroStaging(service.mainImage)
+const eyebrow = [service.category && `${service.category.name} service`, 'Mesa and the Phoenix valley'].filter(Boolean).join(' · ')
+// the photo of the crew, framed on their faces
+const focus = staging === 'split' ? facesFocus(facesOf(service.mainImage)) : undefined
+// the longest word's length: on phones the H1 sets small enough for it to fit the line (styles/inner.css)
+const longestWord = Math.max(...heading.split(/\s+/).map((word) => word.length))
+---
+
+<section class:list={['ihero ihero--copper ihero--service', `ihero--${staging}`]} aria-labelledby="hero-h">
+  <div class="ihero__stage" data-bulb-field>
+    {
+      staging === 'tint' && (
+        <figure class="ihero__photo">
+          <SanityImage image={service.mainImage} widths={[...SERVICE_HERO_IMAGE.tint.widths]} sizes={SERVICE_HERO_IMAGE.tint.sizes} priority />
+        </figure>
+      )
+    }
+    {
+      staging === 'split' && (
+        <figure class="ihero__side">
+          <SanityImage
+            image={service.mainImage}
+            widths={[...SERVICE_HERO_IMAGE.split.widths]}
+            sizes={SERVICE_HERO_IMAGE.split.sizes}
+            style={focus && `object-position:${focus}`}
+            priority
+          />
+        </figure>
+      )
+    }
+    <div class="wrap ihero__copy">
+      <Breadcrumbs crumbs={crumbs} variant="sky" />
+      <Eyebrow variant="cream">{eyebrow}</Eyebrow>
+      <h1 id="hero-h" style={`--word:${longestWord}`}>{heading}</h1>
+      {service.shortDescription && <p class="ihero__lede">{service.shortDescription}</p>}
+      <div class="btn-row">
+        <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
+        <Button href={telHref(settings)} variant="cream" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
+      </div>
+      <p class="ihero__status"><OfficeStatus settings={settings} /></p>
+    </div>
+    {staging === 'plain' && <Bulb lead="right" class="ihero__bulb" />}
+  </div>
+  <TrustCard settings={settings} />
+</section>

@@ -1,0 +1,212 @@
+---
+// Renders a page's page-builder sections (page.sections) in the round-5 design.
+// Each _type maps to one section component; the variant comes from the section's own
+// fields (a feature grid's style, a services list's layout, a quote's source, a posts
+// list's layout) and the page (the homepage gets the title-card hero, the review lanes
+// and the valley with its sky; every other page the inner hero with its breadcrumb
+// trail, the picked reviews and the valley's atlas). Empty sections render nothing;
+// chapters are numbered in order and the questions and guides share one band
+// (lib/sections.ts). The page H1 is page.heading, shown by the hero; no section
+// renders an H1.
+//
+// A section type or variant no component draws yet stops the build with a clear
+// message instead of being dropped silently (content must never disappear): build
+// its component and map it here.
+//
+// The H1 is never missing: a page whose content predates the page builder (no
+// sections, as in a dataset not yet re-imported) still gets its hero and the
+// closing estimate band (lib/sections.ts withPageFrame). One form per page: a page
+// with a contact form leaves out the CTA band's form.
+import type {FaqItem, PageDoc, PageSection, SiteSettings} from '../../lib/types'
+import type {Crumb} from '../../lib/seo'
+import {planSections, withPageFrame} from '../../lib/sections'
+import {serviceAreaCities, HOME_CITY_SLUG} from '../../lib/cities'
+import {ctaHref} from '../../lib/site'
+import {getNavModel} from '../../lib/nav'
+import {getRedirectMap} from '../../lib/queries'
+import {retargetLinks} from '../../lib/portable-text'
+import HeroHome from './HeroHome.astro'
+import HeroInner from './HeroInner.astro'
+import TeamIntro from './TeamIntro.astro'
+import ValueCards from './ValueCards.astro'
+import Capabilities from './Capabilities.astro'
+import ServicesMosaic from './ServicesMosaic.astro'
+import ServicesDirectory from './ServicesDirectory.astro'
+import FeaturedServices from './FeaturedServices.astro'
+import PullQuote from './PullQuote.astro'
+import Statement from './Statement.astro'
+import ProcessSteps from './ProcessSteps.astro'
+import ReviewsCarousel from './ReviewsCarousel.astro'
+import ReviewsStatic from './ReviewsStatic.astro'
+import Valley from './Valley.astro'
+import Gallery from './Gallery.astro'
+import FaqBlock from './FaqBlock.astro'
+import FaqTopics from './FaqTopics.astro'
+import GuidesBlock from './GuidesBlock.astro'
+import PostsIndex from './PostsIndex.astro'
+import CtaBand from './CtaBand.astro'
+import RichText from './RichText.astro'
+import MediaText from './MediaText.astro'
+import Highlights from './Highlights.astro'
+import TrustFacts from './TrustFacts.astro'
+import TeamGrid from './TeamGrid.astro'
+import JobOpenings from './JobOpenings.astro'
+import ContactBlock from './ContactBlock.astro'
+import OfficeLocations from './OfficeLocations.astro'
+
+interface Props {
+  page: Pick<PageDoc, 'slug' | 'heading' | 'title' | 'sections'>
+  settings: SiteSettings
+  /** The page's breadcrumb trail (meta.breadcrumbs), shown by the inner hero. */
+  crumbs?: Crumb[]
+}
+
+const {page, settings, crumbs} = Astro.props
+const home = page.slug === 'index'
+const path = home ? '/' : `/${page.slug}`
+const [nav, redirects] = await Promise.all([getNavModel(), getRedirectMap()])
+
+function unbuilt(section: PageSection, variant?: string): never {
+  const what = variant ? `${section._type} (${variant})` : section._type
+  throw new Error(`SectionRenderer: no component for ${what} on ${path} yet. Build it in components/sections and map it here.`)
+}
+
+const plan = planSections(withPageFrame(page.sections ?? [], settings))
+const sections = plan.flatMap((item) => (item.kind === 'section' ? [item.section] : []))
+
+// Fail at build time on anything this renderer can't draw (see the note above).
+for (const s of sections) {
+  if (s._type === 'servicesSection' && s.layout && !['featured', 'grid', 'grouped'].includes(s.layout)) unbuilt(s, `layout ${s.layout}`)
+  if (s._type === 'postsSection' && s.layout && !['cards', 'byService'].includes(s.layout)) unbuilt(s, `layout ${s.layout}`)
+}
+
+// The contact form and the CTA band's form share the confirmation's fixed ids: one per page.
+const contact = sections.find((s) => s._type === 'contactSection')
+if (contact && sections.some((s) => s._type === 'ctaSection')) {
+  console.warn(`[sections] ${path} has a contact form, so its CTA band is left out (one form per page)`)
+}
+// "Apply Now" on a job goes to the application form when the page has one.
+const applyHref = contact?._type === 'contactSection' && contact.formType === 'careers' ? `#${contact._key}` : undefined
+// On a page with a form, an answer's link to the page itself ("Contact us today" on
+// /contact-us) goes to the form instead.
+const toForm = (faqs: FaqItem[]) =>
+  contact ? faqs.map((f) => ({...f, answer: retargetLinks(f.answer, (href) => href.replace(/\/$/, '') === path, `#${contact._key}`)})) : faqs
+
+const citiesOf = (s: Extract<PageSection, {_type: 'locationsSection'}>) => {
+  const cities = serviceAreaCities(s.homeCity, s.locations)
+  return s.includeHomeCity === false ? cities.filter((c) => c.slug !== HOME_CITY_SLUG) : cities
+}
+const link = (cta: {label: string; href: string} | null | undefined) => (cta ? {label: cta.label, href: ctaHref(cta, redirects)} : undefined)
+
+// two question bands in a row alternate sand and bone
+const bone = new Set<number>()
+plan.forEach((item, i) => {
+  if (item.kind === 'answers' && plan[i - 1]?.kind === 'answers' && !bone.has(i - 1)) bone.add(i)
+})
+---
+
+{
+  plan.map((item, index) => {
+    if (item.kind === 'answers') {
+      const {faq, posts, numbers} = item
+      const headingId = faq?.heading ? `${faq._key}-h` : posts?.heading ? `${posts._key}-h` : undefined
+      return (
+        <section class:list={['section answers cv', bone.has(index) && 'answers--bone']} aria-labelledby={headingId} aria-label={headingId ? undefined : (faq?.eyebrow ?? 'Questions')}>
+          <div class="wrap">
+            {faq && faq.faqs.length > 0 && (
+              <FaqBlock
+                faqs={toForm(faq.faqs)}
+                heading={faq.heading ?? 'Questions and answers'}
+                intro={faq.intro}
+                id={`${faq._key}-h`}
+                eyebrow={faq.eyebrow}
+                number={numbers.faq}
+                more={page.slug === 'faq' ? null : undefined}
+                image={home ? undefined : faq.image}
+              />
+            )}
+            {faq && faq.groups.some((g) => g.faqs.length) && (
+              <FaqTopics
+                section={{...faq, groups: faq.groups.map((g) => ({...g, faqs: toForm(g.faqs)}))}}
+                number={faq.faqs.length ? undefined : numbers.faq}
+                nested={faq.faqs.length > 0}
+              />
+            )}
+            {posts && <GuidesBlock section={posts} number={numbers.posts} />}
+          </div>
+        </section>
+      )
+    }
+    const {section: s, number} = item
+    switch (s._type) {
+      case 'heroSection':
+        return home ? (
+          <HeroHome section={s} heading={page.heading ?? page.title} settings={settings} />
+        ) : (
+          <HeroInner section={s} heading={page.heading ?? page.title} settings={settings} crumbs={crumbs} />
+        )
+      case 'teamIntroSection':
+        return <TeamIntro section={s} settings={settings} number={number} />
+      case 'featureGridSection':
+        return s.style === 'checklist' ? <Capabilities section={s} categories={nav.serviceGroups} number={number} /> : <ValueCards section={s} />
+      case 'servicesSection':
+        if (s.layout !== 'featured') return <ServicesDirectory section={s} number={number} />
+        return home ? <ServicesMosaic section={s} number={number} /> : <FeaturedServices section={s} number={number} />
+      case 'quoteSection':
+        return s.review ? <PullQuote section={{...s, review: s.review}} settings={settings} /> : <Statement section={s} />
+      case 'processStepsSection':
+        return <ProcessSteps section={s} settings={settings} number={number} />
+      case 'reviewsSection':
+        return home ? (
+          <ReviewsCarousel settings={settings} reviews={s.reviews} heading={s.heading} accent={s.headingAccent} number={number} cta={link(s.cta)} />
+        ) : (
+          <ReviewsStatic
+            settings={settings}
+            reviews={s.reviews}
+            heading={s.heading ?? 'What our customers say'}
+            intro={s.intro}
+            number={number}
+            id={`${s._key}-h`}
+            cta={link(s.cta)}
+          />
+        )
+      case 'locationsSection':
+        return (
+          <Valley
+            settings={settings}
+            cities={citiesOf(s)}
+            variant={home ? 'home' : 'inner'}
+            heading={s.heading ?? ''}
+            accent={s.headingAccent}
+            intro={s.intro}
+            eyebrow={s.eyebrow}
+            number={number}
+          />
+        )
+      case 'gallerySection':
+        return <Gallery section={s} number={number} />
+      case 'postsSection':
+        return <PostsIndex section={s} number={number} />
+      case 'ctaSection':
+        return s.cta && !contact && <CtaBand settings={settings} heading={s.cta.heading} text={s.cta.text} number={number} />
+      case 'richTextSection':
+        return <RichText section={s} number={number} />
+      case 'mediaTextSection':
+        return <MediaText section={s} number={number} />
+      case 'highlightsSection':
+        return <Highlights section={s} settings={settings} number={number} />
+      case 'trustBarSection':
+        return <TrustFacts section={s} settings={settings} />
+      case 'teamSection':
+        return <TeamGrid section={s} number={number} />
+      case 'jobsSection':
+        return <JobOpenings section={s} number={number} applyHref={applyHref} />
+      case 'contactSection':
+        return <ContactBlock section={s} settings={settings} number={number} />
+      case 'officeLocationsSection':
+        return <OfficeLocations section={s} settings={settings} number={number} />
+      default:
+        return unbuilt(s)
+    }
+  })
+}

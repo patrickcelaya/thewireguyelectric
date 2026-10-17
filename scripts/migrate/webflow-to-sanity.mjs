@@ -29,8 +29,9 @@ const p = (rel) => new URL(rel, ROOT)
 const readJson = async (rel) => JSON.parse(await readFile(p(rel), 'utf8'))
 const items = (data) => (Array.isArray(data) ? data : data.items)
 
-const OUT_DIR = 'migration/sanity-import/'
-const ID_MAP_PATH = `${OUT_DIR}id-map.json`
+// MIGRATE_OUT_DIR lets a trial run write somewhere else; IDs always come from the committed map.
+const OUT_DIR = process.env.MIGRATE_OUT_DIR ? `${process.env.MIGRATE_OUT_DIR.replace(/\/$/, '')}/` : 'migration/sanity-import/'
+const ID_MAP_PATH = 'migration/sanity-import/id-map.json'
 const SITE = 'https://www.thewireguyelectric.com'
 
 // ---------------------------------------------------------------------------
@@ -107,9 +108,9 @@ const compiled = Schema.compile({
 const blockContentType = compiled.get('holder').fields.find((f) => f.name === 'body').type
 
 // Known-broken internal links on the live site, fixed at the source (redirects
-// also exist, but a direct link avoids a hop).
+// also exist, but a direct link avoids a hop). /estimate is a real page now (the
+// Free Estimate page every estimate link goes to), so links to it are kept.
 const LINK_FIXES = {
-  '/estimate': '/contact-us',
   '/locations/mesa': '/',
   '/services/electrical-panels': '/services/panels',
 }
@@ -131,6 +132,19 @@ function normalizeHref(href, docPath) {
     return fixed
   }
   return out
+}
+
+// Owner rule: every "Free Estimate" link goes to the Free Estimate page. The live copy links "Get a free estimate",
+// "request a free estimate", "free estimates" … to /contact-us (or to the old homepage form, /#contact); those become
+// /estimate (the same phrase test as ctaHref in web/src/lib/site.ts, plural included). Other links to /contact-us
+// ("Contact us") stay.
+const ESTIMATE_TEXT = /\bfree\b(?:\s+\w+){0,3}?\s+estimates?\b/i
+const CONTACT_FORM = /^(?:\/contact-us(?:[#?]|$)|\/#contact$)/
+function estimateHref(href, text, docPath) {
+  const words = (text ?? '').replace(/\s+/g, ' ').trim()
+  if (!ESTIMATE_TEXT.test(words) || !CONTACT_FORM.test(href ?? '')) return href
+  report.fixedLinks.push({doc: docPath, from: href, to: '/estimate', text: words})
+  return '/estimate'
 }
 
 function youtubeUrl(src) {
@@ -197,7 +211,7 @@ function toPortableText(html, docPath) {
             if (!href) return undefined
             return {
               _type: '__annotation',
-              markDef: {_key: keyGenerator(), _type: 'link', href: normalizeHref(href, docPath), openInNewTab: el.getAttribute('target') === '_blank' || undefined},
+              markDef: {_key: keyGenerator(), _type: 'link', href: estimateHref(normalizeHref(href, docPath), el.textContent, docPath), openInNewTab: el.getAttribute('target') === '_blank' || undefined},
               children: next(el.childNodes),
             }
           }
@@ -448,7 +462,9 @@ push({
       addressLocality: a.addressLocality,
       addressRegion: a.addressRegion,
       postalCode: a.postalCode,
-      ...(scottsdale ? {gbpName: 'The Wire Guy Electric of Scottsdale', locationPage: ref(scottsdale), appointmentOnly: true} : {}),
+      // The Mesa address is the owners' home: keep it in the footer and schema for NAP
+      // consistency, but don't advertise it anywhere else (owner, 2026-10-13).
+      ...(scottsdale ? {gbpName: 'The Wire Guy Electric of Scottsdale', locationPage: ref(scottsdale), appointmentOnly: true} : {footerOnly: true}),
     }
   }),
   openingHours: [{_type: 'openingHours', _key: 'weekdays', days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '17:00'}],
@@ -471,6 +487,14 @@ push({
   googleSiteVerification: live('/')?.googleSiteVerification ?? undefined,
 })
 
+// Content added on top of the Webflow export: page-builder sections for the static
+// pages, data fixes, real reviews and sourced local facts. Each module receives the
+// document list and helpers and edits or adds documents in place.
+const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
+for (const name of ['fixes', 'reviews', 'local-facts', 'page-sections', 'cms-templates']) {
+  await (await import(`./content/${name}.mjs`)).default(ctx)
+}
+
 // Referential integrity: every reference must point at a document in this file.
 const ids = new Set(docs.map((d) => d._id))
 const dangling = []
@@ -486,9 +510,31 @@ if (dangling.length) {
   process.exit(1)
 }
 
+// Content dates for the sitemap's <lastmod>: a page, service, city or service category
+// keeps the date from the last run unless its content changed, so the date only moves when
+// the migration really changes the document (a dataset import resets Sanity's _updatedAt
+// on every document, so that can't say it). Posts carry their own publish/update dates.
+const STAMPED = new Set(['page', 'service', 'location', 'serviceCategory'])
+const previousPath = p('migration/sanity-import/production.ndjson')
+const previous = new Map(
+  existsSync(previousPath)
+    ? (await readFile(previousPath, 'utf8'))
+        .split('\n')
+        .filter(Boolean)
+        .map((line) => JSON.parse(line))
+        .map(({updatedAt, ...content}) => [content._id, {updatedAt, content: JSON.stringify(content)}])
+    : [],
+)
+const now = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z')
+for (const doc of docs.filter((d) => STAMPED.has(d._type))) {
+  const before = previous.get(doc._id)
+  delete doc.updatedAt
+  doc.updatedAt = before?.updatedAt && before.content === JSON.stringify(doc) ? before.updatedAt : now
+}
+
 await mkdir(p(OUT_DIR), {recursive: true})
 await writeFile(p(`${OUT_DIR}production.ndjson`), docs.map((d) => JSON.stringify(d)).join('\n') + '\n')
-await writeFile(p(ID_MAP_PATH), JSON.stringify(idMap, null, 2) + '\n')
+await writeFile(p(`${OUT_DIR}id-map.json`), JSON.stringify(idMap, null, 2) + '\n')
 await writeFile(p(`${OUT_DIR}report.json`), JSON.stringify(report, null, 2) + '\n')
 
 const counts = docs.reduce((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {})

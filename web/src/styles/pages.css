@@ -1,0 +1,349 @@
+/* =====================================================================================================================
+   PAGE-BUILDER PAGES (about us, our team, careers, FAQ, contact, commercial, services, blog): the inner-page sections
+   the homepage doesn't use, in the round-5 language. Imported after inner.css and home.css by
+   components/PageBuilderPage.astro. Tokens only; photos of people are never cropped, tinted or covered (each photo here
+   keeps its own proportions, or is framed so only the sides trim); nothing starts hidden.
+   ===================================================================================================================== */
+
+/* ===================================================================== INNER HERO: the words on the page grid, one real
+   photo running off the right edge (the homepage's "who we are" composition). Phones: the trail and the words, then the
+   photo edge to edge; the call bar is the estimate and call pair there. */
+.phero{position:relative;overflow:clip;padding-top:clamp(18px,2.2vw,40px);padding-bottom:clamp(64px,6vw,120px);background:radial-gradient(ellipse 58% 72% at 16% 34%,rgb(232 160 122 / .14),rgb(232 160 122 / 0) 70%),var(--bone)}
+.phero__grid{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);align-items:center;gap:40px clamp(40px,5.4vw,112px);padding-left:var(--pad-x)}
+.phero__copy{display:grid;grid-template-columns:minmax(0,1fr);justify-items:start;align-content:center;padding-block:clamp(4px,1vw,24px)}
+.phero__crumbs{margin-bottom:clamp(22px,2.6vw,44px)}
+.phero__h{font-size:clamp(2.5rem,1.15rem + 3.9vw,6.25rem);font-weight:720;letter-spacing:-.042em;line-height:.98;max-width:13ch}
+.phero__h--long{font-size:clamp(2.125rem,1rem + 3.1vw,5.25rem);line-height:1.02;letter-spacing:-.038em;max-width:17ch}
+.phero__lede{margin-top:clamp(20px,2vw,34px);font:500 clamp(1.1875rem,.98rem + .62vw,1.625rem)/1.42 var(--font-display);letter-spacing:-.014em;color:var(--ink);max-width:31em}
+.phero__btns{margin-top:clamp(26px,2.4vw,40px)}
+.phero__notes{margin-top:16px;font:550 1rem/1.4 var(--font-text);color:var(--ink)}
+.phero__notes>span+span::before{content:"";display:inline-block;width:4px;height:4px;margin:0 10px 0 6px;border-radius:50%;background:var(--copper);vertical-align:.24em}
+.phero__status{margin-top:14px;font-size:.9375rem;color:var(--muted)}
+/* Emma's status is in the header's utility line on wide screens (as on the city and service heroes): once is enough */
+@media (min-width:1240px){.phero__status{display:none}}
+.phero__photo{position:relative;margin:0;overflow:hidden;border-radius:var(--r-xl) 0 0 var(--r-xl);background:var(--sand);box-shadow:var(--shadow-2)}
+.phero__photo img{width:100%;height:auto}
+.phero__photo figcaption,.hls__photo figcaption,.mt__photo figcaption{position:absolute;left:18px;bottom:18px;padding:8px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:650 .875rem/1.2 var(--font-text);color:var(--ink)}
+/* a portrait photo: a narrower column, so it never towers over the words */
+.phero--tall .phero__grid{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr)}
+.phero--tall .phero__photo{max-width:36rem}
+/* no photo: the words alone on the page grid */
+.phero--bare .phero__grid{grid-template-columns:minmax(0,1fr);padding-right:var(--pad-x)}
+.phero--bare .phero__h{max-width:16ch}
+
+/* the trust card under the hero: the 5.0, the licence and the section's line, then the review quotes */
+.phero__proof{margin-top:clamp(40px,4vw,72px)}
+.phero__card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:center;gap:20px clamp(24px,2.6vw,48px);padding:clamp(18px,1.8vw,26px) clamp(22px,2.4vw,36px)}
+.phero__score{display:flex;align-items:center;gap:16px}
+.phero__creds{display:grid;gap:6px;padding-left:clamp(20px,2.4vw,40px);border-left:1px solid var(--line-strong)}
+.phero__creds .itrust__roc{padding:0;border:0}
+.phero__line{font:650 .9375rem/1.4 var(--font-text);color:var(--ink)}
+.phero__quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;padding-left:clamp(20px,2.4vw,40px);border-left:1px solid var(--line-strong)}
+.phero__quotes li{display:grid;gap:6px;align-content:start}
+.phero__quotes p{font:650 1rem/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink);overflow-wrap:break-word}
+.phero__card>:only-child,.phero__card>:first-child:is(.phero__creds,.phero__quotes){padding-left:0;border-left:0}
+
+/* the quotes keep a row of their own until the card is wide enough for three readable columns beside the score (the
+   card is 1,560 px at most; below 1,680 px the three columns would wrap each quote to three lines) */
+@media (max-width:1679px){
+  .phero__card{grid-template-columns:auto minmax(0,1fr)}
+  .phero__quotes{grid-column:1/-1;padding:16px 0 0;border-left:0;border-top:1px solid var(--line)}
+}
+@media (max-width:899px){
+  .phero__grid{grid-template-columns:minmax(0,1fr);padding-left:0;gap:32px}
+  .phero--tall .phero__grid{grid-template-columns:minmax(0,1fr)}
+  .phero__copy{width:min(100% - 2 * var(--gutter),var(--max));margin-inline:auto}
+  .phero__photo,.phero--tall .phero__photo{max-width:none;border-radius:0;box-shadow:none}
+  /* a portrait photo as a 4:3 band (its heads sit in the middle half of the frame) */
+  .phero--tall .phero__photo img{aspect-ratio:4/3;object-fit:cover}
+  .phero__card{grid-template-columns:minmax(0,1fr);gap:14px}
+  .phero__creds{padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
+  .phero__quotes{grid-template-columns:minmax(0,1fr)}
+}
+/* people standing low under a big sky (the fleet): a wide band down to the asphalt, so the crew fills the frame instead
+   of a screen of empty sky (heads at 71.5–78% of the photo sit at 57–66% of the band). Beside the words below 1,180 px
+   the photo would be a card under 510 px wide, mostly sky with the crew small at its foot, and the two buttons would
+   stack (they need 535 px), so up to there it keeps the tablet layout: the words, then the band edge to edge (5:2 there,
+   as on the city hero's tablet layout). The long H1 takes the width there, so it sets in three lines, not four */
+@media (max-width:1179px){.phero--low .phero__photo img{aspect-ratio:16/7;object-fit:cover;object-position:50% 100%}}
+@media (min-width:900px) and (max-width:1179px){
+  .phero--low .phero__grid{grid-template-columns:minmax(0,1fr);padding-left:0;gap:32px}
+  .phero--low .phero__copy{width:min(100% - 2 * var(--gutter),var(--max));margin-inline:auto}
+  .phero--low .phero__h--long{max-width:20ch}
+  .phero--low .phero__photo{border-radius:0;box-shadow:none}
+  .phero--low .phero__photo img{aspect-ratio:5/2}
+}
+/* short landscape windows (1024×768): a 16:5 band (as on the city hero), so the band under the words opens on the mountains
+   and the vans instead of empty sky */
+@media (min-width:900px) and (max-width:1179px) and (max-height:899px){.phero--low .phero__photo img{aspect-ratio:16/5}}
+/* beside the words (1,180 px and up) the card is 16:9, cropped from the top, so the sky no longer fills half of it */
+@media (min-width:1180px){.phero--low .phero__photo img{aspect-ratio:16/9;object-fit:cover;object-position:50% 92%}}
+/* phones: the crew straight after the H1 (as on the city page), so their heads are on the first screen above the call
+   bar, never half under it; then the lede and the buttons. The call bar (Call now · Free Estimate, from the first paint)
+   is the hero's estimate and call pair */
+@media (max-width:639px){
+  /* every block on the page's left edge, like the city and service heroes; the photo spans the width, so the space for
+     it is reserved from the first paint (no layout shift) */
+  .phero__grid{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .phero__copy{display:contents}
+  .phero__copy>*{margin-inline:var(--gutter)}
+  .phero__photo{order:1;margin-top:24px}
+  .phero__copy>:is(.phero__lede,.phero__btns,.phero__notes,.phero__status){order:2}
+  .phero__lede{margin-top:26px}
+  .phero__btns .btn{max-width:100%;white-space:normal;text-align:center;line-height:1.2}
+  .phero__btns .btn--tel,.phero__btns .phero__est{display:none}
+  .phero__btns:not(:has(.btn:not(.btn--tel):not(.phero__est))){display:none}
+}
+
+
+/* ===================================================================== HIGHLIGHTS: the points set large beside one photo,
+   the side note on a paper card over the photo's foot */
+.hls{background:var(--paper)}
+.hls__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:56px clamp(48px,6vw,120px)}
+.hls--solo .hls__grid{grid-template-columns:minmax(0,1fr)}
+.hls .h2{max-width:14ch}
+.checks{margin-top:clamp(28px,3vw,48px);border-top:1px solid var(--line-strong)}
+.checks li{position:relative;display:grid;gap:6px;padding:clamp(18px,1.8vw,26px) 0 clamp(18px,1.8vw,26px) 54px;border-bottom:1px solid var(--line-strong)}
+.checks li::before{content:"";position:absolute;left:0;top:calc(clamp(18px,1.8vw,26px) + .05em);width:34px;height:34px;border-radius:50%;background:var(--wash)}
+.checks li::after{content:"";position:absolute;left:9px;top:calc(clamp(18px,1.8vw,26px) + .05em + 9px);width:16px;height:16px;background:var(--copper-700);-webkit-mask:var(--check) center/contain no-repeat;mask:var(--check) center/contain no-repeat}
+.checks__lead{font:700 clamp(1.25rem,1rem + .8vw,1.875rem)/1.25 var(--font-display);letter-spacing:-.022em;color:var(--ink)}
+.checks__text{font-size:var(--fs-body);line-height:1.6;color:var(--text);max-width:var(--measure)}
+.hls__cta{margin-top:clamp(28px,2.6vw,44px)}
+.hls__side{position:relative}
+.hls__photo{position:relative;margin:0;overflow:hidden;border-radius:var(--r-xl);background:var(--sand);box-shadow:var(--shadow-2)}
+.hls__photo img{width:100%;height:auto}
+.hls__aside{position:relative;z-index:1;display:grid;gap:12px;margin:-48px clamp(16px,3vw,48px) 0;padding:clamp(24px,2.4vw,36px);border-radius:var(--r-xl);background:rgb(253 251 247 / .95);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),0 0 0 1px rgb(205 191 170 / .45),var(--shadow-3)}
+.hls__photo+.hls__aside::before{content:"";position:absolute;left:clamp(24px,2.4vw,36px);top:0;width:48px;height:2px;background:var(--copper)}
+.hls__aside-h{font-size:clamp(1.25rem,1.05rem + .6vw,1.625rem);letter-spacing:-.02em;line-height:1.25}
+.hls__aside-h a{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.18em}
+.hls__aside-body{font-size:var(--fs-body);line-height:1.65;color:var(--text)}
+.hls__aside-body p+p{margin-top:12px}
+@media (max-width:899px){
+  .hls__grid{grid-template-columns:minmax(0,1fr)}
+  .hls__aside{margin:-28px 12px 0}
+}
+
+
+/* ===================================================================== TRUST STRIP: big copper values over their words */
+.trust-s{background:var(--sand);padding-block:clamp(48px,4.4vw,80px)}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12.5rem),1fr));gap:32px clamp(24px,3vw,56px)}
+.trust__item{display:grid;align-content:start;gap:10px;padding-top:18px;border-top:2px solid var(--copper)}
+.trust__v{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font:780 clamp(2.25rem,1.6rem + 1.8vw,3.5rem)/1 var(--font-display);letter-spacing:-.045em;font-variant-numeric:lining-nums tabular-nums;color:var(--copper-700)}
+.trust__item--license .trust__v{font-size:clamp(1.625rem,1.25rem + 1.1vw,2.375rem);letter-spacing:-.03em;white-space:nowrap}
+.trust__l{font-size:var(--fs-small);line-height:1.45;color:var(--text);max-width:18rem}
+.trust__l .link{font-weight:600}
+
+
+/* ===================================================================== TEAM: portraits, names, roles and bios */
+.crew-s{background:var(--bone)}
+.crew{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(48px,4.4vw,80px) clamp(20px,2.4vw,40px)}
+.crew__card{position:relative;display:flex;flex-direction:column;scroll-margin-top:calc(var(--hdr-c) + 24px)}
+.crew__photo{margin:0 0 22px;overflow:hidden;aspect-ratio:4/5;border-radius:var(--r-lg);background:var(--sand-2);box-shadow:var(--shadow-1)}
+.crew__photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.1s var(--ease-out)}
+@media (hover:hover){.crew__card:hover .crew__photo img{transform:scale(1.03)}}
+.crew__name{font-size:clamp(1.5rem,1.25rem + .7vw,2rem);letter-spacing:-.028em;line-height:1.1}
+.crew__role{margin-top:8px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.crew__creds{margin-top:6px;font-size:var(--fs-meta);color:var(--muted)}
+.crew__bio{margin-top:14px;font-size:var(--fs-small);line-height:1.65;color:var(--text);max-width:34em}
+.crew__bio p+p{margin-top:10px}
+@media (max-width:1099px){.crew{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:599px){.crew{grid-template-columns:minmax(0,1fr);gap:48px}.crew:not(.crew--compact) .crew__photo{aspect-ratio:1}}
+/* the roster (no bios): small portraits in one row on wide screens (--cols from the component), three to a row below */
+.crew.crew--compact{grid-template-columns:repeat(var(--cols,4),minmax(0,1fr));gap:32px clamp(12px,1.4vw,24px)}
+.crew--compact .crew__photo{margin-bottom:14px;border-radius:var(--r-md)}
+.crew--compact .crew__name{font-size:clamp(1rem,.9rem + .3vw,1.1875rem);letter-spacing:-.016em}
+.crew--compact .crew__role{margin-top:4px;font-size:var(--fs-meta)}
+@media (max-width:1099px){.crew.crew--compact{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+
+/* ===================================================================== STATEMENT: a team member's words on the copper band
+   ("Our promise" on the homepage); the photo beside them is never tinted */
+.stmt-s{position:relative;isolation:isolate;overflow:clip;padding-block:var(--section-y);background:var(--grad-copper);color:#fff}
+.stmt-s::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 92% 6%,rgb(255 214 170 / .2),transparent 70%),radial-gradient(55% 70% at 0% 100%,rgb(58 20 6 / .34),transparent 70%)}
+.stmt{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center;gap:56px clamp(48px,6vw,120px)}
+.stmt-s--solo .stmt{grid-template-columns:minmax(0,1fr)}
+.stmt .h2{color:#fff;max-width:15ch}
+.stmt__sub{margin-top:clamp(18px,1.8vw,28px);font:650 var(--fs-lede)/1.3 var(--font-display);letter-spacing:-.01em;color:var(--glow)}
+.stmt__quote{margin-top:clamp(28px,3vw,48px);padding-left:clamp(20px,2vw,32px);border-left:2px solid rgb(255 226 184 / .6)}
+.stmt__quote p{font:500 clamp(1.375rem,1.05rem + 1vw,2.125rem)/1.36 var(--font-display);letter-spacing:-.018em;color:#fff;max-width:30em}
+.stmt__quote figcaption{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:22px;font-size:var(--fs-small);color:var(--cream)}
+.stmt__name{font-weight:700;color:#fff}
+.stmt__role::before{content:"";display:inline-block;width:4px;height:4px;margin-right:10px;border-radius:50%;background:var(--glow);vertical-align:.24em}
+.stmt__photo{margin:0;overflow:hidden;border-radius:var(--r-xl);box-shadow:0 40px 80px -40px rgb(40 14 4 / .7),inset 0 0 0 1px rgb(255 236 220 / .2)}
+.stmt__photo img{width:100%;height:auto}
+.stmt-s :focus-visible{outline-color:#fff}
+/* phones: the subheading sets at body size, where WCAG asks 4.5:1; over the band's top-right highlight the glow tone
+   measured 4.27:1 at its worst pixel, cream clears it (on wide screens it is large text and keeps the glow) */
+@media (max-width:899px){.stmt{grid-template-columns:minmax(0,1fr)}.stmt__sub{color:var(--cream)}}
+
+
+/* ===================================================================== JOBS: open positions as paper cards */
+.jobs-s{background:var(--sand)}
+.jobs{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start;gap:48px clamp(48px,7vw,128px)}
+.jobs__head{position:sticky;top:calc(var(--hdr-c) + 40px)}
+.jobs__intro{margin-top:22px;font:500 var(--fs-lede)/1.5 var(--font-display);letter-spacing:-.01em;color:var(--ink);max-width:30rem}
+.jobs__list{display:grid;gap:24px}
+.job{padding:clamp(28px,2.8vw,44px);border-radius:var(--r-xl);background:var(--paper);box-shadow:inset 0 0 0 1px rgb(205 191 170 / .55),var(--shadow-2)}
+.job__meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:var(--fs-meta);font-weight:600;color:var(--muted)}
+.job__type{padding:6px 12px;border-radius:var(--r-pill);background:var(--wash);color:var(--copper-700)}
+.job__title{margin-top:16px;font-size:clamp(1.75rem,1.3rem + 1.2vw,2.5rem);letter-spacing:-.03em}
+.job__desc{margin-top:18px;line-height:1.7;color:var(--text);max-width:var(--measure)}
+.job__desc p+p{margin-top:14px}
+.job__desc strong{color:var(--ink)}
+.job__cta{margin-top:26px}
+@media (max-width:899px){.jobs{grid-template-columns:minmax(0,1fr)}.jobs__head{position:static}}
+
+
+/* ===================================================================== CONTACT: the ways to reach us beside the form */
+.contact-s{background:var(--bone);scroll-margin-top:calc(var(--hdr-c) + 8px)}
+.contact{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start;gap:48px clamp(40px,6vw,112px)}
+.contact__h{max-width:15ch}
+.contact__text{margin-top:22px;font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:32rem}
+.contact__card{display:grid;gap:14px;justify-items:start;margin-top:clamp(32px,3vw,52px);padding:clamp(24px,2.4vw,36px);border-radius:var(--r-xl);background:radial-gradient(ellipse 80% 70% at 100% 0%,rgb(232 160 122 / .16),rgb(232 160 122 / 0) 70%),var(--paper);box-shadow:inset 0 0 0 1px rgb(205 191 170 / .55),var(--shadow-2)}
+.contact__k{font-size:clamp(1.25rem,1.05rem + .55vw,1.625rem);letter-spacing:-.02em;line-height:1.25;max-width:24ch}
+.contact__phone{display:grid;gap:8px}
+.contact__tel a{font:760 clamp(1.875rem,1.35rem + 1.4vw,2.75rem)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
+.contact__tel a:hover{color:var(--copper-700)}
+.contact__status,.contact__hours{font-size:.9375rem;color:var(--muted)}
+.contact__mail .link{display:inline-block;min-height:24px;padding-block:2px;font-weight:600}
+.contact__offices,.contact__trust{display:grid;gap:10px;width:100%;padding-top:16px;border-top:1px solid var(--line)}
+/* phones and tablets: the words, the form, then the ways to reach us */
+@media (max-width:980px){.contact{grid-template-columns:minmax(0,1fr);row-gap:0}.contact__intro{display:contents}.contact__form{order:2;margin-top:clamp(28px,5vw,40px)}.contact__card{order:3;margin-top:clamp(28px,5vw,40px)}}
+
+
+/* ===================================================================== OFFICES: the office cards (OfficeCard; its own styles in styles/inner.css) */
+.offices-s{background:var(--bone)}
+.offices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:20px}
+.offices .office{padding:clamp(24px,2.4vw,36px);border-radius:var(--r-xl);background:var(--paper);box-shadow:inset 0 0 0 1px rgb(205 191 170 / .55),var(--shadow-1)}
+
+
+/* ===================================================================== SERVICES DIRECTORY: every service as a numbered row;
+   grouped, each category's heading beside its list (sticky on wide screens) */
+.svcdir-s{background:var(--bone)}
+.svcdir{display:grid;grid-template-columns:minmax(0,1fr)}
+.svcdir--grouped{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);align-items:start;gap:32px clamp(48px,7vw,128px)}
+.svcdir+.svcdir{margin-top:clamp(80px,7.4vw,136px)}
+.svcdir__head{position:sticky;top:calc(var(--hdr-c) + 40px)}
+.svcdir__h{font-size:clamp(2.125rem,1.2rem + 2.6vw,4rem);letter-spacing:-.036em;line-height:1;max-width:9ch}
+.svcdir__intro{margin-top:20px;font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:28rem}
+.svcdir__more{margin-top:26px}
+.svcdir__list{border-top:1px solid var(--line-strong)}
+.svcrow{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) 40px;gap:12px;align-items:baseline;padding:clamp(20px,1.8vw,28px) 0;border-bottom:1px solid var(--line-strong)}
+.svcrow__n{font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--copper-700)}
+.svcrow__h{font-size:clamp(1.3125rem,1.1rem + .6vw,1.875rem);letter-spacing:-.024em;line-height:1.18}
+.svcrow__h a{color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
+.svcrow__h a::after{content:"";position:absolute;inset:0;z-index:1}
+.svcrow__p{margin-top:8px;font-size:var(--fs-small);line-height:1.6;color:var(--text);max-width:var(--measure)}
+.svcrow::after{content:"";align-self:center;justify-self:end;width:20px;height:20px;background:var(--copper-700);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease),opacity .25s var(--ease)}
+.svcrow .mini-bulb{top:calc(50% - 22px);bottom:auto;right:0;width:26px}
+.svcrow:is(:hover,:focus-within) .svcrow__h a{color:var(--copper-700)}
+@media (hover:hover){.svcrow:is(:hover,:focus-within)::after{opacity:0;transform:translateX(6px)}}
+.svcrow:focus-within{outline:2.5px solid var(--ink);outline-offset:4px;border-radius:6px}
+.svcrow__h a:focus-visible{outline:none}
+.svcdir__cta{margin-top:clamp(32px,3vw,48px)}
+/* one list without groups (a category's services): two columns of rows on wide screens */
+@media (min-width:1100px){.svcdir:not(.svcdir--grouped) .svcdir__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(48px,5vw,96px);border-top:0}.svcdir:not(.svcdir--grouped) .svcrow{border-top:1px solid var(--line-strong);border-bottom:0}.svcdir:not(.svcdir--grouped) .svcrow:nth-last-child(-n+2){border-bottom:1px solid var(--line-strong)}}
+@media (max-width:899px){.svcdir--grouped{grid-template-columns:minmax(0,1fr)}.svcdir__head{position:static}.svcdir__h{max-width:none}}
+@media (max-width:599px){.svcrow{grid-template-columns:34px minmax(0,1fr) 24px}}
+
+
+/* ===================================================================== BLOG INDEX: every post by the service it supports */
+.blogidx-s{background:var(--bone)}
+.topics{margin-bottom:clamp(56px,5.4vw,96px)}
+.topics ul{display:flex;flex-wrap:wrap;gap:10px}
+.topics a{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 8px 0 18px;border-radius:var(--r-pill);background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line-strong);font:650 .9375rem/1 var(--font-text);color:var(--ink);text-decoration:none;transition:box-shadow .2s var(--ease),color .2s var(--ease)}
+.topics a:hover{box-shadow:inset 0 0 0 1.5px var(--copper);color:var(--copper-700)}
+.topics__n,.faqt__n{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 8px;border-radius:var(--r-pill);background:var(--wash);color:var(--copper-700);font:700 .8125rem/1 var(--font-display);font-variant-numeric:tabular-nums}
+.postgrp{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);align-items:start;gap:28px clamp(48px,7vw,128px);scroll-margin-top:calc(var(--hdr-c) + 24px)}
+.postgrp+.postgrp{margin-top:clamp(72px,6.4vw,120px)}
+.postgrp__head{position:sticky;top:calc(var(--hdr-c) + 40px)}
+.postgrp__h{font-size:clamp(2rem,1.2rem + 2vw,3.375rem);letter-spacing:-.034em;line-height:1.02;max-width:11ch}
+.postgrp__n{margin-top:12px;font-size:var(--fs-small);font-weight:600;color:var(--muted)}
+.postgrp__more{margin-top:22px}
+.postgrp__list{border-top:1px solid var(--line-strong)}
+.postrow{position:relative;display:grid;grid-template-columns:7.25rem minmax(0,1fr);gap:8px 24px;padding:clamp(20px,1.8vw,26px) 0;border-bottom:1px solid var(--line-strong)}
+.postrow__d{padding-top:.4em;font-size:var(--fs-meta);font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.postrow__h{font-size:clamp(1.1875rem,1.05rem + .45vw,1.5rem);letter-spacing:-.018em;line-height:1.28}
+.postrow__h a{color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
+.postrow__h a::after{content:"";position:absolute;inset:0}
+.postrow:is(:hover,:focus-within) .postrow__h a{color:var(--copper-700)}
+.postrow:focus-within{outline:2.5px solid var(--ink);outline-offset:4px;border-radius:6px}
+.postrow__h a:focus-visible{outline:none}
+.postrow__ex{margin-top:8px;font-size:var(--fs-small);line-height:1.6;color:var(--text);max-width:var(--measure)}
+/* the rest of a topic, behind "Show all": the list continues seamlessly under its summary once open */
+.postgrp__rest summary{display:inline-flex;align-items:center;gap:10px;min-height:48px;margin-top:18px;padding:0 20px;border-radius:var(--r-pill);background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line-strong);font:650 .9375rem/1 var(--font-text);color:var(--ink);cursor:pointer;list-style:none;transition:box-shadow .2s var(--ease),color .2s var(--ease)}
+.postgrp__rest summary::-webkit-details-marker{display:none}
+.postgrp__rest summary::after{content:"";width:14px;height:14px;background:var(--copper-700);-webkit-mask:var(--chev) center/contain no-repeat;mask:var(--chev) center/contain no-repeat;transition:transform .25s var(--ease)}
+.postgrp__rest summary:hover{box-shadow:inset 0 0 0 1.5px var(--copper);color:var(--copper-700)}
+.postgrp__rest .when-open,.postgrp__rest[open] .when-closed{display:none}
+.postgrp__rest[open] .when-open{display:inline}
+/* open: the list runs on unbroken and the button that folds it away moves to its end */
+.postgrp__rest[open] summary{order:2}
+.postgrp__rest[open] summary::after{transform:rotate(180deg)}
+.postgrp__rest[open]{display:flex;flex-direction:column;align-items:flex-start}
+.postgrp__rest[open] .postgrp__list{align-self:stretch;border-top:0}
+@media (max-width:899px){.postgrp{grid-template-columns:minmax(0,1fr)}.postgrp__head{position:static}.postgrp__h{max-width:none}}
+@media (max-width:599px){.postrow{grid-template-columns:minmax(0,1fr)}.postrow__d{padding-top:0}}
+
+
+/* ===================================================================== FAQ TOPICS: an index beside the headed groups; the
+   section photo under a questions block's aside */
+.faqt{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:start;gap:40px clamp(48px,8vw,140px)}
+.faqt--nested{margin-top:clamp(80px,7vw,128px)}
+.faqt__aside{position:sticky;top:calc(var(--hdr-c) + 40px)}
+.faqt__nav ol{margin-top:clamp(24px,2.4vw,36px);border-top:1px solid var(--line-strong)}
+.faqt__nav a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:10px 0;border-bottom:1px solid var(--line-strong);font:650 1.0625rem/1.3 var(--font-display);letter-spacing:-.01em;color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
+.faqt__nav a:hover{color:var(--copper-700)}
+.faqt__group{scroll-margin-top:calc(var(--hdr-c) + 24px)}
+.faqt__group+.faqt__group{margin-top:clamp(56px,5vw,96px)}
+.faqt__h{margin-bottom:12px;font-size:clamp(1.625rem,1.2rem + 1.2vw,2.5rem);letter-spacing:-.03em;line-height:1.1}
+.faq__photo{margin:clamp(32px,3vw,48px) 0 0;max-width:30rem;overflow:hidden;border-radius:var(--r-xl);background:var(--sand-2);box-shadow:var(--shadow-2)}
+.faq__photo img{width:100%;height:auto}
+@media (max-width:880px){
+  .faqt{grid-template-columns:minmax(0,1fr)}
+  .faqt__aside{position:static}
+  .faqt__nav ol{display:flex;flex-wrap:wrap;gap:10px;border-top:0}
+  .faqt__nav a{min-height:44px;padding:0 8px 0 16px;border:0;border-radius:var(--r-pill);background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line-strong);font-size:.9375rem}
+  .faq__photo{display:none}
+}
+
+
+/* ===================================================================== RICH TEXT and IMAGE + TEXT */
+.rt-s{background:var(--bone)}
+.rt{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:start;gap:32px clamp(48px,7vw,128px)}
+.rt-s--solo .rt{grid-template-columns:minmax(0,1fr)}
+.rt__head{position:sticky;top:calc(var(--hdr-c) + 40px)}
+.rt__head .h2{max-width:12ch}
+@media (max-width:899px){.rt{grid-template-columns:minmax(0,1fr)}.rt__head{position:static}}
+.mt-s{background:var(--paper);overflow:clip}
+.mt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:48px clamp(48px,6vw,120px);padding-left:var(--pad-x)}
+.mt-s--left .mt{padding-left:0;padding-right:var(--pad-x)}
+.mt-s--left .mt__photo{order:-1;border-radius:0 var(--r-xl) var(--r-xl) 0}
+.mt-s--solo .mt{grid-template-columns:minmax(0,1fr);padding-right:var(--pad-x)}
+.mt__copy{display:grid;justify-items:start;max-width:40rem}
+.mt__body{margin-top:22px}
+.mt__cta{margin-top:clamp(26px,2.4vw,40px)}
+.mt__photo{position:relative;margin:0;overflow:hidden;border-radius:var(--r-xl) 0 0 var(--r-xl);background:var(--sand);box-shadow:var(--shadow-2)}
+.mt__photo img{width:100%;height:auto}
+@media (max-width:980px){
+  .mt,.mt-s--left .mt{grid-template-columns:minmax(0,1fr);padding:0}
+  .mt__copy{width:min(100% - 2 * var(--gutter),var(--max));max-width:none;margin-inline:auto}
+  .mt-s--left .mt__photo{order:0}
+  .mt__photo,.mt-s--left .mt__photo{border-radius:0;box-shadow:none}
+}
+
+
+/* ===================================================================== small parts: the application form's select, the
+   static reviews' button, the check glyph */
+:root{--check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4.5 12.5 5 5 10-11'/%3E%3C/svg%3E")}
+.field select{width:100%;min-height:52px;padding:12px 44px 12px 15px;border:1.5px solid var(--field-line);border-radius:12px;background:var(--white);font-size:1rem;color:var(--ink);-webkit-appearance:none;appearance:none;cursor:pointer;transition:border-color .2s}
+.field:has(select){position:relative}
+.field:has(select)::after{content:"";position:absolute;right:16px;bottom:18px;width:16px;height:16px;background:var(--ink);-webkit-mask:var(--chev) center/contain no-repeat;mask:var(--chev) center/contain no-repeat;pointer-events:none}
+.field select:hover{border-color:var(--ink)}
+.field select:focus-visible{outline:3px solid var(--ink);outline-offset:1px;border-color:var(--ink)}
+.reviews__cta--static{margin-top:clamp(36px,3.4vw,56px)}
+/* guides that open a questions band of their own (no questions above them) */
+.answers .wrap>.guides-block:first-child{margin-top:0}
+/* a long button label (a section's own words, "Get a Free Commercial Estimate Now") wraps inside its column on small
+   phones instead of running off the screen */
+@media (max-width:479px){main .btn{max-width:100%;white-space:normal;text-align:center;line-height:1.2;padding-block:12px}}

@@ -1,0 +1,54 @@
+---
+// A customer's words pulled out of their review, set huge over a photo of the kind of
+// work they praise (ink on a bright photo, no dark tint), with the stars, their name,
+// the review's date and service, and the link to every review on a light glass
+// caption. The quote is an excerpt of the review, word for word (checked in Studio
+// and by the migration). Styles: styles/sections.css "PULL-QUOTE".
+import type {QuoteSection, SiteSettings} from '../../lib/types'
+import {siteRating} from '../../lib/site'
+import {formatDate, isoDate} from '../../lib/format'
+import ExternalLink from '../ui/ExternalLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+import Stars from '../ui/Stars.astro'
+
+interface Props {
+  section: QuoteSection & {review: NonNullable<QuoteSection['review']>}
+  settings: SiteSettings
+}
+
+const {section, settings} = Astro.props
+const {review} = section
+const id = `${section._key}-q`
+const rating = siteRating(settings)
+---
+
+<section class="pull cv" aria-labelledby={id}>
+  {
+    section.image && (
+      <div class="pull__media">
+        <SanityImage image={section.image} widths={[800, 1280, 1920, 2560]} sizes="100vw" />
+      </div>
+    )
+  }
+  <div class="wrap pull__wrap">
+    <figure class="pull__fig" data-reveal>
+      <blockquote id={id}><p>“{section.quote.trim()}”</p></blockquote>
+      <figcaption>
+        <Stars />{' '}
+        <span>
+          <cite>{review.authorName}</cite>{' '}
+          <span class="pull__meta">
+            {review.source ?? 'Google'} review
+            {review.date && <> · <time datetime={isoDate(review.date)}>{formatDate(review.date, 'short')}</time></>}
+            {review.service && <> · on {review.service}</>}
+          </span>
+        </span>{' '}
+        {rating?.href && (
+          <ExternalLink class="pull__g link link--ext" href={rating.href}>
+            Read our reviews on {rating.source}
+          </ExternalLink>
+        )}
+      </figcaption>
+    </figure>
+  </div>
+</section>

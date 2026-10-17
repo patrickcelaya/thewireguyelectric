@@ -1,0 +1,76 @@
+---
+// The estimate band that closes most pages. The van photo is the stage: the words
+// sit on the wall above the electrician, the wire draws the bulb on the wall, and
+// the form card rises over the photo's foot, below the van's lettering (no scrim on
+// anyone). Copy: Site settings → CTA band (heading, status line).
+import type {SiteSettings} from '../../lib/types'
+import {officeHours, telHref} from '../../lib/site'
+import {VAN_PHOTO} from '../../lib/brand-photos'
+import SanityImage from '../ui/SanityImage.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Bulb from '../ui/Bulb.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import RatingLine from '../ui/RatingLine.astro'
+import RocLink from '../ui/RocLink.astro'
+import EstimateForm from './EstimateForm.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** Defaults to Site settings → CTA band → heading. */
+  heading?: string
+  /** The line under the photo; defaults to the CTA band's text, else the standard line. */
+  text?: string
+  /** Section number for the eyebrow. */
+  number?: number | string
+  /** Prefix for the form's field ids. */
+  formId?: string
+}
+
+const {settings, number, formId = 'cta'} = Astro.props
+const band = settings.ctaBand
+const hours = officeHours(settings)
+// typographic apostrophes in display type
+const heading = (Astro.props.heading ?? band?.heading ?? 'We’re ready to work for you').replace(/'/g, '’')
+const text =
+  Astro.props.text ??
+  band?.text ??
+  `Free estimates and a real person on the phone. Call us ${hours.prose}, or send the form and we’ll call you back.`
+---
+
+<section class="cta cv" aria-labelledby="cta-h" data-bulb-field>
+  <div class="cta__stage" data-bulb-edge>
+    <figure class="cta__media">
+      <SanityImage image={VAN_PHOTO.image} widths={[640, 960, 1280]} sizes="(max-width:899px) 150vw, 107vw" faces={VAN_PHOTO.faces} />
+    </figure>
+    <div class="cta__wall">
+      <div class="cta__words">
+        <Eyebrow number={number}>Free estimates</Eyebrow>
+        <h2 id="cta-h">{heading}</h2>
+      </div>
+      <Bulb lead="right" />
+    </div>
+  </div>
+  <div class="wrap cta__lower">
+    <div class="cta__talk">
+      <p class="cta__sub">{text}</p>
+      {
+        band?.statusText && (
+          <p class="avail">
+            <span class="dot dot--live" aria-hidden="true" /> {band.statusText}
+          </p>
+        )
+      }
+      <p class="cta__talk-k">Prefer to talk?</p>
+      <p class="cta__phone">
+        <a class="tnum" href={telHref(settings)}>{settings.phone}</a>{' '}
+        <OfficeStatus settings={settings} />
+      </p>
+      {hours.line && <p class="cta__hours">Our Office Hours: {hours.line}</p>}
+      <RatingLine settings={settings} variant="quiet" />
+      <p class="cta__roc"><RocLink settings={settings} /></p>
+    </div>
+    <div class="cta__form" id="estimate">
+      <EstimateForm settings={settings} id={formId} />
+    </div>
+  </div>
+</section>

@@ -1,17 +1,32 @@
 ---
-import WebflowLayout from '../../layouts/WebflowLayout.astro'
-import {getServiceCategories, getSettings} from '../../lib/queries'
-import {renderServiceCategory} from '../../lib/legacy'
+// A service category (Residential, Commercial): the type-led hero (its lede is the page's
+// own description, or the category's rich-text intro when an editor writes one) with the trust lines,
+// every service in the category (photo cards where the crew has a photo, the rest in the
+// index), links to the other category, all services and the commercial page, the valley
+// map and the estimate band. The H1 is the category's name, exactly as live.
+// JSON-LD: the CollectionPage with the category's services as its ItemList.
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import '../../styles/bundles/page-cms.css'
+import CategoryHero from '../../components/sections/CategoryHero.astro'
+import ServiceCards from '../../components/sections/ServiceCards.astro'
+import Valley from '../../components/sections/Valley.astro'
+import CtaBand from '../../components/sections/CtaBand.astro'
+import PortableText from '../../components/PortableText.astro'
+import SectionHeader from '../../components/ui/SectionHeader.astro'
+import TextLink from '../../components/ui/TextLink.astro'
+import {getLocations, getServiceCategories, getSettings} from '../../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
-import {webPageNode} from '../../lib/schema'
+import {serviceListNode, webPageNode} from '../../lib/schema'
+import {serviceAreaCities} from '../../lib/cities'
 import type {ServiceCategoryDoc} from '../../lib/types'
 
 export async function getStaticPaths() {
-  return (await getServiceCategories()).map((c) => ({params: {slug: c.slug}, props: {category: c}}))
+  const categories = await getServiceCategories()
+  return categories.map((c) => ({params: {slug: c.slug}, props: {category: c, others: categories.filter((o) => o.slug !== c.slug)}}))
 }
 
-const {category} = Astro.props as {category: ServiceCategoryDoc}
-const settings = await getSettings()
+const {category, others} = Astro.props as {category: ServiceCategoryDoc; others: ServiceCategoryDoc[]}
+const [settings, locations] = await Promise.all([getSettings(), getLocations()])
 const path = `/services-categories/${category.slug}`
 const title = resolveTitle(category.seo, `${category.name} Electrician in Mesa, AZ | ${settings.businessName}`)
 const description = resolveDescription(
@@ -19,11 +34,65 @@ const description = resolveDescription(
   `Top-rated ${category.name} electrician services in the Phoenix valley. Licensed, insured, flat-rate pricing. Serving Mesa, Scottsdale, Chandler, and more.`,
 )
 const crumbs = [{name: 'Home', path: '/'}, {name: 'Services', path: '/services'}, {name: category.name, path}]
+const heading = category.heading ?? category.name
+const name = category.name.toLowerCase()
 ---
 
-<WebflowLayout
+<SiteLayout
   meta={{title, description, path, ogImage: resolveOgImage(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
-  schema={[webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs})]}
+  schema={[{...webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs}), mainEntity: serviceListNode(category.services)}]}
+  bodyClass="inner page-cat"
 >
-  <Fragment set:html={renderServiceCategory(category)} />
-</WebflowLayout>
+  {
+    category.description?.length ? (
+      <CategoryHero settings={settings} crumbs={crumbs} eyebrow="Services" heading={heading}>
+        <PortableText value={category.description} />
+      </CategoryHero>
+    ) : (
+      <CategoryHero settings={settings} crumbs={crumbs} eyebrow="Services" heading={heading} lede={description} />
+    )
+  }
+
+  {
+    category.services.length > 0 && (
+      <section class="section isvc" aria-labelledby="svc-h">
+        <div class="wrap">
+          <SectionHeader eyebrow={`${category.name} services`} number={1} heading={`Our ${name} electrical services`} id="svc-h">
+            <Fragment slot="more">
+              <TextLink href="/services" icon="go">
+                View All Services
+              </TextLink>
+              {others.map((o) => (
+                <>
+                  {' '}
+                  <TextLink href={`/services-categories/${o.slug}`} icon="go">
+                    {o.name} services
+                  </TextLink>
+                </>
+              ))}
+              {category.slug === 'commercial' && (
+                <>
+                  {' '}
+                  <TextLink href="/commercial-electrician" icon="go">
+                    Commercial electricians
+                  </TextLink>
+                </>
+              )}
+            </Fragment>
+          </SectionHeader>
+          <ServiceCards services={category.services} />
+        </div>
+      </section>
+    )
+  }
+
+  <Valley
+    settings={settings}
+    cities={serviceAreaCities(settings.homeCity, locations)}
+    variant="inner"
+    heading={`${category.name} electricians across the valley`}
+    number={2}
+  />
+
+  <CtaBand settings={settings} number={3} />
+</SiteLayout>

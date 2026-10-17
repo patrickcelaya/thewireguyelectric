@@ -1,8 +1,87 @@
 ---
-import WebflowLayout from '../layouts/WebflowLayout.astro'
-import {legacyPage} from '../lib/legacy'
+// 404: served by Vercel with a real 404 status. noindex, so no canonical. The bulb
+// draws itself and flickers, then stays dark: the light that's out. Below it, the
+// places most people are headed: popular services, the cities, the guides, and a
+// person on the phone.
+import SiteLayout from '../layouts/SiteLayout.astro'
+import '../styles/inner.css'
+import {getPosts, getServices, getSettings} from '../lib/queries'
+import {getNavModel} from '../lib/nav'
+import {ESTIMATE_PATH, officeHours, telHref} from '../lib/site'
+import Eyebrow from '../components/ui/Eyebrow.astro'
+import Button from '../components/ui/Button.astro'
+import TextLink from '../components/ui/TextLink.astro'
+import OfficeStatus from '../components/ui/OfficeStatus.astro'
+import RatingLine from '../components/ui/RatingLine.astro'
+import Bulb from '../components/ui/Bulb.astro'
+
+const [settings, services, posts, nav] = await Promise.all([getSettings(), getServices(), getPosts(), getNavModel()])
+
+// The business's own "what we do" list (Site settings → capabilities) first, then
+// services in site order, six in all.
+const linked = new Set((settings.capabilities ?? []).flatMap((c) => (c.service?.slug ? [c.service.slug] : [])))
+const popular = [...services.filter((s) => linked.has(s.slug)), ...services.filter((s) => !linked.has(s.slug))].slice(0, 6)
+const guides = posts.slice(0, 3)
+const hours = officeHours(settings).line
 ---
 
-<WebflowLayout meta={{title: 'Page Not Found | The Wire Guy Electric', path: '/404', noIndex: true}}>
-  <Fragment set:html={legacyPage('404')} />
-</WebflowLayout>
+<SiteLayout meta={{title: 'Page Not Found | The Wire Guy Electric', path: '/404', noIndex: true}} bodyClass="inner page-404">
+  <section class="ehero nf-hero" aria-labelledby="nf-h" data-bulb-field>
+    <div class="wrap ehero__grid">
+      <div class="ehero__copy">
+        <Eyebrow>404 · Page not found</Eyebrow>
+        <h1 id="nf-h" class="display">Something’s <span class="accent">not right.</span></h1>
+        <p class="ehero__lede">We can’t find the page you’re looking for. It may have moved, or the link may be out of date. Here’s where most people are headed.</p>
+        <div class="btn-row nf-hero__btns">
+          <Button href="/" icon="go">Back to homepage</Button>{' '}
+          <Button href={telHref(settings)} variant="ghost" icon="tel" class="nf-hero__call"><span class="tnum">Call {settings.phone}</span></Button>
+        </div>
+      </div>
+      <Bulb lead="right" class="nf-bulb" />
+    </div>
+  </section>
+
+  <section class="section hub-s" aria-label="Where to go next">
+    <div class="wrap hub">
+      <article class="hub__card hub__card--wide" aria-labelledby="nf-svc">
+        <Eyebrow>Services</Eyebrow>
+        <h2 class="hub__h" id="nf-svc">Popular services</h2>
+        <ul class="hub__links hub__links--2" role="list">
+          {popular.map((s) => <li><a href={`/services/${s.slug}`}>{s.name}</a></li>)}
+        </ul>
+        <p class="hub__more"><TextLink href="/services" icon="go">View All Services</TextLink></p>
+      </article>
+
+      <article class="hub__card" aria-labelledby="nf-areas">
+        <Eyebrow>Service areas</Eyebrow>
+        <h2 class="hub__h" id="nf-areas">Where we work</h2>
+        <ul class="hub__chips" role="list">
+          {nav.cities.map((c) => <li><a href={c.href}>{c.name}</a></li>)}
+        </ul>
+      </article>
+
+      <article class="hub__card" aria-labelledby="nf-guides">
+        <Eyebrow>Guides</Eyebrow>
+        <h2 class="hub__h" id="nf-guides">Answers and guides</h2>
+        <ul class="hub__links" role="list">
+          {guides.map((p) => <li><a href={`/blog-posts/${p.slug}`}>{p.title}</a></li>)}
+          <li><a href="/faq">Frequently asked questions</a></li>
+        </ul>
+        <p class="hub__more"><TextLink href="/blog" icon="go">All guides on the blog</TextLink></p>
+      </article>
+
+      <article class="hub__card hub__card--talk" aria-labelledby="nf-talk">
+        <Eyebrow>Talk to us</Eyebrow>
+        <h2 class="hub__h" id="nf-talk">Prefer to talk?</h2>
+        <p class="hub__phone"><a class="tnum" href={telHref(settings)}>{settings.phone}</a></p>
+        <p class="hub__status"><OfficeStatus settings={settings} /></p>
+        {hours && <p class="hub__hours">Our Office Hours: {hours}</p>}
+        <RatingLine settings={settings} variant="quiet" />
+        <div class="btn-row hub__btns">
+          <Button href={ESTIMATE_PATH} icon="go" size="md">Get a Free Estimate</Button>{' '}
+          <TextLink href="/contact-us">Contact Us</TextLink>
+        </div>
+      </article>
+    </div>
+  </section>
+</SiteLayout>

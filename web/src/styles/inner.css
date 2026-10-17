@@ -1,0 +1,403 @@
+/* ===================================================================== shared components only inner pages use (moved out of core.css): the breadcrumb and the static reviews */
+.crumbs ol{display:flex;flex-wrap:wrap;gap:6px 0;font-size:var(--fs-meta);color:var(--muted)}
+.crumbs li{display:inline-flex;align-items:center}
+.crumbs li+li::before{content:"";width:6px;height:6px;margin:0 12px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(45deg);opacity:.6}
+.crumbs a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
+.crumbs a:hover{color:var(--copper-700)}
+.crumbs [aria-current]{color:var(--copper-700);font-weight:650}
+/* phones: the links keep their whole names. The current page's name stays on the trail's line while 8em of it (or all
+   of a shorter one) fits there, shortened with an ellipsis if need be (the H1 right below repeats it; the whole trail
+   stays in the HTML); with less room it moves to a second line, so it never shrinks to a stub like "Tr…" */
+@media (max-width:699px){
+  .crumbs ol{white-space:nowrap}
+  .crumbs li{flex:none}
+  .crumbs li:last-child{flex:1 1 8em;min-width:0;max-width:max-content}
+  .crumbs li+li::before{flex:none;margin:0 9px}
+  .crumbs a{display:block;padding-block:4px}
+  .crumbs [aria-current]{display:block;overflow:hidden;text-overflow:ellipsis}
+}
+.reviews__intro{margin-top:18px;font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:30rem}
+.reviews--static{background:var(--bone)}
+.rv-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.rv--static{width:auto;height:auto;min-height:100%}
+.rv--static blockquote{-webkit-line-clamp:unset;display:block}
+@media (max-width:899px){.rv-row{grid-template-columns:1fr}}
+
+/* ===================================================================== INNER PAGES: the homepage's language on a location page, a service
+   page and /estimate (photo heroes with the words where nobody stands, glass trust card, numbered kickers, photo tiles,
+   copper and bone surfaces, the bulb). */
+
+/* ===================================================================== photo hero (city: the sky above the fleet; service: a copper-toned photo) */
+.ihero{position:relative;container-type:inline-size;background:var(--bone)}
+.ihero__stage{--vw:100cqw;--hp:calc(var(--vw) / 1.5);position:relative;isolation:isolate;overflow:clip}
+.ihero__photo{position:relative;margin:0 auto;width:var(--vw);z-index:-1}
+.ihero__photo img{width:100%;height:auto}
+.ihero__copy{position:absolute;inset:0 0 auto;padding-top:clamp(28px,3cqw,56px);color:#fff}
+.ihero h1{font-size:clamp(2.75rem,4.8cqw,6.75rem);font-weight:760;letter-spacing:-.045em;line-height:.98;color:#fff;max-width:12em;margin-top:2px}
+.ihero__lede{margin-top:clamp(16px,1.6cqw,26px);font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;max-width:26em}
+.ihero .btn-row{margin-top:clamp(22px,2.2cqw,36px)}
+.ihero__status{display:none;margin-top:14px;font-size:.9375rem}
+@media (max-width:1239px){.ihero__status{display:flex}}
+.ihero__status .status{color:inherit}
+.ihero .kicker{margin:clamp(14px,1.6cqw,26px) 0 clamp(12px,1.2cqw,20px)}
+.ihero :focus-visible{outline-color:#fff}
+.crumbs--sky ol,.crumbs--sky a,.crumbs--sky [aria-current]{color:#fff}
+.crumbs--sky a{text-decoration-color:rgb(255 255 255 / .55)}
+.crumbs--sky [aria-current]{color:var(--glow)}
+/* the city: the fleet anchored under its own sky; a petrol dusk on the sky only (0–62% of the photo: heads start at 71.5%) */
+/* the photo always runs edge to edge (owner: no inset images). The box shows the fleet down to the asphalt (the bottom
+   8% is trimmed) and as much open sky above it as the window allows: on short, wide windows more of the sky's top is
+   trimmed, so the crew and vans reach the first screen, but never so much that the heads (71.5% of the photo) come
+   within 24 px of the words' foot (estimated as 250 px + 18.5% of the width, at most 640 px; measured 416–604 px). */
+.ihero--sky .ihero__stage{--sh:min(calc(var(--hp) * .8),max(620px,calc(100svh - var(--hdr-h) + 140px),calc(var(--hp) * .205 + min(250px + 18.5cqw,640px) + 24px)));background:#3d6f9f;height:var(--sh)}
+/* the trust card floats on the empty sky at the right, far above the crew */
+@media (min-width:1100px){.ihero--sky .itrust{position:absolute;z-index:2;top:clamp(28px,3cqw,56px);right:max(var(--gutter),calc((100% - var(--max)) / 2));margin:0;padding:0;width:min(25rem,30%)}.ihero--sky .itrust__card{display:grid;gap:14px;padding:22px 24px}.ihero--sky .itrust__roc,.ihero--sky .itrust__status{padding:12px 0 0;border-left:0;border-top:1px solid var(--line)}.ihero--sky .ihero__copy{padding-right:calc(min(25rem,30%) + 48px)}}
+.ihero--sky .ihero__photo{position:absolute;top:calc(var(--sh) - var(--hp) * .92);left:0}
+.ihero--sky .ihero__photo::after{content:"";position:absolute;inset:0 0 auto;height:67.5%;background:linear-gradient(rgb(var(--scrim) / .8),rgb(var(--scrim) / .78) 50%,rgb(var(--scrim) / .72) 76%,rgb(var(--scrim) / .5) 90%,rgb(var(--scrim) / 0));pointer-events:none}
+.ihero--sky .hl-sky{color:var(--glow)}
+/* round 5: the homepage valley's language. No petrol dusk on the sky: the real Arizona sky, a soft sun-haze where the
+   words sit (it ends at 62% of the photo, above the peaks; the heads start at 71.5%), the H1 in ink with the town in copper */
+@media (min-width:1100px){
+  .ihero--sky .ihero__stage{background:#6c9fe9}
+  .ihero--sky .ihero__photo::after{height:62%;background:radial-gradient(ellipse 62% 86% at 24% 36%,rgb(240 247 255 / .62),rgb(240 247 255 / .44) 40%,rgb(240 247 255 / .2) 66%,rgb(240 247 255 / 0) 88%);-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+  .ihero--sky .ihero__copy,.ihero--sky h1,.ihero--sky .ihero__lede{color:var(--ink)}
+  .ihero--sky .hl-sky{color:var(--copper-700)}
+  .ihero--sky .crumbs--sky ol,.ihero--sky .crumbs--sky a{color:var(--ink)}
+  .ihero--sky .crumbs--sky a{text-decoration-color:rgb(15 42 53 / .4)}
+  .ihero--sky .crumbs--sky [aria-current]{color:var(--copper-800)}
+  .ihero--sky .kicker--sky{width:max-content;padding:6px 14px 6px 12px;border-radius:var(--r-pill);background:rgb(253 251 247 / .9);color:var(--copper-700);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .6),0 10px 26px -16px rgb(15 42 53 / .5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .ihero--sky .ihero__status{color:var(--ink)}
+  .ihero--sky :focus-visible{outline-color:var(--ink)}
+}
+@media (min-width:900px) and (max-width:1099px){
+  .ihero--sky .ihero__stage{display:flex;flex-direction:column;height:auto;background:none}
+  .ihero--sky .ihero__copy{position:relative;order:1;padding:28px var(--gutter) 32px;width:auto;color:var(--ink)}
+  .ihero--sky h1,.ihero--sky .ihero__lede{color:var(--ink)}
+  .ihero--sky .hl-sky{color:var(--copper)}
+  .ihero--sky .crumbs--sky ol,.ihero--sky .crumbs--sky a{color:var(--text)}
+  .ihero--sky .crumbs--sky [aria-current]{color:var(--copper-700)}
+  .ihero--sky .kicker--sky{color:var(--copper-700)}
+  .ihero--sky .btn--cream{background:transparent;border-color:var(--ink)}
+  .ihero--sky .ihero__photo{position:relative;top:auto;left:auto;order:2;width:100%;z-index:0}
+  .ihero--sky .ihero__photo img{aspect-ratio:5/2;object-fit:cover;object-position:50% 100%}
+  .ihero--sky .ihero__photo::after{display:none}
+  .ihero--sky .itrust{order:3;margin-top:-40px}
+  .ihero--sky :focus-visible{outline-color:var(--ink)}
+}
+/* the service: the crew's own panel, copper-toned (no people in the photo, so the tint can cover all of it) */
+.ihero--copper .ihero__stage{background:var(--copper-800);min-height:clamp(480px,34cqw,720px)}
+.ihero--copper .ihero__photo{position:absolute;inset:0;width:auto}
+.ihero--copper .ihero__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:saturate(.8) contrast(1.05)}
+.ihero--copper .ihero__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgb(78 34 19 / .95) 0%,rgb(106 46 25 / .92) 45%,rgb(130 58 32 / .86) 75%,rgb(150 68 38 / .78) 100%)}
+/* wide screens (round-5 QA): the panel photo's largest original is 1280 px wide, so the frame stops at 1440 px (at most a
+   1.13x enlargement) and feathers into the same copper light at its sides, instead of stretching to 2x on a 2560 screen */
+@media (min-width:1500px){
+  .ihero--copper .ihero__stage{background:linear-gradient(100deg,#4E2213 0%,#6A2E19 45%,#823A20 75%,#964426 100%)}
+  .ihero--copper .ihero__photo{left:50%;right:auto;width:1440px;transform:translateX(-50%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+}
+.ihero--copper .ihero__copy{position:relative;padding-bottom:clamp(120px,10cqw,170px)}
+.ihero--copper h1{font-size:clamp(3rem,7cqw,8.5rem);max-width:none}
+/* the glass trust card on the photo's foot */
+.itrust{position:relative;z-index:3;margin-top:-72px;padding-inline:var(--pad-x)}
+.itrust__card{display:flex;flex-wrap:wrap;align-items:center;gap:12px clamp(20px,2.4cqw,40px);padding:16px clamp(20px,2cqw,30px);border-radius:var(--r-xl);background:rgb(253 251 247 / .92);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),var(--shadow-3)}
+.itrust__num{margin-block:-.1em;font:800 3rem/1 var(--font-display);letter-spacing:-.05em;font-variant-numeric:lining-nums tabular-nums;color:var(--copper-700);white-space:nowrap}
+.itrust__meta{display:grid;gap:4px;font-size:.9375rem}
+.itrust__rating{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink)}
+.itrust__meta .link{font-weight:650}
+.itrust__roc a{font-size:.9375rem;color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
+.itrust__roc,.itrust__status{padding-left:clamp(20px,2.4cqw,40px);border-left:1px solid var(--line-strong)}
+.itrust__status{font-size:.9375rem;color:var(--text)}
+@media (max-width:899px){
+  .ihero--sky .ihero__stage{display:flex;flex-direction:column;height:auto;background:none}
+  .ihero--sky .ihero__copy{position:relative;order:1;padding:22px var(--gutter) 28px;width:auto;color:var(--ink)}
+  .ihero--sky h1{color:var(--ink);font-size:clamp(2.375rem,10cqw,4rem)}
+  .ihero--sky .hl-sky{color:var(--copper)}
+  .ihero--sky .crumbs--sky ol,.ihero--sky .crumbs--sky a{color:var(--text)}
+  .ihero--sky .crumbs--sky [aria-current]{color:var(--copper-700)}
+  .ihero--sky .kicker--sky{color:var(--copper-700)}
+  .ihero--sky .ihero__lede{font-size:1.125rem;color:var(--text)}
+  .ihero--sky .btn--cream{background:transparent;border-color:var(--ink)}
+  .ihero--sky .ihero__photo{position:relative;top:auto;left:auto;order:2;width:100%;z-index:0}
+  .ihero--sky .ihero__photo img{aspect-ratio:4/3;object-fit:cover;object-position:52.5% 100%}
+  .ihero--sky .ihero__photo::after{display:none}
+  .ihero :focus-visible{outline-color:var(--ink)}
+  .ihero--sky .ihero__status{color:var(--muted)}
+  .ihero--copper .ihero__copy :focus-visible{outline-color:#fff}
+  /* the current page in the trail in white, not glow: on the narrow copper hero its worst pixel needs the extra contrast */
+  .ihero--copper .crumbs--sky [aria-current]{color:#fff}
+  /* --word (the H1's longest word, in letters, set by ServiceHero) caps the size so that word fits the line at ~.52em a
+     letter: at the usual 44 px "Troubleshooting" ran past the edge of a 320 px screen and was clipped */
+  .ihero--copper h1{font-size:min(clamp(2.75rem,12cqw,4.5rem),(100cqw - 2 * var(--gutter)) / (var(--word,1) * .52))}
+  .ihero--copper .ihero__lede{font-size:1.125rem}
+  .ihero .btn-row .btn{flex:0 0 auto}
+  /* the card tucks over the asphalt only, below every foot (the asphalt under the crew is ~10% of the photo's width) */
+  .itrust{order:3;margin-top:-5cqw;padding-inline:var(--gutter)}
+  .itrust__card{padding:16px 18px;border-radius:var(--r-lg)}
+  .itrust__roc,.itrust__status{flex-basis:100%;padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}
+}
+/* tablets (round-5 QA): a wide band down to the asphalt, so the crew and the vans fill the first screen instead of
+   300 px of empty sky (the phone keeps the taller 4:3 crop from the approved mockup) */
+@media (min-width:700px) and (max-width:899px){.ihero--sky .ihero__photo img{aspect-ratio:16/7;object-position:50% 100%}}
+/* short landscape windows (an iPad on its side, 1024×768): the words fill the first 580 px, so the 5:2 band showed only a
+   strip of empty sky above the fold; a 16:5 band trims that sky, and the vans and the crew's heads (71.5–78% of the photo,
+   39–53% of this band) come up into the first screen */
+@media (min-width:900px) and (max-width:1099px) and (max-height:899px){.ihero--sky .ihero__photo img{aspect-ratio:16/5}}
+
+/* ===================================================================== at a glance: sourced facts */
+.glance{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px clamp(48px,6vw,120px);align-items:start}
+.glance .answer{margin-top:22px;font:500 var(--fs-stand)/1.4 var(--font-display);letter-spacing:-.016em;color:var(--ink);max-width:26em}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;margin-top:40px;border-top:1.5px solid var(--ink)}
+.facts div{padding:18px 0 20px;border-bottom:1px solid var(--line-strong)}
+.facts dt{font:650 var(--fs-meta)/1.3 var(--font-text);color:var(--copper-700)}
+.facts dd{margin-top:6px;font-size:var(--fs-small);line-height:1.55;color:var(--text)}
+.facts dd b{display:block;font:700 1.125rem/1.3 var(--font-display);letter-spacing:-.012em;color:var(--ink);margin-bottom:2px}
+.facts--grid{margin-top:0}
+.glance__line{margin-top:26px;font-size:var(--fs-small);color:var(--text);line-height:1.7}
+.glance__line b{color:var(--ink)}
+.glance__photo{position:relative;margin:0;overflow:hidden;border-radius:var(--r-xl);box-shadow:var(--shadow-2);background:var(--sand)}
+.glance__photo img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.glance__photo figcaption{position:absolute;left:16px;bottom:16px;padding:8px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .92);font:650 .875rem/1.2 var(--font-text);color:var(--ink)}
+.glance--wide{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}
+/* round-5 QA: the facts' top rule lines up with the cap height of the H2 beside it (the eyebrow's line and margin, plus the
+   H2's cap offset: line-height 1, ascent 1.018, descent .305, cap height .7, so the caps start .1565 em into the line) */
+.glance--wide .facts--grid{margin-top:calc(var(--fs-small) * 1.3 + clamp(18px,1.8vw,28px) + var(--fs-h2) * .1565)}
+@media (max-width:899px){.glance--wide .facts--grid{margin-top:0}}
+/* two bone sections in a row (Panels: at a glance, then the warning signs): one section gap between them, not two */
+.glance-s+.signs-s{padding-top:0}
+@media (max-width:899px){.glance,.glance--wide{grid-template-columns:minmax(0,1fr)}.facts{grid-template-columns:minmax(0,1fr)}}
+
+/* ===================================================================== services on real photos (three whole cards) */
+.isvc{background:var(--sand)}
+.tiles3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,22px)}
+/* inner pages: the photo on top, the words on paper below it, so no word ever sits on a face at any width */
+.tile--card{justify-content:flex-start;background:var(--paper);box-shadow:inset 0 0 0 1px var(--line),var(--shadow-1)}
+.tile--card .tile__media{position:relative;z-index:0;aspect-ratio:4/3}
+.tile--card .tile__body{padding:22px clamp(20px,2vw,28px) 26px;background:none;color:var(--text)}
+.tile--card h3{color:var(--ink)}
+.tile--card .tile__body>p{color:var(--text)}
+.tile--card .tile__go{color:var(--copper-700)}
+.tile--card .mini-bulb{color:var(--copper)}
+.tile--card :focus-visible{outline-color:var(--ink)}
+.tile--card:hover h3{color:var(--copper-700)}
+@media (max-width:899px){.tiles3{grid-template-columns:minmax(0,1fr)}}
+
+/* ===================================================================== OFFICE: an office as an <address> (components/sections/OfficeCard;
+   framed as a card in styles/pages.css, inside the city hero's trust card in styles/cms.css) */
+.office{display:grid;gap:6px;font-style:normal}
+.office__k{font:650 var(--fs-meta)/1.3 var(--font-text);color:var(--copper-700)}
+.office__name{font:700 1.0625rem/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.office__appt{font-weight:600;color:var(--text)}
+.office__lines{font-size:var(--fs-small);line-height:1.55;color:var(--text)}
+.office__lines span{display:block}
+.office__note{color:var(--muted)}
+.office__tel a{font-weight:650;color:var(--ink);text-decoration:none}
+.office__tel a:hover{color:var(--copper-700)}
+.office__map .link{display:inline-block;min-height:24px;padding-block:2px;font-size:var(--fs-small);font-weight:600}
+
+/* ===================================================================== the CMS article beside the contact card
+   Round-5 QA ("the least premium block"): a 20 px lede, a 68-character measure, the H3s as copper kickers, copper sockets
+   instead of dashes (the valley index's language), the Gilbert neighbourhoods in two columns, and the contact card as the
+   homepage's glass proof card on a soft warm light. */
+.article-s{background:radial-gradient(ellipse 46% 60% at 82% 18%,rgb(232 160 122 / .16),rgb(232 160 122 / 0) 70%),var(--paper)}
+.article{display:grid;grid-template-columns:minmax(0,1fr) min(25rem,34%);gap:48px clamp(48px,6vw,112px);align-items:start}
+.prose{max-width:68ch;font-size:var(--fs-body);line-height:1.75;color:var(--text)}
+.prose h2{font-size:clamp(2rem,1rem + 2.4vw,3.5rem);letter-spacing:-.036em;line-height:1.02;margin-bottom:28px;max-width:16em}
+.prose h2+p{font-size:1.25rem;line-height:1.6;color:var(--ink)}
+.prose h3,.prose__k{display:flex;align-items:center;gap:14px;margin:52px 0 18px;font:700 .875rem/1.35 var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:var(--copper-700)}
+.prose h3::before,.prose__k::before{content:"";flex:none;width:28px;height:1.5px;background:var(--copper)}
+.prose .prose__k strong{color:inherit;font-weight:inherit}
+.prose p+p{margin-top:16px}
+.prose a{color:var(--copper-700);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1.5px}
+.prose ul{display:grid;gap:10px;margin:18px 0}
+.prose li{position:relative;padding-left:26px}
+.prose li::before{content:"";position:absolute;left:1px;top:.62em;width:9px;height:9px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--copper)}
+.prose strong{color:var(--ink)}
+.prose figure{margin:32px 0}
+.prose figure img{width:100%;max-height:520px;object-fit:cover;border-radius:var(--r-lg)}
+.prose figcaption{margin-top:10px;font-size:var(--fs-meta);color:var(--muted)}
+.do-grid{gap:0!important;border-top:1px solid var(--line)}
+.do-grid li{padding:18px 0 18px 26px;border-bottom:1px solid var(--line)}
+.do-grid li::before{top:calc(18px + .62em)}
+.prose .hoods{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px;margin:0 0 24px}
+.hoods li{padding:12px 0 12px 26px;border-top:1px solid var(--line);font:600 1.0625rem/1.4 var(--font-display);color:var(--ink)}
+.hoods li::before{top:calc(12px + .42em)}
+.aside{position:sticky;top:calc(var(--hdr-c) + 32px)}
+.contact-card{display:grid;gap:10px;justify-items:start;padding:clamp(26px,2.4vw,36px);border-radius:var(--r-xl);background:rgb(253 251 247 / .9);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),0 0 0 1px rgb(205 191 170 / .45),var(--shadow-3)}
+.cc-score{display:flex;align-items:center;gap:16px;width:100%;padding-bottom:18px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.cc-num{margin-block:-.1em;font:800 clamp(3rem,2.4rem + 1.2vw,3.75rem)/1 var(--font-display);letter-spacing:-.05em;font-variant-numeric:lining-nums tabular-nums;color:var(--copper-700);white-space:nowrap}
+.cc-meta{display:grid;gap:4px;font-size:.9375rem;line-height:1.3}
+.cc-rating{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-weight:600;color:var(--ink)}
+.cc-meta .link{font-weight:650}
+.contact-card__k{font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.contact-card h3{font-size:clamp(1.5rem,1.2rem + .8vw,2rem);letter-spacing:-.028em}
+.contact-card__ph{display:grid;gap:6px;margin-top:6px}
+.contact-card__ph a{font:760 clamp(1.75rem,1.3rem + 1.2vw,2.375rem)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
+.contact-card__ph a:hover{color:var(--copper-700)}
+/* round-5 QA (target size 2.5.8): the email link is a 24 px+ target, 8 px clear of the phone above it */
+.contact-card__mail{margin-top:4px}
+.contact-card__mail .link{display:inline-block;min-height:24px;padding-block:2px}
+.contact-card__hours{font-size:var(--fs-small);color:var(--muted)}
+.contact-card .btn{margin-top:10px}
+@media (max-width:980px){.article{grid-template-columns:minmax(0,1fr)}.aside{position:static}}
+
+/* ===================================================================== warning signs as big numbered type */
+.signs-s{background:var(--bone)}
+.signs{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px clamp(48px,7vw,128px);align-items:start}
+.signs__head{position:sticky;top:calc(var(--hdr-c) + 40px)}
+.signs__head .display{font-size:clamp(2.5rem,1rem + 4vw,5.75rem);max-width:10ch}
+.signs__more{margin-top:24px;font-size:var(--fs-lede);color:var(--muted);max-width:26rem}
+.signs__list{border-top:1px solid var(--line-strong)}
+.signs__list li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;align-items:baseline;padding:clamp(18px,1.8vw,26px) 0;border-bottom:1px solid var(--line-strong)}
+.signs__n{font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;color:var(--copper-700)}
+.signs__list p{font:650 clamp(1.25rem,1rem + .8vw,1.875rem)/1.25 var(--font-display);letter-spacing:-.022em;color:var(--ink)}
+.signs__list p .link{display:block;margin-top:8px;font:500 var(--fs-small)/1.5 var(--font-text);letter-spacing:0}
+@media (max-width:899px){.signs{grid-template-columns:minmax(0,1fr)}.signs__head{position:static}}
+
+/* ===================================================================== /estimate */
+.page-est main{background:var(--bone)}
+.ehero{padding-top:clamp(28px,3vw,56px);padding-bottom:var(--section-y);overflow:clip}
+.ehero__grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(140px,16vw,260px);gap:24px 48px;align-items:end}
+.ehero .crumbs{margin-bottom:clamp(24px,2.6vw,40px)}
+.ehero h1{max-width:none}
+.ehero__lede{margin-top:clamp(20px,2vw,32px);font:500 var(--fs-stand)/1.38 var(--font-display);letter-spacing:-.016em;color:var(--ink);max-width:28em}
+.ehero__bulb{align-self:end;margin-bottom:-8px}
+/* the hero bulb is fully drawn from the first frame (never half-drawn on the conversion page) and waits unlit: it
+   switches on when the form is sent */
+.ehero__bulb .wire{stroke-dasharray:none!important;stroke-dashoffset:0!important;transition:none!important}
+.ehero__bulb .bars>*{opacity:1!important;transform:none!important;transition:none!important}
+.ehero:not(.is-lit) .ehero__bulb .glow,.ehero:not(.is-lit) .ehero__bulb .glass{opacity:0!important;animation:none!important}
+.ehero.is-lit .ehero__bulb .glow{animation:switch-on 1.2s .15s var(--ease) forwards!important}
+.ehero.is-lit .ehero__bulb .glass{animation:glass-on 1.2s .2s var(--ease) forwards!important}
+@media (prefers-reduced-motion:reduce){.is-lit .ehero__bulb .glow{animation:none!important;opacity:.85!important}.is-lit .ehero__bulb .glass{animation:none!important;opacity:.75!important}}
+.est-page{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px clamp(40px,6vw,112px);align-items:start;margin-top:clamp(48px,5vw,88px)}
+.next__h{font-size:clamp(1.75rem,1.3rem + 1.2vw,2.5rem);letter-spacing:-.03em}
+.next__steps{position:relative;display:grid;gap:26px;margin-top:28px;padding-left:2px}
+.next__steps::before{content:"";position:absolute;left:21px;top:22px;bottom:30px;width:2px;background:var(--copper)}
+.next__steps li{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px}
+.next__n{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--copper);color:#fff;font:750 .9375rem/1 var(--font-display);box-shadow:0 0 0 6px var(--bone)}
+.next__steps h3{font-size:1.25rem;margin-top:9px}
+.next__steps p{margin-top:6px;color:var(--text);font-size:var(--fs-small)}
+.next__talk{display:grid;gap:10px;justify-items:start;margin-top:44px;padding-top:32px;border-top:1px solid var(--line-strong)}
+.next__fam{font-size:var(--fs-small);color:var(--muted)}
+.reviews--sand{background:var(--sand)}
+.answers--bone{background:var(--bone)}
+@media (max-width:899px){.ehero__grid{grid-template-columns:minmax(0,1fr);position:relative}.ehero__bulb{position:absolute;right:0;top:clamp(96px,22vw,150px);width:clamp(64px,17vw,110px);margin:0}.ehero h1{max-width:6.2em}.ehero .kicker{padding-right:clamp(70px,19vw,120px)}.est-page{grid-template-columns:minmax(0,1fr)}}
+/* round-5 QA: the lede keeps a lane clear of the bulb (it came within 10 px of it at 768 px); on phones, where the bulb
+   crowded "estimate" in the H1, it steps aside (the form's own bulb still lights when the request is sent) */
+@media (min-width:600px) and (max-width:899px){.ehero__lede{padding-right:calc(clamp(64px,17vw,110px) + 24px)}}
+@media (max-width:599px){.ehero__bulb{display:none}.ehero .kicker{padding-right:0}}
+
+@media (max-width:699px){
+  .ihero--sky .ihero__photo{aspect-ratio:16/10;overflow:hidden}
+  .ihero--sky .ihero__photo img{position:absolute;bottom:0;left:calc(50% - 170% * .525);width:170%;max-width:none;height:auto;aspect-ratio:auto;object-fit:fill}
+}
+
+/* phones: the fixed call bar (Call now · Free Estimate, from the first paint) is the hero's button pair, so the hero's own
+   pair is left off below 640 px (never four buttons on one screen; the links stay in the HTML) */
+@media (max-width:639px){.ihero .btn-row{display:none}.ihero--copper .ihero__stage{min-height:0}.ihero--copper .ihero__copy{padding-bottom:84px}}
+/* Gilbert on phones: the call bar is always there now, so the crew comes straight after the H1 (their heads end above the
+   bar on the first screen at every phone size), with the trust card on the asphalt, then the lede and Emma's line */
+@media (max-width:639px){
+  .ihero--sky .ihero__copy{display:contents}
+  .ihero--sky .ihero__copy>*{margin-inline:var(--gutter)}
+  .ihero--sky .crumbs{order:1;margin-top:22px}
+  .ihero--sky .kicker{order:1}
+  .ihero--sky h1{order:1;margin-bottom:22px}
+  .ihero--sky .ihero__photo{order:2}
+  .ihero--sky .itrust{order:3}
+  .ihero--sky .ihero__lede{order:4;margin-top:28px}
+  .ihero--sky .ihero__status{order:5;margin-top:12px}
+}
+
+/* ===================================================================== rich text (components/PortableText.astro with class "prose"):
+   the parts the long-form styles above don't cover. Numbered lists count in copper sockets; tables scroll inside their own
+   region; videos are a poster with a copper play button until clicked; CTA blocks sit on the copper wash. */
+.prose>*+h2{margin-top:clamp(48px,5vw,72px)}
+.prose h4{margin:32px 0 10px;font-size:1.1875rem;letter-spacing:-.014em}
+.prose h5,.prose h6{margin:28px 0 8px;font:700 1rem/1.35 var(--font-text);color:var(--ink)}
+.prose ol{display:grid;gap:12px;margin:18px 0;counter-reset:pt}
+.prose ol>li{counter-increment:pt;padding-left:36px}
+.prose ol>li::before{content:counter(pt);top:.05em;left:0;display:grid;place-items:center;width:25px;height:25px;border-radius:50%;box-shadow:none;background:var(--wash);color:var(--copper-700);font:750 .8125rem/1 var(--font-display)}
+.prose li>ul,.prose li>ol{margin:10px 0 0}
+.prose blockquote{margin:28px 0;padding:2px 0 2px 24px;border-left:3px solid var(--copper);font:500 1.25rem/1.5 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.prose sup,.prose sub{line-height:0}
+.pt-table{margin:28px 0;overflow-x:auto;border-radius:var(--r-md);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.pt-table:focus-visible{outline-offset:2px}
+.pt-table table{width:100%;min-width:32rem;border-collapse:collapse;font-size:.9375rem;line-height:1.5}
+.pt-table th,.pt-table td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.pt-table tr:last-child>*{border-bottom:0}
+.pt-table thead th{background:var(--sand);color:var(--ink);font-weight:700}
+.pt-table tbody th{color:var(--ink);font-weight:650}
+.pt-table caption{caption-side:bottom;padding:10px 16px;text-align:left;font-size:var(--fs-meta);color:var(--muted)}
+/* phones: a table with a header row becomes one card per row, each value under its column's name, so a comparison reads
+   whole without sideways scrolling (the header row stays for screen readers) */
+@media (max-width:639px){
+  .pt-table--stack{overflow:visible;border-radius:0;background:none;box-shadow:none}
+  .pt-table--stack table{display:block;min-width:0}
+  .pt-table--stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .pt-table--stack tbody{display:grid;gap:12px}
+  .pt-table--stack tr{display:grid;padding:16px 18px 6px;border-radius:var(--r-md);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+  .pt-table--stack tbody th{display:block;padding:0 0 10px;border:0;font:700 1.0625rem/1.3 var(--font-display);letter-spacing:-.01em}
+  .pt-table--stack td{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:14px;padding:10px 0;border:0;border-top:1px solid var(--line)}
+  .pt-table--stack td::before{content:attr(data-label);font:650 var(--fs-meta)/1.5 var(--font-text);color:var(--copper-700)}
+  .pt-table--stack caption{display:block;padding:10px 2px 0}
+}
+.pt-video{margin:32px 0}
+.pt-video__link{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:var(--r-lg);background:var(--copper-900)}
+.prose .pt-video__link{text-decoration:none}
+.pt-video__link img{width:100%;height:100%;max-height:none;object-fit:cover;border-radius:0;transition:transform .8s var(--ease-out)}
+.pt-video__link:hover img{transform:scale(1.03)}
+.pt-video__play{position:absolute;left:50%;top:50%;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 8px rgb(253 251 247 / .35),0 18px 36px -14px rgb(58 20 6 / .7);transition:transform .25s var(--ease)}
+.pt-video__play::before{content:"";position:absolute;inset:0;margin:auto;width:26px;height:26px;translate:3px 0;background:#fff;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 4.5v15L19.5 12z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 4.5v15L19.5 12z'/%3E%3C/svg%3E") center/contain no-repeat}
+.pt-video__link:hover .pt-video__play{transform:scale(1.06)}
+.pt-video__link:focus-visible{outline-offset:4px}
+.pt-video__frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--r-lg)}
+.pt-cta{display:grid;gap:12px;justify-items:start;margin:36px 0;padding:clamp(24px,2.4vw,34px);border-radius:var(--r-xl);background:var(--wash)}
+.pt-cta__h{font:740 clamp(1.375rem,1.1rem + .7vw,1.75rem)/1.2 var(--font-display);letter-spacing:-.022em;color:var(--ink)}
+.prose .pt-cta p+p{margin-top:0}
+.prose .pt-cta .btn{margin-top:6px;color:#fff;text-decoration:none}
+
+/* ===================================================================== 404: the bulb that's out, and the hub of where to go next */
+.page-404 main{background:var(--bone)}
+.nf-hero{padding-bottom:clamp(56px,6vw,104px)}
+.nf-hero h1{max-width:9.5em}
+.nf-hero__btns{margin-top:clamp(28px,2.6vw,44px)}
+/* phones: the call bar is the hero's call button */
+@media (max-width:639px){.nf-hero__call{display:none}}
+.nf-bulb{align-self:end;margin-bottom:-8px}
+/* drawn by its wire, one flicker, then dark (without motion it is simply dark) */
+.nf-bulb .glow,.nf-bulb .glass{opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .motion .nf-bulb.is-in .glow{animation:nf-flicker 1.9s 1.35s linear both}
+  .motion .nf-bulb.is-in .glass{animation:nf-flicker 1.9s 1.4s linear both}
+}
+@keyframes nf-flicker{0%{opacity:0}9%{opacity:.8}15%{opacity:.12}24%{opacity:.7}30%{opacity:0}46%{opacity:.4}52%,100%{opacity:0}}
+@media (max-width:899px){.nf-bulb{position:absolute;right:0;top:0;width:clamp(64px,17vw,110px);margin:0}.nf-hero .kicker{padding-right:clamp(70px,19vw,120px)}}
+@media (max-width:599px){.nf-bulb{display:none}.nf-hero .kicker{padding-right:0}}
+.hub-s{padding-top:0;background:var(--bone)}
+.hub{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(16px,2vw,28px)}
+.hub__card{display:flex;flex-direction:column;align-items:flex-start;padding:clamp(28px,2.8vw,44px);border-radius:var(--r-xl);background:var(--paper);box-shadow:inset 0 0 0 1px rgb(205 191 170 / .55),var(--shadow-1)}
+.hub__card .kicker{margin-bottom:14px}
+.hub__h{font-size:clamp(1.75rem,1.3rem + 1.2vw,2.5rem);letter-spacing:-.03em}
+.hub__links{align-self:stretch;margin-top:22px;border-bottom:1px solid var(--line)}
+.hub__links--2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(20px,2.4vw,40px);border-bottom:0}
+.hub__links--2 li:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+.hub__links li{border-top:1px solid var(--line)}
+.hub__links a{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:12px 0;font:650 1.0625rem/1.3 var(--font-display);letter-spacing:-.01em;color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
+.hub__links a::after{content:"";flex:none;width:16px;height:16px;background:var(--copper-700);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease)}
+.hub__links a:hover{color:var(--copper-700)}
+.hub__links a:hover::after{transform:translateX(4px)}
+.hub__more{margin-top:auto;padding-top:26px}
+.hub__chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.hub__chips a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:var(--r-pill);background:var(--bone);box-shadow:inset 0 0 0 1.5px var(--line-strong);font:650 .9375rem/1 var(--font-text);color:var(--ink);text-decoration:none;transition:box-shadow .2s var(--ease),color .2s var(--ease),background-color .2s var(--ease)}
+.hub__chips a:hover{background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--copper);color:var(--copper-700)}
+.hub__card--talk{background:radial-gradient(ellipse 80% 70% at 100% 0%,rgb(232 160 122 / .2),rgb(232 160 122 / 0) 70%),var(--paper)}
+.hub__phone{margin-top:18px}
+.hub__phone a{font:760 clamp(2rem,1.4rem + 1.6vw,3rem)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
+.hub__phone a:hover{color:var(--copper-700)}
+.hub__status{margin-top:12px;font-size:.9375rem;color:var(--muted)}
+.hub__hours{margin-top:4px;font-size:var(--fs-small);color:var(--muted)}
+.hub__card--talk .rating{margin-top:18px}
+.hub__btns{margin-top:auto;padding-top:26px}
+@media (max-width:899px){.hub{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.hub__links--2{grid-template-columns:minmax(0,1fr)}.hub__links--2 li:nth-last-child(2){border-bottom:0}}

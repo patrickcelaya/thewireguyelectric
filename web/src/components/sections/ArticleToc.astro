@@ -1,0 +1,26 @@
+---
+// "In this article": a post's H2s as same-page links (lib/cms.ts articleHtml gives
+// them their ids). Shown for three sections or more. Styles: styles/post.css.
+interface Props {
+  anchors: Array<{id: string; text: string}>
+}
+
+const {anchors} = Astro.props
+---
+
+{
+  anchors.length >= 3 && (
+    <nav class="toc" aria-labelledby="toc-h">
+      <p class="toc__k" id="toc-h">
+        In this article
+      </p>
+      <ol>
+        {anchors.map((a) => (
+          <li>
+            <a href={`#${a.id}`}>{a.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}

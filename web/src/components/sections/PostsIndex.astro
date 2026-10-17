@@ -1,0 +1,119 @@
+---
+// The blog's archive (postsSection, layout "byService"): every post, in the initial
+// HTML, under the service it supports (its first related service), each group with
+// its heading beside the list and a link to that service page (the hub-and-spoke
+// signal), largest topics first, newest posts first within a topic. A row of topic
+// links jumps to each group. Rows are text (date, title, excerpt): no stock photos,
+// and 50+ thumbnails would weigh more than the words. Each topic shows its newest
+// guides; the rest open under "Show all" (a native <details>, so every link is in the
+// HTML and works without JavaScript). Posts without a service close the list as
+// "More guides". Styles: styles/pages.css "BLOG INDEX".
+import type {PostCard, PostsSection} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import SectionHeader from '../ui/SectionHeader.astro'
+import TextLink from '../ui/TextLink.astro'
+import PostRow from './PostRow.astro'
+
+interface Props {
+  section: PostsSection
+  number?: number
+}
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const {cta} = section
+
+interface Topic {
+  key: string
+  name: string
+  service?: {name: string; slug: string}
+  posts: PostCard[]
+}
+const topics = new Map<string, Topic>()
+for (const post of section.posts) {
+  const key = post.service?.slug ?? ''
+  if (!topics.has(key)) topics.set(key, {key: key || 'more', name: post.service?.name ?? 'More guides', service: post.service ?? undefined, posts: []})
+  topics.get(key)!.posts.push(post)
+}
+// biggest topics first; the posts without a service last
+const groups = [...topics.values()].sort((a, b) => Number(!a.service) - Number(!b.service) || b.posts.length - a.posts.length)
+const GroupTitle = section.heading ? 'h3' : 'h2'
+const RowTitle = section.heading ? 'h4' : 'h3'
+const anchor = (t: Topic) => `${section._key}-${t.key}`
+/** Guides shown per topic before "Show all": a breathable list, not a 19-row wall on a phone. */
+const SHOWN = 5
+---
+
+{
+  section.posts.length > 0 && (
+    <section class="section blogidx-s" {...sectionLabel(id, section.heading, section.eyebrow ?? 'Every guide')}>
+      <div class="wrap">
+        {section.heading && (
+          <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+            {cta && (
+              <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+                {cta.label}
+              </TextLink>
+            )}
+          </SectionHeader>
+        )}
+        {groups.length > 1 && (
+          <nav class="topics" aria-label="Guides by topic">
+            <ul role="list">
+              {groups.map((t) => (
+                <li>
+                  <a href={`#${anchor(t)}`}>
+                    {t.name} <span class="topics__n">{t.posts.length}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+        {groups.map((t) => (
+          <div class="postgrp" id={anchor(t)} role="group" aria-labelledby={`${anchor(t)}-h`}>
+            <div class="postgrp__head">
+              <GroupTitle class="postgrp__h" id={`${anchor(t)}-h`}>
+                {t.name}
+              </GroupTitle>
+              <p class="postgrp__n">
+                {t.posts.length} {t.posts.length === 1 ? 'guide' : 'guides'}
+              </p>
+              {t.service && (
+                <p class="postgrp__more">
+                  <TextLink href={`/services/${t.service.slug}`} icon="go">
+                    Our {t.service.name} service
+                  </TextLink>
+                </p>
+              )}
+            </div>
+            <div class="postgrp__lists">
+              <ol class="postgrp__list" role="list">
+                {t.posts.slice(0, SHOWN).map((post) => (
+                  <PostRow post={post} as={RowTitle} />
+                ))}
+              </ol>
+              {t.posts.length > SHOWN && (
+                <details class="postgrp__rest">
+                  <summary>
+                    <span class="when-closed">Show all {t.posts.length} guides</span>
+                    <span class="when-open">Show fewer</span>
+                    <span class="sr-only"> on {t.name}</span>
+                  </summary>
+                  <ol class="postgrp__list" role="list">
+                    {t.posts.slice(SHOWN).map((post) => (
+                      <PostRow post={post} as={RowTitle} />
+                    ))}
+                  </ol>
+                </details>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}

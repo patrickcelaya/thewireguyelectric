@@ -1,0 +1,84 @@
+{
+  "$comment": "Shared copy and profile links for siteSettings, applied by scripts/migrate/content/fixes.mjs. Every string is copied from the live site (homepage, footer, /faq) as captured on 2026-10-13; every URL is one the live site links. Sources are listed per field. See README.md.",
+  "heroQuotes": {
+    "source": "Live homepage hero: three unattributed one-line quotes, each shown with a five-star graphic. None of them appears in the 50 reviews the BrightLocal widget exposes (migration/reviews/google-reviews.json), so no review document is linked.",
+    "items": [
+      {"text": "Went above and beyond, great prices too!", "rating": 5},
+      {"text": "Could not be more pleased!", "rating": 5},
+      {"text": "Excellent, polite and timely service!", "rating": 5}
+    ]
+  },
+  "valueProps": {
+    "source": "Live homepage feature cards (icons fa-plug, fa-bolt, fa-lightbulb mapped to the plug, bolt and bulb tokens).",
+    "items": [
+      {
+        "title": "No BS pricing",
+        "text": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote.",
+        "icon": "plug",
+        "link": {"label": "Get a Free Estimate", "href": "/contact-us"}
+      },
+      {
+        "title": "Amazing Quality",
+        "text": "We only offer top-quality electrical services. We'll tackle your problems big or small, and get it done right the first time.",
+        "icon": "bolt",
+        "link": {"label": "View All Services", "href": "/services"}
+      },
+      {
+        "title": "Client Satisfaction",
+        "text": "Your satisfaction is our top priority. We don't go home until the job is done. We'll always come back if you have any issues.",
+        "icon": "bulb",
+        "link": {"label": "Read About Us", "href": "/about-us"}
+      }
+    ]
+  },
+  "capabilities": {
+    "source": "Live homepage checklist under 'Electrician solutions tailored to your needs' (six fa-circle-check items, mapped to the check token). Service links follow the inventory note for this section; 'Wiring Solutions' has no single matching service page and stays unlinked.",
+    "items": [
+      {"title": "Electrical Repairs", "icon": "check", "service": "electrical-troubleshooting"},
+      {"title": "Custom Lighting Solutions", "icon": "check", "service": "custom-lighting"},
+      {"title": "Wiring Solutions", "icon": "check"},
+      {"title": "Panel Upgrades", "icon": "check", "service": "panels"},
+      {"title": "Electric Vehicle Chargers", "icon": "check", "service": "ev-charger-installation"},
+      {"title": "+ More!", "icon": "check", "link": {"label": "View All Services", "href": "/services"}}
+    ]
+  },
+  "ctaBand": {
+    "source": "Live closing band on the homepage and most pages: H2 \"We're ready to work for you\", button \"Get a Free Estimate\" → /contact-us, status line \"🟢 Free estimates available\" (the green dot is decoration the design draws).",
+    "value": {
+      "heading": "We're ready to work for you",
+      "label": "Get a Free Estimate",
+      "href": "/contact-us",
+      "statusText": "Free estimates available"
+    }
+  },
+  "availabilityNote": {
+    "source": "Live /faq answer to 'Do you work on weekends or offer emergency service?': \"Our regular office hours are Monday through Friday, 9 AM to 5 PM. ... If you have an urgent situation, give us a call at 602-769-7892 and we'll do our best to accommodate you.\" Two of its sentences, with the phone number left out because the note is shown next to the phone number from Site settings. No 24/7 or emergency claim.",
+    "value": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. If you have an urgent situation, give us a call and we'll do our best to accommodate you."
+  },
+  "googleBusinessProfileUrl": {
+    "source": "Linked from the live footer of the blog-category pages ('Our contacts' > 'Mesa, Arizona'), and already the sourceUrl of every imported Google review (migration/reviews/google-reviews.json → provenance.googleBusinessProfile). Resolves (2026-10-13) to the Google Maps listing of 'The Wire Guy Electric', place 0x872ba8b087754aa3:0x3e4e9bf5bed91d08, knowledge-graph id /g/11f04d6xl_, in Mesa. The same footer's Google icon link (https://maps.app.goo.gl/6qQ2iDaf8YGrdJuW8, fa-google) resolves to the same place, so either works; this one is kept because the reviews already cite it. Not in sameAs (Facebook, Instagram, Yelp, BBB only).",
+    "value": "https://maps.app.goo.gl/j4qZJwx8ttVZo93w5"
+  },
+  "reviewsUrl": {
+    "source": "Same Google Maps listing as googleBusinessProfileUrl; it is where the Google reviews are shown. No direct 'all reviews' link exists in the live copy.",
+    "value": "https://maps.app.goo.gl/j4qZJwx8ttVZo93w5"
+  },
+  "rocLicenseUrl": {
+    "source": "Live /faq answers link 'ROC #365306' and '365306' to this AZ ROC contractor-search page.",
+    "value": "https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB"
+  },
+  "addressMapsUrls": {
+    "source": "Live sitewide footer 'Our contact info': each office address links to its Google share link. Resolved 2026-10-13: Mesa → Google knowledge panel 'The Wire Guy Electric' (/g/11f04d6xl_, the same entity as googleBusinessProfileUrl); Scottsdale → 'The Wire Guy Electric of Scottsdale' (/g/11xgv_scn6).",
+    "byCity": {
+      "Mesa": "https://share.google/39FbblYQXkvLuozlw",
+      "Scottsdale": "https://share.google/6sZyf6wyKExyHzHnF"
+    }
+  },
+  "addressLinkText": {
+    "source": "Live sitewide footer 'Our contact info': the visible text of each office's Google Business Profile link, verbatim (snapshot 2026-10-12, web/src/legacy/chrome/footer.html). The owner asked to keep it exactly (round 3).",
+    "byCity": {
+      "Mesa": "1321 N 65th St, Mesa, AZ 85205 - Mesa Location",
+      "Scottsdale": "8555 E Raintree Dr, Unit 117 Scottsdale, AZ 85260 - Scottsdale Location"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+---
+// The shell of every page composed in Sanity except the homepage (the static pages,
+// /services and /blog): SiteLayout, the stylesheets their sections use, and the
+// section renderer with the page's breadcrumb trail (the inner hero shows it; it is
+// the same array as meta.breadcrumbs, so the trail equals the BreadcrumbList).
+// The routes keep their own title, description and JSON-LD expressions.
+import SiteLayout from '../layouts/SiteLayout.astro'
+// one stylesheet for every page-builder page: the inner parts, the sections shared with the
+// homepage (the checklist on its photo, the value cards, the process wire, the gallery), the
+// inner sections and the valley
+import '../styles/bundles/page-builder.css'
+import SectionRenderer from './sections/SectionRenderer.astro'
+import type {PageDoc, SiteSettings} from '../lib/types'
+import {requireComposed, type PageMeta} from '../lib/seo'
+import {innerHeroPreload} from '../lib/hero'
+
+interface Props {
+  page: Pick<PageDoc, 'slug' | 'heading' | 'title' | 'sections'>
+  settings: SiteSettings
+  meta: PageMeta
+  schema?: Array<Record<string, unknown> | undefined | false>
+}
+
+const {page, settings, meta, schema} = Astro.props
+requireComposed(page)
+// the hero photo is the LCP image: fetched from the head, before the parser reaches it
+const preload = innerHeroPreload(page.sections)
+---
+
+<SiteLayout meta={meta} schema={schema} bodyClass={`inner page-${page.slug}`}>
+  <Fragment slot="head">
+    {preload && <link rel="preload" as="image" imagesrcset={preload.imagesrcset} imagesizes={preload.imagesizes} fetchpriority="high" />}
+  </Fragment>
+  <SectionRenderer page={page} settings={settings} crumbs={meta.breadcrumbs} />
+</SiteLayout>

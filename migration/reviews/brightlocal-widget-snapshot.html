@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&subset=cyrillic" rel="stylesheet">
+    <link href="/assets-v2/rm/css/showcase_reviews/widget.css?v1=3bf8a319" rel="stylesheet" type="text/css">    <script src="/assets-v2/rm/js/showcase_reviews/widget.js?v1=235bffc6"></script>    <style>
+        :root {
+            --font-family: 'Lato';
+            --text-color: #2D2D2D;
+            --font-size: 16px;
+            --container-bg-color: #FFFFFF;
+            --reviews-border-width: 1px;
+            --reviews-border-color: transparent;
+            --reviews-border-roundness: 6px;
+            --reviews-bg-color: #FFFFFF;
+            --reviews-shadow-x: 0px;
+            --reviews-shadow-y: 2px;
+            --reviews-shadow-blur: 5px;
+            --reviews-shadow-spread: 3px;
+            --reviews-shadow-color: #0000001A;
+            --reviews-link-color: #4A90E2;
+            --reviews-time-on-slide: 5s;
+        }
+    </style>
+</head>
+  
+<body data-controller="widget" data-widget-type="list">
+    <div class="Widget-container" data-target="widget.container" style="--border:">
+        <div 
+            class="Widget-content "
+                    >
+            <div class="Widget-header is-left">
+                                    <h1 class="Widget-headerText">
+                        <span class="Widget-textPreview"></span>
+                    </h1>
+                    <div class="Widget-metaData">
+                                                    <div class="Widget-reviewsCount">
+                                <span class="Widget-textPreview">333 Total Reviews</span>
+                            </div>
+                            <div class="Widget-reviewsRatings">
+                                <figure class="Widget-stars is-rating-5">
+                                    <div class="top">
+                                        <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+                                    </div>
+                                    <img src="/assets/rm/images/showcase/reviews_stars-grey.svg">
+                                </figure>
+                                <div class="Widget-reviewsRating">
+                                    <span class="Widget-textPreview">5</span>
+                                </div>
+                            </div>
+                                            </div>
+                            </div>
+           
+            <div
+                class="Widget-reviews  "
+                 
+            >
+                                    
+                    <div 
+                         
+                    > 
+                        <div
+                            class="
+                                Widget-reviewsContainer
+                                                                                                is-3column                            "
+                        >
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.26.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Jennifer Kirsten</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Electrician was polite, professional, and did a great job.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.25.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Brenda Harrell</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Very professional. We are happy with all their work!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.25.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Scott Collinge</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Excellent service provided by The Wire Guy in running a new 110V and 240V power lines into my garage shop. Very professional, efficient and effective team of electricians.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.24.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">jacque murdoch</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">On- time and very professional. Fast and efficient. Cleaned up afterwards. I would highly recommend.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.24.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">William Pascal</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Very professional removed and replaced main electrical panel and tested. Labeled all breakers  .cleaned up area of work. Good people to work with.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.20.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Christopher Demetral</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">I had a great experience with The Wire Guy Electric here in Tempe. They came out to fix a lighting issue and diagnosed a failed ballast. Instead of pushing a full fixture replacement, they professionally rerouted around the ballast and converted it properly so everything works safely and efficiently.
+
+They were on time (early, in fact), explained the solution clearly, and left the area clean. The $195 charge felt very fair for the service and expertise.
+
+If you’re looking for a reliable, licensed electrician in Mesa or the Tempe area, I highly recommend them. Honest work and no upselling--just solid electrical service.
+
+Call &#039;em! =)</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.20.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">CathySiegel</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Update (Feb 2026): Had them come back out for a different project! Still highly recommend! 5 stars!!!
+
+This time Blake came by to install a new outlet and was just as excellent as Rhett back in November. He was just as polite, personable and very knowledgeable.
+
+Highly Recommend The Wire Guy Electric!
+
+The Wire Guy Electric is officially my go-to! From my first call to my completed installation, I had an excellent experience with The Wire Guy Electric. When I called to ask about having outlets installed above my kitchen cabinets and on two other high ledges, I spoke with Emma. She was extremely friendly, helpful, and professional, and she was able to schedule an appointment for the very next week. The time window was 10–12, and the electrician Rhett called when he was on his way and arrived right at 10:00.
+
+Rhett was polite, personable, and very knowledgeable. I explained what I needed, and he quickly assessed the situation and started working right away. He even took the time to look at what had been left on top of the cabinets by a previous owner and found a way to use what was already there. Because he didn’t have to fish a wire through the wall, it actually saved me money—which I really appreciated.
+
+The job took a little longer than expected because one of the outlets turned out to be more involved than we thought, but Rhett answered every question I had and still managed to finish all three outlets plus a fourth one with the remaining time.
+
+Overall, it was a great experience from start to finish. I will absolutely be using them again for more electrical work in the near future, and I will definitely be requesting Rhett.
+
+Highly recommend The Wire Guy Electric!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.19.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Becky Schoen</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Excellent service. Very knowledgeable, and patient with a lot of questions asked about other various upcoming electrical needs. Upfront about costs and time needed. Great experience. I&#039;ll call them for my next electrical project.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.18.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Susan Chambers</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Just had them out again for the 4th time!  Today’s tasks were installing more pot lights in the big room and a new outlet behind the bed in guest room.  What I said the first time (below) is exactly what I’d say today. Cade and Cole were the guys today. Great job once again.
+
+A-maz-ing work!  Everything looks like it was always there. We had them install a can light above the BBQ outside and a flood light in backyard patio area so we can see when we eat at night or play table games.  The placement was perfect. The 4 can lights in the office literally was like night and day.  The ceiling fan light was always so dim and changing the bulb made no difference.  Thank goodness we went with installation of can lights rather than replacing the ceiling fan. What an amazing difference. We had made the closet into a built-in bookshelf/filing cabinet by California Closets, but couldn&#039;t see the titles of the books. We had three can lights installed above them with the switch on the wall right outside it.  Steve, the estimator, guided us in the right direction for everything we were needing. Gave great suggestions on placement and types of lights and switches.  We had light switches that didn&#039;t go to anything and one switch that went to two things at the same time (ceiling fan &amp; fan). Got those separated and on dimmer switches. Had dimmer switches put in several places in the house - like above the dining room table.  Soooo nice! In the broom/vacuum/ cleaning products closet they installed an overhead light that turns on when the door opens. They also installed an AC outlet for the battery charger for the stick vacuum in that closet.  We also had them put an outlet under the bathroom counter so the hair dryer could be left plugged in and hidden on a shelf.   Cody and his crew were like busy bees all day with the installations. They never even stopped for lunch.  Their work was truly great and they cleaned up afterward. They all seemed to like working together and enjoyed their work.  The attic situation made some installations challenging but Cody figured out workarounds.  His problem solving skills and suggestions were right on target. Before going ahead with outlets we wanted higher up on a couple of walls, he stopped and explained that he&#039;d have to cut through the drywall to go horizontally above our desk. We then decided not to do those. There are a few places where it was necessary to cut drywall but they are mostly in hidden spots. We will be using their older brother who does drywall repair.
+
+This is a family business and even the receptionist is Steven’s fiancé. The communication by phone, verbally, and via text was very good. They were timely, precise, and professional. You really couldn’t ask for more from an electrician outfit. We loved everything they did so much that we just had them out to do more!
+
+HIGHLY recommend!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.17.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Colleen Rebuck</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Very happy with the work completed and the friend team that was here doing the work! Very reasonably priced as well!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.14.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Rich Ganley</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">The technician was fantastic, polite and very informative. They take care of my problem right away and I’m very happy. Thank you so much.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.12.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Charles Boles</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Great company!! Easy to work with and setup the estimate and then the job itself. Cade was very professional and efficient. Will be using them again for any electrical project and highly recommend them!!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.12.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Syl G</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Cole was actually able to see us earlier than the appt time.  He was friendly, and listened to us, &amp; was well informed as he explained the problem. He replaced our faulty sockets in the kitchen in a professional way.  The job cost was what we expected.  Great company in general.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.12.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Flip Flop Chronicles</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Excellent work and just the nicest couple of guys!  Will definitely be a repeat customer.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.11.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Eileen Black</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Excellent communication!  Very reliable.  They did a great job!  Highly recommend!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.10.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Billy Cobean</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Finding the Wire Guy to do our electrical work has been an absolute blessing!! They are always on time and courteous and reasonable! We feel blessed that we don’t have to worry about electrical problems anymore.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.09.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/yahoo.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Thai N.</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">This company is my goto for big and small electrical projects. They are quick to provide a quote and don&#039;t often need an in person quote like most electrical companies if you send good enough...</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.06.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Michael Kobernick</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Outstanding work.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.05.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Rebecca Race</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">They did an excellent job, were quick and saved us money by using existing conduit instead of having to trench and run a new line over to our pool.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.04.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Kerry Macpherson</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Blake very professional, knowledgeable &amp; polite. Thank you</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.03.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Cindy Tahiti</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Highly recommend &amp; very professional reasonable rates</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.03.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Cody Crance</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Steve did a great job. He quickly located the problem and had it fixed in no time.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">02.02.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Roger Watton</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">technician was knowledgeable and explained the process</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.30.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Brandon Vardy</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Professional, efficient, friendly, competitive pricing. Also a local business. Shop local.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.29.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Lawrence Rinaldo</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Great experience two guys showed on time worked entire day installed a new pool breaker box and went beyond the call and wired both pumps for me very professional the cost was lower than the others by a lot</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.29.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Alan Miller</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">For some reason the power going to our custom built-in entertainment center went out. The circuit breaker had popped, but when I flipped it back on the power didn&#039;t come back on.
+
+That was the extent of my electrical know-how. I actually replaced the breaker as a hail Mary prayer to try and fix it, but that didn&#039;t do anything.
+
+I found The Wire Guys on Offer Up. Short version: they fixed everything. I got a bill. I thought for sure they had made a mistake because it was far far less than I expected, so I called them to fix it. I told them if that was the correct price, I wanted them to text me links to everywhere they wanted me to leave a review. It was correct and now I&#039;m leaving this review.
+
+I could not believe that the young guy I had been dealing with was the owner. What a great thing to see, someone that age making good money and doing a damn good job at it.
+
+I have since referred my sister to them so they could diagnose and fix the awful job her electrician did (that resulted in a small fire) and she was super happy with them as well.
+
+I&#039;m leaving this review about 8 months after the fact, but good karma is always welcome, so that&#039;s what I&#039;m creating here.
+
+Thanks y&#039;all</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.27.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Brady staples</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Cade did a wonderful job on the two, new electrical outlets.  On time, professional, personable.  I’ll definitely contact them again for future electrical needs.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.26.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Kevin Dishun</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">A 2-man team came out to install new rocker switches, replace existing bathroom fans, and do some minor repair to our electrical panel.  The whole process of getting an estimate, scheduling the work, and coming to our house to complete the job was excellent.  It even took them less time to do the work than anticipated.  Appreciate it Wire Guys!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.26.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Robert Joling</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Did a great job.  Reasonable pricing.  I’ll definitely be using this company again.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.21.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">David Watson</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Work was completed in a short period of time and was a very neat installation of a AC PANEL surge protector.  Very happy with the work that was done.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.20.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">mary kelly</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Super efficient and fixed issue right away. Cody was very knowledgeable and was great at outlining problem.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.20.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Mary Maddock</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Cody Taylor came to my house to repair the dusk to dawn lights on my house.   He was professional, courteous and punctual.  After fixing all of the wiring in my garage, he showed me the replacement lights I need.    I would recommend Cody and The Wire Guy to anyone who needs electrical work done.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.19.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Darrel Videen</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Cody corrected all the electrical problems I had. Very polite and efficient.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.16.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Troy Washington</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Once again Great Job!!! and always on time!!!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.14.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Maria Parrish</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Had six new garage lights installed and one overhead light fixture. They arrived right on time, were meticulous and got the job done well an quickly. Highly recommend.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.12.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Jay Roper</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">We have used Wire Guy in the past. We had such a great experience previously, so when we had another project, we called them, again. This experience was equally as great. Rhett showed up right at the beginning of the scheduled &quot;window&quot; time, did our installation promptly and quickly, and cleaned up afterwards. He is friendly, knowledgeable, and professional. We enthusiastically recommend Wire Guy Electric for any electrical need,</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.11.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Allen Schroeder</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Great experience. They were on time. They were prepared for my unique needs. The electricians were polite, efficient, and helpful. I highly recommend The Wire Guy Electric.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.09.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Edward Taylor</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Always excellent service and fair prices and great to work with on my homes needs.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.09.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Matthew Caswell</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Needed to have a Ring Floodlight Cam removed and replaced about 15 feet off the ground and have a spa power disconnected and capped off as we&#039;re getting rid of the spa.
+They arrived on time and were very quick to get the job done. Very professional and Friendly.  Didn&#039;t mind answering stupid old guy questions!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.09.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/yahoo.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Matthew C.</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Needed to have a Ring Floodlight Cam removed and replaced about 15 feet off the ground and have a spa power disconnected and capped off as we&#039;re getting rid of the spa. They arrived on time and...</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.07.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Patrick McCormick</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Great service!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.05.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/yahoo.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Rob S.</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Replaced existing ceiling fan. Rhett showed up on time, explained the scope of work and made good recommendations. Job was done very efficiently and professionally. New fan works great. I...</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.02.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Lisa Ayotte</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Very pleased with this company. I use a lot of electrical companies for business and this was my first residential in a while and what a positive experience  Highly recommend  Prompt, great communication, work was completed quickly and they cleaned up as well.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">01.01.2026</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Laura Day</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Rhett and his guy did a great job troubleshooting my issue and got it fixed! I will use them again in the future.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">12.30.2025</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">David Rockwell</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Did a great job for us.  I&#039;ll definitely use them again in the future.  Thank you.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">12.29.2025</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Mike Kolker</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Very friendly and competent crew. Will keep using for the foreseeable future.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">12.23.2025</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Chris Hylton</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">Rhett, from the Wire Guy was fantastic. Super helpful even with a pretty minor situation. Was very courteous and explained the issue thoroughly. Was able to get an appointment fairly quickly. Will call them in the future with any electrical issues I may have.</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">12.18.2025</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Stephen Dunnery</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">On time and courteous.  Explained issue and replaced what was needed</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">12.18.2025</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/yahoo.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Matt K.</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">They came out very quick and installed a new power receptical in my bathroom. They were very professional and very affordable. I plan on using them again for future projects</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                            
+<div
+    class="Review-container  is-left "
+    >
+            <figure class="Review-rating is-rating-5">
+            <img src="/assets/rm/images/showcase/reviews_stars-orange.svg">
+        </figure>
+        <div class="Review-date">
+                    <span class="Widget-textPreview">12.17.2025</span>
+            </div>
+            <img
+            class="Review-directory"
+            width="24"
+            height="24"
+            src="/assets/core/images/icons/google.png?v=2"
+        >
+                <div class="Review-name">
+            <span class="Widget-textPreview">Jesse Frank</span>
+        </div>
+        <div
+        class="Review-content"
+        data-controller="read-more"
+        data-read-more-length="140"
+        data-read-more-less-text="Read Less"
+        data-read-more-more-text="Read More"
+    >
+        <span class="Widget-textPreview">
+            <span data-target="read-more.text">They did a phenomenal job, they made the process seamless and I couldn&#039;t be more happy with the outcome!</span>
+        </span>
+        <span data-target="read-more.button" data-action="click->read-more#toggle" style="display: none;" class="Review-readMore">Read More</span>
+    </div>
+</div>
+                                                    </div>
+                    </div>
+
+                                    </div>
+                        </div>
+    </div>
+</body>
+</html>

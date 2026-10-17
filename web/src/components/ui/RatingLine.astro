@@ -1,0 +1,36 @@
+---
+// "★★★★★ 5.0 from 380+ Google reviews · Read our reviews on Google ↗", from Site
+// settings. The rating always sits beside the link to the reviews. Renders nothing
+// when Site settings has no rating.
+import type {SiteSettings} from '../../lib/types'
+import {ratingSummary, siteRating} from '../../lib/site'
+import ExternalLink from './ExternalLink.astro'
+import Stars from './Stars.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** quiet: the link on its own line (no separator); foot: the footer's spacing. */
+  variant?: 'quiet' | 'foot'
+  class?: string
+}
+
+const {settings, variant, class: className} = Astro.props
+const rating = siteRating(settings)
+---
+
+{
+  rating && (
+    <p class:list={['rating', variant && `rating--${variant}`, className]}>
+      <Stars />{' '}
+      <span class="rating__t">
+        <b>{rating.value}</b> <span class="sr-only">out of 5 stars </span>{ratingSummary(rating)}
+      </span>
+      {rating.href && (
+        <>
+          {' '}<span class="rating__sep" aria-hidden="true">·</span>{' '}
+          <ExternalLink class="rating__g" href={rating.href}>Read our reviews on {rating.source}</ExternalLink>
+        </>
+      )}
+    </p>
+  )
+}

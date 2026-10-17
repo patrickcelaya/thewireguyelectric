@@ -1,0 +1,417 @@
+{
+  "page": "contact-us",
+  "url": "/contact-us",
+  "capturedAt": "2026-10-13",
+  "source": "Discovery inventory contact-us.json: the live page (thewireguyelectric.com/contact-us) as served on 2026-10-13, verbatim",
+  "title": "Free Electrical Estimate in Mesa, AZ | The Wire Guy Electric",
+  "metaDescription": "Get a free, no-obligation electrical estimate. Flat-rate pricing with no hidden fees. Serving Mesa, Scottsdale, Gilbert, Chandler, and Tempe.",
+  "h1": "Ready to start a request?",
+  "sections": [
+    {
+      "index": 0,
+      "element": "div.section.banner-inner.custom-padding",
+      "purpose": "Page banner: H1 \"Ready to start a request?\" + paragraph over the Steven-and-van photo",
+      "source": "static",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Ready to start a request?"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.inner-wrapper.contact-us",
+          "src": "/wf/a/66f6fa54a28b1af4d251f837_steven-and-cody-wire-guy-electric.avif",
+          "cssSelector": ".inner-wrapper.contact-us",
+          "role": "REAL photo: Steven beside the wrapped van, portrait orientation (724x1086)"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Ready to start a request?"
+        },
+        {
+          "type": "paragraph",
+          "text": "For all your electrical needs, The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical."
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6fa54a28b1af4d251f837_steven-and-cody-wire-guy-electric.avif",
+          "alt": null,
+          "role": "REAL photo: Steven beside the wrapped van, portrait orientation (724x1086)",
+          "kind": "css background (.inner-wrapper.contact-us)"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "index": 1,
+      "element": "div.section",
+      "purpose": "Contact block: eyebrow \"get in touch\", H3, paragraph, H5 location line, address/phone/email, and the estimate form (\"Start a request\")",
+      "source": "static",
+      "headings": [
+        {
+          "level": 6,
+          "text": "get in touch"
+        },
+        {
+          "level": 3,
+          "text": "Reach out to us today to discuss your electrical needs"
+        },
+        {
+          "level": 5,
+          "text": "We're Located in Mesa, Arizona and serve the entire Phoenix Valley"
+        },
+        {
+          "level": 3,
+          "text": "Start a request"
+        }
+      ],
+      "content": [
+        {
+          "type": "card",
+          "kind": "column",
+          "children": [
+            {
+              "type": "heading",
+              "level": 6,
+              "text": "get in touch",
+              "styleRole": "eyebrow (small caps label)"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Reach out to us today to discuss your electrical needs"
+            },
+            {
+              "type": "paragraph",
+              "text": "The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical. Let us brighten your life with safety, efficiency, and expert craftsmanship."
+            },
+            {
+              "type": "heading",
+              "level": 5,
+              "text": "We're Located in Mesa, Arizona and serve the entire Phoenix Valley"
+            },
+            {
+              "type": "card",
+              "kind": "contactDetail",
+              "children": [
+                {
+                  "type": "icon",
+                  "icon": "fa-location-dot"
+                },
+                {
+                  "type": "link",
+                  "text": "1321 N 65th St, Mesa, AZ 85205",
+                  "href": "https://g.co/kgs/BQJ3i8D",
+                  "target": "_blank"
+                }
+              ]
+            },
+            {
+              "type": "card",
+              "kind": "contactDetail",
+              "children": [
+                {
+                  "type": "icon",
+                  "icon": "fa-phone-flip"
+                },
+                {
+                  "type": "link",
+                  "text": "+1 (602) 769-7892",
+                  "href": "tel:+16027697892"
+                }
+              ]
+            },
+            {
+              "type": "card",
+              "kind": "contactDetail",
+              "children": [
+                {
+                  "type": "icon",
+                  "icon": "fa-envelope"
+                },
+                {
+                  "type": "link",
+                  "text": "office@thewireguyelectric.com",
+                  "href": "mailto:office@thewireguyelectric.com?subject=Electrical%20Request"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "column",
+          "children": [
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Start a request"
+            },
+            {
+              "type": "form",
+              "id": "contact-form",
+              "name": "wf-form-Contact-Form",
+              "webflowName": "Contact Form",
+              "method": "post",
+              "action": "/api/contact",
+              "leadFormType": "estimate",
+              "behavior": "webflow-lite intercepts submit, POSTs FormData to /api/contact, hides the form and shows the success block; fires GA4 generate_lead {form_type}",
+              "fields": [
+                {
+                  "kind": "hidden",
+                  "name": "formType",
+                  "type": "hidden",
+                  "value": "estimate"
+                },
+                {
+                  "kind": "hidden",
+                  "name": "startedAt",
+                  "type": "hidden",
+                  "value": ""
+                },
+                {
+                  "kind": "honeypot",
+                  "name": "company_website",
+                  "type": "text",
+                  "label": "Leave empty"
+                },
+                {
+                  "kind": "field",
+                  "name": "name",
+                  "type": "text",
+                  "placeholder": "Your name",
+                  "webflowLabel": "Name",
+                  "required": true,
+                  "maxlength": 256
+                },
+                {
+                  "kind": "field",
+                  "name": "email",
+                  "type": "email",
+                  "placeholder": "Your email",
+                  "webflowLabel": "Email 4",
+                  "required": true,
+                  "maxlength": 256
+                },
+                {
+                  "kind": "field",
+                  "name": "phone",
+                  "type": "tel",
+                  "placeholder": "Your phone number",
+                  "webflowLabel": "Phone Number",
+                  "required": true,
+                  "maxlength": 256
+                },
+                {
+                  "kind": "field",
+                  "name": "zip",
+                  "type": "number",
+                  "placeholder": "Zip Code",
+                  "webflowLabel": "Zip Code",
+                  "required": true,
+                  "maxlength": 256
+                },
+                {
+                  "kind": "field",
+                  "name": "message",
+                  "type": "textarea",
+                  "placeholder": "Your Request",
+                  "webflowLabel": "Request",
+                  "required": true,
+                  "maxlength": 5000
+                },
+                {
+                  "kind": "recaptcha",
+                  "note": "Webflow reCAPTCHA v2 placeholder (classes g-recaptcha-disabled); not loaded by webflow-lite. Spam protection is the honeypot + startedAt timer."
+                },
+                {
+                  "kind": "submit",
+                  "label": "Submit Request",
+                  "waitLabel": "Please wait..."
+                }
+              ],
+              "successMessage": {
+                "text": "Thank you! Your submission has been received. We will reach back out within one business day!",
+                "html": "Thank you! Your submission has been received. <strong>We will reach back out within one business day!</strong>"
+              },
+              "errorMessage": "Oops! Something went wrong while submitting the form."
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "ctas": [],
+      "notes": [
+        "Lists only the Mesa address. The Scottsdale appointment-only office (\"The Wire Guy Electric of Scottsdale\", 8555 E Raintree Dr, Unit 117, Scottsdale, AZ 85260) appears only in the footer; add it here with hours and a map.",
+        "Zip Code field is type=\"number\" (drops leading zeros, shows spinners); use type=\"text\" inputmode=\"numeric\"."
+      ]
+    }
+  ],
+  "copy": [
+    {
+      "section": 0,
+      "tag": "h1",
+      "text": "Ready to start a request?"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "For all your electrical needs, The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical."
+    },
+    {
+      "section": 1,
+      "tag": "h6",
+      "text": "get in touch"
+    },
+    {
+      "section": 1,
+      "tag": "h3",
+      "text": "Reach out to us today to discuss your electrical needs"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical. Let us brighten your life with safety, efficiency, and expert craftsmanship."
+    },
+    {
+      "section": 1,
+      "tag": "h5",
+      "text": "We're Located in Mesa, Arizona and serve the entire Phoenix Valley"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "href": "https://g.co/kgs/BQJ3i8D"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "+1 (602) 769-7892",
+      "href": "tel:+16027697892"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "office@thewireguyelectric.com",
+      "href": "mailto:office@thewireguyelectric.com?subject=Electrical%20Request"
+    },
+    {
+      "section": 1,
+      "tag": "h3",
+      "text": "Start a request"
+    },
+    {
+      "section": 1,
+      "tag": "form-field",
+      "text": "Your name",
+      "name": "name",
+      "type": "text",
+      "required": true
+    },
+    {
+      "section": 1,
+      "tag": "form-field",
+      "text": "Your email",
+      "name": "email",
+      "type": "email",
+      "required": true
+    },
+    {
+      "section": 1,
+      "tag": "form-field",
+      "text": "Your phone number",
+      "name": "phone",
+      "type": "tel",
+      "required": true
+    },
+    {
+      "section": 1,
+      "tag": "form-field",
+      "text": "Zip Code",
+      "name": "zip",
+      "type": "number",
+      "required": true
+    },
+    {
+      "section": 1,
+      "tag": "form-field",
+      "text": "Your Request",
+      "name": "message",
+      "type": "textarea",
+      "required": true
+    },
+    {
+      "section": 1,
+      "tag": "form-submit",
+      "text": "Submit Request"
+    },
+    {
+      "section": 1,
+      "tag": "form-success",
+      "text": "Thank you! Your submission has been received. We will reach back out within one business day!",
+      "html": "Thank you! Your submission has been received. <strong>We will reach back out within one business day!</strong>"
+    },
+    {
+      "section": 1,
+      "tag": "form-error",
+      "text": "Oops! Something went wrong while submitting the form."
+    }
+  ],
+  "links": [
+    {
+      "section": 1,
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "href": "https://g.co/kgs/BQJ3i8D",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "+1 (602) 769-7892",
+      "href": "tel:+16027697892",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "office@thewireguyelectric.com",
+      "href": "mailto:office@thewireguyelectric.com?subject=Electrical%20Request",
+      "kind": "link"
+    }
+  ],
+  "pageBuilderMapping": [
+    {
+      "order": 1,
+      "sectionType": "heroSection",
+      "fromInventorySection": 0,
+      "fields": "heading = H1; text = banner paragraph"
+    },
+    {
+      "order": 2,
+      "sectionType": "contactSection",
+      "fromInventorySection": 1,
+      "fields": "formType estimate; eyebrow \"get in touch\"; heading; text; formHeading \"Start a request\"; successMessage"
+    },
+    {
+      "order": 3,
+      "sectionType": "NEW officeLocationsSection",
+      "fromInventorySection": null,
+      "fields": "Mesa + Scottsdale offices from siteSettings.addresses, hours, phone, map, directions links"
+    },
+    {
+      "order": 4,
+      "sectionType": "NEW trustBarSection",
+      "fromInventorySection": null,
+      "fields": "Reassurance next to the form: free estimates, flat-rate pricing, 2-year warranty, ROC #365306"
+    },
+    {
+      "order": 5,
+      "sectionType": "faqSection",
+      "fromInventorySection": null,
+      "fields": "Optional: \"Do you offer free estimates?\", \"What cities do you service?\", \"Do you work on weekends or offer emergency service?\""
+    }
+  ]
+}

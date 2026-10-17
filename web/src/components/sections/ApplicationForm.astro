@@ -1,0 +1,86 @@
+---
+// The job application form (a careers contact section). The same card, behaviour
+// and no-JS path as the estimate form (components/sections/EstimateForm.astro;
+// scripts/site/forms.ts): it posts to /api/contact with formType "careers", the API
+// answers 303 back to #sent or #send-error without JS, and with JS it validates
+// inline and focuses the confirmation. One form per page (fixed ids). The fields are
+// the ones the live application asked for; the API delivers them by name.
+import type {SiteSettings} from '../../lib/types'
+import {telHref} from '../../lib/site'
+import LitBulb from '../ui/LitBulb.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** Prefix for the field ids (unique on the page). */
+  id: string
+  title?: string
+  titleTag?: 'h2' | 'h3'
+  submitLabel?: string
+  successMessage?: string
+}
+
+const {settings, id, title = 'Apply Now', titleTag: Title = 'h3', submitLabel = 'Send my application', successMessage} = Astro.props
+const tel = telHref(settings)
+---
+
+<div class="est est--apply" data-est="careers">
+  <div class="est__head">
+    <Title class="est__title">{title}</Title>
+    <p class="hint">Name, phone and email are all we need to reach you. The rest helps us get to know you.</p>
+  </div>
+  <form action="/api/contact" method="post" aria-label={title}>
+    <div class="est__alert" role="alert" data-est-alert></div>
+    <p class="est__fail" id="send-error" data-est-fail>We couldn’t send that. Please call <a href={tel}>{settings.phone}</a>, or try again in a moment.</p>
+    <input type="hidden" name="formType" value="careers" />
+    <input type="hidden" name="startedAt" value="" data-started />
+    <div class="hp" aria-hidden="true">
+      <label for={`${id}-cw`}>Company website</label>
+      <input id={`${id}-cw`} name="company_website" tabindex="-1" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label for={`${id}-name`}>Name <span class="req">(required)</span></label>
+      <input id={`${id}-name`} name="name" autocomplete="name" required aria-required="true" />
+      <span class="err" id={`${id}-name-e`} hidden>Please enter your name.</span>
+    </div>
+    <div class="field">
+      <label for={`${id}-phone`}>Phone <span class="req">(required)</span></label>
+      <input id={`${id}-phone`} name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-required="true" />
+      <span class="err" id={`${id}-phone-e`} hidden>Please enter a phone number we can call.</span>
+    </div>
+    <div class="field field--full">
+      <label for={`${id}-email`}>Email <span class="req">(required)</span></label>
+      <input id={`${id}-email`} name="email" type="email" autocomplete="email" required aria-required="true" />
+      <span class="err" id={`${id}-email-e`} hidden>Please enter an email address we can write to.</span>
+    </div>
+    <div class="field">
+      <label for={`${id}-experience`}>Years of electrical experience</label>
+      <input id={`${id}-experience`} name="experience" type="number" inputmode="numeric" min="0" max="60" />
+    </div>
+    <div class="field">
+      <label for={`${id}-fulltime`}>Available for full-time work?</label>
+      <select id={`${id}-fulltime`} name="fullTime">
+        <option value="">Choose one</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+    </div>
+    <div class="field field--full">
+      <label for={`${id}-start`}>How soon can you start?</label>
+      <input id={`${id}-start`} name="startDate" placeholder="Two weeks’ notice, right away…" />
+    </div>
+    <div class="field field--full">
+      <label for={`${id}-message`}>Tell us about you and your relevant experience <span class="req">(optional)</span></label>
+      <textarea id={`${id}-message`} name="message" rows="4"></textarea>
+    </div>
+    <div class="submit">
+      <button class="btn btn--primary btn--lg btn--go" type="submit"><span data-submit-label>{submitLabel}</span></button>
+    </div>
+  </form>
+  <div class="done" id="sent" role="status" tabindex="-1" data-est-done>
+    <LitBulb class="ok-bulb" />
+    <div>
+      <p class="done__h">Your application is in.</p>
+      <p>{successMessage ?? 'Thank you! We will reach back out soon.'}</p>
+    </div>
+  </div>
+</div>

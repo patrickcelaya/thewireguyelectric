@@ -1,9 +1,16 @@
 ---
-import WebflowLayout from '../../layouts/WebflowLayout.astro'
-import {getPostCategories, getSettings} from '../../lib/queries'
-import {renderPostCategory} from '../../lib/legacy'
+// A blog topic page (noindex, as live; out of the sitemap): the type-led hero, the
+// topic's posts as guide cards (while a topic has none, simply the latest guides), the
+// blog, and the services the guides are written around.
+import SiteLayout from '../../layouts/SiteLayout.astro'
+import '../../styles/bundles/page-cms.css'
+import CategoryHero from '../../components/sections/CategoryHero.astro'
+import GuidesBlock from '../../components/sections/GuidesBlock.astro'
+import CtaBand from '../../components/sections/CtaBand.astro'
+import {getPostCategories, getPostIndex, getServices, getSettings} from '../../lib/queries'
 import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
 import {webPageNode} from '../../lib/schema'
+import {guideCards} from '../../lib/cms'
 import type {PostCategoryDoc} from '../../lib/types'
 
 export async function getStaticPaths() {
@@ -11,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const {category} = Astro.props as {category: PostCategoryDoc}
-const settings = await getSettings()
+const [settings, postIndex, services] = await Promise.all([getSettings(), getPostIndex(), getServices()])
 const path = `/posts-categories/${category.slug}`
 const title = resolveTitle(category.seo, `${category.name} Electrical Tips | ${settings.businessName} Blog`)
 const description = resolveDescription(
@@ -20,11 +27,51 @@ const description = resolveDescription(
   `Browse our ${category.name} electrical articles, tips, and cost guides from licensed Phoenix valley electricians.`,
 )
 const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}, {name: category.name, path}]
+
+const own = category.posts.length > 0
+const posts = guideCards(own ? category.posts : postIndex.slice(0, 3), postIndex, services)
+// the services the guides are written around (each post's first service), in site order
+const hubs = services.filter((s) => postIndex.some((p) => p.services[0] === s.slug))
 ---
 
-<WebflowLayout
+<SiteLayout
   meta={{title, description, path, ogImage: resolveOgImage(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
   schema={[webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs})]}
+  bodyClass="inner page-cat"
 >
-  <Fragment set:html={renderPostCategory(category)} />
-</WebflowLayout>
+  <CategoryHero settings={settings} crumbs={crumbs} eyebrow="Blog" heading={category.name} lede={category.description} />
+
+  <section class="section answers" aria-labelledby="guides-h">
+    <div class="wrap">
+      <GuidesBlock
+        number={1}
+        section={{
+          _type: 'postsSection',
+          _key: 'guides',
+          eyebrow: own ? `${category.name} guides` : 'Latest guides',
+          heading: own ? `${category.name} articles` : 'Latest guides from our electricians',
+          posts,
+          cta: {label: 'All guides on the blog', href: '/blog'},
+        }}
+      />
+      {
+        hubs.length > 0 && (
+          <nav class="topic-hubs" aria-labelledby="hubs-h">
+            <h2 class="topic-hubs__h" id="hubs-h">
+              The services our guides cover
+            </h2>
+            <ul class="hub__chips" role="list">
+              {hubs.map((s) => (
+                <li>
+                  <a href={`/services/${s.slug}`}>{s.name}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+    </div>
+  </section>
+
+  <CtaBand settings={settings} number={2} />
+</SiteLayout>

@@ -1,0 +1,356 @@
+{
+  "$comment": "Visible FAQ copy, verbatim from the live /faq page (discovery inventory faq.json, crawled 2026-10-13). The live FAQPage JSON-LD came from an older version with different prices; this file is the truth. Applied by scripts/migrate/content/fixes.mjs. See README.md.",
+  "source": "Live https://www.thewireguyelectric.com/faq visible accordion copy (inventory faq.json faqGroups), 2026-10-13",
+  "faqs": [
+    {
+      "order": 0,
+      "group": "The most common questions",
+      "topic": "General",
+      "question": "What types of electrical services do you offer?",
+      "answerHtml": "From entire remodels to small repairs, we do it all! We handle <a href=\"/services/recessed-lights-installation\">recessed lighting</a>, <a href=\"/services/panels\">panel upgrades</a>, <a href=\"/services/ev-charger-installation\">EV charger installations</a>, <a href=\"/services/electrical-troubleshooting\">troubleshooting</a>, <a href=\"/services/custom-lighting\">custom lighting</a>, <a href=\"/services/fixture-replacements\">fixture replacements</a>, <a href=\"/services/electrical-safety-inspections\">electrical safety inspections</a>, surge protection, and more. Check out our <a href=\"/services\">services page</a> to learn more or give us a call at <a href=\"tel:+16027697892\">602-769-7892</a> if you have questions about a specific service.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/services/* (all 21 service pages)"
+      ]
+    },
+    {
+      "order": 1,
+      "group": "The most common questions",
+      "topic": "General",
+      "question": "What cities do you service?",
+      "answerHtml": "We travel all over the Phoenix Valley to cities and areas including <a href=\"/\">Mesa</a>, <a href=\"/locations/gilbert\">Gilbert</a>, <a href=\"/locations/chandler\">Chandler</a>, <a href=\"/locations/scottsdale\">Scottsdale</a>, <a href=\"/locations/phoenix\">Phoenix</a>, <a href=\"/locations/tempe\">Tempe</a>, <a href=\"/locations/queen-creek\">Queen Creek</a>, <a href=\"/locations/san-tan-valley\">San Tan Valley</a>, <a href=\"/locations/apache-junction\">Apache Junction</a>, <a href=\"/locations/fountain-hills\">Fountain Hills</a>, and <a href=\"/locations/ahwatukee\">Ahwatukee</a>. If you don't see your city listed, don't worry! Just <a href=\"/contact-us\">give us a call</a> and we'll let you know if you're in our service radius.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/services/* (all 21 service pages)"
+      ]
+    },
+    {
+      "order": 2,
+      "group": "The most common questions",
+      "topic": "General",
+      "question": "Do you offer free estimates?",
+      "answerHtml": "Yes we do! <a href=\"/contact-us\">Contact us today</a> to get a free quote. We'll come out, look at the job, and give you a straight answer on what it'll cost. No pressure and no obligation.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/services/* (all 21 service pages)"
+      ]
+    },
+    {
+      "order": 3,
+      "group": "Customers frequently ask",
+      "topic": "Company",
+      "question": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?",
+      "answerHtml": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. <a href=\"/contact-us\">Contact us today</a> to schedule a free estimate and turn the plan into a code-compliant installation.",
+      "services": [
+        "custom-lighting",
+        "recessed-lights-installation"
+      ],
+      "shownOn": [
+        "/faq",
+        "/our-team"
+      ]
+    },
+    {
+      "order": 4,
+      "group": "Customers frequently ask",
+      "topic": "Company",
+      "question": "Do you have any hidden fees?",
+      "answerHtml": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/our-team"
+      ]
+    },
+    {
+      "order": 5,
+      "group": "Customers frequently ask",
+      "topic": "Company",
+      "question": "Are there any services you don’t offer?",
+      "answerHtml": "We do most electrical work, but not all. Here are some services we don't currently offer: generator installs, solar installs, hanging Christmas/bistro lights, standing lamp repairs, ethernet/data wiring, fiber internet wiring, speaker installs, camera installs, camera doorbell installs, and thermostats. Check out our full <a href=\"/services\">services page</a> to see everything we do offer.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/our-team"
+      ]
+    },
+    {
+      "order": 6,
+      "group": "Customers frequently ask",
+      "topic": "Company",
+      "question": "Can you tell me more about your business?",
+      "answerHtml": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (<a href=\"https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB\">ROC #365306</a>). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our <a href=\"/about-us\">About Us</a> page or <a href=\"/our-team\">meet our team</a>.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/our-team"
+      ]
+    },
+    {
+      "order": 7,
+      "group": "Customers frequently ask",
+      "topic": "Company",
+      "question": "Do you warranty your work?",
+      "answerHtml": "Yes, we do. We offer a 2-year warranty on services we provide. <a href=\"/contact-us\">Contact us</a> for full warranty details.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/our-team"
+      ]
+    },
+    {
+      "order": 8,
+      "group": "Customers frequently ask",
+      "topic": "Company",
+      "question": "I have another non-electrical project but don’t know where to start. Can you refer me to someone?",
+      "legacyQuestion": "Can you refer me to someone for a non-electrical project?",
+      "answerHtml": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just <a href=\"/contact-us\">reach out</a> and we'll point you in the right direction.",
+      "services": [],
+      "shownOn": [
+        "/faq",
+        "/our-team"
+      ]
+    },
+    {
+      "order": 9,
+      "group": "Pricing And Cost Questions",
+      "topic": "Pricing",
+      "question": "How much does an electrician cost per hour in Phoenix?",
+      "answerHtml": "A lot of electricians in the Phoenix area charge between $125 and $375 per hour, which can make it hard to know what your final bill is going to be At The Wire Guy Electric, we do things differently. We use flat-rate pricing, which means we quote you a price before we start and that's what you pay. No surprises. Whether the job takes us one hour or three, your price stays the same. We think that's the fairest way to do business because it puts the risk on us, not on you. <a href=\"/contact-us\">Get a free estimate</a> to see our pricing for your specific project.",
+      "services": [],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 10,
+      "group": "Pricing And Cost Questions",
+      "topic": "Pricing",
+      "question": "How much does an electrical panel replacement cost in Arizona?",
+      "legacyQuestion": "How much does an electrical panel upgrade cost in Arizona?",
+      "answerHtml": "In the Phoenix metro area, most electrical panel replacements fall between $5,200 and $6,500 for a standard 200-amp panel. If you need a full service replacement that includes a new all-in-one meter base and panel, that range is typically $6,400 to $8,750 depending on the scope of work. We wrote a <a href=\"/blog-posts/electrical-panel-upgrade-cost-arizona\">full breakdown of panel upgrade costs in Arizona</a> on our blog if you want the detailed numbers. Every home is different, so we always recommend <a href=\"/contact-us\">getting a free estimate</a> to know exactly what your situation requires.",
+      "services": [
+        "panels"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 11,
+      "group": "Pricing And Cost Questions",
+      "topic": "Pricing",
+      "question": "How much does it cost to install recessed can lighting?",
+      "legacyQuestion": "How much does it cost to install recessed lighting?",
+      "answerHtml": "For a typical installation of six recessed LED can lights in an existing room, most homeowners in the Phoenix valley can expect to pay somewhere between $1,050 and $1,750. That includes the fixtures, wiring, switches, and labor. The price can vary depending on how accessible your ceiling is, whether we need to add new switch locations, and how many lights you want. We have a <a href=\"/blog-posts/recessed-lighting-installation-phoenix\">detailed recessed lighting cost guide</a> on our blog with more specifics for Arizona homeowners.",
+      "services": [
+        "recessed-lights-installation"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 12,
+      "group": "Pricing And Cost Questions",
+      "topic": "Pricing",
+      "question": "How much does it cost to install an EV charger at home?",
+      "answerHtml": "Installing a Level 2 EV charger (240-volt) at a home in the Phoenix area typically costs between $750 and $3,500 depending on the distance from your panel to the charging location and whether your panel has room for a new circuit. If your panel needs an upgrade to support the charger, that adds to the cost. We install chargers for all makes and models. Learn more about our <a href=\"/services/ev-charger-installation\">EV charger installation service</a> or <a href=\"/contact-us\">give us a call</a> for a free estimate.",
+      "services": [
+        "ev-charger-installation"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 13,
+      "group": "Panel and Electrical System Questions",
+      "topic": "Panels",
+      "question": "How do I know if my electrical panel needs to be upgraded?",
+      "answerHtml": "There are a few clear signs. If your breakers trip frequently, if your lights flicker when large appliances kick on, if you still have a fuse box, or if your panel is more than 25 years old, it's worth having it looked at. Homes with 100-amp panels that are trying to run modern appliances, AC systems, and EV chargers are usually overdue for an upgrade. We also strongly recommend replacing any Federal Pacific or Zinsco branded panels, as these have well-documented safety issues. We offer <a href=\"/contact-us\">free estimates</a> and will give you an honest answer on whether you actually need the upgrade or not. Read more on our <a href=\"/services/panels\">panel upgrades service page</a>.",
+      "services": [
+        "panels"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 14,
+      "group": "Panel and Electrical System Questions",
+      "topic": "Panels",
+      "question": "What is the difference between a 100 amp and 200 amp electrical panel?",
+      "answerHtml": "It comes down to how much electricity your home can handle at once. A 100-amp panel was standard in older homes and works fine for smaller properties with basic electrical needs. A 200-amp panel is the current standard for new construction and can support modern demands like central AC, electric dryers, pool pumps, EV chargers, and multiple large appliances running at the same time. Most homes in the Phoenix valley that were built before the early 2000s have 100-amp panels. If you're adding major appliances or doing a remodel, upgrading to 200 amps is usually the smart move. Check out our <a href=\"/blog-posts/electrical-panel-upgrade-cost-arizona\">detailed panel upgrade cost guide</a> for more info.",
+      "services": [
+        "panels"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 15,
+      "group": "Panel and Electrical System Questions",
+      "topic": "Panels",
+      "question": "Do I need a permit for electrical work in Arizona?",
+      "answerHtml": "Permits are required for all major electrical work. At The Wire Guy Electric, we can handle the entire permitting process for you. We pull the permit, schedule the inspection, and make sure everything passes.",
+      "services": [],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 16,
+      "group": "Panel and Electrical System Questions",
+      "topic": "Panels",
+      "question": "What is a whole house surge protector and do I need one?",
+      "answerHtml": "A whole house surge protector installs at your electrical panel and protects every circuit in your home from voltage spikes. These spikes can come from lightning, utility grid fluctuations, or even your own AC unit cycling on and off. In Arizona, monsoon season is a real threat to electronics and appliances. A surge protector won't stop a direct lightning strike, but it handles the more common surges that quietly damage things like your refrigerator, washer, smart TV, and HVAC system over time. For the cost, which is typically between $300 and $600 installed, it's one of the best investments you can make to protect thousands of dollars worth of equipment. Read our full guide: <a href=\"/blog-posts/whole-house-surge-protector-guide-arizona\">Is Whole-House Surge Protection Necessary in My Home?</a>",
+      "services": [
+        "panels"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 17,
+      "group": "Safety and Code Questions",
+      "topic": "Safety",
+      "question": "How often should I have my home's electrical system inspected?",
+      "answerHtml": "We recommend a professional electrical inspection every 5 to 10 years for most homes, or anytime you purchase a new home. If your home is more than 25 years old, an inspection is especially important because wiring, panels, and connections degrade over time. We also recommend an inspection if you're experiencing any issues like flickering lights, warm outlets, or tripping breakers. Our <a href=\"/services/electrical-safety-inspections\">electrical safety inspections</a> cover your panel, wiring, outlets, grounding, and overall system safety.",
+      "services": [
+        "electrical-safety-inspections"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 18,
+      "group": "Safety and Code Questions",
+      "topic": "Safety",
+      "question": "What are the signs of bad electrical wiring in a house?",
+      "answerHtml": "Watch for flickering or dimming lights, a burning smell near outlets or switches, discolored or warm outlet covers, frequently tripping breakers, buzzing sounds from your panel or walls, and outlets that don't work. Any of these could indicate a wiring problem that needs attention. Older homes in the Phoenix area, especially those built prior to 1975, sometimes have single strand aluminum or cloth insulated wiring that can be a fire hazard if not properly maintained or completely replaced. If you notice any of these signs, <a href=\"/contact-us\">call us</a> and we'll come diagnose the issue with our <a href=\"/services/electrical-troubleshooting\">electrical troubleshooting service</a>.",
+      "services": [
+        "electrical-troubleshooting"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 19,
+      "group": "Safety and Code Questions",
+      "topic": "Safety",
+      "question": "Is aluminum wiring dangerous? Should I replace it?",
+      "answerHtml": "Single Strand Aluminum wiring was commonly used in homes built during the 1960s and 1970s. It can be dangerous, and it does require more attention than copper wiring. Single Strand Aluminum wiring expands and contracts more with heat, which can loosen connections over time and create fire hazards at outlets, switches, and junction boxes. In most cases we recommend a full rewire. In some cases, we can install an aluminum to copper pigtail with special connectors (called AlumiConn connectors) at every connection point. We see a lot of single strand aluminum wiring in older <a href=\"/\" target=\"_blank\">Mesa</a>, <a href=\"/locations/tempe\" target=\"_blank\">Tempe</a>, and <a href=\"/locations/phoenix\" target=\"_blank\">Phoenix</a> homes, and can assess your situation during a <a href=\"/contact-us\" target=\"_blank\">free estimate</a>.",
+      "services": [
+        "electrical-remodels",
+        "electrical-safety-inspections"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 20,
+      "group": "Safety and Code Questions",
+      "topic": "Safety",
+      "question": "Why does my breaker keep tripping?",
+      "answerHtml": "A breaker trips when the circuit is overloaded, meaning too many devices or appliances are drawing power from the same circuit. It can also trip from a short circuit or a ground fault. If it's happening occasionally, it might just be an overloaded circuit that needs to be redistributed. If a breaker trips repeatedly or immediately after you reset it, that's a sign of a more serious issue like a short in the wiring, a bad breaker, or a failing appliance. Don't ignore a breaker that keeps tripping. It's doing its job by preventing a fire, but the underlying cause needs to be fixed. <a href=\"/contact-us\">Give us a call</a> and our <a href=\"/services/electrical-troubleshooting\">troubleshooting team</a> can diagnose it.",
+      "services": [
+        "electrical-troubleshooting"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 21,
+      "group": "Service-Specific Questions",
+      "topic": "Services",
+      "question": "Can I install an EV charger myself or do I need an electrician?",
+      "answerHtml": "You need a licensed electrician. Installing a Level 2 EV charger requires running a dedicated 240-volt circuit from your panel to your garage or driveway, which involves working inside your breaker panel. This is not a DIY job. Doing it incorrectly can damage your vehicle's charging system or create a fire hazard. We have seen a lot of DIY EV charger installations catch fire and cause serious damage to homes. At The Wire Guy Electric, we install chargers for every major EV brand including Tesla, Ford, Rivian, ChargePoint and more. We make sure everything is done safely and to code. Learn more on our <a href=\"/services/ev-charger-installation\" target=\"_blank\">EV charger installation page</a>.",
+      "services": [
+        "ev-charger-installation"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 22,
+      "group": "Service-Specific Questions",
+      "topic": "Services",
+      "question": "What type of recessed lights should I use?",
+      "answerHtml": "For homes in Arizona, we always recommend IC-rated LED recessed fixtures. IC stands for Insulation Contact, which means the fixture is designed to safely touch the insulation in your ceiling without creating a fire risk. Since nearly every home in the Phoenix area has insulation in the ceiling, this is a code requirement. LED fixtures are the standard now because they use less energy, produce almost no heat (which matters when your AC is already working hard), and last 25,000 to 50,000 hours. For color temperature, most homeowners prefer 3000K for a warm, comfortable feel. Read our full guide on <a href=\"/blog-posts/recessed-lighting-installation-phoenix\">recessed lighting installation in Phoenix</a> for more details.",
+      "services": [
+        "recessed-lights-installation"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 23,
+      "group": "Service-Specific Questions",
+      "topic": "Services",
+      "question": "How long does it take to install recessed lighting?",
+      "answerHtml": "It depends on the number of lights and the accessibility of your ceiling. For a typical room with 4 to 6 lights and attic access above, the install usually takes about half a day. Larger projects or rooms without attic access may take a full day. We always try to be efficient and clean up after ourselves so there's minimal disruption to your home. Check out our <a href=\"/services/recessed-lights-installation\">recessed lighting service page</a> or <a href=\"/contact-us\">contact us</a> for a free estimate.",
+      "services": [
+        "recessed-lights-installation"
+      ],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 24,
+      "group": "Service-Specific Questions",
+      "topic": "Services",
+      "question": "Can you add outlets or circuits to my home?",
+      "answerHtml": "Absolutely. Adding outlets, dedicated circuits, and upgrading your electrical capacity is one of the most common things we do. Whether you need a dedicated 240-volt outlet for a dryer, a new circuit for a home office, a dedicated line for your microwave, or additional outlets in a room that never has enough, we can handle it. See our full list of <a href=\"/services\" target=\"_blank\">electrical services</a> or <a href=\"/contact-us\" target=\"_blank\">request a free estimate</a>.",
+      "services": [],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 25,
+      "group": "Hiring and Trust Questions",
+      "topic": "Hiring",
+      "question": "How do I choose a good electrician in Phoenix?",
+      "answerHtml": "Look for someone who is licensed, bonded, and insured. In Arizona, you can verify a contractor's license on the <a href=\"https://azroc.gov\">Arizona Registrar of Contractors (ROC) website</a>. Read their Google reviews and pay attention to patterns in the feedback, not just the star rating. Ask if they offer free estimates and flat-rate pricing so you know what you're paying before work begins. Make sure they pull permits for jobs that require them. And trust your gut. If someone is pushy, vague about pricing, or can't answer your questions clearly, move on. At The Wire Guy Electric, our ROC license number is <a href=\"https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB\">365306</a> and you can verify it anytime.",
+      "services": [],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 26,
+      "group": "Hiring and Trust Questions",
+      "topic": "Hiring",
+      "question": "Are you licensed, bonded, and insured?",
+      "answerHtml": "Yes. The Wire Guy Electric is fully licensed, bonded, and insured in the state of Arizona. Our ROC (Registrar of Contractors) license number is <a href=\"https://azroc.my.site.com/AZRoc/s/contractor-search?licenseId=a0ocs00000M54b0AAB\">365306</a>, which you can verify at azroc.gov. This protects you as the homeowner because it means our work is backed by the state's contractor recovery fund, and our insurance covers any accidents or damage on the job. Never hire an electrician who can't provide proof of licensing and insurance. Learn more <a href=\"/about-us\">about us</a>.",
+      "services": [],
+      "shownOn": [
+        "/faq"
+      ]
+    },
+    {
+      "order": 27,
+      "group": "Hiring and Trust Questions",
+      "topic": "Hiring",
+      "question": "Do you work on weekends or offer emergency service?",
+      "answerHtml": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. However, we understand that electrical issues don't always happen during business hours. If you have an urgent situation, give us a call at <a href=\"tel:+16027697892\">602-769-7892</a> and we'll do our best to accommodate you. You can also reach us through our <a href=\"/contact-us\">contact page</a>.",
+      "services": [],
+      "shownOn": [
+        "/faq"
+      ]
+    }
+  ]
+}

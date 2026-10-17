@@ -2,15 +2,18 @@
 import {defineConfig} from 'astro/config'
 import vercel from '@astrojs/vercel'
 import {loadEnv} from 'vite'
-import {LEGACY_REDIRECTS, flattenRedirects, loadSanityRedirects} from './src/config/redirects.mjs'
+import {LEGACY_REDIRECTS, flattenRedirects, loadPostSlugs, loadSanityRedirects, postRedirects} from './src/config/redirects.mjs'
+import {oneHopRedirects} from './src/config/one-hop-redirects.mjs'
 
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '')
 
-const sanityRedirects = await loadSanityRedirects({
+const sanity = {
   projectId: env.PUBLIC_SANITY_PROJECT_ID,
   dataset: env.PUBLIC_SANITY_DATASET || 'production',
   token: env.SANITY_API_READ_TOKEN,
-})
+}
+const sanityRedirects = await loadSanityRedirects(sanity)
+const postSlugs = await loadPostSlugs({...sanity, localDataset: new URL('../migration/sanity-import/production.ndjson', import.meta.url)})
 
 export default defineConfig({
   // The canonical origin. Every canonical, sitemap and og:url is built from this,
@@ -21,7 +24,18 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'static',
   adapter: vercel(),
-  redirects: flattenRedirects({...LEGACY_REDIRECTS, ...sanityRedirects}),
+  // after the adapter: every redirect matches with or without a trailing slash, in one hop
+  integrations: [oneHopRedirects()],
+  redirects: flattenRedirects({...LEGACY_REDIRECTS, ...postRedirects(postSlugs), ...sanityRedirects}),
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},
+  vite: {
+    build: {
+      // The browsers the CSS is written for (Vite's "baseline widely available"). Without
+      // targets the CSS minifier assumes the newest syntax and folds animation-timeline
+      // into the animation shorthand, which browsers reject, so every scroll-driven
+      // animation (reveals, the lit statement, the process wire) silently never runs.
+      cssTarget: ['chrome111', 'edge111', 'firefox114', 'safari16.4'],
+    },
+  },
 })

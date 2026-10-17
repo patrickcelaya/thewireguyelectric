@@ -1,0 +1,261 @@
+{
+  "about": "Live copy and links that the page-builder sections deliberately do not reproduce word for word, each with its reason. scripts/migrate/verify-content.mjs fails on any miss that is not listed here. `copy` entries match page-content copy strings (by page, tag and/or text); `links` entries match page-content links (anchor text + target). `changes` and `structural` document the other deliberate differences; they are not used for matching. Captured from the live site on 2026-10-13.",
+  "copy": [
+    {
+      "page": "*",
+      "tag": "form-field",
+      "reason": "Form field placeholders and labels are code, not content: the contact section only stores its headings, submit label and success message (docs/CONTENT_MODEL.md §4, contactSection). The forms keep these fields."
+    },
+    {
+      "page": "*",
+      "tag": "form-error",
+      "reason": "The form error message is code (same reason as form fields)."
+    },
+    {
+      "page": "careers",
+      "tag": "form-help",
+      "text": "Please upload a resume.",
+      "reason": "Obsolete: the résumé upload on the live careers form is a dead Webflow placeholder (/api/contact receives no file), so the line asks for something the form cannot take."
+    },
+    {
+      "page": "*",
+      "tag": "img-alt",
+      "text": "Services",
+      "reason": "Generic alt text Webflow put on every service card image. Cards now use the service's own image and alt (decorative when the title sits beside it)."
+    },
+    {
+      "page": "*",
+      "tag": "img-alt",
+      "text": "Blog",
+      "reason": "Generic alt text Webflow put on every blog card image. Cards now use the post's own image and alt (decorative when the title sits beside it)."
+    },
+    {
+      "page": "*",
+      "tag": "button",
+      "text": "Read More",
+      "genericLabel": true,
+      "reason": "Card link label, i.e. template text: cards link from the service or post title (seo-requirements §1.5: a lone \"Read More\" is not enough). The verifier still requires the card's target to be linked."
+    },
+    {
+      "page": "services",
+      "tag": "button",
+      "text": "More Info",
+      "genericLabel": true,
+      "reason": "Card link label in the hidden \"All Services\" tab pane (template text). Cards link from the service name; the target is still checked."
+    },
+    {
+      "page": "services",
+      "tag": "button",
+      "text": "Learn More",
+      "genericLabel": true,
+      "reason": "Card link label in the category tab panes (template text). Cards link from the service name; the target is still checked."
+    },
+    {
+      "page": "services",
+      "tag": "button",
+      "text": "All Services",
+      "reason": "Obsolete UI: the label of a Webflow tab that switched between hidden duplicate panes. The grouped services section lists every service once under its category heading (Residential, Commercial), so there are no tabs."
+    },
+    {
+      "page": "our-team",
+      "tag": "icon-link",
+      "reason": "Webflow lightbox leftover: an unlabeled play-button link to \"#\" with no video behind it. The photo it sat on is the quote section's image."
+    },
+    {
+      "page": "our-team",
+      "tag": "p",
+      "text": "🟢 Active Now",
+      "reason": "Not carried over: a fixed \"Active Now\" status is false outside office hours (Mon–Fri 9–5), and the CTA status line must be true at every hour (callToAction.statusText). The page uses the shared band, whose status line is the live \"Free estimates available\". Owner can restore it if wanted."
+    },
+    {
+      "page": "services",
+      "tag": "p",
+      "text": "🟢 Active Now",
+      "reason": "Same as /our-team: a fixed \"Active Now\" status is untrue outside office hours; the shared band shows the live \"Free estimates available\" instead."
+    },
+    {
+      "page": "careers",
+      "tag": "p",
+      "text": "(Full-time)",
+      "reason": "Rendered by the jobs section from jobOpening.employmentType = FULL_TIME (the same value feeds JobPosting.employmentType); there is no separate text field for it."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Mesa, AZ",
+      "reason": "Mesa's tile is siteSettings.homeCity (name \"Mesa\", linking to /), because Mesa is the homepage, not a location document. No field holds the \"Mesa, AZ\" label; the other tiles' \"City, AZ\" comes from cityNameForSeo. The tile's neighborhoods line is kept (homeCity.cardBlurb)."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "h3",
+      "text": "Mesa, AZ",
+      "reason": "Same as the home page: Mesa's tile comes from siteSettings.homeCity (\"Mesa\", linking to /)."
+    },
+    {
+      "page": "*",
+      "tag": "p",
+      "text": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,",
+      "reason": "Kept as Chandler's location.cardBlurb with the live tile's stray trailing comma corrected to a period by the fixes module (migration/content-data/README.md §5). Words unchanged: \"Serving Ocotillo, Fulton Ranch, and Downtown Chandler.\""
+    },
+    {
+      "page": "about-us",
+      "tag": "h4",
+      "text": "Service Manager",
+      "reason": "Superseded: /about-us showed an older copy of the team cards. Cody's current role, on /our-team and in his teamMember document, is \"Owner/Service Manager\", which the team section shows."
+    },
+    {
+      "page": "about-us",
+      "tag": "h4",
+      "text": "Service Technician",
+      "reason": "Superseded older copy: Cade's current role (/our-team, teamMember) is \"Lead Technician\"."
+    },
+    {
+      "page": "about-us",
+      "tag": "h4",
+      "text": "Apprentice",
+      "reason": "Superseded older copy: Wade's current role (/our-team, teamMember) is \"Service Tech\"."
+    },
+    {
+      "page": "about-us",
+      "tag": "p",
+      "text": "Steven founded The Wire Guy Electric in 2017, bringing over 10 years of experience to serve his community as a trusted resource. In his free time, he enjoys cooking, spending time with his partner Emma and their dog Lulu, watching movies, and doing projects around their home.",
+      "reason": "Superseded older bio (\"over 10 years\", \"partner Emma\"). The team section renders Steven's current bio from his teamMember document, identical to /our-team (\"over 12 years\", \"fiance Emma\")."
+    },
+    {
+      "page": "about-us",
+      "tag": "p",
+      "text": "Cade has been with us for about 3 years and has been a great addition to our team.",
+      "reason": "Superseded older bio. Current bio (teamMember, /our-team): \"about 6 years\"."
+    },
+    {
+      "page": "about-us",
+      "tag": "p",
+      "text": "Wade is the newest member of our team, with a background in HVAC and home remodeling. Born and raised in Mesa, Arizona, he enjoys spending time with his family and fiancé, traveling, and snowboarding.",
+      "reason": "Superseded older bio (\"family and fiancé\"). Current bio (teamMember, /our-team): \"his wife and family\"."
+    },
+    {
+      "page": "about-us",
+      "tag": "p",
+      "text": "Emma has been with The Wire Guy for about 3 years and is the friendly voice you’ll hear on the phone. In her free time, she enjoys paddleboarding, cooking, trying new foods, crafting, and spending time with her partner Steven and their dog Lulu.",
+      "reason": "Superseded older bio (\"paddleboarding\", \"partner Steven\"). Current bio (teamMember, /our-team): \"paddle boarding\", \"fiance Steven\"."
+    },
+    {
+      "page": "contact-us",
+      "tag": "link",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "careers",
+      "tag": "link",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "faq",
+      "tag": "faq-a",
+      "text": "We travel all over the Phoenix Valley to over 11 different cities and areas including Mesa, Gilbert, Chandler, Scottsdale, Phoenix, Tempe, Queen Creek, San Tan Valley, Apache Junction, Fountain Hills, and Ahwatukee. If you don't see your city listed, don't worry! Just give us a call and we'll let you know if you're in our service radius.",
+      "reason": "Owner (redesign reviews, binding): no area count. The answer keeps every word and city link but \"over 11 different\" (migration/content-data/faqs.json), so the same answer on /faq, the service pages and the city pages no longer counts the areas."
+    },
+    {
+      "page": "faq",
+      "tag": "faq-a",
+      "text": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. However, we understand that electrical issues don't always happen during business hours. If you have an urgent situation, give us a call at 602-769-7892 and we'll do our best to accommodate you. For true emergencies like sparking outlets, burning smells, or a panel that's hot to the touch, don't wait. Call us right away or call 911 if there's an immediate safety threat. You can also reach us through our contact page.",
+      "reason": "Owner (round-3 review, binding): \"For true emergencies, let's get rid of that line.\" The answer keeps every other sentence and link (migration/content-data/faqs.json)."
+    },
+    {
+      "page": "about-us",
+      "tag": "h5",
+      "text": "established in 2017",
+      "reason": "Shown as \"Established in 2017\" with a capital first letter, like every other eyebrow on the site (QA, 2026-10-17); the words are unchanged."
+    },
+    {
+      "page": "careers",
+      "tag": "h6",
+      "text": "work with us",
+      "reason": "Shown as \"Work with us\" with a capital first letter, like every other eyebrow on the site (QA, 2026-10-17); the words are unchanged."
+    },
+    {
+      "page": "contact-us",
+      "tag": "h6",
+      "text": "get in touch",
+      "reason": "Shown as \"Get in touch\" with a capital first letter, like every other eyebrow on the site (QA, 2026-10-17); the words are unchanged."
+    },
+    {
+      "page": "faq",
+      "tag": "h3",
+      "text": "Pricing And Cost Questions",
+      "reason": "Shown as \"Pricing and Cost Questions\", with \"and\" in lower case like the other four topic headings (QA, 2026-10-17); the words are unchanged."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "button",
+      "text": "Get a Free Commercial Electrical Estimate",
+      "reason": "The hero's estimate button uses the site's standard label, \"Get a Free Estimate\" (QA, 2026-10-17: the long label stacked the button pair on laptop widths). It still goes to /estimate; \"commercial\" stays in the hero's eyebrow, H1 and lede."
+    }
+  ],
+  "links": [
+    {
+      "page": "about-us",
+      "text": "See all services",
+      "href": "/contact-us",
+      "reason": "Label/target mismatch on the live page (the inventory flags it). The button keeps its label and now goes to /services; /contact-us stays linked from the page's CTA band."
+    },
+    {
+      "page": "index",
+      "text": "Mesa, AZ",
+      "href": "/",
+      "requireTarget": true,
+      "reason": "Mesa's tile links to / from siteSettings.homeCity (see the copy entry for \"Mesa, AZ\"). The verifier still requires the page to link /."
+    },
+    {
+      "page": "commercial-electrician",
+      "text": "Mesa, AZ",
+      "href": "/",
+      "requireTarget": true,
+      "reason": "Same as the home page."
+    },
+    {
+      "page": "our-team",
+      "text": "",
+      "href": "#",
+      "reason": "Webflow lightbox placeholder link (see the copy entry for icon-link)."
+    },
+    {
+      "page": "contact-us",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "href": "https://g.co/kgs/BQJ3i8D",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "careers",
+      "text": "1321 N 65th St, Mesa, AZ 85205",
+      "href": "https://g.co/kgs/BQJ3i8D",
+      "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "commercial-electrician",
+      "text": "Get a Free Commercial Electrical Estimate",
+      "href": "/contact-us",
+      "reason": "Same button as the copy entry: it now reads \"Get a Free Estimate\" and goes to /estimate (owner rule: every free-estimate link goes to the Free Estimate page)."
+    }
+  ],
+  "changes": [
+    "/commercial-electrician \"Panel Upgrades\" card: on the live page its Read More went to /services/commercial-electrical-troubleshooting and its photo to /services/ev-charger-installation. Its copy describes commercial panel and service upgrades, so the card now links to /services/electrical-upgrades.",
+    "Service cards on / and /commercial-electrician: each card's photo was a separate link, two of them to residential pages that didn't match the card (/services/recessed-lights-installation and /services/electrical-troubleshooting on the commercial page, /services/ev-charger-installation on the Panel Upgrades card). Each card now links once, to its own service.",
+    "/careers and /contact-us: the office address linked to https://g.co/kgs/BQJ3i8D (an old knowledge-panel short link). Addresses now come from siteSettings.addresses with their googleMapsUrl (the footer's share.google links, same Google Business Profile). The /careers phone link was tel:16027697892; it is now built from siteSettings.phoneE164 (+16027697892).",
+    "/about-us team section: renders the six people it showed, with their current bios and roles from the teamMember documents (identical to /our-team) instead of the page's older copy.",
+    "/our-team: Blake Thompson (Service Tech), Brandon Connelly (Service Tech) and Stephanie Langford (Dispatcher) had no teamMember documents. They are created with the name, role and photo the live page shows (no bio on the live page, so none here).",
+    "/careers: jobOpening.description now holds the job copy visible on the page (duties, \"What you need: …\"); before, it held a shorter JSON-LD summary, so the page and its JobPosting disagreed.",
+    "Home \"Recessed Lights\" card: the stock Edison-bulb photo is replaced by a real recessed-lighting job photo (asset audit recommendation). All section photos are real company photos (migration/brand-photos/).",
+    "Additions built only from live copy and existing documents: a trust strip (hero flag) on / and /commercial-electrician, trust strips on /about-us and /contact-us, the 3 general FAQs on /, service-area tiles on /contact-us and /services, FAQs on /contact-us and /services, a price table on /services (the /faq figures), the shared CTA band on /about-us, /our-team, /services and /blog, real-photo galleries replacing the broken Elfsight feed. New wording: the price table's heading \"Typical prices\" and its row labels (taken from the /faq answers), and the trust strip labels (from live copy: \"Free estimates available\", \"Flat-rate pricing with no hidden fees\" from the /contact-us meta description, \"warranty on services we provide\", \"years of combined experience\")."
+  ],
+  "structural": [
+    "BrightLocal \"Showcase Reviews\" iframe on / and /commercial-electrician: replaced by the reviews section, which renders the real review documents as HTML (the widget stopped syncing in Feb 2026 and its text was not indexable).",
+    "Elfsight photo feed under \"Recent photos of our work\" (/ and /commercial-electrician): over its view limit, it rendered nothing. Replaced by a gallery of real job photos.",
+    "Hidden Elfsight app mounts (/ and /commercial-electrician): rendered nothing (APP_VIEWS_LIMIT_REACHED).",
+    "Empty Webflow leftovers: div.hire-popup (about-us, careers, faq, services) and the empty #reviews anchor div on /our-team.",
+    "Hidden duplicate tab panes on /services (every card was in the HTML twice): replaced by one grouped list.",
+    "Decorative images: the 71x12 five-star PNG (the design draws stars), the bulb icon inside buttons, and stock textures (light-bulbs-copy.webp, Electrician-website-background.webp, the FAQ banner's stock tools photo, regional stock photos behind city tiles). City tiles have no photo until real city photos exist (location.mainImage)."
+  ]
+}

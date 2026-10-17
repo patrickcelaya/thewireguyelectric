@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {FolderIcon} from '@sanity/icons/Folder'
-import {fieldGroups, legacyIdField, seoField, urlSlugField} from '../shared/fields'
+import {contentUpdatedField, fieldGroups, legacyIdField, seoField, urlSlugField} from '../shared/fields'
 
 export const serviceCategory = defineType({
   name: 'serviceCategory',
@@ -14,6 +14,7 @@ export const serviceCategory = defineType({
     defineField({name: 'heading', title: 'H1 heading', type: 'string', group: 'content'}),
     defineField({name: 'description', type: 'richText', group: 'content'}),
     seoField,
+    contentUpdatedField,
     legacyIdField,
   ],
   preview: {select: {title: 'name', subtitle: 'slug.current'}},

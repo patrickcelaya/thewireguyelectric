@@ -1,0 +1,78 @@
+---
+// How it works: one copper wire runs through the steps and climbs into the bulb it
+// builds. Desktop with scroll-driven animation: the frame pins under the header and,
+// as you scroll, each step's number fills as the wire reaches it, then the bulb draws
+// itself, gets its base and switches on. Everywhere else (and with reduced motion)
+// it is simply drawn and lit. A step can show how to reach us (phone and hours from
+// Site settings, and the estimate link). Styles: styles/sections.css "HOW IT WORKS".
+import type {ProcessStepsSection, SiteSettings} from '../../lib/types'
+import {ESTIMATE_PATH, officeHours, telHref} from '../../lib/site'
+import {sectionLabel} from '../../lib/sections'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Accent from '../ui/Accent.astro'
+import TextLink from '../ui/TextLink.astro'
+import LitBulb from '../ui/LitBulb.astro'
+
+interface Props {
+  section: ProcessStepsSection
+  settings: SiteSettings
+  number?: number
+}
+
+const {section, settings, number} = Astro.props
+const id = `${section._key}-h`
+const steps = section.steps.filter((s) => s.title)
+const hours = officeHours(settings).line
+const pad = (n: number) => String(n).padStart(2, '0')
+---
+
+{
+  steps.length > 0 && (
+    <section class="process" {...sectionLabel(id, section.heading, section.eyebrow)} style={`--steps:${steps.length}`}>
+      <div class="process__pin">
+        <div class="wrap process__head">
+          <div>
+            {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
+            {section.heading && (
+              <h2 class="display" id={id}>
+                <Accent text={section.heading} accent={section.headingAccent} />
+              </h2>
+            )}
+          </div>
+          {section.intro && <p class="process__lede">{section.intro}</p>}
+        </div>
+        <div class="wrap process__body">
+          <span class="process__wire" aria-hidden="true" />
+          <ol class="steps">
+            {steps.map((step, i) => (
+              <li class="step" style={`--k:${i}`}>
+                <span class="step__n" aria-hidden="true">
+                  {pad(i + 1)}
+                </span>{' '}
+                <h3>{step.title}</h3> {step.text && <p>{step.text}</p>}{' '}
+                {step.showContact && (
+                  <>
+                    <p class="step__contact">
+                      <a class="link tnum" href={telHref(settings)}>
+                        {settings.phone}
+                      </a>
+                      {hours && <span> · {hours}</span>}
+                    </p>{' '}
+                    <p class="step__contact">
+                      <TextLink href={ESTIMATE_PATH} icon="go">
+                        Request a free estimate
+                      </TextLink>
+                    </p>
+                  </>
+                )}
+              </li>
+            ))}
+          </ol>
+          <div class="process__bulb" aria-hidden="true">
+            <LitBulb class="pb" />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}

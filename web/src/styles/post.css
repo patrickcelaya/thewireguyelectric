@@ -1,0 +1,76 @@
+/* ===================================================================== BLOG POSTS: the editorial article (loaded after styles/inner.css and
+   styles/cms.css). The round-5 language at reading scale: an 18 px body on a 68-character measure, real H2s and H3s (not the
+   service pages' kickers), the quick answer on the copper wash, a wide real-job cover, "In this article" and the contact card
+   beside the text, previous and next at the foot. */
+.page-post main{background:var(--bone)}
+
+/* ===================================================================== the head: the words beside the cover */
+.post-head{padding-top:clamp(28px,3vw,56px)}
+.post-head__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.78fr);gap:32px clamp(40px,5vw,96px);align-items:center;margin-top:clamp(24px,2.4vw,40px)}
+.post-kicker{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:clamp(16px,1.6vw,24px);font:600 var(--fs-small)/1.3 var(--font-text);color:var(--muted)}
+.post-topic{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 12px;border-radius:var(--r-pill);background:var(--wash);color:var(--copper-700);font-weight:650}
+.post-topic::before{content:"";flex:none;width:12px;height:15px;background:currentColor;-webkit-mask:var(--bulb-mark) center/contain no-repeat;mask:var(--bulb-mark) center/contain no-repeat}
+.post-title{font-size:clamp(2.375rem,1.1rem + 3.2vw,4.75rem);font-weight:740;letter-spacing:-.042em;line-height:1}
+.post-meta{margin-top:clamp(18px,1.8vw,26px);font-size:var(--fs-small);line-height:1.6;color:var(--muted)}
+.post-meta a{color:var(--ink);font-weight:650;text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.22em}
+.post-meta a:hover{color:var(--copper-700)}
+.post-meta__sep{margin-inline:4px;color:var(--line-strong)}
+.post-meta--review{margin-top:4px}
+/* the cover: a real photo at 4:3, never stretched past its column */
+.post-cover{margin:0;overflow:hidden;border-radius:var(--r-xl);background:var(--sand-2);box-shadow:var(--shadow-2)}
+.post-cover img{width:100%;aspect-ratio:4/3;object-fit:cover}
+@media (max-width:899px){.post-head__grid{grid-template-columns:minmax(0,1fr)}.post-cover img{aspect-ratio:16/10}}
+
+/* ===================================================================== the article and its aside */
+.post-grid{display:grid;grid-template-columns:minmax(0,1fr) min(25rem,34%);gap:48px clamp(48px,6vw,112px);padding-block:clamp(48px,5vw,88px) var(--section-y)}
+.post-main{min-width:0}
+.post-aside{display:flex;flex-direction:column;gap:24px}
+.post-aside .contact-card{position:sticky;top:calc(var(--hdr-c) + 32px)}
+@media (max-width:999px){.post-grid{grid-template-columns:minmax(0,1fr)}.post-aside .toc{display:none}.post-aside .contact-card{position:static}}
+
+/* the quick answer: the copper wash, the answer in display type, the hub link */
+.quick{position:relative;margin-bottom:clamp(40px,4vw,56px);padding:clamp(24px,2.4vw,34px) clamp(24px,2.6vw,38px);border-radius:var(--r-xl);background:var(--wash);max-width:68ch}
+.quick__k{display:flex;align-items:center;gap:9px;font:700 .8125rem/1.3 var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:var(--copper-700)}
+.quick__k::before{content:"";flex:none;width:13px;height:17px;background:currentColor;-webkit-mask:var(--bulb-mark) center/contain no-repeat;mask:var(--bulb-mark) center/contain no-repeat}
+.quick__a{margin-top:12px;font:500 clamp(1.1875rem,1.05rem + .45vw,1.4375rem)/1.45 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.quick__more{margin-top:16px;font-size:var(--fs-small);color:var(--text)}
+.quick__more a{color:var(--copper-700);font-weight:650;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
+
+/* the body at reading scale: many H2s and H3s, so they are real headings here (not the service pages' kickers) */
+.prose--post{font-size:1.125rem;line-height:1.75}
+.prose--post h2{font-size:clamp(1.75rem,1.2rem + 1.5vw,2.625rem);letter-spacing:-.03em;line-height:1.08;margin:clamp(48px,4.4vw,64px) 0 18px;max-width:22em}
+.prose--post>h2:first-child{margin-top:0}
+.prose--post h2+p{font-size:inherit;line-height:inherit;color:inherit}
+.prose--post h3{display:block;margin:36px 0 12px;font:700 clamp(1.25rem,1.1rem + .45vw,1.5rem)/1.25 var(--font-display);letter-spacing:-.016em;text-transform:none;color:var(--ink)}
+.prose--post h3::before{display:none}
+.prose--post figure img{max-height:none}
+
+/* "In this article" */
+.toc{padding:24px 26px 18px;border-radius:var(--r-lg);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.toc__k{font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.toc ol{margin-top:10px;counter-reset:toc}
+.toc li{counter-increment:toc;border-top:1px solid var(--line)}
+.toc li:first-child{border-top:0}
+.toc a{display:grid;grid-template-columns:26px minmax(0,1fr);gap:4px;padding:10px 0;font:550 .9375rem/1.4 var(--font-text);color:var(--ink);text-decoration:none}
+.toc a::before{content:counter(toc,decimal-leading-zero);font:700 .75rem/1.9 var(--font-display);letter-spacing:.04em;color:var(--copper-700)}
+.toc a:hover{color:var(--copper-700)}
+
+/* the post's city: a link to that city's page */
+.post-local{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;max-width:68ch;margin-top:48px;padding:18px 22px;border-radius:var(--r-lg);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+.post-local__k{display:inline-flex;align-items:center;gap:8px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.post-local__k::before{content:"";width:16px;height:16px;background:currentColor;-webkit-mask:var(--pin) center/contain no-repeat;mask:var(--pin) center/contain no-repeat}
+.post-local a{font:700 1.125rem/1.3 var(--font-display);color:var(--ink);text-decoration:underline;text-decoration-color:var(--copper);text-underline-offset:.22em}
+.post-local a:hover{color:var(--copper-700)}
+
+/* ===================================================================== previous and next */
+.post-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,1.6vw,24px);padding-block:var(--section-y)}
+.post-nav__a{position:relative;display:grid;gap:8px;align-content:start;padding:clamp(22px,2.2vw,30px) clamp(24px,2.4vw,34px);border-radius:var(--r-lg);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line),var(--shadow-1);text-decoration:none;transition:box-shadow .25s var(--ease),transform .25s var(--ease)}
+.post-nav__a:hover{box-shadow:inset 0 0 0 1.5px var(--copper),var(--shadow-2);transform:translateY(-2px)}
+.post-nav__a--next{grid-column:2;text-align:right;justify-items:end}
+.post-nav__k{display:inline-flex;align-items:center;gap:8px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.post-nav__k::before,.post-nav__a--next .post-nav__k::after{content:"";width:16px;height:16px;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
+.post-nav__a--prev .post-nav__k::before{transform:scaleX(-1)}
+.post-nav__a--next .post-nav__k::before{display:none}
+.post-nav__t{font:700 clamp(1.125rem,1rem + .4vw,1.375rem)/1.3 var(--font-display);letter-spacing:-.015em;color:var(--ink)}
+.post-nav__a:hover .post-nav__t{color:var(--copper-700)}
+@media (max-width:699px){.post-nav{grid-template-columns:minmax(0,1fr)}.post-nav__a--next{grid-column:auto}}

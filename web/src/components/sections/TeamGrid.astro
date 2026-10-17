@@ -1,0 +1,67 @@
+---
+// The people (teamSection): /our-team and /about-us. Each person is a card: their
+// portrait (the whole head always in frame: the 4:5 frame only trims the sides of
+// the square portraits), name, role, credentials and years when supplied, and the
+// bio. Each card carries the person's slug as its id, so a mention elsewhere can link
+// to them. Portraits are fine here (owner: no portrait cards on the homepage only).
+// The page emits a Person node per card shown (lib/page-schema.ts).
+// Styles: styles/pages.css "TEAM".
+import type {TeamSection} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import PortableText from '../PortableText.astro'
+import SectionHeader from '../ui/SectionHeader.astro'
+import TextLink from '../ui/TextLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  section: TeamSection
+  number?: number
+}
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const showBios = section.showBios !== false
+const {cta} = section
+const heading = section.heading ?? 'Our team'
+// without bios the cards are a roster: one row of up to ten on wide screens, two balanced rows beyond that
+const n = section.members.length
+const cols = n <= 10 ? n : Math.ceil(n / 2)
+// the rendered portrait width: the roster's cells are a share of the page column (1,560 px at most)
+const sizes = showBios ? '(max-width:599px) 92vw, (max-width:1099px) 46vw, 30vw' : `(max-width:1099px) 30vw, ${Math.round(1560 / cols)}px`
+---
+
+{
+  section.members.length > 0 && (
+    <section class="section crew-s" {...sectionLabel(id, heading)}>
+      <div class="wrap">
+        <SectionHeader heading={heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+          {cta && (
+            <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+              {cta.label}
+            </TextLink>
+          )}
+        </SectionHeader>
+        <ul class:list={['crew', !showBios && 'crew--compact']} role="list" style={showBios ? undefined : `--cols:${cols}`}>
+          {section.members.map((m) => (
+            <li class="crew__card" id={m.slug}>
+              <figure class="crew__photo">
+                <SanityImage image={m.photo} widths={[180, 360, 540, 720]} sizes={sizes} />
+              </figure>
+              <h3 class="crew__name">{m.name}</h3>
+              {m.role && <p class="crew__role">{m.role}</p>}
+              {(m.credentials?.length || m.yearsExperience) && (
+                <p class="crew__creds">
+                  {[m.yearsExperience ? `${m.yearsExperience}+ years in the trade` : undefined, ...(m.credentials ?? [])].filter(Boolean).join(' · ')}
+                </p>
+              )}
+              {showBios && m.bio && m.bio.length > 0 && <PortableText value={m.bio} class="crew__bio" />}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

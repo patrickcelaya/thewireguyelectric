@@ -1,0 +1,104 @@
+---
+// The homepage showcase: every review, in two lanes drifting in opposite directions
+// (scripts/site/reviews.ts). The controls come before the lanes, so the pause is
+// reachable before the moving content (WCAG 2.2.2). With reduced motion the lanes
+// are still rows that scroll sideways. Without JS the reviews are laid out whole:
+// the first few, then "Show all" opens the rest (a fragment link, no script). All
+// text is in the HTML. Styles: styles/home.css (the lanes, the dialog) on top of core.css.
+import type {Review, SiteSettings} from '../../lib/types'
+import {ESTIMATE_PATH} from '../../lib/site'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Accent from '../ui/Accent.astro'
+import ScoreBlock from '../ui/ScoreBlock.astro'
+import Button from '../ui/Button.astro'
+import TextLink from '../ui/TextLink.astro'
+import ReviewCard from './ReviewCard.astro'
+
+interface Props {
+  settings: SiteSettings
+  reviews: Review[]
+  heading?: string
+  /** Words of the heading set in copper. */
+  accent?: string
+  number?: number | string
+  id?: string
+  /** The button under the 5.0 (default "Get a Free Estimate Now" → the estimate page). */
+  cta?: {label: string; href: string}
+}
+
+const {
+  settings,
+  reviews,
+  heading = 'Let our reviews speak for themselves',
+  accent = 'speak for themselves',
+  number,
+  id = 'reviews',
+  cta = {label: 'Get a Free Estimate Now', href: ESTIMATE_PATH},
+} = Astro.props
+const laneA = reviews.filter((_, i) => i % 2 === 0)
+const laneB = reviews.filter((_, i) => i % 2 === 1)
+const icon = {
+  pause: 'M9 6v12M15 6v12',
+  play: 'M8 5.5v13l10.5-6.5z',
+  prev: 'M15 5.5 8.5 12l6.5 6.5',
+  next: 'm9 5.5 6.5 6.5L9 18.5',
+}
+---
+
+{
+  reviews.length > 0 && (
+    <section class="section reviews cv" id={id} aria-labelledby={`${id}-h`}>
+      <div class="wrap reviews__head">
+        <div class="reviews__title">
+          <Eyebrow number={number}>Reviews</Eyebrow>
+          <h2 class="display" id={`${id}-h`}>
+            <Accent text={heading} accent={accent} />
+          </h2>
+        </div>
+        <div class="reviews__score">
+          <ScoreBlock settings={settings} />
+          <p class="reviews__cta">
+            <Button href={cta.href} icon="go">{cta.label}</Button>
+          </p>
+        </div>
+      </div>
+      <div class="wrap reviews__bar">
+        <p class="reviews__note">
+          Real Google reviews, shown word for word, with each reviewer’s name as it appears on Google.{' '}
+          <span class="sr-only">Every review shown is rated 5 out of 5 stars.</span>
+        </p>
+        <div class="mq-ctrl" role="group" aria-label="Review carousel">
+          <button class="mq-btn" type="button" data-mq-step="-1" aria-label="Previous reviews">
+            <svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d={icon.prev} /></svg>
+          </button>
+          <button class="mq-toggle" type="button" data-marquee-toggle>
+            <svg class="i i--sm ic-pause" aria-hidden="true" viewBox="0 0 24 24"><path d={icon.pause} /></svg>
+            <svg class="i i--sm ic-play" aria-hidden="true" viewBox="0 0 24 24"><path d={icon.play} /></svg>
+            <span data-label>Pause reviews</span>
+          </button>
+          <button class="mq-btn" type="button" data-mq-step="1" aria-label="Next reviews">
+            <svg class="i" aria-hidden="true" viewBox="0 0 24 24"><path d={icon.next} /></svg>
+          </button>
+        </div>
+      </div>
+      <div class="marquee" id={`${id}-all`} data-marquee>
+        {[laneA, laneB].map((lane, i) => (
+          <div class:list={['lane', i === 0 ? 'lane--a' : 'lane--b']} tabindex="0" role="region" aria-label={`Customer reviews, ${i === 0 ? 'first' : 'second'} row (arrow keys move it)`}>
+            <div class="belt">
+              <ul class="track" role="list">
+                {lane.map((r) => (
+                  <ReviewCard review={r} />
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="wrap rv-all">
+        <TextLink href={`#${id}-all`} icon="go">
+          Show all {reviews.length} reviews
+        </TextLink>
+      </p>
+    </section>
+  )
+}

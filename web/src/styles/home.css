@@ -1,0 +1,325 @@
+/* ===================================================================== shared components only the homepage uses (moved out of core.css): the moving review lanes and the full-review dialog */
+.mq-ctrl{display:flex;align-items:center;gap:8px}
+html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{display:none!important}
+.mq-btn,.mq-toggle{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;border-radius:var(--r-pill);border:1.5px solid var(--line-strong);background:var(--paper);color:var(--ink);font:650 .9375rem/1 var(--font-text);cursor:pointer;transition:background-color .15s var(--ease),border-color .15s var(--ease)}
+.mq-btn{width:44px}
+.mq-toggle{padding:0 18px 0 16px}
+.mq-btn:hover,.mq-toggle:hover{border-color:var(--ink)}
+.mq-toggle .ic-play{display:none;fill:currentColor;stroke:none}
+.mq-toggle.is-paused .ic-play{display:block}
+.mq-toggle.is-paused .ic-pause{display:none}
+.marquee{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.lane{min-width:0;contain:paint;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent;padding-block:4px 24px;border-radius:var(--r-md)}
+.lane:focus-visible{outline-offset:-2px}
+.belt{display:flex;width:max-content}
+.track{display:flex;gap:20px;padding-inline:var(--gutter) 20px}
+/* without JS the lanes don't move: every review is laid out whole, in columns on the page grid, each card as tall as its
+   own words (a horizontal lane would stretch to its longest review and leave the rest of the row empty). The first three
+   of each row show (two on phones), then "Show all" makes the marquee the :target and opens the rest (no script), so
+   the section is a screen or two instead of 46 cards in a column 16,000 px tall on a phone */
+html:not(.js) .marquee{-webkit-mask-image:none;mask-image:none}
+html:not(.js) .lane{overflow:visible;padding-block:0}
+html:not(.js) .belt{display:block;width:auto}
+html:not(.js) .track{display:block;columns:3 320px;column-gap:20px;padding-inline:var(--pad-x)}
+html:not(.js) .track .rv{width:auto;min-height:0;margin-bottom:20px;break-inside:avoid}
+html:not(.js) .marquee:not(:target) .rv:nth-child(n+4){display:none}
+@media (max-width:699px){html:not(.js) .marquee:not(:target) .rv:nth-child(n+3){display:none}}
+.rv-all{display:none}
+html:not(.js) .marquee:not(:target)+.rv-all{display:block}
+.marquee.is-moving .lane{overflow:hidden}
+.marquee.is-moving .track{padding-left:0}
+.marquee.is-moving .belt{animation:mq var(--mq-dur,300s) linear infinite;will-change:transform}
+.marquee.is-moving .lane--b .belt{animation-direction:reverse}
+.marquee:hover .belt,.marquee:focus-within .belt,.marquee.is-paused .belt,.marquee.is-off .belt,.rv-open .marquee .belt{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(calc(-1 * var(--mq-w,50%)))}}
+@media (prefers-reduced-motion:reduce){.marquee .belt{animation:none!important}}
+.rv__more{align-self:flex-start;margin-top:8px;padding:2px 0;border:0;background:none;color:var(--copper-700);font:650 .875rem/1.4 var(--font-text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;cursor:pointer}
+.rv__more:hover{color:var(--copper-800)}
+.rv-dialog{width:min(640px,calc(100vw - 32px));max-height:min(80vh,760px);padding:0;border:0;border-radius:var(--r-xl);background:var(--paper);color:var(--text);box-shadow:var(--shadow-3)}
+.rv-dialog::backdrop{background:rgb(15 42 53 / .42);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.rv-dialog__in{display:grid;gap:14px;padding:clamp(24px,4vw,40px)}
+.rv-dialog__k{display:flex;align-items:center;gap:12px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.rv-dialog__k::before{content:"";width:calc(15px * 5.333);height:15px;background:var(--copper);-webkit-mask:var(--stars5) center/100% 100% no-repeat;mask:var(--stars5) center/100% 100% no-repeat}
+.rv-dialog blockquote{margin:0;font-size:1.0625rem;line-height:1.7;color:var(--text);white-space:pre-line}
+.rv-dialog .rv__by{padding-top:4px}
+.rv-dialog__x{justify-self:start;margin-top:6px}
+
+/* ===================================================================== HOMEPAGE */
+/* ===================================================================== HERO: the title card
+   Geometry (all derived from the photo, never from the viewport alone, so no face is ever cut):
+     --hw  photo width: always at least 110% of the hero, so the left 9% of the frame is cropped (the dark wheel arch of
+           the left truck lives there) while the photo still runs edge to edge; wider (up to 122%) when the wall would
+           be too short for the words. The six faces span 15.5%–86% of the photo's width, so all of them stay in frame.
+     --hp  photo height (3:2).   --hl  the photo's left edge.
+     --S   how much of the wall's top is cropped. On short, wide windows (his ~2000 px screen, 2560x1080) the photo keeps
+           its full width and moves up instead, so the crew reaches the first screen; the words keep at least the room
+           they need above the tallest head (the H1, the eyebrow, the buttons and the header).
+     words box: from the top to 43% of --hp, less --S (the tallest head starts at 46%).
+     photo box: shows the photo from --S down to the foot: at most 84%, at least 70% + 80 px (so the proof card, which
+           starts 80 px above the foot, never rises above 70%: every chin ends by 67.5%). In between it follows the
+           viewport, so the whole proof card is on the first screen whenever it can be. */
+.hero{--wx:158px;--wall:.43;position:relative;container-type:inline-size;background:var(--bone)}
+/* tablets: the words may use the wall down to 44.5% of the photo (still 1.5% above the tallest head, inside the light) */
+@media (min-width:900px) and (max-width:1239px){.hero{--wx:178px;--wall:.445}}
+@media (min-width:1240px) and (max-width:1365px){.hero{--wall:.44}}   /* small laptops: 2% above the tallest head */
+.hero__copy,.hero__photo,.proof{
+  --hw:min(122cqw,max(110cqw,calc(3.41 * (var(--hdr-h) + var(--wx)) + 33.4cqw)));
+  --hp:calc(var(--hw) / 1.5);
+  --hl:min(calc((100cqw - var(--hw)) / 2),calc(var(--hw) * -.09));
+  --S:clamp(0px,calc(var(--hp) * .70 + var(--ch) + 6px - 100svh),calc(var(--hp) * var(--wall) - var(--hdr-h) - 1.96 * clamp(2.75rem,min(5cqw,7.3svh),7.5rem) - 4 * min(1.4cqw,2svh) - var(--wx)))}
+.hero__fill{display:none}
+/* only past a 3:1 window (rare) does the photo stop growing: a blurred copy of it then fills the sides */
+@media (min-aspect-ratio:3/1) and (min-width:900px){
+  .hero__copy,.hero__photo,.proof{--hw:max(100cqw * .78,calc((100svh - 72px) * 2.222));--hl:calc((100cqw - var(--hw)) / 2)}
+  .hero__fill{display:block;position:absolute;inset:-40px;background-size:100% 100%;filter:blur(56px) saturate(.75);transform:scaleX(1.3)}
+  .hero__photo img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+}
+/* the photo box ends where the proof card hangs (80 px into the photo, never above 70% of it: every chin ends by 67.5%).
+   The card (fixed height --ch) is either completely on the first screen or pushed just below it (at most a 2 px sliver of
+   its empty top edge): never a half-cut 5.0 or a sliced quote. --s is 1 when the card cannot fit (short windows). */
+.hero{--ch:150px}
+.hero__photo{--X:calc(var(--hp) * .70 - var(--S) + 80px);--fit:calc(100svh - var(--ch) + 74px);--M:calc(var(--hp) * .84 - var(--S));position:relative;overflow:clip;background:#d9d6cf;
+  height:clamp(var(--X),var(--fit),var(--M))}
+@supports (height:calc(1px * sign(1px))){
+  .hero__photo{--s:clamp(0,sign(var(--X) - var(--fit)),1);height:calc((1 - var(--s)) * clamp(var(--X),var(--fit),var(--M)) + var(--s) * max(var(--X),100svh + 78px))}
+}
+.hero__photo img{position:absolute;top:calc(-1 * var(--S));left:var(--hl);width:var(--hw);max-width:none;height:auto}
+/* a soft light on the wall, strongest exactly behind the words: a feathered ellipse plus a top wash for the header. The
+   layer ends at 45.5% of the photo and fades to nothing at its foot (mask), so no edge ever crosses the photo; the
+   tallest head starts at 46%. */
+.hero__photo::after{content:"";position:absolute;inset:0 0 auto;height:calc(var(--hp) * .455 - var(--S));pointer-events:none;
+  background:radial-gradient(ellipse 60% 62% at 50% 52%,rgb(247 243 236 / .86) 0%,rgb(247 243 236 / .8) 42%,rgb(247 243 236 / .5) 70%,rgb(247 243 236 / .14) 90%,rgb(247 243 236 / 0) 100%),
+    linear-gradient(rgb(247 243 236 / .8) 0,rgb(247 243 236 / .62) calc(var(--hdr-h) * .9),rgb(247 243 236 / .26) 45%,rgb(247 243 236 / .08) 75%,rgb(247 243 236 / 0) 100%);
+  -webkit-mask-image:linear-gradient(#000 0,#000 58%,transparent 100%);mask-image:linear-gradient(#000 0,#000 58%,transparent 100%)}
+.hero__copy{position:absolute;z-index:2;inset:0 0 auto;height:calc(var(--hp) * var(--wall) - var(--S));padding:var(--hdr-h) var(--gutter) 0;display:grid;align-content:center}
+.hero__inner{display:flex;flex-direction:column;align-items:center;gap:min(clamp(14px,1.4cqw,26px),2svh);text-align:center}
+/* laptops (1240-1599 px): at most 14 px between the eyebrow, the H1 and the buttons, so the CTA line's 18 px gap still fits
+   on the wall of a tall window (1240x900, 1280x1024, 1366x1024: the words used to stack above the photo there) */
+@media (min-width:1240px) and (max-width:1599px){.hero__inner{gap:min(14px,2svh)}}
+.hero__kicker{margin:0;padding:4px 16px 4px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .82);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .07),0 8px 24px -16px rgb(15 42 53 / .4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero h1{font-size:clamp(2.75rem,min(5cqw,7.3svh),7.5rem);line-height:.96;letter-spacing:-.045em;font-weight:760;text-wrap:initial}
+.hero h1 .ln{display:block;white-space:nowrap}
+.hero h1 .accent{color:var(--copper-700)}
+.hero__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:clamp(0px,.4cqw - 4px,6px)}
+.hero__actions .btn--primary{box-shadow:0 1px 0 rgb(255 255 255 / .2) inset,0 10px 20px -12px rgb(116 51 28 / .8)}
+.hero__actions .btn--paper{box-shadow:0 8px 18px -12px rgb(15 42 53 / .4)}
+@media (min-width:900px) and (max-height:720px){.hero .btn--lg{min-height:50px;padding:0 24px;font-size:1rem}.hero__kicker{padding:6px 14px 6px 12px}}
+.hero__status{display:none}
+/* the line under both buttons: the business's own words (free estimates, flat-rate pricing, no pressure and no obligation).
+   Round-5 QA: it sits 18 px under the pair (8 px row gap + 10 px), no longer on a pill: 16 px ink on a soft paper halo,
+   no wider than the two buttons, so it reads as their caption rather than a tag */
+.hero__sub{order:3;flex-basis:100%;display:flex;justify-content:center;margin:10px 0 0;font:550 1rem/1.35 var(--font-text);letter-spacing:.002em;color:var(--ink)}
+.hero__sub-in{display:inline-flex;align-items:center}
+.hero__sub-in>span{white-space:nowrap}
+.hero__sub-in>span+span::before{content:"";display:inline-block;width:4px;height:4px;margin:0 12px 0 10px;border-radius:50%;background:var(--copper);vertical-align:.24em}
+@media (min-width:900px){
+  .hero__sub-in{position:relative;isolation:isolate}
+  .hero__sub-in::before{content:"";position:absolute;inset:-7px -26px;z-index:-1;border-radius:999px;background:rgb(247 243 236 / .9);filter:blur(11px);pointer-events:none}
+}
+/* tablets (the crew photo is already at its widest that keeps all six in frame): the H1 a touch smaller, so the words,
+   both buttons and the CTA line fit on the wall above the heads. The header has no status line at these widths, so
+   Emma's line (open or closed) ends the CTA line, centred with it under the button pair (round-5 QA: it used to sit on
+   the button row and pushed the pair off-centre). There is no room on the wall for a fourth row without shrinking the
+   H1 or reaching the heads. */
+@media (min-width:900px) and (max-width:1239px){
+  .hero h1{font-size:clamp(2.75rem,min(4.55cqw,7.3svh),7.5rem)}
+  .hero__photo::after{background:radial-gradient(ellipse 80% 62% at 50% 52%,rgb(247 243 236 / .88) 0%,rgb(247 243 236 / .82) 46%,rgb(247 243 236 / .5) 72%,rgb(247 243 236 / .14) 90%,rgb(247 243 236 / 0) 100%),linear-gradient(rgb(247 243 236 / .8) 0,rgb(247 243 236 / .62) calc(var(--hdr-h) * .9),rgb(247 243 236 / .26) 45%,rgb(247 243 236 / .08) 75%,rgb(247 243 236 / 0) 100%)}
+  .hero__inner{gap:12px}
+  .hero__actions::after{content:"";order:2;flex-basis:100%}
+  .hero__sub{flex-basis:auto}
+  .hero__status{order:4;display:flex;align-items:center;margin-top:10px}
+  .hero__status .status{position:relative;isolation:isolate;padding-left:20px;font-size:.9375rem;font-weight:550;color:var(--ink)}
+  .hero__status .status::after{content:"";position:absolute;left:0;top:15%;bottom:15%;width:1px;background:var(--line-strong)}
+  .hero__status .status::before{content:"";position:absolute;inset:-4px -24px -4px -12px;z-index:-1;border-radius:999px;background:rgb(247 243 236 / .9);filter:blur(5px)}
+  /* the light under the last row stays inside the wall (it ends 1.5% of the photo above the tallest head) */
+  .hero__sub-in::before{inset:-4px -22px;filter:blur(5px)}
+}
+/* no photo (content not yet given one): no title card, the words and the proof card sit on the page */
+.hero--bare .hero__copy{position:static;height:auto;padding-block:calc(var(--hdr-h) + clamp(32px,4vw,64px)) clamp(36px,4vw,64px)}
+.hero--bare .proof{margin-top:0}
+@media (max-width:899px){.hero__inner>h1:first-child{margin-top:calc(var(--hdr-h) + 16px)}.hero--bare .proof__score{margin-top:20px}}
+/* safety net (site.js): if the words ever outgrow the wall (very large text zoom), they move above the photo */
+.hero--stacked .hero__copy{position:static;height:auto;padding-block:calc(var(--hdr-h) + 24px) 32px}
+.hero--stacked .hero__photo::after{display:none}
+
+/* the glass proof card: hangs off the photo's foot, below every chin */
+@media (min-width:900px) and (max-width:999px){.hero{--ch:200px}}
+@media (min-width:1000px) and (max-width:1239px){.hero{--ch:156px}}
+@media (min-width:1240px) and (max-width:1365px){.hero{--ch:132px}}
+@media (min-width:1366px) and (max-width:1439px){.hero{--ch:140px}}
+@media (min-width:1440px) and (max-width:1599px){.hero{--ch:146px}}
+.proof{position:relative;z-index:3;margin-top:-80px;padding-inline:var(--pad-x)}
+.proof__card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px clamp(28px,3cqw,48px);align-items:center;box-sizing:border-box;height:var(--ch);max-width:1240px;margin-inline:auto;padding:clamp(18px,1.6cqw,26px) clamp(22px,2.2cqw,36px);border-radius:var(--r-xl);background:rgb(253 251 247 / .9);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),var(--shadow-3)}
+.proof__score{display:flex;align-items:center;gap:18px}
+.proof__num{margin-block:-.1em;font:800 clamp(3.25rem,2.2rem + 2.2cqw,4.75rem)/1 var(--font-display);letter-spacing:-.05em;font-variant-numeric:lining-nums tabular-nums;color:var(--copper-700);white-space:nowrap}
+.proof__meta{display:grid;gap:5px;font-size:.9375rem;line-height:1.3}
+.proof__rating{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:600}
+.proof__meta .link{font-weight:650;font-size:.9375rem}
+.proof__roc a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em;font-size:.875rem}
+.proof__roc a:hover{color:var(--copper-700)}
+.proof__quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px clamp(16px,2cqw,32px)}
+.proof__quotes li{display:grid;align-content:center;gap:8px;padding-left:clamp(16px,2cqw,28px);border-left:1px solid var(--line-strong)}
+.proof__quotes p{font:650 clamp(1rem,.9rem + .35cqw,1.25rem)/1.28 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
+.proof__quotes .stars{--s:13px}
+@media (min-width:900px) and (max-width:1239px){.proof__quotes{grid-template-columns:repeat(2,minmax(0,1fr))}.proof__quotes li:nth-child(3){display:none}}
+
+/* the promise: the live hero paragraph. Sentence one is the lit statement, sentence two a quiet lede beside it */
+.creed{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:28px clamp(40px,6vw,120px);align-items:end;padding-block:clamp(72px,7vw,128px) clamp(56px,5vw,96px)}
+.statement{font:650 clamp(1.625rem,1rem + 1.6vw,2.625rem)/1.16 var(--font-display);letter-spacing:-.028em;color:var(--ink);max-width:23em;text-wrap:pretty}
+.creed__more{font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:26rem;padding-bottom:4px}
+@media (max-width:899px){.creed{grid-template-columns:1fr}}
+
+/* phones and portrait tablets: the eyebrow, the H1, then the call to action (round-5 QA: on the first screen), then the crew
+   (sides trimmed, every face in frame) with the proof card hanging off it. Everything left-aligned on one edge.
+   Below 640 px the fixed call bar (Call now · Free Estimate) is on screen from the first paint, so it is the hero's pair:
+   the hero shows only the CTA line and Emma's line under the H1 (never four buttons on one screen). From 640 px the
+   hero's own buttons are back, at their natural width, side by side. */
+@media (max-width:899px){
+  .hero{display:flex;flex-direction:column}
+  .hero__copy{display:contents}
+  .hero__inner{display:contents}
+  .hero__copy,.hero__photo,.proof{--hw:136cqw;--S:0px}
+  .hero__kicker{order:1;align-self:flex-start;margin:calc(var(--hdr-h) + 16px) var(--gutter) 0;padding:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .hero h1{order:2;margin:14px var(--gutter) 0;font-size:clamp(2.375rem,10.6cqw,4rem);text-align:left}
+  .hero h1 .ln{display:inline;white-space:normal}
+  .hero__actions{order:3;justify-content:flex-start;gap:12px;margin:22px var(--gutter) 28px}
+  .hero__actions .btn{flex:0 0 auto}
+  .hero__sub{justify-content:flex-start;margin-top:6px;line-height:1.4;text-align:left}
+  .hero__status{order:4;display:flex;flex-basis:100%;justify-content:flex-start;margin-top:-4px;font-size:.9375rem;color:var(--muted)}
+  /* the photo shows 31%–93% of the frame: the heads (from 46%) sit high in it, so on a short phone they are on the first
+     screen above the fixed call bar, not under it; the fade from the page ends before them (12% < 15%) */
+  .hero__photo{order:4;height:calc(var(--hp) * .62)}
+  .hero__photo img{top:calc(var(--hp) * -.31);left:calc(50% - var(--hw) * .503)}
+  .hero__photo::after{height:calc(var(--hp) * .12);background:linear-gradient(var(--bone),rgb(247 243 236 / 0));-webkit-mask-image:none;mask-image:none}
+  .proof,.proof__card{display:contents}
+  .proof__score{order:5;position:relative;z-index:3;margin:-34px var(--gutter) 0;padding:16px 18px;border-radius:var(--r-lg);background:rgb(253 251 247 / .94);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),var(--shadow-3)}
+  .creed{order:8;width:auto;margin-inline:var(--gutter);padding-top:clamp(56px,12vw,80px)}
+  .proof__score{gap:14px}
+  .proof__card{height:auto}
+  .proof__num{font-size:3rem}
+  .proof__quotes{order:7;grid-template-columns:1fr;gap:12px;margin:36px var(--gutter) 0;padding-top:20px;border-top:1px solid var(--line-strong)}
+  .proof__quotes li{grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px;padding:0;border:0}
+  .proof__quotes p{font-size:1rem}
+}
+/* the shortest phones (568–600 px tall): the crew and the proof card come straight after the H1, the CTA line after the
+   card, so no face starts under the call bar */
+@media (max-width:639px) and (max-height:600px){.hero__actions{order:6;margin-top:22px}.hero h1{margin-bottom:18px}}
+@media (max-width:639px){
+  .hero__actions .btn{display:none}
+  .hero__actions{margin-top:16px;gap:8px}
+  .hero__sub{margin-top:0}
+  .hero__sub-in{flex-direction:column;align-items:flex-start;gap:1px}
+  .hero__sub-in>span+span::before{display:none}
+  .hero__status{margin-top:2px}
+}
+@media (min-width:600px) and (max-width:899px){.hero__copy,.hero__photo,.proof{--hw:118cqw}.hero__photo img{left:calc(var(--hw) * -.09)}.proof__quotes{grid-template-columns:repeat(3,minmax(0,1fr))}.proof__quotes li{grid-template-columns:1fr}.proof__score{align-self:flex-start}}
+
+/* ===================================================================== 02 · SERVICES: the bento (words on the photos, a feathered tint under the words only) */
+.services{background:var(--sand)}
+.services .head .display{max-width:12ch}
+.rail-nav{display:none;gap:8px;margin-top:20px}
+.bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(112px,9.5vw,150px);gap:clamp(12px,1.2vw,18px)}
+.t-panel{grid-column:1/3;grid-row:span 4}
+.t-ev{grid-column:3;grid-row:span 4}
+.t-trouble{grid-column:4;grid-row:span 4}
+.t-safety{grid-column:1/3;grid-row:span 4}
+.t-recessed{grid-column:3/5;grid-row:span 4}
+.t-custom,.t-ext,.t-com{grid-row:span 3}
+.t-com{grid-column:3/5}
+.t-com .tile__body{--feather:64px}
+.bento--even{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));grid-auto-rows:clamp(320px,26vw,420px)}
+/* the section's links (round-5 QA: they used to fill a text-only tile): View All Services, then Residential · Commercial */
+.svc-links{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 22px;margin-top:20px}
+.svc-links__by{display:inline-flex;align-items:baseline;gap:8px;font-size:.9375rem;color:var(--muted)}
+.svc-links__by .link{font-weight:600}
+/* the two small photo tiles: one short line, the tint only on the bottom ~40% (the chandelier and the lamp posts show) */
+.t-custom .tile__body,.t-ext .tile__body{--feather:56px;gap:6px}
+/* the troubleshooting close-up: the ceiling above his cap is trimmed (16% of the frame) so his face sits higher, well
+   above the words, at every tile shape (the head keeps more than 15% headroom) */
+@media (min-width:700px){.t-trouble .tile__media img{position:relative;top:-16%;height:116%}}
+/* the tiles with people: a shorter feather, so the tint stays below every chin */
+.t-ev .tile__body,.t-trouble .tile__body,.t-safety .tile__body{--feather:44px}
+@media (max-width:1099px){
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(96px,13vw,140px)}
+  .t-panel,.t-safety{grid-column:1/-1;grid-row:span 3}
+  .t-ev,.t-trouble{grid-column:auto;grid-row:span 4}
+  .t-recessed,.t-com{grid-column:1/-1;grid-row:span 3}
+  /* the two inspectors walk up the path: the wide tile shows them high in the frame, above the words */
+  .t-safety .tile__media img{object-position:46% 68%!important}
+}
+/* phones: a swipe row of whole cards (photo, then the words on paper), with previous / next */
+@media (max-width:699px){
+  .rail-nav{display:flex}
+  .bento-wrap{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;padding-inline:var(--gutter);scroll-padding-inline:var(--gutter)}
+  .bento-wrap::-webkit-scrollbar{display:none}
+  .bento{display:flex;gap:12px;width:max-content}
+  .bento .tile{width:calc(100vw - 2 * var(--gutter));flex:none;scroll-snap-align:start}
+}
+
+/* ===================================================================== 06 · THE VALLEY, part 1: the fleet under the real Arizona sky (explore-b).
+   No scrim: the photo's sky is bright enough for ink, so the title is set in ink with "entire valley!" huge in copper,
+   the van livery's own colours. Geometry (all from the photo, so no face is ever reached):
+     --ph  the photo's height (3:2, full width). --bh the box: the photo anchored at its foot, as much sky as the words need.
+     The words live in a box that ends at 61.5% of the photo (the peaks start at 64%, the heads at 71.5%), sitting low in
+     it, so the sky band between the intro and the ridge stays tight and the open sky sits above the title.
+   The asphalt fades into the map's ground at the foot (the last 6% of the photo, below every foot). */
+.valley{--atlas:#F3EDE3;--T:2.2s;background:var(--atlas);overflow:clip}
+.vy-sky{--ph:calc(100cqw / 1.5);--need:clamp(440px,24cqw + 200px,680px);--bh:min(var(--ph),calc(var(--need) + var(--ph) * .385));position:relative;isolation:isolate;overflow:clip;container-type:inline-size;background:#5c8fe3}
+.vy-photo{position:relative;height:var(--bh);margin:0;overflow:hidden}
+.vy-photo img{position:absolute;left:0;bottom:0;width:100%;max-width:none;height:var(--ph)}
+.vy-photo::after{content:"";position:absolute;inset:auto 0 0;height:calc(var(--ph) * .06);background:linear-gradient(rgb(243 237 227 / 0),rgb(243 237 227 / .55) 55%,var(--atlas));pointer-events:none}
+/* a sun-haze baked into the sky: very wide and soft (no ring at any width), lighter where the copper words sit; it ends
+   above the peaks */
+.vy-sky::before{content:"";position:absolute;z-index:1;inset:0 0 auto;height:calc(var(--bh) - var(--ph) * .37);background:radial-gradient(ellipse 72% 92% at 50% 74%,rgb(240 247 255 / .5) 0%,rgb(240 247 255 / .44) 22%,rgb(240 247 255 / .3) 46%,rgb(240 247 255 / .15) 68%,rgb(240 247 255 / .05) 86%,rgb(240 247 255 / 0) 100%);-webkit-mask-image:linear-gradient(#000 75%,transparent);mask-image:linear-gradient(#000 75%,transparent);pointer-events:none}
+.vy-title{position:absolute;z-index:2;inset:0 0 auto;height:calc(var(--bh) - var(--ph) * .385);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:clamp(28px,3cqw,64px) 0 clamp(14px,1.4cqw,30px);text-align:center}
+.kicker--pill{margin:0 0 clamp(14px,1.3cqw,24px);padding:8px 16px 8px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .9);color:var(--copper-700);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .6),0 10px 26px -16px rgb(15 42 53 / .55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.vy-h{display:flex;flex-direction:column;align-items:center;font-weight:740;color:var(--ink);line-height:1;text-wrap:balance}
+.vy-h__a{font-size:clamp(1.75rem,.8rem + 3.1cqw,5rem);letter-spacing:-.036em;line-height:1.05}
+.vy-h__b{margin-top:-.04em;font-size:min(6rem + 8.5cqw,min(100cqw - 2 * var(--gutter),var(--max)) / 5.6,20rem);white-space:nowrap;font-weight:760;letter-spacing:-.052em;line-height:1;color:var(--copper-800);padding-bottom:.04em}
+.vy-intro{margin-top:clamp(6px,.6cqw,14px);max-width:30em;font:550 clamp(1.0625rem,.92rem + .5cqw,1.5rem)/1.4 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
+@media (min-width:1600px){.vy-photo img{filter:url(#grain) saturate(1.02) contrast(1.03)}}
+/* laptops and up (round-5 QA: "a quarter of the photo is asphalt"): the photo is cut 4.5% at its foot, so the lot below
+   the crew's feet (90.5%) is a short strip before the fade, and the words end at 62.5% of the photo (the peaks start at
+   64%, the heads at 71.5%). From 1600 px there is also less open sky above the title and a tighter gap to the ridge. */
+@media (min-width:1024px){
+  .vy-sky{--cut:.045;--bh:min(var(--ph) * (1 - var(--cut)),calc(var(--need) + var(--ph) * (.375 - var(--cut))))}
+  .vy-photo img{bottom:calc(var(--ph) * var(--cut) * -1)}
+  .vy-photo::after{height:calc(var(--ph) * .05)}
+  .vy-sky::before{height:calc(var(--bh) - var(--ph) * (.36 - var(--cut)))}
+  .vy-title{height:calc(var(--bh) - var(--ph) * (.375 - var(--cut)))}
+}
+@media (min-width:1600px){.vy-sky{--need:clamp(560px,9cqw + 420px,640px)}.vy-title{padding-bottom:clamp(12px,.8cqw,20px)}}
+/* the words drift up a little slower than the page (scroll-driven; only ever away from the crew) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .vy-title{animation:vy-drift linear both;animation-timeline:view();animation-range:cover 10% cover 90%}
+    @keyframes vy-drift{from{transform:translateY(0)}to{transform:translateY(-48px)}}
+  }
+}
+/* tablets and phones: the sky continues above the photo (the photo's own top colours), so the title has room and the
+   crew keeps its size; the frame is centred on the crew (all four with headroom) */
+@media (max-width:759px){
+  .vy-sky{--pw:150cqw;--ph:calc(var(--pw) / 1.5);display:flex;flex-direction:column;background:linear-gradient(rgb(122 172 242),rgb(150 196 249) 58%,rgb(156 200 250))}
+  .vy-sky::before{display:none}
+  .vy-title{position:relative;order:1;height:auto;padding:44px var(--gutter) 8px}
+  .vy-photo{order:2;height:calc(var(--ph) * .54);margin-top:-1px}
+  .vy-photo img{left:calc(50cqw - .525 * var(--pw));width:var(--pw);height:var(--ph);-webkit-mask-image:linear-gradient(transparent calc(var(--ph) * .46),#000 calc(var(--ph) * .56));mask-image:linear-gradient(transparent calc(var(--ph) * .46),#000 calc(var(--ph) * .56))}
+  .vy-h__a{font-size:clamp(1.5rem,6.6cqw,2.25rem)}
+  .vy-h__b{font-size:clamp(3rem,15cqw,6rem)}
+  .vy-intro{font-size:1.0625rem;max-width:22em}
+}
+@media (max-width:599px){.vy-sky{--pw:176cqw}.kicker--pill{gap:8px;padding:7px 13px 7px 12px;font-size:.8125rem}.kicker--pill .kicker__n::after{width:18px;margin-left:8px}.kicker--pill .kicker__t{gap:7px}}
+
+/* ===================================================================== scroll-driven motion (transform, opacity, colour). The resting state
+   is the finished page: without support, without JS or with reduced motion everything is simply there. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    /* hero: the words lift away as you leave (transform only, away from the faces) */
+    .hero__inner{animation:lift linear both;animation-timeline:scroll(root);animation-range:0 70svh}
+    @keyframes lift{to{transform:translateY(-12svh)}}
+    /* the lit statement: each phrase turns from warm grey (3.6:1, already large-text AA) to ink as it rises */
+    .statement{view-timeline:--stmt block}
+    .motion .statement .w{animation:lit linear both;animation-timeline:--stmt;animation-range:cover calc(14% + var(--i) * 5%) cover calc(24% + var(--i) * 5%)}
+    @keyframes lit{from{color:var(--dim)}to{color:var(--ink)}}
+  }
+}

@@ -1,0 +1,194 @@
+---
+// The valley, shown as it really is (round 5).
+//   variant "home": (1) the fleet under the real Arizona sky with the heading huge
+//     ("We proudly serve the" in ink, the accent words in copper); (2) the atlas: the
+//     relief from real elevation data, every town a light at its real point, one copper
+//     wire from Mesa through the towns in the index's order ending in a bulb it draws,
+//     and the index on glass (every city linked, with its neighbourhoods).
+//   variant "inner": the atlas in miniature, with this page's town marked and every
+//     other town linked on the glass panel.
+// The map is aria-hidden; the index is the accessible, crawlable version. Geometry:
+// lib/valley.ts (computed at build time). Motion: scripts/site/valley.ts. Styles:
+// styles/atlas.css (in the stylesheet of every page type that shows the valley,
+// styles/bundles) plus the sky in styles/home.css.
+import type {SiteSettings} from '../../lib/types'
+import type {City} from '../../lib/cities'
+import {RELIEF, valleyGeometry} from '../../lib/valley'
+import {FLEET_PHOTO} from '../../lib/brand-photos'
+import {imageDimensions, imageSrcSet, imageUrl} from '../../lib/image'
+import Eyebrow from '../ui/Eyebrow.astro'
+import CtaButtons from '../ui/CtaButtons.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** The cities in index (and wire) order: serviceAreaCities() from lib/cities.ts. */
+  cities: City[]
+  variant?: 'home' | 'inner'
+  heading: string
+  /** Home: the words of the heading set huge in copper on their own line. */
+  accent?: string
+  intro?: string
+  /** Inner: the slug of this page's city (marked on the map, left out of the index). */
+  current?: string
+  eyebrow?: string
+  number?: number | string
+  id?: string
+  /** The closing line under the index (the live site's words). */
+  note?: string
+}
+
+const {
+  settings,
+  cities,
+  variant = 'home',
+  heading,
+  accent,
+  intro,
+  current,
+  eyebrow = 'Serving the whole Phoenix valley',
+  number,
+  id = variant === 'home' ? 'valley-h' : 'areas-h',
+  note = "If you don't see your city listed, don't worry! Just give us a call and we'll let you know if you're in our service radius.",
+} = Astro.props
+
+const geo = valleyGeometry(cities)
+const at = new Map(geo?.pins.map((p) => [p.slug, p.t]))
+const listed = cities.filter((c) => c.slug !== current)
+const rows = `--r2:${Math.ceil(listed.length / 2)};--r3:${Math.ceil(listed.length / 3)}`
+const t = (slug: string) => (at.has(slug) ? `--t:${at.get(slug)}` : undefined)
+
+const split = accent ? heading.indexOf(accent) : -1
+const headLead = split >= 0 ? heading.slice(0, split).trim() : heading
+const headAccent = split >= 0 && accent ? accent : ''
+
+const reliefSizes = '(max-width:699px) 150vw, (max-width:1279px) 190vw, 125vw'
+const fleet = FLEET_PHOTO.image
+const fleetSize = imageDimensions(fleet)
+const fleetSrcset = [imageSrcSet(fleet, [640, 828, 1086]), ...FLEET_PHOTO.enlarged.map((e) => `${e.src} ${e.width}w`)].filter(Boolean).join(', ')
+---
+
+{
+  cities.length > 0 && (
+    <section class={`${variant === 'home' ? 'valley' : 'areas'} cv`} aria-labelledby={id} data-valley data-eager-photos>
+      {variant === 'home' && (
+        <div class="vy-sky">
+          <figure class="vy-photo">
+            <img
+              src={imageUrl(fleet, {width: 1086})}
+              srcset={fleetSrcset}
+              sizes="(max-width:599px) 176vw, (max-width:759px) 150vw, 100vw"
+              width={fleetSize?.width}
+              height={fleetSize?.height}
+              alt={fleet.alt}
+              loading="lazy"
+              decoding="async"
+              data-faces={FLEET_PHOTO.faces}
+            />
+          </figure>
+          <div class="wrap vy-title">
+            <Eyebrow number={number} variant="pill">
+              {eyebrow}
+            </Eyebrow>
+            <h2 class="vy-h" id={id}>
+              <span class="vy-h__a">{headLead}</span> {headAccent && <span class="vy-h__b">{headAccent}</span>}
+            </h2>
+            {intro && <p class="vy-intro">{intro}</p>}
+          </div>
+        </div>
+      )}
+      <div class:list={['vy-atlas', variant === 'inner' && 'vy-atlas--inner']}>
+        {geo && (
+          <div class="vy-map">
+            <div class="vy-stage" aria-hidden="true" style={geo.stageStyle}>
+              <picture>
+                <source type="image/avif" srcset={RELIEF.widths.map((w) => `${RELIEF.src(w, 'avif')} ${w}w`).join(', ')} sizes={reliefSizes} />
+                <img
+                  class="vy-relief"
+                  src={RELIEF.src(1800, 'webp')}
+                  srcset={RELIEF.widths.map((w) => `${RELIEF.src(w, 'webp')} ${w}w`).join(', ')}
+                  sizes={reliefSizes}
+                  width={RELIEF.width}
+                  height={RELIEF.height}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <svg class="vy-wire" viewBox={geo.viewBox} preserveAspectRatio="none" focusable="false">
+                <circle class="vy-end__halo" cx={geo.bulb.cx} cy={geo.bulb.cy} r={geo.bulb.haloR} />
+                <path class="vy-end__glass" d={geo.bulb.glass} />
+                <path class="vy-wire__halo" d={geo.wire} />
+                <path class="vy-wire__line" pathLength="1" d={geo.wire} />
+                <path class="vy-wire__spark" pathLength="1" d={geo.wire} />
+                <g class="vy-end__bars">
+                  {geo.bulb.bars.map((b) => (
+                    <rect x={b.x} y={b.y} width={b.width} height={b.height} rx={b.rx} />
+                  ))}
+                  <path d={geo.bulb.cap} />
+                </g>
+              </svg>
+              {geo.ranges.map((r) => (
+                <>
+                  <span class={`vy-mtn vy-mtn--${r.key}`} style={`--x:${r.x};--y:${r.y}`}>
+                    {r.label}
+                  </span>{' '}
+                </>
+              ))}
+              {geo.pins.map((p) => (
+                <>
+                  <span
+                    class:list={['vy-pin', p.slug === current && 'is-here']}
+                    data-pin={p.slug}
+                    data-d={p.sides.d}
+                    data-t={p.sides.t}
+                    data-m={p.sides.m}
+                    style={`--x:${p.x};--y:${p.y};--t:${p.t}`}
+                  >
+                    <i />
+                    <b>{p.name}</b>
+                  </span>{' '}
+                </>
+              ))}
+            </div>
+          </div>
+        )}
+        <div class="wrap vy-wrap">
+          <div class:list={['vy-index', variant === 'inner' && 'vy-index--inner']}>
+            {variant === 'home' ? (
+              <p class="vy-lab">Cities and neighborhoods</p>
+            ) : (
+              <>
+                <Eyebrow number={number}>{eyebrow}</Eyebrow>
+                <h2 class="h2" id={id}>
+                  {heading}
+                </h2>
+                {intro && <p class="areas__intro">{intro}</p>}
+              </>
+            )}
+            <ul class:list={['vy-cities', variant === 'inner' && 'vy-cities--names']} role="list" style={rows}>
+              {listed.map((c) =>
+                variant === 'home' ? (
+                  <li data-city={c.slug} style={t(c.slug)}>
+                    <h3>
+                      <a href={c.href}>{c.name}<span class="az">, AZ</span></a>
+                    </h3>
+                    {c.detail && <p>{c.detail}</p>}
+                  </li>
+                ) : (
+                  <li data-city={c.slug} style={t(c.slug)}>
+                    <a href={c.href}>{c.name}<span class="az">, AZ</span></a>
+                  </li>
+                ),
+              )}
+            </ul>
+            <div class="vy-cta">
+              <p>{note}</p>
+              <CtaButtons settings={settings} />
+            </div>
+          </div>
+        </div>
+        {geo && <p class="vy-credit">Map relief from USGS elevation data</p>}
+      </div>
+    </section>
+  )
+}

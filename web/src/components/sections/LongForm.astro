@@ -1,0 +1,46 @@
+---
+// A city's or a service's long-form body, verbatim from Sanity (every block, link and
+// figure), set as the round-5 article: a 68-character measure, the H3s as copper
+// kickers, beside a sticky aside (slot "aside": the contact card). The body's own H2
+// names the section. An optional `figure` (a job photo with its caption) sits halfway
+// down, so the long run of text breathes (round-5 Panels mockup).
+// Styles: styles/inner.css (.article, .prose) and styles/cms.css.
+import type {ImageRef, PortableTextValue} from '../../lib/types'
+import {getRedirectMap} from '../../lib/queries'
+import {articleHtml, insertMidArticle} from '../../lib/cms'
+import {portableTextToHtml} from '../../lib/portable-text'
+import {resolveHref} from '../../lib/links'
+
+interface Props {
+  body: PortableTextValue | null | undefined
+  /** The section's name when the body has no H2. */
+  label: string
+  /** A prose variant for the page type ("city", "service"). */
+  variant?: string
+  /** A photo placed halfway down the article, with its caption. */
+  figure?: ImageRef & {caption?: string}
+  class?: string
+}
+
+const {body, label, variant, figure, class: className} = Astro.props
+const options = {redirects: await getRedirectMap(), figureSizes: '(min-width:1100px) 680px, 92vw', currentPath: resolveHref(Astro.url.pathname)}
+const article = articleHtml(body, options)
+const anchors = article.anchors
+const html = figure && article.html ? insertMidArticle(article.html, portableTextToHtml([{...figure, _type: 'figure', _key: 'inline'}] as PortableTextValue, options)) : article.html
+const named = anchors[0] ? {'aria-labelledby': anchors[0].id} : {'aria-label': label}
+---
+
+{
+  html && (
+    <section class:list={['section article-s', className]} {...named}>
+      <div class="wrap article">
+        <div class:list={['prose', variant && `prose--${variant}`]} set:html={html} />
+        {Astro.slots.has('aside') && (
+          <aside class="aside" aria-label="Contact">
+            <slot name="aside" />
+          </aside>
+        )}
+      </div>
+    </section>
+  )
+}

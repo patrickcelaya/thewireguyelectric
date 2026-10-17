@@ -1,0 +1,83 @@
+---
+// A city page's hero (round-5 Gilbert mockup): the fleet under the open Arizona sky,
+// the H1 on the sky far above the crew (the town in copper), the lede, the estimate
+// and call buttons, Emma's status, and the glass trust card on the empty sky at the
+// right (below the photo on phones, over the asphalt). A city with an office of its
+// own (Scottsdale) shows that office in the card. The photo is the page's LCP image:
+// the page preloads the same renditions (FLEET_HERO). Styles: styles/inner.css (.ihero--sky),
+// styles/cms.css (.ihero--office, and the photo set lower from 1100 to 1399 px).
+import type {LocationDoc, PostalAddress, SiteSettings} from '../../lib/types'
+import type {Crumb} from '../../lib/seo'
+import {ESTIMATE_PATH, telHref} from '../../lib/site'
+import {FLEET_PHOTO} from '../../lib/brand-photos'
+import {imageDimensions, imageUrl} from '../../lib/image'
+import {accentParts} from '../../lib/format'
+import {FLEET_HERO, cityAccent} from '../../lib/cms'
+import Breadcrumbs from '../ui/Breadcrumbs.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Button from '../ui/Button.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import TrustCard from './TrustCard.astro'
+import OfficeCard from './OfficeCard.astro'
+
+interface Props {
+  location: LocationDoc
+  /** The page H1 (location.heading, as the page computes it). */
+  heading: string
+  settings: SiteSettings
+  crumbs: Crumb[]
+  /** The office whose Google Business Profile lands on this page. */
+  office?: PostalAddress
+}
+
+const {location, heading, settings, crumbs, office} = Astro.props
+const city = location.shortName || location.name
+const eyebrow = [location.cityNameForSeo ?? `${city}, AZ`, location.county].filter(Boolean).join(' · ')
+const [before, town, after] = accentParts(heading, cityAccent(heading, city))
+const fleet = FLEET_PHOTO.image
+const size = imageDimensions(fleet)
+---
+
+<section class:list={['ihero ihero--sky', office && 'ihero--office']} aria-labelledby="hero-h">
+  <div class="ihero__stage">
+    <figure class="ihero__photo">
+      <img
+        src={imageUrl(fleet, {width: 1086})}
+        srcset={FLEET_HERO.srcset}
+        sizes={FLEET_HERO.sizes}
+        width={size?.width}
+        height={size?.height}
+        alt={fleet.alt}
+        loading="eager"
+        decoding="sync"
+        fetchpriority="high"
+        data-faces={FLEET_PHOTO.faces}
+      />
+    </figure>
+    <div class="wrap ihero__copy">
+      <Breadcrumbs crumbs={crumbs} variant="sky" />
+      <Eyebrow variant="sky">{eyebrow}</Eyebrow>
+      <h1 id="hero-h">{before}{town && <span class="hl-sky">{town}</span>}{after}</h1>
+      {location.description && <p class="ihero__lede">{location.description}</p>}
+      <div class="btn-row">
+        <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
+        <Button href={telHref(settings)} variant="cream" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
+      </div>
+      <p class="ihero__status"><OfficeStatus settings={settings} /></p>
+    </div>
+    <TrustCard settings={settings}>
+      {
+        office && (
+          <OfficeCard
+            settings={settings}
+            office={office}
+            as="p"
+            kicker={`Our ${office.addressLocality} office`}
+            note={office.appointmentOnly ? 'Office visits by appointment only. We come to you.' : undefined}
+            class="itrust__office"
+          />
+        )
+      }
+    </TrustCard>
+  </div>
+</section>
