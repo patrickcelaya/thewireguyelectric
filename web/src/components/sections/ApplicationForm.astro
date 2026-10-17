@@ -7,7 +7,8 @@
 // the ones the live application asked for; the API delivers them by name. The résumé
 // goes through the owner's FlowDrive widget, as on the live form: the browser sends the
 // file to FlowDrive, the widget writes its link into a hidden file_url field, and the
-// API passes that link on. Without JS there is no upload, and the form still sends.
+// API passes that link on (docs/FORMS.md). Without JS there is no upload, and the form
+// still sends.
 import type {SiteSettings} from '../../lib/types'
 import {telHref} from '../../lib/site'
 import LitBulb from '../ui/LitBulb.astro'

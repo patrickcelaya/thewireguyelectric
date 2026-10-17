@@ -4,7 +4,8 @@
 //   LEAD_WEBHOOK_URL   any webhook, e.g. a Zapier/Make hook that creates the
 //                      customer/lead in Housecall Pro
 //   RESEND_API_KEY + LEADS_TO_EMAIL  plain email via Resend
-// At least one must succeed, or the visitor is told to call instead.
+// At least one must succeed, or the visitor is told to call instead. Setup, the
+// Formspark settings that reject every lead, and the status codes: docs/FORMS.md.
 import type {APIRoute} from 'astro'
 
 export const prerender = false
