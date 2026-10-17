@@ -18,7 +18,8 @@
 //   - images without an asset, and missing alt where the schema requires it;
 //   - Portable Text marks that are neither a decorator nor a markDef;
 //   - profile URLs (sameAs) that aren't full https URLs, are link shorteners or repeat,
-//     and image alts that are Webflow's placeholder (see "Content rules" below).
+//     image alts that are Webflow's placeholder, and images still on Webflow's CDN (see
+//     "Content rules" below).
 //
 // Exits 1 on any problem. The schema is read from studio/schemaTypes, so it never
 // drifts from what editors see.
@@ -179,19 +180,22 @@ for (const doc of docs) {
 //   - profile URLs (Site settings' sameAs and each office's): full https URLs, never a link
 //     shortener, none listed twice (content/profiles.mjs profileProblems);
 //   - no image alt is Webflow's "inherit" placeholder (__wf_reserved_inherit), which is not
-//     a description.
+//     a description;
+//   - no image is still a Webflow URL for the importer to download (image@…website-files.com):
+//     the dataset must import again after the Webflow plan is cancelled.
 const settingsDoc = byId.get('siteSettings')
 if (settingsDoc) {
   for (const msg of profileProblems(settingsDoc.sameAs)) problem(settingsDoc, '.sameAs', msg)
   for (const a of settingsDoc.addresses ?? []) for (const msg of profileProblems(a.sameAs)) problem(settingsDoc, `.addresses[${a._key}].sameAs`, msg)
 }
-const walkAlts = (doc, node, path) => {
-  if (Array.isArray(node)) return node.forEach((n, i) => walkAlts(doc, n, `${path}[${n?._key ?? i}]`))
+const walkImages = (doc, node, path) => {
+  if (Array.isArray(node)) return node.forEach((n, i) => walkImages(doc, n, `${path}[${n?._key ?? i}]`))
   if (!node || typeof node !== 'object') return
   if (typeof node.alt === 'string' && /^__wf_/.test(node.alt)) problem(doc, `${path}.alt`, `"${node.alt}" is Webflow's placeholder, not alt text`)
-  for (const [k, v] of Object.entries(node)) if (k !== 'alt') walkAlts(doc, v, `${path}.${k}`)
+  if (typeof node._sanityAsset === 'string' && /website-files\.com|webflow\.com/.test(node._sanityAsset)) problem(doc, `${path}._sanityAsset`, 'image still loads from Webflow\'s CDN (run scripts/migrate/legacy-image-map.mjs)')
+  for (const [k, v] of Object.entries(node)) if (k !== 'alt' && k !== '_sanityAsset') walkImages(doc, v, `${path}.${k}`)
 }
-for (const doc of docs) walkAlts(doc, doc, '')
+for (const doc of docs) walkImages(doc, doc, '')
 
 // --check-profiles: also request every profile URL (warnings only: Facebook, Instagram and Yelp
 // often refuse bots).

@@ -238,7 +238,7 @@ Pages composed in Sanity (`page.sections`) render through **`SectionRenderer`** 
 ```
 
 - Sanity's image CDN serves every rendition (`auto=format` → AVIF/WebP, q 75, crop and hotspot honoured, `fit=crop` only with `aspect`), project `qhi2uf0l` **even when the build reads the local dataset** (`IMAGE_PROJECT_ID`).
-- The local dataset still stores some images as `image@<webflow url>`; `resolveImage()` maps them to the Sanity asset the production import made from the same file (`data/legacy-images.json`, regenerate with `node scripts/migrate/legacy-image-map.mjs` after an import that adds images), An image with no such asset renders nothing and logs a build warning: **nothing is ever loaded from Webflow's CDN**.
+- The migration turns every `image@<webflow url>` into a reference to its Sanity asset (`scripts/migrate/webflow-to-sanity.mjs`, "Self-contained images"). For an image still stored as a URL, `resolveImage()` maps it to the Sanity asset the production import made from the same file (`data/legacy-images.json`, regenerate with `node scripts/migrate/legacy-image-map.mjs` after an import that adds images), An image with no such asset renders nothing and logs a build warning: **nothing is ever loaded from Webflow's CDN**.
 - `width`/`height` come from the asset (after the editor's crop) or from `aspect`. Widths are capped at the original (no upscaled copies).
 - `alt`: the image's own alt by default; pass `alt=""` for a thumbnail beside its own title.
 - LCP: `priority` (eager, `fetchpriority=high`, `decoding=sync`) on exactly one image per page; if it sits low in the HTML also preload it with `imagePreload(image, widths, sizes, aspect)` in the layout's `head` slot.

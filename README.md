@@ -86,7 +86,7 @@ node scripts/migrate/webflow-to-sanity.mjs                  # regenerate migrati
 cd studio && npx sanity dataset import ../migration/sanity-import/production.ndjson production --replace
 ```
 
-The import downloads every image from Webflow's CDN into Sanity (`_sanityAsset`), so nothing depends on Webflow afterwards. Document IDs are stable across re-runs (`id-map.json`), so the import can be repeated safely until launch. The script also fixes the broken internal links found on the live site (`/locations/mesa`, `/services/electrical-panels`, ...), sends links worded as a free estimate to `/estimate` and normalizes absolute links to relative paths. See `migration/sanity-import/report.json`.
+Every image references the Sanity asset the first import made from its Webflow file, and the NDJSON carries those asset documents (`legacy-assets.json`), so the dataset imports again without Webflow's CDN, also after the Webflow plan is cancelled. Document IDs are stable across re-runs (`id-map.json`), so the import can be repeated safely until launch. The script also fixes the broken internal links found on the live site (`/locations/mesa`, `/services/electrical-panels`, ...), sends links worded as a free estimate to `/estimate` and normalizes absolute links to relative paths. See `migration/sanity-import/report.json`.
 
 Content changes go through the pipeline, never by editing the NDJSON: edit a module in `scripts/migrate/content/` (`fixes`, `reviews`, `local-facts`, `page-sections`, `cms-templates`, applied in that order) or its data in `migration/content-data/`, regenerate, then check:
 
@@ -94,7 +94,7 @@ Content changes go through the pipeline, never by editing the NDJSON: edit a mod
 node scripts/migrate/webflow-to-sanity.mjs
 node scripts/migrate/validate-dataset.mjs   # every document, section and field matches the Studio schema
 node scripts/migrate/verify-content.mjs     # every live string and link is in the sections (or in _omissions.json with a reason)
-node scripts/migrate/legacy-image-map.mjs   # after an import that adds images: Webflow URL → Sanity asset map
+node scripts/migrate/legacy-image-map.mjs   # after an import that adds images: Webflow URL → Sanity asset map and asset documents
 ```
 
 ## SEO parity check

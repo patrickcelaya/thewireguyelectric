@@ -13,9 +13,10 @@
 //   sanity-import/id-map.json        stable document IDs across re-runs
 //   sanity-import/content-dates.json what each document's updatedAt describes (content-dates.mjs)
 //
-// Images are emitted as `_sanityAsset: "image@<webflow url>"`, which the Sanity
-// importer downloads and re-hosts, so nothing depends on Webflow's CDN afterwards.
-// Before import, the site renders these URLs directly (local dataset mode).
+// Images are read as `_sanityAsset: "image@<webflow url>"` and leave as references to the
+// Sanity assets the first import made from those files (their asset documents are in the
+// NDJSON; see "Self-contained images" below), so neither the dataset nor the site depends
+// on Webflow's CDN.
 
 import {readFile, writeFile, mkdir} from 'node:fs/promises'
 import {existsSync} from 'node:fs'
@@ -547,6 +548,38 @@ for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'loca
   const [name, stage] = step.split(':')
   await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }
+
+// Self-contained images: every image the export gave as a Webflow URL (image@…) becomes a reference
+// to the Sanity asset the import already made from that file (legacy-image-map.mjs), and the asset's
+// document is added, so the dataset imports again without Webflow's CDN, which goes away when the
+// Webflow plan is cancelled. Earlier modules still name these images by URL (bodyRemovals, figureAlts).
+const legacyImages = await readJson('web/src/data/legacy-images.json')
+const legacyAssets = await readJson('migration/sanity-import/legacy-assets.json')
+const unmapped = new Set()
+const usedAssets = new Set()
+const selfContain = (node) => {
+  if (Array.isArray(node)) return node.forEach(selfContain)
+  if (!node || typeof node !== 'object') return
+  if (typeof node._sanityAsset === 'string') {
+    const url = node._sanityAsset.replace(/^image@/, '')
+    const id = legacyImages[url]?.asset
+    if (!id || !legacyAssets[id]) unmapped.add(url)
+    else {
+      delete node._sanityAsset
+      node.asset = {_type: 'reference', _ref: id}
+      usedAssets.add(id)
+    }
+  }
+  Object.values(node).forEach(selfContain)
+}
+docs.forEach(selfContain)
+if (unmapped.size) {
+  console.error('Images with no Sanity asset (run scripts/migrate/legacy-image-map.mjs):', [...unmapped])
+  process.exit(1)
+}
+const present = new Set(docs.map((d) => d._id))
+for (const id of [...usedAssets].sort()) if (!present.has(id)) push(legacyAssets[id])
+report.legacyImages = {referenced: usedAssets.size, assetDocumentsAdded: [...usedAssets].filter((id) => !present.has(id)).length}
 
 // Referential integrity: every reference must point at a document in this file.
 const ids = new Set(docs.map((d) => d._id))
