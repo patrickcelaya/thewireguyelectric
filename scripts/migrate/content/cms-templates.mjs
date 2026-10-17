@@ -13,7 +13,7 @@
 //                   must be in the service body, and no answer may name a price
 //   bodyEdits       dollar ranges taken out of service bodies (owner rule); each `find`
 //                   must occur exactly once and may not cut through a link, and no
-//                   service body may name a price afterwards
+//                   service body or question of its own may name a price afterwards
 //   bodyLinks       a post linked, by its own title, at the end of a service body's block
 //   linkFixes       links in a post, city body or FAQ answer that point to the wrong place:
 //                   estimate requests the "free estimate" phrase rule misses (sent to
@@ -85,6 +85,10 @@ export default async function cmsTemplates(ctx) {
   for (const doc of docs.filter((d) => d._type === 'service')) {
     const priced = blockText(doc.body).split('\n').find((line) => PRICE.test(line))
     if (priced) fail(`bodyEdits: ${doc.slug.current} still names a price in its body: "${priced.slice(0, 120)}…"`)
+    // nor in its own questions (D9). The /faq questions tagged with a service keep their prices for /faq
+    // and the guides; the service template leaves out every question with a price.
+    const pricedFaq = (doc.faqs ?? []).find((f) => PRICE.test(f.question ?? '') || PRICE.test(blockText(f.answer)))
+    if (pricedFaq) fail(`${doc.slug.current}: its own question "${pricedFaq.question}" names a price; service pages show none`)
   }
 
   const sourceText = (service, doc, source) => {
