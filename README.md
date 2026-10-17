@@ -18,11 +18,14 @@ web/        Astro site (static, deployed to Vercel; Vercel root directory = web)
   src/lib/                       queries.ts (GROQ), types.ts, schema.ts (JSON-LD), seo.ts, image.ts, site.ts (NAP helpers) ...
   src/styles/                    tokens.css, core.css (every page) + one layer per page type (home, inner, cms, post, pages, atlas)
   src/scripts/                   site.ts: the one small progressive-enhancement script
+  src/config/                    redirects, the one-hop redirect rewrite, build-info.mjs (/build-info.json)
+  scripts/                       ignore-build.mjs: the Vercel Ignored Build Step, and its tests
 studio/     Sanity Studio (schemaTypes/ = the content model)
 scripts/
   seo/      crawl.mjs (SEO crawler), parity.mjs (old vs new diff), serve-build.mjs (local Vercel emulator)
   migrate/  webflow-to-sanity.mjs (Webflow export → Sanity NDJSON) and its content/ modules, validate-dataset.mjs,
             verify-content.mjs, legacy-image-map.mjs
+  launch/   verify.mjs (launch-day checks), indexnow.mjs (IndexNow submission)
   valley/   relief.py (the valley map's relief asset)
 migration/
   webflow-cms/      Raw Webflow CMS export (API JSON + CSV) and forms/scripts metadata
@@ -112,7 +115,84 @@ To check the real Vercel deployment, crawl https://thewireguyelectric.vercel.app
 
 The site is fully static. Publishing in Sanity fires a webhook to a Vercel deploy hook, which rebuilds the site in about a minute. Redirects are managed as `Redirect` documents in Studio and applied at build time.
 
-The webhook fires once per changed document, so a bulk change (a dataset import, a script patching many documents) sends one deploy-hook call per document. Two safeguards keep that from becoming one production build per document:
+### Ignored Build Step: build only when something changed
 
-- **Vercel → Project → Settings → Build and Deployment → On-Demand Concurrent Builds: "Run up to one build per branch".** Hook calls that arrive during a build are collapsed into a single follow-up build. The Pro default ("Run all builds immediately") builds every call in parallel.
-- **Before a bulk import**, set the project's Ignored Build Step to `[ "$VERCEL_GIT_COMMIT_SHA" = "$VERCEL_GIT_PREVIOUS_SHA" ]` (skips rebuilds of an already-deployed commit; git pushes still deploy). Clear it once the webhook's delivery log in sanity.io/manage is empty, then trigger one deploy.
+**Vercel → Project → Settings → Build and Deployment → Ignored Build Step → Custom: `node scripts/ignore-build.mjs`.** Vercel runs it in the root directory (`web/`) before installing packages; exit 1 builds, exit 0 cancels the deployment. It stays on for good. It replaces the old `[ "$VERCEL_GIT_COMMIT_SHA" = "$VERCEL_GIT_PREVIOUS_SHA" ]` guard, which also cancelled every Sanity publish and the same-commit redeploy that turns indexing on.
+
+Every build writes `/build-info.json` (`web/src/config/build-info.mjs`):
+
+| Field | Value |
+|---|---|
+| `sha` | the commit |
+| `contentHash` | sha256 of every published Sanity document's `_id:_rev`, sorted; with the local dataset, of the NDJSON. Taken before the build reads any content, so a publish during a build counts as a change |
+| `builtAt` | when the build started |
+| `content`, `indexable` | the content source (`sanity:qhi2uf0l/production`) and `SITE_INDEXABLE` |
+
+The script compares it with what this deployment would build, in this order:
+
+1. A preview (`VERCEL_ENV` is not `production`): build.
+2. `https://$VERCEL_PROJECT_PRODUCTION_URL/build-info.json` can't be read (a network error, a 404, Vercel's login page, bad JSON): build. It sends `x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET` when that variable is set.
+3. Another commit (`VERCEL_GIT_COMMIT_SHA`): build.
+4. Another content source or `SITE_INDEXABLE` value: build. This is what lets the launch redeploy through.
+5. Another content hash, read from Sanity's API (not the CDN, which can lag a publish): build.
+6. The live build is more than 20 hours old: build.
+7. Otherwise: skip. The deployment shows as Canceled and the live build stays.
+
+What it relies on, and what happens without it. Every unknown builds, so a wrong guess costs one extra build, never a stale site:
+
+- `VERCEL_ENV`, `VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_GIT_COMMIT_SHA` are system variables available at build time. Vercel's docs say the Ignored Build Step can read those, provided **Settings → Environment Variables → Enable access to System Environment Variables** is ticked. Without them it builds every time.
+- `VERCEL_PROJECT_PRODUCTION_URL` is the shortest production domain: the `.vercel.app` alias today, the apex after launch. The apex redirects to www and the script follows the redirect.
+- `VERCEL_AUTOMATION_BYPASS_SECRET` exists only while a Protection Bypass for Automation secret does. While Deployment Protection covers the production alias ("All deployments", before launch), revoking it makes build-info.json unreadable and every deploy builds. After launch the production domains are public under Standard protection, so revoking it changes nothing.
+- `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN` and `SITE_INDEXABLE` are the project's own variables, read the way the build reads them. If the step ever ran without them, the source or `SITE_INDEXABLE` comparison would differ and it would build every time.
+
+**After changing any other environment variable** (a form delivery key, say), the step would cancel a same-commit redeploy. Redeploy from **Deployments → ⋯ → Redeploy** with **Use project's Ignore Build Step** unticked.
+
+`pnpm --filter web test` runs its tests (CI does too): every branch against a mock server standing in for production and Sanity.
+
+**Bulk changes.** The webhook fires once per changed document, so a dataset import or a script patching many documents sends one deploy-hook call per document. Keep **Vercel → Project → Settings → Build and Deployment → On-Demand Concurrent Builds: "Run up to one build per branch"**: calls that arrive during a build collapse into one follow-up build, which the step skips if the first build already had the final content. The Pro default ("Run all builds immediately") starts every call at once, before any of them has published a new build-info.json, so each one would build.
+
+### Daily rebuild
+
+`.github/workflows/daily-rebuild.yml` calls the deploy hook every day at 00:17 Arizona time, so what the build computes from the date stays current: a job opening past its closing date drops off /careers along with its JobPosting, and the footer year turns over on 1 January. (The office open/closed line is worked out in the visitor's browser from the published hours and needs no rebuild.) The Ignored Build Step lets the call build only when the live build is more than 20 hours old, so it costs at most one build a day. A job past its closing date therefore leaves at the next call; if the site was rebuilt for another reason in the 20 hours before that call, the call is skipped and the job leaves a day later.
+
+It is optional, and does nothing until the repository has the secret:
+
+1. Vercel → Project → Settings → Git → Deploy Hooks: create a hook on the production branch.
+2. GitHub → Settings → Secrets and variables → Actions → New repository secret: `VERCEL_DEPLOY_HOOK_URL` = the hook URL.
+3. Actions → Daily rebuild → Run workflow, once: the log should read "Deploy hook answered 200" (or 201), and a deployment should appear in Vercel.
+
+Scheduled workflows run from the default branch.
+
+## Launch tooling
+
+`scripts/launch/verify.mjs` checks a deployment the way launch day needs. It covers:
+
+- apex → www and http → https, each in one hop;
+- `/x/` → `/x` for every sitemap path;
+- every legacy, post and Sanity redirect, with and without a trailing slash, and removed URLs answering 404;
+- robots.txt, the sitemap's 96 URLs and their lastmod;
+- 200, no noindex and one www canonical on every sitemap page;
+- GA on every page;
+- `GET /api/contact` answering 405 (a 404 from a build that predates that is a warning) and an empty POST answering 400;
+- the parity crawl.
+
+It exits 1 on any failure and writes a JSON report.
+
+```bash
+node scripts/launch/verify.mjs --base https://www.thewireguyelectric.com          # launch day, after DNS: repeat until it exits 0
+node scripts/launch/verify.mjs --base https://thewireguyelectric.vercel.app --allow-noindex   # the preview (export VERCEL_AUTOMATION_BYPASS_SECRET)
+PUBLIC_SANITY_PROJECT_ID= node scripts/launch/verify.mjs --base http://localhost:4321          # serve-build.mjs, local-dataset build
+```
+
+`--allow-noindex` reports a blocking robots.txt, noindex and the missing GA tag as INFO, for a build before launch. A few hygiene checks only warn: the frame headers the live site sends, `/x/index.html` → `/x`, `/favicon.ico`, `/build-info.json`, and on www, that the `.vercel.app` alias is not an indexable duplicate. Expected redirects come from Sanity unless `PUBLIC_SANITY_PROJECT_ID` is set; set it empty for a local-dataset build. The script's header lists the options for skipping a group.
+
+`scripts/launch/indexnow.mjs` submits the sitemap to IndexNow, which reaches Bing, Yandex, Seznam, Naver and Yep (Google does not take part). The key is public by design. It lives in `web/public/5177a4ccdcf3567e8a2b870a351c63a9.txt`, served from the site root, and the script checks that the live file answers with the key before sending anything. Run it once verify.mjs passes on www, and again after a batch of content changes:
+
+```bash
+node scripts/launch/indexnow.mjs --dry-run              # check the key file, show what would be sent
+node scripts/launch/indexnow.mjs                        # every sitemap URL
+node scripts/launch/indexnow.mjs --since 2026-10-20     # only URLs whose lastmod is on or after a date
+node scripts/launch/indexnow.mjs --from http://localhost:4321 --dry-run   # before launch, against serve-build.mjs
+```
+
+A 200 or 202 means accepted; 202 means the engine is still validating the key. To rotate the key, replace the file: its name and its content are both the key.
