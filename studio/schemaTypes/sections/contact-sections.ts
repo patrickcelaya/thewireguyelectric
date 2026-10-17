@@ -107,7 +107,7 @@ export const ctaSection = defineArrayMember({
   title: 'Call to action band',
   type: 'object',
   icon: BoltIcon,
-  description: 'The closing band ("We\'re ready to work for you"). Leave the heading empty to use the site-wide band from Site settings → Shared copy.',
+  description: 'The closing band ("You\'ll know the price before we start"). Leave the heading empty to use the site-wide band from Site settings → Shared copy.',
   fields: [defineField({name: 'cta', type: 'callToAction'})],
   preview: {select: {title: 'cta.heading'}, prepare: (value) => sectionPreview('CTA band')({...value, title: (value.title as string | undefined) || 'Site-wide CTA band'})},
 })

@@ -492,6 +492,54 @@
       "tag": "p",
       "text": "These services reflect a comprehensive range of electrical solutions that address the needs of both residential and commercial customers, covering everything from repairs to upgrades and safety evaluations.",
       "reason": "Launch copy pass (2026-10-17): slop-pages-034 in migration/content-edits/pages.json. \"comprehensive range of electrical solutions that address the needs of\". The replacement names the services listed on the page."
+    },
+    {
+      "page": "*",
+      "tag": "h2",
+      "text": "We're ready to work for you",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-11 in migration/content-edits/decisions.json): the shared closing band (Site settings → CTA band) now reads \"You'll know the price before we start\", the flat-rate promise from /faq. Button, link and status line are unchanged."
+    },
+    {
+      "page": "index",
+      "tag": "h2",
+      "text": "Electrician solutions tailored to your needs",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-01 in migration/content-edits/decisions.json): stock heading; now \"Electrical work we do, from repairs to EV chargers\"."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Custom Lighting Solutions",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-07 in migration/content-edits/decisions.json): the checklist item (Site settings → capabilities) reads \"Custom Lighting\"; its service link is unchanged."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Wiring Solutions",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-08 in migration/content-edits/decisions.json): the checklist item (Site settings → capabilities) reads \"Wiring and Rewiring\"."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Amazing Quality",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-09 in migration/content-edits/decisions.json): the card title (Site settings → value props) reads \"Done right the first time\", the card's own promise."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Client Satisfaction",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-10 in migration/content-edits/decisions.json): the card title (Site settings → value props) reads \"We come back if anything's wrong\", which the card's text promises."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Let our reviews speak for themselves",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-03 in migration/content-edits/decisions.json): cliché heading; now \"What our customers say\", as on /commercial-electrician."
+    },
+    {
+      "page": "index",
+      "tag": "h2",
+      "text": "We proudly serve the entire valley!",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-05 in migration/content-edits/decisions.json): \"proudly serve\" plus exclamation; now \"We serve the entire Phoenix valley\", as on the other pages that show the valley."
     }
   ],
   "links": [

@@ -1,7 +1,7 @@
 import {defineField, defineType} from 'sanity'
 import {BoltIcon} from '@sanity/icons/Bolt'
 
-// A call to action: the closing "We're ready to work for you" band, the
+// A call to action: the closing "You'll know the price before we start" band, the
 // site-wide default in Site settings, and inline CTAs inside rich text.
 export const callToAction = defineType({
   name: 'callToAction',

@@ -1,6 +1,106 @@
 {
   "about": "Copy changes the lead decided on (FIX_BRIEF, 2026-10-17): D1 homepage and shared headings, D6 minimal factual corrections, and D5's split of the one-block Ahwatukee body. Same format as the slop files; these run after them, so an edit here may change a slop edit's new text.",
-  "edits": [],
+  "edits": [
+    {
+      "id": "D1-01",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089", "field": "sections[4].heading"},
+      "old_text": "Electrician solutions tailored to your needs",
+      "new_text": "Electrical work we do, from repairs to EV chargers",
+      "tier": "tier1",
+      "reason": "D1: stock heading (\"solutions tailored to your needs\") over the What we do checklist; the replacement is the slop-pages review's suggestion. The homepage title and H1 stay frozen."
+    },
+    {
+      "id": "D1-02",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089", "field": "sections[4].headingAccent"},
+      "old_text": "your needs",
+      "new_text": "EV chargers",
+      "tier": "tier1",
+      "reason": "D1: the highlighted words follow the new heading (as slop-pages-043 does on /commercial-electrician)."
+    },
+    {
+      "id": "D1-03",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089", "field": "sections[7].heading"},
+      "old_text": "Let our reviews speak for themselves",
+      "new_text": "What our customers say",
+      "tier": "tier1",
+      "reason": "D1: cliché heading; the same replacement as slop-pages-045 on /commercial-electrician."
+    },
+    {
+      "id": "D1-04",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089", "field": "sections[7].headingAccent"},
+      "old_text": "speak for themselves",
+      "new_text": "customers say",
+      "tier": "tier1",
+      "reason": "D1: the highlighted words follow the new heading."
+    },
+    {
+      "id": "D1-05",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089", "field": "sections[8].heading"},
+      "old_text": "We proudly serve the entire valley!",
+      "new_text": "We serve the entire Phoenix valley",
+      "tier": "tier1",
+      "reason": "D1: \"proudly serve\" plus exclamation; the same line as slop-pages-018, -032 and -036 on the pages that reuse this section."
+    },
+    {
+      "id": "D1-06",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089", "field": "sections[8].headingAccent"},
+      "old_text": "entire valley!",
+      "new_text": "entire Phoenix valley",
+      "tier": "tier1",
+      "reason": "D1: the highlighted words follow the new heading."
+    },
+    {
+      "id": "D1-07",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "capabilities[1].title"},
+      "old_text": "Custom Lighting Solutions",
+      "new_text": "Custom Lighting",
+      "tier": "tier1",
+      "reason": "D1: \"Solutions\" filler in a capability title (homepage checklist and the 404 page's list); the link to the Custom Lighting service is unchanged."
+    },
+    {
+      "id": "D1-08",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "capabilities[2].title"},
+      "old_text": "Wiring Solutions",
+      "new_text": "Wiring and Rewiring",
+      "tier": "tier1",
+      "reason": "D1: \"Solutions\" filler in a capability title; the replacement is the slop-pages review's suggestion."
+    },
+    {
+      "id": "D1-09",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "valueProps[1].title"},
+      "old_text": "Amazing Quality",
+      "new_text": "Done right the first time",
+      "tier": "tier1",
+      "reason": "D1: stock benefit title; the replacement is the card's own promise (\"get it done right the first time\")."
+    },
+    {
+      "id": "D1-10",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "valueProps[2].title"},
+      "old_text": "Client Satisfaction",
+      "new_text": "We come back if anything's wrong",
+      "tier": "tier1",
+      "reason": "D1: stock benefit title. The card already makes the claim: \"we'll always come back if you have any issues\" (live copy, kept by slop-pages-012). Straight apostrophe like the card's own text."
+    },
+    {
+      "id": "D1-11",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "ctaBand.heading"},
+      "old_text": "We're ready to work for you",
+      "new_text": "You'll know the price before we start",
+      "tier": "tier1",
+      "reason": "D1: the shared closing band's heading (every page with the estimate band) was a stock line. The replacement is the business's flat-rate promise from /faq: \"we quote you a price before we start and that's what you pay\". The band's eyebrow says \"Free estimates\" and its button \"Get a Free Estimate\"."
+    }
+  ],
   "splits": [
     {
       "id": "D5-01",

@@ -111,7 +111,7 @@ export const siteSettings = defineType({
       title: 'CTA band',
       type: 'callToAction',
       group: 'shared',
-      description: 'The closing band used on templates and on any "Call to action band" section left without a heading, e.g. "We\'re ready to work for you".',
+      description: 'The closing band used on templates and on any "Call to action band" section left without a heading, e.g. "You\'ll know the price before we start".',
     }),
     defineField({
       name: 'valueProps',
