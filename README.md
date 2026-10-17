@@ -77,6 +77,8 @@ With no Sanity project configured, the site builds from `migration/sanity-import
 | `LEAD_WEBHOOK_URL` | Also/instead POST each lead as JSON to a webhook (e.g. Zapier → Housecall Pro) |
 | `RESEND_API_KEY`, `LEADS_TO_EMAIL`, `LEADS_FROM_EMAIL` | Also/instead email each lead via Resend |
 
+Lead forms: setup, the Formspark settings that silently reject every lead, the résumé upload and how to test: [docs/FORMS.md](docs/FORMS.md).
+
 `studio/.env` (see `studio/.env.example`): `SANITY_STUDIO_PROJECT_ID`, `SANITY_STUDIO_DATASET`.
 
 ## Content migration

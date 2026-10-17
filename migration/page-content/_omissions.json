@@ -15,7 +15,7 @@
       "page": "careers",
       "tag": "form-help",
       "text": "Please upload a resume.",
-      "reason": "Obsolete: the résumé upload on the live careers form is a dead Webflow placeholder (/api/contact receives no file), so the line asks for something the form cannot take."
+      "reason": "Form help text is code, like the form's labels: ApplicationForm.astro renders this line, word for word, over the FlowDrive résumé upload it restores (the live form's upload works; the file's link arrives in the hidden file_url field). The contact section stores only its headings, submit label and success message (docs/CONTENT_MODEL.md §4, contactSection)."
     },
     {
       "page": "*",
