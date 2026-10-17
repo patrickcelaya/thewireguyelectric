@@ -20,6 +20,19 @@ const candidate = JSON.parse(await readFile(args.candidate ?? 'migration/seo-can
 const SITE = 'https://www.thewireguyelectric.com'
 const allowNoindex = Boolean(args['allow-noindex'])
 
+// Approved title / meta description / H1 changes. Each entry is the exact new value (compared after
+// norm()), so the page may change only to that value: any other difference is still an error.
+//   {"changes": {"/locations/gilbert": {"title": "...", "meta": "...", "h1": "..."}}}
+const ALLOW_FILE = args.allow ?? 'migration/seo-intentional-changes.json'
+const allowFile = await readFile(ALLOW_FILE, 'utf8').then((t) => JSON.parse(t), (e) => {
+  if (e.code === 'ENOENT' && !args.allow) return {}
+  throw e
+})
+const allow = allowFile.changes ?? {}
+// Tier 1 pages (most of today's clicks): their title and H1 can never be approved for a change.
+const FROZEN = new Set(allowFile.frozenTitleAndH1 ?? [])
+const FIELDS = {title: 'title', meta: 'description', h1: 'h1'}
+
 // Schema types removed on purpose (see docs/SEO_STRATEGY.md).
 const INTENTIONALLY_REMOVED_TYPES = new Set(['AggregateRating'])
 // Old URLs that are meant to stop existing (they 404 on purpose).
@@ -64,12 +77,20 @@ for (const [path, before] of Object.entries(baseline.pages)) {
   }
   if (!wasIndexable) continue
 
-  if (norm(before.title) !== norm(after.title)) add('error', path, 'title', `"${before.title}" -> "${after.title}"`)
-  if (norm(before.metaDescription) !== norm(after.metaDescription))
-    add(before.metaDescription ? 'error' : 'info', path, 'description', `"${before.metaDescription ?? ''}" -> "${after.metaDescription ?? ''}"`)
-  const h1b = norm(before.h1?.[0])
-  const h1a = norm(after.h1?.[0])
-  if (h1b !== h1a) add('error', path, 'h1', `"${before.h1?.[0] ?? ''}" -> "${after.h1?.[0] ?? ''}"`)
+  const approved = allow[path] ?? {}
+  const compare = (field, was, now, levelIfChanged) => {
+    const check = FIELDS[field]
+    if (approved[field] !== undefined) {
+      if (norm(now) === norm(approved[field])) add('info', path, check, `approved change: "${was ?? ''}" -> "${now ?? ''}"`)
+      else if (norm(now) === norm(was)) add('warn', path, `${check}-pending`, `approved change not deployed yet: still "${was ?? ''}"`)
+      else add('error', path, check, `changed, but not to the approved value: "${now ?? ''}" (approved "${approved[field]}")`)
+      return
+    }
+    if (norm(was) !== norm(now)) add(levelIfChanged, path, check, `"${was ?? ''}" -> "${now ?? ''}"`)
+  }
+  compare('title', before.title, after.title, 'error')
+  compare('meta', before.metaDescription, after.metaDescription, before.metaDescription ? 'error' : 'info')
+  compare('h1', before.h1?.[0], after.h1?.[0], 'error')
   if ((after.h1?.length ?? 0) !== 1) add('warn', path, 'h1-count', `${after.h1?.length ?? 0} H1s`)
   if (after.canonical !== canonicalFor(path)) add('error', path, 'canonical', `expected ${canonicalFor(path)}, got ${after.canonical ?? 'none'}`)
   if (/noindex/i.test(after.metaRobots ?? '') || /noindex/i.test(after.xRobotsTag ?? '')) add(allowNoindex ? 'info' : 'error', path, 'robots', `noindex on an indexable page (${after.metaRobots ?? after.xRobotsTag})`)
@@ -86,6 +107,14 @@ for (const [path, before] of Object.entries(baseline.pages)) {
   if (linksAfter < linksBefore * 0.8) add('warn', path, 'internal-links', `${linksBefore} -> ${linksAfter}`)
   const brokenTargets = (after.internalLinks ?? []).filter((l) => candidate.pages[l] && candidate.pages[l].status >= 400)
   if (brokenTargets.length) add('error', path, 'broken-links', brokenTargets.join(', '))
+}
+
+// An approval for a URL the baseline does not hold as an indexable 200 is stale or mistyped.
+for (const [path, fields] of Object.entries(allow)) {
+  const b = baseline.pages[path]
+  if (!b || b.status !== 200 || /noindex/i.test(b.metaRobots ?? '')) add('error', path, 'allowlist', `approved ${Object.keys(fields).join(', ')} for a URL that is not an indexable page in the baseline`)
+  for (const f of Object.keys(fields)) if (!FIELDS[f]) add('error', path, 'allowlist', `unknown field "${f}" (use title, meta or h1)`)
+  for (const f of ['title', 'h1']) if (fields[f] !== undefined && FROZEN.has(path)) add('error', path, 'allowlist', `${f} of a Tier 1 page is frozen and cannot be approved`)
 }
 
 // New URLs (not on the live site) are fine but worth listing.
