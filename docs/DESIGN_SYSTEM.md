@@ -172,7 +172,7 @@ Props are typed in each file; the essentials are below. "settings" is always `Si
 | `Bulb` | `lead` left·right, `class?` | The wire-drawn bulb. Put `data-bulb-field` on the section (and optionally `data-bulb-edge` on the box whose edge the wire starts from). Lit by default; scope `.glow`/`.glass` opacity to change that (the 404 keeps it dark, /estimate lights it on send) |
 | `MiniBulb` | `class?` (default `mini-bulb`) | Lights on hover/focus inside `.tile`, `.svc-tile`, `.guide` |
 | `LitBulb` | `class` | The bulb as parts (the form's success state, `ok-bulb`) |
-| `Breadcrumbs` | `crumbs: Crumb[]`, `variant?` sky | Render with the same array you pass as `meta.breadcrumbs`, so the trail equals the `BreadcrumbList`. Inner pages only (CSS in `inner.css`). On phones the trail stays on one line: the links keep their whole names and the current page (which the H1 repeats) shortens with an ellipsis |
+| `Breadcrumbs` | `crumbs: Crumb[]`, `variant?` sky | Render with the same array you pass as `meta.breadcrumbs`, so the trail equals the `BreadcrumbList`. Inner pages only (CSS in `inner.css`). On phones the links keep their whole names; the current page (which the H1 repeats) stays on the trail's line, shortened with an ellipsis, while 8em of it fits there, else it moves to a second line |
 | `SanityImage` | `image`, `widths?`, `sizes`, `aspect?`, `alt?`, `priority?`, `class?`, `style?`, `faces?` | See [Images](#7-images) |
 | `StaticPicture` | `src`, `avif?`, `webp?`, `sizes`, `width`, `height`, `alt`, `loading?`, `fetchpriority?` | Committed images with AVIF/WebP renditions |
 

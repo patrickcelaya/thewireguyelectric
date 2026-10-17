@@ -5,12 +5,13 @@
 .crumbs a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
 .crumbs a:hover{color:var(--copper-700)}
 .crumbs [aria-current]{color:var(--copper-700);font-weight:650}
-/* phones: the trail stays on one line. Its links keep their whole names; if the line is still too long, the current page's
-   name (the H1 right below repeats it) shortens with an ellipsis (the whole trail stays in the HTML) */
+/* phones: the links keep their whole names. The current page's name stays on the trail's line while 8em of it (or all
+   of a shorter one) fits there, shortened with an ellipsis if need be (the H1 right below repeats it; the whole trail
+   stays in the HTML); with less room it moves to a second line, so it never shrinks to a stub like "Tr…" */
 @media (max-width:699px){
-  .crumbs ol{flex-wrap:nowrap;white-space:nowrap}
+  .crumbs ol{white-space:nowrap}
   .crumbs li{flex:none}
-  .crumbs li:last-child{flex:0 1 auto;min-width:0}
+  .crumbs li:last-child{flex:1 1 8em;min-width:0;max-width:max-content}
   .crumbs li+li::before{flex:none;margin:0 9px}
   .crumbs a{display:block;padding-block:4px}
   .crumbs [aria-current]{display:block;overflow:hidden;text-overflow:ellipsis}
