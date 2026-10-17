@@ -13,7 +13,7 @@ import '../styles/inner.css'
 import {getFaqs, getReviews, getSettings} from '../lib/queries'
 import {officeHours, telHref} from '../lib/site'
 import {faqNode, webPageNode} from '../lib/schema'
-import {resolveOgImage} from '../lib/seo'
+import {ogImageMeta} from '../lib/seo'
 import {retargetLinks} from '../lib/portable-text'
 import type {FaqItem, PortableTextValue} from '../lib/types'
 import Breadcrumbs from '../components/ui/Breadcrumbs.astro'
@@ -55,7 +55,7 @@ const family = homeCity && settings.foundingDate ? `Family-owned in ${homeCity} 
 ---
 
 <SiteLayout
-  meta={{title, description, path, ogImage: resolveOgImage(settings), breadcrumbs: crumbs}}
+  meta={{title, description, path, ...ogImageMeta(settings), breadcrumbs: crumbs}}
   schema={[webPageNode({path, title, description, type: 'ContactPage', breadcrumbs: crumbs}), faqNode(path, before)]}
   bodyClass="inner page-est"
   callbarEstimateHref="#estimate"

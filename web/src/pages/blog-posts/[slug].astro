@@ -20,11 +20,21 @@ import CtaBand from '../../components/sections/CtaBand.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getLocations, getPost, getPostIndex, getPosts, getRedirectMap, getServiceFaqs, getServices, getSettings} from '../../lib/queries'
-import {absoluteUrl, resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
-import {blogPostingNode, faqNode, webPageNode} from '../../lib/schema'
+import {absoluteUrl, ogImageMeta, resolveDescription, resolveTitle} from '../../lib/seo'
+import {blogPostingNode, faqNode, imageObjectNode, webPageNode} from '../../lib/schema'
 import {serviceAreaCities} from '../../lib/cities'
-import {imageDimensions, imagePreload, imageUrl} from '../../lib/image'
-import {POST_COVER, articleHtml, guideCards, mergeFaqs, postCity, postCover, postTopic, readingMinutes, withoutTitleHeading} from '../../lib/cms'
+import {imagePreload} from '../../lib/image'
+import {
+  POST_COVER,
+  articleHtml,
+  guideCards,
+  mergeFaqs,
+  postCity,
+  postCover,
+  postTopic,
+  readingMinutes,
+  withoutTitleHeading,
+} from '../../lib/cms'
 
 export async function getStaticPaths() {
   return (await getPosts()).map((p) => ({params: {slug: p.slug}}))
@@ -51,26 +61,14 @@ const newer = at > 0 ? posts[at - 1] : undefined
 const older = at >= 0 ? posts[at + 1] : undefined
 const city = postCity(post.title, serviceAreaCities(settings.homeCity, locations))
 
-// the cover: a real photo (the post's own when it is the crew's), also the article's image;
-// the related articles' covers are other photos
+// the cover: a real photo (the post's own when it is the crew's), also the article's image
+// (the page's primary image) and its share image; the related articles' covers are other photos
 const shown = new Set<string>()
 const cover = postCover(post, postIndex, services, {tinted: false, seed, taken: shown})
 const related = guideCards(post.relatedPosts ?? [], postIndex, services, seed + 1, shown)
 const preload = imagePreload(cover, POST_COVER.widths, POST_COVER.sizes)
-const coverSize = imageDimensions(cover)
-const imageWidth = Math.min(1200, coverSize?.width ?? 1200)
-const image = coverSize && {
-  '@type': 'ImageObject',
-  url: imageUrl(cover, {width: imageWidth, format: 'jpg'}),
-  width: imageWidth,
-  height: Math.round((imageWidth / coverSize.width) * coverSize.height),
-}
-const article = {
-  ...blogPostingNode(post, description),
-  image,
-  isPartOf: {'@id': `${absoluteUrl('/blog')}#blog`},
-  about: post.relatedServices?.length ? post.relatedServices.map((s) => ({'@id': `${absoluteUrl(`/services/${s.slug}`)}#service`})) : undefined,
-}
+const primaryImageId = `${absoluteUrl(path)}#primaryimage`
+const image = imageObjectNode(cover, {id: primaryImageId})
 ---
 
 <SiteLayout
@@ -79,13 +77,17 @@ const article = {
     description,
     path,
     ogType: 'article',
-    ogImage: resolveOgImage(settings, post.seo?.ogImage, post.mainImage),
+    ...ogImageMeta(settings, post.seo?.ogImage, cover),
     noIndex: post.seo?.noIndex,
     breadcrumbs: crumbs,
     publishedTime: post.publishedAt,
     modifiedTime: post.updatedAt ?? post.publishedAt,
   }}
-  schema={[{...webPageNode({path, title, description, breadcrumbs: crumbs}), mainEntity: {'@id': `${absoluteUrl(path)}#article`}}, article, faqNode(path, faqs)]}
+  schema={[
+    {...webPageNode({path, title, description, breadcrumbs: crumbs, primaryImage: image && {'@id': primaryImageId}}), mainEntity: {'@id': `${absoluteUrl(path)}#article`}},
+    blogPostingNode(post, description, {image}),
+    faqNode(path, faqs),
+  ]}
   bodyClass="inner page-post"
 >
   <Fragment slot="head">

@@ -6,7 +6,7 @@
 // describes what the page shows (people, open jobs, the visible questions).
 import PageBuilderPage from '../components/PageBuilderPage.astro'
 import {getPage, getPageSlugs, getServices, getSettings} from '../lib/queries'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
+import {resolveDescription, ogImageMeta, resolveTitle} from '../lib/seo'
 import {pageSchema} from '../lib/page-schema'
 import {BUSINESS_ID, commercialServiceNode} from '../lib/schema'
 
@@ -35,6 +35,6 @@ const extra = slug === 'commercial-electrician' ? [commercialServiceNode(path, s
 <PageBuilderPage
   page={page}
   settings={settings}
-  meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex, breadcrumbs: crumbs}}
+  meta={{title, description, path, ...ogImageMeta(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex, breadcrumbs: crumbs}}
   schema={pageSchema({page, settings, path, title, description, type: PAGE_TYPES[slug], crumbs, mainEntity, extra})}
 />

@@ -79,6 +79,8 @@ export interface PostalAddress {
   appointmentOnly?: boolean
   /** Footer and structured data only; never office cards, contact details or maps (a home address). */
   footerOnly?: boolean
+  /** This office's own profile URLs (its Google Maps place, directory listings): its sameAs in structured data. */
+  sameAs?: string[]
 }
 
 export interface OpeningHours {
@@ -143,7 +145,7 @@ export interface SiteSettings {
   availabilityNote?: string
   priceRange?: string
   foundingDate?: string
-  founders?: Array<{name: string; role?: string}>
+  founders?: Array<{name: string; role?: string; slug?: string}>
   rocLicense?: string
   /** Public AZ ROC lookup page for the license. */
   rocLicenseUrl?: string
@@ -365,6 +367,8 @@ export interface JobOpening {
   datePosted: string
   validThrough?: string
   baseSalary?: {min?: number; max?: number; unit?: string}
+  /** The experience the posting asks for, in months ("4+ years" = 48). */
+  minExperienceMonths?: number
 }
 
 /** A project photo (gallery) with alt text. */

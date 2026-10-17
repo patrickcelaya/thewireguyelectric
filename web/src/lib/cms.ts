@@ -7,6 +7,7 @@ import type {City} from './cities'
 import {FLEET_PHOTO, JOB_PHOTOS, companyPhoto, jobPhoto} from './brand-photos'
 import {imageSrcSet, resolveImage} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
+import {toPlainText} from './schema'
 
 /**
  * The fleet under the sky as a city page's hero (its LCP image): the Sanity renditions
@@ -159,9 +160,13 @@ export function mergeFaqs(lists: Array<FaqItem[] | null | undefined>, max = 7): 
   return uniqueBy(all, (f) => f.question.trim().toLowerCase()).slice(0, max)
 }
 
-/** Price questions after the others, so the open first answer is never a price (owner: no prices up front). */
-export function pricesLast(faqs: FaqItem[]): FaqItem[] {
-  return [...faqs.filter((f) => f.topic !== 'Pricing'), ...faqs.filter((f) => f.topic === 'Pricing')]
+/**
+ * The questions without prices, for service pages (owner: no prices on service pages):
+ * none from the Pricing topic and none whose answer states a dollar figure. /faq and the
+ * cost guides keep theirs.
+ */
+export function withoutPrices(faqs: FaqItem[] | null | undefined): FaqItem[] {
+  return (faqs ?? []).filter((f) => f.topic !== 'Pricing' && !/\$\s?\d/.test(toPlainText(f.answer)))
 }
 
 const sameQuestion = (a: string, b: string) => a.replace(/[‘’]/g, "'").trim().toLowerCase() === b.replace(/[‘’]/g, "'").trim().toLowerCase()

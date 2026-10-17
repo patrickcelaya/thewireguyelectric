@@ -148,7 +148,7 @@ const TEAM_MEMBER = /* groq */ `{
 }`
 
 const JOB = /* groq */ `{
-  _id, title, description${RICH_TEXT}, employmentType, datePosted, validThrough, baseSalary
+  _id, title, description${RICH_TEXT}, employmentType, datePosted, validThrough, baseSalary, minExperienceMonths
 }`
 
 const PROJECT_CARD = /* groq */ `{
@@ -339,7 +339,7 @@ export function getSettings() {
       ...,
       "logo": logo${IMAGE},
       "defaultOgImage": defaultOgImage${IMAGE},
-      "founders": founders[]->{name, role},
+      "founders": founders[]->{name, role, "slug": slug.current},
       "addresses": addresses[]{..., "locationSlug": locationPage->slug.current},
       "serviceAreas": serviceAreas[]->{name, "slug": slug.current, "shortName": ${CITY_NAME}, geo},
       "homeCity": homeCity${HOME_CITY},

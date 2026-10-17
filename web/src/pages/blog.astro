@@ -7,7 +7,7 @@
 // before the page builder) still lists every post, so no post loses its link from /blog.
 import PageBuilderPage from '../components/PageBuilderPage.astro'
 import {getPage, getPosts, getSettings} from '../lib/queries'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
+import {resolveDescription, ogImageMeta, resolveTitle} from '../lib/seo'
 import {blogNode} from '../lib/schema'
 import {pageSchema} from '../lib/page-schema'
 import type {PageSection} from '../lib/types'
@@ -28,6 +28,6 @@ const shown = listsAll ? page : {...page, sections: [...sections.filter((s) => s
 <PageBuilderPage
   page={shown}
   settings={settings}
-  meta={{title, description, path, ogImage: resolveOgImage(settings, page.seo?.ogImage), breadcrumbs: crumbs}}
+  meta={{title, description, path, ...ogImageMeta(settings, page.seo?.ogImage), breadcrumbs: crumbs}}
   schema={pageSchema({page: shown, settings, path, title, description, type: 'CollectionPage', crumbs, extra: [blogNode(settings, posts)]})}
 />
