@@ -56,12 +56,22 @@
   .phero__photo,.phero--tall .phero__photo{max-width:none;border-radius:0;box-shadow:none}
   /* a portrait photo as a 4:3 band (its heads sit in the middle half of the frame) */
   .phero--tall .phero__photo img{aspect-ratio:4/3;object-fit:cover}
-  /* people standing low under a big sky (the fleet): a wide band down to the asphalt, so the crew fills the frame instead
-     of a screen of empty sky (heads at 71.5–78% of the photo sit at 57–66% of the band) */
-  .phero--low .phero__photo img{aspect-ratio:16/7;object-fit:cover;object-position:50% 100%}
   .phero__card{grid-template-columns:minmax(0,1fr);gap:14px}
   .phero__creds{padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
   .phero__quotes{grid-template-columns:minmax(0,1fr)}
+}
+/* people standing low under a big sky (the fleet): a wide band down to the asphalt, so the crew fills the frame instead
+   of a screen of empty sky (heads at 71.5–78% of the photo sit at 57–66% of the band). Beside the words below 1,180 px
+   the photo would be a card under 510 px wide, mostly sky with the crew small at its foot, and the two buttons would
+   stack (they need 535 px), so up to there it keeps the tablet layout: the words, then the band edge to edge (5:2 there,
+   as on the city hero's tablet layout). The long H1 takes the width there, so it sets in three lines, not four */
+@media (max-width:1179px){.phero--low .phero__photo img{aspect-ratio:16/7;object-fit:cover;object-position:50% 100%}}
+@media (min-width:900px) and (max-width:1179px){
+  .phero--low .phero__grid{grid-template-columns:minmax(0,1fr);padding-left:0;gap:32px}
+  .phero--low .phero__copy{width:min(100% - 2 * var(--gutter),var(--max));margin-inline:auto}
+  .phero--low .phero__h--long{max-width:20ch}
+  .phero--low .phero__photo{border-radius:0;box-shadow:none}
+  .phero--low .phero__photo img{aspect-ratio:5/2}
 }
 /* phones: the crew straight after the H1 (as on the city page), so their heads are on the first screen above the call
    bar, never half under it; then the lede and the buttons. The call bar (Call now · Free Estimate, from the first paint)

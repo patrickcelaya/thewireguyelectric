@@ -16,8 +16,6 @@ import type {Crumb} from '../../lib/seo'
 import {ESTIMATE_PATH, ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
 import {hasImage} from '../../lib/image'
 import {innerHeroImage} from '../../lib/hero'
-import {facesOf} from '../../lib/brand-photos'
-import {facesFocus} from '../../lib/cms'
 import {getRedirectMap} from '../../lib/queries'
 import Breadcrumbs from '../ui/Breadcrumbs.astro'
 import Eyebrow from '../ui/Eyebrow.astro'
@@ -42,11 +40,9 @@ const {section, heading, settings, crumbs} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const photo = hasImage(section.image) ? section.image : undefined
+// people who stand low in the frame under a big sky (the fleet): a wide band below the words up to 1,179 px (styles/pages.css)
 const frame = innerHeroImage(photo)
-const tall = frame.tall
-// people who stand low in the frame under a big sky (the fleet): a wide band on tablets and phones (styles/pages.css)
-const focusY = Number(facesFocus(facesOf(photo))?.split(' ')[1]?.replace('%', '') ?? 0)
-const low = !tall && focusY > 60
+const {tall, low} = frame
 // Long headings ("Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ") set a size smaller.
 const long = heading.length > 44
 const notes = (section.ctaNotes ?? []).filter(Boolean)

@@ -3,6 +3,8 @@
 // same list, so the browser fetches exactly one file, early.
 import type {ImageRef, PageSection} from './types'
 import {imageDimensions, imagePreload, imageSrcSet} from './image'
+import {facesOf} from './brand-photos'
+import {facesFocus} from './cms'
 
 /**
  * Phones and portrait tablets show the crew at 136% of the width (sides trimmed,
@@ -23,13 +25,19 @@ export function heroPreloads(image: ImageRef | null | undefined) {
 
 /**
  * The inner hero's photo (components/sections/HeroInner.astro): a portrait photo stands
- * in a narrower column than a landscape one. The <img> and the page's preload
+ * in a narrower column than a landscape one (`tall`); a landscape photo whose people
+ * stand low under a big sky (the fleet) runs edge to edge below the words up to
+ * 1,179 px (`low`, styles/pages.css). The <img> and the page's preload
  * (components/PageBuilderPage.astro) use the same renditions.
  */
 export function innerHeroImage(image: ImageRef | null | undefined) {
   const size = imageDimensions(image)
   const tall = Boolean(size && size.height > size.width * 1.1)
-  return {tall, widths: [640, 828, 1086, 1280], sizes: tall ? '(max-width:899px) 100vw, 34vw' : '(max-width:899px) 100vw, 52vw'}
+  // the faces' vertical centre, in % of the photo's height ("50% 74.8%" → 74.8)
+  const focusY = parseFloat(facesFocus(facesOf(image))?.split(' ')[1] ?? '0')
+  const low = !tall && focusY > 60
+  const band = low ? 1179 : 899
+  return {tall, low, widths: [640, 828, 1086, 1280], sizes: `(max-width:${band}px) 100vw, ${tall ? '34vw' : '52vw'}`}
 }
 
 /** The preload for a page-builder page's LCP image: its hero's photo (none without one). */
