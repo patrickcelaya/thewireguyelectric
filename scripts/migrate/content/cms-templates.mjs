@@ -26,6 +26,8 @@
 //   bodyRemovals    single body blocks taken out of a service or post: a list item by its
 //                   exact text, or a figure by its image URL; each must match exactly one
 //                   block
+//   figureAlts      alt text for a figure in a post body that has none (Webflow's "inherit"
+//                   placeholder is dropped by the converter), by its image URL
 //
 // It also drops the SEO tool's tracking markers ("sbb-itb-f8419aa") that the Webflow
 // export carried into a post body as a heading of their own.
@@ -161,6 +163,14 @@ export default async function cmsTemplates(ctx) {
     doc.body = doc.body.filter((b) => !isTarget(b))
   }
 
+  for (const {post, image, alt} of data.figureAlts.alts) {
+    if (!alt?.trim() || /^__wf_/.test(alt)) fail(`figureAlts ${post}: give the alt text`)
+    const hits = (bySlug('post', post).body ?? []).filter((b) => b._type === 'figure' && b._sanityAsset === `image@${image}`)
+    if (hits.length !== 1) fail(`figureAlts ${post}: ${image} matches ${hits.length} figures, not 1`)
+    if (hits[0].alt) fail(`figureAlts ${post}: the figure already has alt text "${hits[0].alt}"`)
+    hits[0].alt = alt
+  }
+
   // a block whose only text is the SEO tool's marker is not content
   const MARKER = /^sbb-itb-[0-9a-f]{7}$/
   const markers = []
@@ -183,6 +193,7 @@ export default async function cmsTemplates(ctx) {
     postCategories: Object.fromEntries(Object.entries(data.postCategories.byCategory).map(([c, posts]) => [c, posts.length])),
     textFixes: data.textFixes.fixes.map((f) => `${f.post}: ${f.replace}`),
     bodyRemovals: data.bodyRemovals.removals.map((r) => `${r.slug}: ${r.text ?? r.image}`),
+    figureAlts: data.figureAlts.alts.map((a) => `${a.post}: ${a.alt}`),
     markersRemovedFrom: markers,
   }
 }

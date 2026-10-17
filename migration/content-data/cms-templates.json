@@ -229,5 +229,16 @@
         "why": "A screenshot of the retired Webflow homepage under 'The Wire Guy Electric Services': it shows the old design and puts text in an image. The heading and the paragraphs under it stay."
       }
     ]
+  },
+  "figureAlts": {
+    "source": "Alt text for images inside a post body that have none (the Webflow export's alt was its \"__wf_reserved_inherit\" placeholder, which the converter drops). Each names one figure by its image URL and says what the image shows; it must match exactly one figure without alt text in that post.",
+    "alts": [
+      {
+        "post": "can-hot-weather-cause-your-circuit-breaker-to-trip",
+        "image": "https://cdn.prod.website-files.com/66980076a856729471b47cf8/69f63cc36b96a2e70d25d675_692e0cbf6f4a2c6603fb6931_image%2520diagra.jpeg",
+        "alt": "Wiring diagram of a contactor controlling a single-phase motor with normally open and normally closed switches",
+        "why": "Schema-technical ST-09 (verified by viewing the image): a contactor and single-phase motor diagram with NO and NC switches. Alt only, on a Tier 1 post: no heading, paragraph, order or link changes. (The diagram does not illustrate the bimetallic-strip paragraph above it; whether to keep it is the owner's call.)"
+      }
+    ]
   }
 }
