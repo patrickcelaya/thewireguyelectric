@@ -196,3 +196,48 @@ Checked 2026-10-13 on the output of the full migration (`node scripts/migrate/we
   - "(Full-time)" comes from the job's employment type.
   - The `/faq` FAQPage data should be built from the page's own FAQ sections (`collectPageFaqs`).
 - **Build mode.** `web/.env` points the site at the live Sanity project. Until this dataset is imported there, build with `PUBLIC_SANITY_PROJECT_ID=` (empty) to see the new content.
+
+---
+
+## Open questions before launch (2026-10-17)
+
+Added after the launch review. Launch is planned for Thursday 2026-10-22; the steps are in `docs/LAUNCH_RUNBOOK.md`. As above, each question says what the site shows and what we did.
+
+### Settled since the list above
+- **Item 3, hero quotes:** the three quotes on `/commercial-electrician` are gone. None matches a review, and showing them as reviews risks the FTC rule on fake reviews. The home page's three are still there (question 26).
+- **Item 4, review count:** your Mesa Google profile showed 5.0 from 567 reviews on 2026-10-17. The site now says "560+" wherever it gives a count.
+- **Item 11** becomes question 23.
+- **Item 21, landmarks:** the Fountain Hills page no longer names the Desert Botanical Garden (it is in Phoenix). The other three are kept, worded as "near" or "the area around".
+- **Stadium name:** the Tempe page said "Sun Devil Stadium"; it now says Mountain America Stadium, the name since 2023 (ASU's own announcement).
+
+### Licence and business details
+23. **Which ROC licence is active?** The site, the FAQ and Nextdoor show ROC #365306. The van door in three team photos, your Facebook intro, Instagram bio, Yelp description, Manta listing and BuildZoom show 340400, and people search for "the wire guy electric roc 340400". We kept 365306 everywhere, and nine new city meta descriptions name it. Please look up both at roc.az.gov and tell us which is current, or which goes with which kind of work.
+24. **Legal name.** A copy of the state business register shows "THE WIRE GUYS ELECTRIC LLC" (filed 2025-06-19). The footer, the search-engine data and BBB say "The Wire Guy Electric LLC". Please check the company that holds your licence at ecorp.azcc.gov.
+25. **Scottsdale office hours.** Google, Apple Maps and Bing show it open Monday to Friday, 9 to 5. The Scottsdale page says "Office visits by appointment only." Is it staffed 9 to 5? Until you answer, the search-engine data gives that office no hours. Either way, the Google profile and the page should end up saying the same thing.
+
+### Claims on the site
+26. **Home page hero quotes.** "Went above and beyond, great prices too!", "Could not be more pleased!" and "Excellent, polite and timely service!" are still shown with stars (live copy). None matches a review. Are they real? If you can name the reviewers, we'll link them; otherwise we'd cut them.
+27. **"Trusted by 100+ Arizona businesses"** on `/commercial-electrician`. We kept it because the live page shows it word for word. Is the number right?
+28. **Free inspections and same-day service.** The monsoon post offers "free post-storm safety inspections" and a "free safety check". The surge-protection and breaker posts (and the breaker post's search description) say "same-day service available". We kept all three. We did change "Emergency troubleshooting" to "Electrical troubleshooting" in the monsoon post, since you don't offer an emergency line.
+29. **Prices in the Level 1 vs Level 2 charger post.** It prices a 200-amp panel upgrade at $1,800–$2,500, against $5,200–$6,500 everywhere else, and its two tables disagree (Level 1: $80–$180 and $300–$600; Level 2 installed: $400–$1,700 and $600–$2,500). We left the prices as they are. Which figures are right, or should the post be rewritten? We fixed one fact in it: the car's onboard charger, not the Level 1 charger, turns AC into DC.
+30. **Claims in posts we kept but can't source:**
+    - "the #1 cause of summer tripping" and "30–50° hotter" (hot-weather breaker post);
+    - "a 53% return on investment" and "can void your homeowner's insurance" (7 signs post);
+    - "Phoenix has the strictest enforcement in the Valley" (generator interlock post);
+    - the quote attributed to City of Phoenix Code Enforcement (DIY post);
+    - "one of the most documented hazards" (hardwired vs plug-in EV post);
+    - "+15–20% home value" and "a 50% return" from "multiple real estate studies" (landscape lighting post);
+    - "September" in the back-to-school post (East Valley schools start in late July or early August).
+
+    Confirm, give us a source, or we'll remove them.
+31. **Steven Taylor's quote on `/our-team`** is the stock paragraph ("the name you can trust … your dependable partner in all things electrical"). A quote under his name may only lose words, and nothing meaningful is left if it does. Approve it, give us his own words, or we cut it.
+32. **Hanging lights.** The page now shows its published 2024 copy, not the 2026-08-18 rewrite that sits unpublished in Webflow. The published copy reads like stock text ("perfect for businesses looking to enhance their ambiance", "meticulous attention to detail"). Should we use the rewrite instead, or have this copy reviewed?
+33. **Smaller copy points:**
+    - The home page team intro names Emma with her photo and a link (live copy), although your rule is that Emma appears only as a status line. Keep it?
+    - "Over 9 years" in the "tell me more about your business" FAQ goes stale in 2027. "Since 2017" would not.
+    - "Done right the first time." is now both a home page section heading and one of the card titles below it. Keep both, or give the section another heading?
+
+### Hiring and lead delivery
+34. **The job posting closes on 2026-11-18.** The site removes it, and its Google for Jobs listing, the next morning. Extend it or close it? Google also recommends a pay range; the site shows none unless you give one.
+35. **Résumé uploads (FlowDrive).** The careers form keeps your FlowDrive upload. Please confirm the FlowDrive account is active and not tied to the Webflow plan you will cancel, and that thewireguyelectric.com is in its allowed sites.
+36. **Form delivery (Formspark).** Leads go to a Formspark form you create (steps in the runbook). Leave "Allowed domains" empty and buy the one-time 50,000-submission bundle: either mistake turns every lead into a "please call us" message.
