@@ -4,7 +4,7 @@
 // results, so a page renders the same from the local dataset and from Sanity.
 import type {FaqItem, ImageRef, PortableTextValue, PostCard, PostIndexEntry, PostSummary, Review, ServiceSummary} from './types'
 import type {City} from './cities'
-import {FLEET_PHOTO, JOB_PHOTOS, companyPhoto} from './brand-photos'
+import {FLEET_PHOTO, JOB_PHOTOS, companyPhoto, jobPhoto} from './brand-photos'
 import {imageSrcSet, resolveImage} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 
@@ -97,10 +97,12 @@ export function postTopic(post: PostSummary, index: PostIndexEntry[], services: 
 /**
  * A real cover for a post: its own image when it is one of the company's photos, else
  * the photo of a service it supports (in the order it lists them), else one of the
- * company's job photos (JOB_PHOTOS). Stock images are never used. `tinted` covers (the
- * guide cards, under a copper tint) take job photos only; natural ones (the post's own
- * page) may show people too, framed on their faces. `taken` keeps the covers in one row
- * different from each other; `seed` varies the fallback from page to page.
+ * company's job photos (JOB_PHOTOS): those of the post's own subject first, then those
+ * that suit any guide (never the EV charger on a guide about breakers). Stock images
+ * are never used. `tinted` covers (the guide cards, under a copper tint) take job photos
+ * only; natural ones (the post's own page) may show people too, framed on their faces.
+ * `taken` keeps the covers in one row different from each other; `seed` varies the
+ * fallback from page to page.
  */
 export function postCover(
   post: PostSummary,
@@ -108,9 +110,19 @@ export function postCover(
   services: ServiceSummary[],
   {tinted = true, taken = new Set<string>(), seed = 0}: {tinted?: boolean; taken?: Set<string>; seed?: number} = {},
 ): ImageRef {
-  const own = index.find((p) => p.slug === post.slug)?.services ?? []
-  const fallback = [...JOB_PHOTOS.slice(seed % JOB_PHOTOS.length), ...JOB_PHOTOS.slice(0, seed % JOB_PHOTOS.length)]
-  const candidates = [post.mainImage, ...own.map((slug) => services.find((s) => s.slug === slug)?.mainImage), ...fallback]
+  const entry = index.find((p) => p.slug === post.slug)
+  const own = entry?.services ?? []
+  const linked = [post.mainImage, ...own.map((slug) => services.find((s) => s.slug === slug)?.mainImage)]
+  // what the post is about: what its own and its services' job photos show, and its blog topic, whose slug names one (lighting)
+  const subjects = new Set<string | undefined>([...linked.map((image) => jobPhoto(image)?.subject), (entry?.category ?? post.category)?.slug])
+  const rotated = [...JOB_PHOTOS.slice(seed % JOB_PHOTOS.length), ...JOB_PHOTOS.slice(0, seed % JOB_PHOTOS.length)]
+  const onSubject = (image: ImageRef) => {
+    const photo = jobPhoto(image)
+    return Boolean(photo && (subjects.has(photo.subject) || photo.services?.some((slug) => own.includes(slug))))
+  }
+  // so a lighting guide whose own photo another card already shows gets another lighting photo, not the EV charger
+  const fallback = [...rotated.filter(onSubject), ...rotated.filter((image) => !onSubject(image) && !jobPhoto(image)?.narrow)]
+  const candidates = [...linked, ...fallback]
   // the same photo may be an asset reference or a pre-import Webflow URL: compare what it resolves to
   const id = (image: ImageRef | null | undefined) => resolveImage(image)?.ref ?? ''
   const fits = (image: ImageRef | null | undefined): image is ImageRef => (tinted ? companyPhoto(image) === 'job' : Boolean(companyPhoto(image)))
