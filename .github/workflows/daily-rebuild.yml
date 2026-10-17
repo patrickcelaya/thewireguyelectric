@@ -1,0 +1,32 @@
+name: Daily rebuild
+
+# The site is static, so anything the build computes from the date only changes on a
+# rebuild: a job opening past its closing date drops off /careers (and its JobPosting),
+# the footer year turns over. This calls the Vercel deploy hook once a day; the Ignored
+# Build Step (web/scripts/ignore-build.mjs) lets the build run when the live one is more
+# than 20 hours old and skips it otherwise.
+#
+# Optional. Needs a repository secret VERCEL_DEPLOY_HOOK_URL: Vercel → Project → Settings
+# → Git → Deploy Hooks, a hook on the production branch. Without the secret the job does
+# nothing. Scheduled runs use the workflow file on the default branch.
+
+on:
+  schedule:
+    - cron: '17 7 * * *' # 00:17 in Arizona (UTC-7 all year)
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+    steps:
+      - name: Skip without a deploy hook
+        if: env.VERCEL_DEPLOY_HOOK_URL == ''
+        run: echo "VERCEL_DEPLOY_HOOK_URL is not set, so no rebuild was requested."
+      - name: Call the deploy hook
+        if: env.VERCEL_DEPLOY_HOOK_URL != ''
+        run: curl --fail --silent --show-error --retry 3 --retry-all-errors --max-time 30 -X POST -o /dev/null -w 'Deploy hook answered %{http_code}\n' "$VERCEL_DEPLOY_HOOK_URL"
