@@ -218,7 +218,7 @@
 .upload fdx-container fdx-upload{justify-content:center;min-height:52px;padding:12px 15px;border:1.5px dashed var(--field-line);border-radius:12px;background:var(--white);font-size:1rem;font-weight:600;color:var(--ink);transition:border-color .2s}
 .upload fdx-container:hover fdx-upload,.upload fdx-container fdx-upload[fdx-dragover]{border-color:var(--ink);background:var(--white)}
 .upload fdx-container:has(input[type=file]:focus-visible){outline:3px solid var(--ink);outline-offset:1px;border-radius:12px}
-.upload fdx-container fdx-file{border:1.5px solid var(--line-strong);border-radius:12px;font-size:.9375rem;color:var(--ink)}
+.upload fdx-container fdx-file{gap:12px;border:1.5px solid var(--line-strong);border-radius:12px;font-size:.9375rem;color:var(--ink)}
 .upload fdx-file :is([fdx-file-details],[fdx-file-title]){min-width:0}
 .upload fdx-file [fdx-file-text]{max-width:none}
 .upload fdx-file [u-text-grey]{color:var(--muted);white-space:nowrap}
