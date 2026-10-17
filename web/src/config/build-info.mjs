@@ -8,6 +8,9 @@
 //   builtAt      when the build started (ISO 8601)
 //   content      where the content came from: "sanity:<project>/<dataset>" or "local:<file>"
 //   indexable    SITE_INDEXABLE, which switches every page's robots meta, robots.txt and GA
+//   delivery     which lead destinations /api/contact has (FORMSPARK_FORM_ID, LEAD_WEBHOOK_URL,
+//                RESEND_API_KEY, LEADS_TO_EMAIL): true or false for each, never a value or a
+//                hash of one, since the file is public
 //
 // astro.config.mjs takes the hash before anything reads content, so a publish that lands
 // mid-build shows up as a change on the next check instead of being recorded as built.
@@ -40,12 +43,21 @@ export function contentSource(env) {
   return {kind: 'sanity', label: `sanity:${projectId}/${dataset}`, projectId, dataset, token: env.SANITY_API_READ_TOKEN || undefined}
 }
 
+/** The variables that turn on a lead destination in /api/contact (pages/api/contact.ts). */
+export const DELIVERY_VARS = ['FORMSPARK_FORM_ID', 'LEAD_WEBHOOK_URL', 'RESEND_API_KEY', 'LEADS_TO_EMAIL']
+
 /**
- * The build settings that change the output, as /build-info.json records them.
+ * The build settings that change the output, as /build-info.json records them. A deployment's
+ * functions keep the env vars it was built with, so adding a form destination needs a build.
  * @param {Record<string, string | undefined>} env
  */
 export function buildSettings(env) {
-  return {content: contentSource(env).label, indexable: env.SITE_INDEXABLE === 'true'}
+  return {
+    content: contentSource(env).label,
+    indexable: env.SITE_INDEXABLE === 'true',
+    // presence only: changing the value of a variable that is already set is not detected
+    delivery: Object.fromEntries(DELIVERY_VARS.map((name) => [name, Boolean(env[name])])),
+  }
 }
 
 /**

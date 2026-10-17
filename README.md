@@ -130,6 +130,7 @@ Every build writes `/build-info.json` (`web/src/config/build-info.mjs`):
 | `contentHash` | sha256 of every published Sanity document's `_id:_rev`, sorted; with the local dataset, of the NDJSON. Taken before the build reads any content, so a publish during a build counts as a change |
 | `builtAt` | when the build started |
 | `content`, `indexable` | the content source (`sanity:qhi2uf0l/production`) and `SITE_INDEXABLE` |
+| `delivery` | whether each lead destination `/api/contact` reads is set: `FORMSPARK_FORM_ID`, `LEAD_WEBHOOK_URL`, `RESEND_API_KEY`, `LEADS_TO_EMAIL`. `true` or `false` only, never a value or a hash of one (the file is public) |
 
 The script compares it with what this deployment would build, in this order:
 
@@ -137,18 +138,19 @@ The script compares it with what this deployment would build, in this order:
 2. `https://$VERCEL_PROJECT_PRODUCTION_URL/build-info.json` can't be read (a network error, a 404, Vercel's login page, bad JSON): build. It sends `x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET` when that variable is set.
 3. Another commit (`VERCEL_GIT_COMMIT_SHA`): build.
 4. Another content source or `SITE_INDEXABLE` value: build. This is what lets the launch redeploy through.
-5. Another content hash, read from Sanity's API (not the CDN, which can lag a publish): build.
-6. The live build is more than 20 hours old: build.
-7. Otherwise: skip. The deployment shows as Canceled and the live build stays.
+5. A lead destination added or removed (one of the `delivery` variables set or unset): build. A deployment's functions keep the variables it was built with, so this is what lets the redeploy after adding `FORMSPARK_FORM_ID` through.
+6. Another content hash, read from Sanity's API (not the CDN, which can lag a publish): build.
+7. The live build is more than 20 hours old: build.
+8. Otherwise: skip. The deployment shows as Canceled and the live build stays.
 
 What it relies on, and what happens without it. Every unknown builds, so a wrong guess costs one extra build, never a stale site:
 
 - `VERCEL_ENV`, `VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_GIT_COMMIT_SHA` are system variables available at build time. Vercel's docs say the Ignored Build Step can read those, provided **Settings → Environment Variables → Enable access to System Environment Variables** is ticked. Without them it builds every time.
 - `VERCEL_PROJECT_PRODUCTION_URL` is the shortest production domain: the `.vercel.app` alias today, the apex after launch. The apex redirects to www and the script follows the redirect.
 - `VERCEL_AUTOMATION_BYPASS_SECRET` exists only while a Protection Bypass for Automation secret does. While Deployment Protection covers the production alias ("All deployments", before launch), revoking it makes build-info.json unreadable and every deploy builds. After launch the production domains are public under Standard protection, so revoking it changes nothing.
-- `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN` and `SITE_INDEXABLE` are the project's own variables, read the way the build reads them. If the step ever ran without them, the source or `SITE_INDEXABLE` comparison would differ and it would build every time.
+- `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN`, `SITE_INDEXABLE` and the four `delivery` variables are the project's own variables, read the way the build reads them. If the step ever ran without them, the content source comparison would differ and it would build every time.
 
-**After changing any other environment variable** (a form delivery key, say), the step would cancel a same-commit redeploy. Redeploy from **Deployments → ⋯ → Redeploy** with **Use project's Ignore Build Step** unticked.
+**After changing the value of a variable that is already set** (a new `FORMSPARK_FORM_ID`, a new `RESEND_API_KEY`, `LEADS_FROM_EMAIL`) **or any other environment variable**, the step would cancel a same-commit redeploy: only whether the `delivery` variables are set is compared. Redeploy from **Deployments → ⋯ → Redeploy** with **Use project's Ignore Build Step** unticked. Adding or removing one of the four needs only a plain redeploy.
 
 `pnpm --filter web test` runs its tests (CI does too): every branch against a mock server standing in for production and Sanity.
 

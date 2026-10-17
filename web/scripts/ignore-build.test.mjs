@@ -8,7 +8,7 @@ import {createHash} from 'node:crypto'
 import http from 'node:http'
 import {after, before, beforeEach, describe, test} from 'node:test'
 import {fileURLToPath} from 'node:url'
-import {contentHash, contentSource} from '../src/config/build-info.mjs'
+import {DELIVERY_VARS, buildSettings, contentHash, contentSource} from '../src/config/build-info.mjs'
 import {decide} from './ignore-build.mjs'
 
 const SHA = 'a'.repeat(40)
@@ -21,6 +21,8 @@ const DOCS = [
 ]
 const sha256 = (s) => createHash('sha256').update(s).digest('hex')
 const HASH = sha256('post-a:r1\npost-b:r2\nsiteSettings:r3')
+/** No form destination set, as ENV has none. */
+const NO_DELIVERY = {FORMSPARK_FORM_ID: false, LEAD_WEBHOOK_URL: false, RESEND_API_KEY: false, LEADS_TO_EMAIL: false}
 
 /** What the mock answers; each test adjusts it. */
 let mock
@@ -73,7 +75,7 @@ beforeEach(() => {
   requests = []
   mock = {
     infoStatus: 200,
-    info: {sha: SHA, contentHash: HASH, builtAt: new Date(NOW - 2 * HOUR).toISOString(), content: 'sanity:qhi2uf0l/production', indexable: true},
+    info: {sha: SHA, contentHash: HASH, builtAt: new Date(NOW - 2 * HOUR).toISOString(), content: 'sanity:qhi2uf0l/production', indexable: true, delivery: {...NO_DELIVERY}},
     sanityStatus: 200,
     docs: DOCS,
   }
@@ -170,6 +172,37 @@ describe('builds', () => {
     assert.match(r.reason, /content source changed/)
   })
 
+  test('when a form destination was added on the same commit, without asking Sanity', async () => {
+    const r = await run({FORMSPARK_FORM_ID: 'test-form'})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /form delivery changed \(FORMSPARK_FORM_ID set\)/)
+    assert.deepEqual(
+      requests.map((q) => q.path),
+      ['/build-info.json'],
+    )
+  })
+
+  test('when a form destination was removed', async () => {
+    mock.info.delivery.LEAD_WEBHOOK_URL = true
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /form delivery changed \(LEAD_WEBHOOK_URL unset\)/)
+  })
+
+  test('when email delivery gains one of its two variables', async () => {
+    mock.info.delivery.RESEND_API_KEY = true
+    const r = await run({RESEND_API_KEY: 'test-key', LEADS_TO_EMAIL: 'office@example.com'})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /\(LEADS_TO_EMAIL set\)/)
+  })
+
+  test('when production predates the delivery fingerprint', async () => {
+    delete mock.info.delivery
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /form delivery changed/)
+  })
+
   test('when a document was published (a new _rev)', async () => {
     mock.docs = [...DOCS.slice(0, 2), {_id: 'post-a', _rev: 'r9'}]
     const r = await run()
@@ -230,6 +263,11 @@ describe('skips', () => {
     assert.equal((await run()).build, false)
   })
 
+  test('when a form destination that was set keeps a value (only presence is compared)', async () => {
+    mock.info.delivery = {...NO_DELIVERY, FORMSPARK_FORM_ID: true}
+    assert.equal((await run({FORMSPARK_FORM_ID: 'another-form'})).build, false)
+  })
+
   test('sending the protection bypass when Vercel provides one', async () => {
     const r = await run({VERCEL_AUTOMATION_BYPASS_SECRET: 'test-bypass'})
     assert.equal(r.build, false)
@@ -247,6 +285,20 @@ describe('skips', () => {
     const r = await run({PUBLIC_SANITY_PROJECT_ID: ''})
     assert.equal(r.build, false)
     assert.equal(requests.length, 1)
+  })
+})
+
+describe('build-info.json', () => {
+  test('records whether each form destination is set, never its value', () => {
+    const values = {FORMSPARK_FORM_ID: 'form-id-123', LEAD_WEBHOOK_URL: 'https://hooks.example.com/abc', RESEND_API_KEY: 're_key_456', LEADS_TO_EMAIL: 'leads@example.com'}
+    const settings = buildSettings({...values, LEADS_TO_EMAIL: ''})
+    assert.deepEqual(Object.keys(settings.delivery), DELIVERY_VARS)
+    assert.deepEqual(settings.delivery, {FORMSPARK_FORM_ID: true, LEAD_WEBHOOK_URL: true, RESEND_API_KEY: true, LEADS_TO_EMAIL: false})
+    const json = JSON.stringify(buildSettings(values))
+    for (const value of Object.values(values)) {
+      assert.ok(!json.includes(value), `${value} leaked`)
+      assert.ok(!json.includes(sha256(value)), `a hash of ${value} leaked`)
+    }
   })
 })
 

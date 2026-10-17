@@ -80,9 +80,9 @@ Project **thewireguyelectric** in team **celaya-ventures**, at https://vercel.co
 | Deploy hook | Settings → **Git** → **Deploy Hooks** | Name `Sanity publish (main)`, branch `main` → Create Hook. Delete the hook for `claude/funny-goldberg-0idk0t` | L13 |
 | Bypass secret | Settings → Deployment Protection → **Protection Bypass for Automation** | Revoke the secret | L+7 |
 
-**How the ignore step decides** (`web/scripts/ignore-build.mjs`; exit 1 builds, exit 0 skips and shows the deployment as Canceled). It reads `/build-info.json` from the production site and builds when: the deployment is not production, the file can't be read, the commit differs, the content source or `SITE_INDEXABLE` differs, Sanity's published content differs, or the last build is more than 20 hours old. Otherwise it skips. Any error builds. The deployment log shows one line: `[ignore-build] Building: <reason>` or `[ignore-build] Skipping the build: <reason>`.
+**How the ignore step decides** (`web/scripts/ignore-build.mjs`; exit 1 builds, exit 0 skips and shows the deployment as Canceled). It reads `/build-info.json` from the production site and builds when: the deployment is not production, the file can't be read, the commit differs, the content source or `SITE_INDEXABLE` differs, a form destination (`FORMSPARK_FORM_ID`, `LEAD_WEBHOOK_URL`, `RESEND_API_KEY`, `LEADS_TO_EMAIL`) was added or removed, Sanity's published content differs, or the last build is more than 20 hours old. Otherwise it skips. Any error builds. The deployment log shows one line: `[ignore-build] Building: <reason>` or `[ignore-build] Skipping the build: <reason>`.
 - It uses `VERCEL_ENV`, `VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_GIT_COMMIT_SHA` and, while the site is protected, `VERCEL_AUTOMATION_BYPASS_SECRET`. Vercel exposes all four to the Ignored Build Step ([system environment variables](https://vercel.com/docs/environment-variables/system-environment-variables)). If one is missing, it builds.
-- **It does not see other env vars.** After adding or changing `FORMSPARK_FORM_ID` (or any variable except `SITE_INDEXABLE`), redeploy with the check off: Deployments → latest Production deployment → ⋯ → **Redeploy** → uncheck **Use project's Ignore Build Step** → Redeploy. A changed variable reaches the site only through a new build.
+- **It sees whether a form destination is set, not its value, and no other env vars.** After adding `FORMSPARK_FORM_ID` for the first time, a plain redeploy builds: Deployments → latest Production deployment → ⋯ → **Redeploy**. After changing the value of a variable that is already set (a new form ID, say), or any other variable except `SITE_INDEXABLE`, redeploy with the check off: ⋯ → **Redeploy** → uncheck **Use project's Ignore Build Step** → Redeploy. A changed variable reaches the site only through a new build.
 
 ## T-2: add the domains in Vercel
 
@@ -263,7 +263,7 @@ Owner, T-3:
 3. Copy the form ID: the part after `https://submit-form.com/` in the form's endpoint.
 4. **Settings → Emails → Notifications:** keep office@thewireguyelectric.com on. Extra recipients are added as guests and must accept an email.
 5. **Buy the Upgrade bundle** before launch: a one-time $25 for 50,000 submissions (formspark.io/pricing, 2026-10-17). The free workspace stops at 250.
-6. Set `FORMSPARK_FORM_ID` in Vercel ([settings table](#vercel-settings)) and redeploy with the ignore step unchecked.
+6. Set `FORMSPARK_FORM_ID` in Vercel ([settings table](#vercel-settings)) and redeploy (the ignore step builds when a form destination is added; if you later change the ID, redeploy with the ignore step unchecked).
 
 **The setup traps (forms-M1).** With Formspark as the only destination, each of these turns every lead into a failure, and the visitor is told to call:
 - **Allowed domains:** leave it empty. Listing a domain makes Formspark reject submissions sent from a server, and every lead is sent from our Vercel function.

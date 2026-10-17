@@ -9,9 +9,10 @@
 //   2. build-info.json unreadable (any fetch failure)       → build
 //   3. another commit                                       → build (a git push)
 //   4. other build settings (content source, SITE_INDEXABLE) → build (e.g. the launch switch)
-//   5. other content (hash of Sanity's published _id:_rev)  → build (a publish)
-//   6. built more than 20 hours ago                         → build (the daily rebuild refreshes dated content)
-//   7. otherwise                                            → skip
+//   5. a form destination added or removed                  → build (FORMSPARK_FORM_ID and the like)
+//   6. other content (hash of Sanity's published _id:_rev)  → build (a publish)
+//   7. built more than 20 hours ago                         → build (the daily rebuild refreshes dated content)
+//   8. otherwise                                            → skip
 // Anything unexpected builds: a wasted build costs a minute, a wrongly skipped one leaves the
 // site stale. It runs before `pnpm install`, so it uses node built-ins and fetch only.
 import {pathToFileURL} from 'node:url'
@@ -59,6 +60,9 @@ export async function decide(env = process.env, {fetch = globalThis.fetch, now =
   const settings = buildSettings(env)
   if (settings.content !== live.content) return build(`content source changed (${live.content} → ${settings.content})`)
   if (settings.indexable !== live.indexable) return build(`SITE_INDEXABLE changed (${live.indexable} → ${settings.indexable})`)
+  // a build-info.json from before this field has no delivery, so every name differs and it builds
+  const delivery = Object.entries(settings.delivery).filter(([name, isSet]) => isSet !== live.delivery?.[name])
+  if (delivery.length) return build(`form delivery changed (${delivery.map(([name, isSet]) => `${name} ${isSet ? 'set' : 'unset'}`).join(', ')})`)
 
   let hash
   try {

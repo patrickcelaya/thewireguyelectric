@@ -17,7 +17,7 @@ Each submission goes to every destination that is configured. One success is eno
 | `LEAD_WEBHOOK_URL` | Any webhook, e.g. a Zapier catch hook to Housecall Pro | JSON with fixed keys: `name`, `phone`, `email`, `zip`, `experience`, `fullTime`, `startDate`, `message`, `file_url`, `formType`, `page`. Unused keys are empty strings |
 | `RESEND_API_KEY` + `LEADS_TO_EMAIL` (+ `LEADS_FROM_EMAIL`) | A plain-text email via Resend | The same labels as Formspark, under "Form: Estimate request" or "Form: Job application". Reply-to is the visitor's email |
 
-An empty message is sent as "No details given". A changed env var reaches the function only after a redeploy.
+An empty message is sent as "No details given". A changed env var reaches the function only after a redeploy. The Ignored Build Step lets a redeploy through when one of these variables is added or removed, but not when only its value changes: then redeploy with **Use project's Ignore Build Step** unticked (README, "Ignored Build Step").
 
 ## Status codes
 
