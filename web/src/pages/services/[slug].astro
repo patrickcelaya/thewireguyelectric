@@ -30,7 +30,8 @@ import {faqNode, serviceNode, webPageNode} from '../../lib/schema'
 import {absoluteUrl} from '../../lib/seo'
 import {serviceAreaCities} from '../../lib/cities'
 import {imagePreload} from '../../lib/image'
-import {SERVICE_HERO_IMAGE, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, serviceGuides, withoutPrices} from '../../lib/cms'
+import {SERVICE_HERO_IMAGE, allSupport, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, serviceGuides, serviceTopic, withoutPrices} from '../../lib/cms'
+import {inSentence} from '../../lib/format'
 
 export async function getStaticPaths() {
   return (await getServices()).map((s) => ({params: {slug: s.slug}}))
@@ -63,7 +64,7 @@ const seed = Math.max(0, services.findIndex((s) => s.slug === service.slug))
 const {reviews, local} = pickReviews(service.reviews ?? [], allReviews.filter((r) => !r.serviceSlug), seed)
 const reviewsIntro =
   local === reviews.length && local > 0
-    ? `Google reviews from customers we did ${service.name.toLowerCase()} work for, shown word for word.`
+    ? `Google reviews from customers we did ${inSentence(service.name)} work for, shown word for word.`
     : 'Google reviews from customers across the Phoenix valley, shown word for word.'
 // the service's own questions first, then the ones /faq tags with it, then the general ones; none with a price
 const ownFaqs = [...withoutPrices(service.faqs), ...withoutPrices(taggedFaqs)]
@@ -71,6 +72,10 @@ const faqs = mergeFaqs([ownFaqs, withoutPrices(commonFaqs)])
 const guidePosts = serviceGuides(service.relatedPosts, service.slug, postIndex)
 const guides = guideCards(guidePosts, postIndex, services, seed)
 const related = service.relatedServices ?? []
+// headings name the service where what they head is about it: questions it has its own of, guides that all support it
+const topic = serviceTopic(service)
+const faqHeading = ownFaqs.length ? `Questions about ${topic}` : 'Questions, answered'
+const guidesHeading = allSupport(guidePosts, service.slug, postIndex) ? `Guides on ${topic}` : 'Guides from our blog'
 const cities = serviceAreaCities(settings.homeCity, locations)
 
 // chapter numbers, in page order, for the sections that have content
@@ -124,10 +129,10 @@ const serviceId = `${absoluteUrl(path)}#service`
 
   <AnswersBand
     faqs={faqs}
-    faqHeading="Questions, answered"
+    faqHeading={faqHeading}
     faqIntro="From our FAQ, written by the electricians who do the work."
     posts={guides}
-    guidesHeading="Guides from our blog"
+    guidesHeading={guidesHeading}
     guidesIntro="Before you call, read up on the details, from licensed electricians."
     numbers={{faq: n.faq, guides: n.guides}}
   />

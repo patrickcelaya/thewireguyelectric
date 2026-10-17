@@ -8,6 +8,7 @@ import {FLEET_PHOTO, JOB_PHOTOS, companyPhoto, jobPhoto} from './brand-photos'
 import {imageSrcSet, resolveImage} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
+import {inSentence} from './format'
 
 /**
  * The fleet under the sky as a city page's hero (its LCP image): the Sanity renditions
@@ -87,6 +88,19 @@ export function cityGuides(city: string, serviceSlugs: string[], index: PostInde
 export function serviceGuides(related: PostSummary[] | null | undefined, serviceSlug: string, index: PostIndexEntry[], count = 3): PostSummary[] {
   const mostRead = index.filter((p) => p.featured)
   return uniqueBy([...(related ?? []), ...supporting([serviceSlug], index), ...mostRead], (p) => p.slug).slice(0, count)
+}
+
+/** Whether every one of `posts` supports the service (lists it among its related services). */
+export function allSupport(posts: PostSummary[], serviceSlug: string, index: PostIndexEntry[]) {
+  return posts.length > 0 && posts.every((p) => index.find((e) => e.slug === p.slug)?.services.includes(serviceSlug))
+}
+
+/** Where a heading names a service mid-sentence, the words that read naturally ("Questions about exterior electrical work"). */
+const SERVICE_TOPICS: Record<string, string> = {'exterior-electrical': 'exterior electrical work'}
+
+/** A service named inside a heading: "EV charger installation", "LED lights" (lib/format.ts inSentence). */
+export function serviceTopic(service: Pick<ServiceSummary, 'slug' | 'name'>) {
+  return SERVICE_TOPICS[service.slug] ?? inSentence(service.name)
 }
 
 /** A post's topic for its label: its category, else the first service it supports, else "Guide". */

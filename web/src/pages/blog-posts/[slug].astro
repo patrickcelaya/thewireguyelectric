@@ -33,6 +33,7 @@ import {
   postCover,
   postTopic,
   readingMinutes,
+  serviceTopic,
   withoutTitleHeading,
 } from '../../lib/cms'
 
@@ -118,7 +119,7 @@ const image = imageObjectNode(cover, {id: primaryImageId})
 
   <AnswersBand
     faqs={faqs}
-    faqHeading={post.faqs?.length ? 'Questions about this topic' : 'Related questions'}
+    faqHeading={post.faqs?.length ? 'Questions about this topic' : hub ? `Questions about ${serviceTopic(hub)}` : 'Related questions'}
     faqIntro="From our FAQ, written by the electricians who do the work."
     posts={related}
     guidesHeading="Related articles"
