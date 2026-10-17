@@ -538,6 +538,24 @@
       "text": "Get a Free Commercial Electrical Estimate",
       "href": "/contact-us",
       "reason": "Same button as the copy entry: it now reads \"Get a Free Estimate\" and goes to /estimate (owner rule: every free-estimate link goes to the Free Estimate page)."
+    },
+    {
+      "page": "faq",
+      "text": "Contact us today",
+      "href": "/contact-us",
+      "reason": "Launch copy pass (2026-10-17), decision D5: in the FAQ \"Do you offer free estimates?\" the link asks for a free estimate, so it goes to /estimate (owner rule; linkFixes in migration/content-data/cms-templates.json). /contact-us stays linked from the page's other links. The same applies to \"I want to upgrade my lighting…\"."
+    },
+    {
+      "page": "our-team",
+      "text": "Contact us today",
+      "href": "/contact-us",
+      "reason": "Launch copy pass (2026-10-17), decision D5: in the FAQ \"I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?\" the link asks for a free estimate, so it goes to /estimate (owner rule; linkFixes in migration/content-data/cms-templates.json). /contact-us stays linked from the page's other links."
+    },
+    {
+      "page": "faq",
+      "text": "contact us",
+      "href": "/contact-us",
+      "reason": "Launch copy pass (2026-10-17), decision D5: in the FAQ \"How long does it take to install recessed lighting?\" the link asks for a free estimate, so it goes to /estimate (owner rule; linkFixes in migration/content-data/cms-templates.json). /contact-us stays linked from the page's other links."
     }
   ],
   "changes": [

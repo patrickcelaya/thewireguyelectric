@@ -15,8 +15,10 @@
 //                   must occur exactly once and may not cut through a link, and no
 //                   service body may name a price afterwards
 //   bodyLinks       a post linked, by its own title, at the end of a service body's block
-//   linkFixes       estimate and online-scheduling links in post bodies that the "free
-//                   estimate" phrase rule misses, sent to /estimate
+//   linkFixes       links in a post, city body or FAQ answer that point to the wrong place:
+//                   estimate requests the "free estimate" phrase rule misses (sent to
+//                   /estimate) and a citation wrapped in a search URL; each must match
+//                   exactly one link by its text and target
 //   postCategories  post.category for the blog topic pages
 //
 //   textFixes       typing slips in a post body ("afternoon?The"); each must occur exactly
@@ -120,14 +122,16 @@ export default async function cmsTemplates(ctx) {
     b.children = [...b.children, {_type: 'span', _key: `${key}-sp`, text: ' ', marks: []}, {_type: 'span', _key: `${key}-t`, text: target.title, marks: [key]}]
   }
 
-  for (const {post, text, from, to} of data.linkFixes.fixes) {
-    const blocks = (bySlug('post', post).body ?? []).filter((b) => b._type === 'block')
+  for (const {post, location, faq, text, from, to} of data.linkFixes.fixes) {
+    const where = post ?? location ?? faq
+    const doc = post ? bySlug('post', post) : location ? bySlug('location', location) : (docs.find((d) => d._type === 'faq' && d.question === faq) ?? fail(`linkFixes: no faq "${faq}"`))
+    const blocks = ((faq ? doc.answer : doc.body) ?? []).filter((b) => b._type === 'block')
     const hits = blocks.flatMap((b) =>
       (b.markDefs ?? [])
         .filter((m) => m._type === 'link' && m.href === from)
         .filter((m) => (b.children ?? []).filter((c) => c.marks?.includes(m._key)).map((c) => c.text).join('') === text),
     )
-    if (hits.length !== 1) fail(`linkFixes ${post}: "${text}" → ${from} matches ${hits.length} links, not 1`)
+    if (hits.length !== 1) fail(`linkFixes ${where}: "${text}" → ${from} matches ${hits.length} links, not 1`)
     hits[0].href = to
   }
 
@@ -175,7 +179,7 @@ export default async function cmsTemplates(ctx) {
     quickAnswers: Object.keys(data.quickAnswers.answers),
     bodyEdits: edited,
     bodyLinks: data.bodyLinks.links.map((l) => `${l.service} → ${l.post}`),
-    linkFixes: data.linkFixes.fixes.map((f) => `${f.post}: "${f.text}" → ${f.to}`),
+    linkFixes: data.linkFixes.fixes.map((f) => `${f.post ?? f.location ?? f.faq}: "${f.text}" → ${f.to}`),
     postCategories: Object.fromEntries(Object.entries(data.postCategories.byCategory).map(([c, posts]) => [c, posts.length])),
     textFixes: data.textFixes.fixes.map((f) => `${f.post}: ${f.replace}`),
     bodyRemovals: data.bodyRemovals.removals.map((r) => `${r.slug}: ${r.text ?? r.image}`),

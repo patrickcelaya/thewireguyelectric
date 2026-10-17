@@ -164,10 +164,27 @@
     ]
   },
   "linkFixes": {
-    "source": "Owner rule: every free-estimate link goes to /estimate. These estimate and scheduling links don't say \"free estimate\", so the migration's phrase rule misses them; each must match exactly one link in that post.",
+    "source": "Links in a post, city body (`location`) or FAQ answer (`faq`, by question) that point to the wrong place. Owner rule: every free-estimate request goes to /estimate; these links ask for an estimate or a visit but don't say \"free estimate\", so the migration's phrase rule misses them (city and post CTAs to \"/\", the old homepage form: decision D5, 2026-10-17). Each must match exactly one link by its text and target.",
     "fixes": [
       {"post": "recessed-lighting-installation-phoenix", "text": "Schedule your estimate", "from": "/contact-us", "to": "/estimate", "why": "The sentence before it says every job starts with a free estimate."},
-      {"post": "why-does-my-breaker-keep-tripping", "text": "Call The Wire Guy Electric today or schedule online", "from": "/contact-us", "to": "/estimate", "why": "Scheduling online on this site is the free-estimate request on /estimate; the phone number is in the header and the call bar."}
+      {"post": "why-does-my-breaker-keep-tripping", "text": "Call The Wire Guy Electric today or schedule online", "from": "/contact-us", "to": "/estimate", "why": "Scheduling online on this site is the free-estimate request on /estimate; the phone number is in the header and the call bar."},
+      {"location": "gilbert", "text": "Schedule a service today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "chandler", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "scottsdale", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "phoenix", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "tempe", "text": "Request service today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "queen-creek", "text": "Schedule service today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "san-tan-valley", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "apache-junction", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"location": "fountain-hills", "text": "Schedule a consultation today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
+      {"post": "breaker-trips-ac", "text": "At The Wire Guy Electric, we can help you diagnose potential issues.", "from": "/", "to": "/estimate", "why": "Decision D5: the post's closing call to action (a diagnosis visit) linked to \"/\", the old homepage form."},
+      {"post": "emfs-in-your-phoenix-home", "text": "The Wire Guy Electric, we can measure EMFs in your home ", "from": "/", "to": "/estimate", "why": "Decision D5: the closing offer to come and measure linked to \"/\", the old homepage form."},
+      {"post": "why-your-lights-flicker", "text": "Call our family owned buisness, and we'll drive out to your property and diagnose any problems you may have.", "from": "/", "to": "/estimate", "why": "Decision D5: the closing call to action (a diagnosis visit) linked to \"/\", the old homepage form. textFixes corrects \"buisness\" after this runs."},
+      {"post": "how-to-wire-a-gfci-outlet", "text": "contact us", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: the sentence is \"contact us for a free estimate\"; only \"contact us\" is linked, so the phrase rule missed it."},
+      {"faq": "Do you offer free estimates?", "text": "Contact us today", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"Contact us today to get a free quote.\""},
+      {"faq": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?", "text": "Contact us today", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"Contact us today to schedule a free estimate…\""},
+      {"faq": "How much does it cost to install an EV charger at home?", "text": "give us a call", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"…or give us a call for a free estimate.\""},
+      {"faq": "How long does it take to install recessed lighting?", "text": "contact us", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"…or contact us for a free estimate.\""}
     ]
   },
   "postCategories": {
@@ -184,9 +201,14 @@
     }
   },
   "textFixes": {
-    "source": "Typing slips in post bodies that the Webflow export (and the live page) carry. Each `find` must occur exactly once in that post's body text, or the migration stops.",
+    "source": "Typing slips in post bodies that the Webflow export (and the live page) carry, including a missing space where a bold label or a link meets the next words (decision D5, 2026-10-17). Each `find` must occur exactly once in that post's body text (within one span), or the migration stops.",
     "fixes": [
-      {"post": "can-hot-weather-cause-your-circuit-breaker-to-trip", "find": "all afternoon?The temperature", "replace": "all afternoon? The temperature"}
+      {"post": "can-hot-weather-cause-your-circuit-breaker-to-trip", "find": "all afternoon?The temperature", "replace": "all afternoon? The temperature"},
+      {"post": "why-your-lights-flicker", "find": "family owned buisness", "replace": "family owned business"},
+      {"post": "how-to-wire-a-gfci-outlet", "find": "Connect the bare copper (or green) wire", "replace": " Connect the bare copper (or green) wire"},
+      {"post": "how-to-wire-a-gfci-outlet", "find": "Look at the back of your new GFCI.", "replace": " Look at the back of your new GFCI."},
+      {"post": "how-to-wire-a-gfci-outlet", "find": "White to Silver).", "replace": "White to Silver). "},
+      {"post": "can-hot-weather-cause-your-circuit-breaker-to-trip", "find": "Over years of seasonal temperature swings", "replace": " Over years of seasonal temperature swings"}
     ]
   },
   "bodyRemovals": {

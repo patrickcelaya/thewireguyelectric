@@ -1,5 +1,13 @@
 {
-  "about": "Copy changes the lead decided on (FIX_BRIEF, 2026-10-17): D1 homepage and shared headings, D6 minimal factual corrections, and D5's split of the one-block Ahwatukee body. Same format as the slop files.",
+  "about": "Copy changes the lead decided on (FIX_BRIEF, 2026-10-17): D1 homepage and shared headings, D6 minimal factual corrections, and D5's split of the one-block Ahwatukee body. Same format as the slop files; these run after them, so an edit here may change a slop edit's new text.",
   "edits": [],
-  "splits": []
+  "splits": [
+    {
+      "id": "D5-01",
+      "url": "/locations/ahwatukee",
+      "target": {"kind": "ndjson", "doc_id": "68cf0da6-26c4-4d22-ab98-65a6b5e0e1ae", "field": "body[1]"},
+      "list": "Service Areas within Ahwatukee include:",
+      "reason": "D5: the Webflow export holds Ahwatukee's whole article in one block, its paragraphs and neighbourhood list separated by line breaks, so it rendered as one paragraph full of <br>s. After the slop-cities edits it becomes one block per paragraph, and the neighbourhoods a bullet list under their bold label, like the other nine cities."
+    }
+  ]
 }

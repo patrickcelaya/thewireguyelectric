@@ -918,13 +918,35 @@
     ],
     "linkFixes": [
       "recessed-lighting-installation-phoenix: \"Schedule your estimate\" → /estimate",
-      "why-does-my-breaker-keep-tripping: \"Call The Wire Guy Electric today or schedule online\" → /estimate"
+      "why-does-my-breaker-keep-tripping: \"Call The Wire Guy Electric today or schedule online\" → /estimate",
+      "gilbert: \"Schedule a service today\" → /estimate",
+      "chandler: \"Contact The Wire Guy Electric today\" → /estimate",
+      "scottsdale: \"Contact The Wire Guy Electric today\" → /estimate",
+      "phoenix: \"Contact The Wire Guy Electric today\" → /estimate",
+      "tempe: \"Request service today\" → /estimate",
+      "queen-creek: \"Schedule service today\" → /estimate",
+      "san-tan-valley: \"Contact The Wire Guy Electric today\" → /estimate",
+      "apache-junction: \"Contact The Wire Guy Electric today\" → /estimate",
+      "fountain-hills: \"Schedule a consultation today\" → /estimate",
+      "breaker-trips-ac: \"At The Wire Guy Electric, we can help you diagnose potential issues.\" → /estimate",
+      "emfs-in-your-phoenix-home: \"The Wire Guy Electric, we can measure EMFs in your home \" → /estimate",
+      "why-your-lights-flicker: \"Call our family owned buisness, and we'll drive out to your property and diagnose any problems you may have.\" → /estimate",
+      "how-to-wire-a-gfci-outlet: \"contact us\" → /estimate",
+      "Do you offer free estimates?: \"Contact us today\" → /estimate",
+      "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?: \"Contact us today\" → /estimate",
+      "How much does it cost to install an EV charger at home?: \"give us a call\" → /estimate",
+      "How long does it take to install recessed lighting?: \"contact us\" → /estimate"
     ],
     "postCategories": {
       "lighting": 6
     },
     "textFixes": [
-      "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature"
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature",
+      "why-your-lights-flicker: family owned business",
+      "how-to-wire-a-gfci-outlet:  Connect the bare copper (or green) wire",
+      "how-to-wire-a-gfci-outlet:  Look at the back of your new GFCI.",
+      "how-to-wire-a-gfci-outlet: White to Silver). ",
+      "can-hot-weather-cause-your-circuit-breaker-to-trip:  Over years of seasonal temperature swings"
     ],
     "bodyRemovals": [
       "panels: Upgrading Your Electrical Panel",
@@ -943,7 +965,9 @@
       "posts-a": 251,
       "posts-b": 179
     },
-    "splits": [],
+    "splits": [
+      "D5-01"
+    ],
     "blocksDropped": 108,
     "skipped": [
       "slop-pages-022",
