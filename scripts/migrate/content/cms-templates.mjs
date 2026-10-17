@@ -15,8 +15,8 @@
 //                   must occur exactly once and may not cut through a link, and no
 //                   service body may name a price afterwards
 //   bodyLinks       a post linked, by its own title, at the end of a service body's block
-//   linkFixes       estimate links in post bodies that the "free estimate" phrase rule
-//                   misses, sent to /estimate
+//   linkFixes       estimate and online-scheduling links in post bodies that the "free
+//                   estimate" phrase rule misses, sent to /estimate
 //   postCategories  post.category for the blog topic pages
 //
 //   textFixes       typing slips in a post body ("afternoon?The"); each must occur exactly

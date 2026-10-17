@@ -152,9 +152,10 @@
     ]
   },
   "linkFixes": {
-    "source": "Owner rule: every free-estimate link goes to /estimate. These estimate links don't say \"free\", so the migration's phrase rule misses them; each must match exactly one link in that post.",
+    "source": "Owner rule: every free-estimate link goes to /estimate. These estimate and scheduling links don't say \"free estimate\", so the migration's phrase rule misses them; each must match exactly one link in that post.",
     "fixes": [
-      {"post": "recessed-lighting-installation-phoenix", "text": "Schedule your estimate", "from": "/contact-us", "to": "/estimate", "why": "The sentence before it says every job starts with a free estimate."}
+      {"post": "recessed-lighting-installation-phoenix", "text": "Schedule your estimate", "from": "/contact-us", "to": "/estimate", "why": "The sentence before it says every job starts with a free estimate."},
+      {"post": "why-does-my-breaker-keep-tripping", "text": "Call The Wire Guy Electric today or schedule online", "from": "/contact-us", "to": "/estimate", "why": "Scheduling online on this site is the free-estimate request on /estimate; the phone number is in the header and the call bar."}
     ]
   },
   "postCategories": {

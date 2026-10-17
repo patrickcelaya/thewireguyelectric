@@ -905,7 +905,8 @@
       "panels → federal-pacific-zinsco-panels-arizona"
     ],
     "linkFixes": [
-      "recessed-lighting-installation-phoenix: \"Schedule your estimate\" → /estimate"
+      "recessed-lighting-installation-phoenix: \"Schedule your estimate\" → /estimate",
+      "why-does-my-breaker-keep-tripping: \"Call The Wire Guy Electric today or schedule online\" → /estimate"
     ],
     "postCategories": {
       "lighting": 6
