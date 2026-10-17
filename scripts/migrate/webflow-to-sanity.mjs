@@ -313,12 +313,33 @@ const tabOrder = (tab) =>
     .map((_, a) => servicesPage(a).attr('href').split('/').pop())
     .get()
 const serviceOrder = [...new Set([...tabOrder('Residential'), ...tabOrder('Commercial'), ...tabOrder('All')])]
+
+// A service that is live with unpublished edits staged on it (isDraft and lastPublished both set) ships what
+// is live, not the draft (owner, 2026-10-17: hanging-lights): the body is the published page's rich text,
+// saved as migration/live-snapshots/services_<slug>.html, and the short description is its live /services card.
+async function publishedService(f) {
+  const file = `migration/live-snapshots/services_${f.slug}.html`
+  if (!existsSync(p(file))) throw new Error(`${f.slug} has unpublished edits staged in Webflow: save its live page as ${file}`)
+  const page = cheerio.load(await readFile(p(file), 'utf8'))
+  const richText = page('.w-richtext')
+  const card = servicesPage(`a.services-title[href="/services/${f.slug}"]`).first().closest('.w-dyn-item').find('p').first().text().trim()
+  if (richText.length !== 1 || !card) throw new Error(`${file}: expected one rich-text body and a /services card`)
+  // Webflow's rich text holds its own copy of the main photo (<id>_<main photo's file id>_<name>); point it at
+  // the main image, which the import already has.
+  const mainId = f['main-image']?.url?.match(/\/([0-9a-f]{24})_[^/]+$/)?.[1]
+  richText.find('img').each((_, img) => {
+    if (mainId && page(img).attr('src')?.includes(`_${mainId}_`)) page(img).attr('src', f['main-image'].url)
+  })
+  return {body: richText.html(), shortDescription: card}
+}
+
 for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
   if (it.isArchived) continue
   const f = it.fieldData
   const path = `/services/${f.slug}`
   // Keep a service only if it's live today, so we don't publish drafts by accident.
   if (!live(path) && (it.isDraft || !it.lastPublished)) continue
+  const published = it.isDraft && it.lastPublished ? await publishedService(f) : {body: f['post-body-2'], shortDescription: f['short-description']}
   push({
     _id: idFor(`service:${it.id}`),
     _type: 'service',
@@ -326,9 +347,9 @@ for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
     slug: slug(f.slug),
     category: f.category ? ref(`serviceCategory:${f.category}`) : undefined,
     heading: live(path)?.h1?.[0] && live(path).h1[0] !== f.name ? live(path).h1[0] : undefined,
-    shortDescription: f['short-description'],
+    shortDescription: published.shortDescription,
     mainImage: image(f['main-image']),
-    body: toPortableText(f['post-body-2'], path),
+    body: toPortableText(published.body, path),
     seo: seoFor(path, `${f.name} in Mesa, AZ | The Wire Guy`, f['short-description']),
     order: serviceOrder.includes(f.slug) ? serviceOrder.indexOf(f.slug) : 100,
     webflowId: it.id,
