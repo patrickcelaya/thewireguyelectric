@@ -536,11 +536,14 @@ push({
 })
 
 // Content added on top of the Webflow export: page-builder sections for the static
-// pages, data fixes, real reviews and sourced local facts. Each module receives the
-// document list and helpers and edits or adds documents in place.
+// pages, data fixes, real reviews, sourced local facts and the launch copy edits. Each
+// module receives the document list and helpers and edits or adds documents in place.
+// content-edits runs at several points ("module:stage"); its header says why, and
+// cms-templates runs its service stage itself.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const name of ['fixes', 'reviews', 'local-facts', 'page-sections', 'cms-templates']) {
-  await (await import(`./content/${name}.mjs`)).default(ctx)
+for (const step of ['fixes', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late']) {
+  const [name, stage] = step.split(':')
+  await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }
 
 // Referential integrity: every reference must point at a document in this file.

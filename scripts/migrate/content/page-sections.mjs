@@ -437,7 +437,7 @@ export default async function pageSections(ctx) {
           card('electrical-safety-inspections', {image: {...photo('image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg'), ...focus(0.46, 1)}}),
           liveCard('recessed-lights-installation', 0.5, 0.4),
           card('custom-lighting', {
-            text: lastSentence(service('custom-lighting').shortDescription),
+            text: 'Cabinet lighting cut and soldered to fit.',
             image: {...photo('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg'), ...focus(0.5, 0.3)},
           }),
           card('exterior-electrical', {
@@ -456,7 +456,6 @@ export default async function pageSections(ctx) {
         eyebrow: 'What we do',
         heading: c.text(2, 'h2'),
         headingAccent: c.accent(2, 'h2'),
-        intro: verbatim('faq', 'From entire remodels to small repairs, we do it all!'),
         style: 'checklist',
         ...(sameCaps ? {siteList: 'capabilities'} : {items: capabilityItems}),
         image: imageOf('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', crop([0, 1500, 3924, 2616], [3924, 5887])),
@@ -474,7 +473,7 @@ export default async function pageSections(ctx) {
         eyebrow: 'How it works',
         heading: 'From the first call to the finished job',
         headingAccent: 'finished job',
-        intro: verbatim('faq', 'Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get.'),
+        intro: verbatim('faq', 'What you see on the invoice is what you get.'),
         // Only steps the business describes itself (the estimate band, /faq). No permit
         // step on the homepage (owner, round 5) and no warranty tag (owner, round 2).
         steps: [
@@ -527,7 +526,7 @@ export default async function pageSections(ctx) {
         _key: 'faqs',
         eyebrow: 'Questions',
         heading: 'Good questions, straight answers',
-        intro: 'The things homeowners across the valley ask us most, answered by the people who do the work.',
+        intro: 'The things homeowners across the valley ask us most.',
         // No permit question here (owner, round 5), and not "What cities do you service?":
         // its answer counts the cities, and the valley above lists every one of them.
         faqs: faqRefs([
@@ -910,7 +909,7 @@ export default async function pageSections(ctx) {
         eyebrow: 'How it works',
         heading: 'From the first call to a flat-rate price',
         headingAccent: 'flat-rate price',
-        intro: fromPage('faq', 'Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get.'),
+        intro: fromPage('faq', 'What you see on the invoice is what you get.'),
         steps: processSteps(),
       },
       // No price table: the owner doesn't want à-la-carte pricing on the site (2026-10-13).

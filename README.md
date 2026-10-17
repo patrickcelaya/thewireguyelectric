@@ -29,6 +29,7 @@ migration/
   live-snapshots/   Published HTML of the static pages (source for porting their copy)
   page-content/     The live pages' visible copy and links, which verify-content.mjs checks the sections against
   content-data/     Sourced data the migration applies (FAQs, relations, local facts, CMS template content); README explains each
+  content-edits/    The launch copy pass: verified AI-slop edits and the lead's copy decisions, applied by content/content-edits.mjs
   seo-baseline.json Crawl of the live site on 2026-10-12: the parity target
   seo-equity/       Redirect candidates and SEO-equity notes
   sanity-import/    Generated Sanity dataset (production.ndjson) + stable ID map

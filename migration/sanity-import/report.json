@@ -866,7 +866,19 @@
       "electrical-safety-inspections",
       "electrical-remodels",
       "exterior-electrical",
-      "recessed-lights-installation"
+      "recessed-lights-installation",
+      "new-construction-wiring",
+      "hanging-lights",
+      "commercial-service",
+      "tenant-improvements",
+      "led-lights",
+      "outlets-and-switches",
+      "storefront-lights",
+      "electrical-upgrades",
+      "commercial-electrical-troubleshooting",
+      "emergency-exit-lights",
+      "dedicated-circuits",
+      "ballast-replacement-fluorescent-lighting"
     ],
     "atAGlance": [
       "panels"
@@ -920,6 +932,46 @@
     ],
     "markersRemovedFrom": [
       "level-1-vs-level-2-ev-chargers-which-to-choose"
+    ]
+  },
+  "contentEdits": {
+    "source": "migration/content-edits/",
+    "applied": {
+      "pages": 64,
+      "cities": 58,
+      "services": 79,
+      "posts-a": 251,
+      "posts-b": 179
+    },
+    "splits": [],
+    "blocksDropped": 108,
+    "skipped": [
+      "slop-pages-022",
+      "slop-services-065",
+      "slop-services-066",
+      "slop-services-067",
+      "slop-services-084",
+      "slop-services-085"
+    ],
+    "inFiles": [
+      "slop-pages-006 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-007 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-008 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-009 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-014 web/src/components/sections/Valley.astro",
+      "slop-pages-035 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-070 web/src/components/sections/EstimateForm.astro",
+      "slop-pages-071 web/src/components/sections/ApplicationForm.astro",
+      "slop-pages-072 web/src/pages/services/[slug].astro",
+      "slop-pages-073 web/src/pages/services/[slug].astro",
+      "slop-pages-074 web/src/pages/blog-posts/[slug].astro",
+      "slop-pages-075 web/src/pages/blog-posts/[slug].astro",
+      "slop-pages-076 web/src/pages/locations/[slug].astro",
+      "slop-services-081 migration/content-data/cms-templates.json",
+      "slop-services-082 migration/content-data/cms-templates.json",
+      "slop-services-083 migration/content-data/cms-templates.json",
+      "slop-services-086 web/src/pages/services/[slug].astro",
+      "slop-cities-059 web/src/pages/locations/[slug].astro"
     ]
   }
 }

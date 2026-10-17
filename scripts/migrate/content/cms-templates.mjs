@@ -30,6 +30,8 @@
 //
 // Runs after page-sections. Titles, H1s, meta descriptions and slugs are never touched.
 
+import contentEdits from './content-edits.mjs'
+
 const DATA = 'migration/content-data/cms-templates.json'
 const PRICE = /\$\s?\d/
 
@@ -68,12 +70,14 @@ export default async function cmsTemplates(ctx) {
     doc.mainImage = {...doc.mainImage, alt}
   }
 
-  // Price edits first, so glance facts and quick answers are checked against the final body.
+  // Price edits first, then the copy edits for service bodies (content-edits.mjs), so glance facts and quick
+  // answers are checked against the final body.
   const edited = []
   for (const {service, find, replace} of data.bodyEdits.edits) {
     editBody(bySlug('service', service), find, replace, (msg) => fail(`bodyEdits ${service}: ${msg}`))
     edited.push(service)
   }
+  await contentEdits(ctx, 'service')
   for (const doc of docs.filter((d) => d._type === 'service')) {
     const priced = blockText(doc.body).split('\n').find((line) => PRICE.test(line))
     if (priced) fail(`bodyEdits: ${doc.slug.current} still names a price in its body: "${priced.slice(0, 120)}…"`)

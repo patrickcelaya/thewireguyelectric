@@ -27,7 +27,7 @@
     }
   ],
   "serviceAlts": {
-    "source": "Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt.",
+    "source": "Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt. The 12 stock photos (new-construction-wiring onward) are described from the images themselves (SEO review, 2026-10-17); hanging-lights reuses the alt page-sections gives the same photo.",
     "alts": {
       "panels": "A new Siemens electrical panel with labeled breakers next to an SRP meter on a stucco wall",
       "custom-lighting": "Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters",
@@ -35,7 +35,19 @@
       "electrical-safety-inspections": "Two Wire Guy Electric technicians walking up a customer’s front path in an Arizona neighborhood",
       "electrical-remodels": "A finished kitchen remodel with recessed lights, white cabinets and a stone island",
       "exterior-electrical": "Lamp posts lighting a brick front walk lined with roses",
-      "recessed-lights-installation": "New recessed lights glowing in a vaulted kitchen ceiling"
+      "recessed-lights-installation": "New recessed lights glowing in a vaulted kitchen ceiling",
+      "new-construction-wiring": "New wiring and electrical boxes on the open studs of a home under construction",
+      "hanging-lights": "Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling",
+      "commercial-service": "An electrician testing terminal blocks in an open control panel with a multimeter",
+      "tenant-improvements": "Two-story wood-frame houses under construction, with a dumpster out front",
+      "led-lights": "Hexagonal LED light panels on a ceiling above a stairway with steel handrails",
+      "outlets-and-switches": "Three new white duplex outlets lying on a gray surface",
+      "storefront-lights": "A dim bar interior lit by warm lights under the counter and along the columns",
+      "electrical-upgrades": "An electrician in a hard hat and work gloves working on a wall-mounted electrical box",
+      "commercial-electrical-troubleshooting": "A technician drilling into the open casing of a rooftop air-conditioning unit",
+      "emergency-exit-lights": "A lit red exit sign with an arrow on a dark ceiling",
+      "dedicated-circuits": "A screwdriver pointing at breakers in an open distribution board full of colored wiring",
+      "ballast-replacement-fluorescent-lighting": "Rows of fluorescent tube lights across a commercial drop ceiling"
     }
   },
   "atAGlance": {
@@ -136,9 +148,9 @@
     }
   },
   "bodyEdits": {
-    "source": "Owner rule: no prices in a page body outside FAQ answers and blog posts. Each edit takes a dollar range out of a service body, keeping the rest of the sentence (and every link) as written; the flat-rate sentence is the live city pages' own copy (migration/live-snapshots/locations_gilbert.html). Each `find` must occur exactly once in that service's body text and may not cut through a link; after the edits no service body may contain a price. The ranges stay in the cost FAQ answers.",
+    "source": "Owner rule: no prices in a page body outside FAQ answers and blog posts. Each edit takes a dollar range out of a service body, keeping the rest of the sentence (and every link) as written; the Panels flat-rate sentence restates the live city pages' claim (migration/live-snapshots/locations_gilbert.html) in plain words (copy review, 2026-10-17: slop-services-081). Each `find` must occur exactly once in that service's body text and may not cut through a link; after the edits no service body may contain a price. The ranges stay in the cost FAQ answers.",
     "edits": [
-      {"service": "panels", "find": "For a standard 200-amp like-for-like panel replacement in the Phoenix metro, expect $5,200 to $6,500. If your job needs a full service replacement with a new all-in-one meter base and panel combo, the range is typically $6,400 to $8,750. Larger 320 or 400-amp service upgrades climb from there. ", "replace": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote. "},
+      {"service": "panels", "find": "For a standard 200-amp like-for-like panel replacement in the Phoenix metro, expect $5,200 to $6,500. If your job needs a full service replacement with a new all-in-one meter base and panel combo, the range is typically $6,400 to $8,750. Larger 320 or 400-amp service upgrades climb from there. ", "replace": "We price panel work at a flat rate with no hidden fees. Ask us for a free quote. "},
       {"service": "ev-charger-installation", "find": "Most Tesla Wall Connector installs in the Valley run $650 to $1,800 depending on", "replace": "The price of a Tesla Wall Connector install depends on"},
       {"service": "ev-charger-installation", "find": " Typical install: $450 to $1,200.", "replace": ""},
       {"service": "electrical-remodels", "find": " For reference, a standard 200-amp like-for-like panel replacement in the Valley generally runs $5,200 to $6,500, and a full service replacement with a new all-in-one meter base and panel is typically $6,400 to $8,750.", "replace": ""},
