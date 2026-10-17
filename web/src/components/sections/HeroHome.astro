@@ -16,7 +16,7 @@ import type {HeroSection, SiteSettings} from '../../lib/types'
 import {ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
 import {balancedLines, firstSentence} from '../../lib/format'
 import {HERO_SOURCES} from '../../lib/hero'
-import {imageDimensions, imageSrcSet, imageUrl, hasImage} from '../../lib/image'
+import {imageAlt, imageDimensions, imageSrcSet, imageUrl, hasImage} from '../../lib/image'
 import {facesOf} from '../../lib/brand-photos'
 import {getRedirectMap} from '../../lib/queries'
 import Eyebrow from '../ui/Eyebrow.astro'
@@ -113,7 +113,7 @@ const [phone, wide] = HERO_SOURCES
             sizes={wide.sizes}
             width={size?.width}
             height={size?.height}
-            alt={photo.alt ?? ''}
+            alt={imageAlt(photo) ?? ''}
             fetchpriority="high"
             loading="eager"
             decoding="sync"

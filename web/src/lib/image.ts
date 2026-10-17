@@ -7,9 +7,15 @@
 //   same file (data/legacy-images.json, from scripts/migrate/legacy-image-map.mjs).
 //   An image with no such asset is treated as missing: nothing is ever loaded from
 //   Webflow's CDN.
+//
+// Every URL carries a file name after the asset's (…/<id>-<w>x<h>.<ext>/<name>): the
+// company photos' fixed names (lib/image-names.ts), else the image's own alt text. The
+// name comes from the image, never from an alt passed for one use, so a preload and
+// its <img> always ask for the same URL.
 import {createImageUrlBuilder} from '@sanity/image-url'
 import type {ImageRef} from './types'
 import {sanityDataset, sanityProjectId} from './sanity'
+import {IMAGE_NAMES} from './image-names'
 import legacyImages from '../data/legacy-images.json'
 
 /** The project whose CDN serves the images, also when the build reads the local dataset. */
@@ -28,6 +34,8 @@ export interface ResolvedImage {
   height: number
   crop?: Crop
   hotspot?: ImageRef['hotspot']
+  /** The file name the CDN serves it under (no extension), when it has one. */
+  name?: string
 }
 
 export interface ImageUrlOptions {
@@ -46,6 +54,27 @@ function sizeFromId(id: string) {
 
 const warned = new Set<string>()
 
+/** An image's alt text; Webflow's "inherit" placeholder (`__wf_reserved_inherit`) is no alt. */
+export function imageAlt(image?: ImageRef | null) {
+  const alt = image?.alt?.trim()
+  return alt && !/^__wf_/.test(alt) ? alt : undefined
+}
+
+/** "Lamp posts lighting a brick front walk" → "lamp-posts-lighting-a-brick-front-walk" (ASCII, at most 8 words). */
+function fileName(text: string) {
+  const words = text
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/['’]/g, '')
+    .toLowerCase()
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean)
+  return words.slice(0, 8).join('-') || undefined
+}
+
+const nameFor = (ref: string, image: ImageRef) => IMAGE_NAMES[ref] ?? fileName(imageAlt(image) ?? '')
+
 export function resolveImage(image?: ImageRef | null): ResolvedImage | undefined {
   if (!image) return undefined
   const crop = image.crop ?? undefined
@@ -53,12 +82,12 @@ export function resolveImage(image?: ImageRef | null): ResolvedImage | undefined
   const id = image.asset?._id
   if (id) {
     const size = image.asset?.metadata?.dimensions ?? sizeFromId(id)
-    if (size) return {ref: id, width: size.width, height: size.height, crop, hotspot}
+    if (size) return {ref: id, width: size.width, height: size.height, crop, hotspot, name: nameFor(id, image)}
   }
   const legacy = image.legacyUrl?.replace(/^image@/, '')
   if (!legacy) return undefined
   const mapped = LEGACY[legacy]
-  if (mapped) return {ref: mapped.asset, width: mapped.width, height: mapped.height, crop, hotspot}
+  if (mapped) return {ref: mapped.asset, width: mapped.width, height: mapped.height, crop, hotspot, name: nameFor(mapped.asset, image)}
   if (!warned.has(legacy)) {
     warned.add(legacy)
     console.warn(`[image] no Sanity asset for ${legacy}; run scripts/migrate/legacy-image-map.mjs`)
@@ -85,6 +114,7 @@ function sanityUrl(r: ResolvedImage, opts: ImageUrlOptions) {
   b = opts.format ? b.format(opts.format) : b.auto('format')
   if (opts.width) b = b.width(Math.round(opts.width))
   if (opts.width && opts.height) b = b.height(Math.round(opts.height)).fit('crop')
+  if (r.name) b = b.vanityName(opts.format ? `${r.name}.${opts.format}` : r.name)
   return b.url()
 }
 

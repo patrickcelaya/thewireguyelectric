@@ -5,7 +5,7 @@
 // Content never adds an H1: an h1 block renders as an H2.
 import {escapeHTML, toHTML, uriLooksSafe, type PortableTextHtmlComponents} from '@portabletext/to-html'
 import type {CallToAction, ImageRef, PortableTextValue} from './types'
-import {hasImage, imageDimensions, imageSrcSet, imageUrl} from './image'
+import {hasImage, imageAlt, imageDimensions, imageSrcSet, imageUrl} from './image'
 import {isExternal, resolveHref, type RedirectMap} from './links'
 import {ESTIMATE_PATH, NEW_TAB_NOTE} from './site'
 
@@ -26,6 +26,19 @@ const attr = (s: string) => escapeHTML(s)
 
 const youtubeId = (url: string) => url.match(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=|shorts\/)|youtu\.be\/)([\w-]{11})/)?.[1]
 
+/**
+ * A US phone link in the global (E.164, RFC 3966) form the rest of the site uses:
+ * "tel:16027697892" and "tel:(602) 769-7892" → "tel:+16027697892". Other hrefs pass through.
+ */
+export function telE164(href: string) {
+  const m = href.match(/^tel:(.*)$/i)
+  if (!m) return href
+  const digits = m[1].replace(/\D/g, '')
+  if (digits.length === 10) return `tel:+1${digits}`
+  if (digits.length === 11 && digits.startsWith('1')) return `tel:+${digits}`
+  return href
+}
+
 function link(href: string, children: string, openInNewTab = false, extraClass = '') {
   const external = isExternal(href)
   const blank = external || openInNewTab
@@ -39,7 +52,7 @@ function figure(value: ImageRef, sizes: string) {
   const srcset = imageSrcSet(value, [480, 720, 960, 1200, 1600])
   const img = `<img src="${attr(imageUrl(value, {width: 1200}))}"${srcset ? ` srcset="${attr(srcset)}" sizes="${attr(sizes)}"` : ''}${
     size ? ` width="${size.width}" height="${size.height}"` : ''
-  } alt="${attr(value.alt ?? '')}" loading="lazy" decoding="async">`
+  } alt="${attr(imageAlt(value) ?? '')}" loading="lazy" decoding="async">`
   return `<figure class="pt-figure">${img}${value.caption ? `<figcaption>${escapeHTML(value.caption)}</figcaption>` : ''}</figure>`
 }
 
@@ -125,7 +138,7 @@ export function portableTextToHtml(blocks: PortableTextValue | null | undefined,
       link: ({children, value}) => {
         const raw = (value as {href?: string} | undefined)?.href
         if (!raw) return children
-        const href = resolveHref(raw, redirects)
+        const href = telE164(resolveHref(raw, redirects))
         return uriLooksSafe(href) && !isSelf(href) ? link(href, children, (value as {openInNewTab?: boolean}).openInNewTab) : children
       },
       // a mention of a team member (textWithMentions) links to the team page
