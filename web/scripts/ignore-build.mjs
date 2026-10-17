@@ -42,6 +42,11 @@ export async function decide(env = process.env, {fetch = globalThis.fetch, now =
   try {
     const res = await fetch(url, {headers, signal: AbortSignal.timeout(timeoutMs)})
     if (!res.ok) return build(`${url.href} answered ${res.status}`)
+    // a protected deployment without the bypass redirects to Vercel's login page
+    if (!/json/.test(res.headers.get('content-type') ?? '')) {
+      const landed = res.url ? new URL(res.url) : url
+      return build(`${url.href} led to ${landed.origin}${landed.pathname} (${res.headers.get('content-type')}), not JSON: protected without a bypass secret?`)
+    }
     live = await res.json()
   } catch (error) {
     return build(`could not read ${url.href} (${message(error)})`)

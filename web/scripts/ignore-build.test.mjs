@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
   requests.push({path: url.pathname, query: url.searchParams, headers: req.headers})
   if (url.pathname === '/build-info.json') {
     if (mock.hang) return // never answers: the timeout test
-    res.writeHead(mock.infoStatus, {'content-type': 'application/json'})
+    res.writeHead(mock.infoStatus, {'content-type': mock.infoType ?? 'application/json'})
     return res.end(typeof mock.info === 'string' ? mock.info : JSON.stringify(mock.info))
   }
   if (url.pathname === '/v2026-10-01/data/query/production') {
@@ -109,11 +109,19 @@ describe('builds', () => {
     assert.equal((await run()).build, true)
   })
 
-  test('when build-info.json is not JSON', async () => {
-    mock.info = '<!doctype html><title>Login</title>'
+  test('when build-info.json is not valid JSON', async () => {
+    mock.info = '{"sha": "aaa'
     const r = await run()
     assert.equal(r.build, true)
     assert.match(r.reason, /could not read/)
+  })
+
+  test("when protection answers with Vercel's login page", async () => {
+    mock.info = '<!doctype html><title>Login</title>'
+    mock.infoType = 'text/html; charset=utf-8'
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /not JSON: protected without a bypass secret/)
   })
 
   test('when build-info.json has no SHA', async () => {
