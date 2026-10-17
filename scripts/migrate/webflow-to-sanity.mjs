@@ -147,6 +147,9 @@ function estimateHref(href, text, docPath) {
   return '/estimate'
 }
 
+// Webflow writes this placeholder into an image's alt when the editor chose "inherit"; it is not a description.
+const altText = (alt) => (alt && alt !== '__wf_reserved_inherit' ? alt : undefined)
+
 function youtubeUrl(src) {
   const id = src?.match(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/)?.[1]
   return id ? `https://www.youtube.com/watch?v=${id}` : src
@@ -188,7 +191,7 @@ function toPortableText(html, docPath) {
               const src = img.getAttribute('src')
               if (!/website-files\.com|webflow\.com/.test(src)) report.externalImages.push({doc: docPath, src})
               const caption = el.querySelector('figcaption')?.textContent.trim()
-              return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: img.getAttribute('alt') || undefined, caption: caption || undefined})
+              return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: altText(img.getAttribute('alt')), caption: caption || undefined})
             }
             return undefined
           }
@@ -196,7 +199,7 @@ function toPortableText(html, docPath) {
           if (tag === 'img' && el.getAttribute('src')) {
             const src = el.getAttribute('src')
             if (!/website-files\.com|webflow\.com/.test(src)) report.externalImages.push({doc: docPath, src})
-            return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: el.getAttribute('alt') || undefined})
+            return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: altText(el.getAttribute('alt'))})
           }
           if (tag === 'table') {
             const rows = [...el.querySelectorAll('tr')].map((tr) => ({
@@ -223,12 +226,36 @@ function toPortableText(html, docPath) {
       },
     ],
   })
-  // Drop spacer paragraphs Webflow leaves behind (<p>‍</p>, <p><br></p>).
-  return blocks.filter((b) => b._type !== 'block' || b.children?.some((c) => c.text?.replace(/[\s‍]/g, '')))
+  // Drop spacer paragraphs Webflow leaves behind (<p>‍</p>, <p><br></p>), after trimming the line breaks it
+  // leaves at the start and end of a block (each would render as a stray <br>).
+  return blocks.map(trimBlock).filter((b) => b._type !== 'block' || b.children?.some((c) => c.text?.replace(/[\s‍]/g, '')))
+}
+
+/** A block without whitespace at its edges: the first span's leading and the last span's trailing whitespace go. */
+function trimBlock(b) {
+  if (b._type !== 'block' || !b.children?.length) return b
+  const children = b.children.map((c) => ({...c}))
+  const edge = (i, re) => {
+    if (typeof children[i]?.text === 'string') children[i].text = children[i].text.replace(re, '')
+  }
+  // a span that held only whitespace leaves its neighbour as the new edge
+  while (children.length) {
+    edge(0, /^[\s‍]+/)
+    if (children.length > 1 && children[0].text === '') children.shift()
+    else break
+  }
+  while (children.length) {
+    edge(children.length - 1, /[\s‍]+$/)
+    if (children.length > 1 && children.at(-1).text === '') children.pop()
+    else break
+  }
+  // a link whose only text was edge whitespace has no span left
+  const used = new Set(children.flatMap((c) => c.marks ?? []))
+  return {...b, children, markDefs: (b.markDefs ?? []).filter((m) => used.has(m._key))}
 }
 
 const image = (field, alt) =>
-  field?.url ? {_type: 'image', _sanityAsset: `image@${field.url}`, ...(alt || field.alt ? {alt: alt || field.alt} : {})} : undefined
+  field?.url ? {_type: 'image', _sanityAsset: `image@${field.url}`, ...(alt || altText(field.alt) ? {alt: alt || altText(field.alt)} : {})} : undefined
 
 const slug = (current) => ({_type: 'slug', current})
 const plainBlocks = (text) =>
