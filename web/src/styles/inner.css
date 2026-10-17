@@ -124,7 +124,9 @@
   .ihero--copper .ihero__copy :focus-visible{outline-color:#fff}
   /* the current page in the trail in white, not glow: on the narrow copper hero its worst pixel needs the extra contrast */
   .ihero--copper .crumbs--sky [aria-current]{color:#fff}
-  .ihero--copper h1{font-size:clamp(2.75rem,12cqw,4.5rem)}
+  /* --word (the H1's longest word, in letters, set by ServiceHero) caps the size so that word fits the line at ~.52em a
+     letter: at the usual 44 px "Troubleshooting" ran past the edge of a 320 px screen and was clipped */
+  .ihero--copper h1{font-size:min(clamp(2.75rem,12cqw,4.5rem),(100cqw - 2 * var(--gutter)) / (var(--word,1) * .52))}
   .ihero--copper .ihero__lede{font-size:1.125rem}
   .ihero .btn-row .btn{flex:0 0 auto}
   /* the card tucks over the asphalt only, below every foot (the asphalt under the crew is ~10% of the photo's width) */

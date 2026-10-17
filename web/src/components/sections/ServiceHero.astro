@@ -35,6 +35,8 @@ const staging = heroStaging(service.mainImage)
 const eyebrow = [service.category && `${service.category.name} service`, 'Mesa and the Phoenix valley'].filter(Boolean).join(' · ')
 // the photo of the crew, framed on their faces
 const focus = staging === 'split' ? facesFocus(facesOf(service.mainImage)) : undefined
+// the longest word's length: on phones the H1 sets small enough for it to fit the line (styles/inner.css)
+const longestWord = Math.max(...heading.split(/\s+/).map((word) => word.length))
 ---
 
 <section class:list={['ihero ihero--copper ihero--service', `ihero--${staging}`]} aria-labelledby="hero-h">
@@ -62,7 +64,7 @@ const focus = staging === 'split' ? facesFocus(facesOf(service.mainImage)) : und
     <div class="wrap ihero__copy">
       <Breadcrumbs crumbs={crumbs} variant="sky" />
       <Eyebrow variant="cream">{eyebrow}</Eyebrow>
-      <h1 id="hero-h">{heading}</h1>
+      <h1 id="hero-h" style={`--word:${longestWord}`}>{heading}</h1>
       {service.shortDescription && <p class="ihero__lede">{service.shortDescription}</p>}
       <div class="btn-row">
         <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
