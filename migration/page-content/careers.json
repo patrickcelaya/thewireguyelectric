@@ -387,7 +387,7 @@
                 },
                 {
                   "kind": "fileUpload",
-                  "note": "Webflow file-upload placeholder div (fd-upload attrs); NOT functional in the port, /api/contact receives no file",
+                  "note": "FlowDrive upload widget (script data-fd-id SQVTL3y1qL7KkNqzIzsD6): the browser uploads the file to FlowDrive and the widget writes its link into a hidden file_url field. Restored by ApplicationForm.astro; /api/contact forwards the link (docs/FORMS.md)",
                   "attrs": {
                     "fd-input": "file_url",
                     "fd-upload": "default"
@@ -415,7 +415,7 @@
       "images": [],
       "ctas": [],
       "notes": [
-        "Résumé upload is a dead Webflow placeholder; /api/contact receives no file.",
+        "Résumé upload is FlowDrive (file_url hidden field), a working upload on the live form; ApplicationForm.astro restores it.",
         "Phone link here is tel:16027697892 (no +); use tel:+16027697892.",
         "Address links to https://g.co/kgs/BQJ3i8D (old Knowledge-panel short link) while the footer uses share.google links."
       ]

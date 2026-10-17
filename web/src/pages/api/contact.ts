@@ -12,7 +12,7 @@ export const prerender = false
 const MIN_FILL_MS = 2500
 /** Each destination gets this long; a provider that hangs counts as failed, so the visitor never waits on it for good. */
 const PROVIDER_TIMEOUT_MS = 8000
-const FIELDS = ['name', 'phone', 'email', 'zip', 'experience', 'fullTime', 'startDate', 'message'] as const
+const FIELDS = ['name', 'phone', 'email', 'zip', 'experience', 'fullTime', 'startDate', 'message', 'file_url'] as const
 /** How the notification emails (Formspark, Resend) name each field; the webhook keeps the field names. */
 const LABELS: Record<(typeof FIELDS)[number], string> = {
   name: 'Name',
@@ -23,6 +23,7 @@ const LABELS: Record<(typeof FIELDS)[number], string> = {
   fullTime: 'Full-time',
   startDate: 'Start date',
   message: 'Message',
+  file_url: 'Résumé',
 }
 
 type Lead = Record<(typeof FIELDS)[number] | 'formType' | 'page', string>
@@ -76,6 +77,22 @@ async function toResend(apiKey: string, to: string, lead: Lead) {
   if (!res.ok) throw await refused('Resend', res)
 }
 
+// The résumé on /careers goes from the browser to FlowDrive (components/sections/ApplicationForm.astro), which writes
+// the file's link into file_url. Only an https link on a FlowDrive host is passed on: anything else is not a file the
+// widget uploaded, so the application is delivered without it.
+const FLOWDRIVE_HOST = /(^|\.)tryflowdrive\.com$/i
+function resumeUrl(value: string) {
+  if (!value) return ''
+  try {
+    const url = new URL(value)
+    if (url.protocol === 'https:' && FLOWDRIVE_HOST.test(url.hostname) && !url.username && !url.password && !url.port) return url.href
+    console.warn('[contact] résumé link dropped (not https on a FlowDrive host):', `${url.protocol}//${url.hostname}`)
+  } catch {
+    console.warn('[contact] résumé link dropped (not a URL)')
+  }
+  return ''
+}
+
 // A form posted without JavaScript asks for a page, not JSON: send the browser back to the page it came from (same
 // origin only), where CSS shows the success block (#sent) or the failure line (#send-error). Fetch callers (site.js)
 // send Accept: application/json and keep getting status codes.
@@ -118,6 +135,7 @@ export const POST: APIRoute = async ({request}) => {
   const lead = Object.fromEntries([
     ...FIELDS.map((k) => [k, get(k)]),
     ['message', get('message') || 'No details given'],
+    ['file_url', resumeUrl(get('file_url'))],
     ['formType', get('formType') === 'careers' ? 'careers' : 'estimate'],
     ['page', request.headers.get('referer') ?? ''],
   ]) as Lead

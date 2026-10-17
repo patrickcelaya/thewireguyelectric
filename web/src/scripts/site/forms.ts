@@ -3,7 +3,8 @@
 // the required fields and posts; the API answers 303 back to this page's #sent (or
 // #send-error), which CSS shows. With JS: inline errors (described only once shown),
 // one request per submit, the confirmation focused and its bulb switched on, and a
-// failure brought into view.
+// failure brought into view. The job application (ApplicationForm.astro) also
+// waits for a résumé upload in progress before it sends.
 import {all, reduceMotion, track} from './util'
 
 /** Bots that submit faster than a person can are ignored by the API; wait out the rest of this. */
@@ -22,6 +23,58 @@ function showSent(box: HTMLElement) {
   box.closest('[data-est-page]')?.classList.add('is-lit')
 }
 
+/**
+ * The résumé upload (FlowDrive's widget in [data-resume]) sends the file from the browser and writes its link into a
+ * hidden file_url field when it's done, announcing that with an `fdupload` event (`fderror` / `fdremove` otherwise).
+ * Returns a wait for the uploads in progress, if any: it resolves true once the last one's link is in the form.
+ */
+function trackUpload(form: HTMLFormElement) {
+  let uploading = 0
+  let waiting: Array<(ok: boolean) => void> = []
+  const start = (e: Event) => {
+    const t = e.target as HTMLInputElement
+    const files = e instanceof DragEvent ? e.dataTransfer?.files : t.type === 'file' ? t.files : undefined
+    if (files?.length && t.closest?.('[data-resume]')) uploading += files.length
+  }
+  const end = (ok: boolean) => () => {
+    uploading = Math.max(0, uploading - 1)
+    if (uploading) return
+    waiting.forEach((resolve) => resolve(ok))
+    waiting = []
+  }
+  form.addEventListener('change', start)
+  form.addEventListener('drop', start)
+  form.addEventListener('fdupload', end(true))
+  form.addEventListener('fderror', end(false))
+  form.addEventListener('fdremove', end(false))
+  return () => (uploading ? new Promise<boolean>((resolve) => waiting.push(resolve)) : undefined)
+}
+
+/**
+ * FlowDrive builds the upload once the page has loaded: a focusable box, a "button" that answers clicks only, and a
+ * nameless file input laid over both. Make the file input the one tab stop and name it by the field's own line and
+ * the button's words ("Please upload a resume. Upload files").
+ */
+function labelUpload(form: HTMLFormElement) {
+  const field = form.querySelector<HTMLElement>('[data-resume]')
+  const line = field?.querySelector<HTMLElement>('[data-resume-line]')
+  if (!field || !line) return
+  const tidy = () => {
+    const input = field.querySelector<HTMLInputElement>('input[type=file]')
+    if (!input) return false
+    const button = field.querySelector('fdx-upload')
+    if (button) {
+      button.id ||= `${line.id}-button`
+      button.setAttribute('tabindex', '-1')
+      button.setAttribute('aria-hidden', 'true')
+    }
+    field.querySelector('fdx-container')?.removeAttribute('tabindex')
+    input.setAttribute('aria-labelledby', button ? `${line.id} ${button.id}` : line.id)
+    return true
+  }
+  if (!tidy()) new MutationObserver((_, observer) => tidy() && observer.disconnect()).observe(field, {childList: true, subtree: true})
+}
+
 function enhance(box: HTMLElement) {
   const form = box.querySelector('form')
   const fill = form?.querySelector<HTMLInputElement>('[data-fill]')
@@ -31,6 +84,8 @@ function enhance(box: HTMLElement) {
   if (!form || !fill || !alert || !submit || !submitLabel) return
   const idleLabel = submitLabel.textContent
   const failure = box.querySelector('[data-est-fail]')?.innerHTML ?? ''
+  const upload = trackUpload(form)
+  labelUpload(form)
   // the fill time is measured on this one clock (never the wall clock, which may be off on the visitor's device)
   const t0 = performance.now()
   let sending = false
@@ -96,7 +151,11 @@ function enhance(box: HTMLElement) {
     }
     alert.textContent = ''
     busy(true)
-    setTimeout(send, Math.max(0, MIN_FILL_MS - (performance.now() - t0)))
+    const wait = new Promise((ok) => setTimeout(ok, Math.max(0, MIN_FILL_MS - (performance.now() - t0))))
+    Promise.all([upload() ?? true, wait]).then(([uploaded]) => {
+      if (uploaded) return send()
+      fail('The résumé didn’t upload. Try it again, or send your application without it.')
+    })
   })
 }
 

@@ -209,6 +209,21 @@
 .contact__offices,.contact__trust{display:grid;gap:10px;width:100%;padding-top:16px;border-top:1px solid var(--line)}
 /* phones and tablets: the words, the form, then the ways to reach us */
 @media (max-width:980px){.contact{grid-template-columns:minmax(0,1fr);row-gap:0}.contact__intro{display:contents}.contact__form{order:2;margin-top:clamp(28px,5vw,40px)}.contact__card{order:3;margin-top:clamp(28px,5vw,40px)}}
+/* the résumé upload in the job application (ApplicationForm): FlowDrive's widget drawn as one of the form's fields.
+   Its own stylesheet loads after this one, so every rule here starts at .upload; its file input lies over the whole
+   box and is the one tab stop (scripts/site/forms.ts) */
+.upload__k{font-size:.875rem;font-weight:650;color:var(--ink)}
+.upload__off{font-size:var(--fs-meta);color:var(--muted)}
+.upload fdx-container,.upload fdx-file-wrapper{gap:10px;font-family:inherit}
+.upload fdx-container fdx-upload{justify-content:center;min-height:52px;padding:12px 15px;border:1.5px dashed var(--field-line);border-radius:12px;background:var(--white);font-size:1rem;font-weight:600;color:var(--ink);transition:border-color .2s}
+.upload fdx-container:hover fdx-upload,.upload fdx-container fdx-upload[fdx-dragover]{border-color:var(--ink);background:var(--white)}
+.upload fdx-container:has(input[type=file]:focus-visible){outline:3px solid var(--ink);outline-offset:1px;border-radius:12px}
+.upload fdx-container fdx-file{border:1.5px solid var(--line-strong);border-radius:12px;font-size:.9375rem;color:var(--ink)}
+.upload fdx-file :is([fdx-file-details],[fdx-file-title]){min-width:0}
+.upload fdx-file [fdx-file-text]{max-width:none}
+.upload fdx-file [u-text-grey]{color:var(--muted);white-space:nowrap}
+.upload fdx-file [fdx-file-status][active]{color:var(--ink)}
+.upload fdx-file [fdx-file-status][error]{color:var(--error)}
 
 
 /* ===================================================================== OFFICES: the office cards (OfficeCard; its own styles in styles/inner.css) */
