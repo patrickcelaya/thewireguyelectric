@@ -1,15 +1,17 @@
 ---
 // The homepage showcase: every review, in two lanes drifting in opposite directions
 // (scripts/site/reviews.ts). The controls come before the lanes, so the pause is
-// reachable before the moving content (WCAG 2.2.2). Without JS or with reduced
-// motion the lanes are still rows that scroll sideways; all text is in the HTML.
-// Styles: styles/home.css (the lanes, the dialog) on top of core.css.
+// reachable before the moving content (WCAG 2.2.2). With reduced motion the lanes
+// are still rows that scroll sideways. Without JS the reviews are laid out whole:
+// the first few, then "Show all" opens the rest (a fragment link, no script). All
+// text is in the HTML. Styles: styles/home.css (the lanes, the dialog) on top of core.css.
 import type {Review, SiteSettings} from '../../lib/types'
 import {ESTIMATE_PATH} from '../../lib/site'
 import Eyebrow from '../ui/Eyebrow.astro'
 import Accent from '../ui/Accent.astro'
 import ScoreBlock from '../ui/ScoreBlock.astro'
 import Button from '../ui/Button.astro'
+import TextLink from '../ui/TextLink.astro'
 import ReviewCard from './ReviewCard.astro'
 
 interface Props {
@@ -79,7 +81,7 @@ const icon = {
           </button>
         </div>
       </div>
-      <div class="marquee" data-marquee>
+      <div class="marquee" id={`${id}-all`} data-marquee>
         {[laneA, laneB].map((lane, i) => (
           <div class:list={['lane', i === 0 ? 'lane--a' : 'lane--b']} tabindex="0" role="region" aria-label={`Customer reviews, ${i === 0 ? 'first' : 'second'} row (arrow keys move it)`}>
             <div class="belt">
@@ -92,6 +94,11 @@ const icon = {
           </div>
         ))}
       </div>
+      <p class="wrap rv-all">
+        <TextLink href={`#${id}-all`} icon="go">
+          Show all {reviews.length} reviews
+        </TextLink>
+      </p>
     </section>
   )
 }

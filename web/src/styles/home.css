@@ -14,12 +14,18 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
 .belt{display:flex;width:max-content}
 .track{display:flex;gap:20px;padding-inline:var(--gutter) 20px}
 /* without JS the lanes don't move: every review is laid out whole, in columns on the page grid, each card as tall as its
-   own words (a horizontal lane would stretch to its longest review and leave the rest of the row empty) */
+   own words (a horizontal lane would stretch to its longest review and leave the rest of the row empty). The first three
+   of each row show (two on phones), then "Show all" makes the marquee the :target and opens the rest (no script), so
+   the section is a screen or two instead of 46 cards in a column 16,000 px tall on a phone */
 html:not(.js) .marquee{-webkit-mask-image:none;mask-image:none}
 html:not(.js) .lane{overflow:visible;padding-block:0}
 html:not(.js) .belt{display:block;width:auto}
 html:not(.js) .track{display:block;columns:3 320px;column-gap:20px;padding-inline:var(--pad-x)}
 html:not(.js) .track .rv{width:auto;min-height:0;margin-bottom:20px;break-inside:avoid}
+html:not(.js) .marquee:not(:target) .rv:nth-child(n+4){display:none}
+@media (max-width:699px){html:not(.js) .marquee:not(:target) .rv:nth-child(n+3){display:none}}
+.rv-all{display:none}
+html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 .marquee.is-moving .lane{overflow:hidden}
 .marquee.is-moving .track{padding-left:0}
 .marquee.is-moving .belt{animation:mq var(--mq-dur,300s) linear infinite;will-change:transform}
