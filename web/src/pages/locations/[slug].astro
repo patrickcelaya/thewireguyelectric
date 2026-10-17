@@ -118,10 +118,10 @@ const nearby = (location.nearbyLocations ?? []).map((l) => l.shortName || l.name
   <AnswersBand
     faqs={faqs}
     faqHeading={ownFaqs.length ? `${city} electrical questions` : 'Questions, answered'}
-    faqIntro={ownFaqs.length ? 'Utility, permits, estimates and pricing: straight answers before you call.' : 'Straight answers from the electricians who do the work.'}
+    faqIntro={ownFaqs.length ? 'Utility, permits, estimates and pricing: straight answers before you call.' : 'Straight answers before you call.'}
     posts={guides}
     guidesHeading="Guides from our blog"
-    guidesIntro="Plain-English answers to the questions Arizona homeowners ask us most."
+    guidesIntro="Plain-English answers to common questions from Arizona homeowners."
     numbers={{faq: 4, guides: 5}}
   />
 

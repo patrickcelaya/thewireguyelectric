@@ -165,7 +165,7 @@ Props are typed in each file; the essentials are below. "settings" is always `Si
 | `SectionHeader` | `heading`, `accent?`, `id?`, `eyebrow?`, `number?`, `size` display·h2, `as` h2·h3, `intro?`, `layout` split·stack, `reveal?` (data-reveal on the heading), slot `more` | `<SectionHeader eyebrow="Guides" number={8} heading="Plain answers" accent="answers" id="guides-h" intro="…"><TextLink slot="more" href="/blog" icon="go">All guides on the blog</TextLink></SectionHeader>` |
 | `Accent` | `text`, `accent?`, `tone?` accent·glow-word·hl | A heading's text with its highlighted words wrapped: `<h2><Accent text={s.heading} accent={s.headingAccent} /></h2>` (copper; `glow-word` on the copper band, `hl` on the tools photo) |
 | `Stars` | `size?` px | Decorative (aria-hidden); the rating is always stated in text nearby |
-| `RatingLine` | `settings`, `variant?` quiet·foot | "★★★★★ 5.0 from 380+ Google reviews · Read our reviews on Google ↗". Nothing if Site settings has no rating |
+| `RatingLine` | `settings`, `variant?` quiet·foot | "★★★★★ 5.0 from 560+ Google reviews · Read our reviews on Google ↗". Nothing if Site settings has no rating |
 | `ScoreBlock` | `settings`, default slot (extra links) | The big copper 5.0 (never clipped), stars, count and the Google link |
 | `RocLink` | `settings`, `separator` · or ., `class?` | "Licensed, bonded, and insured · ROC #365306" → the AZ ROC lookup |
 | `OfficeStatus` | `settings`, `variant` line·util | Emma as a subtle status: "Emma is ready for your call" (open) / "Office opens [Monday ]at 9 am" (closed) / the hours (no JS) |
@@ -238,7 +238,7 @@ Pages composed in Sanity (`page.sections`) render through **`SectionRenderer`** 
 ```
 
 - Sanity's image CDN serves every rendition (`auto=format` → AVIF/WebP, q 75, crop and hotspot honoured, `fit=crop` only with `aspect`), project `qhi2uf0l` **even when the build reads the local dataset** (`IMAGE_PROJECT_ID`).
-- The local dataset still stores some images as `image@<webflow url>`; `resolveImage()` maps them to the Sanity asset the production import made from the same file (`data/legacy-images.json`, regenerate with `node scripts/migrate/legacy-image-map.mjs` after an import that adds images), An image with no such asset renders nothing and logs a build warning: **nothing is ever loaded from Webflow's CDN**.
+- The migration turns every `image@<webflow url>` into a reference to its Sanity asset (`scripts/migrate/webflow-to-sanity.mjs`, "Self-contained images"). For an image still stored as a URL, `resolveImage()` maps it to the Sanity asset the production import made from the same file (`data/legacy-images.json`, regenerate with `node scripts/migrate/legacy-image-map.mjs` after an import that adds images), An image with no such asset renders nothing and logs a build warning: **nothing is ever loaded from Webflow's CDN**.
 - `width`/`height` come from the asset (after the editor's crop) or from `aspect`. Widths are capped at the original (no upscaled copies).
 - `alt`: the image's own alt by default; pass `alt=""` for a thumbnail beside its own title.
 - LCP: `priority` (eager, `fetchpriority=high`, `decoding=sync`) on exactly one image per page; if it sits low in the HTML also preload it with `imagePreload(image, widths, sizes, aspect)` in the layout's `head` slot.

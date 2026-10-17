@@ -10,6 +10,8 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 | `post-services.json` | `relatedServices` on all 53 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
+Four later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11) and `internal-links.json` (§12).
+
 The data files use slugs, not document IDs. The module turns each slug into a reference. The migration stops with an error naming the file and entry if any of these happens:
 
 - a slug doesn't match a document;
@@ -158,7 +160,7 @@ The first service is the primary hub service from the hub map (seo-requirements 
   - `ceiling-fan-installation-cost-arizona` → recessed;
   - `landscape-lighting-installation-cost-phoenix` → custom-lighting;
   - `pool-pump-electrical-requirements-arizona` → panels;
-  - `kitchen-remodel-electrical-circuits-arizona` → panels, dedicated-circuits;
+  - `kitchen-remodel-electrical-circuits-arizona` → panels (and custom-lighting since D14, below);
   - `cost-to-rewire-house-arizona` → inspections, panels;
 - a service page's live body (its "Related Reading" list or an in-text link) links the post:
   - `federal-pacific-zinsco` ← inspections;
@@ -174,6 +176,13 @@ One exception: `can-hot-weather-cause-your-circuit-breaker-to-trip` → panels. 
 Surge and generator posts sit under panels, as the hub map says ("until dedicated pages exist"). `/faq` lists generator installs among the services the company doesn't offer; the generator posts are about interlocks and standby units, which are wired at the panel.
 
 `common-electrical-issues-in-scottsdale-homes` hubs on `/locations/scottsdale`, which can't be a `relatedServices` target, so its service is electrical-troubleshooting.
+
+### Internal-links review (decision D14, 2026-10-17)
+
+The verified internal-links review changed both lists; no post's primary service moved, so the quick-answer link target, the `/blog` grouping and the cover photos stay.
+
+- **Post → related services** (its `hub_map_final`): 10 posts gain a service their body discusses. Panels joins `half-house-lost-power-heat-arizona`, `ac-keeps-tripping-breaker-arizona`, `tesla-wall-connector-vs-chargepoint-home-flex-phoenix`, `hot-tub-electrical-installation-cost-arizona`, `breaker-trips-ac`, `permit-for-electrical-work`, `why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it` and `why-does-my-breaker-keep-tripping-in-the-summer`; `diy-electrical-work-in-arizona` gains panels and fixture-replacements (the two things its lists name); `kitchen-remodel-electrical-circuits-arizona` swaps the commercial Dedicated Circuits page for Custom Lighting (under-cabinet and recessed lighting). The review rejected Custom Lighting on the outdoor-lighting post (an indoor page).
+- **Service → related posts** (its T3, amended): the first post is the hub's pillar, which a post's related articles start from, so four hubs lead with the Tier 1 posts they own. Safety inspections: DIY, outdated wiring, pre-sale inspection, permits, aluminum wiring. EV charger installation: Tesla vs ChargePoint, installing a car charger (fifth before, so the guides block never showed it), Level 1 vs 2, hardwired vs plug-in, dryer outlet. Troubleshooting: the five Tier 1 posts it owns (heat and breakers, dead outlets, afternoon flicker, how heat affects wiring, summer breaker trips). Remodels: the rewire cost guide first.
 
 ## 5. Cities (`city-relations.json`)
 
@@ -289,6 +298,7 @@ Applied by `scripts/migrate/content/cms-templates.mjs`, which runs last (after `
 | `featuredPosts` | `post.featured` on 7 posts, so guide lists on city and service pages lead with them | Search Console, the Tier-1 posts by clicks |
 | `serviceImages` | `service.mainImage` for `ev-charger-installation` and `electrical-troubleshooting`: the crew's own photos of that work in place of a stock image or a photo of tools (the asset must be in the dataset) | `migration/brand-photos` |
 | `serviceAlts` | alt text for the services' own photos (all were empty; a replaced image carries its alt in `serviceImages`) | the asset audit and the brand-photos manifest |
+| `postAlts` | alt text for a post's own main image when it is a crew photo and the post shows it as its cover: `installing-car-charger` (the Tesla Wall Connector photo) | schema-technical ST-15 (the cover keeps a description of the photo, never the post's title), worded as `web/src/lib/brand-photos.ts` records the photo |
 | `atAGlance` | `service.atAGlance` facts for `panels` (most common job, panels installed, utility, permits), each with its supporting line (`detail`) | each fact quotes `evidence` that must appear word for word in the service body or the named `/faq` answer |
 | `quickAnswers` | `service.quickAnswer` on all 21 services: the answer-first line of the page's "short version" (the Panels text is the round-5 mockup's) | each answer lists the body phrases it restates (`evidence`), which must appear word for word in that service's body; 25–60 words, no price |
 | `bodyEdits` | the dollar ranges in four service bodies (Panels "What It Costs", EV charger, remodels, new construction) taken out, the rest of each sentence and every link kept; Panels gets the live city pages' flat-rate sentence | owner rule: prices stay inside FAQ answers and blog posts. Each `find` must match exactly once and not cut a link; the run fails if any service body still names a price |
@@ -297,5 +307,52 @@ Applied by `scripts/migrate/content/cms-templates.mjs`, which runs last (after `
 | `postCategories` | `post.category` = Lighting on the six posts whose titles are about lighting, so `/posts-categories/lighting` lists them | the post titles |
 | `textFixes` | typing slips in a post body the live page carries too ("afternoon?The" in `can-hot-weather-cause-your-circuit-breaker-to-trip`) | the post itself; each `find` must occur exactly once in that post's text |
 | `bodyRemovals` | two body blocks taken out: the Panels "Related Reading" item for the archived 2023 post (it redirects to `/services/panels`, so it linked the page to itself), and the screenshot of the retired Webflow homepage in `level-1-vs-level-2-ev-chargers-which-to-choose` (its heading and paragraphs stay) | the documents themselves; each removal names one block by its exact text or image URL and must match exactly once |
+| `figureAlts` | alt text for a figure in a post body that had none: the wiring diagram in `can-hot-weather-cause-your-circuit-breaker-to-trip` (its Webflow alt was the `__wf_reserved_inherit` placeholder), described as what it shows (a contactor driving a single-phase motor) | schema-technical ST-09, which viewed the image; the figure must match exactly once and have no alt yet |
 
 It also removes the SEO tool's tracking markers (`sbb-itb-…`) that the Webflow export carried into a post body as a heading of their own (`level-1-vs-level-2-ev-chargers-which-to-choose`). `report.json` → `cmsTemplates` lists what it set. The migration stops if a slug, an asset or a FAQ is missing, a replacement image has no alt, a fact's or answer's evidence is not in its source, an edit, link, text fix or removal does not match exactly once, or a service body still names a price.
+
+## 10. Titles, meta descriptions and H1s (`titles-meta.json`)
+
+Applied by `scripts/migrate/content/titles-meta.mjs`, the last content module (after the copy edits, whose guard forbids these fields). The rows are the verified titles-meta review of 2026-10-17: 70 approved changes on 42 pages (60 accepted, 4 amended, 6 added by the verifier; the DIY post's meta was rejected and is not here). Four metas state the Google review count; they read "560+" (decision D7).
+
+Each row names the page, the field Google reads (`title`, `meta` or `h1`), the document (`type:slug`), the field that sets it, the value Google shows today (`old`) and the approved value (`new`):
+
+| Page | Title | Meta | H1 |
+|---|---|---|---|
+| City | `location.seo.title` (new; the template's "Electrician in {city}, AZ \| …" until now) | `location.seo.description` | — |
+| Service | `service.seo.title` (new) | `service.seo.description` (new; it fell back to `shortDescription`, the hero lede) | `service.heading` (new; it fell back to `name`) |
+| Post | `post.seo.title` (new) | `post.seo.description` (new; it fell back to `excerpt`, the card text) | `post.title` (also the card title, breadcrumb and BlogPosting headline) |
+| `/blog`, `/our-team` | — | `page.seo.description` | — |
+| Service category | `serviceCategory.seo.title` (new) | `serviceCategory.seo.description` (new; also the hero lede, which showed the template's "Top-rated …") | — |
+
+Every value is an explicit field, so a later edit to a lede, card text or name never moves a title or meta. The 13 Tier 1 pages keep their titles and H1s (four of them get a new meta).
+
+**Wave 2.** The rows with `hold` (Chandler, Scottsdale, Ahwatukee, San Tan Valley and Phoenix, title and meta) are approved but not deployed: they ship about four weeks after launch, once the wave 1 cities (Gilbert, Tempe, Queen Creek, Apache Junction, Fountain Hills) can be compared with them on core-query click-through. To ship them, delete `hold` from their rows and their paths from `notDeployed` in `migration/seo-intentional-changes.json`.
+
+**The parity gate's allowlist** (`migration/seo-intentional-changes.json`) holds the same values. The module stops if the two disagree in either direction (a value, a row the allowlist lacks, an approval without a row, a row held back in one and not the other), if `old` is not the live value in `migration/seo-baseline.json`, if the field already holds something other than `old`, or if a row would change a Tier 1 title or H1. `scripts/seo/parity.mjs` then reports each change as approved, the wave 2 ones as pending, and anything else as an error.
+
+## 11. Profiles, office pins and the rating (`profiles.json`)
+
+Applied by `scripts/migrate/content/profiles.mjs`, right after `fixes`. Unlike `site-settings.json` (copied from the live site), these values come from the business's own profiles, each checked on 2026-10-17 (the citations review and schema-technical ST-10/ST-14):
+
+| Key | What it sets | Source |
+|---|---|---|
+| `sameAs.add` | appended to `siteSettings.sameAs`, after the live JSON-LD's Facebook, Instagram, Yelp and BBB: the Mesa Google Business Profile by its stable `?cid=` URL, LinkedIn and Nextdoor | citations R1 (through this intake, ST-10) |
+| `offices.Mesa.geo` | `addresses[Mesa].geo`, the profile pin | decision D12 (citations R4) |
+| `offices.Scottsdale.geo` | `addresses[Scottsdale].geo`, the profile pin | decision D12 (citations R4) |
+| `offices.Scottsdale.sameAs` | `addresses[Scottsdale].sameAs` (new field): its Google place card by `?cid=` and its own Yelp listing, the branch's structured data | citations R2, ST-10 |
+| `reviewSummary` | `siteSettings.reviewSummary.ratingValue` 5 and `reviewCount` 560, shown as "5.0 from 560+ Google reviews" | decision D7 (citations R5: the Mesa profile shows 567 reviews) |
+
+The footer keeps its `share.google` links and their text (`googleMapsUrl`, `mapLinkText`): they are map links, not profiles. Profile URLs must be full https URLs, never a link shortener (`share.google`, `goo.gl`, `bit.ly`), and never listed twice; the module and `validate-dataset.mjs` both check (`--check-profiles` also requests each one, warning only, since Facebook, Instagram, Yelp and BBB refuse bots).
+
+**Not set:** the Scottsdale office's opening hours. Its profile shows Mon–Fri 9–5, but the page says office visits are by appointment, so the hours wait until the owner confirms the office is staffed (citations R3, amended).
+
+The business description in Site settings states the count too; it reads "560+" through decision D7-01 in `migration/content-edits/decisions.json`. The ROC lookup link in the FAQ "How do I choose a good electrician in Phoenix?" goes to `https://roc.az.gov/`, the Registrar's own host, and the next answer names it the same way (decision D13: `linkFixes` in `cms-templates.json`, D13-01).
+
+## 12. Contextual internal links (`internal-links.json`)
+
+Applied by `scripts/migrate/content/internal-links.mjs`, after the copy edits and before the titles. The 125 links are the verified internal-links review (decision D14): 71 post → service, 28 city → service, 10 service → post and 15 post → post links, each a link mark on words already in the body, and 1 retarget (the generator post's "service upgrade" goes to `/services/panels` instead of `/services`). The words never change.
+
+Each entry names the document (`type:slug`), the block (`_key`), the anchor as the block reads after the copy pass (where a copy edit rewrote the sentence, the review gave the anchor that survives) and the target. The module finds the anchor by its text, splits the spans at its edges and links the middle; it stops if an anchor occurs other than exactly once in its block, the block is a heading or a quote, the anchor overlaps a link, the body already links the target, a post would get more than 3 new service links, or the block's text changes.
+
+Left out: the "same-visit repair" link the review rejected (not a service name, in a price clause), and two retargets of closing calls to action (`why-your-lights-flicker`, `breaker-trips-ac`) to the troubleshooting page: the copy pass already sends them to `/estimate` (decision D5, `linkFixes` in `cms-templates.json`). The review's nine deferred city CTAs to the homepage are in the copy pass's `linkFixes` under D5 too.

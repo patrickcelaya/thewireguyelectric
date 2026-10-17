@@ -30,7 +30,7 @@ const {settings, number, formId = 'cta'} = Astro.props
 const band = settings.ctaBand
 const hours = officeHours(settings)
 // typographic apostrophes in display type
-const heading = (Astro.props.heading ?? band?.heading ?? 'We’re ready to work for you').replace(/'/g, '’')
+const heading = (Astro.props.heading ?? band?.heading ?? 'You’ll know the price before we start').replace(/'/g, '’')
 const text =
   Astro.props.text ??
   band?.text ??

@@ -72,10 +72,10 @@ The single source of truth for the business entity. It feeds the header, footer,
 | rocLicense | string | "365306" |
 | **rocLicenseUrl** | url | **New.** Public AZ ROC lookup page. Every displayed license number links here |
 | **googleBusinessProfileUrl** | url | **New.** The main (Mesa) GBP. Each office's own profile link is on its address (`googleMapsUrl`) |
-| reviewSummary | {ratingValue, reviewCount, source, reviewsUrl} | Rating shown as visible text ("5.0 from 380+ Google reviews"). Keep it in sync with GBP |
+| reviewSummary | {ratingValue, reviewCount, source, reviewsUrl} | Rating shown as visible text ("5.0 from 560+ Google reviews"). Keep it in sync with GBP |
 | badges | string[] | Short trust claims, e.g. "Licensed, bonded & insured". Appended to the standard trust strip |
 | **heroQuotes** | reviewSnippet[] | **New.** Shared hero quotes, used by city-page heroes and any template without its own |
-| sameAs | url[] | Social and directory profiles for schema |
+| sameAs | url[] | Social and directory profiles for schema: full URLs (the Google Business Profile by its `?cid=` URL), never a short link |
 | serviceAreas | ref location[] | Cities for `areaServed`. The query adds `shortName` (bare city) because some location names still hold the full H1 |
 | **homeCity** | object | **New.** Mesa is the homepage, so it has no `location` document. City lists show Mesa from here, linking to `/`. Fields: `name`, `cardBlurb`, `image` (alt required), `neighborhoods[]`, `county`, `utilityProviders[]` (same list as location) |
 | sisterCompanies | linkItem[] | The Cooling Guy HVAC, The Water Guy Plumbing. Link only |
@@ -106,7 +106,7 @@ Standalone pages: `index` (home), about-us, our-team, careers, faq, contact-us, 
 | intro | text | Meta description fallback |
 | sections | pageSections | The page builder (§4). The production build (SITE_INDEXABLE=true) stops when a composed page has none: that is pre-redesign content (re-import the dataset first) |
 | seo | seo | Meta title and description (frozen to the live values) |
-| **updatedAt** | datetime | **New.** When the content last changed materially: the sitemap's `<lastmod>`. The migration stamps it when it changes the document; editors update it with real edits. Same field on service, location and serviceCategory |
+| **updatedAt** | datetime | **New.** When the content last changed materially: the sitemap's `<lastmod>`. The migration stamps it when it changes the content materially (5% of the words, a heading or the FAQs, counted since the last date: `scripts/migrate/content-dates.mjs`); editors update it with real edits. Same field on service, location, serviceCategory and post |
 
 **Query:** `getPage(slug)` returns the page with every section's references resolved and lists cleaned up (§5). `getPageSlugs()` returns all slugs.
 
@@ -195,7 +195,7 @@ Not routed in this PR. Fields: service, location, heading, intro, mainImage, bod
 | author | ref teamMember | Show a Person byline only when set (the default byline is the business) |
 | reviewedBy | ref teamMember | "Reviewed by {name}, {role}" only when set |
 | publishedAt | datetime | Visible date |
-| updatedAt | datetime | Set only for material updates. Shown as "Updated …" and used for `dateModified` |
+| updatedAt | datetime | Set only for material updates (the migration uses the rule above). Shown as "Updated …" and used for `dateModified` |
 | featured | boolean | Promotes the post in "featured first" lists |
 | relatedServices | ref service[] | The hub service pages the post supports. **The first one is the primary service** |
 | faqs | faqItem[] | Post Q&As |
@@ -297,7 +297,7 @@ The `Review` shape the queries return flattens the tags: `location` is the bare 
 | **featureItem** | title, text, icon, service (ref), link (linkItem) | Value props and capability checklists. When `service` is set, the title links to that service |
 | **reviewSnippet** | text, review (ref), rating | Short hero quotes from real reviews |
 | faqItem | question, answer | Inline Q&As on services, cities and posts |
-| postalAddress | label, streetAddress, addressLocality, addressRegion, postalCode, geo, googleMapsUrl, **mapLinkText** (new), gbpName, locationPage, phone, appointmentOnly, footerOnly | Offices in Site settings. `mapLinkText` is the footer link's wording to the office's Google Business Profile, verbatim from the live footer ("8555 E Raintree Dr, Unit 117 Scottsdale, AZ 85260 - Scottsdale Location"); empty = the formatted address. `footerOnly` (the Mesa home address): footer and structured data only |
+| postalAddress | label, streetAddress, addressLocality, addressRegion, postalCode, geo, googleMapsUrl, **sameAs** (new), **mapLinkText** (new), gbpName, locationPage, phone, appointmentOnly, footerOnly | Offices in Site settings. `mapLinkText` is the footer link's wording to the office's Google Business Profile, verbatim from the live footer ("8555 E Raintree Dr, Unit 117 Scottsdale, AZ 85260 - Scottsdale Location"); empty = the formatted address. `footerOnly` (the Mesa home address): footer and structured data only. `sameAs`: an office with its own Google Business Profile lists its own profiles (its `?cid=` place URL, its directory listings) for its structured data; `googleMapsUrl` stays the footer's map link |
 | openingHours | days[], opens, closes | Hours in Site settings |
 | table | caption, rows[{cells[]}], hasHeaderRow | Rich-text tables |
 | videoEmbed | url, title | YouTube or Vimeo facade |

@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const postalAddress = defineType({
   name: 'postalAddress',
@@ -12,6 +12,17 @@ export const postalAddress = defineType({
     defineField({name: 'postalCode', type: 'string'}),
     defineField({name: 'geo', type: 'geopoint', description: 'Exact pin location of the office'}),
     defineField({name: 'googleMapsUrl', type: 'url', title: 'Google Business Profile / Maps URL'}),
+    defineField({
+      name: 'sameAs',
+      title: 'Profiles of this office (sameAs)',
+      type: 'array',
+      of: [defineArrayMember({type: 'url'})],
+      description: 'For an office with its own Google Business Profile: its Google Maps place URL (https://www.google.com/maps?cid=…) and its own directory listings, in full. Never a share.google or other short link. Used in this office\'s structured data.',
+      validation: (rule) =>
+        rule.custom((urls?: string[]) =>
+          (urls ?? []).some((u) => /^https?:\/\/(?:[^/]*\.)?(?:share\.google|goo\.gl|bit\.ly)(?:\/|$)/i.test(u)) ? 'Use the full profile URL, not a short link' : true,
+        ),
+    }),
     defineField({
       name: 'mapLinkText',
       title: 'Map link text',

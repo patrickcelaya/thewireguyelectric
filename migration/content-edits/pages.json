@@ -1,0 +1,1088 @@
+{
+  "about": "The homepage, the 8 page-builder pages, the shared FAQ answers, team bios, Site settings copy and the shared template lines.",
+  "source": "slop-pages/verified.json of the 2026-10-17 copy review: researched, then adversarially verified. Verdict accept, or amend (new_text is the amended text); no edit was rejected.",
+  "edits": [
+    {
+      "id": "slop-pages-001",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089",
+        "field": "sections[0].text"
+      },
+      "old_text": "Our family-owned team of professional electricians provide a wide range of electrical solutions for both residential and commercial clients.",
+      "new_text": "Our family-owned team of professional electricians serves both residential and commercial clients.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Stock phrase \"a wide range of electrical solutions\"; also fixes \"team ... provide\". Keeps family-owned, electricians, residential and commercial in the first 100 words. Live copy: needs an _omissions.json copy entry."
+    },
+    {
+      "id": "slop-pages-002",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089",
+        "field": "sections[1].body[0]"
+      },
+      "old_text": "At The Wire Guy Electric, Steven leads our commitment to quality workmanship and fair pricing. Our family-owned team, including Cody, provides friendly, professional electrical service. Emma helps customers schedule the right solution for their home or business.",
+      "new_text": "At The Wire Guy Electric, Steven keeps the quality high and the pricing fair. Cody, his co-owner, manages our service work. Emma is the friendly voice on the phone who schedules your visit.",
+      "tier": "tier1",
+      "verdict": "amend",
+      "reason": "\"leads our commitment to\", \"friendly, professional electrical service\", \"schedule the right solution\". Crosses the three teamMemberMention marks: \"Steven\", \"Cody\" and \"Emma\" stay as linked words unchanged. Roles from the teamMember docs (Cody: Owner/Service Manager) and Emma's bio (\"the friendly voice you'll hear on the phone\"). Avoids repeating \"family-owned\" from the summary sentence above it."
+    },
+    {
+      "id": "slop-pages-003",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089",
+        "field": "sections[3].services[1].text"
+      },
+      "old_text": "We install or troubleshoot issues with all EV chargers that are installed to last and perform.",
+      "new_text": "We install and troubleshoot EV chargers of every make and model.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Vague filler (\"installed to last and perform\"). \"Every make and model\" is the business's own FAQ claim (\"We install chargers for all makes and models\")."
+    },
+    {
+      "id": "slop-pages-004",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089",
+        "field": "sections[3].services[2].text"
+      },
+      "old_text": "Something not working? We provide reliable electrical troubleshooting for any issue.",
+      "new_text": "Electrical troubleshooting for dead outlets, tripping breakers and flickering lights.",
+      "tier": "tier1",
+      "verdict": "amend",
+      "reason": "Rhetorical-question opener plus empty \"reliable ... for any issue\". Replacement uses the Troubleshooting service's own description."
+    },
+    {
+      "id": "slop-pages-005",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089",
+        "field": "sections[3].services[4].text"
+      },
+      "old_text": "Brighten and modernize any home! Recessed lights are the #1 lighting choice for our customers.",
+      "new_text": "Recessed lights are the #1 lighting choice for our customers.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Exclamation-mark enthusiasm, generic benefit sentence; the fact (\"#1 lighting choice\") stays."
+    },
+    {
+      "id": "slop-pages-006",
+      "url": "/",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "text: lastSentence(service('custom-lighting').shortDescription),",
+      "new_text": "text: 'Cabinet lighting cut and soldered to fit.',",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"Hardwired and seamless.\" (slop word \"seamless\") is the card text on the homepage tile. The replacement is from the same service description (\"Custom cabinet lighting cut and soldered to fit\")."
+    },
+    {
+      "id": "slop-pages-007",
+      "url": "/",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "intro: verbatim('faq', 'From entire remodels to small repairs, we do it all!'),",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"we do it all!\" exclamation enthusiasm, and the services intro directly above already says \"from small repairs to entire remodels\". Delete the line; the checklist needs no intro."
+    },
+    {
+      "id": "slop-pages-008",
+      "url": "/",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "intro: verbatim('faq', 'Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get.'),",
+      "new_text": "intro: verbatim('faq', 'What you see on the invoice is what you get.'),",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"understand the importance of\" filler. The remaining sentence is still a substring of the live /faq copy, so verbatim() keeps passing."
+    },
+    {
+      "id": "slop-pages-009",
+      "url": "/",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "intro: 'The things homeowners across the valley ask us most, answered by the people who do the work.',",
+      "new_text": "intro: 'The things homeowners across the valley ask us most.',",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Unverifiable authorship claim, repeated on several templates (\"answered by the people who do the work\")."
+    },
+    {
+      "id": "slop-pages-010",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "siteSettings",
+        "field": "valueProps[0].text"
+      },
+      "old_text": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote.",
+      "new_text": "Our flat-rate pricing is competitive, with no hidden fees and a free, accurate quote before we start.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Paragraph ends on a restated CTA (\"Contact us today\") right above the card's own Get a Free Estimate button; \"transparent\" filler. Source: migration/content-data/site-settings.json valueProps. page-sections.mjs only uses siteList when Site settings still equal the live cards (sameCards), so that check must be updated too."
+    },
+    {
+      "id": "slop-pages-011",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "siteSettings",
+        "field": "valueProps[1].text"
+      },
+      "old_text": "We only offer top-quality electrical services. We'll tackle your problems big or small, and get it done right the first time.",
+      "new_text": "We'll tackle your problems big or small, and get it done right the first time.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Superlative with no evidence (\"top-quality\"). \"Right the first time\" (the section heading's source) stays. Same sameCards note as valueProps[0]."
+    },
+    {
+      "id": "slop-pages-012",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "siteSettings",
+        "field": "valueProps[2].text"
+      },
+      "old_text": "Your satisfaction is our top priority. We don't go home until the job is done. We'll always come back if you have any issues.",
+      "new_text": "We don't go home until the job is done, and we'll always come back if you have any issues.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Stock phrase \"Your satisfaction is our top priority\". Both commitments stay. Same sameCards note as valueProps[0]."
+    },
+    {
+      "id": "slop-pages-013",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "siteSettings",
+        "field": "capabilities[5].title"
+      },
+      "old_text": "+ More!",
+      "new_text": "All services",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Exclamation and decorative \"+\" on the checklist's closing link (to /services); clearer link text. page-sections.mjs only uses siteList when Site settings equal the live checklist (sameCaps), so that check must be updated too."
+    },
+    {
+      "id": "slop-pages-014",
+      "url": "/",
+      "target": {
+        "kind": "file",
+        "file": "web/src/components/sections/Valley.astro"
+      },
+      "old_text": "note = \"If you don't see your city listed, don't worry! Just give us a call and we'll let you know if you're in our service radius.\",",
+      "new_text": "note = \"If you don't see your city listed, give us a call and we'll let you know if you're in our service radius.\",",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Exclamation filler \"don't worry! Just\". Shown under the city index on /, /about-us, /contact-us, /services and /commercial-electrician."
+    },
+    {
+      "id": "slop-pages-015",
+      "url": "/about-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "db86570c-d8f8-439a-88b3-1b8a1e2e1f27",
+        "field": "sections[0].text"
+      },
+      "old_text": "At The Wire Guy Electric, we pride ourselves on our unwavering commitment to quality. With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients.",
+      "new_text": "Steven Taylor founded The Wire Guy Electric. Today our licensed electricians do residential and commercial work across the Phoenix valley.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"pride ourselves\", \"unwavering commitment\", \"dedicated to delivering top-notch electrical solutions\". Facts kept: licensed electricians, residential and commercial; founder from Steven's bio, family-run from the H1. Live copy: needs an _omissions.json copy entry."
+    },
+    {
+      "id": "slop-pages-016",
+      "url": "/about-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "db86570c-d8f8-439a-88b3-1b8a1e2e1f27",
+        "field": "sections[1].checklist[2].text"
+      },
+      "old_text": "Experts on everything electrical!",
+      "new_text": "From small repairs to entire remodels",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Superlative with no evidence plus exclamation. The replacement is the business's own scope line (/faq). Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-017",
+      "url": "/about-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "db86570c-d8f8-439a-88b3-1b8a1e2e1f27",
+        "field": "sections[1].asideBody[0]"
+      },
+      "old_text": "Our team has over 30 years of combined experience. We're dedicated electricians ready to please our residential and commercial clients. Any task big or small, we will always do our best to get it done right the first time.",
+      "new_text": "Our team has over 30 years of combined experience. We work for residential and commercial clients, and big job or small, we do our best to get it done right the first time.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"dedicated electricians ready to please\" filler. The 30 years and \"right the first time\" stay. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-018",
+      "url": "/about-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "db86570c-d8f8-439a-88b3-1b8a1e2e1f27",
+        "field": "sections[4].heading"
+      },
+      "old_text": "We proudly serve the entire valley!",
+      "new_text": "We serve the entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"proudly serve\" stock phrase plus exclamation. Comes from locationsSection('index', 7) in page-sections.mjs, which copies the homepage heading; the homepage keeps its own (tier 1), so this page needs a heading override."
+    },
+    {
+      "id": "slop-pages-019",
+      "url": "/about-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "db86570c-d8f8-439a-88b3-1b8a1e2e1f27",
+        "field": "sections[4].headingAccent"
+      },
+      "old_text": "entire valley!",
+      "new_text": "entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Accent words follow the new heading (Studio warns when they are not in it)."
+    },
+    {
+      "id": "slop-pages-020",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "83c882a7-66d9-4b8f-8084-f522840ab65f",
+        "field": "sections[0].text"
+      },
+      "old_text": "With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients.",
+      "new_text": "The owners, technicians and office staff behind our residential and commercial work across the Phoenix valley.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"dedicated to delivering top-notch electrical solutions\", a copy of the About Us lede. Facts from the page itself: licensed electricians (H1), office roles (Office Manager, Dispatcher), Emma's bio (the voice on the phone), residential and commercial. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-021",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "83c882a7-66d9-4b8f-8084-f522840ab65f",
+        "field": "sections[2].subheading"
+      },
+      "old_text": "Your satisfaction is our ultimate goal",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Stock phrase. The H2 above (\"We care about doing honest work for honest prices\") already carries the message; an empty subheading renders nothing. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-022",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "83c882a7-66d9-4b8f-8084-f522840ab65f",
+        "field": "sections[2].quote"
+      },
+      "old_text": "For all your electrical needs, The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical. Let us brighten your life with safety, efficiency, and expert craftsmanship.",
+      "new_text": "We use flat-rate pricing, which means we quote you a price before we start and that's what you pay. No surprises.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"the name you can trust\", \"your dependable partner in all things electrical\", padding triplet \"safety, efficiency, and expert craftsmanship\". The quote is shown with Steven Taylor's name: OWNER MUST APPROVE the wording before it ships. Facts: founded 2017 (his bio), the section heading, flat-rate pricing (/faq). Live copy: needs an _omissions.json entry.",
+      "skip": "Decision D2: a quote shown under a named person (Steven Taylor, /our-team) may only lose words, never gain them. Every sentence of this quote is filler, so deleting leaves nothing meaningful and the original stays (owner to confirm or cut the section)."
+    },
+    {
+      "id": "slop-pages-023",
+      "url": "/careers",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "52ac6106-a3ab-47dd-8432-ca9a245bd785",
+        "field": "sections[0].text"
+      },
+      "old_text": "If you've got 4+ years in residential service, want daytime hours in people's homes instead of overnight commercial work, and you're tired of being just a number, let's talk.",
+      "new_text": "If you've got 4+ years in residential service and want daytime hours in people's homes instead of overnight commercial work, let's talk.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Cliché \"tired of being just a number\", repeated in the checklist below. 4+ years and daytime hours stay. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-024",
+      "url": "/careers",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "52ac6106-a3ab-47dd-8432-ca9a245bd785",
+        "field": "sections[1].heading"
+      },
+      "old_text": "Why Work With Us?",
+      "new_text": "Steady work, daytime hours",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Why Choose Us?\"-type heading. The replacement states the two facts the checklist under it gives. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-025",
+      "url": "/careers",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "52ac6106-a3ab-47dd-8432-ca9a245bd785",
+        "field": "sections[1].checklist[2].text"
+      },
+      "old_text": "A small, family-run team that treats you like one. You're a name here, not a number.",
+      "new_text": "A small, family-run team that treats you like one.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"X, not Y\" cliché, second use of the \"number\" line on the page. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-026",
+      "url": "/careers",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "52ac6106-a3ab-47dd-8432-ca9a245bd785",
+        "field": "sections[4].text"
+      },
+      "old_text": "Ready to start your next chapter? Use the form to tell us a bit about yourself and the role you’re interested in. We’ll follow up shortly.",
+      "new_text": "Use the form to tell us about yourself and your residential service experience. We’ll follow up shortly.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Rhetorical-question opener and cliché (\"start your next chapter\"); there is one open role, so it is named. The follow-up promise stays. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-027",
+      "url": "/careers",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "52ac6106-a3ab-47dd-8432-ca9a245bd785",
+        "field": "sections[4].successMessage"
+      },
+      "old_text": "Thank you! Your submission has been received. We will reach back out soon.",
+      "new_text": "Thank you. We’ll get back to you soon.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Exclamation plus Webflow stock line (\"Your submission has been received\") that repeats the card heading \"Your application is in.\" Promise (\"soon\") kept. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-028",
+      "url": "/contact-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8c544509-b341-427c-ade7-f1ac9cf6dfcf",
+        "field": "sections[0].text"
+      },
+      "old_text": "For all your electrical needs, The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical.",
+      "new_text": "Call us, or send the form and we’ll call you back to set up a free estimate.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"the name you can trust\", \"your dependable partner in all things electrical\". The replacement answers the H1 (\"Ready to start a request?\") with the business's own process step. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-029",
+      "url": "/contact-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8c544509-b341-427c-ade7-f1ac9cf6dfcf",
+        "field": "sections[1].heading"
+      },
+      "old_text": "Reach out to us today to discuss your electrical needs",
+      "new_text": "Tell us about the job",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Stock phrase \"Reach out to us today to discuss your electrical needs\". Not a keyword heading (H2 beside the form). Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-030",
+      "url": "/contact-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8c544509-b341-427c-ade7-f1ac9cf6dfcf",
+        "field": "sections[1].text"
+      },
+      "old_text": "The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical. Let us brighten your life with safety, efficiency, and expert craftsmanship.",
+      "new_text": "We’ll come out, look at the job, and give you a straight answer on what it’ll cost.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Same slop paragraph as the hero and the /our-team quote, with the padding triplet. Replacement is the business's own /faq sentence. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-031",
+      "url": "/contact-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8c544509-b341-427c-ade7-f1ac9cf6dfcf",
+        "field": "sections[1].successMessage"
+      },
+      "old_text": "Thank you! Your submission has been received. We will reach back out within one business day!",
+      "new_text": "Thank you. We’ll get back to you within one business day.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Two exclamations plus the Webflow stock line that repeats the card heading \"Your request is in.\" The one-business-day promise stays. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-032",
+      "url": "/contact-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8c544509-b341-427c-ade7-f1ac9cf6dfcf",
+        "field": "sections[3].heading"
+      },
+      "old_text": "We proudly serve the entire valley!",
+      "new_text": "We serve the entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"proudly serve\" plus exclamation. Same locationsSection('index', 7) source as /about-us."
+    },
+    {
+      "id": "slop-pages-033",
+      "url": "/contact-us",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8c544509-b341-427c-ade7-f1ac9cf6dfcf",
+        "field": "sections[3].headingAccent"
+      },
+      "old_text": "entire valley!",
+      "new_text": "entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Accent words follow the new heading."
+    },
+    {
+      "id": "slop-pages-034",
+      "url": "/services",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "37c00d07-610e-4713-ae9c-4ecd5b38d649",
+        "field": "sections[0].text"
+      },
+      "old_text": "These services reflect a comprehensive range of electrical solutions that address the needs of both residential and commercial customers, covering everything from repairs to upgrades and safety evaluations.",
+      "new_text": "Residential and commercial electrical work, from repairs and troubleshooting to panel upgrades, EV chargers, lighting, remodels and safety inspections.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"comprehensive range of electrical solutions that address the needs of\". The replacement names the services listed on the page. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-035",
+      "url": "/services",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "intro: fromPage('faq', 'Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get.'),",
+      "new_text": "intro: fromPage('faq', 'What you see on the invoice is what you get.'),",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"understand the importance of\" filler. The remaining sentence is still in the live /faq copy, so fromPage() passes."
+    },
+    {
+      "id": "slop-pages-036",
+      "url": "/services",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "37c00d07-610e-4713-ae9c-4ecd5b38d649",
+        "field": "sections[3].heading"
+      },
+      "old_text": "We proudly serve the entire valley!",
+      "new_text": "We serve the entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"proudly serve\" plus exclamation. Same locationsSection('index', 7) source as /about-us."
+    },
+    {
+      "id": "slop-pages-037",
+      "url": "/services",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "37c00d07-610e-4713-ae9c-4ecd5b38d649",
+        "field": "sections[3].headingAccent"
+      },
+      "old_text": "entire valley!",
+      "new_text": "entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Accent words follow the new heading."
+    },
+    {
+      "id": "slop-pages-038",
+      "url": "/blog",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "05143648-d8aa-4816-8c40-1fa0052542b4",
+        "field": "sections[0].text"
+      },
+      "old_text": "This blog explains the fundamental concepts of home wiring, from outlets and switches to circuit breakers, helping homeowners grasp the essentials of their electrical systems.",
+      "new_text": "Plain answers for Arizona homeowners on how home wiring works, from outlets and switches to circuit breakers, and what to do when something stops working.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"fundamental concepts\", \"grasp the essentials\". Keeps home wiring, outlets, switches, circuit breakers, homeowners. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-039",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[0].text"
+      },
+      "old_text": "Trusted by Phoenix businesses for dependable electrical work. From restaurant build-outs and tenant improvements to industrial power and panel upgrades, our team delivers safe, code-compliant solutions without delays or surprises.",
+      "new_text": "From restaurant build-outs and tenant improvements to industrial power and panel upgrades, we do code-compliant electrical work for Phoenix businesses, without delays or surprises.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Trusted by ... for dependable electrical work\" (the trust line already says \"Trusted by 100+ Arizona businesses\") and \"delivers safe, code-compliant solutions\". Every job type and \"without delays or surprises\" stay. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-040",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[1].services[1].text"
+      },
+      "old_text": "Professional installation of commercial lighting for offices, retail spaces, restaurants, and warehouses. We ensure proper layout, clean installs, and reliable performance for both function and aesthetics.",
+      "new_text": "Commercial lighting installed in offices, retail spaces, restaurants, and warehouses. We get the layout right and leave a clean install.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Professional installation of\", \"reliable performance for both function and aesthetics\". Layout and clean installs stay. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-041",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[1].services[2].text"
+      },
+      "old_text": "Fast, reliable electrical troubleshooting for commercial buildings.",
+      "new_text": "Electrical troubleshooting for commercial buildings.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Empty adjectives \"Fast, reliable\"; the next sentence lists what is diagnosed and keeps \"quickly\". Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-042",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[2].heading"
+      },
+      "old_text": "Commercial electrical solutions built around your business",
+      "new_text": "Commercial electrical work, from repairs to tenant improvements",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"solutions built around your business\" (generic). Keeps \"Commercial electrical\"; the range is the checklist under it. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-043",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[2].headingAccent"
+      },
+      "old_text": "your business",
+      "new_text": "tenant improvements",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Accent words follow the new heading (page-sections.mjs sets it as a literal: headingAccent: 'your business')."
+    },
+    {
+      "id": "slop-pages-044",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[2].items[5].title"
+      },
+      "old_text": "+ More!",
+      "new_text": "All services",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Exclamation and decorative \"+\" on the closing link; clearer link text. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-045",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[3].heading"
+      },
+      "old_text": "Let our reviews speak for themselves",
+      "new_text": "What our customers say",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Cliché heading. The replacement is the template's own default for review sections. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-046",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[4].items[1].title"
+      },
+      "old_text": "Reliable Work",
+      "new_text": "Jobs of Every Size",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Generic benefit title that fits any contractor; the card text says \"commercial projects of all sizes\". Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-047",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[4].items[1].text"
+      },
+      "old_text": "We focus on clean installs, code compliance, and minimizing disruption to your business operations.",
+      "new_text": "We keep installs clean and to code, and can schedule work off-hours so your business keeps running.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Padding triplet \"We focus on ...\". Off-hours scheduling is stated on the Commercial Electrical Service page. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-048",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[4].items[2].title"
+      },
+      "old_text": "Great Service",
+      "new_text": "On Schedule",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Generic benefit title. The card is about schedules and inspections. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-049",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[4].items[2].text"
+      },
+      "old_text": "We understand schedules, inspections, and coordination matter. Our team communicates clearly, shows up on time, and follows through so your project stays on track from start to finish.",
+      "new_text": "We plan around your schedule and the inspections, show up on time, and keep you posted, so your project stays on track from start to finish.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"We understand X matter\" opener and padding triplet. \"Stays on track from start to finish\" (the section heading's source) stays. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-050",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[6].heading"
+      },
+      "old_text": "We proudly serve the entire Phoenix valley!",
+      "new_text": "We serve the entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"proudly serve\" plus exclamation. Live copy: needs an _omissions.json entry."
+    },
+    {
+      "id": "slop-pages-051",
+      "url": "/commercial-electrician",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6271d6b4-2ab3-4c0c-8bbd-e4bde52bf5a4",
+        "field": "sections[6].headingAccent"
+      },
+      "old_text": "entire Phoenix valley!",
+      "new_text": "entire Phoenix valley",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Accent drops the exclamation with the heading."
+    },
+    {
+      "id": "slop-pages-052",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3674493d-975f-4ada-bbdf-7aec58302fda",
+        "field": "bio[0]"
+      },
+      "old_text": "Steven founded The Wire Guy Electric in 2017, bringing over 12 years of experience to serve his community as a trusted resource.",
+      "new_text": "Steven founded The Wire Guy Electric in 2017 with over 12 years of experience behind him.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"serve his community as a trusted resource\". 2017 and 12 years stay. Source: Webflow team item (teamMember doc)."
+    },
+    {
+      "id": "slop-pages-053",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "44a3d0b2-4e0c-44f7-bf0e-43fbf2c5a82d",
+        "field": "bio[0]"
+      },
+      "old_text": "Cody has been with The Wire Guy Electric since its start in 2017, working closely with our team to deliver top-notch service.",
+      "new_text": "Cody has been with The Wire Guy Electric since its start in 2017 and is our service manager.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"working closely with our team to deliver top-notch service\". Role from his teamMember doc (Owner/Service Manager)."
+    },
+    {
+      "id": "slop-pages-054",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "539e7122-ceae-4d92-a787-7af7e78c4a03",
+        "field": "bio[0]"
+      },
+      "old_text": "Cade has been with us for about 6 years and has been a great addition to our team.",
+      "new_text": "Cade has been with us for about 6 years and is our lead technician.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Empty praise (\"a great addition to our team\"). Role from his teamMember doc (Lead Technician)."
+    },
+    {
+      "id": "slop-pages-055",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b5a8cbc7-54a7-457a-b1e9-681c74832fb6",
+        "field": "bio[0]"
+      },
+      "old_text": "Lauren has been with us for about a year, managing all things networking.",
+      "new_text": "Lauren has been with us for about a year and handles our networking.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"all things networking\" stock phrase. The personal lines stay as written."
+    },
+    {
+      "id": "slop-pages-056",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "2760c4cf-2cb4-4e55-9405-803c159b3a2b",
+        "field": "answer[0]"
+      },
+      "old_text": "From entire remodels to small repairs, we do it all! We handle",
+      "new_text": "From entire remodels to small repairs, we handle",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"we do it all!\" enthusiasm. The answer now starts with the list. No link crossed. Shown on /, /faq, /services. Source: migration/content-data/faqs.json (answerHtml)."
+    },
+    {
+      "id": "slop-pages-057",
+      "url": "/faq",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "aef4b036-c407-43d5-8a2c-ab5332bd5e09",
+        "field": "answer[0]"
+      },
+      "old_text": "If you don't see your city listed, don't worry! Just give us a call and we'll let you know if you're in our service radius.",
+      "new_text": "If you don't see your city listed, give us a call and we'll let you know if you're in our service radius.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Exclamation filler \"don't worry! Just\". Crosses the link \"give us a call\" (/contact-us): the linked words stay unchanged. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-058",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c69d5438-27e4-48d9-aad1-8c9b7bf51500",
+        "field": "answer[0]"
+      },
+      "old_text": "Yes we do!",
+      "new_text": "Yes.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Exclamation enthusiasm. Answer first, plainly. The \"Contact us today\" link is untouched. Shown on /, /faq, /contact-us, /services, /estimate. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-059",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3b57aa5a-e39c-4275-9c3e-838ad7689f95",
+        "field": "answer[0]"
+      },
+      "old_text": "Absolutely.",
+      "new_text": "Yes.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Filler opener (\"Absolutely.\"). Shown on /our-team, /faq, /contact-us. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-060",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "963361d4-2efa-4c1b-9f42-04dede665d6d",
+        "field": "answer[0]"
+      },
+      "old_text": "Nope! Our technicians understand the importance of upfront pricing.",
+      "new_text": "No.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Exclamation plus \"understand the importance of\" filler. \"What you see on the invoice is what you get\" follows and stays. Shown on /, /faq, /our-team, /services, /estimate. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-061",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c84f870e-8bc7-4af6-9ce2-270186badbc6",
+        "field": "answer[0]"
+      },
+      "old_text": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities.",
+      "new_text": "We are a local, family-run company, in business for over 9 years.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"take pride in being\", \"are our #1 priorities\". 9 years and family-run stay. No link crossed. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-062",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c84f870e-8bc7-4af6-9ce2-270186badbc6",
+        "field": "answer[0]"
+      },
+      "old_text": "While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers.",
+      "new_text": "We have grown slowly and are still a small business, which keeps our service personal.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"We believe this allows us to offer a more personalized experience\" (stock). No link crossed. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-063",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c6c9b03-dd11-42d8-ab52-6c7928b5deb9",
+        "field": "answer[0]"
+      },
+      "old_text": "Yes! We are happy to provide referrals for other services to our customers.",
+      "new_text": "Yes. We are happy to provide referrals for other services to our customers.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Exclamation enthusiasm. Shown on /our-team, /faq, /contact-us. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-064",
+      "url": "/faq",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "41ef3a0b-6698-4b79-8c74-e0f410cc6453",
+        "field": "answer[0]"
+      },
+      "old_text": "which can make it hard to know what your final bill is going to be At The Wire Guy Electric, we do things differently. We use flat-rate pricing",
+      "new_text": "which can make it hard to know what your final bill is going to be. At The Wire Guy Electric, we use flat-rate pricing",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Stock phrase \"we do things differently\"; also adds the missing full stop after \"going to be\". Prices stay. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-065",
+      "url": "/faq",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7d6429bc-19ce-441a-8bec-fd9185f62fcb",
+        "field": "answer[0]"
+      },
+      "old_text": "There are a few clear signs. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Content-free opener; the answer starts with the first sign. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-066",
+      "url": "/faq",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ca05d3be-77f2-49c1-8c8e-2067ed6f9caa",
+        "field": "answer[0]"
+      },
+      "old_text": "For the cost, which is typically between $300 and $600 installed, it's one of the best investments you can make to protect thousands of dollars worth of equipment.",
+      "new_text": "It typically costs between $300 and $600 installed and protects thousands of dollars worth of equipment.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Sales superlative \"one of the best investments you can make\". The price stays (FAQ answer). Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-067",
+      "url": "/faq",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ee4a92f9-40b6-4928-bf6b-34b89e6505c5",
+        "field": "answer[0]"
+      },
+      "old_text": "Absolutely. Adding outlets, dedicated circuits, and upgrading your electrical capacity is one of the most common things we do. Whether you need a dedicated 240-volt outlet for a dryer, a new circuit for a home office, a dedicated line for your microwave, or additional outlets in a room that never has enough, we can handle it.",
+      "new_text": "Yes. Adding outlets, dedicated circuits, and upgrading your electrical capacity is one of the most common things we do: a dedicated 240-volt outlet for a dryer, a new circuit for a home office, a dedicated line for your microwave, or more outlets in a room that never has enough.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Filler opener plus \"Whether you need X or Y, we can handle it\". Every example stays. No link crossed. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-068",
+      "url": "/faq",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4ee3a955-68f5-4dc7-a2e5-e773e4a39209",
+        "field": "answer[0]"
+      },
+      "old_text": "However, we understand that electrical issues don't always happen during business hours. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"we understand that\" filler; the hours and the urgent-call line stay. Source: faqs.json."
+    },
+    {
+      "id": "slop-pages-069",
+      "url": "",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "siteSettings",
+        "field": "description"
+      },
+      "old_text": "Licensed family owned Mesa electricians for residential & commercial work. Licensed, insured, and reliable service. Rated 5 stars with 380+ Google reviews.",
+      "new_text": "Family-owned electricians in Mesa, AZ for residential and commercial work. Licensed, bonded, and insured. Rated 5 stars with 380+ Google reviews.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Padding triplet \"Licensed, insured, and reliable service\" (\"Licensed\" twice). Used as the LocalBusiness description in JSON-LD; it is only a homepage meta fallback when page.seo and intro are empty (they are not). Bonded and the ROC number come from Site settings."
+    },
+    {
+      "id": "slop-pages-070",
+      "url": "/estimate",
+      "target": {
+        "kind": "file",
+        "file": "web/src/components/sections/EstimateForm.astro"
+      },
+      "old_text": "{successMessage ?? 'Thanks! We’ll call you during office hours to schedule your free estimate.'}",
+      "new_text": "{successMessage ?? 'Thanks. We’ll call you during office hours to schedule your free estimate.'}",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Exclamation in the form confirmation (CTA band on most pages, /estimate)."
+    },
+    {
+      "id": "slop-pages-071",
+      "url": "/careers",
+      "target": {
+        "kind": "file",
+        "file": "web/src/components/sections/ApplicationForm.astro"
+      },
+      "old_text": "{successMessage ?? 'Thank you! We will reach back out soon.'}",
+      "new_text": "{successMessage ?? 'Thank you. We’ll get back to you soon.'}",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Exclamation in the fallback confirmation; matches the careers success message rewrite."
+    },
+    {
+      "id": "slop-pages-072",
+      "url": "/services/panels",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/services/[slug].astro"
+      },
+      "old_text": "faqIntro=\"From our FAQ, written by the electricians who do the work.\"",
+      "new_text": "faqIntro=\"From our FAQ.\"",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Unverifiable authorship claim repeated across templates. Every service page."
+    },
+    {
+      "id": "slop-pages-073",
+      "url": "/services/panels",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/services/[slug].astro"
+      },
+      "old_text": "guidesIntro=\"Before you call, read up on the details, from licensed electricians.\"",
+      "new_text": "guidesIntro=\"Read up on the details before you call.\"",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Vague authorship tag (\"from licensed electricians\"); blog authors are not shown (owner rule). Every service page."
+    },
+    {
+      "id": "slop-pages-074",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/blog-posts/[slug].astro"
+      },
+      "old_text": "faqIntro=\"From our FAQ, written by the electricians who do the work.\"",
+      "new_text": "faqIntro=\"From our FAQ.\"",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Unverifiable authorship claim repeated across templates. Every post, tier-1 posts included (template line, not body copy)."
+    },
+    {
+      "id": "slop-pages-075",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/blog-posts/[slug].astro"
+      },
+      "old_text": "guidesIntro=\"More from licensed electricians on the same topic.\"",
+      "new_text": "guidesIntro=\"More guides on the same topic.\"",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Authorship claim on the related-articles module; blog authors are not shown (owner rule). Every post."
+    },
+    {
+      "id": "slop-pages-076",
+      "url": "/locations/gilbert",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/locations/[slug].astro"
+      },
+      "old_text": "'Straight answers from the electricians who do the work.'",
+      "new_text": "'Straight answers before you call.'",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Same unverifiable \"electricians who do the work\" line (city pages without their own FAQs)."
+    },
+    {
+      "id": "slop-pages-077",
+      "url": "/",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d657aaf8-aa0b-4fa1-a673-d9693db33089",
+        "field": "sections[0].text"
+      },
+      "old_text": "We are committed to quality work and friendly service - keeping our prices competitive and our customers happy.",
+      "new_text": "Quality work and friendly service at competitive prices.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "Generic benefit line that fits any contractor (\"We are committed to\", \"our customers happy\"). This is the homepage hero's lit statement: HeroHome shows the first sentence big and the rest as the lede. Tier 1 light touch: the sentence is tightened in place and keeps its three claims (quality work, friendly service, competitive prices). Does not overlap with edit 001 (second sentence of the same field). Source is live copy (index page-content, hero p[3]), so it needs an _omissions.json copy entry. The researcher kept it as a \"design statement\". The owner may still keep the original.",
+      "added_by_verifier": true
+    },
+    {
+      "id": "slop-pages-078",
+      "url": "/our-team",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b5a8cbc7-54a7-457a-b1e9-681c74832fb6",
+        "field": "bio[0]"
+      },
+      "old_text": "She and Cody married in September 2023 and are enjoying married life!",
+      "new_text": "She and Cody married in September 2023 and are enjoying married life.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Exclamation mark in body copy (the researcher removed the same thing from the FAQs and the forms). September 2023 stays. Shown on /our-team and /about-us (bios). Does not overlap with edit 055 (first sentence of the same block). Source: Webflow team item.",
+      "added_by_verifier": true
+    }
+  ]
+}

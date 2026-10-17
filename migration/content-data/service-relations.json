@@ -46,19 +46,19 @@
       "relatedServices": ["panels", "exterior-electrical", "new-construction-wiring"],
       "relatedPosts": [
         "tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+        "installing-car-charger",
         "level-1-vs-level-2-ev-chargers-which-to-choose",
         "ev-charger-hardwired-vs-plug-in-phoenix",
-        "dryer-outlet-for-ev",
-        "installing-car-charger"
+        "dryer-outlet-for-ev"
       ]
     },
     "electrical-safety-inspections": {
       "relatedServices": ["panels", "electrical-troubleshooting", "electrical-remodels"],
       "relatedPosts": [
-        "electrical-inspection-before-selling-a-home",
+        "diy-electrical-work-in-arizona",
         "outdated-wiring-in-older-phoenix-homes",
-        "7-signs-you-need-an-electrical-panel-upgrade",
-        "federal-pacific-zinsco-panels-arizona",
+        "electrical-inspection-before-selling-a-home",
+        "permit-for-electrical-work",
         "aluminum-wiring-older-phoenix-homes"
       ]
     },
@@ -80,10 +80,10 @@
       "relatedServices": ["panels", "electrical-safety-inspections", "commercial-electrical-troubleshooting"],
       "relatedPosts": [
         "can-hot-weather-cause-your-circuit-breaker-to-trip",
-        "why-does-my-breaker-keep-tripping",
-        "half-house-lost-power-heat-arizona",
         "bathroom-or-garage-outlets-not-working-heres-how-to-fix",
-        "why-your-lights-flicker"
+        "why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+        "how-phoenix-heat-affects-your-homes-electrical-system",
+        "why-does-my-breaker-keep-tripping-in-the-summer"
       ]
     },
     "new-construction-wiring": {
@@ -102,8 +102,8 @@
     "electrical-remodels": {
       "relatedServices": ["new-construction-wiring", "panels", "custom-lighting", "recessed-lights-installation"],
       "relatedPosts": [
-        "kitchen-remodel-electrical-circuits-arizona",
         "cost-to-rewire-house-arizona",
+        "kitchen-remodel-electrical-circuits-arizona",
         "aluminum-wiring-older-phoenix-homes",
         "electrical-panel-upgrade-cost-arizona",
         "recessed-lighting-installation-phoenix"

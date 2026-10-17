@@ -11,10 +11,12 @@
 //   sanity-import/production.ndjson  import with:
 //     npx sanity dataset import migration/sanity-import/production.ndjson production --replace
 //   sanity-import/id-map.json        stable document IDs across re-runs
+//   sanity-import/content-dates.json what each document's updatedAt describes (content-dates.mjs)
 //
-// Images are emitted as `_sanityAsset: "image@<webflow url>"`, which the Sanity
-// importer downloads and re-hosts, so nothing depends on Webflow's CDN afterwards.
-// Before import, the site renders these URLs directly (local dataset mode).
+// Images are read as `_sanityAsset: "image@<webflow url>"` and leave as references to the
+// Sanity assets the first import made from those files (their asset documents are in the
+// NDJSON; see "Self-contained images" below), so neither the dataset nor the site depends
+// on Webflow's CDN.
 
 import {readFile, writeFile, mkdir} from 'node:fs/promises'
 import {existsSync} from 'node:fs'
@@ -23,6 +25,7 @@ import {JSDOM} from 'jsdom'
 import {Schema} from '@sanity/schema'
 import {htmlToBlocks} from '@portabletext/block-tools'
 import * as cheerio from 'cheerio'
+import {BASELINE_PATH, stampContentDates} from './content-dates.mjs'
 
 const ROOT = new URL('../../', import.meta.url)
 const p = (rel) => new URL(rel, ROOT)
@@ -147,6 +150,9 @@ function estimateHref(href, text, docPath) {
   return '/estimate'
 }
 
+// Webflow writes this placeholder into an image's alt when the editor chose "inherit"; it is not a description.
+const altText = (alt) => (alt && alt !== '__wf_reserved_inherit' ? alt : undefined)
+
 function youtubeUrl(src) {
   const id = src?.match(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/)?.[1]
   return id ? `https://www.youtube.com/watch?v=${id}` : src
@@ -188,7 +194,7 @@ function toPortableText(html, docPath) {
               const src = img.getAttribute('src')
               if (!/website-files\.com|webflow\.com/.test(src)) report.externalImages.push({doc: docPath, src})
               const caption = el.querySelector('figcaption')?.textContent.trim()
-              return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: img.getAttribute('alt') || undefined, caption: caption || undefined})
+              return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: altText(img.getAttribute('alt')), caption: caption || undefined})
             }
             return undefined
           }
@@ -196,7 +202,7 @@ function toPortableText(html, docPath) {
           if (tag === 'img' && el.getAttribute('src')) {
             const src = el.getAttribute('src')
             if (!/website-files\.com|webflow\.com/.test(src)) report.externalImages.push({doc: docPath, src})
-            return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: el.getAttribute('alt') || undefined})
+            return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: altText(el.getAttribute('alt'))})
           }
           if (tag === 'table') {
             const rows = [...el.querySelectorAll('tr')].map((tr) => ({
@@ -223,12 +229,36 @@ function toPortableText(html, docPath) {
       },
     ],
   })
-  // Drop spacer paragraphs Webflow leaves behind (<p>‍</p>, <p><br></p>).
-  return blocks.filter((b) => b._type !== 'block' || b.children?.some((c) => c.text?.replace(/[\s‍]/g, '')))
+  // Drop spacer paragraphs Webflow leaves behind (<p>‍</p>, <p><br></p>), after trimming the line breaks it
+  // leaves at the start and end of a block (each would render as a stray <br>).
+  return blocks.map(trimBlock).filter((b) => b._type !== 'block' || b.children?.some((c) => c.text?.replace(/[\s‍]/g, '')))
+}
+
+/** A block without whitespace at its edges: the first span's leading and the last span's trailing whitespace go. */
+function trimBlock(b) {
+  if (b._type !== 'block' || !b.children?.length) return b
+  const children = b.children.map((c) => ({...c}))
+  const edge = (i, re) => {
+    if (typeof children[i]?.text === 'string') children[i].text = children[i].text.replace(re, '')
+  }
+  // a span that held only whitespace leaves its neighbour as the new edge
+  while (children.length) {
+    edge(0, /^[\s‍]+/)
+    if (children.length > 1 && children[0].text === '') children.shift()
+    else break
+  }
+  while (children.length) {
+    edge(children.length - 1, /[\s‍]+$/)
+    if (children.length > 1 && children.at(-1).text === '') children.pop()
+    else break
+  }
+  // a link whose only text was edge whitespace has no span left
+  const used = new Set(children.flatMap((c) => c.marks ?? []))
+  return {...b, children, markDefs: (b.markDefs ?? []).filter((m) => used.has(m._key))}
 }
 
 const image = (field, alt) =>
-  field?.url ? {_type: 'image', _sanityAsset: `image@${field.url}`, ...(alt || field.alt ? {alt: alt || field.alt} : {})} : undefined
+  field?.url ? {_type: 'image', _sanityAsset: `image@${field.url}`, ...(alt || altText(field.alt) ? {alt: alt || altText(field.alt)} : {})} : undefined
 
 const slug = (current) => ({_type: 'slug', current})
 const plainBlocks = (text) =>
@@ -286,12 +316,33 @@ const tabOrder = (tab) =>
     .map((_, a) => servicesPage(a).attr('href').split('/').pop())
     .get()
 const serviceOrder = [...new Set([...tabOrder('Residential'), ...tabOrder('Commercial'), ...tabOrder('All')])]
+
+// A service that is live with unpublished edits staged on it (isDraft and lastPublished both set) ships what
+// is live, not the draft (owner, 2026-10-17: hanging-lights): the body is the published page's rich text,
+// saved as migration/live-snapshots/services_<slug>.html, and the short description is its live /services card.
+async function publishedService(f) {
+  const file = `migration/live-snapshots/services_${f.slug}.html`
+  if (!existsSync(p(file))) throw new Error(`${f.slug} has unpublished edits staged in Webflow: save its live page as ${file}`)
+  const page = cheerio.load(await readFile(p(file), 'utf8'))
+  const richText = page('.w-richtext')
+  const card = servicesPage(`a.services-title[href="/services/${f.slug}"]`).first().closest('.w-dyn-item').find('p').first().text().trim()
+  if (richText.length !== 1 || !card) throw new Error(`${file}: expected one rich-text body and a /services card`)
+  // Webflow's rich text holds its own copy of the main photo (<id>_<main photo's file id>_<name>); point it at
+  // the main image, which the import already has.
+  const mainId = f['main-image']?.url?.match(/\/([0-9a-f]{24})_[^/]+$/)?.[1]
+  richText.find('img').each((_, img) => {
+    if (mainId && page(img).attr('src')?.includes(`_${mainId}_`)) page(img).attr('src', f['main-image'].url)
+  })
+  return {body: richText.html(), shortDescription: card}
+}
+
 for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
   if (it.isArchived) continue
   const f = it.fieldData
   const path = `/services/${f.slug}`
   // Keep a service only if it's live today, so we don't publish drafts by accident.
   if (!live(path) && (it.isDraft || !it.lastPublished)) continue
+  const published = it.isDraft && it.lastPublished ? await publishedService(f) : {body: f['post-body-2'], shortDescription: f['short-description']}
   push({
     _id: idFor(`service:${it.id}`),
     _type: 'service',
@@ -299,9 +350,9 @@ for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
     slug: slug(f.slug),
     category: f.category ? ref(`serviceCategory:${f.category}`) : undefined,
     heading: live(path)?.h1?.[0] && live(path).h1[0] !== f.name ? live(path).h1[0] : undefined,
-    shortDescription: f['short-description'],
+    shortDescription: published.shortDescription,
     mainImage: image(f['main-image']),
-    body: toPortableText(f['post-body-2'], path),
+    body: toPortableText(published.body, path),
     seo: seoFor(path, `${f.name} in Mesa, AZ | The Wire Guy`, f['short-description']),
     order: serviceOrder.includes(f.slug) ? serviceOrder.indexOf(f.slug) : 100,
     webflowId: it.id,
@@ -488,12 +539,48 @@ push({
 })
 
 // Content added on top of the Webflow export: page-builder sections for the static
-// pages, data fixes, real reviews and sourced local facts. Each module receives the
-// document list and helpers and edits or adds documents in place.
+// pages, data fixes, the business's profiles, real reviews, sourced local facts, the launch
+// copy edits, contextual internal links and the approved titles, meta descriptions and H1s.
+// Each module receives the document list and helpers and edits or adds documents in place.
+// content-edits runs at several points ("module:stage"); its header says why, and
+// cms-templates runs its service stage itself.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const name of ['fixes', 'reviews', 'local-facts', 'page-sections', 'cms-templates']) {
-  await (await import(`./content/${name}.mjs`)).default(ctx)
+for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'internal-links', 'titles-meta']) {
+  const [name, stage] = step.split(':')
+  await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }
+
+// Self-contained images: every image the export gave as a Webflow URL (image@…) becomes a reference
+// to the Sanity asset the import already made from that file (legacy-image-map.mjs), and the asset's
+// document is added, so the dataset imports again without Webflow's CDN, which goes away when the
+// Webflow plan is cancelled. Earlier modules still name these images by URL (bodyRemovals, figureAlts).
+const legacyImages = await readJson('web/src/data/legacy-images.json')
+const legacyAssets = await readJson('migration/sanity-import/legacy-assets.json')
+const unmapped = new Set()
+const usedAssets = new Set()
+const selfContain = (node) => {
+  if (Array.isArray(node)) return node.forEach(selfContain)
+  if (!node || typeof node !== 'object') return
+  if (typeof node._sanityAsset === 'string') {
+    const url = node._sanityAsset.replace(/^image@/, '')
+    const id = legacyImages[url]?.asset
+    if (!id || !legacyAssets[id]) unmapped.add(url)
+    else {
+      delete node._sanityAsset
+      node.asset = {_type: 'reference', _ref: id}
+      usedAssets.add(id)
+    }
+  }
+  Object.values(node).forEach(selfContain)
+}
+docs.forEach(selfContain)
+if (unmapped.size) {
+  console.error('Images with no Sanity asset (run scripts/migrate/legacy-image-map.mjs):', [...unmapped])
+  process.exit(1)
+}
+const present = new Set(docs.map((d) => d._id))
+for (const id of [...usedAssets].sort()) if (!present.has(id)) push(legacyAssets[id])
+report.legacyImages = {referenced: usedAssets.size, assetDocumentsAdded: [...usedAssets].filter((id) => !present.has(id)).length}
 
 // Referential integrity: every reference must point at a document in this file.
 const ids = new Set(docs.map((d) => d._id))
@@ -510,31 +597,17 @@ if (dangling.length) {
   process.exit(1)
 }
 
-// Content dates for the sitemap's <lastmod>: a page, service, city or service category
-// keeps the date from the last run unless its content changed, so the date only moves when
-// the migration really changes the document (a dataset import resets Sanity's _updatedAt
-// on every document, so that can't say it). Posts carry their own publish/update dates.
-const STAMPED = new Set(['page', 'service', 'location', 'serviceCategory'])
-const previousPath = p('migration/sanity-import/production.ndjson')
-const previous = new Map(
-  existsSync(previousPath)
-    ? (await readFile(previousPath, 'utf8'))
-        .split('\n')
-        .filter(Boolean)
-        .map((line) => JSON.parse(line))
-        .map(({updatedAt, ...content}) => [content._id, {updatedAt, content: JSON.stringify(content)}])
-    : [],
-)
-const now = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z')
-for (const doc of docs.filter((d) => STAMPED.has(d._type))) {
-  const before = previous.get(doc._id)
-  delete doc.updatedAt
-  doc.updatedAt = before?.updatedAt && before.content === JSON.stringify(doc) ? before.updatedAt : now
-}
+// Content dates (updatedAt) for the sitemap's <lastmod> and posts' dateModified: a page, service,
+// city, service category or post keeps its date unless its content changed materially since it was
+// dated (content-dates.mjs: 5% of its words, a heading or its FAQs), so the date only moves for a
+// real change (a dataset import resets Sanity's _updatedAt on every document, so that can't say it).
+const dates = stampContentDates(docs, existsSync(p(BASELINE_PATH)) ? await readJson(BASELINE_PATH) : {})
+report.contentDates = dates.dated
 
 await mkdir(p(OUT_DIR), {recursive: true})
 await writeFile(p(`${OUT_DIR}production.ndjson`), docs.map((d) => JSON.stringify(d)).join('\n') + '\n')
 await writeFile(p(`${OUT_DIR}id-map.json`), JSON.stringify(idMap, null, 2) + '\n')
+await writeFile(p(`${OUT_DIR}content-dates.json`), JSON.stringify(dates.baseline, null, 1) + '\n')
 await writeFile(p(`${OUT_DIR}report.json`), JSON.stringify(report, null, 2) + '\n')
 
 const counts = docs.reduce((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {})

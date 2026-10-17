@@ -155,13 +155,13 @@
       "page": "faq",
       "tag": "faq-a",
       "text": "We travel all over the Phoenix Valley to over 11 different cities and areas including Mesa, Gilbert, Chandler, Scottsdale, Phoenix, Tempe, Queen Creek, San Tan Valley, Apache Junction, Fountain Hills, and Ahwatukee. If you don't see your city listed, don't worry! Just give us a call and we'll let you know if you're in our service radius.",
-      "reason": "Owner (redesign reviews, binding): no area count. The answer keeps every word and city link but \"over 11 different\" (migration/content-data/faqs.json), so the same answer on /faq, the service pages and the city pages no longer counts the areas."
+      "reason": "Owner (redesign reviews, binding): no area count. The answer keeps every word and city link but \"over 11 different\" (migration/content-data/faqs.json), so the same answer on /faq, the service pages and the city pages no longer counts the areas. Launch copy pass (2026-10-17): slop-pages-057 also drops \"don't worry! Just\" (the \"give us a call\" link is unchanged)."
     },
     {
       "page": "faq",
       "tag": "faq-a",
       "text": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. However, we understand that electrical issues don't always happen during business hours. If you have an urgent situation, give us a call at 602-769-7892 and we'll do our best to accommodate you. For true emergencies like sparking outlets, burning smells, or a panel that's hot to the touch, don't wait. Call us right away or call 911 if there's an immediate safety threat. You can also reach us through our contact page.",
-      "reason": "Owner (round-3 review, binding): \"For true emergencies, let's get rid of that line.\" The answer keeps every other sentence and link (migration/content-data/faqs.json)."
+      "reason": "Owner (round-3 review, binding): \"For true emergencies, let's get rid of that line.\" The answer keeps every other sentence and link (migration/content-data/faqs.json). Launch copy pass (2026-10-17): slop-pages-068 also drops \"However, we understand that electrical issues don't always happen during business hours.\""
     },
     {
       "page": "about-us",
@@ -192,6 +192,378 @@
       "tag": "button",
       "text": "Get a Free Commercial Electrical Estimate",
       "reason": "The hero's estimate button uses the site's standard label, \"Get a Free Estimate\" (QA, 2026-10-17: the long label stacked the button pair on laptop widths). It still goes to /estimate; \"commercial\" stays in the hero's eyebrow, H1 and lede."
+    },
+    {
+      "page": "about-us",
+      "tag": "p",
+      "text": "At The Wire Guy Electric, we pride ourselves on our unwavering commitment to quality. With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-015 in migration/content-edits/pages.json. \"pride ourselves\", \"unwavering commitment\", \"dedicated to delivering top-notch electrical solutions\". Facts kept: licensed electricians, residential and commercial; founder from Steven's bio, family-run from the H1."
+    },
+    {
+      "page": "about-us",
+      "tag": "li",
+      "text": "Experts on everything electrical!",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-016 in migration/content-edits/pages.json. Superlative with no evidence plus exclamation. The replacement is the business's own scope line (/faq)."
+    },
+    {
+      "page": "about-us",
+      "tag": "p",
+      "text": "Our team has over 30 years of combined experience. We're dedicated electricians ready to please our residential and commercial clients. Any task big or small, we will always do our best to get it done right the first time.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-017 in migration/content-edits/pages.json. \"dedicated electricians ready to please\" filler. The 30 years and \"right the first time\" stay."
+    },
+    {
+      "page": "*",
+      "tag": "p",
+      "text": "Cody has been with The Wire Guy Electric since its start in 2017, working closely with our team to deliver top-notch service. A proud Arizona native, Cody enjoys family time, cooking on his Blackstone, and riding his motorcycle with his wife, Lauren.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-053 in migration/content-edits/pages.json. \"working closely with our team to deliver top-notch service\". Role from his teamMember doc (Owner/Service Manager)."
+    },
+    {
+      "page": "*",
+      "tag": "p",
+      "text": "Lauren has been with us for about a year, managing all things networking. An Arizona native, she loves living close to family. She and Cody married in September 2023 and are enjoying married life! Lauren enjoys Dr. Pepper, film photography, and sharing good food with Cody.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-055, slop-pages-078 in migration/content-edits/pages.json. \"all things networking\" stock phrase. The personal lines stay as written."
+    },
+    {
+      "page": "blog",
+      "tag": "p",
+      "text": "This blog explains the fundamental concepts of home wiring, from outlets and switches to circuit breakers, helping homeowners grasp the essentials of their electrical systems.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-038 in migration/content-edits/pages.json. \"fundamental concepts\", \"grasp the essentials\". Keeps home wiring, outlets, switches, circuit breakers, homeowners."
+    },
+    {
+      "page": "careers",
+      "tag": "p",
+      "text": "We're a family-owned electrical company hiring an experienced residential service electrician across the Phoenix Valley. If you've got 4+ years in residential service, want daytime hours in people's homes instead of overnight commercial work, and you're tired of being just a number, let's talk.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-023 in migration/content-edits/pages.json. Cliché \"tired of being just a number\", repeated in the checklist below. 4+ years and daytime hours stay."
+    },
+    {
+      "page": "careers",
+      "tag": "h3",
+      "text": "Why Work With Us?",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-024 in migration/content-edits/pages.json. \"Why Choose Us?\"-type heading. The replacement states the two facts the checklist under it gives."
+    },
+    {
+      "page": "careers",
+      "tag": "li",
+      "text": "A small, family-run team that treats you like one. You're a name here, not a number.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-025 in migration/content-edits/pages.json. \"X, not Y\" cliché, second use of the \"number\" line on the page."
+    },
+    {
+      "page": "careers",
+      "tag": "p",
+      "text": "Ready to start your next chapter? Use the form to tell us a bit about yourself and the role you’re interested in. We’ll follow up shortly.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-026 in migration/content-edits/pages.json. Rhetorical-question opener and cliché (\"start your next chapter\"); there is one open role, so it is named. The follow-up promise stays."
+    },
+    {
+      "page": "careers",
+      "tag": "form-success",
+      "text": "Thank you! Your submission has been received. We will reach back out soon.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-027 in migration/content-edits/pages.json. Exclamation plus Webflow stock line (\"Your submission has been received\") that repeats the card heading \"Your application is in.\" Promise (\"soon\") kept."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "Trusted by Phoenix businesses for dependable electrical work. From restaurant build-outs and tenant improvements to industrial power and panel upgrades, our team delivers safe, code-compliant solutions without delays or surprises.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-039 in migration/content-edits/pages.json. \"Trusted by ... for dependable electrical work\" (the trust line already says \"Trusted by 100+ Arizona businesses\") and \"delivers safe, code-compliant solutions\". Every job type and \"without delays or surprises\" stay."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "Professional installation of commercial lighting for offices, retail spaces, restaurants, and warehouses. We ensure proper layout, clean installs, and reliable performance for both function and aesthetics.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-040 in migration/content-edits/pages.json. \"Professional installation of\", \"reliable performance for both function and aesthetics\". Layout and clean installs stay."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "Fast, reliable electrical troubleshooting for commercial buildings. We diagnose power issues, tripping breakers, faulty circuits, and equipment failures to get your business back up and running quickly.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-041 in migration/content-edits/pages.json. Empty adjectives \"Fast, reliable\"; the next sentence lists what is diagnosed and keeps \"quickly\"."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "h2",
+      "text": "Commercial electrical solutions built around your business",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-042, slop-pages-043 in migration/content-edits/pages.json. \"solutions built around your business\" (generic). Keeps \"Commercial electrical\"; the range is the checklist under it."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "h3",
+      "text": "+ More!",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-044 in migration/content-edits/pages.json. Exclamation and decorative \"+\" on the closing link; clearer link text."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "h3",
+      "text": "Reliable Work",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-046 in migration/content-edits/pages.json. Generic benefit title that fits any contractor; the card text says \"commercial projects of all sizes\"."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "Our licensed electricians handle commercial projects of all sizes, from small service calls to larger build-outs. We focus on clean installs, code compliance, and minimizing disruption to your business operations.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-047 in migration/content-edits/pages.json. The card keeps \"commercial projects of all sizes\" and adds off-hours scheduling from the commercial service page."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "h3",
+      "text": "Great Service",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-048 in migration/content-edits/pages.json. Generic benefit title. The card is about schedules and inspections."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "We understand schedules, inspections, and coordination matter. Our team communicates clearly, shows up on time, and follows through so your project stays on track from start to finish.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-049 in migration/content-edits/pages.json. \"We understand X matter\" opener and padding triplet. \"Stays on track from start to finish\" (the section heading's source) stays."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "h3",
+      "text": "Let our reviews speak for themselves",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-045 in migration/content-edits/pages.json. Cliché heading. The replacement is the template's own default for review sections."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "h2",
+      "text": "We proudly serve the entire Phoenix valley!",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-050, slop-pages-051 in migration/content-edits/pages.json. \"proudly serve\" plus exclamation."
+    },
+    {
+      "page": "contact-us",
+      "tag": "p",
+      "text": "For all your electrical needs, The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-028 in migration/content-edits/pages.json. \"the name you can trust\", \"your dependable partner in all things electrical\". The replacement answers the H1 (\"Ready to start a request?\") with the business's own process step."
+    },
+    {
+      "page": "contact-us",
+      "tag": "h3",
+      "text": "Reach out to us today to discuss your electrical needs",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-029 in migration/content-edits/pages.json. Stock phrase \"Reach out to us today to discuss your electrical needs\". Not a keyword heading (H2 beside the form)."
+    },
+    {
+      "page": "contact-us",
+      "tag": "p",
+      "text": "The Wire Guy Electric is the name you can trust. We are dedicated to being your dependable partner in all things electrical. Let us brighten your life with safety, efficiency, and expert craftsmanship.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-030 in migration/content-edits/pages.json. Same slop paragraph as the hero and the /our-team quote, with the padding triplet. Replacement is the business's own /faq sentence."
+    },
+    {
+      "page": "contact-us",
+      "tag": "form-success",
+      "text": "Thank you! Your submission has been received. We will reach back out within one business day!",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-031 in migration/content-edits/pages.json. Two exclamations plus the Webflow stock line that repeats the card heading \"Your request is in.\" The one-business-day promise stays."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "From entire remodels to small repairs, we do it all! We handle recessed lighting, panel upgrades, EV charger installations, troubleshooting, custom lighting, fixture replacements, electrical safety inspections, surge protection, and more. Check out our services page to learn more or give us a call at 602-769-7892 if you have questions about a specific service.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-056 in migration/content-edits/pages.json. \"we do it all!\" enthusiasm. The answer now starts with the list."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "Yes we do! Contact us today to get a free quote. We'll come out, look at the job, and give you a straight answer on what it'll cost. No pressure and no obligation.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-058 in migration/content-edits/pages.json. Exclamation enthusiasm. Answer first, plainly. The \"Contact us today\" link is untouched."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "Absolutely. We can help plan fixture types, placement, color temperature, dimming, and layered lighting around how you use the room. Contact us today to schedule a free estimate and turn the plan into a code-compliant installation.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-059 in migration/content-edits/pages.json. Filler opener (\"Absolutely.\")."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "Nope! Our technicians understand the importance of upfront pricing. What you see on the invoice is what you get. If any changes are made to your project, we will update it promptly and send it over for you to review.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-060 in migration/content-edits/pages.json. Exclamation plus \"understand the importance of\" filler. \"What you see on the invoice is what you get\" follows and stays."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "We have been in business for over 9 years and take pride in being a local, family-run business. Our customers' happiness and our quality of work are our #1 priorities. We are licensed, bonded, and insured (ROC #365306). While we have slowly been growing our company, we are still a small business. We believe this allows us to offer a more personalized experience for our customers. Learn more on our About Us page or meet our team.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-061, slop-pages-062 in migration/content-edits/pages.json. \"take pride in being\", \"are our #1 priorities\". 9 years and family-run stay."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "Yes! We are happy to provide referrals for other services to our customers. Over the years we've built relationships with great contractors across the valley in plumbing, HVAC, roofing, and more. Just reach out and we'll point you in the right direction.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-063 in migration/content-edits/pages.json. Exclamation enthusiasm."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "A lot of electricians in the Phoenix area charge between $125 and $375 per hour, which can make it hard to know what your final bill is going to be At The Wire Guy Electric, we do things differently. We use flat-rate pricing, which means we quote you a price before we start and that's what you pay. No surprises. Whether the job takes us one hour or three, your price stays the same. We think that's the fairest way to do business because it puts the risk on us, not on you. Get a free estimate to see our pricing for your specific project.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-064 in migration/content-edits/pages.json. Stock phrase \"we do things differently\"; also adds the missing full stop after \"going to be\". Prices stay."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "There are a few clear signs. If your breakers trip frequently, if your lights flicker when large appliances kick on, if you still have a fuse box, or if your panel is more than 25 years old, it's worth having it looked at. Homes with 100-amp panels that are trying to run modern appliances, AC systems, and EV chargers are usually overdue for an upgrade. We also strongly recommend replacing any Federal Pacific or Zinsco branded panels, as these have well-documented safety issues. We offer free estimates and will give you an honest answer on whether you actually need the upgrade or not. Read more on our panel upgrades service page.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-065 in migration/content-edits/pages.json. Content-free opener; the answer starts with the first sign."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "A whole house surge protector installs at your electrical panel and protects every circuit in your home from voltage spikes. These spikes can come from lightning, utility grid fluctuations, or even your own AC unit cycling on and off. In Arizona, monsoon season is a real threat to electronics and appliances. A surge protector won't stop a direct lightning strike, but it handles the more common surges that quietly damage things like your refrigerator, washer, smart TV, and HVAC system over time. For the cost, which is typically between $300 and $600 installed, it's one of the best investments you can make to protect thousands of dollars worth of equipment. Read our full guide: Is Whole-House Surge Protection Necessary in My Home?",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-066 in migration/content-edits/pages.json. Sales superlative \"one of the best investments you can make\". The price stays (FAQ answer)."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "Absolutely. Adding outlets, dedicated circuits, and upgrading your electrical capacity is one of the most common things we do. Whether you need a dedicated 240-volt outlet for a dryer, a new circuit for a home office, a dedicated line for your microwave, or additional outlets in a room that never has enough, we can handle it. See our full list of electrical services or request a free estimate.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-067 in migration/content-edits/pages.json. Filler opener (\"Absolutely.\") plus \"Whether you need X or Y, we can handle it\". Every example stays."
+    },
+    {
+      "page": "index",
+      "tag": "p",
+      "text": "We are committed to quality work and friendly service - keeping our prices competitive and our customers happy. Our family-owned team of professional electricians provide a wide range of electrical solutions for both residential and commercial clients.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-001, slop-pages-077 in migration/content-edits/pages.json. Stock phrase \"a wide range of electrical solutions\"; also fixes \"team ... provide\". Keeps family-owned, electricians, residential and commercial in the first 100 words."
+    },
+    {
+      "page": "index",
+      "tag": "text",
+      "text": "At The Wire Guy Electric, Steven leads our commitment to quality workmanship and fair pricing. Our family-owned team, including Cody, provides friendly, professional electrical service. Emma helps customers schedule the right solution for their home or business.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-002 in migration/content-edits/pages.json. \"leads our commitment to\", \"friendly, professional electrical service\", \"schedule the right solution\". Crosses the three teamMemberMention marks: \"Steven\", \"Cody\" and \"Emma\" stay as linked words unchanged. Roles from the teamMember docs (Cody: Owner/Service Manager) and Emma's bio (\"the friendly voice you'll hear on the phone\"). Avoids repeating \"family-owned\" from the summary sentence above it."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "+ More!",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-013 in migration/content-edits/pages.json. Exclamation and decorative \"+\" on the checklist's closing link (to /services); clearer link text."
+    },
+    {
+      "page": "index",
+      "tag": "p",
+      "text": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-010 in migration/content-edits/pages.json. Paragraph ends on a restated CTA (\"Contact us today\") right above the card's own Get a Free Estimate button; \"transparent\" filler."
+    },
+    {
+      "page": "index",
+      "tag": "p",
+      "text": "We only offer top-quality electrical services. We'll tackle your problems big or small, and get it done right the first time.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-011 in migration/content-edits/pages.json. Superlative with no evidence (\"top-quality\"). \"Right the first time\" (the section heading's source) stays."
+    },
+    {
+      "page": "index",
+      "tag": "p",
+      "text": "Your satisfaction is our top priority. We don't go home until the job is done. We'll always come back if you have any issues.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-012 in migration/content-edits/pages.json. Stock phrase \"Your satisfaction is our top priority\". Both commitments stay."
+    },
+    {
+      "page": "index",
+      "tag": "p",
+      "text": "We install or troubleshoot issues with all EV chargers that are installed to last and perform.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-003 in migration/content-edits/pages.json. Vague filler (\"installed to last and perform\"). \"Every make and model\" is the business's own FAQ claim (\"We install chargers for all makes and models\")."
+    },
+    {
+      "page": "index",
+      "tag": "p",
+      "text": "Brighten and modernize any home! Recessed lights are the #1 lighting choice for our customers.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-005 in migration/content-edits/pages.json. Exclamation-mark enthusiasm, generic benefit sentence; the fact (\"#1 lighting choice\") stays."
+    },
+    {
+      "page": "index",
+      "tag": "p",
+      "text": "Something not working? We provide reliable electrical troubleshooting for any issue.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-004 in migration/content-edits/pages.json. Rhetorical-question opener plus empty \"reliable ... for any issue\". Replacement uses the Troubleshooting service's own description."
+    },
+    {
+      "page": "our-team",
+      "tag": "p",
+      "text": "With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-020 in migration/content-edits/pages.json. \"dedicated to delivering top-notch electrical solutions\", a copy of the About Us lede. Facts from the page itself: licensed electricians (H1), office roles (Office Manager, Dispatcher), Emma's bio (the voice on the phone), residential and commercial."
+    },
+    {
+      "page": "*",
+      "tag": "p",
+      "text": "Steven founded The Wire Guy Electric in 2017, bringing over 12 years of experience to serve his community as a trusted resource. In his free time, he enjoys cooking, spending time with his fiance Emma and their dog Lulu, watching movies, and doing projects around their home.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-052 in migration/content-edits/pages.json. \"serve his community as a trusted resource\". 2017 and 12 years stay."
+    },
+    {
+      "page": "*",
+      "tag": "p",
+      "text": "Cade has been with us for about 6 years and has been a great addition to our team.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-054 in migration/content-edits/pages.json. Empty praise (\"a great addition to our team\"). Role from his teamMember doc (Lead Technician)."
+    },
+    {
+      "page": "our-team",
+      "tag": "h3",
+      "text": "Your satisfaction is our ultimate goal",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-021 in migration/content-edits/pages.json. Stock phrase. The H2 above (\"We care about doing honest work for honest prices\") already carries the message; an empty subheading renders nothing."
+    },
+    {
+      "page": "services",
+      "tag": "p",
+      "text": "These services reflect a comprehensive range of electrical solutions that address the needs of both residential and commercial customers, covering everything from repairs to upgrades and safety evaluations.",
+      "reason": "Launch copy pass (2026-10-17): slop-pages-034 in migration/content-edits/pages.json. \"comprehensive range of electrical solutions that address the needs of\". The replacement names the services listed on the page."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "“On time and stayed on schedule”",
+      "reason": "Launch copy pass (2026-10-17), decision D3: the live hero shows this starred one-liner as a customer quote, but it matches none of the business's reviews (migration/reviews), so it is not carried over (FTC rule on fake reviews). The hero keeps its live trust line, \"Trusted by 100+ Arizona businesses\", word for word. Owner to confirm (migration/content-edits/README.md)."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "“Clear pricing and communication”",
+      "reason": "Launch copy pass (2026-10-17), decision D3: the live hero shows this starred one-liner as a customer quote, but it matches none of the business's reviews (migration/reviews), so it is not carried over (FTC rule on fake reviews). The hero keeps its live trust line, \"Trusted by 100+ Arizona businesses\", word for word. Owner to confirm (migration/content-edits/README.md)."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "p",
+      "text": "“Reliable electricians for our business”",
+      "reason": "Launch copy pass (2026-10-17), decision D3: the live hero shows this starred one-liner as a customer quote, but it matches none of the business's reviews (migration/reviews), so it is not carried over (FTC rule on fake reviews). The hero keeps its live trust line, \"Trusted by 100+ Arizona businesses\", word for word. Owner to confirm (migration/content-edits/README.md)."
+    },
+    {
+      "page": "*",
+      "tag": "h2",
+      "text": "We're ready to work for you",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-11 in migration/content-edits/decisions.json): the shared closing band (Site settings → CTA band) now reads \"You'll know the price before we start\", the flat-rate promise from /faq. Button, link and status line are unchanged."
+    },
+    {
+      "page": "index",
+      "tag": "h2",
+      "text": "Electrician solutions tailored to your needs",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-01 in migration/content-edits/decisions.json): stock heading; now \"Electrical work we do, from repairs to EV chargers\"."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Custom Lighting Solutions",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-07 in migration/content-edits/decisions.json): the checklist item (Site settings → capabilities) reads \"Custom Lighting\"; its service link is unchanged."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Wiring Solutions",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-08 in migration/content-edits/decisions.json): the checklist item (Site settings → capabilities) reads \"Wiring and Rewiring\"."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Amazing Quality",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-09 in migration/content-edits/decisions.json): the card title (Site settings → value props) reads \"Done right the first time\", the card's own promise."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Client Satisfaction",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-10 in migration/content-edits/decisions.json): the card title (Site settings → value props) reads \"We come back if anything's wrong\", which the card's text promises."
+    },
+    {
+      "page": "index",
+      "tag": "h3",
+      "text": "Let our reviews speak for themselves",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-03 in migration/content-edits/decisions.json): cliché heading; now \"What our customers say\", as on /commercial-electrician."
+    },
+    {
+      "page": "index",
+      "tag": "h2",
+      "text": "We proudly serve the entire valley!",
+      "reason": "Launch copy pass (2026-10-17), decision D1 (D1-05 in migration/content-edits/decisions.json): \"proudly serve\" plus exclamation; now \"We serve the entire Phoenix valley\", as on the other pages that show the valley."
+    },
+    {
+      "page": "faq",
+      "tag": "faq-a",
+      "text": "Yes. The Wire Guy Electric is fully licensed, bonded, and insured in the state of Arizona. Our ROC (Registrar of Contractors) license number is 365306, which you can verify at azroc.gov. This protects you as the homeowner because it means our work is backed by the state's contractor recovery fund, and our insurance covers any accidents or damage on the job. Never hire an electrician who can't provide proof of licensing and insurance. Learn more about us.",
+      "reason": "Decision D13 (citations R6, amended): \"which you can verify at azroc.gov\" reads \"roc.az.gov\", the Registrar of Contractors' own host, the site the ROC link in \"How do I choose a good electrician in Phoenix?\" now goes to (D13-01 in migration/content-edits/decisions.json). Every other word and link is unchanged."
     }
   ],
   "links": [
@@ -238,6 +610,30 @@
       "text": "Get a Free Commercial Electrical Estimate",
       "href": "/contact-us",
       "reason": "Same button as the copy entry: it now reads \"Get a Free Estimate\" and goes to /estimate (owner rule: every free-estimate link goes to the Free Estimate page)."
+    },
+    {
+      "page": "faq",
+      "text": "Contact us today",
+      "href": "/contact-us",
+      "reason": "Launch copy pass (2026-10-17), decision D5: in the FAQ \"Do you offer free estimates?\" the link asks for a free estimate, so it goes to /estimate (owner rule; linkFixes in migration/content-data/cms-templates.json). /contact-us stays linked from the page's other links. The same applies to \"I want to upgrade my lighting…\"."
+    },
+    {
+      "page": "our-team",
+      "text": "Contact us today",
+      "href": "/contact-us",
+      "reason": "Launch copy pass (2026-10-17), decision D5: in the FAQ \"I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?\" the link asks for a free estimate, so it goes to /estimate (owner rule; linkFixes in migration/content-data/cms-templates.json). /contact-us stays linked from the page's other links."
+    },
+    {
+      "page": "faq",
+      "text": "contact us",
+      "href": "/contact-us",
+      "reason": "Launch copy pass (2026-10-17), decision D5: in the FAQ \"How long does it take to install recessed lighting?\" the link asks for a free estimate, so it goes to /estimate (owner rule; linkFixes in migration/content-data/cms-templates.json). /contact-us stays linked from the page's other links."
+    },
+    {
+      "page": "faq",
+      "text": "Arizona Registrar of Contractors (ROC) website",
+      "href": "https://azroc.gov",
+      "reason": "Decision D13 (citations R6, amended): the link keeps its words and goes to https://roc.az.gov/, the Registrar's own host (www.azroc.gov 301s to it); linkFixes in migration/content-data/cms-templates.json."
     }
   ],
   "changes": [

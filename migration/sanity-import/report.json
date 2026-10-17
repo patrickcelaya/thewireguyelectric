@@ -619,6 +619,18 @@
       "homeCity.cardBlurb"
     ]
   },
+  "profiles": {
+    "sameAsAdded": [
+      "https://www.google.com/maps?cid=4489697358306155784",
+      "https://www.linkedin.com/company/the-wire-guy-electric",
+      "https://nextdoor.com/pages/the-wire-guy-electric-llc-mesa-az/"
+    ],
+    "offices": {
+      "Mesa": "geo",
+      "Scottsdale": "geo, 2 profiles"
+    },
+    "reviewSummary": "5 from 560+"
+  },
   "reviews": {
     "source": "migration/reviews/google-reviews.json",
     "widgetTotal": "333 Total Reviews",
@@ -866,7 +878,22 @@
       "electrical-safety-inspections",
       "electrical-remodels",
       "exterior-electrical",
-      "recessed-lights-installation"
+      "recessed-lights-installation",
+      "new-construction-wiring",
+      "hanging-lights",
+      "commercial-service",
+      "tenant-improvements",
+      "led-lights",
+      "outlets-and-switches",
+      "storefront-lights",
+      "electrical-upgrades",
+      "commercial-electrical-troubleshooting",
+      "emergency-exit-lights",
+      "dedicated-circuits",
+      "ballast-replacement-fluorescent-lighting"
+    ],
+    "postAlts": [
+      "installing-car-charger"
     ],
     "atAGlance": [
       "panels"
@@ -906,20 +933,117 @@
     ],
     "linkFixes": [
       "recessed-lighting-installation-phoenix: \"Schedule your estimate\" → /estimate",
-      "why-does-my-breaker-keep-tripping: \"Call The Wire Guy Electric today or schedule online\" → /estimate"
+      "why-does-my-breaker-keep-tripping: \"Call The Wire Guy Electric today or schedule online\" → /estimate",
+      "gilbert: \"Schedule a service today\" → /estimate",
+      "chandler: \"Contact The Wire Guy Electric today\" → /estimate",
+      "scottsdale: \"Contact The Wire Guy Electric today\" → /estimate",
+      "phoenix: \"Contact The Wire Guy Electric today\" → /estimate",
+      "tempe: \"Request service today\" → /estimate",
+      "queen-creek: \"Schedule service today\" → /estimate",
+      "san-tan-valley: \"Contact The Wire Guy Electric today\" → /estimate",
+      "apache-junction: \"Contact The Wire Guy Electric today\" → /estimate",
+      "fountain-hills: \"Schedule a consultation today\" → /estimate",
+      "breaker-trips-ac: \"At The Wire Guy Electric, we can help you diagnose potential issues.\" → /estimate",
+      "emfs-in-your-phoenix-home: \"The Wire Guy Electric, we can measure EMFs in your home \" → /estimate",
+      "why-your-lights-flicker: \"Call our family owned buisness, and we'll drive out to your property and diagnose any problems you may have.\" → /estimate",
+      "how-to-wire-a-gfci-outlet: \"contact us\" → /estimate",
+      "Do you offer free estimates?: \"Contact us today\" → /estimate",
+      "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?: \"Contact us today\" → /estimate",
+      "How much does it cost to install an EV charger at home?: \"give us a call\" → /estimate",
+      "How long does it take to install recessed lighting?: \"contact us\" → /estimate",
+      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"National Fire Protection Association (NFPA)\" → https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home",
+      "How do I choose a good electrician in Phoenix?: \"Arizona Registrar of Contractors (ROC) website\" → https://roc.az.gov/"
     ],
     "postCategories": {
       "lighting": 6
     },
     "textFixes": [
-      "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature"
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature",
+      "why-your-lights-flicker: family owned business",
+      "how-to-wire-a-gfci-outlet:  Connect the bare copper (or green) wire",
+      "how-to-wire-a-gfci-outlet:  Look at the back of your new GFCI.",
+      "how-to-wire-a-gfci-outlet: White to Silver). ",
+      "can-hot-weather-cause-your-circuit-breaker-to-trip:  Over years of seasonal temperature swings"
     ],
     "bodyRemovals": [
       "panels: Upgrading Your Electrical Panel",
       "level-1-vs-level-2-ev-chargers-which-to-choose: https://assets.seobotai.com/thewireguyelectric.com/6806df84e572faef869989e9/0115400c5ed8dd17af953d5871652879.jpg"
     ],
+    "figureAlts": [
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: Wiring diagram of a contactor controlling a single-phase motor with normally open and normally closed switches"
+    ],
     "markersRemovedFrom": [
       "level-1-vs-level-2-ev-chargers-which-to-choose"
     ]
-  }
+  },
+  "contentEdits": {
+    "source": "migration/content-edits/",
+    "applied": {
+      "pages": 64,
+      "cities": 58,
+      "decisions": 17,
+      "services": 79,
+      "posts-a": 251,
+      "posts-b": 179
+    },
+    "splits": [
+      "D5-01"
+    ],
+    "blocksDropped": 108,
+    "skipped": [
+      "slop-pages-022",
+      "slop-services-065",
+      "slop-services-066",
+      "slop-services-067",
+      "slop-services-084",
+      "slop-services-085"
+    ],
+    "inFiles": [
+      "slop-pages-006 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-007 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-008 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-009 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-014 web/src/components/sections/Valley.astro",
+      "slop-pages-035 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-070 web/src/components/sections/EstimateForm.astro",
+      "slop-pages-071 web/src/components/sections/ApplicationForm.astro",
+      "slop-pages-072 web/src/pages/services/[slug].astro",
+      "slop-pages-073 web/src/pages/services/[slug].astro",
+      "slop-pages-074 web/src/pages/blog-posts/[slug].astro",
+      "slop-pages-075 web/src/pages/blog-posts/[slug].astro",
+      "slop-pages-076 web/src/pages/locations/[slug].astro",
+      "slop-services-081 migration/content-data/cms-templates.json",
+      "slop-services-082 migration/content-data/cms-templates.json",
+      "slop-services-083 migration/content-data/cms-templates.json",
+      "slop-services-086 web/src/pages/services/[slug].astro",
+      "slop-cities-059 web/src/pages/locations/[slug].astro"
+    ]
+  },
+  "internalLinks": {
+    "source": "migration/content-data/internal-links.json",
+    "added": 124,
+    "documents": 59,
+    "moved": 1
+  },
+  "titlesMeta": {
+    "source": "migration/content-data/titles-meta.json",
+    "applied": 60,
+    "held": [
+      "/locations/ahwatukee title",
+      "/locations/ahwatukee meta",
+      "/locations/chandler title",
+      "/locations/chandler meta",
+      "/locations/phoenix title",
+      "/locations/phoenix meta",
+      "/locations/san-tan-valley title",
+      "/locations/san-tan-valley meta",
+      "/locations/scottsdale title",
+      "/locations/scottsdale meta"
+    ]
+  },
+  "legacyImages": {
+    "referenced": 81,
+    "assetDocumentsAdded": 77
+  },
+  "contentDates": []
 }
