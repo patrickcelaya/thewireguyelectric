@@ -539,10 +539,11 @@ push({
 })
 
 // Content added on top of the Webflow export: page-builder sections for the static
-// pages, data fixes, real reviews, sourced local facts, the launch copy edits, contextual
-// internal links and the approved titles, meta descriptions and H1s. Each module receives the document list and
-// helpers and edits or adds documents in place. content-edits runs at several points
-// ("module:stage"); its header says why, and cms-templates runs its service stage itself.
+// pages, data fixes, the business's profiles, real reviews, sourced local facts, the launch
+// copy edits, contextual internal links and the approved titles, meta descriptions and H1s.
+// Each module receives the document list and helpers and edits or adds documents in place.
+// content-edits runs at several points ("module:stage"); its header says why, and
+// cms-templates runs its service stage itself.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
 for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'internal-links', 'titles-meta']) {
   const [name, stage] = step.split(':')
@@ -600,8 +601,7 @@ if (dangling.length) {
 // city, service category or post keeps its date unless its content changed materially since it was
 // dated (content-dates.mjs: 5% of its words, a heading or its FAQs), so the date only moves for a
 // real change (a dataset import resets Sanity's _updatedAt on every document, so that can't say it).
-const datesPath = BASELINE_PATH
-const dates = stampContentDates(docs, existsSync(p(datesPath)) ? await readJson(datesPath) : {})
+const dates = stampContentDates(docs, existsSync(p(BASELINE_PATH)) ? await readJson(BASELINE_PATH) : {})
 report.contentDates = dates.dated
 
 await mkdir(p(OUT_DIR), {recursive: true})
