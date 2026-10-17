@@ -18,6 +18,12 @@
       "asset": "image-c892be993e9cc5f76be656862cbf6badf2a285bb-926x976-avif",
       "alt": "A Wire Guy Electric electrician kneeling beside a Tesla Model 3 in a home garage, wiring a box on the wall",
       "source": "Replaces a stock photo of a driver at a charging station (redesign asset audit, section 4b) with the crew's own EV install (migration/brand-photos, ev-charger-garage.avif), the photo the live homepage's EV card uses."
+    },
+    {
+      "service": "electrical-troubleshooting",
+      "asset": "image-c1559eab13664ab87065c86bb6f3ea6385d5fe71-1160x1094-avif",
+      "alt": "A Wire Guy Electric electrician in safety glasses working wires out of a ceiling opening",
+      "source": "The crew's own troubleshooting photo (migration/brand-photos, troubleshooting-ceiling-wiring.avif), the photo the live homepage's Troubleshooting card and the round-5 Gilbert mockup use, in place of a photo of tools on a coil of wire (QA, 2026-10-17: card photos must match their service)."
     }
   ],
   "serviceAlts": {
@@ -27,7 +33,6 @@
       "custom-lighting": "Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters",
       "fixture-replacements": "Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting",
       "electrical-safety-inspections": "Two Wire Guy Electric technicians walking up a customer’s front path in an Arizona neighborhood",
-      "electrical-troubleshooting": "Pliers, wire strippers and a voltage tester on a coil of yellow wire",
       "electrical-remodels": "A finished kitchen remodel with recessed lights, white cabinets and a stone island",
       "exterior-electrical": "Lamp posts lighting a brick front walk lined with roses",
       "recessed-lights-installation": "New recessed lights glowing in a vaulted kitchen ceiling"
@@ -35,11 +40,135 @@
   },
   "atAGlance": {
     "panels": [
-      {"label": "Most common job", "value": "200-amp like-for-like replacement", "source": "body", "evidence": "200-amp like-for-like replacement. The job we do most often."},
-      {"label": "Panels we install", "value": "Square D, Siemens, or Eaton", "source": "body", "evidence": "new Square D, Siemens, or Eaton panel goes in"},
-      {"label": "Utility", "value": "APS or SRP, coordinated for you", "source": "body", "evidence": "We coordinate that for you. We submit the service request to APS or SRP"},
-      {"label": "Permits", "value": "We pull the permit and schedule the inspection", "source": "faq:Do I need a permit for electrical work in Arizona?", "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."}
+      {"label": "Most common job", "value": "200-amp like-for-like replacement", "detail": "Same service size, fresh equipment, all new breakers.", "source": "body", "evidence": "200-amp like-for-like replacement. The job we do most often. Old 200-amp panel comes out, new Square D, Siemens, or Eaton panel goes in. Same service size, fresh equipment, all new breakers."},
+      {"label": "Panels we install", "value": "Square D, Siemens, or Eaton", "detail": "Rated for today’s loads.", "source": "body", "evidence": "We replace with new Square D, Siemens, or Eaton panels rated for today's loads."},
+      {"label": "Utility", "value": "APS or SRP, coordinated for you", "detail": "We schedule the meter pull around your work window.", "source": "body", "evidence": "We coordinate that for you. We submit the service request to APS or SRP, schedule the meter pull around your work window"},
+      {"label": "Permits", "value": "We pull the permit", "detail": "We schedule the inspection and make sure everything passes.", "source": "faq:Do I need a permit for electrical work in Arizona?", "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."}
     ]
+  },
+  "quickAnswers": {
+    "source": "service.quickAnswer: the answer-first line of each service page's \"short version\" (round-5 Panels mockup; the Panels text is the mockup's). Each one only restates what the service's own body says: every `evidence` phrase must appear word for word in that body (quote style ignored), and no answer may carry a price.",
+    "answers": {
+      "panels": {
+        "text": "We replace residential electrical panels across Mesa and the Phoenix valley: 200-amp like-for-like swaps, full service replacements with a new meter base, recall-brand replacements, and service upgrades, coordinated with APS or SRP from start to finish.",
+        "evidence": ["Electrical Panel Replacements in Mesa", "200-amp like-for-like replacement", "Full service replacement (all-in-one meter base and panel)", "Recall-brand replacements", "Service upgrades (200 to 400 amp)", "coordinated directly with APS or SRP from start to finish"]
+      },
+      "recessed-lights-installation": {
+        "text": "We install recessed lighting across the Phoenix valley, cut into existing ceilings from below and patched as we go. The layout is planned around how you use the room, with IC-rated cans where they touch insulation and consistent color and dimming across the whole install.",
+        "evidence": ["Recessed Lighting Installation in the Phoenix Valley", "We cut in from below, fish the circuits, and patch as we go", "We plan around how the room is used", "IC rating. Required anywhere a can contacts insulation", "Consistent color and dimming across the whole install"]
+      },
+      "electrical-safety-inspections": {
+        "text": "We inspect homes across the Phoenix valley for buyers, sellers and owners of older houses: the panel and service, the wiring, GFCI and arc-fault protection, and grounding. You get a clear list of what we found, sorted by what actually matters, with real numbers for the work.",
+        "evidence": ["Electrical Safety Inspections in the Phoenix Valley", "they are buying a house, they are selling one", "The house is more than 30 years old", "The panel and service.", "The wiring.", "GFCI protection where it is required", "Arc-fault protection", "grounding and bonding", "A clear list of what we found, sorted by what actually matters", "Plus real numbers for the work"]
+      },
+      "ev-charger-installation": {
+        "text": "We install EV chargers of every major brand across the Phoenix valley, from Tesla Wall Connectors and ChargePoint to plain NEMA 14-50 outlets. Every install starts with a load calculation on your panel and gets a dedicated, properly sized circuit, so the charger hits its rated speed.",
+        "evidence": ["EV Charger Installation in the Phoenix Valley", "we work on every major brand: Tesla Wall Connector, ChargePoint", "plain NEMA 14-50 outlets", "Load calculation on your existing panel before we promise a number", "Dedicated circuit and properly sized breaker", "A charger that hits its rated speed"]
+      },
+      "exterior-electrical": {
+        "text": "We install outdoor electrical across the Phoenix valley: weatherproof outlets in in-use covers, landscape and security lighting, patio and ramada power, and feeders to garages, shops and casitas, built with UV-rated materials and proper burial for Arizona sun and monsoon.",
+        "evidence": ["Exterior Electrical in the Phoenix Valley", "Exterior outlets and GFCI receptacles in weatherproof in-use covers", "Landscape and path lighting", "Security and flood lighting", "Patio, pergola, and ramada power", "Feeders and subpanels for garages, shops, casitas, and sheds", "UV-rated materials, in-use covers, proper burial", "two months of monsoon"]
+      },
+      "fixture-replacements": {
+        "text": "We replace light fixtures, chandeliers, pendants, ceiling fans and vanity lights across the Phoenix valley, on a box rated for the weight with real bracing where it is needed, and with dimmers matched to the fixture so LEDs do not buzz or flicker. Several fixtures can go in one visit.",
+        "evidence": ["Light Fixture Replacement in the Phoenix Valley", "Chandeliers in entries, dining rooms, and stairwells, which usually need a rated box and real bracing", "Pendants over islands and nooks", "Ceiling fans, which need a fan-rated box every time", "Vanity and bath fixtures", "Right box, right bracing. Rated for the weight, every time.", "Dimmer compatibility handled. No buzz, no flicker", "Several fixtures in one visit."]
+      },
+      "electrical-troubleshooting": {
+        "text": "We track down electrical faults in Mesa and across the Phoenix valley: dead outlets and rooms, breakers that keep tripping, flickering lights, buzzing and burning smells. We map the circuit and test where power stops, so the repair fixes the cause, not the symptom.",
+        "evidence": ["Electrical Troubleshooting in Mesa and the Phoenix Valley", "Part of the house has no power", "A breaker trips repeatedly", "Lights that flicker or dim", "Buzzing from a switch", "Burning smells", "we map the circuit rather than guess at it", "test where power stops", "We find the cause, not the symptom."]
+      },
+      "new-construction-wiring": {
+        "text": "We wire custom homes, casitas, guest houses, shops and additions across the Phoenix valley, working from plans with builders and directly with homeowners: temporary power, slab rough, a service sized off a real load calculation, full rough-in and trim out, then every circuit tested and labeled.",
+        "evidence": ["we wire custom homes, casitas, guest houses, detached shops, and additions across the Valley, working from plans with builders and directly with homeowners", "Temporary power.", "Underground and slab rough.", "Sized off a real load calculation", "Full rough-in.", "Trim out.", "Every circuit tested and labeled"]
+      },
+      "custom-lighting": {
+        "text": "We install custom lighting across the Phoenix valley. Our specialty is cabinet lighting cut and soldered to fit each cabinet run and hardwired to a switch or dimmer, alongside recessed cans, chandeliers, pendants, and cove and toe-kick lighting, all with no visible wiring.",
+        "evidence": ["Custom Lighting in the Phoenix Valley", "And our specialty: custom cabinet lighting, cut and soldered to fit each cabinet run, hardwired", "Hardwired to a dedicated switch or dimmer", "Recessed Can Lighting", "Chandeliers", "Pendant Lighting", "Cove and crown lighting", "Toe-kick lighting", "No visible wiring"]
+      },
+      "electrical-remodels": {
+        "text": "We do the electrical for kitchen, bathroom and whole-house remodels across the Phoenix valley: added circuits, GFCI and arc-fault protection, island power and layered lighting, planned against the finished layout and roughed in before anything closes up. We quote from your plans or a walkthrough that costs nothing.",
+        "evidence": ["Kitchen and Bathroom Remodel Electrical in the Phoenix Valley", "whole-house remodels", "adding circuits rather than reusing what is there", "GFCI protection on countertop and island receptacles, and arc-fault protection", "Island and peninsula power", "Lighting in layers", "rough it in before anything closes up", "Send us blueprints or a designer's plan", "have us out for a walkthrough, which costs nothing"]
+      },
+      "commercial-service": {
+        "text": "We handle electrical service, repair and maintenance for commercial properties across the Phoenix valley, from retail centers and offices to restaurants, medical suites, salons and warehouses: dead circuits, tripping breakers, panels, equipment circuits, lighting and exit signs, with off-hours scheduling for occupied buildings.",
+        "evidence": ["Commercial Electrical Service in the Phoenix Valley", "we handle service and maintenance for commercial properties across the Valley: retail centers, offices, restaurants, medical suites, salons, warehouses", "Power is out in part of the building", "Breakers tripping repeatedly", "Panel and breaker work", "New equipment circuits", "Lighting maintenance", "Exit and emergency lighting", "Off-hours scheduling. For occupied buildings"]
+      },
+      "tenant-improvements": {
+        "text": "We do tenant improvement electrical for general contractors, property managers and business owners across the Phoenix valley: shell buildouts, panels and subpanels, lighting and controls, equipment circuits and exit lighting. We bid from your plans, hold the number and hit the rough-in date.",
+        "evidence": ["Tenant Improvement Electrical in the Phoenix Valley", "we do TI electrical for general contractors, property managers, and business owners", "Shell and whitebox buildouts", "Panels and subpanels", "Lighting layouts and controls", "Dedicated equipment circuits", "Emergency and exit lighting", "We bid from plans and hold the number", "hit the rough-in date"]
+      },
+      "led-lights": {
+        "text": "We convert commercial lighting to LED and install new LED lighting across the Phoenix valley for retail, office, warehouse and industrial spaces: full retrofits, high bays, troffers, parking lot lights and lighting controls, phased by area so the space stays usable.",
+        "evidence": ["Commercial LED Lighting and Retrofits in the Phoenix Valley", "we handle LED conversions and new installs for retail, office, warehouse, and industrial spaces across the Valley", "Full LED retrofits", "High bay and warehouse", "Troffers", "Exterior, parking lot, and wall packs", "Lighting controls", "We phase the work by area", "keep the space usable"]
+      },
+      "outlets-and-switches": {
+        "text": "We add, replace and repair outlets and switches for commercial spaces across the Phoenix valley: new receptacles where the layout changed, GFCI protection, floor boxes, workstation power and occupancy sensors, so your equipment stops running off a chain of power strips.",
+        "evidence": ["Commercial Outlets and Switches in the Phoenix Valley", "we add, replace, and repair receptacles and switches for commercial spaces across the Valley", "Additional receptacles where the layout changed", "GFCI protection", "Floor boxes and poke-throughs", "Furniture and workstation whips", "occupancy sensors", "power strip chain"]
+      },
+      "storefront-lights": {
+        "text": "We install and repair storefront, sign and facade lighting for businesses across the Phoenix valley: sign power, entry and canopy lights, window displays, photocells and timers, built with UV-rated materials and drivers rated for the heat they will actually see.",
+        "evidence": ["Storefront and Sign Lighting in the Phoenix Valley", "we install and repair storefront, sign, and facade lighting for businesses across the Valley", "Sign lighting and power", "Entry and canopy lighting", "Window and display lighting", "Photocells and timers", "UV-rated materials on anything exposed", "drivers rated for the ambient temperature they will actually see"]
+      },
+      "hanging-lights": {
+        "text": "We install pendants, chandeliers and suspended lighting for commercial spaces across the Phoenix valley, from restaurants and lobbies to offices and retail floors: on support that is actually rated, hung level at the right height and spacing, with dimming that works.",
+        "evidence": ["Commercial Pendant and Hanging Light Installation in the Phoenix Valley", "we install pendants, chandeliers, and suspended lighting for commercial spaces across the Valley", "in a restaurant, a lobby, or a retail floor", "Linear suspended lighting in offices", "Support that is actually rated", "Height and spacing", "Level and aligned", "Dimming that works"]
+      },
+      "electrical-upgrades": {
+        "text": "We upgrade commercial electrical across the Phoenix valley: panels and distribution, service capacity, feeders, equipment circuits and grounding. Every project starts with a load calculation, so you learn whether the problem is capacity or distribution before you pay for a bigger service.",
+        "evidence": ["Commercial Electrical Upgrades in the Phoenix Valley", "Panels and distribution", "Service capacity", "Feeders", "Equipment circuits for new machinery", "Grounding and bonding corrections", "Every one of these projects should begin with real math", "A load calculation tells you", "adequate service and a distribution problem"]
+      },
+      "commercial-electrical-troubleshooting": {
+        "text": "We diagnose commercial electrical faults across the Phoenix valley: dead circuits, repeat breaker trips, voltage problems, overheating terminations and the intermittent faults nobody can pin down. We map the distribution and test from the load back toward the source, then fix the cause rather than the symptom.",
+        "evidence": ["Commercial Electrical Troubleshooting in the Phoenix Valley", "we diagnose commercial electrical faults across the Valley and fix the cause rather than the symptom", "Dead circuits", "Breakers that trip repeatedly", "Voltage problems", "Overheating at panels, disconnects, and terminations", "Intermittent faults", "We map the distribution", "test methodically from the load back toward the source"]
+      },
+      "emergency-exit-lights": {
+        "text": "We install, test and repair exit signs and emergency lighting for commercial properties across the Phoenix valley: new units along egress paths, battery replacement, LED retrofits and real power-off tests, because Arizona heat shortens battery life.",
+        "evidence": ["Emergency and Exit Lighting in the Phoenix Valley", "we install, test, and repair egress lighting for commercial properties across the Valley", "Exit sign installation and placement along egress paths", "Battery replacement", "Retrofits of old incandescent exit signs to LED", "kill power to the unit and confirm it illuminates", "Arizona heat shortens it"]
+      },
+      "dedicated-circuits": {
+        "text": "We design and install dedicated circuits for commercial equipment across the Phoenix valley: refrigeration and compressors, kitchen equipment, medical and salon equipment, server racks and point of sale. Every circuit is sized off the equipment nameplate, with derating for Arizona heat.",
+        "evidence": ["Dedicated Circuits for Commercial Equipment in the Phoenix Valley", "we design and install dedicated circuits for commercial equipment across the Valley", "Refrigeration, walk-ins, air compressors", "Commercial kitchen equipment", "Medical and dental equipment", "Salon equipment", "Server racks, network gear, and point of sale", "Off the equipment nameplate, every time", "ambient temperature derating is real"]
+      },
+      "ballast-replacement-fluorescent-lighting": {
+        "text": "We repair and replace fluorescent lighting and ballasts for commercial spaces across the Phoenix valley, and we tell you honestly when converting to LED makes more sense than another repair. The work is scheduled around business hours, area by area.",
+        "evidence": ["Ballast Replacement and Fluorescent Lighting Repair in the Phoenix Valley", "we repair and replace fluorescent lighting for commercial spaces across the Valley, and we will tell you honestly when repair is the wrong call", "Converting to LED usually makes more sense", "We schedule around business hours, work area by area"]
+      }
+    }
+  },
+  "bodyEdits": {
+    "source": "Owner rule: no prices in a page body outside FAQ answers and blog posts. Each edit takes a dollar range out of a service body, keeping the rest of the sentence (and every link) as written; the flat-rate sentence is the live city pages' own copy (migration/live-snapshots/locations_gilbert.html). Each `find` must occur exactly once in that service's body text and may not cut through a link; after the edits no service body may contain a price. The ranges stay in the cost FAQ answers.",
+    "edits": [
+      {"service": "panels", "find": "For a standard 200-amp like-for-like panel replacement in the Phoenix metro, expect $5,200 to $6,500. If your job needs a full service replacement with a new all-in-one meter base and panel combo, the range is typically $6,400 to $8,750. Larger 320 or 400-amp service upgrades climb from there. ", "replace": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote. "},
+      {"service": "ev-charger-installation", "find": "Most Tesla Wall Connector installs in the Valley run $650 to $1,800 depending on", "replace": "The price of a Tesla Wall Connector install depends on"},
+      {"service": "ev-charger-installation", "find": " Typical install: $450 to $1,200.", "replace": ""},
+      {"service": "electrical-remodels", "find": " For reference, a standard 200-amp like-for-like panel replacement in the Valley generally runs $5,200 to $6,500, and a full service replacement with a new all-in-one meter base and panel is typically $6,400 to $8,750.", "replace": ""},
+      {"service": "new-construction-wiring", "find": "The relevant number for comparison: adding capacity later, once the drywall is up and the meter is set, means a panel or full service replacement that generally runs $5,200 to $6,500 for a standard 200-amp like-for-like, or $6,400 to $8,750 for a full service replacement with a new all-in-one meter base and panel.", "replace": "Adding capacity later, once the drywall is up and the meter is set, means a panel or full service replacement."}
+    ]
+  },
+  "bodyLinks": {
+    "source": "Links the round-5 Panels mockup adds to a service body: the post is appended, by its own title, to the end of the named list item (which must match exactly once).",
+    "links": [
+      {"service": "panels", "block": "A panel brand on the recall list (Zinsco, Federal Pacific, Challenger, Pushmatic)", "post": "federal-pacific-zinsco-panels-arizona"}
+    ]
+  },
+  "linkFixes": {
+    "source": "Owner rule: every free-estimate link goes to /estimate. These estimate links don't say \"free\", so the migration's phrase rule misses them; each must match exactly one link in that post.",
+    "fixes": [
+      {"post": "recessed-lighting-installation-phoenix", "text": "Schedule your estimate", "from": "/contact-us", "to": "/estimate", "why": "The sentence before it says every job starts with a free estimate."}
+    ]
+  },
+  "postCategories": {
+    "source": "post.category for the blog topic pages (/posts-categories/*, noindex). No live post carried one. A post goes in a topic only when its title is about that topic.",
+    "byCategory": {
+      "lighting": [
+        "recessed-lighting-installation-phoenix",
+        "landscape-lighting-installation-cost-phoenix",
+        "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+        "why-your-lights-flicker",
+        "why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+        "why-you-should-never-ignore-flickering-lights-in-your-arizona-home"
+      ]
+    }
   },
   "textFixes": {
     "source": "Typing slips in post bodies that the Webflow export (and the live page) carry. Each `find` must occur exactly once in that post's body text, or the migration stops.",

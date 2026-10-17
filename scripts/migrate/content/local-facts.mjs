@@ -3,7 +3,9 @@
 // migration/local-facts/locations.json and mesa.json hold the researched values,
 // each with its source ids and a confidence; docs/research/local-facts.md is the
 // readable version with citations. This module writes only "high" confidence values:
-//   location: county, zipCodes, neighborhoods, utilityProviders, permitNotes, geo
+//   location: county, zipCodes, neighborhoods, utilityProviders, permitNotes, geo, and
+//             faqs: the city's own questions ("Who provides electric service in Gilbert?",
+//             "Who issues electrical permits in Gilbert?"), answered with its permit notes
 //   siteSettings.homeCity (Mesa): county, neighborhoods, utilityProviders
 // Mesa's ZIPs, geo and permit notes stay in mesa.json until the homeCity schema has
 // fields for them.
@@ -131,6 +133,11 @@ export default async function localFacts(ctx) {
       if (!Array.isArray(paras) || !paras.length || paras.some((t) => typeof t !== 'string' || !t.trim() || /\n/.test(t))) fail(where, 'permitNotes must be one string per paragraph')
       doc.permitNotes = plainBlocks(paras.join('\n\n'))
       fields.push('permitNotes')
+      const faqs = cityFaqs(doc, paras, (msg) => fail(where, msg))
+      if (faqs.length) {
+        doc.faqs = faqs
+        fields.push('faqs')
+      }
     }
     if (isHigh(slug, 'geo', facts.geo)) {
       doc.geo = checkGeo(where, facts.geo.value)
@@ -164,6 +171,26 @@ export default async function localFacts(ctx) {
     checkZips(where, mesa.zipCodes.value)
     checkGeo(where, mesa.geo.value)
     settings.homeCity = next
+  }
+
+  // The city's own questions (round-5 Gilbert mockup), answered with its permit notes
+  // word for word: the last paragraph is the utility one ("Most of Gilbert is in SRP's
+  // electric service area; …" and how a panel upgrade is coordinated with it), the ones
+  // before it name the permit office. Nothing is added to the notes; the page shows
+  // them as these questions (and in its FAQPage) instead of as a note.
+  function cityFaqs(doc, paras, failHere) {
+    const city = doc.name
+    const utilities = doc.utilityProviders ?? []
+    const power = paras.at(-1)
+    const permits = paras.slice(0, -1)
+    if (!permits.length) failHere('permitNotes needs the permit paragraph(s) before the utility paragraph')
+    const firstSentence = power.split(/(?<=[.;])\s/)[0]
+    if (!utilities.length || !utilities.some((u) => firstSentence.includes(u))) failHere(`the last permit note should open with the city's utility (${utilities.join(', ')}): "${firstSentence}"`)
+    if (!permits[0].includes(city) && !permits[0].includes(doc.cityNameForSeo?.replace(/,\s*AZ$/, '') ?? city)) failHere(`the first permit note does not name ${city}`)
+    return [
+      {_type: 'faqItem', _key: 'utility', question: `Who provides electric service in ${city}?`, answer: plainBlocks(power)},
+      {_type: 'faqItem', _key: 'permits', question: `Who issues electrical permits in ${city}?`, answer: plainBlocks(permits.join('\n\n'))},
+    ]
   }
 
   report.localFacts = {

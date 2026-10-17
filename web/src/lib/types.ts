@@ -259,8 +259,10 @@ export interface ServiceDoc extends ServiceSummary {
   _updatedAt: string
   heading?: string
   body?: PortableTextValue
-  /** Short label/value facts for the "At a glance" block. */
-  atAGlance?: Array<{_key: string; label: string; value: string}> | null
+  /** The answer-first line of the "short version" block (falls back to a line about the business). */
+  quickAnswer?: string | null
+  /** Short label/value facts for the "At a glance" block, each with an optional supporting line. */
+  atAGlance?: Array<{_key: string; label: string; value: string; detail?: string | null}> | null
   /** "Signs you need this" checklist. */
   signs?: string[] | null
   /** `asOf` is the date the range was last checked (show "as of {month year}"). */

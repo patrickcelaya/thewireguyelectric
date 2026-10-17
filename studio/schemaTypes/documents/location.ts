@@ -1,6 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {PinIcon} from '@sanity/icons/Pin'
-import {UTILITY_PROVIDERS, fieldGroups, imageField, legacyIdField, seoField, urlSlugField} from '../shared/fields'
+import {contentUpdatedField, UTILITY_PROVIDERS, fieldGroups, imageField, legacyIdField, seoField, urlSlugField} from '../shared/fields'
 
 // A city in the service area (/locations/<city>). City pages rank when they carry
 // genuinely local proof: real jobs, reviews and local specifics, not swapped city names.
@@ -70,6 +70,7 @@ export const location = defineType({
     }),
     defineField({name: 'faqs', title: 'FAQs', type: 'array', group: 'content', of: [defineArrayMember({type: 'faqItem'})]}),
     seoField,
+    contentUpdatedField,
     legacyIdField,
   ],
   preview: {select: {title: 'name', subtitle: 'slug.current'}, prepare: ({title, subtitle}) => ({title, subtitle: `/locations/${subtitle ?? ''}`})},

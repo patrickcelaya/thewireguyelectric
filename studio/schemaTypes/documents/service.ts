@@ -1,6 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import {WrenchIcon} from '@sanity/icons/Wrench'
-import {fieldGroups, imageField, legacyIdField, seoField, urlSlugField} from '../shared/fields'
+import {contentUpdatedField, fieldGroups, imageField, legacyIdField, seoField, urlSlugField, wordCount} from '../shared/fields'
 
 export const service = defineType({
   name: 'service',
@@ -14,6 +14,23 @@ export const service = defineType({
     defineField({name: 'category', type: 'reference', to: [{type: 'serviceCategory'}], group: 'content'}),
     defineField({name: 'heading', title: 'H1 heading', type: 'string', group: 'content', description: 'Falls back to the service name'}),
     defineField({name: 'shortDescription', type: 'text', rows: 2, group: 'content', description: 'Used on service cards and as the default meta description'}),
+    defineField({
+      name: 'quickAnswer',
+      title: 'Quick answer',
+      type: 'text',
+      rows: 3,
+      group: 'content',
+      description:
+        'The answer-first line of the page\'s "short version": what this service covers, in one or two sentences (25–60 words). Say only what the body says, and no prices. Empty = a line about the business.',
+      validation: (rule) =>
+        rule
+          .custom((value) => {
+            const words = wordCount(value as string | undefined)
+            if (!words) return true
+            return words < 25 || words > 60 ? `${words} words; aim for 25–60` : true
+          })
+          .warning(),
+    }),
     imageField('mainImage', 'Main image', {group: 'content'}),
     defineField({name: 'body', type: 'richText', group: 'content'}),
     defineField({
@@ -29,7 +46,8 @@ export const service = defineType({
           type: 'object',
           fields: [
             defineField({name: 'label', type: 'string', description: 'e.g. "Permit"', validation: (rule) => rule.required()}),
-            defineField({name: 'value', type: 'string', description: 'e.g. "We pull the permit and schedule the inspection"', validation: (rule) => rule.required()}),
+            defineField({name: 'value', type: 'string', description: 'e.g. "We pull the permit"', validation: (rule) => rule.required()}),
+            defineField({name: 'detail', type: 'string', description: 'Optional supporting line under the fact, e.g. "We schedule the inspection and make sure everything passes."'}),
           ],
           preview: {select: {title: 'label', subtitle: 'value'}},
         }),
@@ -77,6 +95,7 @@ export const service = defineType({
     defineField({name: 'relatedPosts', type: 'array', group: 'content', of: [defineArrayMember({type: 'reference', to: [{type: 'post'}]})]}),
     defineField({name: 'order', type: 'number', group: 'content', description: 'Sort order on listings (lower first)'}),
     seoField,
+    contentUpdatedField,
     legacyIdField,
   ],
   orderings: [{title: 'Order', name: 'orderAsc', by: [{field: 'order', direction: 'asc'}, {field: 'name', direction: 'asc'}]}],

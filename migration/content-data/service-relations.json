@@ -111,27 +111,27 @@
     },
     "commercial-service": {
       "relatedServices": ["tenant-improvements", "commercial-electrical-troubleshooting", "electrical-upgrades", "dedicated-circuits"],
-      "relatedPosts": []
+      "relatedPosts": ["electrical-panel-hot-to-the-touch-arizona", "why-does-my-breaker-keep-tripping", "electrical-safety-tips"]
     },
     "tenant-improvements": {
       "relatedServices": ["commercial-service", "electrical-upgrades", "dedicated-circuits", "led-lights"],
-      "relatedPosts": []
+      "relatedPosts": ["cutting-corners-panel-upgrades-phoenix", "electrical-panel-hot-to-the-touch-arizona", "electrical-safety-tips"]
     },
     "led-lights": {
       "relatedServices": ["commercial-service", "tenant-improvements", "ballast-replacement-fluorescent-lighting", "storefront-lights"],
-      "relatedPosts": ["recessed-lighting-installation-phoenix", "landscape-lighting-installation-cost-phoenix"]
+      "relatedPosts": ["recessed-lighting-installation-phoenix", "landscape-lighting-installation-cost-phoenix", "why-your-lights-flicker"]
     },
     "outlets-and-switches": {
       "relatedServices": ["commercial-service", "tenant-improvements", "dedicated-circuits", "commercial-electrical-troubleshooting"],
-      "relatedPosts": ["how-to-wire-a-gfci-outlet", "bathroom-or-garage-outlets-not-working-heres-how-to-fix"]
+      "relatedPosts": ["how-to-wire-a-gfci-outlet", "bathroom-or-garage-outlets-not-working-heres-how-to-fix", "why-does-my-breaker-keep-tripping"]
     },
     "storefront-lights": {
       "relatedServices": ["commercial-service", "led-lights", "tenant-improvements"],
-      "relatedPosts": []
+      "relatedPosts": ["landscape-lighting-installation-cost-phoenix", "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall", "phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system"]
     },
     "hanging-lights": {
       "relatedServices": ["led-lights", "tenant-improvements", "commercial-service"],
-      "relatedPosts": []
+      "relatedPosts": ["recessed-lighting-installation-phoenix", "why-your-lights-flicker", "ceiling-fan-installation-cost-arizona"]
     },
     "electrical-upgrades": {
       "relatedServices": ["commercial-service", "tenant-improvements", "dedicated-circuits", "led-lights"],
@@ -143,15 +143,15 @@
     },
     "emergency-exit-lights": {
       "relatedServices": ["commercial-service", "tenant-improvements", "led-lights"],
-      "relatedPosts": []
+      "relatedPosts": ["electrical-safety-tips", "how-phoenix-heat-affects-your-homes-electrical-system", "electrical-inspection-before-selling-a-home"]
     },
     "dedicated-circuits": {
       "relatedServices": ["commercial-service", "electrical-upgrades", "tenant-improvements", "outlets-and-switches"],
-      "relatedPosts": ["kitchen-remodel-electrical-circuits-arizona", "mini-split-electrical-requirements-arizona"]
+      "relatedPosts": ["kitchen-remodel-electrical-circuits-arizona", "mini-split-electrical-requirements-arizona", "why-does-my-breaker-keep-tripping"]
     },
     "ballast-replacement-fluorescent-lighting": {
       "relatedServices": ["led-lights", "commercial-service", "tenant-improvements"],
-      "relatedPosts": []
+      "relatedPosts": ["why-your-lights-flicker", "why-you-should-never-ignore-flickering-lights-in-your-arizona-home", "recessed-lighting-installation-phoenix"]
     }
   },
   "notPriced": {

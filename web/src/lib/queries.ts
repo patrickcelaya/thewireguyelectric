@@ -527,10 +527,10 @@ export const getServices = memo(() =>
 export function getService(slug: string) {
   return fetchQuery<ServiceDoc | null>(
     defineQuery(`*[_type == "service" && slug.current == $slug][0]{
-      _id, _updatedAt, name, "slug": slug.current, heading, shortDescription,
+      _id, _updatedAt, name, "slug": slug.current, heading, shortDescription, quickAnswer,
       "mainImage": mainImage${IMAGE},
       body${RICH_TEXT},
-      "atAGlance": atAGlance[]{_key, label, value},
+      "atAGlance": atAGlance[]{_key, label, value, detail},
       signs,
       priceRange,
       ${FAQS},

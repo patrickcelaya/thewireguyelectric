@@ -214,6 +214,18 @@ export const fieldGroups = [
 ]
 
 /** Webflow item ID kept on imported documents so imports are idempotent and auditable. */
+/**
+ * When a page's content last changed materially: the sitemap's <lastmod>. The migration
+ * stamps it whenever it changes a document; update it when you change the content.
+ */
+export const contentUpdatedField = defineField({
+  name: 'updatedAt',
+  title: 'Content last changed',
+  type: 'datetime',
+  group: 'seo',
+  description: 'Update this when you change the page\'s content in a meaningful way. Search engines read it from the sitemap.',
+})
+
 export const legacyIdField = defineField({
   name: 'webflowId',
   title: 'Webflow item ID',

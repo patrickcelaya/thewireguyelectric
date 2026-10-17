@@ -1,6 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {DocumentIcon} from '@sanity/icons/Document'
-import {fieldGroups, seoField} from '../shared/fields'
+import {contentUpdatedField, fieldGroups, seoField} from '../shared/fields'
 
 // Standalone pages (home, about-us, contact-us, faq, careers, ...). The slug is
 // the full path without the leading slash; the homepage uses "index".
@@ -33,6 +33,7 @@ export const page = defineType({
     defineField({name: 'intro', type: 'text', rows: 3, group: 'content'}),
     defineField({name: 'sections', type: 'pageSections', group: 'content'}),
     seoField,
+    contentUpdatedField,
   ],
   preview: {select: {title: 'title', slug: 'slug.current'}, prepare: ({title, slug}) => ({title, subtitle: slug === 'index' ? '/' : `/${slug ?? ''}`})},
 })

@@ -162,6 +162,30 @@
       "tag": "faq-a",
       "text": "Our regular office hours are Monday through Friday, 9 AM to 5 PM. However, we understand that electrical issues don't always happen during business hours. If you have an urgent situation, give us a call at 602-769-7892 and we'll do our best to accommodate you. For true emergencies like sparking outlets, burning smells, or a panel that's hot to the touch, don't wait. Call us right away or call 911 if there's an immediate safety threat. You can also reach us through our contact page.",
       "reason": "Owner (round-3 review, binding): \"For true emergencies, let's get rid of that line.\" The answer keeps every other sentence and link (migration/content-data/faqs.json)."
+    },
+    {
+      "page": "about-us",
+      "tag": "h5",
+      "text": "established in 2017",
+      "reason": "Shown as \"Established in 2017\" with a capital first letter, like every other eyebrow on the site (QA, 2026-10-17); the words are unchanged."
+    },
+    {
+      "page": "careers",
+      "tag": "h6",
+      "text": "work with us",
+      "reason": "Shown as \"Work with us\" with a capital first letter, like every other eyebrow on the site (QA, 2026-10-17); the words are unchanged."
+    },
+    {
+      "page": "contact-us",
+      "tag": "h6",
+      "text": "get in touch",
+      "reason": "Shown as \"Get in touch\" with a capital first letter, like every other eyebrow on the site (QA, 2026-10-17); the words are unchanged."
+    },
+    {
+      "page": "commercial-electrician",
+      "tag": "button",
+      "text": "Get a Free Commercial Electrical Estimate",
+      "reason": "The hero's estimate button uses the site's standard label, \"Get a Free Estimate\" (QA, 2026-10-17: the long label stacked the button pair on laptop widths). It still goes to /estimate; \"commercial\" stays in the hero's eyebrow, H1 and lede."
     }
   ],
   "links": [
@@ -202,6 +226,12 @@
       "text": "1321 N 65th St, Mesa, AZ 85205",
       "href": "https://g.co/kgs/BQJ3i8D",
       "reason": "Owner, 2026-10-13: the Mesa address is the owners’ home. It stays in the footer NAP and the structured data (siteSettings address with footerOnly: true) but is not advertised in page content, office cards or contact details."
+    },
+    {
+      "page": "commercial-electrician",
+      "text": "Get a Free Commercial Electrical Estimate",
+      "href": "/contact-us",
+      "reason": "Same button as the copy entry: it now reads \"Get a Free Estimate\" and goes to /estimate (owner rule: every free-estimate link goes to the Free Estimate page)."
     }
   ],
   "changes": [

@@ -6,7 +6,7 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 |---|---|
 | `city-relations.json` | `location.name`, `cardBlurb`, `featuredServices` and `nearbyLocations` for the 10 cities; `siteSettings.homeCity.cardBlurb` for Mesa |
 | `faqs.json` | `question`, `answer`, `topic`, `order` and `services` on the 28 `faq` documents, copied verbatim from the visible `/faq` page |
-| `service-relations.json` | `priceRange` (3 services), `relatedServices` (21) and `relatedPosts` (15) |
+| `service-relations.json` | `priceRange` (3 services), `relatedServices` (21) and `relatedPosts` (21) |
 | `post-services.json` | `relatedServices` on all 53 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
@@ -138,7 +138,14 @@ Every post is written for homeowners, so commercial services get posts only wher
   - `led-lights` → the recessed-lighting and landscape-lighting posts. `docs/SEO_STRATEGY.md` §2 puts LED in the Lighting hub, and both posts make the LED case this page sells (LED vs. halogen/incandescent energy use and lifespan, LED-only fixtures, exterior LED). The ceiling-fan post, the third Lighting post, has nothing on LED and is left out;
 - a post links the service: `dedicated-circuits` ← the kitchen-remodel post. The mini-split post was added because dedicated-circuits names HVAC compressor loads.
 
-Six commercial services keep `relatedPosts` empty rather than being padded: commercial-service, tenant-improvements, storefront-lights, hanging-lights, emergency-exit-lights and ballast-replacement. No post has a category, and a search of all 53 post bodies for their subjects (ballast, fluorescent, exit/emergency lighting, storefront, pendant, tenant improvement, office/retail/restaurant) turned up only passing mentions. The brief asked for 3–5 posts per service, but only where the relationship is real, so these stay empty until commercial posts exist. Several residential services also list fewer than 5 posts, because their hub has fewer.
+Every service page shows at least three guides (QA, 2026-10-17: an empty or thin "Helpful guides" block leaves a hub page without its spokes). Services with no post on their own subject take the closest posts by topic, each sharing something the service page itself says:
+- the lighting services take Lighting posts: `hanging-lights` → recessed lighting, flickering lights (its page: "buzzing or flicker at low levels") and the ceiling-fan post (rated support); `storefront-lights` → the landscape and outdoor lighting posts and the monsoon post ("sideways rain through monsoon season"); `ballast-replacement-fluorescent-lighting` → the two flickering-light posts ("Flickering tubes") and recessed lighting (the LED case); `led-lights` adds flickering lights;
+- `commercial-service` → the hot-panel post ("Hot spots and loose connections at panels"), the breaker post ("Breakers tripping repeatedly") and the safety tips;
+- `tenant-improvements` → cutting corners on panel upgrades ("Panels and subpanels", "Inspection-ready work"), the hot-panel post and the safety tips;
+- `emergency-exit-lights` → the safety tips, the heat post ("Arizona heat shortens it") and the pre-sale inspection post;
+- `outlets-and-switches` and `dedicated-circuits` add the breaker post (overloaded circuits, "nuisance tripping").
+
+Several residential services also list fewer than 5 posts, because their hub has fewer.
 
 ### Post → related services (all 53)
 
@@ -256,12 +263,12 @@ MIGRATE_OUT_DIR=/tmp/<scratch>/mig-fixes node scripts/migrate/webflow-to-sanity.
 A successful run means no dangling references, because the script exits on any. `report.json` → `fixes` summarises what changed:
 - 10 cities;
 - 28 FAQs updated, 5 renamed, 0 created, 0 unmatched;
-- 3 services priced, 15 with related posts;
+- 3 services priced, 21 with related posts;
 - 53 posts mapped.
 
 Checked on 2026-10-13 against a run without this module. The only fields this module changes are:
 - `faq`: question (5), answer (28), topic (28), services (14);
-- `service`: priceRange (3), relatedServices (21), relatedPosts (15);
+- `service`: priceRange (3), relatedServices (21), relatedPosts (21);
 - `post`: relatedServices (53);
 - `location`: name (10), cardBlurb (5), featuredServices (10), nearbyLocations (10);
 - `siteSettings`: the fields in §6 plus `homeCity.cardBlurb`.
@@ -280,9 +287,14 @@ Applied by `scripts/migrate/content/cms-templates.mjs`, which runs last (after `
 | Key | What it sets | Source |
 |---|---|---|
 | `featuredPosts` | `post.featured` on 7 posts, so guide lists on city and service pages lead with them | Search Console, the Tier-1 posts by clicks |
-| `serviceImages` | `service.mainImage` for `ev-charger-installation`: the crew's own install photo in place of a stock image (the asset must be in the dataset) | `migration/brand-photos` |
-| `serviceAlts` | alt text for the services' own photos (all were empty) | the asset audit and the brand-photos manifest |
-| `atAGlance` | `service.atAGlance` facts for `panels` (most common job, panels installed, utility, permits) | each fact quotes `evidence` that must appear word for word in the service body or the named `/faq` answer |
+| `serviceImages` | `service.mainImage` for `ev-charger-installation` and `electrical-troubleshooting`: the crew's own photos of that work in place of a stock image or a photo of tools (the asset must be in the dataset) | `migration/brand-photos` |
+| `serviceAlts` | alt text for the services' own photos (all were empty; a replaced image carries its alt in `serviceImages`) | the asset audit and the brand-photos manifest |
+| `atAGlance` | `service.atAGlance` facts for `panels` (most common job, panels installed, utility, permits), each with its supporting line (`detail`) | each fact quotes `evidence` that must appear word for word in the service body or the named `/faq` answer |
+| `quickAnswers` | `service.quickAnswer` on all 21 services: the answer-first line of the page's "short version" (the Panels text is the round-5 mockup's) | each answer lists the body phrases it restates (`evidence`), which must appear word for word in that service's body; 25–60 words, no price |
+| `bodyEdits` | the dollar ranges in four service bodies (Panels "What It Costs", EV charger, remodels, new construction) taken out, the rest of each sentence and every link kept; Panels gets the live city pages' flat-rate sentence | owner rule: prices stay inside FAQ answers and blog posts. Each `find` must match exactly once and not cut a link; the run fails if any service body still names a price |
+| `bodyLinks` | the FPE/Zinsco post linked, by its title, from the Panels recall-list sign (round-5 mockup) | the block must match exactly once |
+| `linkFixes` | "Schedule your estimate" in `recessed-lighting-installation-phoenix` → `/estimate` (an estimate link without "free", which the phrase rule misses) | must match exactly one link |
+| `postCategories` | `post.category` = Lighting on the six posts whose titles are about lighting, so `/posts-categories/lighting` lists them | the post titles |
 | `textFixes` | typing slips in a post body the live page carries too ("afternoon?The" in `can-hot-weather-cause-your-circuit-breaker-to-trip`) | the post itself; each `find` must occur exactly once in that post's text |
 
-It also removes the SEO tool's tracking markers (`sbb-itb-…`) that the Webflow export carried into a post body as a heading of their own (`level-1-vs-level-2-ev-chargers-which-to-choose`). `report.json` → `cmsTemplates` lists what it set. The migration stops if a slug, an asset or a FAQ is missing, a replacement image has no alt, a fact's evidence is not in its source, or a text fix does not match exactly once.
+It also removes the SEO tool's tracking markers (`sbb-itb-…`) that the Webflow export carried into a post body as a heading of their own (`level-1-vs-level-2-ev-chargers-which-to-choose`). `report.json` → `cmsTemplates` lists what it set. The migration stops if a slug, an asset or a FAQ is missing, a replacement image has no alt, a fact's or answer's evidence is not in its source, an edit, link or text fix does not match exactly once, or a service body still names a price.

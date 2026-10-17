@@ -104,8 +104,9 @@ Standalone pages: `index` (home), about-us, our-team, careers, faq, contact-us, 
 | slug | slug | Path without the leading slash; `index` = `/`. Frozen |
 | heading | string | **The page H1.** Matches the live H1 |
 | intro | text | Meta description fallback |
-| sections | pageSections | The page builder (§4) |
+| sections | pageSections | The page builder (§4). The production build (SITE_INDEXABLE=true) stops when a composed page has none: that is pre-redesign content (re-import the dataset first) |
 | seo | seo | Meta title and description (frozen to the live values) |
+| **updatedAt** | datetime | **New.** When the content last changed materially: the sitemap's `<lastmod>`. The migration stamps it when it changes the document; editors update it with real edits. Same field on service, location and serviceCategory |
 
 **Query:** `getPage(slug)` returns the page with every section's references resolved and lists cleaned up (§5). `getPageSlugs()` returns all slugs.
 
@@ -118,14 +119,15 @@ Standalone pages: `index` (home), about-us, our-team, careers, faq, contact-us, 
 | category | ref serviceCategory | Residential or Commercial; breadcrumb |
 | heading | string | Optional H1 override (empty on all 21 today, so the H1 is the name) |
 | shortDescription | text | Lede under the H1, card text, meta description fallback |
-| mainImage | image (+alt) | |
+| **quickAnswer** | text | **New.** The answer-first line of the "{Service}, the short version" block: what the service covers, 25–60 words, only what the body says, no prices (warns outside 25–60 words). Empty = a line about the business from Site settings |
+| mainImage | image (+alt) | When it is one of the crew's job photos (no people), the hero shows it under the copper tint and the article shows it again in true colour halfway down, captioned "Our work: …" |
 | body | richText | The article |
-| **atAGlance** | glanceFact[] (`{label, value}`) | **New.** Short facts for an "At a glance" block, e.g. Warranty → "2-year warranty on services we provide". Only confirmed facts |
+| **atAGlance** | glanceFact[] (`{label, value, detail}`) | **New.** Short facts for the "At a glance" block, e.g. Permits → "We pull the permit", with an optional supporting line (`detail`, round 5) such as "We schedule the inspection and make sure everything passes." Only confirmed facts |
 | **signs** | string[] | **New.** "Signs you need this" checklist |
-| priceRange | {low, high, note, **asOf**} | Typical price range. **New `asOf` (date)**: render "as of {month year}". Validation requires both prices and warns without a date. Feeds `AggregateOffer` only when low and high exist |
-| faqs | faqItem[] | Service-specific Q&As (inline) |
+| priceRange | {low, high, note, **asOf**} | Typical price range. **New `asOf` (date)**: render "as of {month year}". Validation requires both prices and warns without a date. Feeds `AggregateOffer` only when low and high exist. Never rendered on the page (owner: no price modules; prices stay in FAQ answers and posts) |
+| faqs | faqItem[] | Service-specific Q&As (inline). The page lists them, then the shared FAQs tagged with the service (price questions after the others, so the open first answer is never a price), then the General ones |
 | relatedServices | ref service[] | "Related services". The query falls back to same-category services |
-| relatedPosts | ref post[] | "Helpful guides". The query falls back to posts that reference this service |
+| relatedPosts | ref post[] | "Helpful guides". The query falls back to posts that reference this service; the page fills the block to three with posts supporting the service, then the most-read guides, so it is never empty |
 | order | number | Listing order (lower first) |
 | seo | seo | |
 
@@ -165,7 +167,7 @@ Mesa is **not** a location (see `siteSettings.homeCity`). Never create a Mesa lo
 | permitNotes | richText | Local permit and inspection specifics |
 | featuredServices | ref service[] | "Electrical services in {City}" |
 | **nearbyLocations** | ref location[] | **New.** Neighboring cities for "Other areas we serve". Empty = list all other cities |
-| faqs | faqItem[] | City Q&As |
+| faqs | faqItem[] | City Q&As. The migration writes two from the sourced local facts, word for word from `permitNotes`: "Who provides electric service in {City}?" (the utility paragraph) and "Who issues electrical permits in {City}?" (the permit office). The page shows them under "{City} electrical questions", then three shared ones (permits in Arizona, free estimates, hidden fees); `permitNotes` shows as a note under the glance only when no question already carries it |
 | seo | seo | |
 
 **Swap test:** no city block may be produced by substituting the city name into shared copy. Per-city uniqueness comes from per-city data, or the block is hidden.
@@ -189,7 +191,7 @@ Not routed in this PR. Fields: service, location, heading, intro, mainImage, bod
 | **quickAnswer** | text | **New.** A 40–60 word answer-first summary shown above the body. It must not repeat the title. The first `relatedServices` entry is linked right after it ("Need help? See our …"). Falls back to `excerpt` when empty. Warns outside 40–60 words |
 | mainImage | image (+alt) | |
 | body | richText | |
-| category | ref postCategory | |
+| category | ref postCategory | The blog topic page (`/posts-categories/<slug>`, noindex) and `articleSection`. Set on the six lighting posts (migration/content-data/cms-templates.json) |
 | author | ref teamMember | Show a Person byline only when set (the default byline is the business) |
 | reviewedBy | ref teamMember | "Reviewed by {name}, {role}" only when set |
 | publishedAt | datetime | Visible date |

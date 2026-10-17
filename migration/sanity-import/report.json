@@ -599,7 +599,7 @@
         "panels 5200-6500",
         "recessed-lights-installation 1050-1750"
       ],
-      "withRelatedPosts": 15
+      "withRelatedPosts": 21
     },
     "posts": {
       "mapped": 53,
@@ -658,6 +658,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "chandler": [
@@ -666,6 +667,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "scottsdale": [
@@ -674,6 +676,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "tempe": [
@@ -682,6 +685,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "phoenix": [
@@ -690,6 +694,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "ahwatukee": [
@@ -698,6 +703,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "queen-creek": [
@@ -706,6 +712,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "san-tan-valley": [
@@ -714,6 +721,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "apache-junction": [
@@ -722,6 +730,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ],
       "fountain-hills": [
@@ -730,6 +739,7 @@
         "neighborhoods",
         "utilityProviders",
         "permitNotes",
+        "faqs",
         "geo"
       ]
     },
@@ -840,20 +850,20 @@
     ],
     "jobDescription": "jobOpening.description = visible /careers job copy",
     "notes": [],
-    "assets": 20
+    "assets": 18
   },
   "cmsTemplates": {
     "source": "migration/content-data/cms-templates.json",
     "featuredPosts": 7,
     "serviceImages": [
-      "ev-charger-installation"
+      "ev-charger-installation",
+      "electrical-troubleshooting"
     ],
     "serviceAlts": [
       "panels",
       "custom-lighting",
       "fixture-replacements",
       "electrical-safety-inspections",
-      "electrical-troubleshooting",
       "electrical-remodels",
       "exterior-electrical",
       "recessed-lights-installation"
@@ -861,6 +871,45 @@
     "atAGlance": [
       "panels"
     ],
+    "quickAnswers": [
+      "panels",
+      "recessed-lights-installation",
+      "electrical-safety-inspections",
+      "ev-charger-installation",
+      "exterior-electrical",
+      "fixture-replacements",
+      "electrical-troubleshooting",
+      "new-construction-wiring",
+      "custom-lighting",
+      "electrical-remodels",
+      "commercial-service",
+      "tenant-improvements",
+      "led-lights",
+      "outlets-and-switches",
+      "storefront-lights",
+      "hanging-lights",
+      "electrical-upgrades",
+      "commercial-electrical-troubleshooting",
+      "emergency-exit-lights",
+      "dedicated-circuits",
+      "ballast-replacement-fluorescent-lighting"
+    ],
+    "bodyEdits": [
+      "panels",
+      "ev-charger-installation",
+      "ev-charger-installation",
+      "electrical-remodels",
+      "new-construction-wiring"
+    ],
+    "bodyLinks": [
+      "panels → federal-pacific-zinsco-panels-arizona"
+    ],
+    "linkFixes": [
+      "recessed-lighting-installation-phoenix: \"Schedule your estimate\" → /estimate"
+    ],
+    "postCategories": {
+      "lighting": 6
+    },
     "textFixes": [
       "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature"
     ],

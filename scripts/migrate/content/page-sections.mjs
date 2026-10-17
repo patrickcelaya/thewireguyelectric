@@ -40,6 +40,8 @@ export default async function pageSections(ctx) {
   const norm = (s) => (s ?? '').normalize('NFKC').replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ').trim()
   const unquote = (s) => s.replace(/^\s*[“"]\s*/, '').replace(/\s*[”"]\s*$/, '')
   const stripEmoji = (s) => s.replace(/\p{Extended_Pictographic}️?/gu, '').trim()
+  // Eyebrows start with a capital, like every other label on the site ("established in 2017" → "Established in 2017").
+  const eyebrowCase = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 
   const reference = (doc, key) => ({_type: 'reference', _ref: doc._id, ...(key ? {_key: key} : {})})
   const service = (s) => bySlug('service', s)
@@ -186,7 +188,8 @@ export default async function pageSections(ctx) {
       })
   }
 
-  // Featured service cards: live title, blurb and photo, linked to the service.
+  // Featured service cards: live title and blurb, linked to the service, on a photo of that
+  // work (a brand photo by file name, or an image object).
   const serviceCards = (slug, sectionIndex, cards) => {
     const section = pages[slug].sections.find((s) => String(s.index) === String(sectionIndex))
     const live = section.content.filter((n) => n.kind === 'serviceCard')
@@ -199,7 +202,7 @@ export default async function pageSections(ctx) {
         service: reference(service(s)),
         title: card.children.find((n) => n.type === 'heading').text,
         text: card.children.find((n) => n.type === 'paragraph').text,
-        image: photo(image),
+        image: typeof image === 'string' ? photo(image) : image,
       }
     })
   }
@@ -537,14 +540,15 @@ export default async function pageSections(ctx) {
         eyebrow: 'Guides',
         heading: 'Guides from our electricians',
         intro: 'Plain-English answers to the questions Arizona homeowners ask us most.',
-        // Tier-1 guides (Search Console), each on a real job photo. The permit guide stays on
-        // the blog, the service pages and the city pages (owner, round 5).
+        // Tier-1 guides (Search Console), each on a real job photo. The permit guide and the
+        // DIY guide (permits again) stay on the blog, the service pages and the city pages
+        // (owner, round 5: minimise permit talk on the homepage).
         posts: [
           postCard('can-hot-weather-cause-your-circuit-breaker-to-trip', 'Troubleshooting', 'Heat and breakers', {
             ...photo('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png'),
             ...focus(0.5, 0.42),
           }),
-          postCard('diy-electrical-work-in-arizona', 'Safety and the law', 'DIY in Arizona', imageOf('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', focus(0.5, 0.52))),
+          postCard('outdated-wiring-in-older-phoenix-homes', 'Older homes', 'Old wiring', imageOf('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', focus(0.5, 0.52))),
           postCard('tesla-wall-connector-vs-chargepoint-home-flex-phoenix', 'EV chargers', 'Tesla or ChargePoint', imageOf('post', 'installing-car-charger', 'A Tesla Wall Connector installed on a garage wall', focus(0.5, 0.42))),
         ],
         cta: link('All guides on the blog', '/blog'),
@@ -600,7 +604,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'heroSection',
         _key: 'hero',
-        eyebrow: c.text(0, 'h5'),
+        eyebrow: eyebrowCase(c.text(0, 'h5')),
         text: c.text(0, 'p'),
         image: photo('crew-at-van.avif'),
         showPhone: false,
@@ -659,7 +663,8 @@ export default async function pageSections(ctx) {
         _key: 'hero',
         eyebrow: 'Family-owned · Since 2017',
         text: c.text(0, 'p'),
-        image: photo('fleet-lineup.avif'),
+        // the whole crew, faces large enough to read at every width (the fleet photo's people are tiny)
+        image: photo('crew-portrait.avif'),
         showPhone: false,
         showTrustBar: false,
       },
@@ -680,7 +685,7 @@ export default async function pageSections(ctx) {
         _key: 'faqs',
         eyebrow: 'Questions',
         heading: c.text(3, 'h2'),
-        image: photo('crew-portrait.avif'),
+        image: photo('crew-at-van.avif'),
         faqs: faqRefs(c.texts(3, 'faq-q (h5)')),
       },
       // Live status line "Active Now" is not carried over (see _omissions.json).
@@ -736,7 +741,7 @@ export default async function pageSections(ctx) {
         // _key doubles as the anchor the "Apply Now" button targets (#apply-now).
         _type: 'contactSection',
         _key: 'apply-now',
-        eyebrow: c.text(2, 'h6'),
+        eyebrow: eyebrowCase(c.text(2, 'h6')),
         heading: c.text(2, 'h3', 0),
         text: c.text(2, 'p'),
         detailsHeading: c.text(2, 'h5'),
@@ -786,7 +791,8 @@ export default async function pageSections(ctx) {
         _key: 'common',
         eyebrow: 'The basics',
         heading: common.heading.text,
-        image: photo('steven-van-logo-bw.avif'),
+        // Steven and Cody at the vans, in colour like every other photo on the site
+        image: photo('steven-at-van.avif'),
         topic: topicOf(common.items.map((q) => q.question)),
       },
       {
@@ -832,7 +838,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'contactSection',
         _key: 'contact',
-        eyebrow: c.text(1, 'h6'),
+        eyebrow: eyebrowCase(c.text(1, 'h6')),
         heading: c.text(1, 'h3', 0),
         text: c.text(1, 'p'),
         detailsHeading: c.text(1, 'h5'),
@@ -886,7 +892,7 @@ export default async function pageSections(ctx) {
         _key: 'hero',
         eyebrow: 'Residential and commercial',
         text: c.text(0, 'p'),
-        image: photo('steven-van-logo-bw.avif'),
+        image: photo('crew-tailgate.avif'),
         primaryCta: estimateCta(),
         showPhone: true,
         showTrustBar: false,
@@ -976,7 +982,9 @@ export default async function pageSections(ctx) {
         eyebrow: 'Commercial electrical · Phoenix valley',
         text: heroText,
         image: photo('fleet-lineup.avif'),
-        primaryCta: link(c.text(0, 'button'), c.item(0, 'button').href),
+        // the site's standard label, so the estimate and call buttons sit side by side like every
+        // other hero's ("commercial" stays in the eyebrow, the H1 and the lede)
+        primaryCta: estimateCta(),
         showPhone: true,
         trustLine,
         showTrustBar: true,
@@ -991,11 +999,16 @@ export default async function pageSections(ctx) {
         layout: 'featured',
         // Live "Panel Upgrades" card linked to commercial troubleshooting (and its photo
         // to EV chargers); its copy describes commercial panel and service upgrades, so it
-        // links to that page (see _omissions.json → changes).
+        // links to that page (see _omissions.json → changes). Each card shows that work:
+        // the business's own pendants in a restaurant, and an electrician tracing wires at
+        // a ceiling opening (the homepage's troubleshooting photo).
         services: serviceCards(slug, 1, [
           {service: 'electrical-upgrades', image: 'commercial-ti-cable-pull.png'},
-          {service: 'hanging-lights', image: 'tools-on-romex.avif'},
-          {service: 'commercial-electrical-troubleshooting', image: 'crew-at-van.avif'},
+          {
+            service: 'hanging-lights',
+            image: imageFrom('service', 'hanging-lights', 'Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling', hotspot(0.5, 0.3)),
+          },
+          {service: 'commercial-electrical-troubleshooting', image: {...photo('troubleshooting-ceiling-wiring.avif'), ...hotspot(0.26, 0.3)}},
         ]),
         cta: link(viewAll.text, viewAll.href),
       },
@@ -1056,14 +1069,8 @@ export default async function pageSections(ctx) {
           // the cells crop: each people photo is framed on its heads
           {...galleryImage('commercial-ti-cable-pull.png', 'tenant-improvements', 'ti'), ...hotspot(0.6, 0.34)},
           galleryImage('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'panels', 'panel'),
-          // the business's own pendant work in a restaurant (the panel crew photo it replaces has a hat touching
-          // the photo's top edge, so no frame could keep that head clear)
-          {
-            ...imageFrom('service', 'hanging-lights', 'Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling'),
-            _type: 'galleryImage',
-            _key: 'pendants',
-            service: reference(service('hanging-lights')),
-          },
+          // a chandelier the crew hung (the restaurant pendants lead the services cards above)
+          {...galleryImage('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg', 'fixture-replacements', 'chandelier'), ...hotspot(0.5, 0.3)},
           {...galleryImage('lighting-install-vaulted-ceiling.avif', 'custom-lighting', 'vaulted'), ...hotspot(0.35, 0.34)},
           galleryImage('kitchen-recessed-lighting.avif', 'recessed-lights-installation', 'kitchen'),
           {...galleryImage('image-573850cd5522597a7b86b1fc602e4e369ef9a9af-1125x1104-jpg', 'electrical-safety-inspections', 'walkup'), ...hotspot(0.46, 0.47)},

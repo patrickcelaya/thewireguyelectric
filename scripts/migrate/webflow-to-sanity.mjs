@@ -510,6 +510,28 @@ if (dangling.length) {
   process.exit(1)
 }
 
+// Content dates for the sitemap's <lastmod>: a page, service, city or service category
+// keeps the date from the last run unless its content changed, so the date only moves when
+// the migration really changes the document (a dataset import resets Sanity's _updatedAt
+// on every document, so that can't say it). Posts carry their own publish/update dates.
+const STAMPED = new Set(['page', 'service', 'location', 'serviceCategory'])
+const previousPath = p('migration/sanity-import/production.ndjson')
+const previous = new Map(
+  existsSync(previousPath)
+    ? (await readFile(previousPath, 'utf8'))
+        .split('\n')
+        .filter(Boolean)
+        .map((line) => JSON.parse(line))
+        .map(({updatedAt, ...content}) => [content._id, {updatedAt, content: JSON.stringify(content)}])
+    : [],
+)
+const now = new Date().toISOString().replace(/\.\d{3}Z$/, 'Z')
+for (const doc of docs.filter((d) => STAMPED.has(d._type))) {
+  const before = previous.get(doc._id)
+  delete doc.updatedAt
+  doc.updatedAt = before?.updatedAt && before.content === JSON.stringify(doc) ? before.updatedAt : now
+}
+
 await mkdir(p(OUT_DIR), {recursive: true})
 await writeFile(p(`${OUT_DIR}production.ndjson`), docs.map((d) => JSON.stringify(d)).join('\n') + '\n')
 await writeFile(p(`${OUT_DIR}id-map.json`), JSON.stringify(idMap, null, 2) + '\n')
