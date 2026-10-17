@@ -16,6 +16,6 @@ const {settings, estimateHref = ESTIMATE_PATH} = Astro.props
 ---
 
 <nav class="callbar" aria-label="Quick contact">
-  <a class="call btn--tel" href={telHref(settings)}>Call now<span class="sr-only"> {settings.phone}</span></a>
+  <a class="call btn--tel" href={telHref(settings)}>Call now<span class="sr-only"> {settings.phone}</span></a>{' '}
   <a class="est-l" href={estimateHref}>Free Estimate</a>
 </nav>

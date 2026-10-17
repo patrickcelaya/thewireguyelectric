@@ -2,7 +2,8 @@
 // The estimate band that closes most pages. The van photo is the stage: the words
 // sit on the wall above the electrician, the wire draws the bulb on the wall, and
 // the form card rises over the photo's foot, below the van's lettering (no scrim on
-// anyone). Copy: Site settings → CTA band (heading, status line).
+// anyone). Copy: Site settings → CTA band (heading, status line). The band has one H2
+// (its heading); the form's title is an H3 under it.
 import type {SiteSettings} from '../../lib/types'
 import {officeHours, telHref} from '../../lib/site'
 import {VAN_PHOTO} from '../../lib/brand-photos'
@@ -70,7 +71,7 @@ const text =
       <p class="cta__roc"><RocLink settings={settings} /></p>
     </div>
     <div class="cta__form" id="estimate">
-      <EstimateForm settings={settings} id={formId} />
+      <EstimateForm settings={settings} id={formId} titleTag="h3" />
     </div>
   </div>
 </section>

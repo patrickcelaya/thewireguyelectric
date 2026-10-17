@@ -36,11 +36,11 @@ const year = new Date().getFullYear()
       <a class="foot-logo" href="/"><Logo lazy sizes="(max-width:720px) 168px, 224px" /></a>
       <div class="foot-claim">
         <p class="foot-say">Family-owned electricians, serving the entire valley.</p>
-        <h2 class="foot-roc"><RocLink settings={settings} separator="." /></h2>
+        <p class="foot-roc"><RocLink settings={settings} separator="." /></p>
         <RatingLine settings={settings} variant="foot" />
       </div>
       <div class="foot-act">
-        <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>
+        <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
         <a class="foot-phone tnum" href={telHref(settings)}>{settings.phone}</a>
       </div>
     </div>
