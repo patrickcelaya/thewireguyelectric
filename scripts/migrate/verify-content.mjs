@@ -80,13 +80,14 @@ const digits = (s) => String(s ?? '').replace(/\D/g, '').replace(/^1(?=\d{10}$)/
 
 const deref = (r) => (r?._ref ? byId.get(r._ref) : undefined)
 const cityName = (loc) => (loc.cityNameForSeo ? loc.cityNameForSeo.split(',')[0].trim() : loc.name)
+// Ties break by _id, as every order() in queries.ts does (Sanity's own tie order is not documented).
 const sortBy = (list, ...keys) =>
   [...list].sort((a, b) => {
     for (const k of keys) {
       const d = k(a, b)
       if (d) return d
     }
-    return 0
+    return a._id < b._id ? -1 : a._id > b._id ? 1 : 0
   })
 const byOrder = (a, b) => (a.order ?? 999) - (b.order ?? 999)
 const byName = (a, b) => String(a.name ?? '').localeCompare(String(b.name ?? ''))

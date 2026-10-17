@@ -769,7 +769,7 @@ export default async function pageSections(ctx) {
       // order (questions added later may sit between or after them).
       const ordered = ofType('faq')
         .filter((f) => f.topic === topics[0])
-        .sort((a, b) => (a.order ?? 999) - (b.order ?? 999))
+        .sort((a, b) => (a.order ?? 999) - (b.order ?? 999) || (a._id < b._id ? -1 : a._id > b._id ? 1 : 0))
         .map((f) => norm(f.question))
       const positions = questions.map((q) => ordered.indexOf(norm(q)))
       if (positions.some((p, i) => p < 0 || (i > 0 && p < positions[i - 1]))) {
