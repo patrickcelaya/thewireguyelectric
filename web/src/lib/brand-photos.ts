@@ -130,6 +130,17 @@ const JOB_PHOTO_LIST: JobPhoto[] = [
   {subject: 'tools', image: asset('image-d11c56eea7e73639905734cb2b5137587ae500d0-853x1280-avif', 'Klein wire strippers, linesman pliers and a voltage tester on a coil of yellow Romex cable')},
 ]
 export const JOB_PHOTOS: ImageRef[] = JOB_PHOTO_LIST.map((p) => p.image)
+
+/** The same photo uploaded twice (a smaller export of the tools flat-lay): the copy → the original. */
+const SAME_PHOTO: Record<string, string> = {
+  'image-d11c56eea7e73639905734cb2b5137587ae500d0-853x1280-avif': 'image-1a1a63ffa572abef13cc6693c8bf6e80602a0a7d-3924x5887-jpg',
+}
+
+/** Which photo an image is (a duplicate upload counts as its original), so a row of covers never shows one twice. */
+export function photoId(image: ImageRef | null | undefined) {
+  const ref = resolveImage(image)?.ref ?? ''
+  return SAME_PHOTO[ref] ?? ref
+}
 const JOB_PHOTO_BY_ID = new Map(JOB_PHOTO_LIST.map((p) => [p.image.asset!._id, p]))
 
 /** A company job photo's subject and reach (undefined for every other image). */

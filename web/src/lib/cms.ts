@@ -4,8 +4,8 @@
 // results, so a page renders the same from the local dataset and from Sanity.
 import type {FaqItem, ImageRef, PortableTextValue, PostCard, PostIndexEntry, PostSummary, Review, ServiceSummary} from './types'
 import type {City} from './cities'
-import {FLEET_PHOTO, JOB_PHOTOS, companyPhoto, jobPhoto} from './brand-photos'
-import {imageSrcSet, resolveImage} from './image'
+import {FLEET_PHOTO, JOB_PHOTOS, companyPhoto, jobPhoto, photoId} from './brand-photos'
+import {imageSrcSet} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
 import {inSentence} from './format'
@@ -203,8 +203,8 @@ export function postCover(
   // so a lighting guide whose own photo another card already shows gets another lighting photo, not the EV charger
   const fallback = [...rotated.filter(onSubject), ...rotated.filter((image) => !onSubject(image) && !jobPhoto(image)?.narrow)]
   const candidates = [...linked, ...fallback]
-  // the same photo may be an asset reference or a pre-import Webflow URL: compare what it resolves to
-  const id = (image: ImageRef | null | undefined) => resolveImage(image)?.ref ?? ''
+  // the same photo may be an asset reference, a pre-import Webflow URL or a second upload: compare which photo it is
+  const id = (image: ImageRef | null | undefined) => photoId(image)
   const fits = (image: ImageRef | null | undefined): image is ImageRef => (tinted ? companyPhoto(image) === 'job' : Boolean(companyPhoto(image)))
   const usable = candidates.filter(fits)
   const cover = usable.find((image) => !taken.has(id(image))) ?? usable[0]
