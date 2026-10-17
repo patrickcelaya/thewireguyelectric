@@ -182,6 +182,12 @@
       "reason": "Shown as \"Get in touch\" with a capital first letter, like every other eyebrow on the site (QA, 2026-10-17); the words are unchanged."
     },
     {
+      "page": "faq",
+      "tag": "h3",
+      "text": "Pricing And Cost Questions",
+      "reason": "Shown as \"Pricing and Cost Questions\", with \"and\" in lower case like the other four topic headings (QA, 2026-10-17); the words are unchanged."
+    },
+    {
       "page": "commercial-electrician",
       "tag": "button",
       "text": "Get a Free Commercial Electrical Estimate",

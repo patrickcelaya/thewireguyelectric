@@ -21,6 +21,9 @@
 //
 //   textFixes       typing slips in a post body ("afternoon?The"); each must occur exactly
 //                   once in that post's text
+//   bodyRemovals    single body blocks taken out of a service or post: a list item by its
+//                   exact text, or a figure by its image URL; each must match exactly one
+//                   block
 //
 // It also drops the SEO tool's tracking markers ("sbb-itb-f8419aa") that the Webflow
 // export carried into a post body as a heading of their own.
@@ -141,6 +144,15 @@ export default async function cmsTemplates(ctx) {
     spans[0].text = spans[0].text.replace(find, replace)
   }
 
+  for (const {type, slug, text, image} of data.bodyRemovals.removals) {
+    if (!text === !image) fail(`bodyRemovals ${slug}: name the block by its text or its image, not both`)
+    const doc = bySlug(type, slug)
+    const isTarget = (b) => (text ? b._type === 'block' && blockText([b]) === text : b._type === 'figure' && b._sanityAsset === `image@${image}`)
+    const hits = (doc.body ?? []).filter(isTarget).length
+    if (hits !== 1) fail(`bodyRemovals ${slug}: "${text ?? image}" matches ${hits} blocks, not 1`)
+    doc.body = doc.body.filter((b) => !isTarget(b))
+  }
+
   // a block whose only text is the SEO tool's marker is not content
   const MARKER = /^sbb-itb-[0-9a-f]{7}$/
   const markers = []
@@ -162,6 +174,7 @@ export default async function cmsTemplates(ctx) {
     linkFixes: data.linkFixes.fixes.map((f) => `${f.post}: "${f.text}" → ${f.to}`),
     postCategories: Object.fromEntries(Object.entries(data.postCategories.byCategory).map(([c, posts]) => [c, posts.length])),
     textFixes: data.textFixes.fixes.map((f) => `${f.post}: ${f.replace}`),
+    bodyRemovals: data.bodyRemovals.removals.map((r) => `${r.slug}: ${r.text ?? r.image}`),
     markersRemovedFrom: markers,
   }
 }

@@ -913,6 +913,10 @@
     "textFixes": [
       "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature"
     ],
+    "bodyRemovals": [
+      "panels: Upgrading Your Electrical Panel",
+      "level-1-vs-level-2-ev-chargers-which-to-choose: https://assets.seobotai.com/thewireguyelectric.com/6806df84e572faef869989e9/0115400c5ed8dd17af953d5871652879.jpg"
+    ],
     "markersRemovedFrom": [
       "level-1-vs-level-2-ev-chargers-which-to-choose"
     ]

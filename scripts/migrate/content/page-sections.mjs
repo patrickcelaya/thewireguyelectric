@@ -42,6 +42,10 @@ export default async function pageSections(ctx) {
   const stripEmoji = (s) => s.replace(/\p{Extended_Pictographic}️?/gu, '').trim()
   // Eyebrows start with a capital, like every other label on the site ("established in 2017" → "Established in 2017").
   const eyebrowCase = (s) => s.charAt(0).toUpperCase() + s.slice(1)
+  // A live title-case label in the eyebrows' sentence case ("Our Team" → "Our team").
+  const sentenceCase = (s) => eyebrowCase(s.toLowerCase())
+  // Small words lower-case inside a title, like the sibling headings ("Pricing And Cost" → "Pricing and Cost").
+  const titleCase = (s) => s.replace(/ (And|Or|Of|The|For|To|In) /g, (m) => m.toLowerCase())
 
   const reference = (doc, key) => ({_type: 'reference', _ref: doc._id, ...(key ? {_key: key} : {})})
   const service = (s) => bySlug('service', s)
@@ -638,7 +642,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'teamSection',
         _key: 'team',
-        eyebrow: c.text(2, 'h6'),
+        eyebrow: sentenceCase(c.text(2, 'h6')),
         heading: c.text(2, 'h2'),
         // The six people this page shows, in its order. Bios come from their documents,
         // which hold the current /our-team copy (this page had an older version).
@@ -811,7 +815,7 @@ export default async function pageSections(ctx) {
         groups: topicGroups.map((g, i) => ({
           _type: 'faqGroup',
           _key: `group${i}`,
-          heading: g.heading.text,
+          heading: titleCase(g.heading.text),
           topic: topicOf(g.items.map((q) => q.question)),
         })),
       },
