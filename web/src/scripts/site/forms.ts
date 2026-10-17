@@ -12,9 +12,9 @@ function showSent(box: HTMLElement) {
   const done = box.querySelector<HTMLElement>('[data-est-done]')
   box.classList.add('is-sent')
   if (done) {
-    // focus the confirmation, then bring it into view if an earlier error had scrolled it away
+    // focus the confirmation, then bring the whole card (its title too) into view below the sticky header
     done.focus({preventScroll: true})
-    done.scrollIntoView({block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth'})
+    box.scrollIntoView({block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth'})
   }
   box.closest('[data-est-page]')?.classList.add('is-lit')
 }

@@ -19,6 +19,8 @@
 .phero__notes{margin-top:16px;font:550 1rem/1.4 var(--font-text);color:var(--ink)}
 .phero__notes>span+span::before{content:"";display:inline-block;width:4px;height:4px;margin:0 10px 0 6px;border-radius:50%;background:var(--copper);vertical-align:.24em}
 .phero__status{margin-top:14px;font-size:.9375rem;color:var(--muted)}
+/* Emma's status is in the header's utility line on wide screens (as on the city and service heroes): once is enough */
+@media (min-width:1240px){.phero__status{display:none}}
 .phero__photo{position:relative;margin:0;overflow:hidden;border-radius:var(--r-xl) 0 0 var(--r-xl);background:var(--sand);box-shadow:var(--shadow-2)}
 .phero__photo img{width:100%;height:auto}
 .phero__photo figcaption,.hls__photo figcaption,.mt__photo figcaption{position:absolute;left:18px;bottom:18px;padding:8px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);font:650 .875rem/1.2 var(--font-text);color:var(--ink)}
@@ -41,8 +43,9 @@
 .phero__quotes p{font:650 1rem/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink);overflow-wrap:break-word}
 .phero__card>:only-child,.phero__card>:first-child:is(.phero__creds,.phero__quotes){padding-left:0;border-left:0}
 
-/* the quotes keep a row of their own until the card is wide enough for three readable columns beside the score */
-@media (max-width:1439px){
+/* the quotes keep a row of their own until the card is wide enough for three readable columns beside the score (the
+   card is 1,560 px at most; below 1,680 px the three columns would wrap each quote to three lines) */
+@media (max-width:1679px){
   .phero__card{grid-template-columns:auto minmax(0,1fr)}
   .phero__quotes{grid-column:1/-1;padding:16px 0 0;border-left:0;border-top:1px solid var(--line)}
 }
@@ -53,6 +56,9 @@
   .phero__photo,.phero--tall .phero__photo{max-width:none;border-radius:0;box-shadow:none}
   /* a portrait photo as a 4:3 band (its heads sit in the middle half of the frame) */
   .phero--tall .phero__photo img{aspect-ratio:4/3;object-fit:cover}
+  /* people standing low under a big sky (the fleet): a wide band down to the asphalt, so the crew fills the frame instead
+     of a screen of empty sky (heads at 71.5–78% of the photo sit at 57–66% of the band) */
+  .phero--low .phero__photo img{aspect-ratio:16/7;object-fit:cover;object-position:50% 100%}
   .phero__card{grid-template-columns:minmax(0,1fr);gap:14px}
   .phero__creds{padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
   .phero__quotes{grid-template-columns:minmax(0,1fr)}
@@ -61,7 +67,9 @@
    bar, never half under it; then the lede and the buttons. The call bar (Call now · Free Estimate, from the first paint)
    is the hero's estimate and call pair */
 @media (max-width:639px){
-  .phero__grid{display:flex;flex-direction:column;gap:0}
+  /* every block on the page's left edge, like the city and service heroes; the photo spans the width, so the space for
+     it is reserved from the first paint (no layout shift) */
+  .phero__grid{display:flex;flex-direction:column;align-items:stretch;gap:0}
   .phero__copy{display:contents}
   .phero__copy>*{margin-inline:var(--gutter)}
   .phero__photo{order:1;margin-top:24px}
@@ -245,6 +253,18 @@
 .postrow:focus-within{outline:2.5px solid var(--ink);outline-offset:4px;border-radius:6px}
 .postrow__h a:focus-visible{outline:none}
 .postrow__ex{margin-top:8px;font-size:var(--fs-small);line-height:1.6;color:var(--text);max-width:var(--measure)}
+/* the rest of a topic, behind "Show all": the list continues seamlessly under its summary once open */
+.postgrp__rest summary{display:inline-flex;align-items:center;gap:10px;min-height:48px;margin-top:18px;padding:0 20px;border-radius:var(--r-pill);background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--line-strong);font:650 .9375rem/1 var(--font-text);color:var(--ink);cursor:pointer;list-style:none;transition:box-shadow .2s var(--ease),color .2s var(--ease)}
+.postgrp__rest summary::-webkit-details-marker{display:none}
+.postgrp__rest summary::after{content:"";width:14px;height:14px;background:var(--copper-700);-webkit-mask:var(--chev) center/contain no-repeat;mask:var(--chev) center/contain no-repeat;transition:transform .25s var(--ease)}
+.postgrp__rest summary:hover{box-shadow:inset 0 0 0 1.5px var(--copper);color:var(--copper-700)}
+.postgrp__rest .when-open,.postgrp__rest[open] .when-closed{display:none}
+.postgrp__rest[open] .when-open{display:inline}
+/* open: the list runs on unbroken and the button that folds it away moves to its end */
+.postgrp__rest[open] summary{order:2}
+.postgrp__rest[open] summary::after{transform:rotate(180deg)}
+.postgrp__rest[open]{display:flex;flex-direction:column;align-items:flex-start}
+.postgrp__rest[open] .postgrp__list{align-self:stretch;border-top:0}
 @media (max-width:899px){.postgrp{grid-template-columns:minmax(0,1fr)}.postgrp__head{position:static}.postgrp__h{max-width:none}}
 @media (max-width:599px){.postrow{grid-template-columns:minmax(0,1fr)}.postrow__d{padding-top:0}}
 

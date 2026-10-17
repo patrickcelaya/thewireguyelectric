@@ -205,7 +205,7 @@ Pages composed in Sanity (`page.sections`) render through **`SectionRenderer`** 
 - **Variant** comes from the section's own fields and the page: the homepage (`slug` `index`) gets the title-card hero, the review lanes and the valley with its sky; other pages get the inner variants.
 - **Not built yet = build error.** A `_type` or variant without a component (a new section type, a services or posts `layout` value nobody draws yet) stops the build with a message naming it, instead of being dropped: build its component and map it in `SectionRenderer`. Every type in the schema has one now; the other pages' components are in §13.
 - Every link a section stores goes through `ctaHref(link, redirects)` (`lib/site.ts`): estimate buttons go to `/estimate` (owner rule) whatever their stored href; other hrefs are rewritten past redirects.
-- Section ids are `${section._key}-h` (unique per page). Below-the-fold sections carry `cv` (`content-visibility: auto`, see `core.css`).
+- Section ids are `${section._key}-h` (unique per page). Below-the-fold sections carry `cv` (`content-visibility: auto`, see `core.css`). It applies on the homepage only: on inner pages the size estimates put the footer's links and a FAQ under the valley in the wrong place until they render, which tools that measure target spacing at load read as overlaps.
 - The homepage's composition is content: page `index`, written by `scripts/migrate/content/page-sections.mjs` (order, eyebrows, headings, accents, picks). Change it there (or in Studio), not in the template.
 
 | `_type` → component | Props | Notes |

@@ -14,7 +14,10 @@
 import type {HeroSection, SiteSettings} from '../../lib/types'
 import type {Crumb} from '../../lib/seo'
 import {ESTIMATE_PATH, ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
-import {hasImage, imageDimensions} from '../../lib/image'
+import {hasImage} from '../../lib/image'
+import {innerHeroImage} from '../../lib/hero'
+import {facesOf} from '../../lib/brand-photos'
+import {facesFocus} from '../../lib/cms'
 import {getRedirectMap} from '../../lib/queries'
 import Breadcrumbs from '../ui/Breadcrumbs.astro'
 import Eyebrow from '../ui/Eyebrow.astro'
@@ -39,8 +42,11 @@ const {section, heading, settings, crumbs} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const photo = hasImage(section.image) ? section.image : undefined
-const size = imageDimensions(photo)
-const tall = Boolean(size && size.height > size.width * 1.1)
+const frame = innerHeroImage(photo)
+const tall = frame.tall
+// people who stand low in the frame under a big sky (the fleet): a wide band on tablets and phones (styles/pages.css)
+const focusY = Number(facesFocus(facesOf(photo))?.split(' ')[1]?.replace('%', '') ?? 0)
+const low = !tall && focusY > 60
 // Long headings ("Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ") set a size smaller.
 const long = heading.length > 44
 const notes = (section.ctaNotes ?? []).filter(Boolean)
@@ -55,7 +61,7 @@ const secondaryHref = secondaryCta ? ctaHref(secondaryCta, redirects) : undefine
 const est = (href?: string) => (href === ESTIMATE_PATH ? 'phero__est' : undefined)
 ---
 
-<section class:list={['phero', !photo && 'phero--bare', tall && 'phero--tall']} aria-labelledby={id}>
+<section class:list={['phero', !photo && 'phero--bare', tall && 'phero--tall', low && 'phero--low']} aria-labelledby={id}>
   <div class="phero__grid">
     <div class="phero__copy">
       {crumbs && <Breadcrumbs crumbs={crumbs} class="phero__crumbs" />}
@@ -107,8 +113,8 @@ const est = (href?: string) => (href === ESTIMATE_PATH ? 'phero__est' : undefine
         <figure class="phero__photo">
           <SanityImage
             image={photo}
-            widths={[640, 828, 1086, 1280]}
-            sizes={tall ? '(max-width:899px) 100vw, 34vw' : '(max-width:899px) 100vw, 52vw'}
+            widths={frame.widths}
+            sizes={frame.sizes}
             priority
           />
           {photo.caption && <figcaption>{photo.caption}</figcaption>}

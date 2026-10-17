@@ -83,7 +83,7 @@ p{text-wrap:pretty}
 .rating{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:.9375rem;line-height:1.35;color:var(--text)}
 .rating b{font:750 1rem/1.2 var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums}
 .rating__sep{color:var(--muted)}
-.rating__g{display:inline-flex;align-items:center;gap:5px;color:var(--copper-700);font-weight:650;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+.rating__g{display:inline-flex;align-items:center;gap:5px;min-height:24px;color:var(--copper-700);font-weight:650;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
 .rating__g:hover{color:var(--copper-800)}
 
 /* ===================================================================== header (round 5, from explore-a with the judges' fixes): two tiers
@@ -414,8 +414,8 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .cta__talk{padding-top:clamp(48px,4.4vw,80px);display:grid;gap:12px;justify-items:start;max-width:32rem}
 .cta__sub{font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;color:var(--ink)}
 .cta .avail{display:flex;align-items:center;gap:10px;margin:6px 0 34px;font:650 1.0625rem/1.3 var(--font-text);color:var(--ink)}
-.cta .avail .emoji{font-size:0;line-height:0}
-.cta .avail .emoji::before{content:"";display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--live);box-shadow:0 0 0 4px rgb(46 155 94 / .2)}
+/* free estimates are available at every hour, so this dot is always green (not Emma's office status) */
+.cta .avail .dot--live{width:11px;height:11px;background:var(--live);box-shadow:0 0 0 4px rgb(46 155 94 / .2)}
 .cta__talk-k{font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
 .cta__phone{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
 .cta__phone a{font:760 clamp(2rem,1.4rem + 2vw,3.25rem)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
@@ -470,6 +470,8 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 
 /* ===================================================================== the estimate form */
 .est{background:var(--paper);color:var(--text);border-radius:var(--r-xl);padding:clamp(24px,2.6vw,40px);box-shadow:var(--shadow-3)}
+/* scrolled into view (the confirmation, a #sent return), the card clears the condensed header */
+.est,.est [data-est-done]{scroll-margin-top:calc(var(--hdr-c) + 16px)}
 .est__title{color:var(--ink);font-size:clamp(1.625rem,1.3rem + .8vw,2.125rem);font-weight:740;letter-spacing:-.03em}
 .est .hint{margin-top:4px;font-size:var(--fs-small);color:var(--muted)}
 .est form{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
@@ -586,8 +588,11 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .reveal-js [data-reveal]{transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
 .reveal-js [data-reveal]:not(.is-in){opacity:0;transform:translateY(36px)}
 @media print{[data-reveal]{animation:none!important;opacity:1!important;transform:none!important}}
-/* below-the-fold sections are laid out and painted only as they approach (their last size is remembered) */
+/* below-the-fold sections are laid out and painted only as they approach (their last size is remembered). Homepage only:
+   on the shorter inner pages the size estimates put the targets below them (the footer's links, a FAQ under the valley)
+   in the wrong place until they render, which tools that measure target spacing at load read as overlaps */
 .cv{content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.inner .cv{content-visibility:visible}
 /* without JS a form posts and the API answers 303 back to #sent: every section is laid out for real, so the jump lands on
    the confirmation (round-5 QA: the size estimates had put it 1,949 px below the screen on a phone) */
 html:not(.js) .cv{content-visibility:visible}

@@ -37,17 +37,45 @@ function figure(value: ImageRef, sizes: string) {
   return `<figure class="pt-figure">${img}${value.caption ? `<figcaption>${escapeHTML(value.caption)}</figcaption>` : ''}</figure>`
 }
 
-function table(value: {caption?: string; hasHeaderRow?: boolean; rows?: Array<{cells?: string[]}>}) {
+type TableValue = {_key?: string; caption?: string; hasHeaderRow?: boolean; rows?: Array<{cells?: string[]}>}
+
+/**
+ * A rich-text table. A wide table scrolls inside its own labelled, focusable region
+ * (WCAG 1.4.10), named by its caption or the heading it sits under, so two tables on a
+ * page never share a name. With a header row, phones stack each row as a card of
+ * label/value pairs (styles/inner.css): the explicit roles keep the table semantics
+ * when CSS changes the display of its parts.
+ */
+function table(value: TableValue, label: string) {
   const rows = value.rows ?? []
   if (!rows.length) return ''
   const [head, ...body] = value.hasHeaderRow === false ? [undefined, ...rows] : rows
-  const tr = (cells: string[] = [], header: boolean) =>
-    `<tr>${cells.map((c, i) => (header ? `<th scope="col">${escapeHTML(c)}</th>` : i === 0 ? `<th scope="row">${escapeHTML(c)}</th>` : `<td>${escapeHTML(c)}</td>`)).join('')}</tr>`
-  const label = value.caption || 'Table'
-  // a wide table scrolls inside its own labelled, focusable region (WCAG 1.4.10)
-  return `<div class="pt-table" role="region" aria-label="${attr(label)}" tabindex="0"><table>${value.caption ? `<caption>${escapeHTML(value.caption)}</caption>` : ''}${
-    head ? `<thead>${tr(head.cells, true)}</thead>` : ''
-  }<tbody>${body.map((r) => tr(r?.cells, false)).join('')}</tbody></table></div>`
+  const columns = head?.cells ?? []
+  const cell = (c: string, i: number) =>
+    i === 0
+      ? `<th scope="row" role="rowheader">${escapeHTML(c)}</th>`
+      : `<td role="cell"${columns[i] ? ` data-label="${attr(columns[i])}"` : ''}>${escapeHTML(c)}</td>`
+  const headRow = `<tr role="row">${columns.map((c) => `<th scope="col" role="columnheader">${escapeHTML(c)}</th>`).join('')}</tr>`
+  const bodyRows = body.map((r) => `<tr role="row">${(r?.cells ?? []).map(cell).join('')}</tr>`).join('')
+  return `<div class="pt-table${head ? ' pt-table--stack' : ''}" role="region" aria-label="${attr(label)}" tabindex="0"><table role="table">${
+    value.caption ? `<caption>${escapeHTML(value.caption)}</caption>` : ''
+  }${head ? `<thead role="rowgroup">${headRow}</thead>` : ''}<tbody role="rowgroup">${bodyRows}</tbody></table></div>`
+}
+
+/** Each table's accessible name: its caption, else "Table: {the heading above it}", numbered when two would match. */
+function tableLabels(blocks: PortableTextValue) {
+  const labels = new Map<string, string>()
+  const used = new Map<string, number>()
+  let heading = ''
+  for (const block of blocks as Array<{_key?: string; _type: string; style?: string; caption?: string; children?: Array<{text?: string}>}>) {
+    if (block._type === 'block' && /^h[1-6]$/.test(block.style ?? '')) heading = (block.children ?? []).map((c) => c.text ?? '').join('').trim()
+    if (block._type !== 'table' || !block._key) continue
+    const base = block.caption?.trim() || (heading ? `Table: ${heading}` : 'Table')
+    const n = (used.get(base) ?? 0) + 1
+    used.set(base, n)
+    labels.set(block._key, n > 1 ? `${base} (${n})` : base)
+  }
+  return labels
 }
 
 /** YouTube as a facade: a link to the video with its poster; site.ts swaps in the player on click. */
@@ -74,11 +102,15 @@ export function portableTextToHtml(blocks: PortableTextValue | null | undefined,
   if (!blocks?.length) return ''
   const redirects = options.redirects ?? {}
   const sizes = options.figureSizes ?? '(min-width: 1100px) 760px, 92vw'
+  const labels = tableLabels(blocks)
   const components: Partial<PortableTextHtmlComponents> = {
     block: {h1: ({children}) => `<h2>${children}</h2>`},
     types: {
       figure: ({value}) => figure(value as ImageRef & {caption?: string}, sizes),
-      table: ({value}) => table(value),
+      table: ({value}) => {
+        const t = value as TableValue
+        return table(t, (t._key && labels.get(t._key)) || t.caption || 'Table')
+      },
       videoEmbed: ({value}) => video(value),
       callToAction: ({value}) => cta(value as CallToAction, redirects),
     },

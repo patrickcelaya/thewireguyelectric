@@ -122,6 +122,8 @@
   .ihero :focus-visible{outline-color:var(--ink)}
   .ihero--sky .ihero__status{color:var(--muted)}
   .ihero--copper .ihero__copy :focus-visible{outline-color:#fff}
+  /* the current page in the trail in white, not glow: on the narrow copper hero its worst pixel needs the extra contrast */
+  .ihero--copper .crumbs--sky [aria-current]{color:#fff}
   .ihero--copper h1{font-size:clamp(2.75rem,12cqw,4.5rem)}
   .ihero--copper .ihero__lede{font-size:1.125rem}
   .ihero .btn-row .btn{flex:0 0 auto}
@@ -130,6 +132,9 @@
   .itrust__card{padding:16px 18px;border-radius:var(--r-lg)}
   .itrust__roc,.itrust__status{flex-basis:100%;padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}
 }
+/* tablets (round-5 QA): a wide band down to the asphalt, so the crew and the vans fill the first screen instead of
+   300 px of empty sky (the phone keeps the taller 4:3 crop from the approved mockup) */
+@media (min-width:700px) and (max-width:899px){.ihero--sky .ihero__photo img{aspect-ratio:16/7;object-position:50% 100%}}
 
 /* ===================================================================== at a glance: sourced facts */
 .glance{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px clamp(48px,6vw,120px);align-items:start}
@@ -317,6 +322,19 @@
 .pt-table thead th{background:var(--sand);color:var(--ink);font-weight:700}
 .pt-table tbody th{color:var(--ink);font-weight:650}
 .pt-table caption{caption-side:bottom;padding:10px 16px;text-align:left;font-size:var(--fs-meta);color:var(--muted)}
+/* phones: a table with a header row becomes one card per row, each value under its column's name, so a comparison reads
+   whole without sideways scrolling (the header row stays for screen readers) */
+@media (max-width:639px){
+  .pt-table--stack{overflow:visible;border-radius:0;background:none;box-shadow:none}
+  .pt-table--stack table{display:block;min-width:0}
+  .pt-table--stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  .pt-table--stack tbody{display:grid;gap:12px}
+  .pt-table--stack tr{display:grid;padding:16px 18px 6px;border-radius:var(--r-md);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
+  .pt-table--stack tbody th{display:block;padding:0 0 10px;border:0;font:700 1.0625rem/1.3 var(--font-display);letter-spacing:-.01em}
+  .pt-table--stack td{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:14px;padding:10px 0;border:0;border-top:1px solid var(--line)}
+  .pt-table--stack td::before{content:attr(data-label);font:650 var(--fs-meta)/1.5 var(--font-text);color:var(--copper-700)}
+  .pt-table--stack caption{display:block;padding:10px 2px 0}
+}
 .pt-video{margin:32px 0}
 .pt-video__link{position:relative;display:block;aspect-ratio:16/9;overflow:hidden;border-radius:var(--r-lg);background:var(--copper-900)}
 .prose .pt-video__link{text-decoration:none}

@@ -4,15 +4,17 @@
 // its heading beside the list and a link to that service page (the hub-and-spoke
 // signal), largest topics first, newest posts first within a topic. A row of topic
 // links jumps to each group. Rows are text (date, title, excerpt): no stock photos,
-// and 50+ thumbnails would weigh more than the words. Posts without a service close
-// the list as "More guides". Styles: styles/pages.css "BLOG INDEX".
+// and 50+ thumbnails would weigh more than the words. Each topic shows its newest
+// guides; the rest open under "Show all" (a native <details>, so every link is in the
+// HTML and works without JavaScript). Posts without a service close the list as
+// "More guides". Styles: styles/pages.css "BLOG INDEX".
 import type {PostCard, PostsSection} from '../../lib/types'
 import {ctaHref} from '../../lib/site'
-import {formatDate, isoDate} from '../../lib/format'
 import {getRedirectMap} from '../../lib/queries'
 import {sectionLabel} from '../../lib/sections'
 import SectionHeader from '../ui/SectionHeader.astro'
 import TextLink from '../ui/TextLink.astro'
+import PostRow from './PostRow.astro'
 
 interface Props {
   section: PostsSection
@@ -41,6 +43,8 @@ const groups = [...topics.values()].sort((a, b) => Number(!a.service) - Number(!
 const GroupTitle = section.heading ? 'h3' : 'h2'
 const RowTitle = section.heading ? 'h4' : 'h3'
 const anchor = (t: Topic) => `${section._key}-${t.key}`
+/** Guides shown per topic before "Show all": a breathable list, not a 19-row wall on a phone. */
+const SHOWN = 5
 ---
 
 {
@@ -86,23 +90,27 @@ const anchor = (t: Topic) => `${section._key}-${t.key}`
                 </p>
               )}
             </div>
-            <ol class="postgrp__list" role="list">
-              {t.posts.map((post) => (
-                <li class="postrow">
-                  {post.publishedAt && (
-                    <p class="postrow__d">
-                      <time datetime={isoDate(post.publishedAt)}>{formatDate(post.publishedAt, 'short')}</time>
-                    </p>
-                  )}
-                  <div class="postrow__body">
-                    <RowTitle class="postrow__h">
-                      <a href={`/blog-posts/${post.slug}`}>{post.title}</a>
-                    </RowTitle>
-                    {post.excerpt && <p class="postrow__ex">{post.excerpt}</p>}
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <div class="postgrp__lists">
+              <ol class="postgrp__list" role="list">
+                {t.posts.slice(0, SHOWN).map((post) => (
+                  <PostRow post={post} as={RowTitle} />
+                ))}
+              </ol>
+              {t.posts.length > SHOWN && (
+                <details class="postgrp__rest">
+                  <summary>
+                    <span class="when-closed">Show all {t.posts.length} guides</span>
+                    <span class="when-open">Show fewer</span>
+                    <span class="sr-only"> on {t.name}</span>
+                  </summary>
+                  <ol class="postgrp__list" role="list">
+                    {t.posts.slice(SHOWN).map((post) => (
+                      <PostRow post={post} as={RowTitle} />
+                    ))}
+                  </ol>
+                </details>
+              )}
+            </div>
           </div>
         ))}
       </div>

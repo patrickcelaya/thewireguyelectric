@@ -13,6 +13,13 @@ html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{di
 .lane:focus-visible{outline-offset:-2px}
 .belt{display:flex;width:max-content}
 .track{display:flex;gap:20px;padding-inline:var(--gutter) 20px}
+/* without JS the lanes don't move: every review is laid out whole, in columns on the page grid, each card as tall as its
+   own words (a horizontal lane would stretch to its longest review and leave the rest of the row empty) */
+html:not(.js) .marquee{-webkit-mask-image:none;mask-image:none}
+html:not(.js) .lane{overflow:visible;padding-block:0}
+html:not(.js) .belt{display:block;width:auto}
+html:not(.js) .track{display:block;columns:3 320px;column-gap:20px;padding-inline:var(--pad-x)}
+html:not(.js) .track .rv{width:auto;min-height:0;margin-bottom:20px;break-inside:avoid}
 .marquee.is-moving .lane{overflow:hidden}
 .marquee.is-moving .track{padding-left:0}
 .marquee.is-moving .belt{animation:mq var(--mq-dur,300s) linear infinite;will-change:transform}

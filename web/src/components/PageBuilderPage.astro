@@ -13,6 +13,7 @@ import '../styles/pages.css'
 import SectionRenderer from './sections/SectionRenderer.astro'
 import type {PageDoc, SiteSettings} from '../lib/types'
 import type {PageMeta} from '../lib/seo'
+import {innerHeroPreload} from '../lib/hero'
 
 interface Props {
   page: Pick<PageDoc, 'slug' | 'heading' | 'title' | 'sections'>
@@ -22,8 +23,13 @@ interface Props {
 }
 
 const {page, settings, meta, schema} = Astro.props
+// the hero photo is the LCP image: fetched from the head, before the parser reaches it
+const preload = innerHeroPreload(page.sections)
 ---
 
 <SiteLayout meta={meta} schema={schema} bodyClass={`inner page-${page.slug}`}>
+  <Fragment slot="head">
+    {preload && <link rel="preload" as="image" imagesrcset={preload.imagesrcset} imagesizes={preload.imagesizes} fetchpriority="high" />}
+  </Fragment>
   <SectionRenderer page={page} settings={settings} crumbs={meta.breadcrumbs} />
 </SiteLayout>

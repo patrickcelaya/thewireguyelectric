@@ -1,0 +1,30 @@
+---
+// One guide in the blog archive (PostsIndex): its date, its title (the row's one link)
+// and its excerpt. Styles: styles/pages.css "BLOG INDEX".
+import type {PostCard} from '../../lib/types'
+import {formatDate, isoDate} from '../../lib/format'
+
+interface Props {
+  post: PostCard
+  /** The title's heading level, one below the group heading. */
+  as: 'h3' | 'h4'
+}
+
+const {post, as: Title} = Astro.props
+---
+
+<li class="postrow">
+  {
+    post.publishedAt && (
+      <p class="postrow__d">
+        <time datetime={isoDate(post.publishedAt)}>{formatDate(post.publishedAt, 'short')}</time>
+      </p>
+    )
+  }
+  <div class="postrow__body">
+    <Title class="postrow__h">
+      <a href={`/blog-posts/${post.slug}`}>{post.title}</a>
+    </Title>
+    {post.excerpt && <p class="postrow__ex">{post.excerpt}</p>}
+  </div>
+</li>
