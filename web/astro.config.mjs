@@ -4,6 +4,7 @@ import vercel from '@astrojs/vercel'
 import {loadEnv} from 'vite'
 import {LEGACY_REDIRECTS, flattenRedirects, loadPostSlugs, loadSanityRedirects, postRedirects} from './src/config/redirects.mjs'
 import {oneHopRedirects} from './src/config/one-hop-redirects.mjs'
+import {buildInfoFile, readBuildInfo} from './src/config/build-info.mjs'
 
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '')
 
@@ -12,6 +13,8 @@ const sanity = {
   dataset: env.PUBLIC_SANITY_DATASET || 'production',
   token: env.SANITY_API_READ_TOKEN,
 }
+// Fingerprint the content before anything below reads it (lib/seo.ts reads SITE_INDEXABLE from process.env only)
+const buildInfo = await readBuildInfo({...env, SITE_INDEXABLE: process.env.SITE_INDEXABLE})
 const sanityRedirects = await loadSanityRedirects(sanity)
 const postSlugs = await loadPostSlugs({...sanity, localDataset: new URL('../migration/sanity-import/production.ndjson', import.meta.url)})
 
@@ -24,8 +27,9 @@ export default defineConfig({
   trailingSlash: 'never',
   output: 'static',
   adapter: vercel(),
-  // after the adapter: every redirect matches with or without a trailing slash, in one hop
-  integrations: [oneHopRedirects()],
+  // after the adapter: every redirect matches with or without a trailing slash, in one hop;
+  // /build-info.json for the Ignored Build Step (scripts/ignore-build.mjs)
+  integrations: [oneHopRedirects(), buildInfoFile(buildInfo)],
   redirects: flattenRedirects({...LEGACY_REDIRECTS, ...postRedirects(postSlugs), ...sanityRedirects}),
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},
