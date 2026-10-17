@@ -167,7 +167,9 @@
 .stmt__photo{margin:0;overflow:hidden;border-radius:var(--r-xl);box-shadow:0 40px 80px -40px rgb(40 14 4 / .7),inset 0 0 0 1px rgb(255 236 220 / .2)}
 .stmt__photo img{width:100%;height:auto}
 .stmt-s :focus-visible{outline-color:#fff}
-@media (max-width:899px){.stmt{grid-template-columns:minmax(0,1fr)}}
+/* phones: the subheading sets at body size, where WCAG asks 4.5:1; over the band's top-right highlight the glow tone
+   measured 4.27:1 at its worst pixel, cream clears it (on wide screens it is large text and keeps the glow) */
+@media (max-width:899px){.stmt{grid-template-columns:minmax(0,1fr)}.stmt__sub{color:var(--cream)}}
 
 
 /* ===================================================================== JOBS: open positions as paper cards */
