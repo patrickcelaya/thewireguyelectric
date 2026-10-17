@@ -13,17 +13,40 @@ const MIN_FILL_MS = 2500
 /** Each destination gets this long; a provider that hangs counts as failed, so the visitor never waits on it for good. */
 const PROVIDER_TIMEOUT_MS = 8000
 const FIELDS = ['name', 'phone', 'email', 'zip', 'experience', 'fullTime', 'startDate', 'message'] as const
+/** How the notification emails (Formspark, Resend) name each field; the webhook keeps the field names. */
+const LABELS: Record<(typeof FIELDS)[number], string> = {
+  name: 'Name',
+  phone: 'Phone',
+  email: 'Email',
+  zip: 'City or ZIP',
+  experience: 'Years of experience',
+  fullTime: 'Full-time',
+  startDate: 'Start date',
+  message: 'Message',
+}
 
 type Lead = Record<(typeof FIELDS)[number] | 'formType' | 'page', string>
+
+const formName = (lead: Lead) => (lead.formType === 'careers' ? 'Job application' : 'Estimate request')
+const subject = (lead: Lead) => (lead.formType === 'careers' ? `${formName(lead)}: ${lead.name}` : `${formName(lead)}: ${lead.name} (${lead.zip || 'no zip'})`)
+/** The filled-in fields under their labels, in form order. */
+const labelled = (lead: Lead) => FIELDS.filter((k) => lead[k]).map((k) => [LABELS[k], lead[k]] as const)
+
+/** A provider's refusal with the start of its answer, so a Formspark 402 (out of submissions) or 403 (spam filter) reads as such in the logs. */
+async function refused(provider: string, res: Response) {
+  const body = await res.text().catch(() => '')
+  return new Error(`${provider} ${res.status}${body ? `: ${body.slice(0, 200)}` : ''}`)
+}
 
 async function toFormspark(formId: string, lead: Lead) {
   const res = await fetch(`https://submit-form.com/${encodeURIComponent(formId)}`, {
     method: 'POST',
     headers: {'content-type': 'application/json', accept: 'application/json'},
-    body: JSON.stringify({...lead, _email: {subject: subject(lead)}}),
+    // _email.from is the sender's name only (Formspark ignores one with @, < or >)
+    body: JSON.stringify({...Object.fromEntries(labelled(lead)), Form: formName(lead), Page: lead.page, _email: {subject: subject(lead), from: 'Wire Guy website'}}),
     signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
   })
-  if (!res.ok) throw new Error(`Formspark ${res.status}`)
+  if (!res.ok) throw await refused('Formspark', res)
 }
 
 async function toWebhook(url: string, lead: Lead) {
@@ -33,11 +56,11 @@ async function toWebhook(url: string, lead: Lead) {
     body: JSON.stringify(lead),
     signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
   })
-  if (!res.ok) throw new Error(`Webhook ${res.status}`)
+  if (!res.ok) throw await refused('Webhook', res)
 }
 
 async function toResend(apiKey: string, to: string, lead: Lead) {
-  const lines = FIELDS.filter((k) => lead[k]).map((k) => `${k}: ${lead[k]}`)
+  const lines = [`Form: ${formName(lead)}`, ...labelled(lead).map(([label, value]) => `${label}: ${value}`)]
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {authorization: `Bearer ${apiKey}`, 'content-type': 'application/json'},
@@ -50,7 +73,7 @@ async function toResend(apiKey: string, to: string, lead: Lead) {
     }),
     signal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS),
   })
-  if (!res.ok) throw new Error(`Resend ${res.status}`)
+  if (!res.ok) throw await refused('Resend', res)
 }
 
 // A form posted without JavaScript asks for a page, not JSON: send the browser back to the page it came from (same
@@ -65,14 +88,17 @@ function back(request: Request, ok: boolean) {
   return new Response(null, {status: 303, headers: {location: `${path}?${ok ? 'sent' : 'error'}=1#${ok ? 'sent' : 'send-error'}`}})
 }
 
-const subject = (lead: Lead) => `${lead.formType === 'careers' ? 'Job application' : 'Estimate request'}: ${lead.name} (${lead.zip || 'no zip'})`
-
 // Status codes: 204 delivered; 202 dropped as a bot (it still looks like success, but scripts/site/forms.ts counts a
-// lead only on 204); 400 missing name or phone; 502 every destination failed; 503 none set.
+// lead only on 204); 400 missing name or phone, or a body that isn't a form; 502 every destination failed; 503 none set.
 export const POST: APIRoute = async ({request}) => {
   const json = (request.headers.get('accept') ?? '').includes('application/json')
   const reply = (status: number, body: string | null = null) => (json ? new Response(body, {status}) : back(request, status < 300))
-  const data = await request.formData()
+  let data: FormData
+  try {
+    data = await request.formData()
+  } catch {
+    return reply(400, 'Bad request')
+  }
   const get = (k: string) => String(data.get(k) ?? '').trim().slice(0, 5000)
 
   // Bots fill the hidden field or submit instantly. Pretend success so they move on. The fill time is measured in the
@@ -91,6 +117,7 @@ export const POST: APIRoute = async ({request}) => {
 
   const lead = Object.fromEntries([
     ...FIELDS.map((k) => [k, get(k)]),
+    ['message', get('message') || 'No details given'],
     ['formType', get('formType') === 'careers' ? 'careers' : 'estimate'],
     ['page', request.headers.get('referer') ?? ''],
   ]) as Lead
@@ -109,3 +136,6 @@ export const POST: APIRoute = async ({request}) => {
   failed.forEach((f) => console.error('[contact] delivery failed:', f.reason))
   return failed.length === results.length ? reply(502, 'Delivery failed') : reply(204)
 }
+
+// Anything but a POST (a monitor's GET, a HEAD): the endpoint exists, it just takes form posts.
+export const ALL: APIRoute = () => new Response('Method Not Allowed', {status: 405, headers: {allow: 'POST'}})

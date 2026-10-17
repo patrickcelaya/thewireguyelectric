@@ -57,12 +57,9 @@ function enhance(box: HTMLElement) {
 
   const send = () => {
     fill.value = String(Math.round(performance.now() - t0))
-    const data = new FormData(form)
-    const message = form.querySelector<HTMLTextAreaElement>('textarea[name=message]')
-    if (message && !message.value.trim()) data.set('message', 'No details given')
     const controller = new AbortController()
     const timer = setTimeout(() => controller.abort(), SEND_TIMEOUT_MS)
-    fetch(form.action, {method: 'POST', body: data, headers: {Accept: 'application/json'}, signal: controller.signal})
+    fetch(form.action, {method: 'POST', body: new FormData(form), headers: {Accept: 'application/json'}, signal: controller.signal})
       .then((res) => {
         if (!res.ok) throw new Error(String(res.status))
         busy(false)
