@@ -99,6 +99,42 @@
       "new_text": "You'll know the price before we start",
       "tier": "tier1",
       "reason": "D1: the shared closing band's heading (every page with the estimate band) was a stock line. The replacement is the business's flat-rate promise from /faq: \"we quote you a price before we start and that's what you pay\". The band's eyebrow says \"Free estimates\" and its button \"Get a Free Estimate\"."
+    },
+    {
+      "id": "D6-01",
+      "url": "/locations/tempe",
+      "target": {"kind": "ndjson", "doc_id": "6281177e-a855-4a20-853b-94f7153efce1", "field": "body[4]"},
+      "old_text": "near Sun Devil Stadium,",
+      "new_text": "near Mountain America Stadium,",
+      "tier": "normal",
+      "reason": "D6: ASU's football stadium has been \"Mountain America Stadium, Home of the ASU Sun Devils\" since the naming-rights deal of 2023-08-02 (ASU News, news.asu.edu/20230802-university-news-asu-mountain-america-credit-union-naming-rights-deal-football-stadium; Sun Devil Athletics, thesundevils.com/facilities-venues/mountain-america-stadium, checked 2026-10-17). Applies to slop-cities-056's sentence."
+    },
+    {
+      "id": "D6-02",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {"kind": "ndjson", "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8", "field": "body", "block_key": "k02g"},
+      "old_text": "A Level 1 charger works by converting AC power from a regular outlet into DC power",
+      "new_text": "A Level 1 charger delivers AC power from a regular outlet, which the car’s onboard charger converts into DC power",
+      "tier": "normal",
+      "reason": "D6: a Level 1 (or Level 2) charger supplies AC; the conversion to DC happens in the car's onboard charger. The rest of the sentence and its citation are unchanged."
+    },
+    {
+      "id": "D6-03",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {"kind": "ndjson", "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521", "field": "body", "block_key": "k012"},
+      "old_text": "safer than high-voltage lines.",
+      "new_text": "safer than line-voltage (120 V) lines.",
+      "tier": "normal",
+      "reason": "D6: house wiring at 120 V is line voltage, not high voltage."
+    },
+    {
+      "id": "D6-04",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {"kind": "ndjson", "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521", "field": "body", "block_key": "k02s"},
+      "old_text": "High-voltage lines go deeper.",
+      "new_text": "Line-voltage (120 V) lines go deeper.",
+      "tier": "normal",
+      "reason": "D6: as D6-03; applies to slop-posts-b-124's sentence."
     }
   ],
   "splits": [

@@ -935,7 +935,8 @@
       "Do you offer free estimates?: \"Contact us today\" → /estimate",
       "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?: \"Contact us today\" → /estimate",
       "How much does it cost to install an EV charger at home?: \"give us a call\" → /estimate",
-      "How long does it take to install recessed lighting?: \"contact us\" → /estimate"
+      "How long does it take to install recessed lighting?: \"contact us\" → /estimate",
+      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"National Fire Protection Association (NFPA)\" → https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home"
     ],
     "postCategories": {
       "lighting": 6
@@ -961,10 +962,10 @@
     "applied": {
       "pages": 64,
       "cities": 58,
+      "decisions": 15,
       "services": 79,
       "posts-a": 251,
-      "posts-b": 179,
-      "decisions": 11
+      "posts-b": 179
     },
     "splits": [
       "D5-01"
