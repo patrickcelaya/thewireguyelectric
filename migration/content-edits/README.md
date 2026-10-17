@@ -73,3 +73,40 @@ module checks that after every run.
 
 Eight city closing paragraphs (slop-cities-012, -023, -029, -034, -040, -045, -051, -057) are `adapted`: the converter now trims the line break at the
 end of every block, so their `old_text` ends at the full stop.
+
+## Decisions applied with this pass (FIX_BRIEF, 2026-10-17)
+
+- **D1** homepage headings, the capability and card titles and the shared CTA band heading: `decisions.json` D1-01 … D1-11.
+- **D2** Steven Taylor's /our-team quote keeps its words (slop-pages-022 skipped).
+- **D3** the /commercial-electrician hero loses its three starred one-liners (they match no review); its
+  "Trusted by 100+ Arizona businesses" line stays, since the live page shows it word for word (`page-sections.mjs`).
+- **D4** "Emergency troubleshooting" becomes "Electrical troubleshooting" (slop-posts-b-085).
+- **D5** estimate CTAs that linked to "/" or to /contact-us now go to /estimate, and five typing slips are fixed
+  (`linkFixes` and `textFixes` in `migration/content-data/cms-templates.json`); the converter trims line breaks at
+  block edges and drops Webflow's `__wf_reserved_inherit` alt; emptied blocks are dropped; the Ahwatukee body is
+  split into paragraphs and a list (`decisions.json` D5-01).
+- **D6** Mountain America Stadium, the onboard charger's AC-to-DC conversion and "line-voltage (120 V)"
+  (`decisions.json` D6-01 … D6-04); the NFPA citation links nfpa.org instead of a Google search (`linkFixes`).
+- **D10** /services/hanging-lights ships its published copy (`webflow-to-sanity.mjs`, live snapshot
+  `migration/live-snapshots/services_hanging-lights.html`), with a quick answer rewritten from that copy.
+
+## Owner to confirm
+
+1. **Steven Taylor's quote on /our-team** is still the stock paragraph ("the name you can trust … your dependable
+   partner in all things electrical"). It may only lose words, and nothing meaningful is left if it does: approve
+   it, give us his own words, or cut the quote.
+2. **/commercial-electrician hero:** the quotes "On time and stayed on schedule", "Clear pricing and communication"
+   and "Reliable electricians for our business" were removed because no review says them. "Trusted by 100+ Arizona
+   businesses" stays: please confirm the number.
+3. **Promises in posts:** "free post-storm safety inspections" and "free safety check" (monsoon post) and
+   "same-day service available" (surge-protection and breaker posts; also the breaker post's meta description).
+4. **Level 1 vs Level 2 post:** its 200 A panel upgrade price ($1,800–$2,500) disagrees with the site's panel
+   figures ($5,200–$6,500). Left as is.
+5. **/services/hanging-lights** now shows the published 2024 copy, which is heavy stock copy ("perfect for
+   businesses looking to enhance their ambiance", "meticulous attention to detail", "bespoke … not only meet but
+   exceed expectations"). No verified edits exist for it. Either publish the 2026-08-18 rewrite held as a draft in
+   Webflow, or have this copy reviewed. Its new quick answer only restates the published copy.
+6. **Homepage team intro** still names Emma with her photo and link (live copy).
+7. **"Over 9 years"** in the business FAQ goes stale in 2027.
+8. **Homepage "Our promise":** the section heading "Done right the first time." now repeats the second card's
+   title (D1). Keep both, or give the section another heading.
