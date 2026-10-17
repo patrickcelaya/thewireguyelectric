@@ -13,6 +13,14 @@ export function formatDate(iso: string, style: keyof typeof FORMATS = 'long') {
   return date.toLocaleDateString('en-US', {...FORMATS[style], timeZone: 'America/Phoenix'})
 }
 
+/**
+ * A name inside a sentence: "EV Charger Installation" → "EV charger installation",
+ * "LED Lights" → "LED lights" (words in capitals, such as EV and LED, keep them).
+ */
+export function inSentence(name: string) {
+  return name.replace(/\S+/g, (word) => (/^[A-Z0-9]{2,}$/.test(word) ? word : word.toLowerCase()))
+}
+
 /** "2026-02-12" for <time datetime>. */
 export function isoDate(iso: string) {
   return iso.slice(0, 10)

@@ -5,7 +5,10 @@
 // the body verbatim beside the contact card (its job photo halfway down), real reviews (the service's own first),
 // questions (the service's, then the ones /faq tags with it, then the three the live
 // template carried) with guides, related services, the valley map and the estimate band.
-// No price module: a price shows only where the body or an FAQ answer already states it.
+// No prices (owner rule): no price module, no question about price or with a dollar
+// figure in its answer, and no price markup.
+// The structured data and the share image describe what the page shows: its own photo
+// only when the hero shows it, the guides and related services on their cards.
 // Title, description, canonical, H1 and crumbs are unchanged from the live site.
 import SiteLayout from '../../layouts/SiteLayout.astro'
 import '../../styles/bundles/page-cms.css'
@@ -22,12 +25,13 @@ import CtaBand from '../../components/sections/CtaBand.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getFaqs, getLocations, getPostIndex, getReviews, getService, getServiceFaqs, getServices, getSettings} from '../../lib/queries'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {ogImageMeta, resolveDescription, resolveTitle} from '../../lib/seo'
 import {faqNode, serviceNode, webPageNode} from '../../lib/schema'
 import {absoluteUrl} from '../../lib/seo'
 import {serviceAreaCities} from '../../lib/cities'
 import {imagePreload} from '../../lib/image'
-import {SERVICE_HERO_IMAGE, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, pricesLast, serviceGuides} from '../../lib/cms'
+import {SERVICE_HERO_IMAGE, allSupport, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, serviceGuides, serviceTopic, withoutPrices} from '../../lib/cms'
+import {inSentence} from '../../lib/format'
 
 export async function getStaticPaths() {
   return (await getServices()).map((s) => ({params: {slug: s.slug}}))
@@ -60,11 +64,18 @@ const seed = Math.max(0, services.findIndex((s) => s.slug === service.slug))
 const {reviews, local} = pickReviews(service.reviews ?? [], allReviews.filter((r) => !r.serviceSlug), seed)
 const reviewsIntro =
   local === reviews.length && local > 0
-    ? `Google reviews from customers we did ${service.name.toLowerCase()} work for, shown word for word.`
+    ? `Google reviews from customers we did ${inSentence(service.name)} work for, shown word for word.`
     : 'Google reviews from customers across the Phoenix valley, shown word for word.'
-const faqs = mergeFaqs([service.faqs, pricesLast(taggedFaqs), commonFaqs])
-const guides = guideCards(serviceGuides(service.relatedPosts, service.slug, postIndex), postIndex, services, seed)
+// the service's own questions first, then the ones /faq tags with it, then the general ones; none with a price
+const ownFaqs = [...withoutPrices(service.faqs), ...withoutPrices(taggedFaqs)]
+const faqs = mergeFaqs([ownFaqs, withoutPrices(commonFaqs)])
+const guidePosts = serviceGuides(service.relatedPosts, service.slug, postIndex)
+const guides = guideCards(guidePosts, postIndex, services, seed)
 const related = service.relatedServices ?? []
+// headings name the service where what they head is about it: questions it has its own of, guides that all support it
+const topic = serviceTopic(service)
+const faqHeading = ownFaqs.length ? `Questions about ${topic}` : 'Questions, answered'
+const guidesHeading = allSupport(guidePosts, service.slug, postIndex) ? `Guides on ${topic}` : 'Guides from our blog'
 const cities = serviceAreaCities(settings.homeCity, locations)
 
 // chapter numbers, in page order, for the sections that have content
@@ -83,6 +94,8 @@ const n = {
 
 const staging = heroStaging(service.mainImage)
 const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
+// the photo the hero shows (a company photo); a stock image the page hides is never its image or preview
+const ownPhoto = hero ? service.mainImage : undefined
 // The job photo the hero sets under its copper tint, shown in true colour halfway down the
 // article; its caption describes it, so the image itself is decorative there.
 const jobPhoto = staging === 'tint' && service.mainImage?.alt ? service.mainImage : undefined
@@ -92,10 +105,10 @@ const serviceId = `${absoluteUrl(path)}#service`
 ---
 
 <SiteLayout
-  meta={{title, description, path, ogImage: resolveOgImage(settings, service.seo?.ogImage, service.mainImage), noIndex: service.seo?.noIndex, breadcrumbs: crumbs}}
+  meta={{title, description, path, ...ogImageMeta(settings, service.seo?.ogImage, ownPhoto), noIndex: service.seo?.noIndex, breadcrumbs: crumbs}}
   schema={[
     {...webPageNode({path, title, description, breadcrumbs: crumbs}), mainEntity: {'@id': serviceId}},
-    serviceNode(service, settings, description),
+    serviceNode(service, settings, description, {image: ownPhoto, related, guides: guidePosts}),
     faqNode(path, faqs),
   ]}
   bodyClass="inner"
@@ -116,10 +129,10 @@ const serviceId = `${absoluteUrl(path)}#service`
 
   <AnswersBand
     faqs={faqs}
-    faqHeading="Questions, answered"
+    faqHeading={faqHeading}
     faqIntro="From our FAQ."
     posts={guides}
-    guidesHeading="Guides from our blog"
+    guidesHeading={guidesHeading}
     guidesIntro="Read up on the details before you call."
     numbers={{faq: n.faq, guides: n.guides}}
   />

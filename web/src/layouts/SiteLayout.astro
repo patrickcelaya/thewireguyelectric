@@ -20,6 +20,7 @@ import CallBar from '../components/site/CallBar.astro'
 import {getServices, getSettings} from '../lib/queries'
 import {getNavModel} from '../lib/nav'
 import {branchNodes, businessNode, breadcrumbNode, graph, websiteNode} from '../lib/schema'
+import {arizonaNode} from '../lib/places'
 import {SITE_INDEXABLE, SITE_URL, type PageMeta} from '../lib/seo'
 
 interface Props {
@@ -40,6 +41,8 @@ const ld = graph([
   businessNode(settings, services),
   ...branchNodes(settings),
   websiteNode(settings),
+  // the state the service-area cities (#business areaServed) lie in
+  arizonaNode(),
   ...schema.filter((n): n is Record<string, unknown> => Boolean(n)),
   meta.breadcrumbs?.length ? breadcrumbNode(meta.path, meta.breadcrumbs) : undefined,
 ])

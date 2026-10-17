@@ -15,7 +15,7 @@ import PortableText from '../../components/PortableText.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getLocations, getServiceCategories, getSettings} from '../../lib/queries'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {resolveDescription, ogImageMeta, resolveTitle} from '../../lib/seo'
 import {serviceListNode, webPageNode} from '../../lib/schema'
 import {serviceAreaCities} from '../../lib/cities'
 import type {ServiceCategoryDoc} from '../../lib/types'
@@ -39,7 +39,7 @@ const name = category.name.toLowerCase()
 ---
 
 <SiteLayout
-  meta={{title, description, path, ogImage: resolveOgImage(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
+  meta={{title, description, path, ...ogImageMeta(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
   schema={[{...webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs}), mainEntity: serviceListNode(category.services)}]}
   bodyClass="inner page-cat"
 >

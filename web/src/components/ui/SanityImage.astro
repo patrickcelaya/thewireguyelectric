@@ -7,7 +7,7 @@
 // stays in view (object-position). Company photos of people carry their head boxes
 // (data-faces) for the QA face checks. Renders nothing when the image can't be served.
 import type {ImageRef} from '../../lib/types'
-import {hasImage, imageDimensions, imageFocus, imageSrcSet, imageUrl} from '../../lib/image'
+import {hasImage, imageAlt, imageDimensions, imageFocus, imageSrcSet, imageUrl} from '../../lib/image'
 import {facesOf} from '../../lib/brand-photos'
 
 interface Props {
@@ -48,7 +48,7 @@ const css = [focus && `object-position:${focus}`, style].filter(Boolean).join(';
       sizes={srcset ? sizes : undefined}
       width={width}
       height={height}
-      alt={alt ?? image.alt ?? ''}
+      alt={alt ?? imageAlt(image) ?? ''}
       loading={priority ? 'eager' : 'lazy'}
       decoding={priority ? 'sync' : 'async'}
       fetchpriority={priority ? 'high' : undefined}

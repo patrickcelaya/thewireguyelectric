@@ -3,7 +3,9 @@
 // title) and the byline, beside the cover (a real photo: lib/cms.ts postCover). The
 // byline is the business (the owner's choice) unless the post names an author;
 // "Updated" shows only for a material update (updatedAt set and different from the
-// publish date); "Reviewed by" only when a reviewer is set. Styles: styles/post.css.
+// publish date); "Reviewed by" only when a reviewer is set. The cover keeps its own alt
+// text (what the photo shows, never the post's title): it is the page's main image, the
+// article's image and its share image. Styles: styles/post.css.
 import type {ImageRef, PostDoc, SiteSettings} from '../../lib/types'
 import type {Crumb} from '../../lib/seo'
 import {formatDate, isoDate} from '../../lib/format'
@@ -25,8 +27,6 @@ interface Props {
 const {post, settings, crumbs, topic, minutes, cover} = Astro.props
 const updated = post.updatedAt && isoDate(post.updatedAt) !== isoDate(post.publishedAt) ? post.updatedAt : undefined
 const person = (p: NonNullable<PostDoc['author']>) => [p.name, p.role].filter(Boolean).join(', ')
-// the post's own photo keeps its alt; a cover borrowed from its service is decorative
-const alt = cover === post.mainImage ? undefined : ''
 const focus = facesFocus(facesOf(cover))
 ---
 
@@ -61,7 +61,7 @@ const focus = facesFocus(facesOf(cover))
       }
     </div>
     <figure class="post-cover">
-      <SanityImage image={cover} widths={POST_COVER.widths} sizes={POST_COVER.sizes} alt={alt} style={focus && `object-position:${focus}`} priority />
+      <SanityImage image={cover} widths={POST_COVER.widths} sizes={POST_COVER.sizes} style={focus && `object-position:${focus}`} priority />
     </figure>
   </div>
 </div>

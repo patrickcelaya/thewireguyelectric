@@ -8,7 +8,7 @@ import SiteLayout from '../layouts/SiteLayout.astro'
 import '../styles/bundles/page-home.css'
 import SectionRenderer from '../components/sections/SectionRenderer.astro'
 import {collectPageFaqs, getPage, getSettings} from '../lib/queries'
-import {requireComposed, resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
+import {requireComposed, resolveDescription, ogImageMeta, resolveTitle} from '../lib/seo'
 import {faqNode, webPageNode} from '../lib/schema'
 import {heroPreloads} from '../lib/hero'
 import {hasImage, imageUrl} from '../lib/image'
@@ -24,7 +24,7 @@ const preloads = heroPreloads(heroImage)
 ---
 
 <SiteLayout
-  meta={{title, description, path: '/', ogImage: resolveOgImage(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex}}
+  meta={{title, description, path: '/', ...ogImageMeta(settings, page.seo?.ogImage), noIndex: page.seo?.noIndex}}
   schema={[
     webPageNode({path: '/', title, description, primaryImage: hasImage(heroImage) ? imageUrl(heroImage, {width: 1200, format: 'jpg'}) : undefined}),
     faqNode('/', collectPageFaqs(page)),

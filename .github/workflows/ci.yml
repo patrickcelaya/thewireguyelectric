@@ -34,6 +34,12 @@ jobs:
           PUBLIC_SANITY_PROJECT_ID: ${{ vars.PUBLIC_SANITY_PROJECT_ID }}
           PUBLIC_SANITY_DATASET: ${{ vars.PUBLIC_SANITY_DATASET }}
 
+      # Every page's JSON-LD and share tags: one parsing @graph with the required fields, references
+      # that resolve, images the page shows, no prices on service pages, no shortened sameAs, and
+      # every served city named with its Wikipedia/Wikidata pages (scripts/seo/check-structured-data.mjs).
+      - name: Structured data and share tags
+        run: pnpm seo:schema
+
       - name: SEO parity against the live-site baseline
         run: |
           node scripts/seo/serve-build.mjs --port 4321 &

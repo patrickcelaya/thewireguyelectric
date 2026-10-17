@@ -117,7 +117,7 @@ const servicesCur = current === '/services' || current.startsWith('/services/') 
           </ul>
           <div class="nav__cta">
             <div class="nav__btns">
-              <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>
+              <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
               <Button href={tel} variant="ghost" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
             </div>
             {
@@ -135,7 +135,7 @@ const servicesCur = current === '/services' || current.startsWith('/services/') 
         <div class="hdr-cta">
           <a class="hdr-tel" href={tel}
             ><span class="tel-ic" data-office aria-hidden="true"></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
-          >
+          >{' '}
           <a class="hdr-est" href={ESTIMATE_PATH} aria-current={cur(ESTIMATE_PATH)}>Get a Free Estimate</a>
         </div>
         <a class="hdr-call" href={tel}

@@ -22,10 +22,11 @@ import CtaBand from '../../components/sections/CtaBand.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getFaqs, getLocations, getPostIndex, getReviews, getServices, getSettings} from '../../lib/queries'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {absoluteUrl, ogImageMeta, resolveDescription, resolveTitle} from '../../lib/seo'
 import {branchFor, branchId, faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
 import {CITY_ORDER, serviceAreaCities} from '../../lib/cities'
 import {CITY_SHARED_QUESTIONS, FLEET_HERO, cityGuides, guideCards, listOf, mergeFaqs, pickFaqs, pickReviews} from '../../lib/cms'
+import {companyPhoto} from '../../lib/brand-photos'
 import type {LocationDoc} from '../../lib/types'
 
 export async function getStaticPaths() {
@@ -73,15 +74,19 @@ const guides = guideCards(
 )
 const cities = serviceAreaCities(settings.homeCity, locations)
 const nearby = (location.nearbyLocations ?? []).map((l) => l.shortName || l.name)
+// the city's own photo, when it is the crew's (LocationGlance shows it), else the default share image
+const ownPhoto = companyPhoto(location.mainImage) ? location.mainImage : undefined
+const serviceId = `${absoluteUrl(path)}#service`
 
 ---
 
 <SiteLayout
-  meta={{title, description, path, ogImage: resolveOgImage(settings, location.seo?.ogImage, location.mainImage), noIndex: location.seo?.noIndex, breadcrumbs: crumbs}}
+  meta={{title, description, path, ...ogImageMeta(settings, location.seo?.ogImage, ownPhoto), noIndex: location.seo?.noIndex, breadcrumbs: crumbs}}
   schema={[
     // the office whose Google Business Profile lands here (its entity is in every page's graph, see SiteLayout)
-    {...webPageNode({path, title, description, breadcrumbs: crumbs}), ...(office && {about: {'@id': branchId(office)}})},
-    locationServiceNode(location),
+    {...webPageNode({path, title, description, breadcrumbs: crumbs}), ...(office && {about: {'@id': branchId(office)}}), mainEntity: {'@id': serviceId}},
+    // provided by the office whose profile lands here, else the business; its catalog is the service cards shown
+    locationServiceNode(location, settings, {provider: office && branchId(office), services: featured}),
     faqNode(path, faqs),
   ]}
   bodyClass="inner"

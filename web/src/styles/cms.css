@@ -106,6 +106,15 @@ html:not(.oo):not(.oc) .facts__status{display:none}
 
 /* ===================================================================== the answers band without questions: the guides start at the top */
 .answers .wrap>.guides-block:first-child{margin-top:0}
+/* four or five guides (a service page shows every guide picked for it): four in a row (two by two on tablets);
+   five as three over two, every card the same width, the two centred */
+@media (min-width:900px){
+  .guides--4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .guides--5{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .guides--5>.guide{grid-column:span 2}
+  .guides--5>.guide:nth-child(4){grid-column:2/span 2}
+}
+@media (min-width:1100px){.guides--4{grid-template-columns:repeat(4,minmax(0,1fr))}.guides--4 .guide h3{font-size:1.25rem}}
 
 /* ===================================================================== a section head with several links */
 .head .more:has(.textlink+.textlink){display:flex;flex-wrap:wrap;gap:14px 28px}

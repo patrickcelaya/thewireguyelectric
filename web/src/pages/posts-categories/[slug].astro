@@ -8,7 +8,7 @@ import CategoryHero from '../../components/sections/CategoryHero.astro'
 import GuidesBlock from '../../components/sections/GuidesBlock.astro'
 import CtaBand from '../../components/sections/CtaBand.astro'
 import {getPostCategories, getPostIndex, getServices, getSettings} from '../../lib/queries'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../../lib/seo'
+import {resolveDescription, ogImageMeta, resolveTitle} from '../../lib/seo'
 import {webPageNode} from '../../lib/schema'
 import {guideCards} from '../../lib/cms'
 import type {PostCategoryDoc} from '../../lib/types'
@@ -35,7 +35,7 @@ const hubs = services.filter((s) => postIndex.some((p) => p.services[0] === s.sl
 ---
 
 <SiteLayout
-  meta={{title, description, path, ogImage: resolveOgImage(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
+  meta={{title, description, path, ...ogImageMeta(settings, category.seo?.ogImage), noIndex: category.seo?.noIndex, breadcrumbs: crumbs}}
   schema={[webPageNode({path, title, description, type: 'CollectionPage', breadcrumbs: crumbs})]}
   bodyClass="inner page-cat"
 >

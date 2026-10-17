@@ -79,6 +79,8 @@ export interface PostalAddress {
   appointmentOnly?: boolean
   /** Footer and structured data only; never office cards, contact details or maps (a home address). */
   footerOnly?: boolean
+  /** This office's own profile URLs (its Google Maps place, directory listings): its sameAs in structured data. */
+  sameAs?: string[]
 }
 
 export interface OpeningHours {
@@ -143,7 +145,7 @@ export interface SiteSettings {
   availabilityNote?: string
   priceRange?: string
   foundingDate?: string
-  founders?: Array<{name: string; role?: string}>
+  founders?: Array<{name: string; role?: string; slug?: string}>
   rocLicense?: string
   /** Public AZ ROC lookup page for the license. */
   rocLicenseUrl?: string
@@ -203,6 +205,8 @@ export interface ServiceSummary {
   _id: string
   name: string
   slug: string
+  /** The words of the early link from a post to this service ("See our {linkLabel} service"); empty = lib/cms.ts hubLinkLabel. */
+  linkLabel?: string | null
   shortDescription?: string
   mainImage?: ImageRef
   category?: {name: string; slug: string}
@@ -324,8 +328,6 @@ export interface PostDoc extends PostSummary {
   reviewedBy?: {name: string; role?: string; slug?: string; credentials?: string[]; photo?: ImageRef}
   /** The first one is the post's primary (hub) service. */
   relatedServices?: ServiceSummary[]
-  /** Other posts that support the same services, newest first (max 3). */
-  relatedPosts?: PostSummary[]
   faqs?: FaqItem[]
   seo?: Seo
 }
@@ -365,6 +367,8 @@ export interface JobOpening {
   datePosted: string
   validThrough?: string
   baseSalary?: {min?: number; max?: number; unit?: string}
+  /** The experience the posting asks for, in months ("4+ years" = 48). */
+  minExperienceMonths?: number
 }
 
 /** A project photo (gallery) with alt text. */

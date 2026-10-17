@@ -2,7 +2,8 @@
 // The live templates' "Ready to Schedule Service?" block as the round-5 glass card
 // beside a long-form article: the 5.0 with its Google link, the template's words, the
 // phone, the email, the office hours and the button (→ /estimate, owner rule). No
-// address: the home address is never shown here. Values from Site settings.
+// address: the home address is never shown here. Values from Site settings. The card's
+// line is not a heading: the card sits beside articles, outside their outline.
 // Styles: styles/inner.css (.contact-card, .cc-*).
 import type {SiteSettings} from '../../lib/types'
 import {ESTIMATE_PATH, officeHours, ratingSummary, siteRating, telHref} from '../../lib/site'
@@ -48,7 +49,7 @@ const hours = officeHours(settings).prose
     )
   }
   <p class="contact-card__k">{settings.businessName}</p>
-  <h3>Ready to Schedule Service?</h3>
+  <p class="contact-card__h">Ready to Schedule Service?</p>
   <p class="contact-card__ph"><a class="tnum" href={telHref(settings)}>{settings.phone}</a></p>
   {
     settings.email && (

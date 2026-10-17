@@ -1,5 +1,5 @@
 import type {ImageRef, Seo, SiteSettings} from './types'
-import {ogImageUrl} from './image'
+import {imageAlt, ogImageUrl} from './image'
 
 export const SITE_URL = 'https://www.thewireguyelectric.com'
 
@@ -34,7 +34,10 @@ export interface PageMeta {
   description?: string
   /** Path without trailing slash, e.g. "/services/panels". */
   path: string
+  /** A 1200×630 rendition (ogImageMeta); empty = /og-default.png. */
   ogImage?: string
+  /** What the share image shows (og:image:alt); only when it is known. */
+  ogImageAlt?: string
   ogType?: 'website' | 'article'
   noIndex?: boolean
   breadcrumbs?: Crumb[]
@@ -60,10 +63,16 @@ export function resolveDescription(seo: Seo | undefined, ...fallbacks: Array<str
   return seo?.description?.trim() || fallbacks.find((f) => f && f.trim())?.trim()
 }
 
-export function resolveOgImage(settings: SiteSettings, ...images: Array<ImageRef | undefined | null>) {
+/**
+ * The page's share image: the first of `images` that can be served (the page's own SEO
+ * image, then a photo the page shows), else Site settings → default share image, as
+ * og:image and its alt. Pass only images the page shows: a stock photo the page hides
+ * never becomes its preview.
+ */
+export function ogImageMeta(settings: SiteSettings, ...images: Array<ImageRef | undefined | null>): Pick<PageMeta, 'ogImage' | 'ogImageAlt'> {
   for (const image of [...images, settings.defaultOgImage]) {
     const url = ogImageUrl(image)
-    if (url) return url
+    if (url) return {ogImage: url, ogImageAlt: imageAlt(image)}
   }
-  return undefined
+  return {}
 }

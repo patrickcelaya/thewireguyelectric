@@ -81,6 +81,7 @@ const SERVICE_FIELDS = /* groq */ `
   _id,
   name,
   "slug": slug.current,
+  linkLabel,
   shortDescription,
   "mainImage": mainImage${IMAGE},
   "category": category->{name, "slug": slug.current}`
@@ -148,7 +149,7 @@ const TEAM_MEMBER = /* groq */ `{
 }`
 
 const JOB = /* groq */ `{
-  _id, title, description${RICH_TEXT}, employmentType, datePosted, validThrough, baseSalary
+  _id, title, description${RICH_TEXT}, employmentType, datePosted, validThrough, baseSalary, minExperienceMonths
 }`
 
 const PROJECT_CARD = /* groq */ `{
@@ -190,7 +191,7 @@ const SECTIONS = /* groq */ `sections[]{
         }
       },
       *[_type == "service" && defined(slug.current) && (!defined(^.category) || category._ref == ^.category._ref)]
-        | order(coalesce(order, 999) asc, name asc)${SERVICE_SECTION_CARD}
+        | order(coalesce(order, 999) asc, name asc, _id asc)${SERVICE_SECTION_CARD}
     ), []),
     "categoryInfo": select(layout == "grouped" => *[_type == "serviceCategory" && defined(slug.current)]{
       _id, name, "slug": slug.current, heading, description${RICH_TEXT}
@@ -199,7 +200,7 @@ const SECTIONS = /* groq */ `sections[]{
   _type == "locationsSection" => {
     "locations": coalesce(select(
       count(locations) > 0 => locations[]->${LOCATION_CARD},
-      *[_type == "location" && defined(slug.current)] | order(name asc)${LOCATION_CARD}
+      *[_type == "location" && defined(slug.current)] | order(name asc, _id asc)${LOCATION_CARD}
     ), []),
     "homeCity": select(includeHomeCity != false => ${SITE_SETTINGS}.homeCity${HOME_CITY})
   },
@@ -212,14 +213,14 @@ const SECTIONS = /* groq */ `sections[]{
       *[_type == "review"
         && (!defined(^.location) || location._ref == ^.location._ref)
         && (!defined(^.service) || service._ref == ^.service._ref)
-      ] | order(coalesce(featured, false) desc, date desc)${REVIEW}
+      ] | order(coalesce(featured, false) desc, date desc, _id asc)${REVIEW}
     ), [])
   },
   _type == "faqSection" => {
     "image": image${IMAGE},
     "faqs": coalesce(select(
       count(faqs) > 0 => faqs[]->${FAQ_DOC},
-      defined(topic) => *[_type == "faq" && topic == ^.topic] | order(coalesce(order, 999) asc)${FAQ_DOC}
+      defined(topic) => *[_type == "faq" && topic == ^.topic] | order(coalesce(order, 999) asc, _id asc)${FAQ_DOC}
     ), []),
     "groups": coalesce(groups[]{
       _key,
@@ -227,14 +228,14 @@ const SECTIONS = /* groq */ `sections[]{
       topic,
       "faqs": coalesce(select(
         count(faqs) > 0 => faqs[]->${FAQ_DOC},
-        defined(topic) => *[_type == "faq" && topic == ^.topic] | order(coalesce(order, 999) asc)${FAQ_DOC}
+        defined(topic) => *[_type == "faq" && topic == ^.topic] | order(coalesce(order, 999) asc, _id asc)${FAQ_DOC}
       ), [])
     }, [])
   },
   _type == "teamSection" => {
     "members": coalesce(select(
       count(members) > 0 => members[]->${TEAM_MEMBER},
-      *[_type == "teamMember" && showOnTeamPage != false] | order(coalesce(order, 999) asc, name asc)${TEAM_MEMBER}
+      *[_type == "teamMember" && showOnTeamPage != false] | order(coalesce(order, 999) asc, name asc, _id asc)${TEAM_MEMBER}
     ), [])
   },
   _type == "postsSection" => {
@@ -247,13 +248,13 @@ const SECTIONS = /* groq */ `sections[]{
         _type == "postCard" => {...post->${POST_CARD}, label, coverWords, "cover": image${IMAGE}}
       },
       featuredFirst == true => *[_type == "post" && defined(slug.current) && defined(publishedAt) && (!defined(^.category) || category._ref == ^.category._ref)]
-        | order(coalesce(featured, false) desc, publishedAt desc)${POST_CARD},
+        | order(coalesce(featured, false) desc, publishedAt desc, _id asc)${POST_CARD},
       *[_type == "post" && defined(slug.current) && defined(publishedAt) && (!defined(^.category) || category._ref == ^.category._ref)]
-        | order(publishedAt desc)${POST_CARD}
+        | order(publishedAt desc, _id asc)${POST_CARD}
     ), [])
   },
   _type == "jobsSection" => {
-    "jobs": *[_type == "jobOpening" && isOpen != false] | order(datePosted desc)${JOB}
+    "jobs": *[_type == "jobOpening" && isOpen != false] | order(datePosted desc, _id asc)${JOB}
   },
   _type == "ctaSection" => {
     "cta": select(defined(cta.heading) => cta, ${SITE_SETTINGS}.ctaBand)
@@ -339,7 +340,7 @@ export function getSettings() {
       ...,
       "logo": logo${IMAGE},
       "defaultOgImage": defaultOgImage${IMAGE},
-      "founders": founders[]->{name, role},
+      "founders": founders[]->{name, role, "slug": slug.current},
       "addresses": addresses[]{..., "locationSlug": locationPage->slug.current},
       "serviceAreas": serviceAreas[]->{name, "slug": slug.current, "shortName": ${CITY_NAME}, geo},
       "homeCity": homeCity${HOME_CITY},
@@ -520,7 +521,7 @@ export function resolveTrustItems(items: TrustItem[] | null | undefined, setting
 
 export const getServices = memo(() =>
   fetchQuery<ServiceSummary[]>(
-    defineQuery(`*[_type == "service" && defined(slug.current)] | order(coalesce(order, 999) asc, name asc)${SERVICE_CARD}`),
+    defineQuery(`*[_type == "service" && defined(slug.current)] | order(coalesce(order, 999) asc, name asc, _id asc)${SERVICE_CARD}`),
   ),
 )
 
@@ -537,13 +538,13 @@ export function getService(slug: string) {
       "category": category->{name, "slug": slug.current},
       "relatedServices": coalesce(
         relatedServices[]->${SERVICE_CARD},
-        *[_type == "service" && category._ref == ^.category._ref && _id != ^._id] | order(coalesce(order, 999) asc)[0...4]${SERVICE_CARD}
+        *[_type == "service" && category._ref == ^.category._ref && _id != ^._id] | order(coalesce(order, 999) asc, _id asc)[0...4]${SERVICE_CARD}
       ),
       "relatedPosts": coalesce(
         relatedPosts[]->${POST_CARD},
-        *[_type == "post" && references(^._id)] | order(publishedAt desc)[0...3]${POST_CARD}
+        *[_type == "post" && references(^._id)] | order(publishedAt desc, _id asc)[0...3]${POST_CARD}
       ),
-      "reviews": *[_type == "review" && service._ref == ^._id] | order(coalesce(featured, false) desc, date desc)[0...6]${REVIEW},
+      "reviews": *[_type == "review" && service._ref == ^._id] | order(coalesce(featured, false) desc, date desc, _id asc)[0...6]${REVIEW},
       ${SEO}
     }`),
     {slug},
@@ -552,9 +553,9 @@ export function getService(slug: string) {
 
 export function getServiceCategories() {
   return fetchQuery<ServiceCategoryDoc[]>(
-    defineQuery(`*[_type == "serviceCategory" && defined(slug.current)] | order(name asc){
+    defineQuery(`*[_type == "serviceCategory" && defined(slug.current)] | order(name asc, _id asc){
       _id, _updatedAt, name, "slug": slug.current, heading, description${RICH_TEXT},
-      "services": *[_type == "service" && category._ref == ^._id] | order(coalesce(order, 999) asc, name asc)${SERVICE_CARD},
+      "services": *[_type == "service" && category._ref == ^._id] | order(coalesce(order, 999) asc, name asc, _id asc)${SERVICE_CARD},
       ${SEO}
     }`),
   )
@@ -565,7 +566,7 @@ export function getServiceCategories() {
 
 export const getLocations = memo(() =>
   fetchQuery<LocationDoc[]>(
-    defineQuery(`*[_type == "location" && defined(slug.current)] | order(name asc){
+    defineQuery(`*[_type == "location" && defined(slug.current)] | order(name asc, _id asc){
       _id, _updatedAt, name, "slug": slug.current,
       "shortName": ${CITY_NAME},
       cityNameForSeo, heading, description, cardBlurb,
@@ -576,7 +577,7 @@ export const getLocations = memo(() =>
       "featuredServices": featuredServices[]->${SERVICE_CARD},
       "nearbyLocations": nearbyLocations[]->${LOCATION_CARD},
       ${FAQS},
-      "reviews": *[_type == "review" && location._ref == ^._id] | order(coalesce(featured, false) desc, date desc)[0...6]${REVIEW},
+      "reviews": *[_type == "review" && location._ref == ^._id] | order(coalesce(featured, false) desc, date desc, _id asc)[0...6]${REVIEW},
       ${SEO}
     }`),
   ),
@@ -587,7 +588,7 @@ export const getLocations = memo(() =>
 
 export const getPosts = memo(() =>
   fetchQuery<PostSummary[]>(
-    defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc)${POST_CARD}`),
+    defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc, _id asc)${POST_CARD}`),
   ),
 )
 
@@ -601,8 +602,6 @@ export function getPost(slug: string) {
       "author": author->{name, role, "slug": slug.current, credentials, "photo": photo${IMAGE}},
       "reviewedBy": reviewedBy->{name, role, "slug": slug.current, credentials, "photo": photo${IMAGE}},
       "relatedServices": relatedServices[]->${SERVICE_CARD},
-      "relatedPosts": *[_type == "post" && _id != ^._id && defined(slug.current) && defined(publishedAt) && references(^.relatedServices[]._ref)]
-        | order(publishedAt desc)[0...3]${POST_CARD},
       ${FAQS},
       ${SEO}
     }`),
@@ -617,7 +616,7 @@ export function getPost(slug: string) {
  */
 export const getPostIndex = memo(() =>
   fetchQuery<PostIndexEntry[]>(
-    defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc){
+    defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc, _id asc){
       _id, title, "slug": slug.current, excerpt, publishedAt, featured,
       "mainImage": mainImage${IMAGE},
       "category": category->{name, "slug": slug.current},
@@ -627,11 +626,25 @@ export const getPostIndex = memo(() =>
   ),
 )
 
+/**
+ * Each service's picked guides (service.relatedPosts slugs, in order), built once per
+ * build: the first is the service's pillar post, which a post's related articles start
+ * from (lib/cms.ts relatedArticles).
+ */
+export const getServicePillars = memo(() =>
+  fetchQuery<Array<{slug: string; posts: string[]}>>(
+    defineQuery(`*[_type == "service" && defined(slug.current)] | order(_id asc){
+      "slug": slug.current,
+      "posts": coalesce(relatedPosts[]->slug.current, [])
+    }`),
+  ).then((list) => Object.fromEntries(list.map((s) => [s.slug, s.posts.filter(Boolean)])) as Record<string, string[]>),
+)
+
 export function getPostCategories() {
   return fetchQuery<PostCategoryDoc[]>(
-    defineQuery(`*[_type == "postCategory" && defined(slug.current)] | order(name asc){
+    defineQuery(`*[_type == "postCategory" && defined(slug.current)] | order(name asc, _id asc){
       _id, _updatedAt, name, "slug": slug.current, description,
-      "posts": *[_type == "post" && category._ref == ^._id && defined(publishedAt)] | order(publishedAt desc)${POST_CARD},
+      "posts": *[_type == "post" && category._ref == ^._id && defined(publishedAt)] | order(publishedAt desc, _id asc)${POST_CARD},
       ${SEO}
     }`),
   )
@@ -642,13 +655,13 @@ export function getPostCategories() {
 
 export function getTeam() {
   return fetchQuery<TeamMember[]>(
-    defineQuery(`*[_type == "teamMember" && showOnTeamPage != false] | order(coalesce(order, 999) asc, name asc)${TEAM_MEMBER}`),
+    defineQuery(`*[_type == "teamMember" && showOnTeamPage != false] | order(coalesce(order, 999) asc, name asc, _id asc)${TEAM_MEMBER}`),
   )
 }
 
 export function getFaqs(topic?: string) {
   return fetchQuery<FaqItem[]>(
-    defineQuery(`*[_type == "faq" && (!defined($topic) || topic == $topic)] | order(coalesce(order, 999) asc){
+    defineQuery(`*[_type == "faq" && (!defined($topic) || topic == $topic)] | order(coalesce(order, 999) asc, _id asc){
       _id, question, answer${RICH_TEXT}, topic
     }`),
     {topic: topic ?? null},
@@ -658,7 +671,7 @@ export function getFaqs(topic?: string) {
 /** Shared questions (faq documents) tagged with a service (faq.services), in /faq order. */
 export function getServiceFaqs(serviceId: string) {
   return fetchQuery<FaqItem[]>(
-    defineQuery(`*[_type == "faq" && $id in services[]._ref] | order(coalesce(order, 999) asc){
+    defineQuery(`*[_type == "faq" && $id in services[]._ref] | order(coalesce(order, 999) asc, _id asc){
       _id, question, answer${RICH_TEXT}, topic
     }`),
     {id: serviceId},
@@ -675,7 +688,7 @@ export async function getReviews(options: {location?: string; service?: string; 
       && (!defined($location) || location._ref == $location || location->slug.current == $location)
       && (!defined($service) || service._ref == $service || service->slug.current == $service)
       && (!$featuredOnly || featured == true)
-    ] | order(coalesce(featured, false) desc, date desc)${REVIEW}`),
+    ] | order(coalesce(featured, false) desc, date desc, _id asc)${REVIEW}`),
     {location: options.location ?? null, service: options.service ?? null, featuredOnly: options.featuredOnly ?? false},
   )
   return options.limit ? reviews.slice(0, options.limit) : reviews
@@ -690,14 +703,14 @@ export async function getProjects(options: {location?: string; service?: string;
     defineQuery(`*[_type == "project" && defined(slug.current)
       && (!defined($location) || location._ref == $location || location->slug.current == $location)
       && (!defined($service) || $service in services[]._ref || $service in services[]->slug.current)
-    ] | order(completedAt desc, _createdAt desc)${PROJECT_CARD}`),
+    ] | order(completedAt desc, _createdAt desc, _id asc)${PROJECT_CARD}`),
     {location: options.location ?? null, service: options.service ?? null},
   )
   return options.limit ? projects.slice(0, options.limit) : projects
 }
 
 export function getOpenJobs() {
-  return fetchQuery<JobOpening[]>(defineQuery(`*[_type == "jobOpening" && isOpen != false] | order(datePosted desc)${JOB}`))
+  return fetchQuery<JobOpening[]>(defineQuery(`*[_type == "jobOpening" && isOpen != false] | order(datePosted desc, _id asc)${JOB}`))
 }
 
 /**

@@ -12,7 +12,8 @@
     "build": "pnpm --filter web build",
     "check": "pnpm --filter web check",
     "seo:baseline": "node scripts/seo/crawl.mjs --base https://www.thewireguyelectric.com --out migration/seo-baseline.json",
-    "seo:parity": "node scripts/seo/parity.mjs"
+    "seo:parity": "node scripts/seo/parity.mjs",
+    "seo:schema": "node scripts/seo/check-structured-data.mjs && node scripts/seo/check-places.mjs"
   },
   "devDependencies": {
     "@portabletext/block-tools": "6.0.4",
