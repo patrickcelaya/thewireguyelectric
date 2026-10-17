@@ -15,6 +15,14 @@ export const service = defineType({
     defineField({name: 'heading', title: 'H1 heading', type: 'string', group: 'content', description: 'Falls back to the service name'}),
     defineField({name: 'shortDescription', type: 'text', rows: 2, group: 'content', description: 'Used on service cards and as the default meta description'}),
     defineField({
+      name: 'linkLabel',
+      title: 'Link wording',
+      type: 'string',
+      group: 'content',
+      description:
+        'Lower-case words for the link from a guide to this service, read as "See our {link wording} service", e.g. "electrical troubleshooting". Use the words people search for. Empty = the wording built into the site for this service, else its name.',
+    }),
+    defineField({
       name: 'quickAnswer',
       title: 'Quick answer',
       type: 'text',

@@ -12,7 +12,10 @@
 //   - creates teamMember docs for the 3 people on /our-team who had none
 //     (Blake Thompson, Brandon Connelly, Stephanie Langford: name, role, photo);
 //   - rewrites jobOpening.description to the job copy visible on /careers, so the
-//     page and its JobPosting structured data say the same thing.
+//     page and its JobPosting structured data say the same thing, and sets
+//     minExperienceMonths from the years that copy asks for;
+//   - sets siteSettings.defaultOgImage to the crew portrait, the share image of
+//     pages without a photo of their own.
 //
 // The H1 of each page stays page.heading; no section repeats it. Titles, meta
 // descriptions and slugs are not touched (checked before returning).
@@ -274,9 +277,20 @@ export default async function pageSections(ctx) {
     // The live markup closes the bold run inside the type line; drop that stray tag.
     const paragraphs = rest.map((h) => h.replace(/^<\/strong>/, ''))
     job.description = toPortableText(paragraphs.map((h) => `<p>${h}</p>`).join(''), '/careers')
+    // JobPosting experienceRequirements (ST-08): "4+ years of residential service experience" → 48
+    const years = text(paragraphs.join(' ')).match(/(\d+)\+? years of residential service experience/)
+    if (!years) throw new Error('page-sections: the /careers job copy no longer states the years of experience it asks for')
+    job.minExperienceMonths = Number(years[1]) * 12
     // The bold opening sentence stays on the page as the jobs section intro.
     pages.careers.jobIntro = text(intro)
   }
+
+  // ---------------------------------------------------------------------------
+  // Default share image (ST-03): the crew portrait, a real photo of the team, for pages
+  // with no photo of their own (home, cities, /blog, /faq, /careers) instead of the
+  // stock-style /og-default.png. The 1200×630 crop keeps all six faces.
+
+  settings.defaultOgImage = photo('crew-portrait.avif')
 
   // ---------------------------------------------------------------------------
   // Pages

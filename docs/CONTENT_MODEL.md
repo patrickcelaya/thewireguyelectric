@@ -79,11 +79,11 @@ The single source of truth for the business entity. It feeds the header, footer,
 | serviceAreas | ref location[] | Cities for `areaServed`. The query adds `shortName` (bare city) because some location names still hold the full H1 |
 | **homeCity** | object | **New.** Mesa is the homepage, so it has no `location` document. City lists show Mesa from here, linking to `/`. Fields: `name`, `cardBlurb`, `image` (alt required), `neighborhoods[]`, `county`, `utilityProviders[]` (same list as location) |
 | sisterCompanies | linkItem[] | The Cooling Guy HVAC, The Water Guy Plumbing. Link only |
-| logo, defaultOgImage | image (+alt) | Logo alt is the business name. The share image is 1200×630 |
+| logo, defaultOgImage | image (+alt) | Logo alt is the business name. `defaultOgImage` is the share image (og:image, cropped to 1200×630, with its alt as og:image:alt) of every page without a photo of its own: home, cities, /blog, /faq, /careers. The migration sets it to the crew portrait (all six faces survive the crop); empty = `/og-default.png` |
 | headerNav, footerNav, primaryCta | linkItem(s) | Navigation |
-| **ctaBand** | callToAction | **New.** The site-wide closing band ("We're ready to work for you"). Templates use it; so does any CTA band section left without a heading |
-| **valueProps** | featureItem[] | **New.** Shared "why us" cards ("No BS pricing", "Amazing Quality", "Client Satisfaction") |
-| **capabilities** | featureItem[] | **New.** Shared "what we do" checklist ("Panel Upgrades" → its service, "+ More!") |
+| **ctaBand** | callToAction | **New.** The site-wide closing band ("You'll know the price before we start"). Templates use it; so does any CTA band section left without a heading |
+| **valueProps** | featureItem[] | **New.** Shared "why us" cards ("No BS pricing", "Done right the first time", "We come back if anything's wrong") |
+| **capabilities** | featureItem[] | **New.** Shared "what we do" checklist ("Panel Upgrades" → its service, "All services") |
 | titleSuffix, ga4MeasurementId, googleSiteVerification | string | SEO and tracking |
 
 **Query:** `getSettings()` (also exported as `getSiteSettings()`, same memoized promise) returns everything, with references resolved:
@@ -119,12 +119,13 @@ Standalone pages: `index` (home), about-us, our-team, careers, faq, contact-us, 
 | category | ref serviceCategory | Residential or Commercial; breadcrumb |
 | heading | string | Optional H1 override (empty on all 21 today, so the H1 is the name) |
 | shortDescription | text | Lede under the H1, card text, meta description fallback |
+| **linkLabel** | string | **New.** Lower-case words for the early link from a guide to its hub service, read as "See our {linkLabel} service": the words people search for ("electrical troubleshooting", not "Troubleshooting"). Empty on all 21 today: the site then uses its built-in wording for the 8 hub services (`HUB_LINK_LABELS` in `web/src/lib/cms.ts`), else the name |
 | **quickAnswer** | text | **New.** The answer-first line of the "{Service}, the short version" block: what the service covers, 25–60 words, only what the body says, no prices (warns outside 25–60 words). Empty = a line about the business from Site settings |
 | mainImage | image (+alt) | When it is one of the crew's job photos (no people), the hero shows it under the copper tint and the article shows it again in true colour halfway down, captioned "Our work: …" |
 | body | richText | The article |
 | **atAGlance** | glanceFact[] (`{label, value, detail}`) | **New.** Short facts for the "At a glance" block, e.g. Permits → "We pull the permit", with an optional supporting line (`detail`, round 5) such as "We schedule the inspection and make sure everything passes." Only confirmed facts |
 | **signs** | string[] | **New.** "Signs you need this" checklist |
-| priceRange | {low, high, note, **asOf**} | Typical price range. **New `asOf` (date)**: render "as of {month year}". Validation requires both prices and warns without a date. Feeds `AggregateOffer` only when low and high exist. Never rendered on the page (owner: no price modules; prices stay in FAQ answers and posts) |
+| priceRange | {low, high, note, **asOf**} | Typical price range. **New `asOf` (date)**: render "as of {month year}". Validation requires both prices and warns without a date. Neither rendered nor marked up: service pages carry no prices and no `Offer`/`AggregateOffer` (owner rule; prices stay in /faq answers and posts) |
 | faqs | faqItem[] | Service-specific Q&As (inline). The page lists them, then the shared FAQs tagged with the service (price questions after the others, so the open first answer is never a price), then the General ones |
 | relatedServices | ref service[] | "Related services". The query falls back to same-category services |
 | relatedPosts | ref post[] | "Helpful guides". The query falls back to posts that reference this service; the page fills the block to three with posts supporting the service, then the most-read guides, so it is never empty |
@@ -277,7 +278,7 @@ The `Review` shape the queries return flattens the tags: `location` is the bare 
 
 ### jobOpening
 
-`title`, `description` (richText), `employmentType`, `datePosted`, `validThrough`, `baseSalary {min, max, unit}`, `isOpen`. Each open job is visible on /careers **and** emitted as JobPosting. **Query:** `getOpenJobs()`.
+`title`, `description` (richText), `employmentType`, `datePosted`, `validThrough`, **`minExperienceMonths`** (new), `baseSalary {min, max, unit}`, `isOpen`. Each open job is visible on /careers **and** emitted as JobPosting, until the first build after `validThrough` (a daily rebuild runs it). `minExperienceMonths` is the experience the description asks for, in months (48 for "4+ years", which the migration reads from the /careers copy); it becomes `experienceRequirements`, and empty leaves it out. `baseSalary` only from the owner, never estimated. **Query:** `getOpenJobs()`.
 
 ### redirect
 

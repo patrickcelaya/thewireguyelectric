@@ -14,6 +14,13 @@ export const jobOpening = defineType({
     defineField({name: 'datePosted', type: 'date', validation: (rule) => rule.required()}),
     defineField({name: 'validThrough', type: 'date'}),
     defineField({
+      name: 'minExperienceMonths',
+      title: 'Minimum experience (months)',
+      type: 'number',
+      description: 'The experience the posting asks for, in months: 48 for "4+ years". Goes into the JobPosting markup; empty = left out. Keep it equal to what the description says.',
+      validation: (rule) => rule.integer().min(0),
+    }),
+    defineField({
       name: 'baseSalary',
       type: 'object',
       fields: [
