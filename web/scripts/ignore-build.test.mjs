@@ -1,0 +1,268 @@
+// Tests for the Ignored Build Step, against a mock server standing in for both the production
+// deployment (/build-info.json) and Sanity's query API.
+//
+//   pnpm --filter web test
+import assert from 'node:assert/strict'
+import {execFile} from 'node:child_process'
+import {createHash} from 'node:crypto'
+import http from 'node:http'
+import {after, before, beforeEach, describe, test} from 'node:test'
+import {fileURLToPath} from 'node:url'
+import {contentHash, contentSource} from '../src/config/build-info.mjs'
+import {decide} from './ignore-build.mjs'
+
+const SHA = 'a'.repeat(40)
+const HOUR = 3_600_000
+const NOW = Date.parse('2026-10-20T12:00:00Z')
+const DOCS = [
+  {_id: 'siteSettings', _rev: 'r3'},
+  {_id: 'post-b', _rev: 'r2'},
+  {_id: 'post-a', _rev: 'r1'},
+]
+const sha256 = (s) => createHash('sha256').update(s).digest('hex')
+const HASH = sha256('post-a:r1\npost-b:r2\nsiteSettings:r3')
+
+/** What the mock answers; each test adjusts it. */
+let mock
+/** The requests the mock received. */
+let requests
+const server = http.createServer((req, res) => {
+  const url = new URL(req.url, 'http://mock')
+  requests.push({path: url.pathname, query: url.searchParams, headers: req.headers})
+  if (url.pathname === '/build-info.json') {
+    if (mock.hang) return // never answers: the timeout test
+    res.writeHead(mock.infoStatus, {'content-type': 'application/json'})
+    return res.end(typeof mock.info === 'string' ? mock.info : JSON.stringify(mock.info))
+  }
+  if (url.pathname === '/v2026-10-01/data/query/production') {
+    res.writeHead(mock.sanityStatus, {'content-type': 'application/json'})
+    return res.end(JSON.stringify({result: mock.docs}))
+  }
+  res.writeHead(404)
+  res.end()
+})
+let origin
+
+// Route the real hosts to the mock, so the URLs the script builds are what gets tested.
+const mockFetch = (url, init) => {
+  const u = new URL(url)
+  assert.ok(['www.thewireguyelectric.com', 'qhi2uf0l.api.sanity.io'].includes(u.host), `unexpected host ${u.host}`)
+  assert.equal(u.protocol, 'https:')
+  return fetch(`${origin}${u.pathname}${u.search}`, init)
+}
+
+const ENV = {
+  VERCEL_ENV: 'production',
+  VERCEL_PROJECT_PRODUCTION_URL: 'www.thewireguyelectric.com',
+  VERCEL_GIT_COMMIT_SHA: SHA,
+  PUBLIC_SANITY_PROJECT_ID: 'qhi2uf0l',
+  PUBLIC_SANITY_DATASET: 'production',
+  SITE_INDEXABLE: 'true',
+}
+const run = (env = {}, options = {}) => decide({...ENV, ...env}, {fetch: mockFetch, now: NOW, ...options})
+
+before(async () => {
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve))
+  origin = `http://127.0.0.1:${server.address().port}`
+})
+after(() => {
+  server.closeAllConnections()
+  server.close()
+})
+beforeEach(() => {
+  requests = []
+  mock = {
+    infoStatus: 200,
+    info: {sha: SHA, contentHash: HASH, builtAt: new Date(NOW - 2 * HOUR).toISOString(), content: 'sanity:qhi2uf0l/production', indexable: true},
+    sanityStatus: 200,
+    docs: DOCS,
+  }
+})
+
+describe('builds', () => {
+  test('a preview deployment, without asking anything', async () => {
+    const r = await run({VERCEL_ENV: 'preview'})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /VERCEL_ENV=preview/)
+    assert.equal(requests.length, 0)
+  })
+
+  test('when VERCEL_ENV is missing (System Environment Variables not exposed)', async () => {
+    assert.equal((await run({VERCEL_ENV: undefined})).build, true)
+  })
+
+  test('when there is no production URL', async () => {
+    const r = await run({VERCEL_PROJECT_PRODUCTION_URL: ''})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /VERCEL_PROJECT_PRODUCTION_URL/)
+  })
+
+  test('when build-info.json is missing (production predates it)', async () => {
+    mock.infoStatus = 404
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /answered 404/)
+  })
+
+  test('when the production deployment is protected and the bypass is refused', async () => {
+    mock.infoStatus = 401
+    assert.equal((await run()).build, true)
+  })
+
+  test('when build-info.json is not JSON', async () => {
+    mock.info = '<!doctype html><title>Login</title>'
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /could not read/)
+  })
+
+  test('when build-info.json has no SHA', async () => {
+    mock.info = {contentHash: HASH}
+    assert.equal((await run()).build, true)
+  })
+
+  test('when the connection fails', async () => {
+    const refused = (url, init) => fetch(`http://127.0.0.1:1${new URL(url).pathname}`, init)
+    const r = await run({}, {fetch: refused})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /could not read/)
+  })
+
+  test('when production does not answer in time', async () => {
+    mock.hang = true
+    const r = await run({}, {timeoutMs: 200})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /could not read/)
+  })
+
+  test('on a new commit, without asking Sanity', async () => {
+    const r = await run({VERCEL_GIT_COMMIT_SHA: 'b'.repeat(40)})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /new commit \(aaaaaaa → bbbbbbb\)/)
+    assert.deepEqual(
+      requests.map((q) => q.path),
+      ['/build-info.json'],
+    )
+  })
+
+  test('when VERCEL_GIT_COMMIT_SHA is missing', async () => {
+    assert.equal((await run({VERCEL_GIT_COMMIT_SHA: undefined})).build, true)
+  })
+
+  test('when SITE_INDEXABLE changed on the same commit (the launch switch)', async () => {
+    mock.info.indexable = false
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /SITE_INDEXABLE changed \(false → true\)/)
+  })
+
+  test('when the content source changed', async () => {
+    const r = await run({PUBLIC_SANITY_DATASET: 'staging'})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /content source changed/)
+  })
+
+  test('when a document was published (a new _rev)', async () => {
+    mock.docs = [...DOCS.slice(0, 2), {_id: 'post-a', _rev: 'r9'}]
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /content changed/)
+  })
+
+  test('when a document was deleted or unpublished', async () => {
+    mock.docs = DOCS.slice(0, 2)
+    assert.equal((await run()).build, true)
+  })
+
+  test('when production recorded no content hash', async () => {
+    mock.info.contentHash = null
+    assert.equal((await run()).build, true)
+  })
+
+  test('when Sanity fails', async () => {
+    mock.sanityStatus = 500
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /could not hash the content \(Sanity answered 500\)/)
+  })
+
+  test('when the last build is more than 20 hours old', async () => {
+    mock.info.builtAt = new Date(NOW - 21 * HOUR).toISOString()
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /21\.0 h old/)
+  })
+
+  test('when builtAt is not a date', async () => {
+    mock.info.builtAt = 'yesterday'
+    assert.equal((await run()).build, true)
+  })
+})
+
+describe('skips', () => {
+  test('when commit, settings and content match a build under 20 hours old', async () => {
+    const r = await run()
+    assert.equal(r.build, false)
+    assert.match(r.reason, /2\.0 h ago/)
+    const [info, query] = requests
+    assert.equal(info.path, '/build-info.json')
+    assert.equal(info.headers['x-vercel-protection-bypass'], undefined)
+    // the published perspective, drafts left out, from the API host (not the CDN)
+    assert.equal(query.query.get('perspective'), 'published')
+    assert.match(query.query.get('query'), /!\(_id in path\("drafts\.\*\*"\)\)/)
+  })
+
+  test('just under the 20-hour limit', async () => {
+    mock.info.builtAt = new Date(NOW - 20 * HOUR + 60_000).toISOString()
+    assert.equal((await run()).build, false)
+  })
+
+  test('whatever order Sanity returns the documents in', async () => {
+    mock.docs = [...DOCS].reverse()
+    assert.equal((await run()).build, false)
+  })
+
+  test('sending the protection bypass when Vercel provides one', async () => {
+    const r = await run({VERCEL_AUTOMATION_BYPASS_SECRET: 'test-bypass'})
+    assert.equal(r.build, false)
+    assert.equal(requests[0].headers['x-vercel-protection-bypass'], 'test-bypass')
+  })
+
+  test('sending the read token to Sanity when one is set', async () => {
+    assert.equal((await run({SANITY_API_READ_TOKEN: 'test-token'})).build, false)
+    assert.equal(requests[1].headers.authorization, 'Bearer test-token')
+  })
+
+  test('with the local dataset, by hashing the NDJSON', async () => {
+    const local = contentSource({})
+    mock.info = {...mock.info, content: local.label, contentHash: await contentHash(local)}
+    const r = await run({PUBLIC_SANITY_PROJECT_ID: ''})
+    assert.equal(r.build, false)
+    assert.equal(requests.length, 1)
+  })
+})
+
+describe('the command', () => {
+  const script = fileURLToPath(new URL('./ignore-build.mjs', import.meta.url))
+  // asynchronously, so this process's mock server can answer the child
+  const exec = (env) =>
+    new Promise((resolve) => execFile(process.execPath, [script], {env: {PATH: process.env.PATH, ...env}}, (error, stdout) => resolve({status: error ? error.code : 0, stdout})))
+
+  test('exits 1 (build) on a preview', async () => {
+    const r = await exec({VERCEL_ENV: 'preview'})
+    assert.equal(r.status, 1)
+    assert.match(r.stdout, /\[ignore-build\] Building: not a production deployment/)
+  })
+
+  test('exits 0 (skip) when nothing changed, and 1 once production is unreachable', async () => {
+    const local = contentSource({})
+    mock.info = {...mock.info, content: local.label, contentHash: await contentHash(local), builtAt: new Date().toISOString()}
+    const env = {VERCEL_ENV: 'production', VERCEL_PROJECT_PRODUCTION_URL: origin, VERCEL_GIT_COMMIT_SHA: SHA, SITE_INDEXABLE: 'true'}
+    const skipped = await exec(env)
+    assert.equal(skipped.status, 0, skipped.stdout)
+    assert.match(skipped.stdout, /\[ignore-build\] Skipping the build: same commit/)
+    const built = await exec({...env, VERCEL_PROJECT_PRODUCTION_URL: 'http://127.0.0.1:1'})
+    assert.equal(built.status, 1)
+    assert.match(built.stdout, /\[ignore-build\] Building: could not read/)
+  })
+})

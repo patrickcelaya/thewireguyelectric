@@ -20,6 +20,8 @@ jobs:
 
       - name: Typecheck site
         run: pnpm --filter web check
+      - name: Unit tests (Ignored Build Step)
+        run: pnpm --filter web test
       - name: Typecheck and build Studio
         run: |
           pnpm --filter studio exec tsc --noEmit
