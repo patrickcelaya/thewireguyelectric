@@ -107,7 +107,7 @@ Standalone pages: `index` (home), about-us, our-team, careers, faq, contact-us, 
 | intro | text | Meta description fallback |
 | sections | pageSections | The page builder (§4). The production build (SITE_INDEXABLE=true) stops when a composed page has none: that is pre-redesign content (re-import the dataset first) |
 | seo | seo | Meta title and description (frozen to the live values) |
-| **updatedAt** | datetime | **New.** When the content last changed materially: the sitemap's `<lastmod>`. The migration stamps it when it changes the content materially (5% of the words, a heading or the FAQs, counted since the last date: `scripts/migrate/content-dates.mjs`); editors update it with real edits. Same field on service, location, serviceCategory and post |
+| **updatedAt** | datetime | **New.** When the content last changed materially: the sitemap's `<lastmod>`. The migration stamps it when it changes the content materially (5% of the words, a heading added or removed, or the FAQs, counted since the last date: `scripts/migrate/content-dates.mjs`; a reworded heading counts through its words); editors update it with real edits. Same field on service, location, serviceCategory and post |
 
 **Query:** `getPage(slug)` returns the page with every section's references resolved and lists cleaned up (§5). `getPageSlugs()` returns all slugs.
 

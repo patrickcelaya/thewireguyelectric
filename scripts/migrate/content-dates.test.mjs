@@ -38,17 +38,31 @@ test('small edits add up: three 2% edits date the post on the third run', () => 
   }
 })
 
-test('a heading or FAQ change is material; a title or SEO change is not', () => {
+test('a heading added or removed, or an FAQ change, is material; a title or SEO change is not', () => {
   let {baseline} = stampContentDates([post(WORDS)], {}, day(16))
   const retitled = post(WORDS, 'Intro', {title: 'New title', seo: {_type: 'seo', description: 'New meta'}})
   baseline = stampContentDates([retitled], baseline, day(17)).baseline
   assert.equal(retitled.updatedAt, undefined)
-  const reheaded = post(WORDS, 'Another heading')
-  baseline = stampContentDates([reheaded], baseline, day(18)).baseline
-  assert.equal(reheaded.updatedAt, day(18))
-  const faqd = post(WORDS, 'Another heading', {faqs: [{_key: 'f', question: 'Q?', answer: []}]})
+  const added = post(WORDS)
+  added.body.push({_type: 'block', _key: 'c', style: 'h3', children: [{_type: 'span', text: 'More'}]})
+  baseline = stampContentDates([added], baseline, day(18)).baseline
+  assert.equal(added.updatedAt, day(18))
+  const faqd = post(WORDS, 'Intro', {faqs: [{_key: 'f', question: 'Q?', answer: []}]})
+  faqd.body.push(added.body[2])
   stampContentDates([faqd], baseline, day(19))
   assert.equal(faqd.updatedAt, day(19))
+})
+
+test('a reworded heading counts only through its words', () => {
+  const {baseline} = stampContentDates([post(WORDS, 'Ready to Get Started?')], {}, day(16))
+  // the closing call to action retitled: 4 of 104 words, under 5%
+  const light = post(WORDS, 'Get a Recessed Lighting Estimate')
+  stampContentDates([light], baseline, day(17))
+  assert.equal(light.updatedAt, undefined)
+  // with enough other words replaced, the same retitle is material
+  const heavy = post(WORDS.map((w, i) => (i < 2 ? `x${i}` : w)), 'Get a Recessed Lighting Estimate')
+  stampContentDates([heavy], baseline, day(17))
+  assert.equal(heavy.updatedAt, day(17))
 })
 
 test('a page keeps its date through a light touch and a new one is dated today', () => {

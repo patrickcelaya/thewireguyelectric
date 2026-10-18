@@ -7,7 +7,9 @@
 // Material means, against the content the document's current date describes:
 //   - at least 5% of its words replaced: the word counts that differ, summed, halved, over
 //     the baseline's word count (a word swapped for another counts once, not twice);
-//   - or a heading changed (an h2–h4 block, or a section heading);
+//   - or a heading added or removed (an h2–h4 block, or a section heading); a reworded
+//     heading counts only through its words, so retitling a closing call to action alone
+//     doesn't date a post;
 //   - or its FAQs changed.
 // Titles, H1s, names, slugs, SEO fields, links and image alts are not content here.
 //
@@ -121,7 +123,8 @@ export function stampContentDates(docs, baseline, today = contentDate()) {
       next[doc._id] = {...(updatedAt ? {updatedAt} : {}), ...now}
     } else {
       const share = replacedShare(before.words, now.words)
-      const material = share >= SHARE || JSON.stringify(before.heads) !== JSON.stringify(now.heads) || before.faqs !== now.faqs
+      const headsChanged = before.heads.length !== now.heads.length
+      const material = share >= SHARE || headsChanged || before.faqs !== now.faqs
       if (material) {
         updatedAt = today
         next[doc._id] = {updatedAt, ...now}
