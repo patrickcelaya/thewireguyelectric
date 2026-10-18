@@ -83,7 +83,7 @@ The single source of truth for the business entity. It feeds the header, footer,
 | logo, defaultOgImage | image (+alt) | Logo alt is the business name. `defaultOgImage` is the share image (og:image, cropped to 1200×630, with its alt as og:image:alt) of every page without a photo of its own: home, cities, /blog, /faq, /careers. The migration sets it to the crew portrait (all six faces survive the crop); empty = `/og-default.png` |
 | headerNav, footerNav, primaryCta | linkItem(s) | Navigation |
 | **ctaBand** | callToAction | **New.** The site-wide closing band ("You'll know the price before we start"). Templates use it; so does any CTA band section left without a heading |
-| **valueProps** | featureItem[] | **New.** Shared "why us" cards ("No BS pricing", "Done right the first time", "We come back if anything's wrong") |
+| **valueProps** | featureItem[] | **New.** Shared "why us" cards ("No BS pricing", "Big jobs and small ones", "We come back if anything's wrong") |
 | **capabilities** | featureItem[] | **New.** Shared "what we do" checklist ("Panel Upgrades" → its service, "All services") |
 | titleSuffix, ga4MeasurementId, googleSiteVerification | string | SEO and tracking |
 
