@@ -40,17 +40,21 @@ const focus = facesFocus(facesOf(cover))
       </p>
       <h1 id="post-h" class="post-title">{post.title}</h1>
       <p class="post-meta">
-        By{' '}
-        {post.author ? <a href="/our-team">{person(post.author)}</a> : <a href="/about-us">{settings.businessName}</a>}{' '}
-        <span class="post-meta__sep" aria-hidden="true">·</span> Published <time datetime={isoDate(post.publishedAt)}>{formatDate(post.publishedAt)}</time>
-        {
-          updated && (
-            <>
-              {' '}
-              <span class="post-meta__sep" aria-hidden="true">·</span> Updated <time datetime={isoDate(updated)}>{formatDate(updated)}</time>
-            </>
-          )
-        }
+        <span class="seps">
+          <span>
+            By{' '}
+            {post.author ? <a href="/our-team">{person(post.author)}</a> : <a href="/about-us">{settings.businessName}</a>}
+          </span>{' '}
+          <span class="post-meta__d">Published <time datetime={isoDate(post.publishedAt)}>{formatDate(post.publishedAt)}</time></span>
+          {
+            updated && (
+              <>
+                {' '}
+                <span class="post-meta__d">Updated <time datetime={isoDate(updated)}>{formatDate(updated)}</time></span>
+              </>
+            )
+          }
+        </span>
       </p>
       {
         post.reviewedBy && (

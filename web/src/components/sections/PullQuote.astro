@@ -37,10 +37,19 @@ const rating = siteRating(settings)
         <Stars />{' '}
         <span>
           <cite>{review.authorName}</cite>{' '}
-          <span class="pull__meta">
-            {review.source ?? 'Google'} review
-            {review.date && <> · <time datetime={isoDate(review.date)}>{formatDate(review.date, 'short')}</time></>}
-            {review.service && <> · on {review.service}</>}
+          <span class="pull__meta seps">
+            <span>{review.source ?? 'Google'} review</span>
+            {
+              review.date && (
+                <>
+                  {' '}
+                  <span class="nw">
+                    <time datetime={isoDate(review.date)}>{formatDate(review.date, 'short')}</time>
+                  </span>
+                </>
+              )
+            }
+            {review.service && <>{' '}<span>on {review.service}</span></>}
           </span>
         </span>{' '}
         {rating?.href && (

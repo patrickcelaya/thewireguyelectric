@@ -1,6 +1,8 @@
 ---
 // The licence, linked to the AZ ROC lookup: "Licensed, bonded, and insured · ROC
 // #365306". The words are the live site's; the number and link come from Site settings.
+// With the dot, the two parts are .seps parts: in a narrow card the number takes its own
+// line and its dot goes with it, so no dot is left hanging at a line end.
 import type {SiteSettings} from '../../lib/types'
 import {licence} from '../../lib/site'
 import ExternalLink from './ExternalLink.astro'
@@ -14,18 +16,38 @@ interface Props {
 
 const {settings, separator = '·', class: className} = Astro.props
 const roc = licence(settings)
+const dotted = separator === '·'
+const cls = [className, dotted && 'seps'].filter(Boolean).join(' ') || undefined
 ---
 
 {
-  roc?.href ? (
-    <ExternalLink class={className} href={roc.href}>
-      Licensed, bonded, and insured{separator === '.' ? '. ' : ' · '}
-      <span class="nw">{roc.number}</span>
-    </ExternalLink>
-  ) : roc ? (
-    <span class={className}>
-      Licensed, bonded, and insured{separator === '.' ? '. ' : ' · '}
-      <span class="nw">{roc.number}</span>
-    </span>
-  ) : null
+  roc && (
+    <Fragment>
+      {roc.href ? (
+        <ExternalLink class={cls} href={roc.href}>
+          {dotted ? (
+            <>
+              <span>Licensed, bonded, and insured</span> <span class="nw">{roc.number}</span>
+            </>
+          ) : (
+            <>
+              Licensed, bonded, and insured. <span class="nw">{roc.number}</span>
+            </>
+          )}
+        </ExternalLink>
+      ) : (
+        <span class={cls}>
+          {dotted ? (
+            <>
+              <span>Licensed, bonded, and insured</span> <span class="nw">{roc.number}</span>
+            </>
+          ) : (
+            <>
+              Licensed, bonded, and insured. <span class="nw">{roc.number}</span>
+            </>
+          )}
+        </span>
+      )}
+    </Fragment>
+  )
 }

@@ -46,6 +46,8 @@ const roc = settings.rocLicense ? `ROC #${settings.rocLicense}` : undefined
 const trust = section.trustLine
 const rocAt = roc && trust ? trust.indexOf(roc) : -1
 const trustParts = trust && rocAt >= 0 ? [trust.slice(0, rocAt), trust.slice(rocAt)] : undefined
+// "… insured · ROC #…": the claim and the number as .seps parts, so the dot goes with the number when it wraps
+const dotted = trustParts && /·\s*$/.test(trustParts[0])
 
 // The lit statement turns from warm grey to ink a few words at a time as it rises.
 // A non-breaking space keeps the dash in "service - keeping" off the start of a line.
@@ -150,10 +152,16 @@ const [phone, wide] = HERO_SOURCES
                 {trust && (
                   <p class="proof__roc">
                     {trustParts && settings.rocLicenseUrl ? (
-                      <ExternalLink href={settings.rocLicenseUrl}>
-                        {trustParts[0]}
-                        <span class="nw">{trustParts[1]}</span>
-                      </ExternalLink>
+                      dotted ? (
+                        <ExternalLink class="seps" href={settings.rocLicenseUrl}>
+                          <span>{trustParts[0].replace(/\s*·\s*$/, '')}</span> <span class="nw">{trustParts[1]}</span>
+                        </ExternalLink>
+                      ) : (
+                        <ExternalLink href={settings.rocLicenseUrl}>
+                          {trustParts[0]}
+                          <span class="nw">{trustParts[1]}</span>
+                        </ExternalLink>
+                      )
                     ) : (
                       trust
                     )}

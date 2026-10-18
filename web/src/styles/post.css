@@ -14,7 +14,9 @@
 .post-meta{margin-top:clamp(18px,1.8vw,26px);font-size:var(--fs-small);line-height:1.6;color:var(--muted)}
 .post-meta a{color:var(--ink);font-weight:650;text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.22em}
 .post-meta a:hover{color:var(--copper-700)}
-.post-meta__sep{margin-inline:4px;color:var(--line-strong)}
+/* the byline's parts (core.css .seps): "Published September 20, 2026" wraps as one piece on phones, never inside the date */
+.post-meta .seps{--sep:1.4em;--room:6px;--sep-color:var(--line-strong)}
+.post-meta__d{white-space:nowrap}
 .post-meta--review{margin-top:4px}
 /* the cover: a real photo at 4:3, never stretched past its column */
 .post-cover{margin:0;overflow:hidden;border-radius:var(--r-xl);background:var(--sand-2);box-shadow:var(--shadow-2)}
