@@ -25,9 +25,11 @@ interface Props {
   number?: number | string
   /** Prefix for the form's field ids. */
   formId?: string
+  /** The form's "City or ZIP" example (EstimateForm). */
+  zipPlaceholder?: string
 }
 
-const {settings, number, formId = 'cta'} = Astro.props
+const {settings, number, formId = 'cta', zipPlaceholder} = Astro.props
 const band = settings.ctaBand
 const hours = officeHours(settings)
 // typographic apostrophes in display type
@@ -71,7 +73,7 @@ const text =
       <p class="cta__roc"><RocLink settings={settings} /></p>
     </div>
     <div class="cta__form" id="estimate">
-      <EstimateForm settings={settings} id={formId} titleTag="h3" />
+      <EstimateForm settings={settings} id={formId} titleTag="h3" zipPlaceholder={zipPlaceholder} />
     </div>
   </div>
 </section>

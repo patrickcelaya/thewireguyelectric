@@ -21,6 +21,8 @@ interface Props {
   submitLabel?: string
   /** The confirmation's text (a contact section's own success message). */
   successMessage?: string
+  /** The "City or ZIP" example: a city page gives its own city and one of its ZIPs. */
+  zipPlaceholder?: string
 }
 
 const {
@@ -32,6 +34,7 @@ const {
   anchor,
   submitLabel = 'Request my free estimate',
   successMessage,
+  zipPlaceholder = 'Gilbert or 85233',
 } = Astro.props
 const tel = telHref(settings)
 const hours = officeHours(settings).prose
@@ -68,7 +71,7 @@ const hours = officeHours(settings).prose
     </div>
     <div class="field">
       <label for={`${id}-zip`}>City or ZIP</label>
-      <input id={`${id}-zip`} name="zip" autocomplete="postal-code" placeholder="Gilbert or 85233" />
+      <input id={`${id}-zip`} name="zip" autocomplete="postal-code" placeholder={zipPlaceholder} />
     </div>
     <div class="field field--full">
       <label for={`${id}-message`}>What’s going on? <span class="req">(optional)</span></label>

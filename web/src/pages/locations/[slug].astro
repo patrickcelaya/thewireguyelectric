@@ -140,5 +140,5 @@ const serviceId = `${absoluteUrl(path)}#service`
     number={6}
   />
 
-  <CtaBand settings={settings} number={7} />
+  <CtaBand settings={settings} number={7} zipPlaceholder={location.zipCodes?.length ? `${city} or ${location.zipCodes[0]}` : city} />
 </SiteLayout>
