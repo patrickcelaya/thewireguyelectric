@@ -92,7 +92,9 @@ http
       if (!match || !conditionsHold(route, req)) continue
       const sub = (s) => s.replace(/\$(\d+)/g, (_, n) => match[Number(n)] ?? '')
       if (route.status >= 300 && route.status < 400 && route.headers?.Location) {
-        res.writeHead(route.status, {...headers, location: sub(route.headers.Location)})
+        // Vercel carries the query string over (UTM tags, gclid) unless the destination sets its own
+        const location = sub(route.headers.Location)
+        res.writeHead(route.status, {...headers, location: location.includes('?') || !url.search ? location : `${location}${url.search}`})
         return res.end()
       }
       if (route.continue) {

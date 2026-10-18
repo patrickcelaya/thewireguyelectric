@@ -325,7 +325,7 @@ Two build details every page relies on:
 - **CSS targets.** `astro.config.mjs` sets `vite.build.cssTarget` (Baseline widely available). Without it the CSS minifier folds `animation-timeline` into the `animation` shorthand, which browsers reject, and every scroll-driven animation silently stops.
 
 - `pnpm --filter web check` → 0 errors.
-- `pnpm --filter web test` (the Ignored Build Step and `build-info.json`) → all pass.
+- `pnpm test` (the content-date rules in `scripts/migrate`, then the Ignored Build Step and `build-info.json` in `web/`) → all pass.
 - Build from the local dataset: `PUBLIC_SANITY_PROJECT_ID= SITE_INDEXABLE=true pnpm --filter web build` (the log says it uses the local dataset).
 - Parity: `node scripts/seo/serve-build.mjs --port <port>` then `node scripts/seo/crawl.mjs --base http://localhost:<port> --paths-from migration/seo-baseline.json --out <tmp>/candidate.json` and `node scripts/seo/parity.mjs --candidate <tmp>/candidate.json` → 0 errors; read every warning. serve-build answers as the www host (route headers with host conditions included); `--host <name>` answers as another.
 - Structured data and share tags: `pnpm seo:schema` on the build → no failures (one parsing `@graph` per page with the required fields, `@id` references that resolve, `og:image` and schema images the page shows, no prices on service pages, no shortened `sameAs`, every served city in `web/src/data/places.json`).

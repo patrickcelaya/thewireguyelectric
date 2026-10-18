@@ -20,8 +20,9 @@ jobs:
 
       - name: Typecheck site
         run: pnpm --filter web check
-      - name: Unit tests (Ignored Build Step)
-        run: pnpm --filter web test
+      # The content-date rules (sitemap lastmod, dateModified) and the Ignored Build Step
+      - name: Unit tests
+        run: pnpm test
       - name: Typecheck and build Studio
         run: |
           pnpm --filter studio exec tsc --noEmit

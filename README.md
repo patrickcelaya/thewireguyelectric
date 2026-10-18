@@ -154,7 +154,7 @@ What it relies on, and what happens without it. Every unknown builds, so a wrong
 
 **After changing the value of a variable that is already set** (a new `FORMSPARK_FORM_ID`, a new `RESEND_API_KEY`, `LEADS_FROM_EMAIL`) **or any other environment variable**, the step would cancel a same-commit redeploy: only whether the `delivery` variables are set is compared. Redeploy from **Deployments → ⋯ → Redeploy** with **Use project's Ignore Build Step** unticked. Adding or removing one of the four needs only a plain redeploy.
 
-`pnpm --filter web test` runs its tests (CI does too): every branch against a mock server standing in for production and Sanity.
+`pnpm --filter web test` runs its tests (`pnpm test` runs them with the content-date tests, as CI does): every branch against a mock server standing in for production and Sanity.
 
 **Bulk changes.** The webhook fires once per changed document, so a dataset import or a script patching many documents sends one deploy-hook call per document. Keep **Vercel → Project → Settings → Build and Deployment → On-Demand Concurrent Builds: "Run up to one build per branch"**: calls that arrive during a build collapse into one follow-up build, which the step skips if the first build already had the final content. The Pro default ("Run all builds immediately") starts every call at once, before any of them has published a new build-info.json, so each one would build.
 
