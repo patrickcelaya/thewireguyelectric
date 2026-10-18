@@ -9,6 +9,7 @@ import {imageDimensions, imageUrl, hasImage} from './image'
 import {businessSummary} from './site'
 import {portableTextToHtml} from './portable-text'
 import {placeId, placeNode, servedCities, servedPlaceRefs} from './places'
+import {serviceTopic} from './format'
 
 export const BUSINESS_ID = `${SITE_URL}/#business`
 export const WEBSITE_ID = `${SITE_URL}/#website`
@@ -41,7 +42,14 @@ export const serviceId = (slug: string) => `${absoluteUrl(`/services/${slug}`)}#
 export const articleId = (slug: string) => `${absoluteUrl(`/blog-posts/${slug}`)}#article`
 
 /** A service named where it is mentioned: its @id, name and page. */
-const serviceRef = (sv: {name: string; slug: string}): Node => ({'@type': 'Service', '@id': serviceId(sv.slug), name: sv.name, url: absoluteUrl(`/services/${sv.slug}`)})
+/**
+ * A service's entity name: its page's H1 (heading), else its name. The same everywhere its @id appears (its page,
+ * the business's catalogue and knowsAbout, related services), and the last crumb of its page.
+ */
+export const serviceName = (sv: {name: string; heading?: string | null}) => sv.heading?.trim() || sv.name
+/** The kind of service, short and in sentence case: "Electrical troubleshooting", "Panel replacements". */
+const serviceType = (sv: {name: string; slug: string}) => serviceTopic(sv).replace(/^./, (c) => c.toUpperCase())
+const serviceRef = (sv: {name: string; slug: string; heading?: string | null}): Node => ({'@type': 'Service', '@id': serviceId(sv.slug), name: serviceName(sv), url: absoluteUrl(`/services/${sv.slug}`)})
 /** A post named where it is mentioned: its @id, headline and page. */
 const articleRef = (p: {title: string; slug: string}): Node => ({'@type': 'BlogPosting', '@id': articleId(p.slug), headline: p.title, url: absoluteUrl(`/blog-posts/${p.slug}`)})
 
@@ -89,7 +97,7 @@ function licenseNode(s: SiteSettings): Node | undefined {
   }
 }
 
-export function businessNode(s: SiteSettings, services?: Array<{name: string; slug: string}>): Node {
+export function businessNode(s: SiteSettings, services?: Array<{name: string; slug: string; heading?: string | null}>): Node {
   const main = mainAddresses(s)[0]
   const cities = servedCities(s)
   const served = new Set(cities.map((c) => c.slug))
@@ -116,7 +124,7 @@ export function businessNode(s: SiteSettings, services?: Array<{name: string; sl
     logo: {'@type': 'ImageObject', '@id': LOGO_ID, url: LOGO_URL, contentUrl: LOGO_URL, width: 500, height: 447, caption: s.businessName},
     identifier: s.rocLicense ? {'@type': 'PropertyValue', name: 'ROC License', value: s.rocLicense} : undefined,
     hasCredential: licenseNode(s),
-    knowsAbout: services?.length ? services.map((sv) => sv.name) : undefined,
+    knowsAbout: services?.length ? services.map(serviceName) : undefined,
     // The main entity is the headquarters. Offices with their own Google Business
     // Profile are entities of their own (branchNodes), in every page's graph.
     address: mainAddresses(s).map(postalAddressNode),
@@ -273,8 +281,8 @@ export function serviceNode(
   return {
     '@type': 'Service',
     '@id': serviceId(service.slug),
-    name: service.name,
-    serviceType: service.name,
+    name: serviceName(service),
+    serviceType: serviceType(service),
     description,
     url,
     image: imageObjectNode(opts.image),

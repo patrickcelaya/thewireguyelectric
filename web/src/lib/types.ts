@@ -205,6 +205,8 @@ export interface ServiceSummary {
   _id: string
   name: string
   slug: string
+  /** The service page's H1 when it differs from the name ("Electrical Panel Upgrades & Replacements"). */
+  heading?: string | null
   /** The words of the early link from a post to this service ("See our {linkLabel} service"); empty = lib/cms.ts hubLinkLabel. */
   linkLabel?: string | null
   shortDescription?: string

@@ -160,13 +160,7 @@ export function hubLinkLabel(service: Pick<ServiceSummary, 'slug' | 'name' | 'li
   return service.linkLabel?.trim() || HUB_LINK_LABELS[service.slug] || service.name
 }
 
-/** Where a heading names a service mid-sentence, the words that read naturally ("Questions about exterior electrical work"). */
-const SERVICE_TOPICS: Record<string, string> = {'exterior-electrical': 'exterior electrical work', 'electrical-troubleshooting': 'electrical troubleshooting'}
-
-/** A service named inside a heading: "EV charger installation", "LED lights" (lib/format.ts inSentence). */
-export function serviceTopic(service: Pick<ServiceSummary, 'slug' | 'name'>) {
-  return SERVICE_TOPICS[service.slug] ?? inSentence(service.name)
-}
+export {serviceTopic} from './format'
 
 /** A post's topic for its label: its category, else the first service it supports, else "Guide". */
 export function postTopic(post: PostSummary, index: PostIndexEntry[], services: ServiceSummary[]) {

@@ -81,6 +81,7 @@ const SERVICE_FIELDS = /* groq */ `
   _id,
   name,
   "slug": slug.current,
+  heading,
   linkLabel,
   shortDescription,
   "mainImage": mainImage${IMAGE},

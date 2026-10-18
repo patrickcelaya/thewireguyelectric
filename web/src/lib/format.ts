@@ -21,6 +21,14 @@ export function inSentence(name: string) {
   return name.replace(/\S+/g, (word) => (/^[A-Z0-9]{2,}$/.test(word) ? word : word.toLowerCase()))
 }
 
+/** Where a heading names a service mid-sentence, the words that read naturally ("Questions about exterior electrical work"). */
+const SERVICE_TOPICS: Record<string, string> = {'exterior-electrical': 'exterior electrical work', 'electrical-troubleshooting': 'electrical troubleshooting'}
+
+/** A service named inside a heading: "EV charger installation", "LED lights" (inSentence). */
+export function serviceTopic(service: {slug: string; name: string}) {
+  return SERVICE_TOPICS[service.slug] ?? inSentence(service.name)
+}
+
 /**
  * "2026-02-12" for <time datetime>: the calendar date Arizona sees, the one formatDate
  * shows (a post published at 6:38 pm in Phoenix is already the next day in UTC).
