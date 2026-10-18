@@ -1,10 +1,14 @@
 // Job openings as /careers shows them. The page shows and marks up the same list:
 // every JobPosting node is a job visible on the page (lib/page-schema.ts).
+import {isoDate} from './format'
 import type {JobOpening} from './types'
 
-/** Open jobs whose closing date (if any) hasn't passed by build time, newest first as queried. */
+/**
+ * Open jobs whose closing date (if any) hasn't passed by build time in Arizona, newest first
+ * as queried: a job closing on the 18th stays up through the 18th there, not until 5 pm.
+ */
 export function currentJobs(jobs: JobOpening[], now = new Date()): JobOpening[] {
-  const today = now.toISOString().slice(0, 10)
+  const today = isoDate(now.toISOString())
   return jobs.filter((job) => !job.validThrough || job.validThrough.slice(0, 10) >= today)
 }
 

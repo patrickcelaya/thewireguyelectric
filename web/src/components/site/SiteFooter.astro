@@ -10,6 +10,7 @@
 // The Mesa street address shows here and nowhere else on the page (owner rule).
 import type {SiteSettings} from '../../lib/types'
 import type {NavModel} from '../../lib/nav'
+import {isoDate} from '../../lib/format'
 import {ESTIMATE_PATH, footerOffices, officeHours, profiles, sisterBrands, telHref} from '../../lib/site'
 import ExternalLink from '../ui/ExternalLink.astro'
 import RatingLine from '../ui/RatingLine.astro'
@@ -27,7 +28,8 @@ const offices = footerOffices(settings)
 const hours = officeHours(settings).footer
 const social = profiles(settings)
 const sisters = sisterBrands(settings)
-const year = new Date().getFullYear()
+// the year in Arizona, which the daily rebuild turns over just after midnight there
+const year = isoDate(new Date().toISOString()).slice(0, 4)
 ---
 
 <footer class="site-footer">

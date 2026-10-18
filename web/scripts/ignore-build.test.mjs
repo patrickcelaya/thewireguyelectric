@@ -13,6 +13,7 @@ import {decide} from './ignore-build.mjs'
 
 const SHA = 'a'.repeat(40)
 const HOUR = 3_600_000
+/** 05:00 on Oct 20 in Arizona (UTC−7, no daylight saving time). */
 const NOW = Date.parse('2026-10-20T12:00:00Z')
 const DOCS = [
   {_id: 'siteSettings', _rev: 'r3'},
@@ -33,8 +34,16 @@ const server = http.createServer((req, res) => {
   requests.push({path: url.pathname, query: url.searchParams, headers: req.headers})
   if (url.pathname === '/build-info.json') {
     if (mock.hang) return // never answers: the timeout test
+    if (mock.redirect) {
+      res.writeHead(301, {location: mock.redirect})
+      return res.end()
+    }
     res.writeHead(mock.infoStatus, {'content-type': mock.infoType ?? 'application/json'})
     return res.end(typeof mock.info === 'string' ? mock.info : JSON.stringify(mock.info))
+  }
+  if (url.pathname === '/elsewhere/build-info.json') {
+    res.writeHead(200, {'content-type': 'application/json'})
+    return res.end(JSON.stringify(mock.info))
   }
   if (url.pathname === '/v2026-10-01/data/query/production') {
     res.writeHead(mock.sanityStatus, {'content-type': 'application/json'})
@@ -48,7 +57,7 @@ let origin
 // Route the real hosts to the mock, so the URLs the script builds are what gets tested.
 const mockFetch = (url, init) => {
   const u = new URL(url)
-  assert.ok(['www.thewireguyelectric.com', 'qhi2uf0l.api.sanity.io'].includes(u.host), `unexpected host ${u.host}`)
+  assert.ok(['www.thewireguyelectric.com', 'thewireguyelectric.com', 'thewireguyelectric.vercel.app', 'qhi2uf0l.api.sanity.io'].includes(u.host), `unexpected host ${u.host}`)
   assert.equal(u.protocol, 'https:')
   return fetch(`${origin}${u.pathname}${u.search}`, init)
 }
@@ -238,6 +247,49 @@ describe('builds', () => {
     mock.info.builtAt = 'yesterday'
     assert.equal((await run()).build, true)
   })
+
+  test('when builtAt is still to come (a clock ahead)', async () => {
+    mock.info.builtAt = new Date(NOW + 3 * HOUR).toISOString()
+    const r = await run()
+    assert.equal(r.build, true)
+    assert.match(r.reason, /builtAt still to come/)
+  })
+
+  // The daily call comes at 00:17 Arizona time (07:17 UTC)
+  test('on the daily call after a build earlier the day before, under 20 hours ago', async () => {
+    mock.info.builtAt = '2026-10-19T12:00:00Z' // 05:00 Oct 19 in Arizona
+    const r = await run({}, {now: Date.parse('2026-10-20T07:17:00Z')})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /last build was on 2026-10-19, Arizona time \(19\.3 h ago\); today is 2026-10-20/)
+  })
+
+  test('on the day after a job closes, whatever the last build was for', async () => {
+    mock.info.builtAt = '2026-11-18T12:00:00Z' // the job's validThrough day
+    assert.equal((await run({}, {now: Date.parse('2026-11-19T07:17:00Z')})).build, true)
+  })
+
+  test('on the first daily call of a new year (the footer year)', async () => {
+    mock.info.builtAt = '2026-12-31T13:00:00Z'
+    assert.equal((await run({}, {now: Date.parse('2027-01-01T07:17:00Z')})).build, true)
+  })
+
+  test('after 20 hours even on the same Arizona day', async () => {
+    mock.info.builtAt = '2026-10-20T07:30:00Z' // 00:30 in Arizona
+    const r = await run({}, {now: Date.parse('2026-10-21T06:30:00Z')}) // 23:30 the same day
+    assert.equal(r.build, true)
+    assert.match(r.reason, /23\.0 h old/)
+  })
+
+  test('when the bypass would have to follow a redirect off the Vercel alias', async () => {
+    mock.redirect = '/elsewhere/build-info.json' // relative, so a followed redirect stays on the mock
+    const r = await run({VERCEL_PROJECT_PRODUCTION_URL: 'thewireguyelectric.vercel.app', VERCEL_AUTOMATION_BYPASS_SECRET: 'test-bypass'})
+    assert.equal(r.build, true)
+    assert.match(r.reason, /answered 301/)
+    assert.deepEqual(
+      requests.map((q) => q.path),
+      ['/build-info.json'],
+    )
+  })
 })
 
 describe('skips', () => {
@@ -253,9 +305,15 @@ describe('skips', () => {
     assert.match(query.query.get('query'), /!\(_id in path\("drafts\.\*\*"\)\)/)
   })
 
-  test('just under the 20-hour limit', async () => {
-    mock.info.builtAt = new Date(NOW - 20 * HOUR + 60_000).toISOString()
-    assert.equal((await run()).build, false)
+  test('just under the 20-hour limit, on the same Arizona day', async () => {
+    const now = Date.parse('2026-10-21T04:00:00Z') // 21:00 Oct 20 in Arizona
+    mock.info.builtAt = new Date(now - 20 * HOUR + 60_000).toISOString() // 01:01 the same day
+    assert.equal((await run({}, {now})).build, false)
+  })
+
+  test('on a call later the same Arizona day as the last build, across midnight UTC', async () => {
+    mock.info.builtAt = '2026-10-20T08:00:00Z' // 01:00 Oct 20 in Arizona
+    assert.equal((await run({}, {now: Date.parse('2026-10-21T02:00:00Z')})).build, false) // 19:00 Oct 20
   })
 
   test('whatever order Sanity returns the documents in', async () => {
@@ -268,10 +326,22 @@ describe('skips', () => {
     assert.equal((await run({FORMSPARK_FORM_ID: 'another-form'})).build, false)
   })
 
-  test('sending the protection bypass when Vercel provides one', async () => {
-    const r = await run({VERCEL_AUTOMATION_BYPASS_SECRET: 'test-bypass'})
+  test('sending the protection bypass to the Vercel alias when Vercel provides one', async () => {
+    const r = await run({VERCEL_PROJECT_PRODUCTION_URL: 'thewireguyelectric.vercel.app', VERCEL_AUTOMATION_BYPASS_SECRET: 'test-bypass'})
     assert.equal(r.build, false)
     assert.equal(requests[0].headers['x-vercel-protection-bypass'], 'test-bypass')
+  })
+
+  test('never sending the protection bypass to a custom domain, and following the apex redirect', async () => {
+    for (const host of ['www.thewireguyelectric.com', 'thewireguyelectric.com']) {
+      requests = []
+      mock.redirect = host === 'thewireguyelectric.com' ? '/elsewhere/build-info.json' : undefined // the apex's 301 to www
+      const r = await run({VERCEL_PROJECT_PRODUCTION_URL: host, VERCEL_AUTOMATION_BYPASS_SECRET: 'test-bypass'})
+      assert.equal(r.build, false, `${host}: ${r.reason}`)
+      const infos = requests.filter((q) => q.path.endsWith('/build-info.json'))
+      assert.equal(infos.length, host === 'thewireguyelectric.com' ? 2 : 1)
+      for (const q of infos) assert.equal(q.headers['x-vercel-protection-bypass'], undefined, `${host}${q.path}`)
+    }
   })
 
   test('sending the read token to Sanity when one is set', async () => {

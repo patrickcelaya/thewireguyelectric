@@ -137,18 +137,18 @@ Every build writes `/build-info.json` (`web/src/config/build-info.mjs`):
 The script compares it with what this deployment would build, in this order:
 
 1. A preview (`VERCEL_ENV` is not `production`): build.
-2. `https://$VERCEL_PROJECT_PRODUCTION_URL/build-info.json` can't be read (a network error, a 404, Vercel's login page, bad JSON): build. It sends `x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET` when that variable is set.
+2. `https://$VERCEL_PROJECT_PRODUCTION_URL/build-info.json` can't be read (a network error, a 404, Vercel's login page, bad JSON): build. It sends `x-vercel-protection-bypass: $VERCEL_AUTOMATION_BYPASS_SECRET` when that variable is set and the host is a `.vercel.app` alias, and then follows no redirect (a 3xx builds). A custom domain never gets the secret: from T-2 the apex is the production URL while DNS still points at Webflow.
 3. Another commit (`VERCEL_GIT_COMMIT_SHA`): build.
 4. Another content source or `SITE_INDEXABLE` value: build. This is what lets the launch redeploy through.
 5. A lead destination added or removed (one of the `delivery` variables set or unset): build. A deployment's functions keep the variables it was built with, so this is what lets the redeploy after adding `FORMSPARK_FORM_ID` through.
 6. Another content hash, read from Sanity's API (not the CDN, which can lag a publish): build.
-7. The live build is more than 20 hours old: build.
+7. The live build was made on an earlier day in Arizona, is more than 20 hours old, or has a `builtAt` still to come: build.
 8. Otherwise: skip. The deployment shows as Canceled and the live build stays.
 
 What it relies on, and what happens without it. Every unknown builds, so a wrong guess costs one extra build, never a stale site:
 
 - `VERCEL_ENV`, `VERCEL_PROJECT_PRODUCTION_URL`, `VERCEL_GIT_COMMIT_SHA` are system variables available at build time. Vercel's docs say the Ignored Build Step can read those, provided **Settings → Environment Variables → Enable access to System Environment Variables** is ticked. Without them it builds every time.
-- `VERCEL_PROJECT_PRODUCTION_URL` is the shortest production domain: the `.vercel.app` alias today, the apex after launch. The apex redirects to www and the script follows the redirect.
+- `VERCEL_PROJECT_PRODUCTION_URL` is the shortest production domain: the `.vercel.app` alias today, the apex once the custom domains are added (T-2). The apex redirects to www and the script follows the redirect, without the bypass header.
 - `VERCEL_AUTOMATION_BYPASS_SECRET` exists only while a Protection Bypass for Automation secret does. While Deployment Protection covers the production alias ("All deployments", before launch), revoking it makes build-info.json unreadable and every deploy builds. After launch the production domains are public under Standard protection, so revoking it changes nothing.
 - `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET`, `SANITY_API_READ_TOKEN`, `SITE_INDEXABLE` and the four `delivery` variables are the project's own variables, read the way the build reads them. If the step ever ran without them, the content source comparison would differ and it would build every time.
 
@@ -160,7 +160,7 @@ What it relies on, and what happens without it. Every unknown builds, so a wrong
 
 ### Daily rebuild
 
-`.github/workflows/daily-rebuild.yml` calls the deploy hook every day at 00:17 Arizona time, so what the build computes from the date stays current: a job opening past its closing date drops off /careers along with its JobPosting, and the footer year turns over on 1 January. (The office open/closed line is worked out in the visitor's browser from the published hours and needs no rebuild.) The Ignored Build Step lets the call build only when the live build is more than 20 hours old, so it costs at most one build a day. A job past its closing date therefore leaves at the next call; if the site was rebuilt for another reason in the 20 hours before that call, the call is skipped and the job leaves a day later.
+`.github/workflows/daily-rebuild.yml` calls the deploy hook every day at 00:17 Arizona time, so what the build computes from the date stays current: a job opening past its closing date drops off /careers along with its JobPosting, and the footer year turns over on 1 January. (The office open/closed line is worked out in the visitor's browser from the published hours and needs no rebuild.) The Ignored Build Step lets the call build when the live build was made on an earlier Arizona day, so the call builds once a day whatever else was built the day before, and a later call the same day is skipped. A job past its closing date (compared by the Arizona date) therefore leaves at the call just after midnight.
 
 It is optional, and does nothing until the repository has the secret:
 
