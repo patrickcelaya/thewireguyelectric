@@ -19,6 +19,9 @@
 //   sameAs       no sameAs is a link shortener (share.google, goo.gl, bit.ly)
 //   areaServed   the business serves Mesa (its home city) first, and every served city is named
 //                with its Wikipedia/Wikidata pages
+//   faqOnce      no FAQ question is marked up on two indexable pages (Google: mark up one instance
+//                of a Q&A shown on several pages; shared questions are marked up on /faq only).
+//                On a build where every page is noindex (a preview), every page counts
 //
 // The default share image is the one /estimate (a page with no image of its own) uses.
 
@@ -82,6 +85,8 @@ for (const file of files) pages.set(pagePath(file), cheerio.load(await readFile(
 const defaultOg = pages.get('/estimate')?.('meta[property="og:image"]').attr('content')
 if (!defaultOg) fail('/estimate', 'images', 'no og:image on /estimate to take the default share image from')
 
+/** Each page's top-level nodes, for the checks across pages. */
+const graphsOf = new Map()
 for (const [page, $] of pages) {
   // ---- parse: exactly one JSON-LD block, a single @graph
   const blocks = $('script[type="application/ld+json"]')
@@ -97,6 +102,7 @@ for (const [page, $] of pages) {
   }
   if (blocks.length !== 1) fail(page, 'parse', `${blocks.length} JSON-LD blocks (expected one @graph)`)
   const nodes = graphs.flatMap((g) => (Array.isArray(g['@graph']) ? g['@graph'] : [g]))
+  graphsOf.set(page, nodes)
   if (graphs.length && !graphs.every((g) => Array.isArray(g['@graph']))) fail(page, 'parse', 'a JSON-LD block is not an @graph')
 
   // every object in the graph, and the ids defined in it (an object with an @id and anything else)
@@ -181,6 +187,18 @@ for (const [page, $] of pages) {
     if (unnamed.length) fail(page, 'areaServed', `served cities without Wikipedia/Wikidata: ${unnamed.map((a) => a.name).join(', ')}`)
   }
 }
+
+// ---- each FAQ question marked up on one indexable page
+const indexable = (p) => !/noindex/i.test(pages.get(p)('meta[name="robots"]').attr('content') ?? '')
+const counted = [...pages.keys()].some(indexable) ? [...pages.keys()].filter(indexable) : [...pages.keys()]
+const markedUp = new Map()
+for (const page of counted) {
+  for (const n of graphsOf.get(page) ?? []) {
+    if (!types(n).includes('FAQPage') || !Array.isArray(n.mainEntity)) continue
+    for (const q of n.mainEntity) if (q.name) markedUp.set(q.name, [...(markedUp.get(q.name) ?? []), page])
+  }
+}
+for (const [question, where] of markedUp) if (where.length > 1) fail(where[0], 'faqOnce', `"${question}" is marked up on ${where.length} pages: ${where.join(' ')}`)
 
 const byCheck = rows.reduce((acc, r) => ((acc[r.check] = (acc[r.check] ?? 0) + 1), acc), {})
 if (args.out) await writeFile(args.out, JSON.stringify({pages: pages.size, byCheck, rows}, null, 2))

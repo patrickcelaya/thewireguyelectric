@@ -21,7 +21,7 @@ The new stack makes all four cheap to do well and consistently.
   - `Service` on service and city pages;
   - `BlogPosting` on posts;
   - `JobPosting` on careers;
-  - `FAQPage` where FAQs are visible.
+  - `FAQPage` where FAQs are visible, each question marked up on one page only: shared questions on /faq, a city's or post's own questions on that page.
 - Visible breadcrumbs, related services and posts, other service areas, and previous/next post. Internal links are generated from content relationships, not hand-maintained.
 - The ROC license number shown prominently near the top of the homepage and linked to the state lookup. Arizona ROC advertising rules expect it on the homepage, not just the footer.
 - A sticky mobile Call / Free Estimate bar, tracked `tel:` clicks (`phone_call_click`), and form leads (`generate_lead`) in GA4.

@@ -37,9 +37,10 @@ How content for thewireguyelectric.com is structured in Sanity (project `qhi2uf0
    - Images in sections, projects and Site settings → Home city require it (an error in Studio).
    - Document main images (imported from Webflow, many still without alt), team photos, the logo and share images show a warning so old content can still be published.
    - Templates may render a card thumbnail with `alt=""` when the card title sits next to it (decorative).
-7. **One FAQPage per page.**
+7. **One FAQPage per page, and each question marked up once on the site.**
    - Visible FAQs and FAQ structured data come from the same documents.
-   - On page-builder pages, `collectPageFaqs(page)` returns every question shown across all FAQ sections. Build the single `FAQPage` node from that.
+   - On page-builder pages, `collectPageFaqs(page)` returns every question shown across all FAQ sections. Build the single `FAQPage` node from that with `faqNode()`.
+   - A shared question (a `faq` document) is marked up on /faq only, where every one is listed; other pages show it but mark up only their own inline questions (Google: one marked-up instance of a Q&A shown on several pages). `pnpm seo:schema` fails a question marked up on two indexable pages.
 8. **No review markup about the business.** Reviews and ratings render as visible text only (no `Review` / `AggregateRating` JSON-LD).
 9. **Model content, not looks.**
    - Types are named for what they are (`priceGuideSection`, not `tableBlock`).
@@ -405,7 +406,7 @@ The top of the page. **It renders the page H1 from `page.heading`; it has no hea
 
 **Returns:** `faqs: FaqItem[]` and `groups[].faqs`, all resolved; deleted FAQs are dropped.
 
-**Render:** native `<details>`/`<summary>` with answers in the HTML. **Schema:** one FAQPage per page from `collectPageFaqs(page)`.
+**Render:** native `<details>`/`<summary>` with answers in the HTML. **Schema:** one FAQPage per page from `collectPageFaqs(page)`; `faq` documents only on /faq (rule 7).
 
 ### teamSection (Team): `TeamSection`
 

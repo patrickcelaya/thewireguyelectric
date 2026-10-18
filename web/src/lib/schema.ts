@@ -372,8 +372,17 @@ export function blogPostingNode(post: PostDoc, description?: string, opts: {imag
   }
 }
 
+/** The page that lists every shared question (faq documents), and the only one that marks them up. */
+export const FAQ_PATH = '/faq'
+
+/**
+ * The page's FAQPage, from the questions it shows. A shared question (a faq document, which has an _id) is marked
+ * up on /faq only, where every one is listed: Google asks for one marked-up instance of a Q&A that appears on
+ * several pages. Other pages still show it, and mark up only their own questions (a service's, a city's or a
+ * post's inline FAQs). scripts/seo/check-structured-data.mjs fails a question marked up on two indexable pages.
+ */
 export function faqNode(path: string, faqs: FaqItem[]): Node | undefined {
-  const items = faqs.filter((f) => f.question && f.answer)
+  const items = faqs.filter((f) => f.question && f.answer && (!f._id || path === FAQ_PATH))
   if (!items.length) return undefined
   return {
     '@type': 'FAQPage',
