@@ -153,6 +153,39 @@
       }
     }
   },
+  "postQuickAnswers": {
+    "source": "post.quickAnswer: the \"Quick answer\" box above a post's body (CONTENT_MODEL: 40–60 words, answer first). Without one the box shows the post's excerpt, which is its live meta description; on these seven posts that excerpt repeats, or restates, the opening sentence the box sits right above (visual-posts F1, 2026-10-18), or is no answer at all. Each answer sums up what the post itself says: every `evidence` phrase must appear word for word in the post body as it ships (quote style ignored), and no answer may carry a price. The migration also stops if any post's box would repeat its opening.",
+    "answers": {
+      "why-does-my-breaker-keep-tripping-in-the-summer": {
+        "text": "In a Phoenix summer a breaker usually trips for one of four reasons: overloaded circuits, an old or undersized panel, connections loosened by heat, or a failing A/C compressor or motor that draws too much current on startup. Have the A/C checked, and if tripping is frequent, have a licensed electrician check your panel, circuits, and wiring.",
+        "evidence": ["Overloaded Circuits", "Old or Undersized Panels", "Extreme heat causes metal to expand and contract", "loosen connections in your panel", "A failing compressor or motor in your HVAC system can draw too much current on startup", "Have Your A/C Checked", "If tripping is frequent, it’s time to have a licensed electrician check your panel, circuits, and wiring"]
+      },
+      "why-your-lights-flicker": {
+        "text": "A brief dim when the AC or another large appliance starts up is normal. Flickering that happens often, shows in several rooms at once or comes every time the AC runs usually points to loose panel connections, aging breakers, overloaded or unbalanced circuits, deteriorating wiring or grounding issues, and it tends to get worse in summer.",
+        "evidence": ["brief, slight dimming when a large appliance starts up, especially an air conditioner", "flicker in multiple rooms at once", "loose connections in the panel, aging breakers, overloaded or unbalanced circuits, deteriorating wiring, or grounding issues", "Why Flickering Often Gets Worse in Summer"]
+      },
+      "breaker-trips-ac": {
+        "text": "It is rarely the AC itself. Its startup surge finds the weak spot in your electrical system: an older or weakened breaker, an undersized panel, a shared or overloaded circuit, wiring issues behind the walls, or poor grounding and load balance. If the breaker trips more than once under normal use, have a licensed electrician inspect the system.",
+        "evidence": ["This usually isn’t an AC problem", "startup surges from HVAC systems", "Older or weakened breakers", "Undersized electrical panels", "Shared or overloaded circuits", "Wiring issues behind the walls", "grounding and load balancing issues", "If a breaker trips more than once under normal use"]
+      },
+      "common-electrical-issues-in-scottsdale-homes": {
+        "text": "Scottsdale's heat, haboob dust and monsoon power surges are hard on electrical systems, and older homes may still have outdated wiring. Watch for flickering lights, frequently tripped breakers, dead outlets, buzzing and burning smells. If you smell burning, turn off power to that area and call a licensed electrician right away.",
+        "evidence": ["Scottsdale's intense heat stresses electrical systems", "powerful dust storms known as haboobs", "Monsoon season brings power surges", "Older homes in Scottsdale may still have outdated wiring", "Frequently tripped circuit breakers", "Dead outlets", "Burning smells near outlets", "If you smell burning, turn off power to that area and call a licensed electrician right away"]
+      },
+      "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell": {
+        "text": "Your home likely needs a panel upgrade if it still has a fuse box or a Zinsco or Federal Pacific panel, if you are adding a hot tub, EV charger or new HVAC system, if breakers keep tripping, if you notice flickering lights or buzzing sounds, or if the house is 30+ years old. Most upgrades take one day.",
+        "evidence": ["a fuse box or an older panel brand like Zinsco or Federal Pacific", "A hot tub, EV charger, or new HVAC system", "Your Breakers Keep Tripping", "You Notice Flickering Lights or Buzzing Sounds", "Your Home is 30+ Years Old", "Most upgrades take just 1 day"]
+      },
+      "how-phoenix-heat-affects-your-homes-electrical-system": {
+        "text": "Heat makes wiring expand by day and contract at night, which loosens connections and can cause arcing. Peak AC and pool pump loads overload breakers, and UV cracks outdoor wire insulation. Watch for breakers tripping in the afternoon, lights dimming when the AC starts, burning smells and warped outlet covers, and schedule a summer electrical inspection.",
+        "evidence": ["expand in extreme heat and contract when they cool at night", "Loosen electrical connections", "Cause arcing or short circuits", "Overloaded Breakers During Peak AC Usage", "Pool pumps running longer hours", "Crack and dry out wire insulation", "Breakers tripping more often in the afternoon", "Lights dimming when AC or pool pump turns on", "Burning smell near outlets or panel", "Discolored or warped outlet covers", "Schedule a Summer Electrical Inspection"]
+      },
+      "emfs-in-your-phoenix-home": {
+        "text": "EMFs are a normal part of using electricity. The concern is unusually strong readings near certain walls or floors, often with buzzing outlets or flickering lights, which usually point to wiring defects, grounding problems or load issues. A licensed electrician finds the cause and corrects it with grounding and bonding work, load balancing or a panel upgrade.",
+        "evidence": ["EMFs are a normal byproduct of electricity", "strong EMF readings near certain walls or floors", "buzzing sounds from outlets or breaker panels", "flickering or dimming lights", "wiring defects, grounding problems, or load issues", "A licensed electrician finds and corrects the electrical conditions behind high EMF readings", "Grounding and bonding corrections", "Load balancing and panel upgrades"]
+      }
+    }
+  },
   "bodyEdits": {
     "source": "Owner rule: no prices in a page body outside FAQ answers and blog posts. Each edit takes a dollar range out of a service body, keeping the rest of the sentence (and every link) as written; the Panels flat-rate sentence restates the live city pages' claim (migration/live-snapshots/locations_gilbert.html) in plain words (copy review, 2026-10-17: slop-services-081). Each `find` must occur exactly once in that service's body text and may not cut through a link; after the edits no service body may contain a price. The ranges stay in the cost FAQ answers.",
     "edits": [

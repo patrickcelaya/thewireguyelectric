@@ -189,7 +189,7 @@ Not routed in this PR. Fields: service, location, heading, intro, mainImage, bod
 | title | string | The H1 |
 | slug | slug | Frozen |
 | excerpt | text | Card text and meta description fallback |
-| **quickAnswer** | text | **New.** A 40–60 word answer-first summary shown above the body. It must not repeat the title. The first `relatedServices` entry is linked right after it ("Need help? See our …"). Falls back to `excerpt` when empty. Warns outside 40–60 words |
+| **quickAnswer** | text | **New.** A 40–60 word answer-first summary shown above the body. It must not repeat the title, nor the body's opening right under it. The first `relatedServices` entry is linked right after it ("Need help? See our …"). Falls back to `excerpt` when empty. Warns outside 40–60 words. The migration sets it on the seven posts whose excerpt repeats or restates their opening (`postQuickAnswers` in migration/content-data/cms-templates.json, each phrase checked against the body) and stops if any post's box would repeat its opening |
 | mainImage | image (+alt) | |
 | body | richText | |
 | category | ref postCategory | The blog topic page (`/posts-categories/<slug>`, noindex) and `articleSection`. Set on the six lighting posts (migration/content-data/cms-templates.json) |

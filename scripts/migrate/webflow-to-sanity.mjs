@@ -543,9 +543,10 @@ push({
 // copy edits, contextual internal links and the approved titles, meta descriptions and H1s.
 // Each module receives the document list and helpers and edits or adds documents in place.
 // content-edits runs at several points ("module:stage"); its header says why, and
-// cms-templates runs its service stage itself.
+// cms-templates runs its service stage itself. cms-templates:posts sets the posts' quick
+// answers after the late edits, so it checks them against the bodies as they ship.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'internal-links', 'titles-meta']) {
+for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'cms-templates:posts', 'internal-links', 'titles-meta']) {
   const [name, stage] = step.split(':')
   await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }

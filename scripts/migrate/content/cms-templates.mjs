@@ -36,6 +36,14 @@
 // export carried into a post body as a heading of their own.
 //
 // Runs after page-sections. Titles, H1s, meta descriptions and slugs are never touched.
+//
+// The "posts" stage runs after the late copy edits, so it reads the post bodies as they ship:
+//
+//   postQuickAnswers  post.quickAnswer, the "Quick answer" box above a post's body; every
+//                     evidence phrase must be in the post body, and no answer may name a price.
+//                     Then no post may show a quick answer (else its excerpt, the box's
+//                     fallback) that repeats its own opening word for word: the box sits
+//                     right above it, so a post whose excerpt does needs an answer here.
 
 import contentEdits from './content-edits.mjs'
 
@@ -51,13 +59,14 @@ const blockText = (blocks = []) =>
 const loose = (s) => s.replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, ' ')
 const words = (s) => s.split(/\s+/).filter(Boolean).length
 
-export default async function cmsTemplates(ctx) {
+export default async function cmsTemplates(ctx, stage) {
   const {docs, readJson, report} = ctx
   const data = await readJson(DATA)
   const fail = (msg) => {
     throw new Error(`${DATA}: ${msg}`)
   }
   const bySlug = (type, slug) => docs.find((d) => d._type === type && d.slug?.current === slug) ?? fail(`no ${type} with slug "${slug}"`)
+  if (stage === 'posts') return postQuickAnswers(docs, data, bySlug, fail, report)
 
   for (const slug of data.featuredPosts.slugs) bySlug('post', slug).featured = true
 
@@ -218,6 +227,39 @@ export default async function cmsTemplates(ctx) {
     figureAlts: data.figureAlts.alts.map((a) => `${a.post}: ${a.alt}`),
     markersRemovedFrom: markers,
   }
+}
+
+/**
+ * The "posts" stage: post.quickAnswer from the data (40–60 words, every evidence phrase in the body as it ships,
+ * no price), then the check that no post's quick-answer box (its quickAnswer, else its excerpt, as the template
+ * falls back) repeats the opening right under it: the whole box text, or its first sentence of five words or
+ * more, inside the body's first two blocks, with case, punctuation and apostrophes ignored. An opening heading
+ * that only repeats the title is skipped, as the template drops it.
+ */
+function postQuickAnswers(docs, data, bySlug, fail, report) {
+  const {answers} = data.postQuickAnswers
+  for (const [post, {text, evidence}] of Object.entries(answers)) {
+    const doc = bySlug('post', post)
+    const body = loose(blockText(doc.body))
+    if (!text?.trim() || PRICE.test(text)) fail(`postQuickAnswers ${post}: empty, or names a price`)
+    if (words(text) < 40 || words(text) > 60) fail(`postQuickAnswers ${post}: ${words(text)} words; keep it to 40–60`)
+    if (!evidence?.length) fail(`postQuickAnswers ${post}: list the body phrases the answer restates`)
+    for (const phrase of evidence) if (!body.includes(loose(phrase))) fail(`postQuickAnswers ${post}: "${phrase}" is not in the body`)
+    doc.quickAnswer = text
+  }
+  const norm = (s) => ` ${s.toLowerCase().replace(/[‘’']/g, '').replace(/[^a-z0-9]+/g, ' ').trim()} `
+  const repeats = []
+  for (const doc of docs.filter((d) => d._type === 'post')) {
+    const shown = doc.quickAnswer || doc.excerpt || doc.seo?.description
+    if (!shown) continue
+    let blocks = (doc.body ?? []).filter((b) => b._type === 'block')
+    if (/^h[1-6]$/.test(blocks[0]?.style ?? '') && norm(blockText(blocks.slice(0, 1))) === norm(doc.title ?? '')) blocks = blocks.slice(1)
+    const opening = norm(blockText(blocks.slice(0, 2)))
+    const first = norm(shown.split(/(?<=[.!?])\s/)[0])
+    if (opening.includes(norm(shown)) || (first.trim().split(' ').length >= 5 && opening.includes(first))) repeats.push(doc.slug.current)
+  }
+  if (repeats.length) fail(`postQuickAnswers: the quick answer (else the excerpt) repeats the opening of ${repeats.join(', ')}; give each a quick answer that sums up the post`)
+  report.cmsTemplates.postQuickAnswers = Object.keys(answers)
 }
 
 /**
