@@ -1,0 +1,1891 @@
+{
+ "about": "The owner's photo library (2026-10): the photos curated for the site, re-encoded to at most 2400 px (no metadata). upload.mjs uploads each file; registry.mjs writes web/src/lib/library-photos.json from this list and assets.json. `faces` are head boxes (x0,y0,x1,y1 as fractions of the photo), each checked by eye on the photo; `heroCrop` frames a city hero so the heads start at 71.5% of the frame, under the open sky the words sit on. No alt names a place: where a photo was taken is not known.",
+ "excluded": {
+  "dr-1QmNCA_iF7T7NLKnyFmeYL0RWjR_L2QQU": "only an arm in frame (a person, no head to box): not for a tint, no face to keep",
+  "gp-095": "the electrician's head is cut off by the top of the frame",
+  "gp-020": "a burst frame of the fleet poster; gp-111 is the exact original of FLEET_PHOTO",
+  "dr-1PomFDLb48_dLAkQjvTVvZP6m64aP-Fm8": "a head at the photo's right edge: no frame can keep room around it",
+  "dr-1tzyexS2NyBPqUujiYI798kIA1dfCwsIv": "a head at the photo's right edge: no frame can keep room around it",
+  "dr-12_KeaNO_nApLsTtl_Anccwedy-7dQu7I": "a burst frame of crew-at-van.avif (the four of the crew at the wrapped van)",
+  "dr-1JtDwCd95dr1iIIqEmgEx6xfZH65HnwyB": "the tools flat-lay the site already has (tools-on-romex.avif)",
+  "gp-053": "a crop of the tools flat-lay the site already has",
+  "gp-177": "a crop of the tools flat-lay the site already has",
+  "dr-1hsZanwXaqrDkgLQNeQ0btwgSLmPZJN0M": "the kitchen remodel the site already has (Electrical Remodels)",
+  "dr-1md0qyUE-sbdfr4j1k0rK658uvIFp-xoF": "the dining-room chandelier the site already has (Fixture Replacements)",
+  "dr-1sd8be_l3nIFQGSweT0aLvHmfou-juYbq": "a burst frame of the homepage hero's crew photo",
+  "gp-043": "a burst frame of the ladders photo the homepage's \"who we are\" shows",
+  "gp-148": "a burst frame of the homepage's ladders photo",
+  "gp-057": "a burst frame of the troubleshooting photo the site already has",
+  "gp-114": "the fleet poster without the crew, a near copy of it",
+  "dr-1x0_26Epr2iDRakeuQPm5PaylaDC5_KHS": "near copy of dr-15pHqwx (Ford charger)",
+  "dr-1B-m-XFdStpms774ZIyp-0masDt8Ca0Uh": "near copy of dr-1Um9JO0x (at the van)",
+  "gp-106": "near copy of gp-001",
+  "gp-216": "near copy of gp-090",
+  "gp-150": "near copy of gp-005",
+  "gp-140": "near copy of gp-018",
+  "gp-197": "near copy of gp-018",
+  "gp-199": "near copy of gp-007",
+  "gp-021": "near copy of gp-181",
+  "gp-047": "near copy of gp-181",
+  "gp-052": "near copy of gp-181",
+  "gp-025": "near copy of gp-124",
+  "gp-231": "near copy of gp-028",
+  "gp-068": "near copy of gp-054 (the same truck)",
+  "gp-208": "near copy of gp-054 (the same truck)",
+  "gp-066": "near copy of gp-059",
+  "gp-085": "looks the same as gp-033 (a white outlet on a textured wall)",
+  "gp-271": "looks the same as gp-033 (a white outlet on a textured wall)",
+  "gp-266": "near copy of gp-059",
+  "gp-194": "near copy of gp-059"
+ },
+ "photos": [
+  {
+   "key": "dr-1-220a2K3CXDvVFUSYzmhdTJ4JTre8pRL",
+   "file": "library/wire-guy-electrician-team-portrait-block-wall.jpg",
+   "name": "wire-guy-electrician-team-portrait-block-wall",
+   "alt": "Smiling electrician in a Wire Guy Electric T-shirt and cap against a gray block wall",
+   "caption": "Smiling electrician in a Wire Guy Electric T-shirt and cap",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "square",
+   "quality": 4,
+   "roles": [
+    "team:steven-taylor"
+   ],
+   "faces": "0.41,0.12,0.59,0.35"
+  },
+  {
+   "key": "dr-10SFlcLw69tW7W5QzIIq2mPBGiKYo9mhi",
+   "file": "library/new-meter-panel-combo-tan-block-wall.jpg",
+   "name": "new-meter-panel-combo-tan-block-wall",
+   "alt": "New meter and breaker panel combo mounted on a tan block wall with fresh conduit",
+   "caption": "New meter and breaker panel combo mounted on a tan block wall",
+   "subject": "meter-service",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-10v8MYWEU1pNI0VVPCYw9FUI1n5f2KfWQ",
+   "file": "library/wire-guy-team-member-portrait-block-wall.jpg",
+   "name": "wire-guy-team-member-portrait-block-wall",
+   "alt": "Smiling team member in a Wire Guy Electric T-shirt against a gray block wall",
+   "caption": "Smiling team member in a Wire Guy Electric T-shirt",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "square",
+   "quality": 4,
+   "roles": [
+    "team:emma-woolington"
+   ],
+   "faces": "0.40,0.25,0.61,0.49"
+  },
+  {
+   "key": "dr-12UM3uAVvdUlOifBtQH8_1__10ChHaThQ",
+   "file": "library/three-globe-glass-pendant-cluster.jpg",
+   "name": "three-globe-glass-pendant-cluster",
+   "alt": "Three clear glass globe pendants hanging from a round black canopy in a gray room",
+   "caption": "Three clear glass globe pendants hanging from a round black canopy in a gray room",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-14t1bdMcluEA_3fQo0rp5cc5tXALuMlMZ",
+   "file": "library/wire-guy-crew-smiling-between-van-pickup.jpg",
+   "name": "wire-guy-crew-smiling-between-van-pickup",
+   "alt": "Four smiling Wire Guy Electric electricians in company shirts between a van and a pickup",
+   "caption": "Four smiling Wire Guy Electric electricians in company shirts",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.24,0.32,0.29,0.43;0.41,0.36,0.46,0.47;0.56,0.33,0.61,0.44;0.73,0.33,0.78,0.45"
+  },
+  {
+   "key": "dr-15b9jdEHFYLkTKk-GdI_JWoguPxrG8PAN",
+   "file": "library/bathroom-vanity-vertical-wall-sconces.jpg",
+   "name": "bathroom-vanity-vertical-wall-sconces",
+   "alt": "Three warm vertical wall sconces flanking mirrors above a new double bathroom vanity",
+   "caption": "Three warm vertical wall sconces flanking mirrors",
+   "subject": "sconce",
+   "photoSubject": "lighting",
+   "services": [
+    "fixture-replacements",
+    "electrical-remodels",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:electrical-remodels"
+   ]
+  },
+  {
+   "key": "dr-15pHqwx-ZRneIm4UxdYz4az1RM09kETAh",
+   "file": "library/ford-ev-charger-garage-subpanel.jpg",
+   "name": "ford-ev-charger-garage-subpanel",
+   "alt": "Ford wall-mounted EV charger with coiled cable next to a subpanel in a garage",
+   "caption": "Ford wall-mounted EV charger with coiled cable",
+   "subject": "ev-charger",
+   "photoSubject": "ev",
+   "services": [
+    "ev-charger-installation"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1646zwO77WAo77s3YSokbcgaMNokjroys",
+   "file": "library/spiral-ring-led-pendant-two-story-entry.jpg",
+   "name": "spiral-ring-led-pendant-two-story-entry",
+   "alt": "Spiral ring LED pendant hanging in a two-story entry with clerestory windows",
+   "caption": "Spiral ring LED pendant hanging in a two-story entry",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-17GDLAD1jBkC3hmiN01i8FqDPgdOoKzbS",
+   "file": "library/wire-guy-crew-smiling-block-wall.jpg",
+   "name": "wire-guy-crew-smiling-block-wall",
+   "alt": "Four smiling electricians in Wire Guy Electric shirts against a gray block wall",
+   "caption": "Four smiling electricians in Wire Guy Electric shirts",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.17,0.34,0.23,0.49;0.39,0.31,0.45,0.47;0.60,0.37,0.66,0.52;0.82,0.33,0.89,0.48"
+  },
+  {
+   "key": "dr-17X-g0-G5W8oHMCu8AxeDHuWDwBotF_kG",
+   "file": "library/tesla-wall-connector-block-wall.jpg",
+   "name": "tesla-wall-connector-block-wall",
+   "alt": "Tesla wall connector with coiled cable mounted on a painted block wall",
+   "caption": "Tesla wall connector with coiled cable mounted",
+   "subject": "ev-charger",
+   "photoSubject": "ev",
+   "services": [
+    "ev-charger-installation"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:ev-charger-installation"
+   ]
+  },
+  {
+   "key": "dr-18UPByuJ6deCRfTgPlJFXnqztoPBib5LH",
+   "file": "library/new-labeled-breaker-panel-welder-circuits.jpg",
+   "name": "new-labeled-breaker-panel-welder-circuits",
+   "alt": "New breaker panel with neatly printed circuit labels including welder circuits",
+   "caption": "New breaker panel with neatly printed circuit labels including welder circuits",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "dedicated-circuits"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:dedicated-circuits"
+   ]
+  },
+  {
+   "key": "dr-18m1tJrN16zVCKycROUb8BccYwgQ9tAvU",
+   "file": "library/wire-guy-electrician-headshot-block-wall.jpg",
+   "name": "wire-guy-electrician-headshot-block-wall",
+   "alt": "Smiling electrician in a Wire Guy Electric T-shirt and cap against a gray block wall",
+   "caption": "Smiling electrician in a Wire Guy Electric T-shirt and cap",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "square",
+   "quality": 4,
+   "roles": [
+    "team:cody-taylor"
+   ],
+   "faces": "0.41,0.19,0.59,0.40"
+  },
+  {
+   "key": "dr-19UKZlhEUyrIhu9kB-B5rphHe2BvbUyOv",
+   "file": "library/siemens-meter-main-inspection-tag.jpg",
+   "name": "siemens-meter-main-inspection-tag",
+   "alt": "New Siemens meter-main combo with an inspection tag on a stucco wall",
+   "caption": "New Siemens meter-main combo with an inspection tag",
+   "subject": "meter-service",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1A1yQKPfFDPeU3PuzevKhNuW9ceni3pR-",
+   "file": "library/living-room-round-chandelier-fireplace.jpg",
+   "name": "living-room-round-chandelier-fireplace",
+   "alt": "Bright living room with a round candle-style chandelier over white sofas and a fireplace",
+   "caption": "Bright living room with a round candle-style chandelier over white sofas and a fireplace",
+   "subject": "finished-room",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": []
+  },
+  {
+   "key": "dr-1A25KmfINGvIlkgHEbgy3lGUXllv9mnSH",
+   "file": "library/old-handwritten-vs-new-printed-panel-covers.jpg",
+   "name": "old-handwritten-vs-new-printed-panel-covers",
+   "alt": "Old panel cover with handwritten labels beside a new cover with printed circuit labels",
+   "caption": "Old panel cover with handwritten labels beside a new cover",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1BRX_1hv3-ZsJxD7IeJ-ByEz4djfeJBCQ",
+   "file": "library/rough-in-wiring-subpanel-wall-framing.jpg",
+   "name": "rough-in-wiring-subpanel-wall-framing",
+   "alt": "Open wall framing with coiled wire and a new subpanel during rough-in",
+   "caption": "Open wall framing with coiled wire and a new subpanel",
+   "subject": "wiring-rough-in",
+   "photoSubject": "wiring",
+   "services": [
+    "new-construction-wiring"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:new-construction-wiring"
+   ]
+  },
+  {
+   "key": "dr-1BlEfv_Z4x3QuXV1sdp7jkyWaMV1Mu3p_",
+   "file": "library/neatly-wired-eaton-panel-interior.jpg",
+   "name": "neatly-wired-eaton-panel-interior",
+   "alt": "Neatly wired new Eaton breaker panel with the cover off next to a meter",
+   "caption": "Neatly wired new Eaton breaker panel with the cover off",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1CAcwF9IRXIBy3vqPUwx88jYLobYC0z16",
+   "file": "library/electrician-thumbs-up-new-service-mast.jpg",
+   "name": "electrician-thumbs-up-new-service-mast",
+   "alt": "Electrician giving a thumbs up beside a new meter panel and service mast on a home",
+   "caption": "Electrician giving a thumbs up",
+   "subject": "tech-at-work",
+   "photoSubject": null,
+   "services": [
+    "electrical-upgrades",
+    "panels"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "cityGlance:ahwatukee",
+    "serviceMain:electrical-upgrades"
+   ],
+   "faces": "0.35,0.51,0.41,0.58"
+  },
+  {
+   "key": "dr-1DTOw1OHM70MQO9PFkdTtL2Vum04wt9pq",
+   "file": "library/siemens-meter-main-wire-guy-sticker.jpg",
+   "name": "siemens-meter-main-wire-guy-sticker",
+   "alt": "New Siemens meter-main panel with printed labels and a Wire Guy Electric sticker on the door",
+   "caption": "New Siemens meter-main panel",
+   "subject": "meter-service",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:panels"
+   ]
+  },
+  {
+   "key": "dr-1FS0Nmhg6hCiXlLwQ22TOSDNPdhh_uIXi",
+   "file": "library/bubble-cluster-chandelier-two-story-entry.jpg",
+   "name": "bubble-cluster-chandelier-two-story-entry",
+   "alt": "Glass bubble cluster chandelier and spiral pendant in a tall entry as an electrician looks up",
+   "caption": "Glass bubble cluster chandelier and spiral pendant",
+   "subject": "chandelier-pendant",
+   "photoSubject": null,
+   "services": [
+    "custom-lighting",
+    "hanging-lights"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "serviceSecond:custom-lighting"
+   ],
+   "faces": "0.15,0.91,0.19,0.95"
+  },
+  {
+   "key": "dr-1FmGFThtWXezwsyDw8bfbJdEWkOPKYy9t",
+   "file": "library/electrician-wiring-commercial-panel-exit-sign.jpg",
+   "name": "electrician-wiring-commercial-panel-exit-sign",
+   "alt": "Electrician wiring a commercial panel on a block wall beside an exit sign",
+   "caption": "Electrician wiring a commercial panel on a block wall",
+   "subject": "commercial",
+   "photoSubject": null,
+   "services": [
+    "commercial-service",
+    "tenant-improvements",
+    "panels"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:emergency-exit-lights"
+   ],
+   "faces": "0.41,0.36,0.58,0.50"
+  },
+  {
+   "key": "dr-1HDLNJUeQzkD-u-euhzr9Ypj7Fu1KRLLP",
+   "file": "library/electrician-wiring-fused-disconnect.jpg",
+   "name": "electrician-wiring-fused-disconnect",
+   "alt": "Bearded electrician wiring a fused disconnect switch on a white wall",
+   "caption": "Bearded electrician wiring a fused disconnect switch",
+   "subject": "tech-at-work",
+   "photoSubject": null,
+   "services": [
+    "dedicated-circuits",
+    "electrical-upgrades"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "serviceSecond:dedicated-circuits"
+   ],
+   "faces": "0.31,0.25,0.54,0.47"
+  },
+  {
+   "key": "dr-1HiZ5-apG_ktAuXBgXk-YdLh-RrJB2SnL",
+   "file": "library/two-electricians-checking-commercial-panel.jpg",
+   "name": "two-electricians-checking-commercial-panel",
+   "alt": "Two electricians in company shirts checking a commercial panel with conduit runs",
+   "caption": "Two electricians in company shirts checking a commercial panel",
+   "subject": "commercial",
+   "photoSubject": null,
+   "services": [
+    "commercial-service",
+    "panels",
+    "commercial-electrical-troubleshooting"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:commercial-electrical-troubleshooting"
+   ],
+   "faces": "0.235,0.32,0.385,0.47;0.62,0.33,0.86,0.50"
+  },
+  {
+   "key": "dr-1HjrmKTKwCOIJ4owutKgbQOKPoaUiKgn8",
+   "file": "library/gooseneck-barn-light-floodlight-metal-building.jpg",
+   "name": "gooseneck-barn-light-floodlight-metal-building",
+   "alt": "Black gooseneck barn light and floodlight on a gray metal building above a door",
+   "caption": "Black gooseneck barn light and floodlight",
+   "subject": "exterior-light",
+   "photoSubject": "exterior",
+   "services": [
+    "exterior-electrical",
+    "commercial-service"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:storefront-lights",
+    "serviceSecond:exterior-electrical"
+   ]
+  },
+  {
+   "key": "dr-1KDla5PN9XKVC_LAbBblwwAnCTo-AAJ_Y",
+   "file": "library/drum-chandelier-bathroom-remodel.jpg",
+   "name": "drum-chandelier-bathroom-remodel",
+   "alt": "Drum crystal chandelier above a tiled window wall between unfinished bathroom vanities",
+   "caption": "Drum crystal chandelier above a tiled window wall",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "electrical-remodels",
+    "hanging-lights"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1KbBRqnVq3lXPf_GGPa_nu8kcpR7I9s5G",
+   "file": "library/electrician-back-logo-shirt-company-van.jpg",
+   "name": "electrician-back-logo-shirt-company-van",
+   "alt": "Electrician seen from behind in a Wire Guy Electric shirt facing a branded company van",
+   "caption": "Electrician seen from behind",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "van",
+    "ctaBand"
+   ],
+   "faces": "0.25,0.27,0.375,0.415"
+  },
+  {
+   "key": "dr-1LaB2amncua_8zIXF6P1OiErSGAujnmz7",
+   "file": "library/glass-drop-chandelier-grand-foyer.jpg",
+   "name": "glass-drop-chandelier-grand-foyer",
+   "alt": "Glass drop chandelier with a gold canopy in a grand foyer beside scaffolding",
+   "caption": "Glass drop chandelier with a gold canopy in a grand foyer",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "custom-lighting",
+    "hanging-lights"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1LcMaGZN0K7hooHPvFinb-ZjetFubINZY",
+   "file": "library/wallbox-ev-charger-wall.jpg",
+   "name": "wallbox-ev-charger-wall",
+   "alt": "Wallbox EV charger with coiled cable mounted on a painted wall",
+   "caption": "Wallbox EV charger with coiled cable mounted on a painted wall",
+   "subject": "ev-charger",
+   "photoSubject": "ev",
+   "services": [
+    "ev-charger-installation"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1NLkZ0ixLJ8FgttrGbvWUsQHrW870QjNz",
+   "file": "library/two-team-members-laughing-company-polos.jpg",
+   "name": "two-team-members-laughing-company-polos",
+   "alt": "Two laughing team members in gray company polos against a block wall",
+   "caption": "Two laughing team members in gray company polos",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.08,0.36,0.22,0.47;0.63,0.25,0.83,0.40"
+  },
+  {
+   "key": "dr-1P1eJcSBaRADa8veWP3hU2w-7IgIMzbok",
+   "file": "library/wire-guy-team-six-vans-evening-sky.jpg",
+   "name": "wire-guy-team-six-vans-evening-sky",
+   "alt": "Six Wire Guy Electric team members in company shirts beside vans under a clear evening sky",
+   "caption": "Six Wire Guy Electric team members in company shirts beside vans",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "cityHero:fountain-hills"
+   ],
+   "faces": "0.20,0.64,0.23,0.69;0.30,0.57,0.33,0.63;0.42,0.59,0.45,0.65;0.53,0.57,0.56,0.63;0.63,0.57,0.67,0.63;0.73,0.60,0.76,0.66",
+   "heroCrop": {
+    "top": 0,
+    "left": 0.0814,
+    "bottom": 0.2028,
+    "right": 0.1214
+   }
+  },
+  {
+   "key": "dr-1Q-Blrbevw4CEnm_wTGYIrTUAYcZVBOJ6",
+   "file": "library/led-lit-glass-display-cabinet.jpg",
+   "name": "led-lit-glass-display-cabinet",
+   "alt": "Glass cabinet with LED strip lighting glowing in a dark built-in",
+   "caption": "Glass cabinet with LED strip lighting glowing in a dark built-in",
+   "subject": "led-cove-undercabinet",
+   "photoSubject": "lighting",
+   "services": [
+    "led-lights",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1RGNymt7Kk5WR8Bz-SujTdRf-AbjjlLnZ",
+   "file": "library/new-breaker-panel-neat-wiring.jpg",
+   "name": "new-breaker-panel-neat-wiring",
+   "alt": "Interior of a new breaker panel with neatly routed wires",
+   "caption": "Interior of a new breaker panel with neatly routed wires",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1Rthpcjag28-SHqDCWqLG8HNlNJebcWQ1",
+   "file": "library/wire-guy-crew-arms-crossed-block-wall.jpg",
+   "name": "wire-guy-crew-arms-crossed-block-wall",
+   "alt": "Four smiling electricians with arms crossed in Wire Guy Electric shirts against a block wall",
+   "caption": "Four smiling electricians",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.16,0.34,0.23,0.49;0.38,0.31,0.44,0.47;0.59,0.37,0.65,0.51;0.78,0.33,0.84,0.48"
+  },
+  {
+   "key": "dr-1SPIvqBu4hZNIzCVWBgw-6PRSotLikulA",
+   "file": "library/electricians-panel-metal-commercial-building.jpg",
+   "name": "electricians-panel-metal-commercial-building",
+   "alt": "Three electricians working on a new panel inside a metal commercial building",
+   "caption": "Three electricians working on a new panel",
+   "subject": "commercial",
+   "photoSubject": null,
+   "services": [
+    "commercial-service",
+    "tenant-improvements"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:commercial-service"
+   ],
+   "faces": "0.32,0.35,0.41,0.42;0.43,0.395,0.50,0.46;0.74,0.39,0.82,0.46"
+  },
+  {
+   "key": "dr-1UMfvBIf1jHoXtpkQfRMxjiQNHVCULFdb",
+   "file": "library/electricians-planning-metal-building-job.jpg",
+   "name": "electricians-planning-metal-building-job",
+   "alt": "Three electricians planning work inside a metal building with a Wire Guy Electric van outside",
+   "caption": "Three electricians planning work",
+   "subject": "commercial",
+   "photoSubject": null,
+   "services": [
+    "commercial-service",
+    "tenant-improvements"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:tenant-improvements"
+   ],
+   "faces": "0.54,0.51,0.605,0.56;0.685,0.50,0.76,0.565;0.885,0.505,0.955,0.565"
+  },
+  {
+   "key": "dr-1U_ArWlwMxFgXzQ3QCOUZwEytxkWn4GR3",
+   "file": "library/two-team-members-company-polos-block-wall.jpg",
+   "name": "two-team-members-company-polos-block-wall",
+   "alt": "Two smiling team members in gray company polos posing against a block wall",
+   "caption": "Two smiling team members in gray company polos posing against a block wall",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.41,0.32,0.48,0.47;0.54,0.25,0.62,0.42"
+  },
+  {
+   "key": "dr-1Um9JO0xMikHAGftgRJSWebdAC2-hR7s8",
+   "file": "library/electrician-leaning-wire-guy-van-ladders.jpg",
+   "name": "electrician-leaning-wire-guy-van-ladders",
+   "alt": "Electrician leaning against a Wire Guy Electric van with ladders on the roof",
+   "caption": "Electrician leaning against a Wire Guy Electric van",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "cityGlance:gilbert",
+    "ctaBand"
+   ],
+   "faces": "0.53,0.41,0.56,0.49"
+  },
+  {
+   "key": "dr-1WQuUswvXPffcxFtoo4vb4qkyunu_c4lp",
+   "file": "library/two-team-members-wire-guy-shirts.jpg",
+   "name": "two-team-members-wire-guy-shirts",
+   "alt": "Two smiling team members in Wire Guy Electric T-shirts against a gray block wall",
+   "caption": "Two smiling team members in Wire Guy Electric T-shirts",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.35,0.31,0.43,0.47;0.50,0.22,0.59,0.40"
+  },
+  {
+   "key": "dr-1WfYksNEG2K_6CvhZMWacFvi1FL0XsK03",
+   "file": "library/modern-shower-linear-led-ceiling-lights.jpg",
+   "name": "modern-shower-linear-led-ceiling-lights",
+   "alt": "Modern tiled shower with linear LED lights recessed in the ceiling",
+   "caption": "Modern tiled shower with linear LED lights recessed in the ceiling",
+   "subject": "led-cove-undercabinet",
+   "photoSubject": "lighting",
+   "services": [
+    "led-lights",
+    "electrical-remodels",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1YxE1fa4MzdPY7ZIOjmdV1-o67Bpg9Dnt",
+   "file": "library/wire-guy-electrician-smiling-portrait.jpg",
+   "name": "wire-guy-electrician-smiling-portrait",
+   "alt": "Smiling electrician in a Wire Guy Electric T-shirt and cap against a gray block wall",
+   "caption": "Smiling electrician in a Wire Guy Electric T-shirt and cap",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "square",
+   "quality": 4,
+   "roles": [
+    "team:wade-adams"
+   ],
+   "faces": "0.39,0.20,0.56,0.40"
+  },
+  {
+   "key": "dr-1ZcVuHcTGWyhE9AWsPiAyEs-ZrAYovzXo",
+   "file": "library/new-panel-conduit-bank-metal-building.jpg",
+   "name": "new-panel-conduit-bank-metal-building",
+   "alt": "New breaker panel with a bank of conduit inside a metal building",
+   "caption": "New breaker panel with a bank of conduit inside a metal building",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "commercial-service"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:tenant-improvements",
+    "serviceSecond:emergency-exit-lights"
+   ]
+  },
+  {
+   "key": "dr-1_EWKtJ1BATyzm5Q-Otlgy3gXd9Vl1Hki",
+   "file": "library/brass-lantern-pendants-white-kitchen.jpg",
+   "name": "brass-lantern-pendants-white-kitchen",
+   "alt": "Three brass lantern pendants over an island in a white kitchen with a tray ceiling",
+   "caption": "Three brass lantern pendants over an island in a white kitchen",
+   "subject": "finished-room",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": []
+  },
+  {
+   "key": "dr-1a5taV3swZ9_oMmYl4DnbLZS0LXBPmPor",
+   "file": "library/lit-glass-front-cabinets-herringbone-backsplash.jpg",
+   "name": "lit-glass-front-cabinets-herringbone-backsplash",
+   "alt": "White kitchen with lit glass-front cabinets and a herringbone tile backsplash",
+   "caption": "White kitchen with lit glass-front cabinets and a herringbone tile backsplash",
+   "subject": "led-cove-undercabinet",
+   "photoSubject": "lighting",
+   "services": [
+    "led-lights",
+    "custom-lighting",
+    "electrical-remodels"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1afXkT2MSBA8qH6nLQTgt577kxvCE6S9p",
+   "file": "library/led-toe-kick-lighting-white-cabinets.jpg",
+   "name": "led-toe-kick-lighting-white-cabinets",
+   "alt": "LED toe-kick lighting glowing under white cabinets in a small room",
+   "caption": "LED toe-kick lighting glowing under white cabinets",
+   "subject": "led-cove-undercabinet",
+   "photoSubject": "lighting",
+   "services": [
+    "led-lights",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:led-lights"
+   ]
+  },
+  {
+   "key": "dr-1aoAWrRbzQHdj6YKgEO88Uj_w7Vd4h9lz",
+   "file": "library/white-kitchen-under-cabinet-led-lights.jpg",
+   "name": "white-kitchen-under-cabinet-led-lights",
+   "alt": "Bright white kitchen with under-cabinet LED lighting and recessed lights",
+   "caption": "Bright white kitchen with under-cabinet LED lighting and recessed lights",
+   "subject": "led-cove-undercabinet",
+   "photoSubject": "lighting",
+   "services": [
+    "led-lights",
+    "recessed-lights-installation",
+    "electrical-remodels"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [
+    "serviceMain:led-lights"
+   ]
+  },
+  {
+   "key": "dr-1bDVwwWvp7N_0pjD_YyWHLrLmAZA-SW3n",
+   "file": "library/electrician-hanging-crystal-chandeliers-grand-room.jpg",
+   "name": "electrician-hanging-crystal-chandeliers-grand-room",
+   "alt": "Electrician on a ladder giving a thumbs up among large crystal chandeliers in a grand room",
+   "caption": "Electrician on a ladder giving a thumbs up among large crystal chandeliers in a grand room",
+   "subject": "tech-at-work",
+   "photoSubject": null,
+   "services": [
+    "hanging-lights",
+    "custom-lighting",
+    "fixture-replacements"
+   ],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "cityGlance:san-tan-valley"
+   ],
+   "faces": "0.40,0.48,0.43,0.53"
+  },
+  {
+   "key": "dr-1ellWmgXm9NK8PAa271JXRWrB5OCLcicf",
+   "file": "library/wire-guy-team-member-smiling-portrait.jpg",
+   "name": "wire-guy-team-member-smiling-portrait",
+   "alt": "Smiling team member in a Wire Guy Electric T-shirt against a gray block wall",
+   "caption": "Smiling team member in a Wire Guy Electric T-shirt",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "square",
+   "quality": 4,
+   "roles": [
+    "team:lauren-taylor"
+   ],
+   "faces": "0.39,0.25,0.59,0.49"
+  },
+  {
+   "key": "dr-1hMT9Z7jpT18dAx-4z-e6wqdoOXVnADi7",
+   "file": "library/wire-guy-electrician-mustache-portrait.jpg",
+   "name": "wire-guy-electrician-mustache-portrait",
+   "alt": "Smiling electrician in a Wire Guy Electric T-shirt and cap against a gray block wall",
+   "caption": "Smiling electrician in a Wire Guy Electric T-shirt and cap",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "square",
+   "quality": 4,
+   "roles": [
+    "team:cade-reynolds"
+   ],
+   "faces": "0.42,0.19,0.58,0.39"
+  },
+  {
+   "key": "dr-1i7Z7_synD_Tuc6YUl-bmUjeShHmh75mL",
+   "file": "library/surface-conduit-receptacle-metal-building.jpg",
+   "name": "surface-conduit-receptacle-metal-building",
+   "alt": "Surface-mounted conduit and duplex receptacle on a metal building wall",
+   "caption": "Surface-mounted conduit and duplex receptacle",
+   "subject": "outlet-switch",
+   "photoSubject": "wiring",
+   "services": [
+    "outlets-and-switches",
+    "commercial-service"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:commercial-service"
+   ]
+  },
+  {
+   "key": "dr-1jB3K0qHHGLkkV8S0HYp-zxWmCMMtv9s_",
+   "file": "library/wire-guy-team-posing-branded-truck-van.jpg",
+   "name": "wire-guy-team-posing-branded-truck-van",
+   "alt": "Four Wire Guy Electric team members in branded shirts posing in front of a company truck and van",
+   "caption": "Four Wire Guy Electric team members in branded shirts posing in front of a company truck and van",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.37,0.42,0.42,0.49;0.44,0.33,0.49,0.41;0.53,0.36,0.58,0.44;0.61,0.39,0.67,0.47"
+  },
+  {
+   "key": "dr-1jsWTwPg-BOduWzBOoroqCQgZYk3IzvpY",
+   "file": "library/meter-main-combo-panel-open-breakers.jpg",
+   "name": "meter-main-combo-panel-open-breakers",
+   "alt": "Meter-main combination panel with dead front removed showing neatly landed breakers",
+   "caption": "Meter-main combination panel",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:electrical-upgrades"
+   ]
+  },
+  {
+   "key": "dr-1nKx5IDErqyAZkz8hsANEXgJJDq5Z816-",
+   "file": "library/crystal-chandelier-over-round-dining-table.jpg",
+   "name": "crystal-chandelier-over-round-dining-table",
+   "alt": "Crystal chandelier with candle lights over a round dining table by a large window",
+   "caption": "Crystal chandelier with candle lights over a round dining table by a large window",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1otkwg37yrHauArY_0BJRQNHUUSNG4wCV",
+   "file": "library/glass-pendant-cluster-wood-canopies.jpg",
+   "name": "glass-pendant-cluster-wood-canopies",
+   "alt": "Cluster of glass pendant lights on two round wood canopies in an empty room under renovation",
+   "caption": "Cluster of glass pendant lights on two round wood canopies",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1pjhJOXgWWn7aXEVhdseZbiYLCheoF6jt",
+   "file": "library/fringe-chandelier-tall-room-arched-windows.jpg",
+   "name": "fringe-chandelier-tall-room-arched-windows",
+   "alt": "Modern white fringe chandelier in a tall room with arched windows",
+   "caption": "Modern white fringe chandelier in a tall room",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1q5qZ7NHJ96YQd930kFxQmaVTpMXK3ZVF",
+   "file": "library/bubble-pendant-over-freestanding-bathtub.jpg",
+   "name": "bubble-pendant-over-freestanding-bathtub",
+   "alt": "Glass bubble pendant hanging above a freestanding tub in a marble-tiled bathroom",
+   "caption": "Glass bubble pendant hanging above a freestanding tub",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting",
+    "electrical-remodels"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1qqZsDmD4UKP1MX6TIbAIFqSVbDwfkXga",
+   "file": "library/electricians-reviewing-commercial-panel-conduits.jpg",
+   "name": "electricians-reviewing-commercial-panel-conduits",
+   "alt": "Two Wire Guy Electric electricians reviewing a commercial panel fed by multiple conduits",
+   "caption": "Two Wire Guy Electric electricians reviewing a commercial panel fed by multiple conduits",
+   "subject": "commercial",
+   "photoSubject": null,
+   "services": [
+    "commercial-service",
+    "panels",
+    "electrical-safety-inspections"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceMain:electrical-safety-inspections"
+   ],
+   "faces": "0.175,0.35,0.335,0.50;0.61,0.35,0.825,0.49"
+  },
+  {
+   "key": "dr-1r33LDWlz8SHuaEXCgYHKZ8BfI4Bdt8-G",
+   "file": "library/siemens-meter-main-panel-inspection-tag.jpg",
+   "name": "siemens-meter-main-panel-inspection-tag",
+   "alt": "Siemens meter-main panel with open door and inspection tag on a stucco wall",
+   "caption": "Siemens meter-main panel with open door and inspection tag",
+   "subject": "meter-service",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1tRYLzS6RUp8NTqVAzFiW3WK7xsXanVP6",
+   "file": "library/turkish-mosaic-glass-chandelier.jpg",
+   "name": "turkish-mosaic-glass-chandelier",
+   "alt": "Large Turkish mosaic glass chandelier with dozens of colorful globes",
+   "caption": "Large Turkish mosaic glass chandelier",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1vpyoK4fa55zXwc38S1maVd6WZId5ABeO",
+   "file": "library/labeled-breaker-panel-surge-protector.jpg",
+   "name": "labeled-breaker-panel-surge-protector",
+   "alt": "Panel with handwritten circuit labels including surge protector, pool and A/C breakers",
+   "caption": "Panel with handwritten circuit labels including surge protector",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "dr-1wrGubUE8BZBfVms6VVU2TKiiu4kV2pZT",
+   "file": "library/electrician-pulling-wire-disconnect-switch.jpg",
+   "name": "electrician-pulling-wire-disconnect-switch",
+   "alt": "Smiling electrician pulling wire into a disconnect switch on a commercial wall",
+   "caption": "Smiling electrician pulling wire into a disconnect switch",
+   "subject": "commercial",
+   "photoSubject": null,
+   "services": [
+    "commercial-service",
+    "tenant-improvements",
+    "dedicated-circuits"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "cityGlance:apache-junction",
+    "serviceSecond:commercial-electrical-troubleshooting"
+   ],
+   "faces": "0.54,0.42,0.65,0.53"
+  },
+  {
+   "key": "gp-001",
+   "file": "library/smiling-electrician-portrait-desert.jpg",
+   "name": "smiling-electrician-portrait-desert",
+   "alt": "Smiling electrician in a Wire Guy Electric shirt and cap standing in the desert",
+   "caption": "Smiling electrician in a Wire Guy Electric shirt and cap standing in the desert",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "cityGlance:chandler"
+   ],
+   "faces": "0.53,0.36,0.71,0.53"
+  },
+  {
+   "key": "gp-005",
+   "file": "library/brass-sconces-above-tiled-fireplace.jpg",
+   "name": "brass-sconces-above-tiled-fireplace",
+   "alt": "Two brass wall sconces glowing above a tiled fireplace",
+   "caption": "Two brass wall sconces glowing above a tiled fireplace",
+   "subject": "sconce",
+   "photoSubject": "lighting",
+   "services": [
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:fixture-replacements"
+   ]
+  },
+  {
+   "key": "gp-007",
+   "file": "library/wire-guy-team-branded-van-truck-sky.jpg",
+   "name": "wire-guy-team-branded-van-truck-sky",
+   "alt": "Six Wire Guy Electric team members between a branded van and truck under a clear blue sky",
+   "caption": "Six Wire Guy Electric team members",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 5,
+   "roles": [
+    "cityHero:gilbert"
+   ],
+   "faces": "0.23,0.62,0.27,0.69;0.33,0.55,0.37,0.63;0.43,0.58,0.47,0.66;0.52,0.57,0.56,0.65;0.62,0.57,0.66,0.65;0.71,0.61,0.75,0.69",
+   "heroCrop": {
+    "top": 0,
+    "left": 0.1054,
+    "bottom": 0.2308,
+    "right": 0.1254
+   }
+  },
+  {
+   "key": "gp-008",
+   "file": "library/brass-sconces-white-wall-tile.jpg",
+   "name": "brass-sconces-white-wall-tile",
+   "alt": "Brass sconces on a white wall above a tile wainscot",
+   "caption": "Brass sconces on a white wall above a tile wainscot",
+   "subject": "sconce",
+   "photoSubject": "lighting",
+   "services": [
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-016",
+   "file": "library/brass-lantern-pendants-recessed-lights.jpg",
+   "name": "brass-lantern-pendants-recessed-lights",
+   "alt": "Two brass lantern pendants with candle bulbs and recessed lights behind",
+   "caption": "Two brass lantern pendants",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-018",
+   "file": "library/brass-lantern-pendants-kitchen.jpg",
+   "name": "brass-lantern-pendants-kitchen",
+   "alt": "Two brass lantern pendants with candle bulbs, recessed lights and a ladder blurred behind",
+   "caption": "Two brass lantern pendants with candle bulbs",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": []
+  },
+  {
+   "key": "gp-019",
+   "file": "library/brass-sconce-pair-white-brick-fireplace.jpg",
+   "name": "brass-sconce-pair-white-brick-fireplace",
+   "alt": "Pair of brass sconces above a white brick fireplace with beams overhead",
+   "caption": "Pair of brass sconces above a white brick fireplace",
+   "subject": "sconce",
+   "photoSubject": "lighting",
+   "services": [
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-027",
+   "file": "library/smiling-electrician-cap-portrait.jpg",
+   "name": "smiling-electrician-cap-portrait",
+   "alt": "Smiling electrician in a Wire Guy Electric cap and shirt outdoors",
+   "caption": "Smiling electrician in a Wire Guy Electric cap and shirt outdoors",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "cityGlance:tempe"
+   ],
+   "faces": "0.36,0.34,0.59,0.57"
+  },
+  {
+   "key": "gp-028",
+   "file": "library/electrician-tool-bag-closeup.jpg",
+   "name": "electrician-tool-bag-closeup",
+   "alt": "Open electrician tool bag filled with screwdrivers and pliers",
+   "caption": "Open electrician tool bag filled with screwdrivers and pliers",
+   "subject": "tools",
+   "photoSubject": "tools",
+   "services": [],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-033",
+   "file": "library/white-duplex-outlet-textured-wall.jpg",
+   "name": "white-duplex-outlet-textured-wall",
+   "alt": "White duplex outlet on a textured wall",
+   "caption": "White duplex outlet on a textured wall",
+   "subject": "outlet-switch",
+   "photoSubject": "wiring",
+   "services": [
+    "outlets-and-switches"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-039",
+   "file": "library/electrician-installing-brass-chandelier-sconces.jpg",
+   "name": "electrician-installing-brass-chandelier-sconces",
+   "alt": "Electrician on a ladder installing a brass chandelier with lit wall sconces nearby",
+   "caption": "Electrician on a ladder installing a brass chandelier",
+   "subject": "tech-at-work",
+   "photoSubject": null,
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.46,0.225,0.575,0.31"
+  },
+  {
+   "key": "gp-042",
+   "file": "library/cone-pendant-bay-window.jpg",
+   "name": "cone-pendant-bay-window",
+   "alt": "Cone pendant light hanging in a bay window",
+   "caption": "Cone pendant light hanging in a bay window",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-048",
+   "file": "library/brass-sconces-fireplace-wood-beams.jpg",
+   "name": "brass-sconces-fireplace-wood-beams",
+   "alt": "Two brass sconces above a white brick fireplace under wood beams",
+   "caption": "Two brass sconces above a white brick fireplace under wood beams",
+   "subject": "sconce",
+   "photoSubject": "lighting",
+   "services": [
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-054",
+   "file": "library/electrician-standing-branded-pickup-desert.jpg",
+   "name": "electrician-standing-branded-pickup-desert",
+   "alt": "Electrician standing in front of a branded Wire Guy Electric pickup in the desert",
+   "caption": "Electrician standing in front of a branded Wire Guy Electric pickup in the desert",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "cityHero:queen-creek",
+    "ctaBand"
+   ],
+   "faces": "0.45,0.45,0.49,0.52",
+   "group": "silver-pickup-shoot",
+   "heroCrop": {
+    "top": 0,
+    "left": 0.1553,
+    "bottom": 0.3706,
+    "right": 0.2153
+   }
+  },
+  {
+   "key": "gp-059",
+   "file": "library/open-panel-handwritten-circuit-directory.jpg",
+   "name": "open-panel-handwritten-circuit-directory",
+   "alt": "Electrical panel with door open and handwritten circuit directory on a concrete wall",
+   "caption": "Electrical panel with door open and handwritten circuit directory on a concrete wall",
+   "subject": "panel",
+   "photoSubject": "panel",
+   "services": [
+    "panels",
+    "electrical-upgrades"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-078",
+   "file": "library/lit-brass-chandelier-wood-beams.jpg",
+   "name": "lit-brass-chandelier-wood-beams",
+   "alt": "Lit brass candle chandelier beneath dark wood beams",
+   "caption": "Lit brass candle chandelier beneath dark wood beams",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-087",
+   "file": "library/electrician-headshot-branded-cap.jpg",
+   "name": "electrician-headshot-branded-cap",
+   "alt": "Headshot of an electrician in a Wire Guy Electric cap",
+   "caption": "Headshot of an electrician in a Wire Guy Electric cap",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.32,0.32,0.82,0.80"
+  },
+  {
+   "key": "gp-090",
+   "file": "library/mustached-electrician-smiling-portrait.jpg",
+   "name": "mustached-electrician-smiling-portrait",
+   "alt": "Smiling mustached electrician in a Wire Guy Electric shirt and cap",
+   "caption": "Smiling mustached electrician",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "cityGlance:queen-creek"
+   ],
+   "faces": "0.44,0.43,0.60,0.58"
+  },
+  {
+   "key": "gp-099",
+   "file": "library/brass-candle-chandelier-sloped-beams.jpg",
+   "name": "brass-candle-chandelier-sloped-beams",
+   "alt": "Lit brass candle chandelier under a sloped beamed ceiling",
+   "caption": "Lit brass candle chandelier under a sloped beamed ceiling",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-124",
+   "file": "library/electrician-hanging-brass-chandelier-beamed-ceiling.jpg",
+   "name": "electrician-hanging-brass-chandelier-beamed-ceiling",
+   "alt": "Electrician on a ladder hanging a brass candle-style chandelier from a dark beamed ceiling",
+   "caption": "Electrician on a ladder hanging a brass candle-style chandelier from a dark beamed ceiling",
+   "subject": "chandelier-pendant",
+   "photoSubject": null,
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "serviceMain:hanging-lights"
+   ],
+   "faces": "0.61,0.30,0.76,0.39"
+  },
+  {
+   "key": "gp-127",
+   "file": "library/technician-leaning-on-branded-pickup-desert.jpg",
+   "name": "technician-leaning-on-branded-pickup-desert",
+   "alt": "Wire Guy Electric technician in sunglasses leaning on a branded silver and white pickup in the desert",
+   "caption": "Wire Guy Electric technician in sunglasses leaning on a branded silver and white pickup in the desert",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "cityHero:scottsdale",
+    "ctaBand"
+   ],
+   "faces": "0.16,0.51,0.20,0.57",
+   "group": "silver-pickup-shoot",
+   "heroCrop": {
+    "top": 0,
+    "left": 0,
+    "bottom": 0.2867,
+    "right": 0.2867
+   }
+  },
+  {
+   "key": "gp-130",
+   "file": "library/electrician-back-wire-guy-shirt-ladder.jpg",
+   "name": "electrician-back-wire-guy-shirt-ladder",
+   "alt": "Electrician seen from behind in a Wire Guy Electric shirt with phone number beside a tall orange ladder",
+   "caption": "Electrician seen from behind in a Wire Guy Electric shirt",
+   "subject": "tech-at-work",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "cityGlance:phoenix"
+   ],
+   "faces": "0.44,0.335,0.72,0.495"
+  },
+  {
+   "key": "gp-151",
+   "file": "library/electrician-installing-recessed-light-vaulted-ceiling.jpg",
+   "name": "electrician-installing-recessed-light-vaulted-ceiling",
+   "alt": "Electrician on a ladder pressing a recessed light into a dark-beamed vaulted ceiling",
+   "caption": "Electrician on a ladder pressing a recessed light into a dark-beamed vaulted ceiling",
+   "subject": "recessed",
+   "photoSubject": null,
+   "services": [
+    "recessed-lights-installation"
+   ],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "serviceSecond:recessed-lights-installation"
+   ],
+   "faces": "0.54,0.28,0.60,0.39"
+  },
+  {
+   "key": "gp-154",
+   "file": "library/lantern-pendants-over-kitchen-island-remodel.jpg",
+   "name": "lantern-pendants-over-kitchen-island-remodel",
+   "alt": "Two brass lantern pendants over a dark-wood kitchen island under construction, recessed lights above",
+   "caption": "Two brass lantern pendants over a dark-wood kitchen island",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "electrical-remodels"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-181",
+   "file": "library/four-technicians-standing-between-work-trucks.jpg",
+   "name": "four-technicians-standing-between-work-trucks",
+   "alt": "Four Wire Guy Electric technicians standing between a branded work van and pickup in the desert",
+   "caption": "Four Wire Guy Electric technicians standing between a branded work van and pickup in the desert",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "cityHero:ahwatukee"
+   ],
+   "faces": "0.35,0.50,0.39,0.57;0.47,0.49,0.51,0.56;0.58,0.51,0.62,0.57;0.68,0.50,0.72,0.56",
+   "heroCrop": {
+    "top": 0,
+    "left": 0.1923,
+    "bottom": 0.3147,
+    "right": 0.1223
+   }
+  },
+  {
+   "key": "gp-191",
+   "file": "library/three-gang-rocker-switch-plate.jpg",
+   "name": "three-gang-rocker-switch-plate",
+   "alt": "Close-up of a three-gang white rocker switch plate on a gray wall",
+   "caption": "Close-up of a three-gang white rocker switch plate",
+   "subject": "outlet-switch",
+   "photoSubject": "wiring",
+   "services": [
+    "outlets-and-switches"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [
+    "serviceMain:outlets-and-switches"
+   ]
+  },
+  {
+   "key": "gp-202",
+   "file": "library/grinning-technician-portrait-branded-cap.jpg",
+   "name": "grinning-technician-portrait-branded-cap",
+   "alt": "Grinning technician in a Wire Guy Electric cap and shirt against a blue desert sky",
+   "caption": "Grinning technician in a Wire Guy Electric cap and shirt",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "cityGlance:scottsdale"
+   ],
+   "faces": "0.34,0.43,0.57,0.64"
+  },
+  {
+   "key": "gp-210",
+   "file": "library/ceiling-fan-light-kit-recessed-lights.jpg",
+   "name": "ceiling-fan-light-kit-recessed-lights",
+   "alt": "Dark three-blade ceiling fan with light kit and recessed lights in a room with a sliding door",
+   "caption": "Dark three-blade ceiling fan with light kit and recessed lights",
+   "subject": "ceiling-fan",
+   "photoSubject": "lighting",
+   "services": [
+    "fixture-replacements"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [],
+   "hotspot": {
+    "x": 0.45,
+    "y": 0.28
+   }
+  },
+  {
+   "key": "gp-218",
+   "file": "library/electrician-installing-wall-switch-plate.jpg",
+   "name": "electrician-installing-wall-switch-plate",
+   "alt": "Electrician with a screwdriver installing a wall switch plate beside a window",
+   "caption": "Electrician with a screwdriver installing a wall switch plate",
+   "subject": "outlet-switch",
+   "photoSubject": null,
+   "services": [
+    "outlets-and-switches"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:outlets-and-switches"
+   ],
+   "faces": "0.37,0.07,0.70,0.305"
+  },
+  {
+   "key": "gp-220",
+   "file": "library/brass-sconces-white-tile-fireplace.jpg",
+   "name": "brass-sconces-white-tile-fireplace",
+   "alt": "Two brass wall sconces above a white tiled fireplace surround with an arched opening",
+   "caption": "Two brass wall sconces above a white tiled fireplace surround",
+   "subject": "sconce",
+   "photoSubject": "lighting",
+   "services": [
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-241",
+   "file": "library/crew-and-fleet-lineup-desert-mountains.jpg",
+   "name": "crew-and-fleet-lineup-desert-mountains",
+   "alt": "Four Wire Guy Electric technicians standing among the company vans and pickup in the desert",
+   "caption": "Four Wire Guy Electric technicians standing among the company vans and pickup in the desert",
+   "subject": "crew-group",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "cityHero:phoenix"
+   ],
+   "faces": "0.49,0.72,0.51,0.74;0.53,0.72,0.55,0.74;0.56,0.72,0.58,0.74;0.595,0.72,0.61,0.74"
+  },
+  {
+   "key": "gp-262",
+   "file": "library/electrician-testing-wall-receptacle.jpg",
+   "name": "electrician-testing-wall-receptacle",
+   "alt": "Electrician testing a wall receptacle with a tester in a hallway",
+   "caption": "Electrician testing a wall receptacle with a tester in a hallway",
+   "subject": "troubleshooting",
+   "photoSubject": null,
+   "services": [
+    "outlets-and-switches",
+    "electrical-troubleshooting"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 3,
+   "roles": [
+    "serviceSecond:electrical-troubleshooting"
+   ],
+   "faces": "0.42,0.28,0.70,0.495"
+  },
+  {
+   "key": "gp-274",
+   "file": "library/electrician-drilling-recessed-light-opening.jpg",
+   "name": "electrician-drilling-recessed-light-opening",
+   "alt": "Electrician drilling into a dark beamed ceiling at a recessed light opening",
+   "caption": "Electrician drilling into a dark beamed ceiling at a recessed light opening",
+   "subject": "recessed",
+   "photoSubject": null,
+   "services": [
+    "recessed-lights-installation"
+   ],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [],
+   "faces": "0.565,0.245,0.76,0.385"
+  },
+  {
+   "key": "gp-284",
+   "file": "library/smiling-technician-casual-portrait-indoors.jpg",
+   "name": "smiling-technician-casual-portrait-indoors",
+   "alt": "Smiling technician in a Wire Guy Electric cap and shirt sitting with a tan lunch bag",
+   "caption": "Smiling technician in a Wire Guy Electric cap and shirt sitting with a tan lunch bag",
+   "subject": "portrait",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "portrait",
+   "quality": 4,
+   "roles": [
+    "cityGlance:fountain-hills"
+   ],
+   "faces": "0.12,0.18,0.52,0.50"
+  },
+  {
+   "key": "gp-290",
+   "file": "library/lit-brass-lantern-pendants-close.jpg",
+   "name": "lit-brass-lantern-pendants-close",
+   "alt": "Warm close view of lit brass lantern pendants with candle bulbs, kitchen softly blurred behind",
+   "caption": "Warm close view of lit brass lantern pendants with candle bulbs",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "fixture-replacements",
+    "custom-lighting"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "serviceSecond:hanging-lights"
+   ]
+  },
+  {
+   "key": "gp-292",
+   "file": "library/kitchen-lantern-pendants-recessed-lights-remodel.jpg",
+   "name": "kitchen-lantern-pendants-recessed-lights-remodel",
+   "alt": "Kitchen with two brass lantern pendants over an island and recessed lights, still under construction",
+   "caption": "Kitchen with two brass lantern pendants over an island and recessed lights, still under construction",
+   "subject": "chandelier-pendant",
+   "photoSubject": "lighting",
+   "services": [
+    "hanging-lights",
+    "electrical-remodels"
+   ],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": []
+  },
+  {
+   "key": "gp-050",
+   "file": "library/electrician-walking-to-branded-pickup.jpg",
+   "name": "electrician-walking-to-branded-pickup",
+   "alt": "Electrician walking toward a branded pickup in an empty lot with desert mountains",
+   "caption": "Electrician walking toward a branded pickup in an empty lot",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [
+    "cityHero:chandler"
+   ],
+   "faces": "0.468,0.512,0.487,0.553",
+   "group": "silver-pickup-shoot",
+   "heroCrop": {
+    "top": 0,
+    "left": 0.1195,
+    "bottom": 0.2839,
+    "right": 0.1645
+   }
+  },
+  {
+   "key": "gp-084",
+   "file": "library/electrician-leaning-on-branded-pickup.jpg",
+   "name": "electrician-leaning-on-branded-pickup",
+   "alt": "Electrician leaning on a branded pickup in a desert parking lot",
+   "caption": "Electrician leaning on a branded pickup in a desert parking lot",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [
+    "cityHero:tempe"
+   ],
+   "faces": "0.40,0.60,0.42,0.63",
+   "group": "silver-pickup-shoot",
+   "heroCrop": {
+    "top": 0,
+    "left": 0,
+    "bottom": 0.1608,
+    "right": 0.1608
+   }
+  },
+  {
+   "key": "gp-024",
+   "file": "library/branded-pickup-empty-lot-desert-mountains.jpg",
+   "name": "branded-pickup-empty-lot-desert-mountains",
+   "alt": "Branded Wire Guy Electric pickup in an empty parking lot with desert mountains",
+   "caption": "Branded Wire Guy Electric pickup in an empty parking lot",
+   "subject": "fleet",
+   "photoSubject": "fleet",
+   "services": [],
+   "kind": "job",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [
+    "cityHero:apache-junction"
+   ],
+   "group": "silver-pickup-shoot"
+  },
+  {
+   "key": "gp-065",
+   "file": "library/wire-guy-fleet-four-techs-dusk.jpg",
+   "name": "wire-guy-fleet-four-techs-dusk",
+   "alt": "Wire Guy Electric fleet and four techs lined up in a lot at dusk",
+   "caption": "Wire Guy Electric fleet and four techs lined up in a lot at dusk",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 3,
+   "roles": [
+    "cityHero:san-tan-valley"
+   ],
+   "faces": "0.45,0.705,0.47,0.743;0.509,0.703,0.531,0.745;0.549,0.705,0.571,0.743;0.589,0.705,0.613,0.746",
+   "heroCrop": {
+    "top": 0,
+    "left": 0.0168,
+    "bottom": 0.0168,
+    "right": 0.0
+   }
+  },
+  {
+   "key": "gp-111",
+   "file": "library/wire-guy-electric-fleet-desert-lineup.jpg",
+   "name": "wire-guy-electric-fleet-desert-lineup",
+   "alt": "Three Wire Guy Electric vans and a company pickup lined up in the desert, with four electricians and the mountains behind them",
+   "caption": "Three Wire Guy Electric vans and a company pickup lined up in the desert, with four electricians and the mountains behind them",
+   "subject": "fleet",
+   "photoSubject": null,
+   "services": [],
+   "kind": "people",
+   "orientation": "landscape",
+   "quality": 4,
+   "roles": [
+    "fleet"
+   ],
+   "faces": "0.255,0.715,0.295,0.775;0.435,0.715,0.48,0.775;0.595,0.72,0.635,0.78;0.755,0.72,0.795,0.78"
+  }
+ ]
+}
