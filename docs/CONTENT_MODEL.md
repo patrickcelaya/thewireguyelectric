@@ -36,7 +36,7 @@ How content for thewireguyelectric.com is structured in Sanity (project `qhi2uf0
 6. **Every image has alt text.**
    - Images in sections, projects and Site settings → Home city require it (an error in Studio).
    - Document main images (imported from Webflow, many still without alt), team photos, the logo and share images show a warning so old content can still be published.
-   - Templates may render a card thumbnail with `alt=""` when the card title sits next to it (decorative).
+   - Templates render every photo with its alt, card thumbnails included (a thumbnail that only repeats its card's link sits in an `aria-hidden` frame). `alt=""` is kept for art that shows nothing (the valley's relief), a background texture under a section and a video poster inside its labelled link.
 7. **One FAQPage per page, and each question marked up once on the site.**
    - Visible FAQs and FAQ structured data come from the same documents.
    - On page-builder pages, `collectPageFaqs(page)` returns every question shown across all FAQ sections. Build the single `FAQPage` node from that with `faqNode()`.
@@ -191,7 +191,8 @@ Not routed in this PR. Fields: service, location, heading, intro, mainImage, bod
 | slug | slug | Frozen |
 | excerpt | text | Card text and meta description fallback |
 | **quickAnswer** | text | **New.** A 40–60 word answer-first summary shown above the body. It must not repeat the title, nor the body's opening right under it. The first `relatedServices` entry is linked right after it ("Need help? See our …"). Falls back to `excerpt` when empty. Warns outside 40–60 words. The migration sets it on the seven posts whose excerpt repeats or restates their opening (`postQuickAnswers` in migration/content-data/cms-templates.json, each phrase checked against the body) and stops if any post's box would repeat its opening |
-| mainImage | image (+alt) | |
+| mainImage | image (+alt) | The image the post had on Webflow, mostly stock or AI-made: shown only when `showMainImage` is set |
+| **showMainImage** | boolean | **New.** The owner approved the main image: a real photo (stock or ours), at least 1,200 px wide, never AI-made, text or drawn-on effects, of unknown source, or a person who could be taken for our crew, with alt text that says what is visible (Studio requires it). It then shows **on blog pages only**: the post's cover, share image and BlogPosting image, its /blog thumbnail, and the related-article and previous/next cards of other posts, never under the copper tint. Service and city pages never show it. Set through the pipeline: `postImages` in migration/content-data/cms-templates.json lists every post as shown (alt, hotspot) or not shown (why) |
 | body | richText | |
 | category | ref postCategory | The blog topic page (`/posts-categories/<slug>`, noindex) and `articleSection`. Set on the six lighting posts (migration/content-data/cms-templates.json) |
 | author | ref teamMember | Show a Person byline only when set (the default byline is the business) |
