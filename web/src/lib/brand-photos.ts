@@ -217,14 +217,15 @@ interface JobPhoto {
  * give a guide whose own image is stock. Most service and post images imported from
  * Webflow are stock (redesign asset audit, section 4), so a template shows a CMS photo
  * large only when it is listed here or in PHOTO_FACES. Add new job photos here, with
- * what they show. The one exception is a post's own image the owner approved
+ * what they show, in the same words as the service document that uses the photo
+ * (migration/content-data/cms-templates.json serviceAlts), so one photo has one alt. The one exception is a post's own image the owner approved
  * (post.showMainImage, lib/cms.ts ownPostImage): on blog pages only, never under a tint,
  * never on a service or city page; it is not a job photo and is never listed here.
  */
 const JOB_PHOTO_LIST: JobPhoto[] = [
-  {subject: 'panel', services: ['panels'], image: asset('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'A new Siemens panel with labeled breakers next to an SRP meter on a stucco wall')},
+  {subject: 'panel', services: ['panels'], image: asset('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'A new Siemens electrical panel with labeled breakers next to an SRP meter on a stucco wall')},
   {subject: 'tools', image: asset('image-1a1a63ffa572abef13cc6693c8bf6e80602a0a7d-3924x5887-jpg', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire')},
-  {subject: 'lighting', services: ['electrical-remodels', 'recessed-lights-installation'], image: asset('image-8ac78ca58f507beef3cc08a6e092ec742956e3e2-1280x960-jpg', 'A remodeled kitchen with recessed lights over a marble-look island')},
+  {subject: 'lighting', services: ['electrical-remodels', 'recessed-lights-installation'], image: asset('image-8ac78ca58f507beef3cc08a6e092ec742956e3e2-1280x960-jpg', 'A finished kitchen remodel with recessed lights, white cabinets and a stone island')},
   // a portrait: card crops (1.6:1) keep the connector in frame, not the bare wall under it
   {
     subject: 'ev',
@@ -233,8 +234,8 @@ const JOB_PHOTO_LIST: JobPhoto[] = [
     image: {...asset('image-77b2debafc6c3cd45ac8cfbf5109126a1c0e2574-1536x2048-webp', 'A Tesla Wall Connector installed on a garage wall'), hotspot: {x: 0.5, y: 0.3, width: 1, height: 1}},
   },
   {subject: 'lighting', services: ['custom-lighting', 'led-lights'], image: asset('image-f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811-jpg', 'Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters')},
-  {subject: 'exterior', also: ['lighting'], services: ['exterior-electrical'], image: asset('image-8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536-jpg', 'A front walk lined with lamp posts and roses at a brick home')},
-  {subject: 'lighting', services: ['recessed-lights-installation'], image: asset('image-ed1de73427c40093df37f55b742ec7dbede75d0c-4284x5712-jpg', 'Recessed lights in the vaulted ceiling of a kitchen')},
+  {subject: 'exterior', also: ['lighting'], services: ['exterior-electrical'], image: asset('image-8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536-jpg', 'Lamp posts lighting a brick front walk lined with roses')},
+  {subject: 'lighting', services: ['recessed-lights-installation'], image: asset('image-ed1de73427c40093df37f55b742ec7dbede75d0c-4284x5712-jpg', 'New recessed lights glowing in a vaulted kitchen ceiling')},
   {subject: 'lighting', services: ['fixture-replacements', 'hanging-lights'], image: asset('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg', 'Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting')},
   {subject: 'lighting', services: ['recessed-lights-installation', 'electrical-remodels'], image: asset('image-d338d7dc5dae879faa96751651f476d868aa99e6-1186x1120-avif', 'A remodeled kitchen at night lit by recessed ceiling lights')},
   {subject: 'tools', image: asset('image-d11c56eea7e73639905734cb2b5137587ae500d0-853x1280-avif', 'Klein wire strippers, linesman pliers and a voltage tester on a coil of yellow Romex cable')},

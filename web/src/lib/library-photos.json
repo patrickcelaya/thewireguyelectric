@@ -1206,7 +1206,11 @@
   ],
   "orientation": "portrait",
   "quality": 3,
-  "roles": []
+  "roles": [],
+  "hotspot": {
+   "x": 0.5,
+   "y": 0.35
+  }
  },
  {
   "id": "image-268445321fd95fce2b4d3f67a45d9e1916afffc8-2400x1600-jpg",
@@ -1502,7 +1506,11 @@
   ],
   "orientation": "portrait",
   "quality": 3,
-  "roles": []
+  "roles": [],
+  "hotspot": {
+   "x": 0.5,
+   "y": 0.15
+  }
  },
  {
   "id": "image-bb830c5b9f484c3d37e96b21ca57ae62adfdb077-2400x1600-jpg",
