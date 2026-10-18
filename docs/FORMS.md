@@ -13,7 +13,7 @@ Each submission goes to every destination that is configured. One success is eno
 
 | Env var (Vercel, Production and Preview) | Destination | What it receives |
 |---|---|---|
-| `FORMSPARK_FORM_ID` (the ID after `https://submit-form.com/`) | Formspark inbox and its notification email | The filled-in fields under readable labels (Name, Phone, Email, City or ZIP, Years of experience, Full-time, Start date, Message, Résumé), plus Form and Page. `_email.subject` is "Estimate request: Name (ZIP)" or "Job application: Name"; `_email.from` (the sender's name) is "Wire Guy website" |
+| `FORMSPARK_FORM_ID` (the ID after `https://submit-form.com/`) | Formspark inbox and its notification email | The filled-in fields under readable labels (Name, Phone, Email, City or ZIP, Years of experience, Full-time, Start date, Message, Résumé), plus Form and Page. `_email.subject` is "Estimate request: Name (ZIP)" or "Job application: Name" (the name and ZIP on one line, cut at 80 and 40 characters; the fields keep them whole); `_email.from` (the sender's name) is "Wire Guy website" |
 | `LEAD_WEBHOOK_URL` | Any webhook, e.g. a Zapier catch hook to Housecall Pro | JSON with fixed keys: `name`, `phone`, `email`, `zip`, `experience`, `fullTime`, `startDate`, `message`, `file_url`, `formType`, `page`. Unused keys are empty strings |
 | `RESEND_API_KEY` + `LEADS_TO_EMAIL` (+ `LEADS_FROM_EMAIL`) | A plain-text email via Resend | The same labels as Formspark, under "Form: Estimate request" or "Form: Job application". Reply-to is the visitor's email |
 
@@ -31,7 +31,7 @@ An empty message is sent as "No details given". A changed env var reaches the fu
 | 502 | Every destination failed or timed out. Logged as `[contact] delivery failed: …` with the provider's status and the start of its answer | "We couldn't send that. Please call …", scrolled into view and focused |
 | 503 | No destination configured | The same failure line |
 
-Without JavaScript the handler answers every success (204, 202) with a 303 to `?sent=1#sent`, and every failure (400, 502, 503) with a 303 to `?error=1#send-error`.
+Without JavaScript the handler answers every success (204, 202) with a 303 to `?sent=1#sent`, and every failure (400, 502, 503) with a 303 to `?error=1#send-error`, on the page named by the Referer when it is on this site and not under `/api/`, otherwise on /estimate (a browser that sends no Referer lands there, not on the 405 that `/api/contact` gives a GET).
 
 - **Fill time:** the browser measures it on one clock (`performance.now()` from page load to send) and posts it as `fillMs`. A visitor whose device clock is minutes off is never mistaken for a bot. A form posted without JavaScript sends no fill time and is accepted.
 - **Timeouts:** each destination gets 8 s, and the browser gives up after 15 s and shows the failure line. Either way the visitor never waits on "Sending…" indefinitely.

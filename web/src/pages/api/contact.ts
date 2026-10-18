@@ -30,7 +30,15 @@ const LABELS: Record<(typeof FIELDS)[number], string> = {
 type Lead = Record<(typeof FIELDS)[number] | 'formType' | 'page', string>
 
 const formName = (lead: Lead) => (lead.formType === 'careers' ? 'Job application' : 'Estimate request')
-const subject = (lead: Lead) => (lead.formType === 'careers' ? `${formName(lead)}: ${lead.name}` : `${formName(lead)}: ${lead.name} (${lead.zip || 'no zip'})`)
+/** A field as it may stand in an email subject: one line, short (the body keeps it whole). */
+const oneLine = (s: string, max = 80) =>
+  s
+    .replace(/[\r\n\t\u2028\u2029]+/g, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .trim()
+    .slice(0, max)
+const subject = (lead: Lead) =>
+  lead.formType === 'careers' ? `${formName(lead)}: ${oneLine(lead.name)}` : `${formName(lead)}: ${oneLine(lead.name)} (${oneLine(lead.zip, 40) || 'no zip'})`
 /** The filled-in fields under their labels, in form order. */
 const labelled = (lead: Lead) => FIELDS.filter((k) => lead[k]).map((k) => [LABELS[k], lead[k]] as const)
 
@@ -95,14 +103,19 @@ function resumeUrl(value: string) {
 }
 
 // A form posted without JavaScript asks for a page, not JSON: send the browser back to the page it came from (same
-// origin only), where CSS shows the success block (#sent) or the failure line (#send-error). Fetch callers (site.js)
-// send Accept: application/json and keep getting status codes.
+// origin only), where CSS shows the success block (#sent) or the failure line (#send-error). With no usable Referer
+// (a browser or extension that drops it, Referrer-Policy: no-referrer) that is /estimate, never /api/*, which answers
+// a GET with 405. Fetch callers (site.js) send Accept: application/json and keep getting status codes.
 function back(request: Request, ok: boolean) {
   let path = '/estimate'
-  try {
-    const ref = new URL(request.headers.get('referer') ?? '', request.url)
-    if (ref.origin === new URL(request.url).origin) path = ref.pathname
-  } catch {}
+  const referer = request.headers.get('referer')
+  if (referer) {
+    try {
+      const ref = new URL(referer)
+      // one leading slash, so a path like //host/x can't become a protocol-relative redirect
+      if (ref.origin === new URL(request.url).origin && !ref.pathname.startsWith('/api/')) path = ref.pathname.replace(/^\/+/, '/')
+    } catch {}
+  }
   return new Response(null, {status: 303, headers: {location: `${path}?${ok ? 'sent' : 'error'}=1#${ok ? 'sent' : 'send-error'}`}})
 }
 
