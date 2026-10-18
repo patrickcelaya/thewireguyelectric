@@ -124,7 +124,8 @@ const serviceId = `${absoluteUrl(path)}#service`
   <ServiceGlance service={service} settings={settings} number={n.glance} />
   {signs && <WarningSigns signs={signs} number={n.signs} />}
 
-  <LongForm body={body} label={heading} variant="service" figure={inlineFigure}>
+  {/* a body without an H2 is named apart from the hero (which the H1 names), so landmark names stay unique */}
+  <LongForm body={body} label={`${heading}, in detail`} variant="service" figure={inlineFigure}>
     <ContactCard slot="aside" settings={settings} />
   </LongForm>
 
