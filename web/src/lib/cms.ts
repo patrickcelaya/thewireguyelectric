@@ -8,7 +8,6 @@ import {FLEET_PHOTO, JOB_PHOTOS, VANS_PHOTO, WALK_PHOTO, companyPhoto, isPhotoSu
 import {imageSrcSet} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
-import {inSentence} from './format'
 
 /**
  * The fleet under the sky as a city page's hero (its LCP image): the Sanity renditions
