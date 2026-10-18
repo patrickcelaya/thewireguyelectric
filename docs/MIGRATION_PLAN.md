@@ -101,6 +101,7 @@ Run on 2026-10-17 against the Sanity-backed preview and an indexable local build
 | No reference to `*.webflow.io`, `website-files.com` or `webflow.com` in any page, CSS or JS | None |
 | Webflow changes since the 2026-10-12 baseline crawl | None: identical HTML on all 124 URLs, CMS unchanged |
 | Forms end to end | Waiting for `FORMSPARK_FORM_ID` (the preview answers 503) |
+| The launch fixes, merged (local indexable build of the integration branch, 2026-10-17) | Parity: 0 errors; the 60 approved title, meta and H1 changes on 37 pages, the 10 wave-2 values reported as pending, no Tier 1 title or H1 changed, and one word-count warning (`common-electrical-issues-in-scottsdale-homes`, -29% after its filler edits). `pnpm seo:schema`: 100 pages, 0 failures. Forms against mocked providers: 42/42 API and 27/27 browser checks. axe: 0 violations on 10 pages at 390 and 1440 px. Lighthouse mobile on home, Gilbert, panels and the hot-weather post: performance 98–99, SEO, accessibility and best practices 100, CLS at most 0.0001 |
 
 Still to do before launch, each in [`LAUNCH_RUNBOOK.md`](LAUNCH_RUNBOOK.md):
 - **Replace the Ignored Build Step guard.** The same-commit guard from the README cancels any rebuild of an already-deployed commit: on 2026-10-17 it canceled at least 8 production deployments of `d3db0c6`. Left in place it would cancel the launch redeploy (leaving www noindexed) and every Sanity publish. The content-aware `node scripts/ignore-build.mjs` replaces it.

@@ -22,7 +22,8 @@ web/        Astro site (static, deployed to Vercel; Vercel root directory = web)
   scripts/                       ignore-build.mjs: the Vercel Ignored Build Step, and its tests
 studio/     Sanity Studio (schemaTypes/ = the content model)
 scripts/
-  seo/      crawl.mjs (SEO crawler), parity.mjs (old vs new diff), serve-build.mjs (local Vercel emulator)
+  seo/      crawl.mjs (SEO crawler), parity.mjs (old vs new diff), serve-build.mjs (local Vercel emulator),
+            check-structured-data.mjs + check-places.mjs (`pnpm seo:schema`: every page's JSON-LD and share tags)
   migrate/  webflow-to-sanity.mjs (Webflow export → Sanity NDJSON) and its content/ modules, validate-dataset.mjs,
             verify-content.mjs, legacy-image-map.mjs
   launch/   verify.mjs (launch-day checks), indexnow.mjs (IndexNow submission)
@@ -35,7 +36,8 @@ migration/
   content-edits/    The launch copy pass: verified AI-slop edits and the lead's copy decisions, applied by content/content-edits.mjs
   seo-baseline.json Crawl of the live site on 2026-10-12: the parity target
   seo-equity/       Redirect candidates and SEO-equity notes
-  sanity-import/    Generated Sanity dataset (production.ndjson) + stable ID map
+  sanity-import/    Generated Sanity dataset (production.ndjson), stable ID map, content-dates.json (the "updated" dates'
+                    baseline) and legacy-assets.json (the Sanity asset documents that replace Webflow's CDN images)
 docs/               Design system, content model, plans, strategy, research
 .claude/skills/     OpenSEO skills (from every-app/open-seo@89e5a00); they use the OpenSEO connector
 ```

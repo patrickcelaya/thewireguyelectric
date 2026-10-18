@@ -109,7 +109,8 @@ curl -sI https://www.thewireguyelectric.com --resolve www.thewireguyelectric.com
 The site builds from Sanity, so the launch fixes (copy, titles, links, schema data) reach the site only when the regenerated dataset is imported. Claude, with the owner's go-ahead and a write token in `SANITY_AUTH_TOKEN` (set in the shell, never pasted anywhere):
 
 ```bash
-node scripts/migrate/webflow-to-sanity.mjs
+CONTENT_DATE=2026-10-17 node scripts/migrate/webflow-to-sanity.mjs
+git diff --exit-code migration/sanity-import/
 node scripts/migrate/validate-dataset.mjs
 node scripts/migrate/verify-content.mjs
 cd studio
@@ -117,6 +118,7 @@ pnpm exec sanity dataset export production ~/wireguy-sanity-backup-2026-10-21.ta
 pnpm exec sanity dataset import ../migration/sanity-import/production.ndjson production --replace
 ```
 
+- `CONTENT_DATE` is the day given to any material change that `migration/sanity-import/content-dates.json` doesn't record yet (none, when the tree is clean); without it, such a change would be dated the day of the run. `git diff --exit-code` proves the regenerated dataset is the committed one the gates passed on, so that is what gets imported.
 - `--replace` overwrites any Studio edit made since the last import. That is why Studio edits are frozen from T-1.
 - The import fires one webhook per document. With **Run up to one build per branch** they collapse into one or two builds.
 
@@ -126,7 +128,7 @@ pnpm exec sanity dataset import ../migration/sanity-import/production.ndjson pro
 node scripts/launch/verify.mjs --base https://thewireguyelectric.vercel.app --allow-noindex
 ```
 
-Pass = `OK` and 0 failures (on 2026-10-17, without the parity group: 18 passed, 0 failures). The script also runs the parity crawl against `migration/seo-baseline.json`. Then re-run the Webflow drift check: the live home page must still send `last-modified: Thu, 24 Sep 2026 17:33:30 GMT` and the newest live sitemap `lastmod` must be `2026-09-21T02:29:25.598Z`.
+Pass = `OK` and 0 failures (on 2026-10-17, before the launch fixes were deployed and without the parity group: 18 passed, 0 failures). Since the merge, `GET /api/contact` must answer 405, and a build without a lead destination shows as INFO here and fails on www. The script also runs the parity crawl against `migration/seo-baseline.json`. Then re-run the Webflow drift check: the live home page must still send `last-modified: Thu, 24 Sep 2026 17:33:30 GMT` and the newest live sitemap `lastmod` must be `2026-09-21T02:29:25.598Z`.
 
 ## Launch day
 
@@ -177,7 +179,7 @@ Expect the new A and CNAME, no AAAA, and the MX and TXT answers unchanged (5 Goo
 node scripts/launch/verify.mjs --base https://www.thewireguyelectric.com
 ```
 
-It checks, and fails on any miss: apex → www in one 301/308 with the path kept; http → https; `/x/` → `/x`; the 80 legacy, misspelling and `/blog/` redirects; `robots.txt` allows crawling and lists the sitemap; the sitemap has **96** URLs, each 200, no noindex, one correct canonical; GA4 `G-4ZYV7JMRJH` on every page; `/api/contact` deployed; the parity crawl against the baseline with 0 errors. Also by hand:
+It checks, and fails on any miss: apex → www in one 301/308 with the path kept; http → https; `/x/` → `/x`; the 80 legacy, misspelling and `/blog/` redirects; `robots.txt` allows crawling and lists the sitemap; the sitemap has **96** URLs, each 200, no noindex, one correct canonical; GA4 `G-4ZYV7JMRJH` on every page; `/api/contact` deployed (GET answers 405, an empty POST 400) with a lead destination set for the build; the parity crawl against the baseline with 0 errors. Also by hand:
 
 ```bash
 curl -sI https://www.thewireguyelectric.com/
