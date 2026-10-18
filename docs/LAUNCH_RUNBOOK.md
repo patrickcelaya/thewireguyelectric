@@ -20,7 +20,7 @@ The one document for the DNS cutover from Webflow to Vercel. It says who does ea
 | DNS | At WordPress.com: apex A → Webflow, www CNAME → Webflow (TTL 14400) | Apex A and www CNAME → Vercel, TTL 300 |
 | Vercel production branch | `claude/funny-goldberg-0idk0t` (PR #1) | `main` |
 | Vercel env vars | `PUBLIC_SANITY_PROJECT_ID`, `PUBLIC_SANITY_DATASET` only | plus `FORMSPARK_FORM_ID` and `SITE_INDEXABLE=true` (Production) |
-| Ignored Build Step | The same-commit guard: at least 8 production deployments of `d3db0c6` were Canceled on 2026-10-17 | `node scripts/ignore-build.mjs` (content-aware) |
+| Ignored Build Step | The same-commit guard. The content-aware step was switched on and off again on 2026-10-18: with the build queue still on "Run all builds immediately", the launch-content import started 7 builds at once before the guard went back | `node scripts/ignore-build.mjs` (content-aware), set only after the build queue row below |
 | Deployment Protection | Vercel Authentication on All Deployments: visitors get a Vercel login | Standard Protection |
 | Domains on the project | `thewireguyelectric.vercel.app` only | plus `www.thewireguyelectric.com` (primary) and the apex redirecting to it |
 | Forms | `/api/contact` answers 503: no destination set | Formspark delivers every lead |
@@ -70,7 +70,7 @@ Project **thewireguyelectric** in team **celaya-ventures**, at https://vercel.co
 | Setting | Click path | Value | When |
 |---|---|---|---|
 | Build queue | Settings → Build and Deployment → **On-Demand Concurrent Builds** | **Run up to one build per branch** → Save. A bulk import or a burst of Sanity publishes then makes one follow-up build, not one per document | T-3 |
-| Ignored Build Step | Settings → Build and Deployment → **Ignored Build Step** → Behavior **Custom** | Command `node scripts/ignore-build.mjs` → Save. Replaces the same-commit guard | T-3 |
+| Ignored Build Step | Settings → Build and Deployment → **Ignored Build Step** → Behavior **Custom** | Only after the build queue row above is saved: command `node scripts/ignore-build.mjs` → Save. Replaces the same-commit guard. Claude can set this once the queue is set (its Vercel access can't change the queue) | T-3 |
 | System variables | Settings → Environment Variables → **Enable access to System Environment Variables** | Checked (the ignore step reads them) | T-3 |
 | Form destination | Settings → Environment Variables → **Add** | Key `FORMSPARK_FORM_ID`; value: the form ID only, not the URL; environments **Production** and **Preview** → Save | T-3 |
 | Domains | Settings → **Domains** | See [T-2](#t-2-add-the-domains-in-vercel) | T-2 |
