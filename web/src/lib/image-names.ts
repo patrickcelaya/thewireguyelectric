@@ -10,7 +10,7 @@ import LIBRARY from './library-photos.json'
 export const IMAGE_NAMES: Record<string, string> = {
   // people
   'image-dbea2749464c7bb96fabc1ff06cd7add6f0f9a07-2542x1694-avif': 'wire-guy-electric-crew-and-trucks',
-  'image-69873586fe760f2a1192b56c3bc9202d34fdedbb-1086x724-avif': 'wire-guy-electric-fleet-superstition-mountains',
+  'image-69873586fe760f2a1192b56c3bc9202d34fdedbb-1086x724-avif': 'wire-guy-electric-fleet-desert-mountains',
   'image-039889c72aabf099f0b700d9e4f9dc301153852e-1280x853-avif': 'wire-guy-electric-technician-and-service-van',
   'image-bc523b429c9142dbf137a3e9aefcf4c050e9a43b-1086x724-avif': 'electricians-on-ladders-installing-lighting',
   'image-c892be993e9cc5f76be656862cbf6badf2a285bb-926x976-avif': 'ev-charger-installation-garage',
