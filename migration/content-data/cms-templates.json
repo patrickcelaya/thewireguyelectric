@@ -351,192 +351,258 @@
     ]
   },
   "postImages": {
-    "source": "Owner decision (2026-10-18): each post's own image from Webflow (already its Sanity mainImage) comes back on the blog pages only when it is a real photo, stock or the crew's, at least 1,200 px wide, and not AI-made, not text or drawn-on effects, not of unknown source and not misleading (seo-audit PLAN section 8, \"If yes\"; each image looked at). `shown` sets post.showMainImage and the image's alt (what is visible; a stock photo's alt never implies the people in it work for us). `notShown` says why the others keep a company photo. Every post is in exactly one list. Service and city pages never show these images.",
+    "source": "Owner decision (2026-10-18): each post's own image from Webflow (already its Sanity mainImage) comes back on the blog pages only when it is a real photo, stock or the crew's, at least 1,200 px wide, and not AI-made, not text or drawn-on effects, not of unknown source and not misleading (seo-audit PLAN section 8, \"If yes\"; each image looked at). `shown` sets post.showMainImage and the image's alt (what is visible; a stock photo's alt never implies the people in it work for us). Each shown entry names its `image` (the asset the post's main image must be: the pipeline fails if the post's image changes, so a swapped image is decided again) and, for stock, its `name` (the file name on Sanity's CDN, which web/src/lib/image-names.ts reads from here; what is visible, never the business or the crew). A `company` entry's image must be one of the company's photos (web/src/lib/library-photos.json or web/src/lib/brand-photos.ts); its file name stays where that photo is named. `notShown` says why the others keep a company photo. Every post is in exactly one list. Service and city pages never show these images.",
     "shown": [
       {
         "post": "pool-pump-electrical-requirements-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-5032d66daf212057d4fc0f92529a1431890f8190-1280x1707-jpg",
+        "name": "swimming-pool-ladder-blue-tile",
         "alt": "Steel ladder rails leading into a blue-tiled swimming pool, with a drain grate along its edge"
       },
       {
         "post": "casita-adu-electrical-requirements-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-d3861a88111fdf1702cd75956a50d97a0830b767-1279x913-jpg",
+        "name": "brick-guest-house-pine-trees",
         "alt": "A small brick guest house with a tiled roof among pine trees and a green lawn"
       },
       {
         "post": "swamp-cooler-to-ac-conversion-electrical-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-7384f25ce4dd84bac4d35ab082379a540d92f4c8-1920x1280-jpg",
+        "name": "evaporative-cooler-fan-motor",
         "alt": "An evaporative cooler with its panel off, showing the large fan and motor inside"
       },
       {
         "post": "ac-disconnect-box-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-f81e8caf318448d40a926941a51a617f6dc6ba20-1920x2881-jpg",
+        "name": "air-conditioner-condenser-charging-post",
         "alt": "An outdoor air conditioning unit and a charging post beside the front door of a dark-sided home"
       },
       {
         "post": "smart-thermostat-c-wire-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-887a5ed1add6d588a61ca0d1168790e84e73cec7-1920x1280-jpg",
+        "name": "smart-thermostat-on-wall",
         "alt": "A white smart thermostat with a lit display on a warm plaster wall"
       },
       {
         "post": "mini-split-electrical-requirements-arizona",
         "kind": "stock",
         "source": "Pexels",
-        "alt": "A wall-mounted ductless mini-split above an empty room with wood shelves and pendant lights"
-      },
-      {
-        "post": "federal-pacific-zinsco-panels-arizona",
-        "kind": "stock",
-        "source": "Pexels",
-        "alt": "An open breaker box with its cover off and a tangle of wires, set into a white wall"
+        "image": "image-49c1de66b44766c233d94d3effda3dae458b3c8d-1600x1068-jpg",
+        "name": "ductless-mini-split-empty-room",
+        "alt": "A wall-mounted ductless mini-split above an empty room with wood shelves and pendant lights",
+        "hotspot": {
+          "x": 0.52,
+          "y": 0.2
+        }
       },
       {
         "post": "why-is-my-electric-bill-so-high-phoenix-summer",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-55d227b6b0c09119e3ee7992b0b5bf5ba7a58173-1600x1067-jpg",
+        "name": "hand-adjusting-smart-thermostat",
         "alt": "A hand pressing the dial of a black smart thermostat beside a second digital thermostat"
       },
       {
         "post": "half-house-lost-power-heat-arizona",
         "kind": "stock",
         "source": "Unsplash",
-        "alt": "An orange sun setting behind desert mountains under streaks of cloud"
+        "image": "image-c907c983c2b0fb691d585cd95d51ebd06050e28b-1920x2863-jpg",
+        "name": "sun-setting-desert-mountains",
+        "alt": "An orange sun setting behind desert mountains under streaks of cloud",
+        "hotspot": {
+          "x": 0.68,
+          "y": 0.84
+        }
       },
       {
         "post": "ac-keeps-tripping-breaker-arizona",
         "kind": "stock",
         "source": "Unsplash",
-        "alt": "An outdoor air conditioning condenser in the rain, with green trees behind it"
+        "image": "image-da769dd4a83a698125042d3f0337b1a950dcdaf4-1920x1505-jpg",
+        "name": "air-conditioner-condenser-rain",
+        "alt": "An outdoor air conditioning condenser in the rain, with green trees behind it",
+        "hotspot": {
+          "x": 0.75,
+          "y": 0.65
+        }
       },
       {
         "post": "ev-charger-hardwired-vs-plug-in-phoenix",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-b747e28f15e9933adeb0560d04289087e88960a9-1920x2560-jpg",
+        "name": "electric-car-charging-cable",
         "alt": "A charging cable plugged into the port of a white electric car parked by desert grasses"
       },
       {
         "post": "aluminum-wiring-older-phoenix-homes",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-1ff821f4c77edac191873dc21b6a027d01905a7e-1920x1282-jpg",
+        "name": "old-wires-open-electrical-boxes",
         "alt": "Old wires sticking out of open electrical boxes in a white wall"
       },
       {
         "post": "whole-home-standby-generator-installation-phoenix",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-7c662be9ad73cdc74a70e97df0686bb15db349fe-1920x1280-jpg",
+        "name": "two-story-house-garage-sunset",
         "alt": "A two-story house with a three-car garage and lit porch lights at sunset"
       },
       {
         "post": "hot-tub-electrical-installation-cost-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-b9ab85f3cc5bb7072cb475b6de45931af828907d-1920x2880-jpg",
+        "name": "indoor-hot-tub-wooden-deck",
         "alt": "An indoor hot tub on a raised wooden deck beside tall curtained windows"
       },
       {
         "post": "landscape-lighting-installation-cost-phoenix",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-b5c31f2f760cef236a4253d54bc78a5a3fb2d8de-1920x1280-jpg",
+        "name": "lantern-lamp-post-dusk",
         "alt": "A lit lantern-style lamp post at dusk, with a roofline glowing behind it"
       },
       {
         "post": "cost-to-rewire-house-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-74d6fb8bcfcc3bf59790eaf3606513a48f1ba2fe-1920x2876-jpg",
+        "name": "loose-wires-open-wall-box",
         "alt": "A bundle of loose wires pulled out of an open box in a green and white wall"
       },
       {
         "post": "ceiling-fan-installation-cost-arizona",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-dba14105ea8cf3afe84ae28be9ce41f2a62ac451-1920x1281-jpg",
+        "name": "ceiling-fan-coffered-ceiling-arched-window",
         "alt": "A five-blade ceiling fan under a coffered ceiling, above a tall arched window"
       },
       {
         "post": "whole-house-surge-protector-guide-arizona",
         "kind": "stock",
         "source": "stock photo (seo-audit blog image table)",
+        "image": "image-b7e45f9b6ea7348161e67251af56125d40ede425-1920x1080-jpg",
+        "name": "lightning-over-city-lights",
         "alt": "Lightning striking over the lights of a city at night"
       },
       {
         "post": "recessed-lighting-installation-phoenix",
         "kind": "stock",
         "source": "stock photo (seo-audit blog image table)",
+        "image": "image-8d5849228d21053fecf2c70f149fc3f2d9e2bc4e-1919x1281-jpg",
+        "name": "recessed-lights-cove-lighting-empty-room",
         "alt": "An empty modern room with recessed ceiling lights, a glowing ceiling cove and a glass door"
       },
       {
         "post": "electrical-panel-upgrade-cost-arizona",
         "kind": "stock",
         "source": "stock photo (seo-audit blog image table)",
+        "image": "image-f11facbd6087d24f7745673773dfb73660781cff-1920x1013-jpg",
+        "name": "multimeter-testing-control-panel",
         "alt": "Gloved hands testing the wiring of a control panel with a yellow digital multimeter"
       },
       {
         "post": "why-your-circuit-breaker-keeps-tripping-in-cold-weather",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-e7b6a34f700ae5ff24351199054ee70595df5f3d-1920x1280-jpg",
+        "name": "snow-red-rock-buttes-clouds",
         "alt": "Red rock buttes dusted with snow under heavy gray clouds"
       },
       {
         "post": "can-hot-weather-cause-your-circuit-breaker-to-trip",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-8ad15dbfd8b239a8a0ceac8ad0edac09ea6f98f3-1920x1280-jpg",
+        "name": "sun-over-desert-sand-dunes",
         "alt": "The sun blazing over desert sand dunes in an orange sky"
       },
       {
         "post": "is-whole-house-surge-protection-necessary",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-dd2fdc67e9ad0d479d4805cc8b022bed7464f070-1920x1184-jpg",
+        "name": "lightning-bolt-night-sky",
         "alt": "A long bolt of lightning branching across a purple night sky"
       },
       {
         "post": "electrical-inspection-before-selling-a-home",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-0f53bad76d6d3c781cbf00e6ac1ca187a5191c76-1920x2880-jpg",
+        "name": "sold-sign-house-keys",
         "alt": "A person in a sweater holding a red and white SOLD sign and a ring of house keys"
       },
       {
         "post": "permit-for-electrical-work",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-eb0d9e90ef784032887ffdee52379a43ae5c132d-1920x1278-jpg",
+        "name": "screwdriver-breaker-distribution-board",
         "alt": "A hand holding a screwdriver to a breaker in an open distribution board full of blue, yellow and black wires"
       },
       {
         "post": "why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-62365373ae4d8a29a3beb072f54221a2a22cd449-1920x1440-jpg",
+        "name": "filament-bulb-black-cord",
         "alt": "A bare filament bulb glowing on a black cord against a dark wall"
       },
       {
         "post": "how-phoenix-heat-affects-your-homes-electrical-system",
         "kind": "stock",
         "source": "Pexels",
+        "image": "image-53c8c54ff56d8b54d5e74ee6b41fcc28b6fc5036-1920x1080-jpg",
+        "name": "blazing-sun-orange-clouds",
         "alt": "A blazing sun above glowing orange clouds"
       },
       {
         "post": "why-does-my-breaker-keep-tripping-in-the-summer",
         "kind": "stock",
         "source": "Webflow free-image library (its stock file name)",
+        "image": "image-332bf81124145ef0d4d24f3d75ba6f0d75d867d4-1920x1440-jpg",
+        "name": "industrial-circuit-breaker-enclosure",
         "alt": "A large industrial circuit breaker in an open electrical enclosure, with metal conduit beside it"
       },
       {
         "post": "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
         "kind": "stock",
         "source": "Webflow free-image library (its stock file name)",
+        "image": "image-a3da99728981a43501bfa85438c6b3f878233968-1920x1280-jpg",
+        "name": "breakers-wires-control-panel",
         "alt": "Rows of breakers and colored wires inside an open electrical control panel"
       },
       {
         "post": "why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
         "kind": "stock",
         "source": "Webflow free-image library (its stock file name)",
+        "image": "image-ee0ff920b8323fb6ca14c628bb7d4ac37d4b07de-1920x1280-jpg",
+        "name": "glowing-filament-light-bulb",
         "alt": "A single glowing filament bulb against a dark blue-gray wall"
       },
       {
         "post": "summer-electrical-tips",
         "kind": "stock",
         "source": "Webflow free-image library (its stock file name)",
+        "image": "image-4d9d751121a2f97760fddd86654415cf762293a3-1920x1440-jpg",
+        "name": "prewired-breaker-panel-workbench",
         "alt": "A new breaker panel, wired and labeled, standing on a workbench beside coils of armored cable",
         "why": "A real photo of a prewired panel on a workbench, with a stock file name (\"Audio Mixer Photo\"); the audit thought it might be the crew's own. Its alt says only what is visible; if the owner confirms it is our work, add it to the job photos."
       },
@@ -544,17 +610,14 @@
         "post": "common-electrical-issues-in-scottsdale-homes",
         "kind": "stock",
         "source": "Webflow free-image library (its stock file name)",
+        "image": "image-b3fae047fcdaf9bd4b2fc1ec2358d82f5beacd99-1920x2879-jpg",
+        "name": "modern-house-swimming-pool",
         "alt": "A modern white house with a swimming pool, patio furniture and palm trees"
-      },
-      {
-        "post": "electrical-safety-tips",
-        "kind": "stock",
-        "source": "stock photo (seo-audit blog image table)",
-        "alt": "White plug adapters stacked into a little robot with a smiley face drawn on it"
       },
       {
         "post": "7-signs-you-need-an-electrical-panel-upgrade",
         "kind": "company",
+        "image": "image-06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088-png",
         "alt": "Four Wire Guy Electric electricians in company T-shirts giving a thumbs-up beside a new meter and panel on a block wall",
         "hotspot": {
           "x": 0.45,
@@ -565,6 +628,7 @@
       {
         "post": "installing-car-charger",
         "kind": "company",
+        "image": "image-77b2debafc6c3cd45ac8cfbf5109126a1c0e2574-1536x2048-webp",
         "alt": "A Tesla Wall Connector installed on a garage wall",
         "hotspot": {
           "x": 0.5,
@@ -645,6 +709,14 @@
       {
         "post": "level-1-vs-level-2-ev-chargers-which-to-choose",
         "why": "AI-generated with \"Level 1\" and \"Level 2\" text in the image."
+      },
+      {
+        "post": "federal-pacific-zinsco-panels-arizona",
+        "why": "Misleading for this post: a European DIN-rail consumer unit with modular breakers, nothing like the US Federal Pacific or Zinsco panel a reader is checking their own panel against. The post falls back to a company panel photo."
+      },
+      {
+        "post": "electrical-safety-tips",
+        "why": "A novelty shot: plug adapters stacked into a little robot with a smiley face drawn on in marker. The owner's rule leaves out drawn-on effects, and it reads as clip-art beside the trade photos."
       }
     ]
   },

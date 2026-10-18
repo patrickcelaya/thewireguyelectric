@@ -14,7 +14,10 @@
 //                   post.showMainImage and the image's alt (and a hotspot where a crop must keep
 //                   heads in frame), `notShown` says why a post keeps a company photo; every post
 //                   is in exactly one list, a shown image is at least 1,200 px wide, and a stock
-//                   photo's alt never implies the people in it are the crew
+//                   photo's alt never implies the people in it are the crew; each entry names the
+//                   `image` it decides on (fails when the post's image changes), a stock image its
+//                   CDN file `name` (image-names.ts reads it), and a `company` image must be one of
+//                   the company's photos (library-photos.json, brand-photos.ts)
 //   atAGlance       service.atAGlance facts (with an optional supporting line); each one
 //                   quotes its evidence, which must be word for word in the service body
 //                   or the named /faq answer
@@ -54,6 +57,7 @@
 //                     fallback) that repeats its own opening word for word: the box sits
 //                     right above it, so a post whose excerpt does needs an answer here.
 
+import {readFile} from 'node:fs/promises'
 import contentEdits from './content-edits.mjs'
 
 const DATA = 'migration/content-data/cms-templates.json'
@@ -147,13 +151,26 @@ export default async function cmsTemplates(ctx, stage) {
   if (undecided.length) fail(`postImages: no decision for ${undecided.join(', ')}`)
   // the main images are still named by their Webflow URL here: the asset the import made from that file has its size
   const legacy = await readJson('web/src/data/legacy-images.json')
-  for (const {post, kind, alt, hotspot} of data.postImages.shown) {
+  // the company's own photos: the owner's library and the photos web/src/lib/brand-photos.ts lists (job photos, head boxes)
+  const companyIds = new Set([
+    ...(await readJson('web/src/lib/library-photos.json')).map((p) => p.id),
+    ...(await readFile(new URL('../../../web/src/lib/brand-photos.ts', import.meta.url), 'utf8')).match(/image-[0-9a-f]{40}-\d+x\d+-[a-z0-9]+/g),
+  ])
+  for (const {post, kind, image, name, alt, hotspot} of data.postImages.shown) {
     const doc = bySlug('post', post)
     const ref = doc.mainImage?.asset?._ref ?? legacy[doc.mainImage?._sanityAsset?.replace(/^image@/, '') ?? '']?.asset
     if (!ref) fail(`postImages ${post}: has no main image to show`)
+    // the decision is about one image: a post whose image changed is decided again
+    if (image !== ref) fail(`postImages ${post}: the decision is for ${image || '(no image named)'}, but the post's main image is ${ref}; look at it and decide again`)
     const width = Number(ref.match(/-(\d+)x\d+-[a-z0-9]+$/)?.[1])
     if (!(width >= 1200)) fail(`postImages ${post}: the main image is ${width || '?'} px wide; a shown image is at least 1,200 px`)
     if (kind !== 'stock' && kind !== 'company') fail(`postImages ${post}: kind is "stock" or "company"`)
+    // "company" skips the stock alt rule below, so it must really be one of the company's photos
+    if (kind === 'company' && !companyIds.has(ref)) fail(`postImages ${post}: kind "company", but ${ref} is not one of the company's photos (library-photos.json, brand-photos.ts)`)
+    if (kind === 'company' && name) fail(`postImages ${post}: a company photo keeps the file name it has where it is listed (image-names.ts, library-photos.json)`)
+    // a stock image's CDN file name (web/src/lib/image-names.ts reads it from here): what is visible, never the business
+    if (kind === 'stock' && !/^[a-z0-9]+(-[a-z0-9]+){1,7}$/.test(name ?? '')) fail(`postImages ${post}: a stock image needs a file name: 2 to 8 lowercase words joined by hyphens ("${name ?? ''}")`)
+    if (kind === 'stock' && /(^|-)(wire-guy|our|crew|team|technicians?|electricians?|installers?)(-|$)/.test(name)) fail(`postImages ${post}: a stock image's file name may not name the business or the crew ("${name}")`)
     if (!alt?.trim()) fail(`postImages ${post}: describe what the image shows`)
     // a stock photo's people are models, never the crew: its alt names no business, crew or trade
     if (kind === 'stock' && /\b(wire guy|our|we|us|crew|team|technicians?|electricians?|installers?)\b/i.test(alt)) fail(`postImages ${post}: a stock photo's alt may not imply the people in it work for us ("${alt}")`)
