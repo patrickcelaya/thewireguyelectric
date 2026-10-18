@@ -52,8 +52,7 @@ export function getNavModel(): Promise<NavModel> {
       {label: 'About Us', href: '/about-us'},
       {label: 'Our Team', href: '/our-team'},
       {label: 'FAQ', href: '/faq'},
-      // the live menu's anchor text, lower case as it is today
-      {label: 'contact us', href: '/contact-us'},
+      {label: 'Contact Us', href: '/contact-us'},
     ]
     const commercial = {label: 'Commercial', href: '/commercial-electrician'}
     const careers = {label: 'Careers', href: '/careers'}
