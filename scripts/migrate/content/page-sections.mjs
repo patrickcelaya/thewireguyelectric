@@ -728,7 +728,9 @@ export default async function pageSections(ctx) {
         _key: 'hero',
         eyebrow: c.text(0, 'h5'),
         text: c.text(0, 'p'),
-        image: photo('tech-looking-at-van.avif'),
+        // shown whole (HeroInner): the crop takes off the photo's top-left corner, a sliver of a second person
+        // under a dark band (about 32 px in from the left and 33 px down from the top of the 1280×853 original)
+        image: {...photo('tech-looking-at-van.avif'), crop: {_type: 'sanity.imageCrop', top: 0.04, left: 0.03, bottom: 0, right: 0}},
         primaryCta: link(apply.text, '#apply-now'),
         showPhone: false,
         showTrustBar: false,
@@ -808,8 +810,9 @@ export default async function pageSections(ctx) {
         _key: 'common',
         eyebrow: 'The basics',
         heading: common.heading.text,
-        // Steven and Cody at the vans, in colour like every other photo on the site
-        image: photo('steven-at-van.avif'),
+        // the photos are shown whole beside the questions: the landscape crew photo by the three basics, the
+        // portrait of Steven and Cody by the longer list of customers' questions, so neither leaves an empty column
+        image: photo('crew-at-van.avif'),
         topic: topicOf(common.items.map((q) => q.question)),
       },
       {
@@ -817,7 +820,8 @@ export default async function pageSections(ctx) {
         _key: 'customers',
         eyebrow: 'From our customers',
         heading: customers.heading.text,
-        image: photo('crew-at-van.avif'),
+        // Steven and Cody at the vans, in colour like every other photo on the site
+        image: photo('steven-at-van.avif'),
         topic: topicOf(customers.items.map((q) => q.question)),
       },
       {
