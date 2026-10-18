@@ -24,7 +24,7 @@ import {absoluteUrl, ogImageMeta, resolveDescription, resolveTitle} from '../../
 import {blogPostingNode, faqNode, imageObjectNode, webPageNode} from '../../lib/schema'
 import {serviceAreaCities} from '../../lib/cities'
 import {imagePreload} from '../../lib/image'
-import {FLEET_PHOTO} from '../../lib/brand-photos'
+import {FLEET_PHOTO, photoId} from '../../lib/brand-photos'
 import {
   POST_COVER,
   articleHtml,
@@ -74,11 +74,15 @@ const older = at >= 0 ? posts[at + 1] : undefined
 const city = postCity(post.title, serviceAreaCities(settings.homeCity, locations))
 
 // the cover: a real photo (the post's own when it is the crew's), also the article's image
-// (the page's primary image) and its share image; every photo shows once on the page, so
-// the cover passes over the photos of the services' cards further down (each card shows its
-// own service's photo), and the related articles (picked by the post's hub services) show others
-const shown = markShown(new Set<string>(), ...photoTiles(post.relatedServices ?? [], 3).cards.map((s) => s.mainImage))
+// (the page's primary image), its share image and the first image to load; it picks first, so
+// it is the photo of the post's subject (the lamp-lined walk for the outdoor lighting guides).
+// Every photo shows once on the page: a service card further down whose photo is the cover
+// shows as a text row, and the related articles (picked by the post's hub services) show others
+const shown = new Set<string>()
 const cover = postCover(post, postIndex, services, {tinted: false, seed, taken: shown}) ?? FLEET_PHOTO.image
+markShown(shown, cover)
+const serviceCards = (post.relatedServices ?? []).map((s) => (photoId(s.mainImage) === photoId(cover) ? {...s, mainImage: undefined} : s))
+markShown(shown, ...photoTiles(serviceCards, 3).cards.map((s) => s.mainImage))
 const related = guideCards(relatedArticles(post.slug, postIndex, pillars), postIndex, services, seed + 1, shown)
 const preload = imagePreload(cover, POST_COVER.widths, POST_COVER.sizes)
 const primaryImageId = `${absoluteUrl(path)}#primaryimage`
@@ -148,7 +152,7 @@ const image = imageObjectNode(cover, {id: primaryImageId})
               View All Services
             </TextLink>
           </SectionHeader>
-          <ServiceCards services={post.relatedServices ?? []} maxCards={3} />
+          <ServiceCards services={serviceCards} maxCards={3} />
         </div>
       </section>
     )
