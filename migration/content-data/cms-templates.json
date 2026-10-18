@@ -24,31 +24,331 @@
       "asset": "image-c1559eab13664ab87065c86bb6f3ea6385d5fe71-1160x1094-avif",
       "alt": "A Wire Guy Electric electrician in safety glasses working wires out of a ceiling opening",
       "source": "The crew's own troubleshooting photo (migration/brand-photos, troubleshooting-ceiling-wiring.avif), the photo the live homepage's Troubleshooting card and the round-5 Gilbert mockup use, in place of a photo of tools on a coil of wire (QA, 2026-10-17: card photos must match their service)."
+    },
+    {
+      "service": "commercial-service",
+      "photo": "library/electricians-panel-metal-commercial-building.jpg",
+      "alt": "Three electricians working on a new panel inside a metal commercial building",
+      "hotspot": {
+        "x": 0.57,
+        "y": 0.405
+      },
+      "source": "The owner's photo library (migration/brand-photos/library.json, electricians-panel-metal-commercial-building): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
+    },
+    {
+      "service": "new-construction-wiring",
+      "photo": "library/rough-in-wiring-subpanel-wall-framing.jpg",
+      "alt": "Open wall framing with coiled wire and a new subpanel during rough-in",
+      "source": "The owner's photo library (migration/brand-photos/library.json, rough-in-wiring-subpanel-wall-framing): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). No people in it: the hero may lay its copper tint over it."
+    },
+    {
+      "service": "tenant-improvements",
+      "photo": "library/electricians-planning-metal-building-job.jpg",
+      "alt": "Three electricians planning work inside a metal building with a Wire Guy Electric van outside",
+      "hotspot": {
+        "x": 0.748,
+        "y": 0.532
+      },
+      "source": "The owner's photo library (migration/brand-photos/library.json, electricians-planning-metal-building-job): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
+    },
+    {
+      "service": "led-lights",
+      "photo": "library/white-kitchen-under-cabinet-led-lights.jpg",
+      "alt": "Bright white kitchen with under-cabinet LED lighting and recessed lights",
+      "source": "The owner's photo library (migration/brand-photos/library.json, white-kitchen-under-cabinet-led-lights): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). No people in it: the hero may lay its copper tint over it."
+    },
+    {
+      "service": "outlets-and-switches",
+      "photo": "library/three-gang-rocker-switch-plate.jpg",
+      "alt": "Close-up of a three-gang white rocker switch plate on a gray wall",
+      "source": "The owner's photo library (migration/brand-photos/library.json, three-gang-rocker-switch-plate): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). No people in it: the hero may lay its copper tint over it."
+    },
+    {
+      "service": "storefront-lights",
+      "photo": "library/gooseneck-barn-light-floodlight-metal-building.jpg",
+      "alt": "Black gooseneck barn light and floodlight on a gray metal building above a door",
+      "source": "The owner's photo library (migration/brand-photos/library.json, gooseneck-barn-light-floodlight-metal-building): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). No people in it: the hero may lay its copper tint over it."
+    },
+    {
+      "service": "hanging-lights",
+      "photo": "library/electrician-hanging-brass-chandelier-beamed-ceiling.jpg",
+      "alt": "Electrician on a ladder hanging a brass candle-style chandelier from a dark beamed ceiling",
+      "hotspot": {
+        "x": 0.685,
+        "y": 0.345
+      },
+      "source": "The owner's photo library (migration/brand-photos/library.json, electrician-hanging-brass-chandelier-beamed-ceiling): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
+    },
+    {
+      "service": "electrical-upgrades",
+      "photo": "library/electrician-thumbs-up-new-service-mast.jpg",
+      "alt": "Electrician giving a thumbs up beside a new meter panel and service mast on a home",
+      "hotspot": {
+        "x": 0.38,
+        "y": 0.545
+      },
+      "source": "The owner's photo library (migration/brand-photos/library.json, electrician-thumbs-up-new-service-mast): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
+    },
+    {
+      "service": "commercial-electrical-troubleshooting",
+      "photo": "library/two-electricians-checking-commercial-panel.jpg",
+      "alt": "Two electricians in company shirts checking a commercial panel with conduit runs",
+      "hotspot": {
+        "x": 0.547,
+        "y": 0.41
+      },
+      "source": "The owner's photo library (migration/brand-photos/library.json, two-electricians-checking-commercial-panel): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
+    },
+    {
+      "service": "emergency-exit-lights",
+      "photo": "library/electrician-wiring-commercial-panel-exit-sign.jpg",
+      "alt": "Electrician wiring a commercial panel on a block wall beside an exit sign",
+      "hotspot": {
+        "x": 0.495,
+        "y": 0.43
+      },
+      "source": "The owner's photo library (migration/brand-photos/library.json, electrician-wiring-commercial-panel-exit-sign): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
+    },
+    {
+      "service": "dedicated-circuits",
+      "photo": "library/new-labeled-breaker-panel-welder-circuits.jpg",
+      "alt": "New breaker panel with neatly printed circuit labels including welder circuits",
+      "source": "The owner's photo library (migration/brand-photos/library.json, new-labeled-breaker-panel-welder-circuits): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). No people in it: the hero may lay its copper tint over it."
+    },
+    {
+      "service": "electrical-safety-inspections",
+      "photo": "library/electricians-reviewing-commercial-panel-conduits.jpg",
+      "alt": "Two Wire Guy Electric electricians reviewing a commercial panel fed by multiple conduits",
+      "hotspot": {
+        "x": 0.5,
+        "y": 0.425
+      },
+      "source": "The owner's photo library (migration/brand-photos/library.json, electricians-reviewing-commercial-panel-conduits): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
     }
   ],
   "serviceAlts": {
-    "source": "Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt. The 12 stock photos (new-construction-wiring onward) are described from the images themselves (SEO review, 2026-10-17); hanging-lights reuses the alt page-sections gives the same photo.",
+    "source": "Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt. The 12 stock photos (new-construction-wiring onward) are described from the images themselves (SEO review, 2026-10-17); hanging-lights reuses the alt page-sections gives the same photo. The services given a photo from the owner's library (serviceImages) carry that photo's alt instead; ballast-replacement keeps its stock image, which the templates never show.",
     "alts": {
       "panels": "A new Siemens electrical panel with labeled breakers next to an SRP meter on a stucco wall",
       "custom-lighting": "Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters",
       "fixture-replacements": "Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting",
-      "electrical-safety-inspections": "Two Wire Guy Electric technicians walking up a customer’s front path in an Arizona neighborhood",
       "electrical-remodels": "A finished kitchen remodel with recessed lights, white cabinets and a stone island",
       "exterior-electrical": "Lamp posts lighting a brick front walk lined with roses",
       "recessed-lights-installation": "New recessed lights glowing in a vaulted kitchen ceiling",
-      "new-construction-wiring": "New wiring and electrical boxes on the open studs of a home under construction",
-      "hanging-lights": "Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling",
-      "commercial-service": "An electrician testing terminal blocks in an open control panel with a multimeter",
-      "tenant-improvements": "Two-story wood-frame houses under construction, with a dumpster out front",
-      "led-lights": "Hexagonal LED light panels on a ceiling above a stairway with steel handrails",
-      "outlets-and-switches": "Three new white duplex outlets lying on a gray surface",
-      "storefront-lights": "A dim bar interior lit by warm lights under the counter and along the columns",
-      "electrical-upgrades": "An electrician in a hard hat and work gloves working on a wall-mounted electrical box",
-      "commercial-electrical-troubleshooting": "A technician drilling into the open casing of a rooftop air-conditioning unit",
-      "emergency-exit-lights": "A lit red exit sign with an arrow on a dark ceiling",
-      "dedicated-circuits": "A screwdriver pointing at breakers in an open distribution board full of colored wiring",
       "ballast-replacement-fluorescent-lighting": "Rows of fluorescent tube lights across a commercial drop ceiling"
     }
+  },
+  "locationImages": {
+    "source": "The owner's photo library (migration/brand-photos/library.json): each city its own hero under the open sky and its own photo beside \"{City} at a glance\", all ten different (no two of the heroes are frames of one burst; three pairs come from the same afternoon, kept on cities far apart in the menu). Photos are of the crew and their trucks; none claims to be from that city (where each was taken is not known), so the alt text is the photo's own. A hero's crop puts every head in the bottom quarter, below the words; a glance photo's hotspot is the centre of its heads, so the 4:5 frame keeps them.",
+    "cities": [
+      {
+        "location": "gilbert",
+        "heroImage": {
+          "photo": "library/wire-guy-team-branded-van-truck-sky.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0.1054,
+            "bottom": 0.2308,
+            "right": 0.1254
+          }
+        },
+        "mainImage": {
+          "photo": "library/electrician-leaning-wire-guy-van-ladders.jpg",
+          "hotspot": {
+            "x": 0.545,
+            "y": 0.45
+          }
+        }
+      },
+      {
+        "location": "chandler",
+        "heroImage": {
+          "photo": "library/electrician-walking-to-branded-pickup.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0.1195,
+            "bottom": 0.2839,
+            "right": 0.1645
+          }
+        },
+        "mainImage": {
+          "photo": "library/smiling-electrician-portrait-desert.jpg",
+          "hotspot": {
+            "x": 0.62,
+            "y": 0.445
+          }
+        }
+      },
+      {
+        "location": "ahwatukee",
+        "heroImage": {
+          "photo": "library/four-technicians-standing-between-work-trucks.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0.1923,
+            "bottom": 0.3147,
+            "right": 0.1223
+          }
+        },
+        "mainImage": {
+          "photo": "library/electrician-thumbs-up-new-service-mast.jpg",
+          "hotspot": {
+            "x": 0.38,
+            "y": 0.545
+          }
+        }
+      },
+      {
+        "location": "tempe",
+        "heroImage": {
+          "photo": "library/electrician-leaning-on-branded-pickup.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0,
+            "bottom": 0.1608,
+            "right": 0.1608
+          }
+        },
+        "mainImage": {
+          "photo": "library/smiling-electrician-cap-portrait.jpg",
+          "hotspot": {
+            "x": 0.475,
+            "y": 0.455
+          }
+        }
+      },
+      {
+        "location": "phoenix",
+        "heroImage": {
+          "photo": "library/crew-and-fleet-lineup-desert-mountains.jpg"
+        },
+        "mainImage": {
+          "photo": "library/electrician-back-wire-guy-shirt-ladder.jpg",
+          "hotspot": {
+            "x": 0.58,
+            "y": 0.415
+          }
+        }
+      },
+      {
+        "location": "scottsdale",
+        "heroImage": {
+          "photo": "library/technician-leaning-on-branded-pickup-desert.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0,
+            "bottom": 0.2867,
+            "right": 0.2867
+          }
+        },
+        "mainImage": {
+          "photo": "library/grinning-technician-portrait-branded-cap.jpg",
+          "hotspot": {
+            "x": 0.455,
+            "y": 0.535
+          }
+        }
+      },
+      {
+        "location": "fountain-hills",
+        "heroImage": {
+          "photo": "library/wire-guy-team-six-vans-evening-sky.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0.0814,
+            "bottom": 0.2028,
+            "right": 0.1214
+          }
+        },
+        "mainImage": {
+          "photo": "library/smiling-technician-casual-portrait-indoors.jpg",
+          "hotspot": {
+            "x": 0.32,
+            "y": 0.34
+          }
+        }
+      },
+      {
+        "location": "apache-junction",
+        "heroImage": {
+          "photo": "library/branded-pickup-empty-lot-desert-mountains.jpg"
+        },
+        "mainImage": {
+          "photo": "library/electrician-pulling-wire-disconnect-switch.jpg",
+          "hotspot": {
+            "x": 0.595,
+            "y": 0.475
+          }
+        }
+      },
+      {
+        "location": "queen-creek",
+        "heroImage": {
+          "photo": "library/electrician-standing-branded-pickup-desert.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0.1553,
+            "bottom": 0.3706,
+            "right": 0.2153
+          }
+        },
+        "mainImage": {
+          "photo": "library/mustached-electrician-smiling-portrait.jpg",
+          "hotspot": {
+            "x": 0.52,
+            "y": 0.505
+          }
+        }
+      },
+      {
+        "location": "san-tan-valley",
+        "heroImage": {
+          "photo": "library/wire-guy-fleet-four-techs-dusk.jpg",
+          "crop": {
+            "top": 0,
+            "left": 0.0168,
+            "bottom": 0.0168,
+            "right": 0.0
+          }
+        },
+        "mainImage": {
+          "photo": "library/electrician-hanging-crystal-chandeliers-grand-room.jpg",
+          "hotspot": {
+            "x": 0.415,
+            "y": 0.505
+          }
+        }
+      }
+    ]
+  },
+  "teamPhotos": {
+    "source": "The originals (2,560 px; Lauren's 1,727 px) of the six 1,280 px team portraits, from the owner's Drive (Team-*.jpg): the same photos at full size (matched feature for feature, same framing), so each portrait keeps its alt and its head box.",
+    "members": [
+      {
+        "member": "steven-taylor",
+        "photo": "library/wire-guy-electrician-team-portrait-block-wall.jpg"
+      },
+      {
+        "member": "cody-taylor",
+        "photo": "library/wire-guy-electrician-headshot-block-wall.jpg"
+      },
+      {
+        "member": "cade-reynolds",
+        "photo": "library/wire-guy-electrician-mustache-portrait.jpg"
+      },
+      {
+        "member": "wade-adams",
+        "photo": "library/wire-guy-electrician-smiling-portrait.jpg"
+      },
+      {
+        "member": "emma-woolington",
+        "photo": "library/wire-guy-team-member-portrait-block-wall.jpg"
+      },
+      {
+        "member": "lauren-taylor",
+        "photo": "library/wire-guy-team-member-smiling-portrait.jpg"
+      }
+    ]
   },
   "postAlts": {
     "source": "Alt text for a post's own main image when it is one of the crew's photos and has none: the post page shows it as its cover (its main image, the article's image and its share image), so it keeps a description of the photo (schema-technical ST-15), never the post's title. Worded as web/src/lib/brand-photos.ts records the photo.",
@@ -258,6 +558,12 @@
   "bodyRemovals": {
     "source": "Body blocks that no longer belong on the page. Each names one block by its exact text (a list item) or its image URL (a figure); it must match exactly one block in that document, or the migration stops.",
     "removals": [
+      {
+        "type": "service",
+        "slug": "hanging-lights",
+        "image": "https://cdn.prod.website-files.com/66980076a856729471b47cf8/66ec54e19fc5fd4cd4215c36_Black%20Pendant%20Lamps%20Photo.jpg",
+        "why": "Rows of Edison bulbs in a restaurant: most likely a stock photo, not the company's work (photo library pass, 2026-10-18; the owner is asked to confirm). The page now shows the crew's own pendant and chandelier work in its hero, its second photo and Recent work."
+      },
       {
         "type": "service",
         "slug": "panels",

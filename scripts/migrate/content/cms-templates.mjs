@@ -4,7 +4,11 @@
 //   featuredPosts   post.featured on the most-read guides (Search Console), so guide
 //                   lists on city and service pages lead with them
 //   serviceImages   a service's main image replaced by the crew's own photo of that work
-//                   where the export had a stock photo (the asset must be in the dataset)
+//                   where the export had a stock photo: an `asset` already in the dataset, or a
+//                   `photo` from the owner's library (migration/brand-photos/library.json, by file)
+//   locationImages  each city's hero photo (heroImage, with its crop) and the photo beside
+//                   "{City} at a glance" (mainImage, with its hotspot), from the library
+//   teamPhotos      a team member's portrait replaced by its full-size original, from the library
 //   serviceAlts     alt text for the services' own photos (all were empty)
 //   postAlts        alt text for a post's own main image when it is a crew photo shown as the
 //                   post's cover (it had none)
@@ -50,6 +54,7 @@
 import contentEdits from './content-edits.mjs'
 
 const DATA = 'migration/content-data/cms-templates.json'
+const ASSETS = 'migration/brand-photos/assets.json'
 const PRICE = /\$\s?\d/
 
 const blockText = (blocks = []) =>
@@ -72,12 +77,50 @@ export default async function cmsTemplates(ctx, stage) {
 
   for (const slug of data.featuredPosts.slugs) bySlug('post', slug).featured = true
 
+  // A photo from the owner's library, by its file: its asset document joins the dataset (once), so the reference
+  // resolves locally and the import replaces the asset with identical content.
+  const {library = []} = await readJson(ASSETS)
+  const libraryAsset = (file, what) => {
+    const entry = library.find((a) => a.file === file) ?? fail(`${what}: no library photo "${file}" in ${ASSETS} (run upload.mjs)`)
+    if (!docs.some((d) => d._id === entry.assetId)) ctx.push(entry.document)
+    return entry
+  }
+  const libraryImage = (file, what, extra = {}) => {
+    const entry = libraryAsset(file, what)
+    return {_type: 'image', asset: {_type: 'reference', _ref: entry.assetId}, alt: entry.alt, ...extra}
+  }
+
   const replaced = new Set()
-  for (const {service, asset, alt} of data.serviceImages) {
-    if (!docs.some((d) => d._type === 'sanity.imageAsset' && d._id === asset)) fail(`${service}: image asset ${asset} is not in the dataset`)
+  for (const {service, asset, photo, alt, hotspot} of data.serviceImages) {
+    const ref = photo ? libraryAsset(photo, service).assetId : asset
+    if (!docs.some((d) => d._type === 'sanity.imageAsset' && d._id === ref)) fail(`${service}: image asset ${ref} is not in the dataset`)
     if (!alt?.trim()) fail(`${service}: the replacement image needs alt text`)
-    bySlug('service', service).mainImage = {_type: 'image', asset: {_type: 'reference', _ref: asset}, alt}
+    // a photo of the crew carries its hotspot (the centre of their heads), so a card's crop keeps every head
+    bySlug('service', service).mainImage = {
+      _type: 'image',
+      asset: {_type: 'reference', _ref: ref},
+      alt,
+      ...(hotspot ? {hotspot: {_type: 'sanity.imageHotspot', width: 1, height: 1, ...hotspot}} : {}),
+    }
     replaced.add(service)
+  }
+
+  const heroes = new Set()
+  const glances = new Set()
+  for (const {location, heroImage, mainImage} of data.locationImages.cities) {
+    const doc = bySlug('location', location)
+    if (heroes.has(heroImage.photo) || glances.has(mainImage.photo)) fail(`locationImages ${location}: every city needs its own photos`)
+    heroes.add(heroImage.photo)
+    glances.add(mainImage.photo)
+    doc.heroImage = libraryImage(heroImage.photo, location, heroImage.crop ? {crop: {_type: 'sanity.imageCrop', ...heroImage.crop}} : {})
+    doc.mainImage = libraryImage(mainImage.photo, location, mainImage.hotspot ? {hotspot: {_type: 'sanity.imageHotspot', width: 1, height: 1, ...mainImage.hotspot}} : {})
+  }
+
+  for (const {member, photo} of data.teamPhotos.members) {
+    const doc = bySlug('teamMember', member)
+    if (!doc.photo) fail(`teamPhotos ${member}: has no portrait to replace`)
+    // the portrait keeps its own alt (it names the person); the file is the full-size original of the same photo
+    doc.photo = {_type: 'image', alt: doc.photo.alt, asset: {_type: 'reference', _ref: libraryAsset(photo, member).assetId}}
   }
 
   for (const [service, alt] of Object.entries(data.serviceAlts.alts)) {
@@ -217,6 +260,8 @@ export default async function cmsTemplates(ctx, stage) {
     source: DATA,
     featuredPosts: data.featuredPosts.slugs.length,
     serviceImages: data.serviceImages.map((s) => s.service),
+    locationImages: data.locationImages.cities.map((c) => c.location),
+    teamPhotos: data.teamPhotos.members.map((m) => m.member),
     serviceAlts: Object.keys(data.serviceAlts.alts),
     postAlts: Object.keys(data.postAlts.alts),
     atAGlance: Object.keys(data.atAGlance),

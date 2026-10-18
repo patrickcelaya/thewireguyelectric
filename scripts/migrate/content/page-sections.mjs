@@ -105,7 +105,7 @@ export default async function pageSections(ctx) {
   // Photos (asset documents are added to the NDJSON at the end)
 
   const assets = await readJson(ASSETS)
-  const assetEntries = [...assets.photos, ...assets.existing]
+  const assetEntries = [...assets.photos, ...assets.existing, ...(assets.library ?? [])]
   const usedAssets = new Map()
   const asset = (fileOrId) => {
     const entry = assetEntries.find((a) => a.file === fileOrId || a.assetId === fileOrId)
@@ -443,8 +443,9 @@ export default async function pageSections(ctx) {
         layout: 'featured',
         // The live three (EV Chargers, Recessed Lights, Troubleshooting: their own titles,
         // blurbs and photos) among five more, each on a real photo. The small tiles carry the
-        // last sentence of the service's own description; the commercial tile uses the photo
-        // of the business's own pendant work (its service record has a stock photo).
+        // last sentence of the service's own description; the commercial tile shows lights the crew
+        // mounted on a steel commercial building (the photo library; the Edison-bulb photo it had is
+        // most likely stock).
         services: [
           card('panels', {image: {...photo('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png'), ...focus(0.5, 0.34)}}),
           liveCard('ev-charger-installation', 0.6, 0.3),
@@ -460,7 +461,7 @@ export default async function pageSections(ctx) {
             image: imageOf('service', 'exterior-electrical', 'Lamp posts lighting a brick front walk lined with roses', focus(0.5, 0.56)),
           }),
           card('commercial-service', {
-            image: imageOf('service', 'hanging-lights', 'Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling', focus(0.5, 0.3)),
+            image: {...photo('library/gooseneck-barn-light-floodlight-metal-building.jpg'), ...focus(0.5, 0.4)},
           }),
         ],
         cta: link(c.texts(5, 'button').at(-1), c.items(5, 'button').at(-1).href),
@@ -730,7 +731,8 @@ export default async function pageSections(ctx) {
         text: c.text(0, 'p'),
         // shown whole (HeroInner): the crop takes off the photo's top-left corner, a sliver of a second person
         // under a dark band (about 32 px in from the left and 33 px down from the top of the 1280×853 original)
-        image: {...photo('tech-looking-at-van.avif'), crop: {_type: 'sanity.imageCrop', top: 0.04, left: 0.03, bottom: 0, right: 0}},
+        // the full-size original of tech-looking-at-van.avif (the photo library), same framing
+        image: {...photo('library/electrician-back-logo-shirt-company-van.jpg'), alt: assetEntries.find((a) => a.file === 'tech-looking-at-van.avif').alt, crop: {_type: 'sanity.imageCrop', top: 0.04, left: 0.03, bottom: 0, right: 0}},
         primaryCta: link(apply.text, '#apply-now'),
         showPhone: false,
         showTrustBar: false,
@@ -1002,7 +1004,7 @@ export default async function pageSections(ctx) {
         _key: 'hero',
         eyebrow: 'Commercial electrical · Phoenix valley',
         text: heroText,
-        image: photo('fleet-lineup.avif'),
+        image: photo('library/wire-guy-electric-fleet-desert-lineup.jpg'),
         // the site's standard label, so the estimate and call buttons sit side by side like every
         // other hero's ("commercial" stays in the eyebrow, the H1 and the lede)
         primaryCta: estimateCta(),
@@ -1022,14 +1024,11 @@ export default async function pageSections(ctx) {
         // Live "Panel Upgrades" card linked to commercial troubleshooting (and its photo
         // to EV chargers); its copy describes commercial panel and service upgrades, so it
         // links to that page (see _omissions.json → changes). Each card shows that work:
-        // the business's own pendants in a restaurant, and an electrician tracing wires at
-        // a ceiling opening (the homepage's troubleshooting photo).
+        // brass lantern pendants the crew hung over a kitchen island (the photo library), and an
+        // electrician tracing wires at a ceiling opening (the homepage's troubleshooting photo).
         services: serviceCards(slug, 1, [
           {service: 'electrical-upgrades', image: 'commercial-ti-cable-pull.png'},
-          {
-            service: 'hanging-lights',
-            image: imageFrom('service', 'hanging-lights', 'Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling', hotspot(0.5, 0.3)),
-          },
+          {service: 'hanging-lights', image: {...photo('library/brass-lantern-pendants-white-kitchen.jpg'), ...hotspot(0.5, 0.45)}},
           {service: 'commercial-electrical-troubleshooting', image: {...photo('troubleshooting-ceiling-wiring.avif'), ...hotspot(0.26, 0.3)}},
         ]),
         cta: link(viewAll.text, viewAll.href),
