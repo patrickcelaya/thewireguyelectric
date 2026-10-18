@@ -952,7 +952,9 @@
       "How much does it cost to install an EV charger at home?: \"give us a call\" → /estimate",
       "How long does it take to install recessed lighting?: \"contact us\" → /estimate",
       "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"National Fire Protection Association (NFPA)\" → https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home",
-      "How do I choose a good electrician in Phoenix?: \"Arizona Registrar of Contractors (ROC) website\" → https://roc.az.gov/"
+      "How do I choose a good electrician in Phoenix?: \"Arizona Registrar of Contractors (ROC) website\" → https://roc.az.gov/",
+      "dryer-outlet-for-ev: \"APS Marketplace\" → (link removed)",
+      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"Department of Energy\" → (link removed)"
     ],
     "postCategories": {
       "lighting": 6

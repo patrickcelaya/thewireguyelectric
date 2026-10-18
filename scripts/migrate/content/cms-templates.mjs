@@ -19,8 +19,9 @@
 //   bodyLinks       a post linked, by its own title, at the end of a service body's block
 //   linkFixes       links in a post, city body or FAQ answer that point to the wrong place:
 //                   estimate requests the "free estimate" phrase rule misses (sent to
-//                   /estimate) and a citation wrapped in a search URL; each must match
-//                   exactly one link by its text and target
+//                   /estimate) and a citation wrapped in a search URL; a citation whose
+//                   page is gone (`to` null) loses its link and keeps its words; each must
+//                   match exactly one link by its text and target
 //   postCategories  post.category for the blog topic pages
 //
 //   textFixes       typing slips in a post body ("afternoon?The"); each must occur exactly
@@ -144,10 +145,17 @@ export default async function cmsTemplates(ctx) {
     const hits = blocks.flatMap((b) =>
       (b.markDefs ?? [])
         .filter((m) => m._type === 'link' && m.href === from)
-        .filter((m) => (b.children ?? []).filter((c) => c.marks?.includes(m._key)).map((c) => c.text).join('') === text),
+        .filter((m) => (b.children ?? []).filter((c) => c.marks?.includes(m._key)).map((c) => c.text).join('') === text)
+        .map((m) => ({block: b, def: m})),
     )
     if (hits.length !== 1) fail(`linkFixes ${where}: "${text}" → ${from} matches ${hits.length} links, not 1`)
-    hits[0].href = to
+    const [{block, def}] = hits
+    if (to) def.href = to
+    else {
+      // a dead citation with no current page: the words stay, the link goes
+      block.markDefs = block.markDefs.filter((m) => m !== def)
+      for (const c of block.children ?? []) if (c.marks?.includes(def._key)) c.marks = c.marks.filter((m) => m !== def._key)
+    }
   }
 
   const categorized = new Map()
@@ -203,7 +211,7 @@ export default async function cmsTemplates(ctx) {
     quickAnswers: Object.keys(data.quickAnswers.answers),
     bodyEdits: edited,
     bodyLinks: data.bodyLinks.links.map((l) => `${l.service} → ${l.post}`),
-    linkFixes: data.linkFixes.fixes.map((f) => `${f.post ?? f.location ?? f.faq}: "${f.text}" → ${f.to}`),
+    linkFixes: data.linkFixes.fixes.map((f) => `${f.post ?? f.location ?? f.faq}: "${f.text}" → ${f.to ?? '(link removed)'}`),
     postCategories: Object.fromEntries(Object.entries(data.postCategories.byCategory).map(([c, posts]) => [c, posts.length])),
     textFixes: data.textFixes.fixes.map((f) => `${f.post}: ${f.replace}`),
     bodyRemovals: data.bodyRemovals.removals.map((r) => `${r.slug}: ${r.text ?? r.image}`),
