@@ -326,9 +326,11 @@ export function commercialServiceNode(path: string, s: SiteSettings, services: A
 /**
  * A city page's Service: electrical work in that city, by the office whose Google
  * Business Profile lands on the page (Scottsdale) or else the business, listing the
- * services the page shows as cards.
+ * services the page shows as cards. Its description is the page's meta description
+ * (`description`: seo.description, else the city's description), so the structured data
+ * says what the page's snippet says, not an older wording.
  */
-export function locationServiceNode(location: LocationDoc, s: SiteSettings, opts: {provider?: string; services?: ServiceSummary[]} = {}): Node {
+export function locationServiceNode(location: LocationDoc, s: SiteSettings, opts: {provider?: string; services?: ServiceSummary[]; description?: string} = {}): Node {
   const url = absoluteUrl(`/locations/${location.slug}`)
   const city = location.shortName || location.name
   return {
@@ -336,7 +338,7 @@ export function locationServiceNode(location: LocationDoc, s: SiteSettings, opts
     '@id': `${url}#service`,
     name: `Electrician in ${location.cityNameForSeo ?? location.name}`,
     serviceType: 'Electrician',
-    description: location.description,
+    description: opts.description ?? location.description,
     provider: {'@id': opts.provider ?? BUSINESS_ID},
     areaServed: cityRef(s, location.slug, city, location.geo),
     hasOfferCatalog: opts.services?.length

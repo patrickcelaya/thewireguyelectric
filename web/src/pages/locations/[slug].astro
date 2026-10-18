@@ -97,7 +97,7 @@ const serviceId = `${absoluteUrl(path)}#service`
     // the office whose Google Business Profile lands here (its entity is in every page's graph, see SiteLayout)
     {...webPageNode({path, title, description, breadcrumbs: crumbs}), ...(office && {about: {'@id': branchId(office)}}), mainEntity: {'@id': serviceId}},
     // provided by the office whose profile lands here, else the business; its catalog is the service cards shown
-    locationServiceNode(location, settings, {provider: office && branchId(office), services: featured}),
+    locationServiceNode(location, settings, {provider: office && branchId(office), services: featured, description}),
     faqNode(path, faqs),
   ]}
   bodyClass="inner"
