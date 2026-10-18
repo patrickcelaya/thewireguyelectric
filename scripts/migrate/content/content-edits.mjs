@@ -102,12 +102,14 @@ export default async function contentEdits(ctx, stage) {
   }
 }
 
-// Every field that feeds a title, H1, meta description or URL (the same guard as fixes.mjs).
+// Every field that feeds a title, H1, meta description or URL (the same guard as fixes.mjs). A service's short
+// description is its meta description only while seo.description is empty (lib/seo.ts resolveDescription);
+// otherwise it is card and hero text, which copy edits may change.
 const seoSnapshot = (docs) =>
   JSON.stringify(
     docs
       .filter((d) => ['location', 'service', 'post', 'page', 'serviceCategory', 'postCategory'].includes(d._type))
-      .map((d) => [d._id, d.slug?.current, d.heading, d.title, d.cityNameForSeo, d.description, d.shortDescription, d.excerpt, d.seo]),
+      .map((d) => [d._id, d.slug?.current, d.heading, d.title, d.cityNameForSeo, d.description, d.seo?.description?.trim() ? null : d.shortDescription, d.excerpt, d.seo]),
   )
 
 /** The node a field path names ("sections[3].services[1].text", "body[17]", "answer[0]") and its parent. */

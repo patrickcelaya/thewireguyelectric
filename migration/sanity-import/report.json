@@ -982,14 +982,14 @@
       "pages": 64,
       "cities": 58,
       "decisions": 17,
-      "services": 79,
+      "services": 95,
       "posts-a": 251,
       "posts-b": 179
     },
     "splits": [
       "D5-01"
     ],
-    "blocksDropped": 108,
+    "blocksDropped": 111,
     "skipped": [
       "slop-pages-022",
       "slop-services-065",

@@ -8,7 +8,7 @@ live site has them; these files hold what changes, edit by edit, so every change
 | File | Edits | What |
 |---|---|---|
 | `pages.json` | 78 | Homepage and the 8 page-builder pages, shared FAQ answers, team bios, Site settings copy, shared template lines |
-| `services.json` | 88 | The 21 service bodies, the service template, service image alts |
+| `services.json` | 104 | The 21 service bodies, the service template, service image alts; the hanging-lights de-slop (16) |
 | `cities.json` | 59 | The 10 city bodies and the city template |
 | `posts-a.json` | 251 | Blog posts 1–27 by slug |
 | `posts-b.json` | 179 | Blog posts 28–53 by slug |
@@ -17,6 +17,12 @@ live site has them; these files hold what changes, edit by edit, so every change
 The five slop files are the verified lists of the 2026-10-17 copy review: every edit was researched, then checked
 by an adversarial verifier. Only verdicts `accept` and `amend` are here (for `amend`, `new_text` is the verifier's
 text); no edit was rejected.
+
+The exception is `slop-services-hl-001` … `-016` (verdict `lead`): the published hanging-lights copy only started
+shipping after the review (D10), so it had no verified edits. They were written in the integration round from the
+review's own guide and hard rules: stock lines deleted or cut down to their facts, no new facts, every keyword
+heading and the call to action kept. The short description they change is card and hero text only: the page's meta
+description is its `seo.description`, so the applier's guard lets it change.
 
 ## An edit
 
@@ -102,10 +108,13 @@ end of every block, so their `old_text` ends at the full stop.
    "same-day service available" (surge-protection and breaker posts; also the breaker post's meta description).
 4. **Level 1 vs Level 2 post:** its 200 A panel upgrade price ($1,800–$2,500) disagrees with the site's panel
    figures ($5,200–$6,500). Left as is.
-5. **/services/hanging-lights** now shows the published 2024 copy, which is heavy stock copy ("perfect for
-   businesses looking to enhance their ambiance", "meticulous attention to detail", "bespoke … not only meet but
-   exceed expectations"). No verified edits exist for it. Either publish the 2026-08-18 rewrite held as a draft in
-   Webflow, or have this copy reviewed. Its new quick answer only restates the published copy.
+5. **/services/hanging-lights** shows the published 2024 copy with its stock lines taken out (`slop-services-hl-*`:
+   "perfect for businesses looking to enhance their ambiance", "meticulous attention to detail", "bespoke … not only
+   meet but exceed expectations" and the "Why Choose" list are gone; the fixtures, steps and call to action stay). Its
+   approved meta description was written from the unpublished draft ("hung on rated support with dimming that
+   works"), which this copy never mentions; proposed instead: "Commercial hanging lights in Mesa and the Phoenix
+   valley: pendants over dining areas, chandeliers in lobbies, track lighting in galleries. Free estimates." Approve
+   it, or publish the 2026-08-18 rewrite held as a draft in Webflow. The quick answer only restates the edited copy.
 6. **Homepage team intro** still names Emma with her photo and link (live copy).
 7. **"Over 9 years"** in the business FAQ goes stale in 2027.
 8. **Homepage "Our promise":** the section heading "Done right the first time." now repeats the second card's

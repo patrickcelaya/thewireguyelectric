@@ -1,6 +1,6 @@
 {
-  "about": "The 21 service bodies, plus the service template lines and the service image alts in cms-templates.json.",
-  "source": "slop-services/verified.json of the 2026-10-17 copy review: researched, then adversarially verified. Verdict accept, or amend (new_text is the amended text); no edit was rejected.",
+  "about": "The 21 service bodies, plus the service template lines and the service image alts in cms-templates.json; and the hanging-lights de-slop (slop-services-hl-NNN).",
+  "source": "slop-services/verified.json of the 2026-10-17 copy review: researched, then adversarially verified. Verdict accept, or amend (new_text is the amended text); no edit was rejected. slop-services-hl-001 … -016 (verdict \"lead\") were written in the integration round from the review's SLOP GUIDE and HARD RULES, at the lead's direction: hanging-lights ships its published copy (D10), which had no verified edits.",
   "edits": [
     {
       "id": "slop-services-001",
@@ -1444,6 +1444,271 @@
       "verdict": "accept",
       "reason": "\"Done well, ... Done poorly, ...\" antithesis: the \"Done well\" half is the same no-fact aphorism the researcher deleted on custom-lighting (\"you don't see the lights. You see what they light up\"); the concrete \"Done poorly\" sentence (hot spots, dark corners) stays. Plain span, no link.",
       "added_by_verifier": true
+    },
+    {
+      "id": "slop-services-hl-001",
+      "url": "/services/hanging-lights (hero lede; the card text on /services, /services-categories/commercial and the related-service cards)",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "shortDescription"
+      },
+      "old_text": "Hanging lights for commercial settings, perfect for businesses looking to enhance their ambiance and visual appeal.",
+      "new_text": "Pendant lights, chandeliers, and track lighting for commercial spaces. Help choosing fixtures, secure mounting, and minimal disruption to your business.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "stock benefit line (\"perfect for businesses looking to enhance their ambiance and visual appeal\"); now the fixtures and steps the body names, in the two-fragment style of the other service cards. Not the meta description: seo.description is set (titles track), so the page's title, meta and H1 stay as they are.",
+      "note": "Written in the integration round from the SLOP GUIDE and HARD RULES of the copy review, at the lead's direction (INTEGRATE_BRIEF, hanging-lights de-slop): the published copy ships under D10 and had no verified edits."
+    },
+    {
+      "id": "slop-services-hl-002",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[1]",
+        "block_key": "k002",
+        "block_style": "normal"
+      },
+      "old_text": "The Wire Guy Electric offers specialized services in hanging lights for commercial settings, perfect for businesses looking to enhance their ambiance and visual appeal. Whether you’re looking to install statement lighting in a reception area or need functional, stylish fixtures for a retail space, our experienced electricians ensure precision and aesthetic alignment in every project.",
+      "new_text": "The Wire Guy Electric installs hanging lights in commercial spaces, from statement lighting in a reception area to functional fixtures for a retail space.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"offers specialized services in\", \"perfect for businesses looking to enhance their ambiance and visual appeal\", a \"Whether you're looking to X or need Y\" opener and \"ensure precision and aesthetic alignment\"; the two examples (reception area, retail space) and the keywords stay, the business name keeps its italic"
+    },
+    {
+      "id": "slop-services-hl-003",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[3]",
+        "block_key": "k006",
+        "block_style": "h3"
+      },
+      "old_text": "Professional ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Professional\" filler in a heading; the keyword \"Hanging Light Installation Services\" stays, bold kept"
+    },
+    {
+      "id": "slop-services-hl-004",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[4]",
+        "block_key": "k008",
+        "block_style": "normal"
+      },
+      "old_text": "Work with our lighting experts to choose the best fixtures and layouts that complement your commercial decor and lighting needs.",
+      "new_text": "We help you choose fixtures and a layout that suit your space and the light you need.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"our lighting experts\", \"the best\", \"complement your commercial decor\"; the fact (help choosing fixtures and layout for the space and its lighting needs) stays; the bold label is untouched"
+    },
+    {
+      "id": "slop-services-hl-005",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[5]",
+        "block_key": "k00b",
+        "block_style": "normal"
+      },
+      "old_text": "Our team installs hanging lights with meticulous attention to detail, ensuring each fixture is securely mounted and optimally positioned for both illumination and design impact.",
+      "new_text": "We mount each fixture securely and position it for both the light it gives and how it looks.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"meticulous attention to detail\", \"ensuring\", \"optimally positioned for both illumination and design impact\"; the facts (secure mounting, placed for light and looks) stay; the bold label is untouched"
+    },
+    {
+      "id": "slop-services-hl-006",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[6]",
+        "block_key": "k00e",
+        "block_style": "normal"
+      },
+      "old_text": "Versatile Lighting Solutions: From pendant lights in dining areas to elaborate chandeliers in hotel lobbies or practical, stylish track lighting in art galleries, we handle a variety of hanging light installations.",
+      "new_text": "Fixture Types: We install pendant lights in dining areas, chandeliers in hotel lobbies and track lighting in art galleries.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Versatile Lighting Solutions\" label, \"elaborate\", \"practical, stylish\", \"we handle a variety of\"; the three fixture-and-place examples stay word for word",
+      "format": {
+        "strong": [
+          "Fixture Types"
+        ]
+      }
+    },
+    {
+      "id": "slop-services-hl-007",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[7]",
+        "block_key": "k00h",
+        "block_style": "h3"
+      },
+      "old_text": "Why Choose The Wire Guy Electric for Your Hanging Light Needs?",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "stock \"Why Choose Us\" heading; with the two no-fact items under it gone, its one remaining item (quality materials, safety standards) joins the installation list above"
+    },
+    {
+      "id": "slop-services-hl-008",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[8]",
+        "block_key": "k00j",
+        "block_style": "normal"
+      },
+      "old_text": "Enhanced Aesthetics: Elevate the look of your business with expertly installed hanging lights that reflect your brand’s style and enhance your space’s functionality.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Elevate\", \"expertly installed\", \"enhance your space's functionality\": a benefit line with no fact; deleted"
+    },
+    {
+      "id": "slop-services-hl-009",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[9]",
+        "block_key": "k00m",
+        "block_style": "normal"
+      },
+      "old_text": "Reliability and Safety: We prioritize safety and durability in every installation, using only high-quality materials and adhering to strict safety standards.",
+      "new_text": "Quality Materials: We use high-quality materials and follow strict safety standards on every installation.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"We prioritize safety and durability\", \"using only\", \"adhering to\"; the facts (high-quality materials, strict safety standards) stay; the label is renamed because \"Safe and Secure Installation\" now sits in the same list",
+      "format": {
+        "strong": [
+          "Quality Materials"
+        ]
+      }
+    },
+    {
+      "id": "slop-services-hl-010",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[10]",
+        "block_key": "k00p",
+        "block_style": "normal"
+      },
+      "old_text": "Customized Solutions: Every business is unique, and we tailor our lighting solutions to meet your specific aesthetic and functional requirements.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Customized Solutions\", \"Every business is unique\", \"tailor our lighting solutions\": its one fact (lighting planned for the space's looks and use) is the Design Consultation item's; deleted"
+    },
+    {
+      "id": "slop-services-hl-011",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[11]",
+        "block_key": "k00s",
+        "block_style": "h3"
+      },
+      "old_text": "Dedicated Commercial Lighting Expertise",
+      "new_text": "Commercial Lighting Service and Support",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Dedicated … Expertise\" heading; now names what the list under it covers (scheduling, efficient options, maintenance and support), keeping \"Commercial Lighting\"; bold kept"
+    },
+    {
+      "id": "slop-services-hl-012",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[12]",
+        "block_key": "k00u",
+        "block_style": "normal"
+      },
+      "old_text": "We schedule and execute installations with minimal disruption, allowing you to continue business as usual.",
+      "new_text": "We schedule the work so you can keep your business running.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"execute installations\", \"allowing you to continue business as usual\"; the fact (scheduled around the business) stays; the bold label \"Minimal Disruption to Business Operations\" is untouched"
+    },
+    {
+      "id": "slop-services-hl-013",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[13]",
+        "block_key": "k00x",
+        "block_style": "normal"
+      },
+      "old_text": "We offer a range of energy-efficient lighting options that reduce energy costs while providing beautiful, effective lighting.",
+      "new_text": "We offer energy-efficient lighting options that lower your energy costs.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"a range of\", \"while providing beautiful, effective lighting\"; the fact (energy-efficient options, lower energy costs) stays"
+    },
+    {
+      "id": "slop-services-hl-014",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[14]",
+        "block_key": "k010",
+        "block_style": "normal"
+      },
+      "old_text": "Post-installation, we provide ongoing support and maintenance services to ensure your lighting continues to function beautifully and efficiently.",
+      "new_text": "After the install, we provide ongoing support and maintenance for your lighting.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"to ensure your lighting continues to function beautifully and efficiently\"; the fact (ongoing support and maintenance after the install) stays"
+    },
+    {
+      "id": "slop-services-hl-015",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[15]",
+        "block_key": "k013",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Plan Your Hanging Lights",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job, like \"Plan Your Custom Lighting\" (slop-services) and the verified draft heading (slop-services-067); bold kept"
+    },
+    {
+      "id": "slop-services-hl-016",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[16]",
+        "block_key": "k015",
+        "block_style": "normal"
+      },
+      "old_text": "Light up your business with bespoke hanging light solutions from The Wire Guy Electric. Our commitment to quality, safety, and aesthetic excellence ensures your lighting installations will not only meet but exceed expectations. Contact us today to begin your consultation and transform your space with stunning hanging lights.",
+      "new_text": "Contact The Wire Guy Electric to begin your consultation.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Light up your business\", \"bespoke … solutions\", \"commitment to quality, safety, and aesthetic excellence\", \"not only meet but exceed expectations\", \"transform your space with stunning\"; the call to action stays (no link: the live copy has none) and the business name keeps its italic"
     }
   ]
 }
