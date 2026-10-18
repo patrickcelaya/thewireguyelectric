@@ -10,8 +10,11 @@
 //                   "{City} at a glance" (mainImage, with its hotspot), from the library
 //   teamPhotos      a team member's portrait replaced by its full-size original, from the library
 //   serviceAlts     alt text for the services' own photos (all were empty)
-//   postAlts        alt text for a post's own main image when it is a crew photo shown as the
-//                   post's cover (it had none)
+//   postImages      the owner's decision on each post's own main image: `shown` sets
+//                   post.showMainImage and the image's alt (and a hotspot where a crop must keep
+//                   heads in frame), `notShown` says why a post keeps a company photo; every post
+//                   is in exactly one list, a shown image is at least 1,200 px wide, and a stock
+//                   photo's alt never implies the people in it are the crew
 //   atAGlance       service.atAGlance facts (with an optional supporting line); each one
 //                   quotes its evidence, which must be word for word in the service body
 //                   or the named /faq answer
@@ -131,11 +134,31 @@ export default async function cmsTemplates(ctx, stage) {
     doc.mainImage = {...doc.mainImage, alt}
   }
 
-  for (const [post, alt] of Object.entries(data.postAlts.alts)) {
+  const decided = new Map()
+  for (const [list, entries] of [['shown', data.postImages.shown], ['notShown', data.postImages.notShown]]) {
+    for (const e of entries) {
+      bySlug('post', e.post)
+      if (decided.has(e.post)) fail(`postImages ${e.post}: in ${decided.get(e.post)} and ${list}; decide once`)
+      decided.set(e.post, list)
+      if (list === 'notShown' && !e.why?.trim()) fail(`postImages ${e.post}: say why it is not shown`)
+    }
+  }
+  const undecided = docs.filter((d) => d._type === 'post' && !decided.has(d.slug?.current)).map((d) => d.slug?.current)
+  if (undecided.length) fail(`postImages: no decision for ${undecided.join(', ')}`)
+  // the main images are still named by their Webflow URL here: the asset the import made from that file has its size
+  const legacy = await readJson('web/src/data/legacy-images.json')
+  for (const {post, kind, alt, hotspot} of data.postImages.shown) {
     const doc = bySlug('post', post)
-    if (!doc.mainImage) fail(`postAlts ${post}: has no main image to describe`)
-    if (doc.mainImage.alt) fail(`postAlts ${post}: the main image already has alt text "${doc.mainImage.alt}"`)
-    doc.mainImage = {...doc.mainImage, alt}
+    const ref = doc.mainImage?.asset?._ref ?? legacy[doc.mainImage?._sanityAsset?.replace(/^image@/, '') ?? '']?.asset
+    if (!ref) fail(`postImages ${post}: has no main image to show`)
+    const width = Number(ref.match(/-(\d+)x\d+-[a-z0-9]+$/)?.[1])
+    if (!(width >= 1200)) fail(`postImages ${post}: the main image is ${width || '?'} px wide; a shown image is at least 1,200 px`)
+    if (kind !== 'stock' && kind !== 'company') fail(`postImages ${post}: kind is "stock" or "company"`)
+    if (!alt?.trim()) fail(`postImages ${post}: describe what the image shows`)
+    // a stock photo's people are models, never the crew: its alt names no business, crew or trade
+    if (kind === 'stock' && /\b(wire guy|our|we|us|crew|team|technicians?|electricians?|installers?)\b/i.test(alt)) fail(`postImages ${post}: a stock photo's alt may not imply the people in it work for us ("${alt}")`)
+    doc.showMainImage = true
+    doc.mainImage = {...doc.mainImage, alt, ...(hotspot ? {hotspot: {_type: 'sanity.imageHotspot', width: 1, height: 1, ...hotspot}} : {})}
   }
 
   // Price edits first, then the copy edits for service bodies (content-edits.mjs), so glance facts and quick
@@ -263,7 +286,7 @@ export default async function cmsTemplates(ctx, stage) {
     locationImages: data.locationImages.cities.map((c) => c.location),
     teamPhotos: data.teamPhotos.members.map((m) => m.member),
     serviceAlts: Object.keys(data.serviceAlts.alts),
-    postAlts: Object.keys(data.postAlts.alts),
+    postImages: {shown: data.postImages.shown.map((e) => e.post), notShown: data.postImages.notShown.map((e) => e.post)},
     atAGlance: Object.keys(data.atAGlance),
     quickAnswers: Object.keys(data.quickAnswers.answers),
     bodyEdits: edited,

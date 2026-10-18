@@ -350,18 +350,334 @@
       }
     ]
   },
-  "postAlts": {
-    "source": "Alt text for a post's own main image when it is one of the crew's photos and has none: the post page shows it as its cover (its main image, the article's image and its share image), so it keeps a description of the photo (schema-technical ST-15), never the post's title. Worded as web/src/lib/brand-photos.ts records the photo.",
-    "alts": {
-      "installing-car-charger": "A Tesla Wall Connector installed on a garage wall"
-    }
+  "postImages": {
+    "source": "Owner decision (2026-10-18): each post's own image from Webflow (already its Sanity mainImage) comes back on the blog pages only when it is a real photo, stock or the crew's, at least 1,200 px wide, and not AI-made, not text or drawn-on effects, not of unknown source and not misleading (seo-audit PLAN section 8, \"If yes\"; each image looked at). `shown` sets post.showMainImage and the image's alt (what is visible; a stock photo's alt never implies the people in it work for us). `notShown` says why the others keep a company photo. Every post is in exactly one list. Service and city pages never show these images.",
+    "shown": [
+      {
+        "post": "pool-pump-electrical-requirements-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "Steel ladder rails leading into a blue-tiled swimming pool, with a drain grate along its edge"
+      },
+      {
+        "post": "casita-adu-electrical-requirements-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A small brick guest house with a tiled roof among pine trees and a green lawn"
+      },
+      {
+        "post": "swamp-cooler-to-ac-conversion-electrical-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "An evaporative cooler with its panel off, showing the large fan and motor inside"
+      },
+      {
+        "post": "ac-disconnect-box-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "An outdoor air conditioning unit and a charging post beside the front door of a dark-sided home"
+      },
+      {
+        "post": "smart-thermostat-c-wire-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A white smart thermostat with a lit display on a warm plaster wall"
+      },
+      {
+        "post": "mini-split-electrical-requirements-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A wall-mounted ductless mini-split above an empty room with wood shelves and pendant lights"
+      },
+      {
+        "post": "federal-pacific-zinsco-panels-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "An open breaker box with its cover off and a tangle of wires, set into a white wall"
+      },
+      {
+        "post": "why-is-my-electric-bill-so-high-phoenix-summer",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A hand pressing the dial of a black smart thermostat beside a second digital thermostat"
+      },
+      {
+        "post": "half-house-lost-power-heat-arizona",
+        "kind": "stock",
+        "source": "Unsplash",
+        "alt": "An orange sun setting behind desert mountains under streaks of cloud"
+      },
+      {
+        "post": "ac-keeps-tripping-breaker-arizona",
+        "kind": "stock",
+        "source": "Unsplash",
+        "alt": "An outdoor air conditioning condenser in the rain, with green trees behind it"
+      },
+      {
+        "post": "ev-charger-hardwired-vs-plug-in-phoenix",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A charging cable plugged into the port of a white electric car parked by desert grasses"
+      },
+      {
+        "post": "aluminum-wiring-older-phoenix-homes",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "Old wires sticking out of open electrical boxes in a white wall"
+      },
+      {
+        "post": "whole-home-standby-generator-installation-phoenix",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A two-story house with a three-car garage and lit porch lights at sunset"
+      },
+      {
+        "post": "hot-tub-electrical-installation-cost-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "An indoor hot tub on a raised wooden deck beside tall curtained windows"
+      },
+      {
+        "post": "landscape-lighting-installation-cost-phoenix",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A lit lantern-style lamp post at dusk, with a roofline glowing behind it"
+      },
+      {
+        "post": "cost-to-rewire-house-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A bundle of loose wires pulled out of an open box in a green and white wall"
+      },
+      {
+        "post": "ceiling-fan-installation-cost-arizona",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A five-blade ceiling fan under a coffered ceiling, above a tall arched window"
+      },
+      {
+        "post": "whole-house-surge-protector-guide-arizona",
+        "kind": "stock",
+        "source": "stock photo (seo-audit blog image table)",
+        "alt": "Lightning striking over the lights of a city at night"
+      },
+      {
+        "post": "recessed-lighting-installation-phoenix",
+        "kind": "stock",
+        "source": "stock photo (seo-audit blog image table)",
+        "alt": "An empty modern room with recessed ceiling lights, a glowing ceiling cove and a glass door"
+      },
+      {
+        "post": "electrical-panel-upgrade-cost-arizona",
+        "kind": "stock",
+        "source": "stock photo (seo-audit blog image table)",
+        "alt": "Gloved hands testing the wiring of a control panel with a yellow digital multimeter"
+      },
+      {
+        "post": "why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "Red rock buttes dusted with snow under heavy gray clouds"
+      },
+      {
+        "post": "can-hot-weather-cause-your-circuit-breaker-to-trip",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "The sun blazing over desert sand dunes in an orange sky"
+      },
+      {
+        "post": "is-whole-house-surge-protection-necessary",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A long bolt of lightning branching across a purple night sky"
+      },
+      {
+        "post": "electrical-inspection-before-selling-a-home",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A person in a sweater holding a red and white SOLD sign and a ring of house keys"
+      },
+      {
+        "post": "permit-for-electrical-work",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A hand holding a screwdriver to a breaker in an open distribution board full of blue, yellow and black wires"
+      },
+      {
+        "post": "why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A bare filament bulb glowing on a black cord against a dark wall"
+      },
+      {
+        "post": "how-phoenix-heat-affects-your-homes-electrical-system",
+        "kind": "stock",
+        "source": "Pexels",
+        "alt": "A blazing sun above glowing orange clouds"
+      },
+      {
+        "post": "why-does-my-breaker-keep-tripping-in-the-summer",
+        "kind": "stock",
+        "source": "Webflow free-image library (its stock file name)",
+        "alt": "A large industrial circuit breaker in an open electrical enclosure, with metal conduit beside it"
+      },
+      {
+        "post": "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+        "kind": "stock",
+        "source": "Webflow free-image library (its stock file name)",
+        "alt": "Rows of breakers and colored wires inside an open electrical control panel"
+      },
+      {
+        "post": "why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+        "kind": "stock",
+        "source": "Webflow free-image library (its stock file name)",
+        "alt": "A single glowing filament bulb against a dark blue-gray wall"
+      },
+      {
+        "post": "summer-electrical-tips",
+        "kind": "stock",
+        "source": "Webflow free-image library (its stock file name)",
+        "alt": "A new breaker panel, wired and labeled, standing on a workbench beside coils of armored cable",
+        "why": "A real photo of a prewired panel on a workbench, with a stock file name (\"Audio Mixer Photo\"); the audit thought it might be the crew's own. Its alt says only what is visible; if the owner confirms it is our work, add it to the job photos."
+      },
+      {
+        "post": "common-electrical-issues-in-scottsdale-homes",
+        "kind": "stock",
+        "source": "Webflow free-image library (its stock file name)",
+        "alt": "A modern white house with a swimming pool, patio furniture and palm trees"
+      },
+      {
+        "post": "electrical-safety-tips",
+        "kind": "stock",
+        "source": "stock photo (seo-audit blog image table)",
+        "alt": "White plug adapters stacked into a little robot with a smiley face drawn on it"
+      },
+      {
+        "post": "7-signs-you-need-an-electrical-panel-upgrade",
+        "kind": "company",
+        "alt": "Four Wire Guy Electric electricians in company T-shirts giving a thumbs-up beside a new meter and panel on a block wall",
+        "hotspot": {
+          "x": 0.45,
+          "y": 0.3
+        },
+        "why": "The crew's own photo (its four head boxes are in web/src/lib/brand-photos.ts PHOTO_FACES, checked by eye). The bucket hat at the left touches the top of the photo itself, so the hotspot sits high (y 0.3): every crop of it (the 1.6:1 cards, the 1200x630 share image) keeps the top edge, and the cover frames it with facesInView."
+      },
+      {
+        "post": "installing-car-charger",
+        "kind": "company",
+        "alt": "A Tesla Wall Connector installed on a garage wall",
+        "hotspot": {
+          "x": 0.5,
+          "y": 0.3
+        },
+        "why": "The crew's own job photo (JOB_PHOTOS in web/src/lib/brand-photos.ts); its alt is worded as brand-photos.ts records the photo (was postAlts). A portrait: the hotspot (as brand-photos.ts frames it) keeps the connector, not the bare wall under it, in the cards' and thumbnails' crops."
+      }
+    ],
+    "notShown": [
+      {
+        "post": "kitchen-remodel-electrical-circuits-arizona",
+        "why": "A screenshot of a photo whose source is unknown, and 1,146 px wide."
+      },
+      {
+        "post": "electrical-panel-hot-to-the-touch-arizona",
+        "why": "Misleading: a stock model at a panel under \"AUTHORIZED INSTALLER\" would pass for our electrician."
+      },
+      {
+        "post": "cutting-corners-panel-upgrades-phoenix",
+        "why": "AI-generated composite (bad panel vs good panel)."
+      },
+      {
+        "post": "tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+        "why": "A composite of product shots whose source is unknown."
+      },
+      {
+        "post": "why-your-lights-flicker",
+        "why": "AI-generated (ChatGPT), with sparks drawn coming out of lamps."
+      },
+      {
+        "post": "breaker-trips-ac",
+        "why": "AI-generated (ChatGPT), with arcing drawn on a panel and AC unit."
+      },
+      {
+        "post": "emfs-in-your-phoenix-home",
+        "why": "AI-generated (ChatGPT)."
+      },
+      {
+        "post": "how-to-wire-a-gfci-outlet",
+        "why": "AI-generated look."
+      },
+      {
+        "post": "why-does-my-breaker-keep-tripping",
+        "why": "AI-generated, and 1,024 px wide."
+      },
+      {
+        "post": "bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+        "why": "AI-generated look, and 1,024 px wide."
+      },
+      {
+        "post": "generator-interlock-in-arizona",
+        "why": "AI-generated with label text drawn in, and 1,024 px wide."
+      },
+      {
+        "post": "dryer-outlet-for-ev",
+        "why": "AI-generated look, and 1,024 px wide."
+      },
+      {
+        "post": "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+        "why": "AI-generated look."
+      },
+      {
+        "post": "phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+        "why": "AI-generated look."
+      },
+      {
+        "post": "phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+        "why": "AI-generated look (a painted-looking haboob, a 1,536 px PNG like the ChatGPT images)."
+      },
+      {
+        "post": "diy-electrical-work-in-arizona",
+        "why": "Misleading: a stock model's face, working at an electrical panel, would pass for our electrician on a post bylined by the business."
+      },
+      {
+        "post": "outdated-wiring-in-older-phoenix-homes",
+        "why": "AI-generated (a man in a hard hat), and 1,024 px wide."
+      },
+      {
+        "post": "level-1-vs-level-2-ev-chargers-which-to-choose",
+        "why": "AI-generated with \"Level 1\" and \"Level 2\" text in the image."
+      }
+    ]
   },
   "atAGlance": {
     "panels": [
-      {"label": "Most common job", "value": "200-amp like-for-like replacement", "detail": "Same service size, fresh equipment, all new breakers.", "source": "body", "evidence": "200-amp like-for-like replacement. The job we do most often. Old 200-amp panel comes out, new Square D, Siemens, or Eaton panel goes in. Same service size, fresh equipment, all new breakers."},
-      {"label": "Panels we install", "value": "Square D, Siemens, or Eaton", "detail": "Rated for today’s loads.", "source": "body", "evidence": "We replace with new Square D, Siemens, or Eaton panels rated for today's loads."},
-      {"label": "Utility", "value": "APS or SRP, coordinated for you", "detail": "We schedule the meter pull around your work window.", "source": "body", "evidence": "We coordinate that for you. We submit the service request to APS or SRP, schedule the meter pull around your work window"},
-      {"label": "Permits", "value": "We pull the permit", "detail": "We schedule the inspection and make sure everything passes.", "source": "faq:Do I need a permit for electrical work in Arizona?", "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."}
+      {
+        "label": "Most common job",
+        "value": "200-amp like-for-like replacement",
+        "detail": "Same service size, fresh equipment, all new breakers.",
+        "source": "body",
+        "evidence": "200-amp like-for-like replacement. The job we do most often. Old 200-amp panel comes out, new Square D, Siemens, or Eaton panel goes in. Same service size, fresh equipment, all new breakers."
+      },
+      {
+        "label": "Panels we install",
+        "value": "Square D, Siemens, or Eaton",
+        "detail": "Rated for today’s loads.",
+        "source": "body",
+        "evidence": "We replace with new Square D, Siemens, or Eaton panels rated for today's loads."
+      },
+      {
+        "label": "Utility",
+        "value": "APS or SRP, coordinated for you",
+        "detail": "We schedule the meter pull around your work window.",
+        "source": "body",
+        "evidence": "We coordinate that for you. We submit the service request to APS or SRP, schedule the meter pull around your work window"
+      },
+      {
+        "label": "Permits",
+        "value": "We pull the permit",
+        "detail": "We schedule the inspection and make sure everything passes.",
+        "source": "faq:Do I need a permit for electrical work in Arizona?",
+        "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."
+      }
     ]
   },
   "quickAnswers": {
@@ -369,87 +685,274 @@
     "answers": {
       "panels": {
         "text": "We replace residential electrical panels across Mesa and the Phoenix valley: 200-amp like-for-like swaps, full service replacements with a new meter base, recall-brand replacements, and service upgrades, coordinated with APS or SRP from start to finish.",
-        "evidence": ["Electrical Panel Replacements in Mesa", "200-amp like-for-like replacement", "Full service replacement (all-in-one meter base and panel)", "Recall-brand replacements", "Service upgrades (200 to 400 amp)", "coordinated directly with APS or SRP from start to finish"]
+        "evidence": [
+          "Electrical Panel Replacements in Mesa",
+          "200-amp like-for-like replacement",
+          "Full service replacement (all-in-one meter base and panel)",
+          "Recall-brand replacements",
+          "Service upgrades (200 to 400 amp)",
+          "coordinated directly with APS or SRP from start to finish"
+        ]
       },
       "recessed-lights-installation": {
         "text": "We install recessed lighting across the Phoenix valley, cut into existing ceilings from below and patched as we go. The layout is planned around how you use the room, with IC-rated cans where they touch insulation and consistent color and dimming across the whole install.",
-        "evidence": ["Recessed Lighting Installation in the Phoenix Valley", "We cut in from below, fish the circuits, and patch as we go", "We plan around how the room is used", "IC rating. Required anywhere a can contacts insulation", "Consistent color and dimming across the whole install"]
+        "evidence": [
+          "Recessed Lighting Installation in the Phoenix Valley",
+          "We cut in from below, fish the circuits, and patch as we go",
+          "We plan around how the room is used",
+          "IC rating. Required anywhere a can contacts insulation",
+          "Consistent color and dimming across the whole install"
+        ]
       },
       "electrical-safety-inspections": {
         "text": "We inspect homes across the Phoenix valley for buyers, sellers and owners of older houses: the panel and service, the wiring, GFCI and arc-fault protection, and grounding. You get a clear list of what we found, sorted by what actually matters, with real numbers for the work.",
-        "evidence": ["Electrical Safety Inspections in the Phoenix Valley", "they are buying a house, they are selling one", "The house is more than 30 years old", "The panel and service.", "The wiring.", "GFCI protection where it is required", "Arc-fault protection", "grounding and bonding", "A clear list of what we found, sorted by what actually matters", "Plus real numbers for the work"]
+        "evidence": [
+          "Electrical Safety Inspections in the Phoenix Valley",
+          "they are buying a house, they are selling one",
+          "The house is more than 30 years old",
+          "The panel and service.",
+          "The wiring.",
+          "GFCI protection where it is required",
+          "Arc-fault protection",
+          "grounding and bonding",
+          "A clear list of what we found, sorted by what actually matters",
+          "Plus real numbers for the work"
+        ]
       },
       "ev-charger-installation": {
         "text": "We install EV chargers of every major brand across the Phoenix valley, from Tesla Wall Connectors and ChargePoint to plain NEMA 14-50 outlets. Every install starts with a load calculation on your panel and gets a dedicated, properly sized circuit, so the charger hits its rated speed.",
-        "evidence": ["EV Charger Installation in the Phoenix Valley", "we work on every major brand: Tesla Wall Connector, ChargePoint", "plain NEMA 14-50 outlets", "Load calculation on your existing panel before we promise a number", "Dedicated circuit and properly sized breaker", "A charger that hits its rated speed"]
+        "evidence": [
+          "EV Charger Installation in the Phoenix Valley",
+          "we work on every major brand: Tesla Wall Connector, ChargePoint",
+          "plain NEMA 14-50 outlets",
+          "Load calculation on your existing panel before we promise a number",
+          "Dedicated circuit and properly sized breaker",
+          "A charger that hits its rated speed"
+        ]
       },
       "exterior-electrical": {
         "text": "We install outdoor electrical across the Phoenix valley: weatherproof outlets in in-use covers, landscape and security lighting, patio and ramada power, and feeders to garages, shops and casitas, built with UV-rated materials and proper burial for Arizona sun and monsoon.",
-        "evidence": ["Exterior Electrical in the Phoenix Valley", "Exterior outlets and GFCI receptacles in weatherproof in-use covers", "Landscape and path lighting", "Security and flood lighting", "Patio, pergola, and ramada power", "Feeders and subpanels for garages, shops, casitas, and sheds", "UV-rated materials, in-use covers, proper burial", "two months of monsoon"]
+        "evidence": [
+          "Exterior Electrical in the Phoenix Valley",
+          "Exterior outlets and GFCI receptacles in weatherproof in-use covers",
+          "Landscape and path lighting",
+          "Security and flood lighting",
+          "Patio, pergola, and ramada power",
+          "Feeders and subpanels for garages, shops, casitas, and sheds",
+          "UV-rated materials, in-use covers, proper burial",
+          "two months of monsoon"
+        ]
       },
       "fixture-replacements": {
         "text": "We replace light fixtures, chandeliers, pendants, ceiling fans and vanity lights across the Phoenix valley, on a box rated for the weight with real bracing where it is needed, and with dimmers matched to the fixture so LEDs do not buzz or flicker. Several fixtures can go in one visit.",
-        "evidence": ["Light Fixture Replacement in the Phoenix Valley", "Chandeliers in entries, dining rooms, and stairwells, which usually need a rated box and real bracing", "Pendants over islands and nooks", "Ceiling fans, which need a fan-rated box every time", "Vanity and bath fixtures", "Right box, right bracing. Rated for the weight, every time.", "Dimmer compatibility handled. No buzz, no flicker", "Several fixtures in one visit."]
+        "evidence": [
+          "Light Fixture Replacement in the Phoenix Valley",
+          "Chandeliers in entries, dining rooms, and stairwells, which usually need a rated box and real bracing",
+          "Pendants over islands and nooks",
+          "Ceiling fans, which need a fan-rated box every time",
+          "Vanity and bath fixtures",
+          "Right box, right bracing. Rated for the weight, every time.",
+          "Dimmer compatibility handled. No buzz, no flicker",
+          "Several fixtures in one visit."
+        ]
       },
       "electrical-troubleshooting": {
         "text": "We track down electrical faults in Mesa and across the Phoenix valley: dead outlets and rooms, breakers that keep tripping, flickering lights, buzzing and burning smells. We map the circuit and test where power stops, so the repair fixes the cause, not the symptom.",
-        "evidence": ["Electrical Troubleshooting in Mesa and the Phoenix Valley", "Part of the house has no power", "A breaker trips repeatedly", "Lights that flicker or dim", "Buzzing from a switch", "Burning smells", "we map the circuit rather than guess at it", "test where power stops", "We find the cause, not the symptom."]
+        "evidence": [
+          "Electrical Troubleshooting in Mesa and the Phoenix Valley",
+          "Part of the house has no power",
+          "A breaker trips repeatedly",
+          "Lights that flicker or dim",
+          "Buzzing from a switch",
+          "Burning smells",
+          "we map the circuit rather than guess at it",
+          "test where power stops",
+          "We find the cause, not the symptom."
+        ]
       },
       "new-construction-wiring": {
         "text": "We wire custom homes, casitas, guest houses, shops and additions across the Phoenix valley, working from plans with builders and directly with homeowners: temporary power, slab rough, a service sized off a real load calculation, full rough-in and trim out, then every circuit tested and labeled.",
-        "evidence": ["we wire custom homes, casitas, guest houses, detached shops, and additions across the Valley, working from plans with builders and directly with homeowners", "Temporary power.", "Underground and slab rough.", "Sized off a real load calculation", "Full rough-in.", "Trim out.", "Every circuit tested and labeled"]
+        "evidence": [
+          "we wire custom homes, casitas, guest houses, detached shops, and additions across the Valley, working from plans with builders and directly with homeowners",
+          "Temporary power.",
+          "Underground and slab rough.",
+          "Sized off a real load calculation",
+          "Full rough-in.",
+          "Trim out.",
+          "Every circuit tested and labeled"
+        ]
       },
       "custom-lighting": {
         "text": "We install custom lighting across the Phoenix valley. Our specialty is cabinet lighting cut and soldered to fit each cabinet run and hardwired to a switch or dimmer, alongside recessed cans, chandeliers, pendants, and cove and toe-kick lighting, all with no visible wiring.",
-        "evidence": ["Custom Lighting in the Phoenix Valley", "And our specialty: custom cabinet lighting, cut and soldered to fit each cabinet run, hardwired", "Hardwired to a dedicated switch or dimmer", "Recessed Can Lighting", "Chandeliers", "Pendant Lighting", "Cove and crown lighting", "Toe-kick lighting", "No visible wiring"]
+        "evidence": [
+          "Custom Lighting in the Phoenix Valley",
+          "And our specialty: custom cabinet lighting, cut and soldered to fit each cabinet run, hardwired",
+          "Hardwired to a dedicated switch or dimmer",
+          "Recessed Can Lighting",
+          "Chandeliers",
+          "Pendant Lighting",
+          "Cove and crown lighting",
+          "Toe-kick lighting",
+          "No visible wiring"
+        ]
       },
       "electrical-remodels": {
         "text": "We do the electrical for kitchen, bathroom and whole-house remodels across the Phoenix valley: added circuits, GFCI and arc-fault protection, island power and layered lighting, planned against the finished layout and roughed in before anything closes up. We quote from your plans or a walkthrough that costs nothing.",
-        "evidence": ["Kitchen and Bathroom Remodel Electrical in the Phoenix Valley", "whole-house remodels", "adding circuits rather than reusing what is there", "GFCI protection on countertop and island receptacles, and arc-fault protection", "Island and peninsula power", "Lighting in layers", "rough it in before anything closes up", "Send us blueprints or a designer's plan", "have us out for a walkthrough, which costs nothing"]
+        "evidence": [
+          "Kitchen and Bathroom Remodel Electrical in the Phoenix Valley",
+          "whole-house remodels",
+          "adding circuits rather than reusing what is there",
+          "GFCI protection on countertop and island receptacles, and arc-fault protection",
+          "Island and peninsula power",
+          "Lighting in layers",
+          "rough it in before anything closes up",
+          "Send us blueprints or a designer's plan",
+          "have us out for a walkthrough, which costs nothing"
+        ]
       },
       "commercial-service": {
         "text": "We handle electrical service, repair and maintenance for commercial properties across the Phoenix valley, from retail centers and offices to restaurants, medical suites, salons and warehouses: dead circuits, tripping breakers, panels, equipment circuits, lighting and exit signs, with off-hours scheduling for occupied buildings.",
-        "evidence": ["Commercial Electrical Service in the Phoenix Valley", "we handle service and maintenance for commercial properties across the Valley: retail centers, offices, restaurants, medical suites, salons, warehouses", "Power is out in part of the building", "Breakers tripping repeatedly", "Panel and breaker work", "New equipment circuits", "Lighting maintenance", "Exit and emergency lighting", "Off-hours scheduling. For occupied buildings"]
+        "evidence": [
+          "Commercial Electrical Service in the Phoenix Valley",
+          "we handle service and maintenance for commercial properties across the Valley: retail centers, offices, restaurants, medical suites, salons, warehouses",
+          "Power is out in part of the building",
+          "Breakers tripping repeatedly",
+          "Panel and breaker work",
+          "New equipment circuits",
+          "Lighting maintenance",
+          "Exit and emergency lighting",
+          "Off-hours scheduling. For occupied buildings"
+        ]
       },
       "tenant-improvements": {
         "text": "We do tenant improvement electrical for general contractors, property managers and business owners across the Phoenix valley: shell buildouts, panels and subpanels, lighting and controls, equipment circuits and exit lighting. We bid from your plans, hold the number and hit the rough-in date.",
-        "evidence": ["Tenant Improvement Electrical in the Phoenix Valley", "we do TI electrical for general contractors, property managers, and business owners", "Shell and whitebox buildouts", "Panels and subpanels", "Lighting layouts and controls", "Dedicated equipment circuits", "Emergency and exit lighting", "We bid from plans and hold the number", "hit the rough-in date"]
+        "evidence": [
+          "Tenant Improvement Electrical in the Phoenix Valley",
+          "we do TI electrical for general contractors, property managers, and business owners",
+          "Shell and whitebox buildouts",
+          "Panels and subpanels",
+          "Lighting layouts and controls",
+          "Dedicated equipment circuits",
+          "Emergency and exit lighting",
+          "We bid from plans and hold the number",
+          "hit the rough-in date"
+        ]
       },
       "led-lights": {
         "text": "We convert commercial lighting to LED and install new LED lighting across the Phoenix valley for retail, office, warehouse and industrial spaces: full retrofits, high bays, troffers, parking lot lights and lighting controls, phased by area so the space stays usable.",
-        "evidence": ["Commercial LED Lighting and Retrofits in the Phoenix Valley", "we handle LED conversions and new installs for retail, office, warehouse, and industrial spaces across the Valley", "Full LED retrofits", "High bay and warehouse", "Troffers", "Exterior, parking lot, and wall packs", "Lighting controls", "We phase the work by area", "keep the space usable"]
+        "evidence": [
+          "Commercial LED Lighting and Retrofits in the Phoenix Valley",
+          "we handle LED conversions and new installs for retail, office, warehouse, and industrial spaces across the Valley",
+          "Full LED retrofits",
+          "High bay and warehouse",
+          "Troffers",
+          "Exterior, parking lot, and wall packs",
+          "Lighting controls",
+          "We phase the work by area",
+          "keep the space usable"
+        ]
       },
       "outlets-and-switches": {
         "text": "We add, replace and repair outlets and switches for commercial spaces across the Phoenix valley: new receptacles where the layout changed, GFCI protection, floor boxes, workstation power and occupancy sensors, so your equipment stops running off a chain of power strips.",
-        "evidence": ["Commercial Outlets and Switches in the Phoenix Valley", "we add, replace, and repair receptacles and switches for commercial spaces across the Valley", "Additional receptacles where the layout changed", "GFCI protection", "Floor boxes and poke-throughs", "Furniture and workstation whips", "occupancy sensors", "power strip chain"]
+        "evidence": [
+          "Commercial Outlets and Switches in the Phoenix Valley",
+          "we add, replace, and repair receptacles and switches for commercial spaces across the Valley",
+          "Additional receptacles where the layout changed",
+          "GFCI protection",
+          "Floor boxes and poke-throughs",
+          "Furniture and workstation whips",
+          "occupancy sensors",
+          "power strip chain"
+        ]
       },
       "storefront-lights": {
         "text": "We install and repair storefront, sign and facade lighting for businesses across the Phoenix valley: sign power, entry and canopy lights, window displays, photocells and timers, built with UV-rated materials and drivers rated for the heat they will actually see.",
-        "evidence": ["Storefront and Sign Lighting in the Phoenix Valley", "we install and repair storefront, sign, and facade lighting for businesses across the Valley", "Sign lighting and power", "Entry and canopy lighting", "Window and display lighting", "Photocells and timers", "UV-rated materials on anything exposed", "drivers rated for the ambient temperature they will actually see"]
+        "evidence": [
+          "Storefront and Sign Lighting in the Phoenix Valley",
+          "we install and repair storefront, sign, and facade lighting for businesses across the Valley",
+          "Sign lighting and power",
+          "Entry and canopy lighting",
+          "Window and display lighting",
+          "Photocells and timers",
+          "UV-rated materials on anything exposed",
+          "drivers rated for the ambient temperature they will actually see"
+        ]
       },
       "hanging-lights": {
         "text": "We install hanging lights in commercial spaces: pendant lights in dining areas, chandeliers in hotel lobbies, statement lighting in reception areas and track lighting in art galleries. We help you choose fixtures and a layout, mount each fixture securely, and schedule the work so you can keep your business running.",
-        "evidence": ["installs hanging lights in commercial spaces", "pendant lights in dining areas", "chandeliers in hotel lobbies", "statement lighting in a reception area", "track lighting in art galleries", "choose fixtures and a layout", "mount each fixture securely", "so you can keep your business running"]
+        "evidence": [
+          "installs hanging lights in commercial spaces",
+          "pendant lights in dining areas",
+          "chandeliers in hotel lobbies",
+          "statement lighting in a reception area",
+          "track lighting in art galleries",
+          "choose fixtures and a layout",
+          "mount each fixture securely",
+          "so you can keep your business running"
+        ]
       },
       "electrical-upgrades": {
         "text": "We upgrade commercial electrical across the Phoenix valley: panels and distribution, service capacity, feeders, equipment circuits and grounding. Every project starts with a load calculation, so you learn whether the problem is capacity or distribution before you pay for a bigger service.",
-        "evidence": ["Commercial Electrical Upgrades in the Phoenix Valley", "Panels and distribution", "Service capacity", "Feeders", "Equipment circuits for new machinery", "Grounding and bonding corrections", "Every one of these projects should begin with real math", "A load calculation tells you", "adequate service and a distribution problem"]
+        "evidence": [
+          "Commercial Electrical Upgrades in the Phoenix Valley",
+          "Panels and distribution",
+          "Service capacity",
+          "Feeders",
+          "Equipment circuits for new machinery",
+          "Grounding and bonding corrections",
+          "Every one of these projects should begin with real math",
+          "A load calculation tells you",
+          "adequate service and a distribution problem"
+        ]
       },
       "commercial-electrical-troubleshooting": {
         "text": "We diagnose commercial electrical faults across the Phoenix valley: dead circuits, repeat breaker trips, voltage problems, overheating terminations and the intermittent faults nobody can pin down. We map the distribution and test from the load back toward the source, then fix the cause rather than the symptom.",
-        "evidence": ["Commercial Electrical Troubleshooting in the Phoenix Valley", "we diagnose commercial electrical faults across the Valley and fix the cause rather than the symptom", "Dead circuits", "Breakers that trip repeatedly", "Voltage problems", "Overheating at panels, disconnects, and terminations", "Intermittent faults", "We map the distribution", "test methodically from the load back toward the source"]
+        "evidence": [
+          "Commercial Electrical Troubleshooting in the Phoenix Valley",
+          "we diagnose commercial electrical faults across the Valley and fix the cause rather than the symptom",
+          "Dead circuits",
+          "Breakers that trip repeatedly",
+          "Voltage problems",
+          "Overheating at panels, disconnects, and terminations",
+          "Intermittent faults",
+          "We map the distribution",
+          "test methodically from the load back toward the source"
+        ]
       },
       "emergency-exit-lights": {
         "text": "We install, test and repair exit signs and emergency lighting for commercial properties across the Phoenix valley: new units along egress paths, battery replacement, LED retrofits and real power-off tests, because Arizona heat shortens battery life.",
-        "evidence": ["Emergency and Exit Lighting in the Phoenix Valley", "we install, test, and repair egress lighting for commercial properties across the Valley", "Exit sign installation and placement along egress paths", "Battery replacement", "Retrofits of old incandescent exit signs to LED", "kill power to the unit and confirm it illuminates", "Arizona heat shortens it"]
+        "evidence": [
+          "Emergency and Exit Lighting in the Phoenix Valley",
+          "we install, test, and repair egress lighting for commercial properties across the Valley",
+          "Exit sign installation and placement along egress paths",
+          "Battery replacement",
+          "Retrofits of old incandescent exit signs to LED",
+          "kill power to the unit and confirm it illuminates",
+          "Arizona heat shortens it"
+        ]
       },
       "dedicated-circuits": {
         "text": "We design and install dedicated circuits for commercial equipment across the Phoenix valley: refrigeration and compressors, kitchen equipment, medical and salon equipment, server racks and point of sale. Every circuit is sized off the equipment nameplate, with derating for Arizona heat.",
-        "evidence": ["Dedicated Circuits for Commercial Equipment in the Phoenix Valley", "we design and install dedicated circuits for commercial equipment across the Valley", "Refrigeration, walk-ins, air compressors", "Commercial kitchen equipment", "Medical and dental equipment", "Salon equipment", "Server racks, network gear, and point of sale", "Off the equipment nameplate, every time", "ambient temperature derating is real"]
+        "evidence": [
+          "Dedicated Circuits for Commercial Equipment in the Phoenix Valley",
+          "we design and install dedicated circuits for commercial equipment across the Valley",
+          "Refrigeration, walk-ins, air compressors",
+          "Commercial kitchen equipment",
+          "Medical and dental equipment",
+          "Salon equipment",
+          "Server racks, network gear, and point of sale",
+          "Off the equipment nameplate, every time",
+          "ambient temperature derating is real"
+        ]
       },
       "ballast-replacement-fluorescent-lighting": {
         "text": "We repair and replace fluorescent lighting and ballasts for commercial spaces across the Phoenix valley, and we tell you honestly when converting to LED makes more sense than another repair. The work is scheduled around business hours, area by area.",
-        "evidence": ["Ballast Replacement and Fluorescent Lighting Repair in the Phoenix Valley", "we repair and replace fluorescent lighting for commercial spaces across the Valley, and we will tell you honestly when repair is the wrong call", "Converting to LED usually makes more sense", "We schedule around business hours, work area by area"]
+        "evidence": [
+          "Ballast Replacement and Fluorescent Lighting Repair in the Phoenix Valley",
+          "we repair and replace fluorescent lighting for commercial spaces across the Valley, and we will tell you honestly when repair is the wrong call",
+          "Converting to LED usually makes more sense",
+          "We schedule around business hours, work area by area"
+        ]
       }
     }
   },
@@ -458,77 +961,305 @@
     "answers": {
       "why-does-my-breaker-keep-tripping-in-the-summer": {
         "text": "In a Phoenix summer a breaker usually trips for one of four reasons: overloaded circuits, an old or undersized panel, connections loosened by heat, or a failing A/C compressor or motor that draws too much current on startup. Have the A/C checked, and if tripping is frequent, have a licensed electrician check your panel, circuits, and wiring.",
-        "evidence": ["Overloaded Circuits", "Old or Undersized Panels", "Extreme heat causes metal to expand and contract", "loosen connections in your panel", "A failing compressor or motor in your HVAC system can draw too much current on startup", "Have Your A/C Checked", "If tripping is frequent, it’s time to have a licensed electrician check your panel, circuits, and wiring"]
+        "evidence": [
+          "Overloaded Circuits",
+          "Old or Undersized Panels",
+          "Extreme heat causes metal to expand and contract",
+          "loosen connections in your panel",
+          "A failing compressor or motor in your HVAC system can draw too much current on startup",
+          "Have Your A/C Checked",
+          "If tripping is frequent, it’s time to have a licensed electrician check your panel, circuits, and wiring"
+        ]
       },
       "why-your-lights-flicker": {
         "text": "A brief dim when the AC or another large appliance starts up is normal. Flickering that happens often, shows in several rooms at once or comes every time the AC runs usually points to loose panel connections, aging breakers, overloaded or unbalanced circuits, deteriorating wiring or grounding issues, and it tends to get worse in summer.",
-        "evidence": ["brief, slight dimming when a large appliance starts up, especially an air conditioner", "flicker in multiple rooms at once", "loose connections in the panel, aging breakers, overloaded or unbalanced circuits, deteriorating wiring, or grounding issues", "Why Flickering Often Gets Worse in Summer"]
+        "evidence": [
+          "brief, slight dimming when a large appliance starts up, especially an air conditioner",
+          "flicker in multiple rooms at once",
+          "loose connections in the panel, aging breakers, overloaded or unbalanced circuits, deteriorating wiring, or grounding issues",
+          "Why Flickering Often Gets Worse in Summer"
+        ]
       },
       "breaker-trips-ac": {
         "text": "It is rarely the AC itself. Its startup surge finds the weak spot in your electrical system: an older or weakened breaker, an undersized panel, a shared or overloaded circuit, wiring issues behind the walls, or poor grounding and load balance. If the breaker trips more than once under normal use, have a licensed electrician inspect the system.",
-        "evidence": ["This usually isn’t an AC problem", "startup surges from HVAC systems", "Older or weakened breakers", "Undersized electrical panels", "Shared or overloaded circuits", "Wiring issues behind the walls", "grounding and load balancing issues", "If a breaker trips more than once under normal use"]
+        "evidence": [
+          "This usually isn’t an AC problem",
+          "startup surges from HVAC systems",
+          "Older or weakened breakers",
+          "Undersized electrical panels",
+          "Shared or overloaded circuits",
+          "Wiring issues behind the walls",
+          "grounding and load balancing issues",
+          "If a breaker trips more than once under normal use"
+        ]
       },
       "common-electrical-issues-in-scottsdale-homes": {
         "text": "Scottsdale's heat, haboob dust and monsoon power surges are hard on electrical systems, and older homes may still have outdated wiring. Watch for flickering lights, frequently tripped breakers, dead outlets, buzzing and burning smells. If you smell burning, turn off power to that area and call a licensed electrician right away.",
-        "evidence": ["Scottsdale's intense heat stresses electrical systems", "powerful dust storms known as haboobs", "Monsoon season brings power surges", "Older homes in Scottsdale may still have outdated wiring", "Frequently tripped circuit breakers", "Dead outlets", "Burning smells near outlets", "If you smell burning, turn off power to that area and call a licensed electrician right away"]
+        "evidence": [
+          "Scottsdale's intense heat stresses electrical systems",
+          "powerful dust storms known as haboobs",
+          "Monsoon season brings power surges",
+          "Older homes in Scottsdale may still have outdated wiring",
+          "Frequently tripped circuit breakers",
+          "Dead outlets",
+          "Burning smells near outlets",
+          "If you smell burning, turn off power to that area and call a licensed electrician right away"
+        ]
       },
       "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell": {
         "text": "Your home likely needs a panel upgrade if it still has a fuse box or a Zinsco or Federal Pacific panel, if you are adding a hot tub, EV charger or new HVAC system, if breakers keep tripping, if you notice flickering lights or buzzing sounds, or if the house is 30+ years old. Most upgrades take one day.",
-        "evidence": ["a fuse box or an older panel brand like Zinsco or Federal Pacific", "A hot tub, EV charger, or new HVAC system", "Your Breakers Keep Tripping", "You Notice Flickering Lights or Buzzing Sounds", "Your Home is 30+ Years Old", "Most upgrades take just 1 day"]
+        "evidence": [
+          "a fuse box or an older panel brand like Zinsco or Federal Pacific",
+          "A hot tub, EV charger, or new HVAC system",
+          "Your Breakers Keep Tripping",
+          "You Notice Flickering Lights or Buzzing Sounds",
+          "Your Home is 30+ Years Old",
+          "Most upgrades take just 1 day"
+        ]
       },
       "how-phoenix-heat-affects-your-homes-electrical-system": {
         "text": "Heat makes wiring expand by day and contract at night, which loosens connections and can cause arcing. Peak AC and pool pump loads overload breakers, and UV cracks outdoor wire insulation. Watch for breakers tripping in the afternoon, lights dimming when the AC starts, burning smells and warped outlet covers, and schedule a summer electrical inspection.",
-        "evidence": ["expand in extreme heat and contract when they cool at night", "Loosen electrical connections", "Cause arcing or short circuits", "Overloaded Breakers During Peak AC Usage", "Pool pumps running longer hours", "Crack and dry out wire insulation", "Breakers tripping more often in the afternoon", "Lights dimming when AC or pool pump turns on", "Burning smell near outlets or panel", "Discolored or warped outlet covers", "Schedule a Summer Electrical Inspection"]
+        "evidence": [
+          "expand in extreme heat and contract when they cool at night",
+          "Loosen electrical connections",
+          "Cause arcing or short circuits",
+          "Overloaded Breakers During Peak AC Usage",
+          "Pool pumps running longer hours",
+          "Crack and dry out wire insulation",
+          "Breakers tripping more often in the afternoon",
+          "Lights dimming when AC or pool pump turns on",
+          "Burning smell near outlets or panel",
+          "Discolored or warped outlet covers",
+          "Schedule a Summer Electrical Inspection"
+        ]
       },
       "emfs-in-your-phoenix-home": {
         "text": "EMFs are a normal part of using electricity. The concern is unusually strong readings near certain walls or floors, often with buzzing outlets or flickering lights, which usually point to wiring defects, grounding problems or load issues. A licensed electrician finds the cause and corrects it with grounding and bonding work, load balancing or a panel upgrade.",
-        "evidence": ["EMFs are a normal byproduct of electricity", "strong EMF readings near certain walls or floors", "buzzing sounds from outlets or breaker panels", "flickering or dimming lights", "wiring defects, grounding problems, or load issues", "A licensed electrician finds and corrects the electrical conditions behind high EMF readings", "Grounding and bonding corrections", "Load balancing and panel upgrades"]
+        "evidence": [
+          "EMFs are a normal byproduct of electricity",
+          "strong EMF readings near certain walls or floors",
+          "buzzing sounds from outlets or breaker panels",
+          "flickering or dimming lights",
+          "wiring defects, grounding problems, or load issues",
+          "A licensed electrician finds and corrects the electrical conditions behind high EMF readings",
+          "Grounding and bonding corrections",
+          "Load balancing and panel upgrades"
+        ]
       }
     }
   },
   "bodyEdits": {
     "source": "Owner rule: no prices in a page body outside FAQ answers and blog posts. Each edit takes a dollar range out of a service body, keeping the rest of the sentence (and every link) as written; the Panels flat-rate sentence restates the live city pages' claim (migration/live-snapshots/locations_gilbert.html) in plain words (copy review, 2026-10-17: slop-services-081). Each `find` must occur exactly once in that service's body text and may not cut through a link; after the edits no service body may contain a price. The ranges stay in the cost FAQ answers.",
     "edits": [
-      {"service": "panels", "find": "For a standard 200-amp like-for-like panel replacement in the Phoenix metro, expect $5,200 to $6,500. If your job needs a full service replacement with a new all-in-one meter base and panel combo, the range is typically $6,400 to $8,750. Larger 320 or 400-amp service upgrades climb from there. ", "replace": "We price panel work at a flat rate with no hidden fees. Ask us for a free quote. "},
-      {"service": "ev-charger-installation", "find": "Most Tesla Wall Connector installs in the Valley run $650 to $1,800 depending on", "replace": "The price of a Tesla Wall Connector install depends on"},
-      {"service": "ev-charger-installation", "find": " Typical install: $450 to $1,200.", "replace": ""},
-      {"service": "electrical-remodels", "find": " For reference, a standard 200-amp like-for-like panel replacement in the Valley generally runs $5,200 to $6,500, and a full service replacement with a new all-in-one meter base and panel is typically $6,400 to $8,750.", "replace": ""},
-      {"service": "new-construction-wiring", "find": "The relevant number for comparison: adding capacity later, once the drywall is up and the meter is set, means a panel or full service replacement that generally runs $5,200 to $6,500 for a standard 200-amp like-for-like, or $6,400 to $8,750 for a full service replacement with a new all-in-one meter base and panel.", "replace": "Adding capacity later, once the drywall is up and the meter is set, means a panel or full service replacement."}
+      {
+        "service": "panels",
+        "find": "For a standard 200-amp like-for-like panel replacement in the Phoenix metro, expect $5,200 to $6,500. If your job needs a full service replacement with a new all-in-one meter base and panel combo, the range is typically $6,400 to $8,750. Larger 320 or 400-amp service upgrades climb from there. ",
+        "replace": "We price panel work at a flat rate with no hidden fees. Ask us for a free quote. "
+      },
+      {
+        "service": "ev-charger-installation",
+        "find": "Most Tesla Wall Connector installs in the Valley run $650 to $1,800 depending on",
+        "replace": "The price of a Tesla Wall Connector install depends on"
+      },
+      {
+        "service": "ev-charger-installation",
+        "find": " Typical install: $450 to $1,200.",
+        "replace": ""
+      },
+      {
+        "service": "electrical-remodels",
+        "find": " For reference, a standard 200-amp like-for-like panel replacement in the Valley generally runs $5,200 to $6,500, and a full service replacement with a new all-in-one meter base and panel is typically $6,400 to $8,750.",
+        "replace": ""
+      },
+      {
+        "service": "new-construction-wiring",
+        "find": "The relevant number for comparison: adding capacity later, once the drywall is up and the meter is set, means a panel or full service replacement that generally runs $5,200 to $6,500 for a standard 200-amp like-for-like, or $6,400 to $8,750 for a full service replacement with a new all-in-one meter base and panel.",
+        "replace": "Adding capacity later, once the drywall is up and the meter is set, means a panel or full service replacement."
+      }
     ]
   },
   "bodyLinks": {
     "source": "Links the round-5 Panels mockup adds to a service body: the post is appended, by its own title, to the end of the named list item (which must match exactly once).",
     "links": [
-      {"service": "panels", "block": "A panel brand on the recall list (Zinsco, Federal Pacific, Challenger, Pushmatic)", "post": "federal-pacific-zinsco-panels-arizona"}
+      {
+        "service": "panels",
+        "block": "A panel brand on the recall list (Zinsco, Federal Pacific, Challenger, Pushmatic)",
+        "post": "federal-pacific-zinsco-panels-arizona"
+      }
     ]
   },
   "linkFixes": {
     "source": "Links in a post, city body (`location`) or FAQ answer (`faq`, by question) that point to the wrong place. Owner rule: every free-estimate request goes to /estimate; these links ask for an estimate or a visit but don't say \"free estimate\", so the migration's phrase rule misses them (city and post CTAs to \"/\", the old homepage form: decision D5, 2026-10-17). A citation wrapped in a Google search URL goes to the page it names (decision D6), and the ROC lookup link to the Registrar's own host (decision D13). A citation whose page is gone with no current equivalent (`to`: null) keeps its words and loses the link (preview crawl M5). Each must match exactly one link by its text and target.",
     "fixes": [
-      {"post": "recessed-lighting-installation-phoenix", "text": "Schedule your estimate", "from": "/contact-us", "to": "/estimate", "why": "The sentence before it says every job starts with a free estimate."},
-      {"post": "why-does-my-breaker-keep-tripping", "text": "Call The Wire Guy Electric today or schedule online", "from": "/contact-us", "to": "/estimate", "why": "Scheduling online on this site is the free-estimate request on /estimate; the phone number is in the header and the call bar."},
-      {"location": "gilbert", "text": "Schedule a service today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "chandler", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "scottsdale", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "phoenix", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "tempe", "text": "Request service today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "queen-creek", "text": "Schedule service today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "san-tan-valley", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "apache-junction", "text": "Contact The Wire Guy Electric today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"location": "fountain-hills", "text": "Schedule a consultation today", "from": "/", "to": "/estimate", "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."},
-      {"post": "breaker-trips-ac", "text": "At The Wire Guy Electric, we can help you diagnose potential issues.", "from": "/", "to": "/estimate", "why": "Decision D5: the post's closing call to action (a diagnosis visit) linked to \"/\", the old homepage form."},
-      {"post": "emfs-in-your-phoenix-home", "text": "The Wire Guy Electric, we can measure EMFs in your home ", "from": "/", "to": "/estimate", "why": "Decision D5: the closing offer to come and measure linked to \"/\", the old homepage form."},
-      {"post": "why-your-lights-flicker", "text": "Call our family owned buisness, and we'll drive out to your property and diagnose any problems you may have.", "from": "/", "to": "/estimate", "why": "Decision D5: the closing call to action (a diagnosis visit) linked to \"/\", the old homepage form. textFixes corrects \"buisness\" after this runs."},
-      {"post": "how-to-wire-a-gfci-outlet", "text": "contact us", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: the sentence is \"contact us for a free estimate\"; only \"contact us\" is linked, so the phrase rule missed it."},
-      {"faq": "Do you offer free estimates?", "text": "Contact us today", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"Contact us today to get a free quote.\""},
-      {"faq": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?", "text": "Contact us today", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"Contact us today to schedule a free estimate…\""},
-      {"faq": "How much does it cost to install an EV charger at home?", "text": "give us a call", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"…or give us a call for a free estimate.\""},
-      {"faq": "How long does it take to install recessed lighting?", "text": "contact us", "from": "/contact-us", "to": "/estimate", "why": "Decision D5: \"…or contact us for a free estimate.\""},
-      {"post": "why-your-circuit-breaker-keeps-tripping-in-cold-weather", "text": "National Fire Protection Association (NFPA)", "from": "https://www.google.com/search?q=https://www.nfpa.org/education-and-research/home-fire-safety/electrical", "to": "https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home", "why": "Decision D6: the citation linked to a Google search for an NFPA URL that now returns 404; it links NFPA's own electrical home fire safety page instead (canonical URL, checked 2026-10-17)."},
-      {"faq": "How do I choose a good electrician in Phoenix?", "text": "Arizona Registrar of Contractors (ROC) website", "from": "https://azroc.gov", "to": "https://roc.az.gov/", "why": "Decision D13 (citations R6, amended): roc.az.gov is the Registrar's own host (www.azroc.gov 301s to it; both answer bots with a challenge page). The answer to \"Are you licensed, bonded, and insured?\" names the same site (D13-01 in migration/content-edits/decisions.json)."},
-      {"post": "dryer-outlet-for-ev", "text": "APS Marketplace", "from": "https://www.aps.com/en/Residential/Account-Services/Save-Money-and-Energy/Marketplace", "to": null, "why": "Preview crawl M5: the page returns 404 and APS no longer has a Marketplace (aps.com searched 2026-10-18). Its EV rate-plan page is live, but the words name the Marketplace, so the link goes and the words stay."},
-      {"post": "why-your-circuit-breaker-keeps-tripping-in-cold-weather", "text": "Department of Energy", "from": "https://www.energy.gov/energysaver/portable-heaters", "to": null, "why": "Preview crawl M5: the page 301s to /energysaver/small-space-heaters, which returns 404, and energy.gov has no current space-heater page (searched 2026-10-18). The words \"According to the Department of Energy\" stay; the link goes."},
-      {"post": "can-hot-weather-cause-your-circuit-breaker-to-trip", "text": "While circuit breakers are designed to protect your home, extreme summer temperatures can make them more sensitive, leading to \"nuisance tripping\" or revealing underlying electrical issues.", "from": "https://arxiv.org/html/2410.08425v1", "to": "https://arxiv.org/html/2410.08425v1", "keep": "nuisance tripping", "why": "Launch review CQ-7: slop-posts-a-059 deleted the plain opening sentence ahead of this one, so the whole paragraph became one underlined link, right under the quick answer of the site's top page. The citation now links its subject, \"nuisance tripping\"; the words and the target are unchanged."}
+      {
+        "post": "recessed-lighting-installation-phoenix",
+        "text": "Schedule your estimate",
+        "from": "/contact-us",
+        "to": "/estimate",
+        "why": "The sentence before it says every job starts with a free estimate."
+      },
+      {
+        "post": "why-does-my-breaker-keep-tripping",
+        "text": "Call The Wire Guy Electric today or schedule online",
+        "from": "/contact-us",
+        "to": "/estimate",
+        "why": "Scheduling online on this site is the free-estimate request on /estimate; the phone number is in the header and the call bar."
+      },
+      {
+        "location": "gilbert",
+        "text": "Schedule a service today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "chandler",
+        "text": "Contact The Wire Guy Electric today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "scottsdale",
+        "text": "Contact The Wire Guy Electric today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "phoenix",
+        "text": "Contact The Wire Guy Electric today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "tempe",
+        "text": "Request service today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "queen-creek",
+        "text": "Schedule service today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "san-tan-valley",
+        "text": "Contact The Wire Guy Electric today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "apache-junction",
+        "text": "Contact The Wire Guy Electric today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "location": "fountain-hills",
+        "text": "Schedule a consultation today",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the city page's closing call to action linked to \"/\", the old homepage form; requests go to the Free Estimate page."
+      },
+      {
+        "post": "breaker-trips-ac",
+        "text": "At The Wire Guy Electric, we can help you diagnose potential issues.",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the post's closing call to action (a diagnosis visit) linked to \"/\", the old homepage form."
+      },
+      {
+        "post": "emfs-in-your-phoenix-home",
+        "text": "The Wire Guy Electric, we can measure EMFs in your home ",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the closing offer to come and measure linked to \"/\", the old homepage form."
+      },
+      {
+        "post": "why-your-lights-flicker",
+        "text": "Call our family owned buisness, and we'll drive out to your property and diagnose any problems you may have.",
+        "from": "/",
+        "to": "/estimate",
+        "why": "Decision D5: the closing call to action (a diagnosis visit) linked to \"/\", the old homepage form. textFixes corrects \"buisness\" after this runs."
+      },
+      {
+        "post": "how-to-wire-a-gfci-outlet",
+        "text": "contact us",
+        "from": "/contact-us",
+        "to": "/estimate",
+        "why": "Decision D5: the sentence is \"contact us for a free estimate\"; only \"contact us\" is linked, so the phrase rule missed it."
+      },
+      {
+        "faq": "Do you offer free estimates?",
+        "text": "Contact us today",
+        "from": "/contact-us",
+        "to": "/estimate",
+        "why": "Decision D5: \"Contact us today to get a free quote.\""
+      },
+      {
+        "faq": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?",
+        "text": "Contact us today",
+        "from": "/contact-us",
+        "to": "/estimate",
+        "why": "Decision D5: \"Contact us today to schedule a free estimate…\""
+      },
+      {
+        "faq": "How much does it cost to install an EV charger at home?",
+        "text": "give us a call",
+        "from": "/contact-us",
+        "to": "/estimate",
+        "why": "Decision D5: \"…or give us a call for a free estimate.\""
+      },
+      {
+        "faq": "How long does it take to install recessed lighting?",
+        "text": "contact us",
+        "from": "/contact-us",
+        "to": "/estimate",
+        "why": "Decision D5: \"…or contact us for a free estimate.\""
+      },
+      {
+        "post": "why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+        "text": "National Fire Protection Association (NFPA)",
+        "from": "https://www.google.com/search?q=https://www.nfpa.org/education-and-research/home-fire-safety/electrical",
+        "to": "https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home",
+        "why": "Decision D6: the citation linked to a Google search for an NFPA URL that now returns 404; it links NFPA's own electrical home fire safety page instead (canonical URL, checked 2026-10-17)."
+      },
+      {
+        "faq": "How do I choose a good electrician in Phoenix?",
+        "text": "Arizona Registrar of Contractors (ROC) website",
+        "from": "https://azroc.gov",
+        "to": "https://roc.az.gov/",
+        "why": "Decision D13 (citations R6, amended): roc.az.gov is the Registrar's own host (www.azroc.gov 301s to it; both answer bots with a challenge page). The answer to \"Are you licensed, bonded, and insured?\" names the same site (D13-01 in migration/content-edits/decisions.json)."
+      },
+      {
+        "post": "dryer-outlet-for-ev",
+        "text": "APS Marketplace",
+        "from": "https://www.aps.com/en/Residential/Account-Services/Save-Money-and-Energy/Marketplace",
+        "to": null,
+        "why": "Preview crawl M5: the page returns 404 and APS no longer has a Marketplace (aps.com searched 2026-10-18). Its EV rate-plan page is live, but the words name the Marketplace, so the link goes and the words stay."
+      },
+      {
+        "post": "why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+        "text": "Department of Energy",
+        "from": "https://www.energy.gov/energysaver/portable-heaters",
+        "to": null,
+        "why": "Preview crawl M5: the page 301s to /energysaver/small-space-heaters, which returns 404, and energy.gov has no current space-heater page (searched 2026-10-18). The words \"According to the Department of Energy\" stay; the link goes."
+      },
+      {
+        "post": "can-hot-weather-cause-your-circuit-breaker-to-trip",
+        "text": "While circuit breakers are designed to protect your home, extreme summer temperatures can make them more sensitive, leading to \"nuisance tripping\" or revealing underlying electrical issues.",
+        "from": "https://arxiv.org/html/2410.08425v1",
+        "to": "https://arxiv.org/html/2410.08425v1",
+        "keep": "nuisance tripping",
+        "why": "Launch review CQ-7: slop-posts-a-059 deleted the plain opening sentence ahead of this one, so the whole paragraph became one underlined link, right under the quick answer of the site's top page. The citation now links its subject, \"nuisance tripping\"; the words and the target are unchanged."
+      }
     ]
   },
   "postCategories": {
@@ -547,12 +1278,36 @@
   "textFixes": {
     "source": "Typing slips in post bodies that the Webflow export (and the live page) carry, including a missing space where a bold label or a link meets the next words (decision D5, 2026-10-17). Each `find` must occur exactly once in that post's body text (within one span), or the migration stops.",
     "fixes": [
-      {"post": "can-hot-weather-cause-your-circuit-breaker-to-trip", "find": "all afternoon?The temperature", "replace": "all afternoon? The temperature"},
-      {"post": "why-your-lights-flicker", "find": "family owned buisness", "replace": "family owned business"},
-      {"post": "how-to-wire-a-gfci-outlet", "find": "Connect the bare copper (or green) wire", "replace": " Connect the bare copper (or green) wire"},
-      {"post": "how-to-wire-a-gfci-outlet", "find": "Look at the back of your new GFCI.", "replace": " Look at the back of your new GFCI."},
-      {"post": "how-to-wire-a-gfci-outlet", "find": "White to Silver).", "replace": "White to Silver). "},
-      {"post": "can-hot-weather-cause-your-circuit-breaker-to-trip", "find": "Over years of seasonal temperature swings", "replace": " Over years of seasonal temperature swings"}
+      {
+        "post": "can-hot-weather-cause-your-circuit-breaker-to-trip",
+        "find": "all afternoon?The temperature",
+        "replace": "all afternoon? The temperature"
+      },
+      {
+        "post": "why-your-lights-flicker",
+        "find": "family owned buisness",
+        "replace": "family owned business"
+      },
+      {
+        "post": "how-to-wire-a-gfci-outlet",
+        "find": "Connect the bare copper (or green) wire",
+        "replace": " Connect the bare copper (or green) wire"
+      },
+      {
+        "post": "how-to-wire-a-gfci-outlet",
+        "find": "Look at the back of your new GFCI.",
+        "replace": " Look at the back of your new GFCI."
+      },
+      {
+        "post": "how-to-wire-a-gfci-outlet",
+        "find": "White to Silver).",
+        "replace": "White to Silver). "
+      },
+      {
+        "post": "can-hot-weather-cause-your-circuit-breaker-to-trip",
+        "find": "Over years of seasonal temperature swings",
+        "replace": " Over years of seasonal temperature swings"
+      }
     ]
   },
   "bodyRemovals": {

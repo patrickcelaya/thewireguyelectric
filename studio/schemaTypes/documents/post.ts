@@ -30,6 +30,22 @@ export const post = defineType({
           .warning(),
     }),
     imageField('mainImage', 'Main image', {group: 'content'}),
+    defineField({
+      name: 'showMainImage',
+      title: 'Show the main image',
+      type: 'boolean',
+      group: 'content',
+      initialValue: false,
+      description:
+        'Owner-approved: show the main image as the post’s cover, its share image and its card on the blog. Only a real photo (stock or ours) at least 1,200 px wide: never AI-made, never text or effects drawn on, never of unknown source, and never a person who could be taken for our crew. Give it alt text that says what is visible. Blog pages only: service and city pages keep the crew’s job photos.',
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          const image = (context.document as {mainImage?: {asset?: unknown; alt?: string}} | undefined)?.mainImage
+          if (!value) return true
+          if (!image?.asset) return 'There is no main image to show'
+          return image.alt?.trim() ? true : 'Describe what the main image shows (its alt text) before showing it'
+        }),
+    }),
     defineField({name: 'body', type: 'richText', group: 'content'}),
     defineField({name: 'category', type: 'reference', to: [{type: 'postCategory'}], group: 'content'}),
     defineField({
