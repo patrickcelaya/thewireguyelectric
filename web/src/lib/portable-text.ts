@@ -53,7 +53,9 @@ function figure(value: ImageRef, sizes: string) {
   const img = `<img src="${attr(imageUrl(value, {width: 1200}))}"${srcset ? ` srcset="${attr(srcset)}" sizes="${attr(sizes)}"` : ''}${
     size ? ` width="${size.width}" height="${size.height}"` : ''
   } alt="${attr(imageAlt(value) ?? '')}" loading="lazy" decoding="async">`
-  return `<figure class="pt-figure">${img}${value.caption ? `<figcaption>${escapeHTML(value.caption)}</figcaption>` : ''}</figure>`
+  // a portrait photo stands at its own proportions (styles/inner.css): the column's landscape crop would cut off what its caption names
+  const tall = size && size.height > size.width
+  return `<figure class="pt-figure${tall ? ' pt-figure--tall' : ''}">${img}${value.caption ? `<figcaption>${escapeHTML(value.caption)}</figcaption>` : ''}</figure>`
 }
 
 type TableValue = {_key?: string; caption?: string; hasHeaderRow?: boolean; rows?: Array<{cells?: string[]}>}
@@ -97,12 +99,17 @@ function tableLabels(blocks: PortableTextValue) {
   return labels
 }
 
-/** YouTube as a facade: a link to the video with its poster; site.ts swaps in the player on click. */
-function video(value: {url?: string; title?: string}) {
+/**
+ * YouTube as a facade: a link to the video with its poster; site.ts swaps in the player on click. The poster is
+ * the 480 px one, or the 1280 px one (maxresdefault, which every HD upload has) where the column is wider;
+ * the 16:9 frame crops either to fit.
+ */
+function video(value: {url?: string; title?: string}, sizes: string) {
   const id = value.url && youtubeId(value.url)
   if (!id) return ''
   const title = value.title?.trim() || 'Video'
-  return `<figure class="pt-video"><a class="pt-video__link" href="https://www.youtube.com/watch?v=${id}" data-video="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" data-video-title="${attr(title)}"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="pt-video__play" aria-hidden="true"></span><span class="sr-only">Play video: ${escapeHTML(title)}</span></a>${
+  const poster = (name: string) => `https://i.ytimg.com/vi/${id}/${name}.jpg`
+  return `<figure class="pt-video"><a class="pt-video__link" href="https://www.youtube.com/watch?v=${id}" data-video="https://www.youtube-nocookie.com/embed/${id}?autoplay=1" data-video-title="${attr(title)}"><img src="${poster('hqdefault')}" srcset="${poster('hqdefault')} 480w, ${poster('maxresdefault')} 1280w" sizes="${attr(sizes)}" alt="" width="480" height="360" loading="lazy" decoding="async"><span class="pt-video__play" aria-hidden="true"></span><span class="sr-only">Play video: ${escapeHTML(title)}</span></a>${
     value.title ? `<figcaption>${escapeHTML(value.title)}</figcaption>` : ''
   }</figure>`
 }
@@ -131,7 +138,7 @@ export function portableTextToHtml(blocks: PortableTextValue | null | undefined,
         const t = value as TableValue
         return table(t, (t._key && labels.get(t._key)) || t.caption || 'Table')
       },
-      videoEmbed: ({value}) => video(value),
+      videoEmbed: ({value}) => video(value, sizes),
       callToAction: ({value}) => cta(value as CallToAction, redirects),
     },
     marks: {

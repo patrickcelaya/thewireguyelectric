@@ -83,6 +83,8 @@
 
 /* ===================================================================== long-form bodies */
 .prose a strong,.prose h3 strong{color:inherit}
+/* imported headings often wrap their words in <strong>: a heading keeps its own weight, bold or not */
+.prose :is(h2,h3,h4) :is(strong,b){font-weight:inherit}
 /* a city's "Service Areas within {City} include:" line and its list: a copper kicker over two columns of neighbourhoods */
 .prose--city p:has(> strong:only-child):has(+ ul){display:flex;align-items:center;gap:14px;margin:52px 0 18px;font:700 .875rem/1.35 var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:var(--copper-700)}
 .prose--city p:has(> strong:only-child):has(+ ul)::before{content:"";flex:none;width:28px;height:1.5px;background:var(--copper)}
