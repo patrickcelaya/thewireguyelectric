@@ -4,8 +4,9 @@
 // 1. Keeps every legacy redirect one hop, with or without a trailing slash. The adapter
 //    writes the trailing-slash rule (`/x/` → 308 → `/x`) ahead of the redirects, so
 //    `/locations/mesa/` took two hops: 308 to `/locations/mesa`, then 301 to `/`. This
-//    moves the 301s in front of that rule and lets each one match an optional trailing
-//    slash, so both spellings go straight to the final page.
+//    moves the redirects (301s, and the 302 short links like /review) in front of that rule
+//    and lets each one match an optional trailing slash, so both spellings go straight to
+//    the final page.
 // 2. Sends every page's directory copy (`/services/panels/index.html`, which the static
 //    output also answers) to the page itself in one 301, so no duplicate URL serves 200.
 // 3. Adds the response headers every page sends: the clickjacking protection the live
@@ -57,7 +58,7 @@ export function oneHopRedirects() {
         const routes = (config.routes ?? []).filter((r) => !HEADER_ROUTES.some((h) => JSON.stringify(h) === JSON.stringify(r)))
         const slash = routes.findIndex((r) => r.src === SLASH_RULE)
         if (slash < 0) return
-        const isRedirect = (r) => r.status === 301 && r.headers?.Location && typeof r.src === 'string' && r.src.endsWith('$')
+        const isRedirect = (r) => (r.status === 301 || r.status === 302) && r.headers?.Location && typeof r.src === 'string' && r.src.endsWith('$')
         const redirects = [...routes.filter(isRedirect), INDEX_HTML_REDIRECT]
           .filter((r, i, all) => all.findIndex((o) => o.src === r.src) === i)
           .map((r) => ({...r, src: r.src.replace(/\/\?\$$|\$$/, '/?$')}))

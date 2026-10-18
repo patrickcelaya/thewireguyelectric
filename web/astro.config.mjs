@@ -2,7 +2,7 @@
 import {defineConfig} from 'astro/config'
 import vercel from '@astrojs/vercel'
 import {loadEnv} from 'vite'
-import {LEGACY_REDIRECTS, flattenRedirects, loadPostSlugs, loadSanityRedirects, postRedirects} from './src/config/redirects.mjs'
+import {LEGACY_REDIRECTS, SHORT_LINKS, flattenRedirects, loadPostSlugs, loadSanityRedirects, postRedirects} from './src/config/redirects.mjs'
 import {oneHopRedirects} from './src/config/one-hop-redirects.mjs'
 import {buildInfoFile, readBuildInfo} from './src/config/build-info.mjs'
 
@@ -30,7 +30,7 @@ export default defineConfig({
   // after the adapter: every redirect matches with or without a trailing slash, in one hop;
   // /build-info.json for the Ignored Build Step (scripts/ignore-build.mjs)
   integrations: [oneHopRedirects(), buildInfoFile(buildInfo)],
-  redirects: flattenRedirects({...LEGACY_REDIRECTS, ...postRedirects(postSlugs), ...sanityRedirects}),
+  redirects: flattenRedirects({...LEGACY_REDIRECTS, ...SHORT_LINKS, ...postRedirects(postSlugs), ...sanityRedirects}),
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},
   vite: {

@@ -1,10 +1,11 @@
 // 301 redirects, applied by the Vercel adapter at build time.
 //
-// Three sources:
+// Four sources:
 // 1. LEGACY_REDIRECTS: URLs that 404 or exist only as Webflow filler today
 //    (measured 2026-10-12, see migration/seo-equity/redirect-candidates.json).
-// 2. postRedirects: the old /blog/<slug> path of every published post.
-// 3. `redirect` documents in Sanity, so editors can add redirects without a deploy
+// 2. SHORT_LINKS: short addresses the business hands out (/review), as 302s.
+// 3. postRedirects: the old /blog/<slug> path of every published post.
+// 4. `redirect` documents in Sanity, so editors can add redirects without a deploy
 //    of code (a publish triggers a rebuild).
 //
 // Webflow had no 301 redirects configured (confirmed by the owner, 2026-10-12),
@@ -52,6 +53,17 @@ export const LEGACY_REDIRECTS = {
   '/category/lighting-solutions': '/services',
   '/category/hardware': '/services',
   '/category/electrical-tools': '/services',
+}
+
+/**
+ * Short links the business hands out, as temporary (302) redirects: the destination is someone else's URL and may
+ * change, and a short link is no page of its own (no 200, nothing to index, not in the sitemap).
+ * - /review: Google's "write a review" form for the business's profile ("Had us out? Leave a Google review" in
+ *   the footer, and the link the crew can text or print after a job).
+ * @type {Record<string, {status: 302, destination: string}>}
+ */
+export const SHORT_LINKS = {
+  '/review': {status: 302, destination: 'https://search.google.com/local/writereview?placeid=ChIJo0p1h7CoK4cRCB3ZvvWbTj4'},
 }
 
 /**
