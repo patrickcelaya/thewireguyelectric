@@ -4,19 +4,68 @@
 // results, so a page renders the same from the local dataset and from Sanity.
 import type {FaqItem, ImageRef, PortableTextValue, PostCard, PostIndexEntry, PostSummary, Review, ServiceSummary} from './types'
 import type {City} from './cities'
-import {FLEET_PHOTO, JOB_PHOTOS, VANS_PHOTO, WALK_PHOTO, companyPhoto, isPhotoSubject, jobPhoto, jobPhotoImage, photoId, type PhotoSubject} from './brand-photos'
+import {FLEET_PHOTO, JOB_PHOTOS, LIBRARY_PHOTOS, VAN_PHOTO, VANS_PHOTO, WALK_PHOTO, companyPhoto, facesInFrame, headsHaveRoom, isPhotoSubject, jobPhoto, jobPhotoImage, libraryImage, photoFor, photoId, type LibraryPhoto, type PhotoSubject} from './brand-photos'
 import {imageSrcSet} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
 
 /**
- * The fleet under the sky as a city page's hero (its LCP image): the Sanity renditions
- * plus the enlarged copies for big screens, and its sizes (styles/inner.css draws it
- * 170% wide on phones). The <img> and the page's preload use the same pair.
+ * A city page's hero under the open sky (its LCP image): the city's own hero photo when the editor set one of the
+ * company's photos, else the photo picked for the city in the library (framed by its `heroCrop`, so the heads start
+ * at 71.5% of the frame, under the words), else the fleet. Its renditions and sizes (styles/inner.css draws it 170%
+ * wide on phones, less for a wide group: `zoom`) are shared by the <img> and the page's preload; `center` is where the
+ * phone's window onto the photo is centred (so every head is in it), and `faces` the head boxes in the frame as served.
  */
-export const FLEET_HERO = {
-  srcset: [imageSrcSet(FLEET_PHOTO.image, [640, 828, 1086]), ...FLEET_PHOTO.enlarged.map((e) => `${e.src} ${e.width}w`)].filter(Boolean).join(', '),
-  sizes: '(max-width:699px) 170vw, 100vw',
+export function cityHero(location: {slug: string; heroImage?: ImageRef | null}) {
+  const picked = photoFor(`cityHero:${location.slug}`)
+  const image: ImageRef =
+    location.heroImage && companyPhoto(location.heroImage)
+      ? location.heroImage
+      : picked
+        ? {alt: picked.alt, asset: {_id: picked.id, url: ''}, ...(picked.heroCrop ? {crop: {...picked.heroCrop}} : {})}
+        : FLEET_PHOTO.image
+  const faces = facesInFrame(image)
+  const boxes = (faces ?? '').split(';').filter(Boolean).map((b) => b.split(',').map(Number))
+  // phones draw the photo 170% wide and show the middle of it; a wide group gets a wider window (the photo drawn
+  // smaller, `zoom`) so every head is in it, and the window is centred on the heads (the fleet's sat at 52.5%)
+  const left = boxes.length ? Math.min(...boxes.map((b) => b[0])) : 0.5
+  const right = boxes.length ? Math.max(...boxes.map((b) => b[2])) : 0.5
+  const zoom = Math.round(Math.min(1.7, 1 / (right - left + 0.1)) * 100) / 100
+  const half = 0.5 / zoom
+  const mid = boxes.length ? (left + right) / 2 : 0.525
+  const center = Math.round(Math.min(Math.max(mid, half), 1 - half) * 1000) / 1000
+  return {
+    image,
+    faces,
+    center,
+    zoom,
+    srcset: imageSrcSet(image, [640, 828, 1086, 1440, 1920, 2400]) ?? '',
+    sizes: `(max-width:699px) ${Math.round(zoom * 100)}vw, 100vw`,
+  }
+}
+
+/** A stable number for a string (FNV-1a), so a page's rotating picks are the same on every build. */
+export function hashOf(text: string) {
+  let h = 0x811c9dc5
+  for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 0x01000193) >>> 0
+  return h
+}
+
+/**
+ * The estimate band's photo: the crew seen at the vans and trucks, one of a vetted few (`ctaBand` in the library,
+ * each framed like the van photo the band was designed on: the words on the empty top, every head below them and
+ * clear of the form card), chosen by the page's path so neighbouring pages differ, skipping any photo the page
+ * already shows. Marks it shown.
+ */
+export function ctaBandPhoto(path: string, shown: Set<string> = new Set()) {
+  const pool = LIBRARY_PHOTOS.filter((p) => p.roles.includes('ctaBand'))
+  // nor a sibling of one (another photo of the same truck from the same shoot)
+  const groups = new Set(LIBRARY_PHOTOS.filter((p) => p.group && shown.has(p.id)).map((p) => p.group))
+  const start = pool.length ? hashOf(path) % pool.length : 0
+  const pick = [...pool.slice(start), ...pool.slice(0, start)].find((p) => !shown.has(p.id) && !(p.group && groups.has(p.group)))
+  const image = pick ? (pick.id === photoId(VAN_PHOTO.image) ? VAN_PHOTO.image : {alt: pick.alt, asset: {_id: pick.id, url: ''}}) : VAN_PHOTO.image
+  markShown(shown, image)
+  return image
 }
 
 /** "A", "A and B", "A, B, and C" (no trailing punctuation). */
@@ -32,6 +81,12 @@ function uniqueBy<T>(items: T[], key: (item: T) => string) {
     return seen.has(k) ? false : (seen.add(k), true)
   })
 }
+
+/** A library photo as an image reference. */
+const libraryRef = (p: LibraryPhoto): ImageRef => libraryImage(p)
+
+/** `list` started at its `n`th item (wrapping round). */
+const rotate = <T>(list: T[], n: number) => (list.length ? [...list.slice(n % list.length), ...list.slice(0, n % list.length)] : list)
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 /** Whether `text` names `name` as a whole word (case-sensitive: "Mesa" the city, not "mesa" the landform). */
@@ -255,6 +310,9 @@ function firstServicePhotos(post: PostSummary, index: PostIndexEntry[], services
  * framed on their faces, and always gets a photo: past its subject, any unused job photo but the narrow
  * EV charger. `seed` varies the picks from page to page.
  */
+/** Things a guide's title can name that the library has photos of in particular (LibraryPhoto.shows). */
+const TITLE_THINGS = [{title: /\bceiling fans?\b/i, shows: 'ceiling-fan'}]
+
 export function postCover(
   post: PostSummary,
   index: PostIndexEntry[],
@@ -289,12 +347,14 @@ export function postCover(
   }
   // photos of the topic itself before those that only suit it (a lit kitchen for a Lighting card before the walk)
   const byTopic = rotated.filter(isTopic).sort((a, b) => Number(jobPhoto(a)?.subject !== topic) - Number(jobPhoto(b)?.subject !== topic))
-  const ofTopic = [
-    post.mainImage,
-    // the first service's own photo before the rotation (with a blog topic, only when it is of that topic)
-    ...(forFirst.own && isTopic(forFirst.own) ? [forFirst.own] : category ? [] : serviceImages.slice(0, 1)),
-    ...(topic ? byTopic : []),
-  ]
+  // the first service's own photo (with a blog topic, only when it is of that topic) takes its turn in the rotation
+  // with the other photos of the topic, so fifty posts don't all lead with the one service photo
+  const lead = forFirst.own && isTopic(forFirst.own) ? [forFirst.own] : category ? [] : serviceImages.slice(0, 1)
+  // a post's own cover (natural colour) may also show the crew at that service's work (the library's photos of people)
+  const crew = tinted || !forFirst.first ? [] : LIBRARY_PHOTOS.filter((p) => p.kind === 'people' && p.services.includes(forFirst.first!) && !p.roles.some((r) => /^(team:|van$|fleet$)/.test(r))).map(libraryRef)
+  const turns = [...lead, ...(topic ? byTopic : []), ...crew].filter((image, i, all) => image && all.findIndex((o) => photoId(o) === photoId(image)) === i)
+  // the post's own photo, unless a head in it sits at the photo's edge (no frame can give it room)
+  const ofTopic = [headsHaveRoom(post.mainImage) ? post.mainImage : undefined, ...rotate(turns, seed)]
   const tools = rotated.filter((image) => jobPhoto(image)?.subject === 'tools')
   const broader = [
     ...serviceImages,
@@ -306,8 +366,19 @@ export function postCover(
   // service the post lists, a job photo made for one, or the neutral tools; never a photo that only shares a
   // subject with one (the lamp-lined walk for an aluminum wiring guide that lists remodels second)
   const madeForOwn = (image: ImageRef) => Boolean(jobPhoto(image)?.services?.some((slug) => own.includes(slug)))
-  const listed = [...serviceImages, ...rotated.filter(madeForOwn), ...tools]
-  const candidates = tinted ? [...ofTopic, ...(topic ? [] : listed)] : [...ofTopic, ...broader, ...rotated.filter((image) => !onSubject(image) && !jobPhoto(image)?.narrow)]
+  const listed = rotate(
+    [...serviceImages, ...rotated.filter(madeForOwn), ...tools].filter((image, i, all) => image && all.findIndex((o) => photoId(o) === photoId(image)) === i),
+    seed,
+  )
+  // a guide whose title names a thing the library has its own photos of (a ceiling fan) shows one of those or none:
+  // a ceiling fan guide never shows a bathtub, a pendant or a sconce because all of them are "lighting"
+  const named = TITLE_THINGS.find((t) => t.title.test(post.title))
+  const ofThing = named && LIBRARY_PHOTOS.filter((p) => p.shows === named.shows).map(libraryRef)
+  const candidates = ofThing
+    ? rotate(ofThing, seed)
+    : tinted
+      ? [...ofTopic, ...(topic ? [] : listed)]
+      : [...ofTopic, ...broader, ...rotated.filter((image) => !onSubject(image) && !jobPhoto(image)?.narrow)]
   const fits = (image: ImageRef | null | undefined): image is ImageRef => (tinted ? companyPhoto(image) === 'job' : Boolean(companyPhoto(image)))
   const usable = candidates.filter(fits)
   // the same photo may be an asset reference, a pre-import Webflow URL or a second upload: compare which photo it is
@@ -500,4 +571,118 @@ export function headingAnchors(body: PortableTextValue | null | undefined) {
       used.add(id)
       return {id, text}
     })
+}
+
+// ---------------------------------------------------------------------------
+// The owner's photo library on the CMS pages: the article's second photo and "Recent work"
+
+
+/**
+ * The photo halfway down a service's article: a second photo of that service's work (`serviceSecond` in the
+ * library; Electrical Safety Inspections has the crew walking up to a customer's door), never the hero's. Undefined
+ * when the page already shows it, or none was picked (Ballast Replacement).
+ */
+export function serviceFigure(slug: string, shown: Set<string>): ImageRef | undefined {
+  const picked = photoFor(`serviceSecond:${slug}`)
+  const image = picked ? libraryRef(picked) : slug === 'electrical-safety-inspections' ? WALK_PHOTO.image : undefined
+  if (!image || shown.has(photoId(image))) return undefined
+  markShown(shown, image)
+  return image
+}
+
+export interface WorkPhoto {
+  image: ImageRef
+  caption: string
+  people: boolean
+}
+const asWork = (p: LibraryPhoto): WorkPhoto => ({image: libraryRef(p), caption: p.caption, people: p.kind === 'people'})
+/** Library photos that stay in their own slots: the team portraits, the fleet poster and the van. */
+const OWN_SLOT = /^(team:|fleet$|van$)/
+/** A strip's cells crop: a photo of people goes in only with clear room above and beside every head (not a head at the top of the frame). */
+const roomy = (p: LibraryPhoto) =>
+  (p.faces ?? '')
+    .split(';')
+    .filter(Boolean)
+    .every((b) => {
+      const [x0, y0, x1, y1] = b.split(',').map(Number)
+      return y0 - (y1 - y0) * 0.15 >= 0.05 && x0 >= 0.03 && x1 <= 0.97
+    })
+const free = (p: LibraryPhoto) => !p.roles.some((r) => OWN_SLOT.test(r)) && roomy(p)
+const byQuality = (a: LibraryPhoto, b: LibraryPhoto) => b.quality - a.quality || a.id.localeCompare(b.id)
+
+/** "Recent work" layouts (styles/cms.css .wg--…) and how many photos each holds. */
+export const WORK_LAYOUTS = {lead: 3, row: 4, mosaic: 5} as const
+export type WorkLayout = keyof typeof WORK_LAYOUTS
+/** The layout for a page, by its slug, so neighbouring pages of one type don't look alike. */
+export const workLayout = (slug: string, from: WorkLayout[] = ['lead', 'row', 'mosaic']) => from[hashOf(slug) % from.length]
+
+/**
+ * A service page's "Recent work": the library's photos of that service's work (job photos and the crew at it), best
+ * first and rotated by the service, then photos of the same subject; never one the page already shows. Fewer than
+ * three: none. Marks them shown.
+ */
+export function serviceWork(slug: string, subject: string | undefined, shown: Set<string>, count: number): WorkPhoto[] {
+  const usable = LIBRARY_PHOTOS.filter((p) => free(p) && !shown.has(p.id))
+  const own = usable.filter((p) => p.services.includes(slug)).sort(byQuality)
+  // photos of the same kind of thing as the service's own stand in (another meter-main for panels, another
+  // chandelier for hanging lights), never just the same broad subject: a chandelier is not LED lighting
+  const kinds = new Set(LIBRARY_PHOTOS.filter((p) => p.services.includes(slug)).map((p) => p.shows))
+  const same = subject === 'lighting' || subject === 'panel' ? usable.filter((p) => !own.includes(p) && p.subject === subject && kinds.has(p.shows)).sort(byQuality) : []
+  const seed = hashOf(slug)
+  const ordered = [...rotate(own, seed), ...rotate(same, seed)]
+  // one photo of each kind of thing first (a chandelier, a sconce, a pendant), so the strip is never three of a kind
+  const picks: LibraryPhoto[] = []
+  for (const perKind of [1, 2])
+    for (const p of ordered)
+      if (picks.length < count && !picks.includes(p) && picks.filter((q) => q.shows === p.shows).length < perKind) picks.push(p)
+  if (picks.length < 3) return []
+  picks.forEach((p) => shown.add(p.id))
+  return picks.map(asWork)
+}
+
+/** What a city's "Recent work" draws on: the crew at work and finished jobs (no portraits, line-ups or trucks). */
+const AT_WORK = new Set(['tech-at-work', 'commercial', 'recessed', 'chandelier-pendant', 'troubleshooting', 'outlet-switch', 'exterior-light', 'meter-service', 'panel'])
+const cityWorkPool = () => {
+  // photos a city page shows elsewhere (heroes, glance photos, the band, the services' own photos) stay out, so the
+  // windows below never overlap
+  const elsewhere = (p: LibraryPhoto) => p.roles.some((r) => /^(cityHero|cityGlance|ctaBand|serviceMain):?/.test(r))
+  const usable = LIBRARY_PHOTOS.filter((p) => free(p) && !elsewhere(p) && p.quality >= 3)
+  // dealt round the kinds of thing they show (chandeliers, sconces, panels, outlets…), so a window of four is a mix
+  const dealt = (list: LibraryPhoto[]) => {
+    const kinds = [...new Set(list.map((p) => p.shows))].map((k) => list.filter((p) => p.shows === k))
+    return Array.from({length: Math.max(0, ...kinds.map((k) => k.length))}, (_, i) => kinds.flatMap((k) => (k[i] ? [k[i]] : []))).flat()
+  }
+  const people = dealt(usable.filter((p) => p.kind === 'people' && AT_WORK.has(p.shows)).sort(byQuality))
+  const jobs = dealt(usable.filter((p) => p.kind === 'job' && (p.subject === 'lighting' || p.subject === 'panel' || p.subject === 'wiring')).sort(byQuality))
+  return {people, jobs}
+}
+
+/**
+ * A city page's "Recent work": a mix of the crew at work and finished jobs, a different window of the library for each
+ * city (`index`, its place in the city order), so no two city pages show the same photos. The caption says what the
+ * photo shows, never where it was taken. Skips photos the page already shows; marks its picks shown.
+ */
+export function cityWork(index: number, shown: Set<string>, count: number): WorkPhoto[] {
+  const {people, jobs} = cityWorkPool()
+  const cities = 10
+  // the crew at work in every strip while the library has enough of them (they repeat across cities before jobs do)
+  const perPeople = Math.min(people.length >= 2 * cities ? 2 : people.length >= 5 ? 1 : 0, count - 1)
+  const perJobs = count - perPeople
+  // each city starts a fixed stride along the list (whatever its layout holds), so neighbouring cities never share a photo
+  const window = (list: LibraryPhoto[], n: number) => {
+    const out: LibraryPhoto[] = []
+    const start = index * Math.max(n, Math.floor(list.length / cities))
+    for (let k = start; out.length < n && k < start + list.length; k++) {
+      const p = list[k % list.length]
+      if (!shown.has(p.id) && !out.includes(p)) out.push(p)
+    }
+    return out
+  }
+  const ppl = window(people, perPeople)
+  const job = window(jobs, perJobs)
+  // people first in the lead cell when there is one: a face is the strongest photo in the strip
+  const picks = [...ppl.slice(0, 1), ...job.slice(0, 1), ...ppl.slice(1), ...job.slice(1)].slice(0, count)
+  if (picks.length < 3) return []
+  picks.forEach((p) => shown.add(p.id))
+  return picks.map(asWork)
 }

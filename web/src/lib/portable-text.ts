@@ -8,6 +8,7 @@ import type {CallToAction, ImageRef, PortableTextValue} from './types'
 import {hasImage, imageAlt, imageDimensions, imageSrcSet, imageUrl} from './image'
 import {isExternal, resolveHref, type RedirectMap} from './links'
 import {ESTIMATE_PATH, NEW_TAB_NOTE} from './site'
+import {facesOf} from './brand-photos'
 
 export interface PortableTextOptions {
   /** Internal links are rewritten through these, so none points at a redirect. */
@@ -50,9 +51,11 @@ function figure(value: ImageRef, sizes: string) {
   if (!hasImage(value)) return ''
   const size = imageDimensions(value)
   const srcset = imageSrcSet(value, [480, 720, 960, 1200, 1600])
+  // a photo of the crew carries its head boxes for the QA face check (a figure shows the whole photo)
+  const faces = facesOf(value)
   const img = `<img src="${attr(imageUrl(value, {width: 1200}))}"${srcset ? ` srcset="${attr(srcset)}" sizes="${attr(sizes)}"` : ''}${
     size ? ` width="${size.width}" height="${size.height}"` : ''
-  } alt="${attr(imageAlt(value) ?? '')}" loading="lazy" decoding="async">`
+  } alt="${attr(imageAlt(value) ?? '')}" loading="lazy" decoding="async"${faces ? ` data-faces="${attr(faces)}"` : ''}>`
   // a portrait photo stands at its own proportions (styles/inner.css): the column's landscape crop would cut off what its caption names
   const tall = size && size.height > size.width
   return `<figure class="pt-figure${tall ? ' pt-figure--tall' : ''}">${img}${value.caption ? `<figcaption>${escapeHTML(value.caption)}</figcaption>` : ''}</figure>`

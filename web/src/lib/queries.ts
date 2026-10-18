@@ -572,6 +572,7 @@ export const getLocations = memo(() =>
       "shortName": ${CITY_NAME},
       cityNameForSeo, heading, description, cardBlurb,
       "mainImage": mainImage${IMAGE},
+      "heroImage": heroImage${IMAGE},
       body${RICH_TEXT},
       geo, county, zipCodes, neighborhoods, utilityProviders,
       permitNotes${RICH_TEXT},

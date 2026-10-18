@@ -19,13 +19,14 @@ import ReviewsStatic from '../../components/sections/ReviewsStatic.astro'
 import AnswersBand from '../../components/sections/AnswersBand.astro'
 import Valley from '../../components/sections/Valley.astro'
 import CtaBand from '../../components/sections/CtaBand.astro'
+import WorkGallery from '../../components/sections/WorkGallery.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getFaqs, getLocations, getPostIndex, getReviews, getServices, getSettings} from '../../lib/queries'
 import {absoluteUrl, ogImageMeta, resolveDescription, resolveTitle} from '../../lib/seo'
 import {branchFor, branchId, faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
 import {CITY_ORDER, serviceAreaCities} from '../../lib/cities'
-import {CITY_SHARED_QUESTIONS, FLEET_HERO, cityGuides, cityPhoto, guideCards, listOf, markShown, mergeFaqs, photoTiles, pickFaqs, pickReviews} from '../../lib/cms'
+import {CITY_SHARED_QUESTIONS, WORK_LAYOUTS, cityGuides, cityHero, cityPhoto, cityWork, ctaBandPhoto, guideCards, listOf, markShown, mergeFaqs, photoTiles, pickFaqs, pickReviews, workLayout} from '../../lib/cms'
 import {companyPhoto} from '../../lib/brand-photos'
 import type {LocationDoc} from '../../lib/types'
 
@@ -66,9 +67,14 @@ const reviewsIntro = local
 // the city's own questions (its utility and permit office, from the sourced local facts), then the shared ones
 const ownFaqs = location.faqs ?? []
 const faqs = mergeFaqs([ownFaqs, pickFaqs(sharedFaqs, CITY_SHARED_QUESTIONS)])
-// every photo shows once on the page: the service cards' photos, then the glance photo, then the guide covers
-const shown = markShown(new Set<string>(), ...photoTiles(featured).cards.map((s) => s.mainImage))
+// every photo shows once on the page: the hero's, the service cards' photos, then the glance photo, the recent
+// work, the guide covers and the estimate band's photo
+const hero = cityHero(location)
+const shown = markShown(new Set<string>(), hero.image, ...photoTiles(featured).cards.map((s) => s.mainImage))
 const glancePhoto = cityPhoto(location.mainImage, shown)
+// "Recent work": its own window of the library per city, in one of three layouts so neighbouring cities differ
+const layout = workLayout(location.slug)
+const work = cityWork(seed, shown, WORK_LAYOUTS[layout])
 const guides = guideCards(
   cityGuides(city, featured.map((s) => s.slug), postIndex),
   postIndex,
@@ -76,6 +82,7 @@ const guides = guideCards(
   seed,
   shown,
 )
+const ctaPhoto = ctaBandPhoto(path, shown)
 const cities = serviceAreaCities(settings.homeCity, locations)
 const nearby = (location.nearbyLocations ?? []).map((l) => l.shortName || l.name)
 // the city's own photo, when it is the crew's (LocationGlance shows it), else the default share image
@@ -96,7 +103,7 @@ const serviceId = `${absoluteUrl(path)}#service`
   bodyClass="inner"
 >
   <Fragment slot="head">
-    <link rel="preload" as="image" imagesrcset={FLEET_HERO.srcset} imagesizes={FLEET_HERO.sizes} fetchpriority="high" />
+    <link rel="preload" as="image" imagesrcset={hero.srcset} imagesizes={hero.sizes} fetchpriority="high" />
   </Fragment>
 
   <LocationHero location={location} heading={heading} settings={settings} crumbs={crumbs} office={office} />
@@ -124,6 +131,8 @@ const serviceId = `${absoluteUrl(path)}#service`
   {/* the live template's heading; a non-breaking hyphen keeps "5-Star" on one line */}
   <ReviewsStatic settings={settings} reviews={reviews} heading={'Hundreds of 5\u2011Star Reviews'} intro={reviewsIntro} number={3} />
 
+  <WorkGallery photos={work} layout={layout} heading="Recent work by our crew" intro="Our own photos of the crew and their work." number={work.length ? 4 : undefined} id="work-h" />
+
   <AnswersBand
     faqs={faqs}
     faqHeading={ownFaqs.length ? `${city} electrical questions` : 'Questions, answered'}
@@ -131,7 +140,7 @@ const serviceId = `${absoluteUrl(path)}#service`
     posts={guides}
     guidesHeading="Guides from our blog"
     guidesIntro="Plain-English answers to common questions from Arizona homeowners."
-    numbers={{faq: 4, guides: 5}}
+    numbers={work.length ? {faq: 5, guides: 6} : {faq: 4, guides: 5}}
   />
 
   <Valley
@@ -141,8 +150,8 @@ const serviceId = `${absoluteUrl(path)}#service`
     current={location.slug}
     heading="Other areas we serve"
     intro={nearby.length ? `Near ${city}: ${listOf(nearby)}.` : undefined}
-    number={6}
+    number={work.length ? 7 : 6}
   />
 
-  <CtaBand settings={settings} number={7} zipPlaceholder={location.zipCodes?.length ? `${city} or ${location.zipCodes[0]}` : city} />
+  <CtaBand settings={settings} number={work.length ? 8 : 7} photo={ctaPhoto} zipPlaceholder={location.zipCodes?.length ? `${city} or ${location.zipCodes[0]}` : city} />
 </SiteLayout>

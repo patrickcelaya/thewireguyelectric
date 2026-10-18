@@ -22,6 +22,7 @@ import AnswersBand from '../../components/sections/AnswersBand.astro'
 import ServiceCards from '../../components/sections/ServiceCards.astro'
 import Valley from '../../components/sections/Valley.astro'
 import CtaBand from '../../components/sections/CtaBand.astro'
+import WorkGallery from '../../components/sections/WorkGallery.astro'
 import SectionHeader from '../../components/ui/SectionHeader.astro'
 import TextLink from '../../components/ui/TextLink.astro'
 import {getFaqs, getLocations, getPostIndex, getReviews, getService, getServiceFaqs, getServices, getSettings} from '../../lib/queries'
@@ -30,7 +31,8 @@ import {faqNode, serviceName, serviceNode, webPageNode} from '../../lib/schema'
 import {absoluteUrl} from '../../lib/seo'
 import {serviceAreaCities} from '../../lib/cities'
 import {imagePreload} from '../../lib/image'
-import {SERVICE_HERO_IMAGE, allSupport, guideCards, heroStaging, liftSigns, markShown, mergeFaqs, photoTiles, pickReviews, serviceGuides, serviceTopic, withoutPrices} from '../../lib/cms'
+import {SERVICE_HERO_IMAGE, WORK_LAYOUTS, allSupport, ctaBandPhoto, guideCards, heroStaging, liftSigns, markShown, mergeFaqs, photoTiles, pickReviews, serviceFigure, serviceGuides, serviceTopic, serviceWork, withoutPrices, workLayout} from '../../lib/cms'
+import {jobPhoto} from '../../lib/brand-photos'
 import {inSentence} from '../../lib/format'
 
 export async function getStaticPaths() {
@@ -72,11 +74,17 @@ const ownFaqs = [...withoutPrices(service.faqs), ...withoutPrices(taggedFaqs)]
 const faqs = mergeFaqs([ownFaqs, withoutPrices(commonFaqs)])
 const guidePosts = serviceGuides(service.relatedPosts, service.slug, postIndex)
 const related = service.relatedServices ?? []
-// every photo shows once on the page: the hero's (which the article repeats in true colour, by design, as its
-// captioned figure) and the related services' cards, then the guide covers
+// every photo shows once on the page: the hero's and the related services' cards, then the article's own second
+// photo of the work, the guide covers, the recent work and the estimate band's photo
 const staging = heroStaging(service.mainImage)
 const shown = markShown(new Set<string>(), staging === 'plain' ? undefined : service.mainImage, ...photoTiles(related, 3).cards.map((s) => s.mainImage))
+const figurePhoto = serviceFigure(service.slug, shown)
+// the guide covers pick before "Recent work" (which sits above them), so a guide keeps a photo of its own subject
 const guides = guideCards(guidePosts, postIndex, services, seed, shown)
+// "Recent work" after the article: two layouts, alternating by service, so neighbouring services differ
+const layout = workLayout(service.slug, ['row', 'lead'])
+const work = serviceWork(service.slug, jobPhoto(service.mainImage)?.subject, shown, WORK_LAYOUTS[layout])
+const ctaPhoto = ctaBandPhoto(path, shown)
 // headings name the service where what they head is about it: questions it has its own of, guides that all support it
 const topic = serviceTopic(service)
 const faqHeading = ownFaqs.length ? `Questions about ${topic}` : 'Questions, answered'
@@ -89,6 +97,7 @@ const next = () => ++chapter
 const n = {
   glance: next(),
   signs: signs ? next() : undefined,
+  work: work.length ? next() : undefined,
   reviews: reviews.length ? next() : undefined,
   faq: faqs.length ? next() : undefined,
   guides: guides.length ? next() : undefined,
@@ -100,10 +109,9 @@ const n = {
 const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
 // the photo the hero shows (a company photo); a stock image the page hides is never its image or preview
 const ownPhoto = hero ? service.mainImage : undefined
-// The job photo the hero sets under its copper tint, shown in true colour halfway down the
-// article; its caption describes it, so the image itself is decorative there.
-const jobPhoto = staging === 'tint' && service.mainImage?.alt ? service.mainImage : undefined
-const inlineFigure = jobPhoto && {...jobPhoto, alt: '', caption: `Our work: ${jobPhoto.alt!.charAt(0).toLowerCase()}${jobPhoto.alt!.slice(1).replace(/\.$/, '')}.`}
+// A second photo of the service's work halfway down the article (never the hero's); its caption describes it, so
+// the image itself is decorative there.
+const inlineFigure = figurePhoto?.alt ? {...figurePhoto, alt: '', caption: `Our work: ${figurePhoto.alt.charAt(0).toLowerCase()}${figurePhoto.alt.slice(1).replace(/\.$/, '')}.`} : undefined
 const preload = hero && imagePreload(service.mainImage, [...hero.widths], hero.sizes)
 const serviceId = `${absoluteUrl(path)}#service`
 ---
@@ -129,6 +137,8 @@ const serviceId = `${absoluteUrl(path)}#service`
   <LongForm body={body} label={`${heading}, in detail`} variant="service" figure={inlineFigure}>
     <ContactCard slot="aside" settings={settings} />
   </LongForm>
+
+  <WorkGallery photos={work} layout={layout} heading="Recent work by our crew" intro="Our own photos of the crew and their work." number={n.work} id="work-h" />
 
   <ReviewsStatic settings={settings} reviews={reviews} heading="What our customers say" intro={reviewsIntro} number={n.reviews} />
 
@@ -169,5 +179,5 @@ const serviceId = `${absoluteUrl(path)}#service`
 
   <Valley settings={settings} cities={cities} variant="inner" heading={`${heading} across the valley`} number={n.areas} />
 
-  <CtaBand settings={settings} number={n.cta} />
+  <CtaBand settings={settings} number={n.cta} photo={ctaPhoto} />
 </SiteLayout>

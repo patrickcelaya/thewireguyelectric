@@ -1,12 +1,14 @@
 ---
-// The estimate band that closes most pages. The van photo is the stage: the words
-// sit on the wall above the electrician, the wire draws the bulb on the wall, and
-// the form card rises over the photo's foot, below the van's lettering (no scrim on
-// anyone). Copy: Site settings → CTA band (heading, status line). The band has one H2
+// The estimate band that closes most pages. A photo of the crew at the vans and trucks
+// is the stage (lib/cms.ts ctaBandPhoto: one of a few, chosen by the page so neighbouring
+// pages differ, never one the page already shows): the words sit on the empty top above
+// the people, the wire draws the bulb there, and the form card rises over the photo's
+// foot, clear of every head (no scrim on anyone). Copy: Site settings → CTA band (heading, status line). The band has one H2
 // (its heading); the form's title is an H3 under it.
 import type {SiteSettings} from '../../lib/types'
 import {officeHours, telHref} from '../../lib/site'
-import {VAN_PHOTO} from '../../lib/brand-photos'
+import type {ImageRef} from '../../lib/types'
+import {ctaBandPhoto} from '../../lib/cms'
 import SanityImage from '../ui/SanityImage.astro'
 import Eyebrow from '../ui/Eyebrow.astro'
 import Bulb from '../ui/Bulb.astro'
@@ -27,9 +29,12 @@ interface Props {
   formId?: string
   /** The form's "City or ZIP" example (EstimateForm). */
   zipPlaceholder?: string
+  /** The stage photo, when the page picked it (ctaBandPhoto with the photos it shows); else picked by the path. */
+  photo?: ImageRef
 }
 
 const {settings, number, formId = 'cta', zipPlaceholder} = Astro.props
+const photo = Astro.props.photo ?? ctaBandPhoto(Astro.url.pathname)
 const band = settings.ctaBand
 const hours = officeHours(settings)
 // typographic apostrophes in display type
@@ -43,7 +48,7 @@ const text =
 <section class="cta cv" aria-labelledby="cta-h" data-bulb-field>
   <div class="cta__stage" data-bulb-edge>
     <figure class="cta__media">
-      <SanityImage image={VAN_PHOTO.image} widths={[640, 960, 1280]} sizes="(max-width:899px) 150vw, 107vw" faces={VAN_PHOTO.faces} />
+      <SanityImage image={photo} widths={[640, 960, 1280, 1920, 2400]} sizes="(max-width:899px) 150vw, 107vw" />
     </figure>
     <div class="cta__wall">
       <div class="cta__words">

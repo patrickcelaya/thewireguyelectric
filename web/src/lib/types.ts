@@ -304,6 +304,8 @@ export interface LocationDoc {
   description?: string
   cardBlurb?: string
   mainImage?: ImageRef
+  /** The hero photo under the open sky (one of the company's photos, framed so the heads sit below the words). */
+  heroImage?: ImageRef
   body?: PortableTextValue
   geo?: {lat: number; lng: number}
   county?: string

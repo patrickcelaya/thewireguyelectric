@@ -5,6 +5,8 @@
 // different alt text in different documents, and one photo must keep one URL on a page
 // (its preload and its <img>). Every other image is named from its own alt text
 // (lib/image.ts). Kept apart from brand-photos.ts, which imports lib/image.ts.
+import LIBRARY from './library-photos.json'
+
 export const IMAGE_NAMES: Record<string, string> = {
   // people
   'image-dbea2749464c7bb96fabc1ff06cd7add6f0f9a07-2542x1694-avif': 'wire-guy-electric-crew-and-trucks',
@@ -30,4 +32,8 @@ export const IMAGE_NAMES: Record<string, string> = {
   'image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg': 'chandelier-over-dining-table',
   'image-d338d7dc5dae879faa96751651f476d868aa99e6-1186x1120-avif': 'kitchen-recessed-lights-at-night',
   'image-d11c56eea7e73639905734cb2b5137587ae500d0-853x1280-avif': 'wire-strippers-pliers-voltage-tester-romex',
+  // the four of the crew at a new panel (a post's own photo)
+  'image-06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088-png': 'wire-guy-electric-crew-thumbs-up-new-panel',
+  // the owner's photo library (migration/brand-photos/library.json): each file's own name, which says what it shows
+  ...Object.fromEntries(LIBRARY.map((p) => [p.id, p.name])),
 }

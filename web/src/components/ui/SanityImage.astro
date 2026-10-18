@@ -8,7 +8,7 @@
 // (data-faces) for the QA face checks. Renders nothing when the image can't be served.
 import type {ImageRef} from '../../lib/types'
 import {hasImage, imageAlt, imageDimensions, imageFocus, imageSrcSet, imageUrl} from '../../lib/image'
-import {facesOf} from '../../lib/brand-photos'
+import {facesInFrame} from '../../lib/brand-photos'
 
 interface Props {
   image: ImageRef | null | undefined
@@ -23,11 +23,11 @@ interface Props {
   priority?: boolean
   class?: string
   style?: string
-  /** Head boxes the layout keeps clear ("x0,y0,x1,y1;…"), read by the QA face checks. Defaults to the photo's own (lib/brand-photos). */
+  /** Head boxes the layout keeps clear ("x0,y0,x1,y1;…"), read by the QA face checks. Defaults to the photo's own (lib/brand-photos), in the frame it is served in. */
   faces?: string
 }
 
-const {image, widths = [480, 768, 1080, 1440, 1920], sizes, aspect, alt, priority = false, class: className, style, faces = facesOf(image)} = Astro.props
+const {image, widths = [480, 768, 1080, 1440, 1920], sizes, aspect, alt, priority = false, class: className, style, faces = facesInFrame(image, aspect)} = Astro.props
 const ok = hasImage(image)
 const own = ok ? imageDimensions(image) : undefined
 const width = own?.width

@@ -32,7 +32,15 @@ export const location = defineType({
       group: 'content',
       description: 'One line for city cards and tiles, e.g. "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch." Must be true of this city.',
     }),
-    imageField('mainImage', 'Main image', {group: 'content'}),
+    imageField('mainImage', 'Main image', {
+      group: 'content',
+      description: 'One of the crew’s own photos, shown beside "{City} at a glance". Never claim a photo was taken in this city unless it was.',
+    }),
+    imageField('heroImage', 'Hero image', {
+      group: 'content',
+      description:
+        'The photo under the open sky at the top of the page: a wide company photo with plenty of sky. Crop it so every head sits in the bottom quarter (below the words) and nothing at the far left or right matters on phones. Empty: the photo picked for this city in the site code, else the fleet.',
+    }),
     defineField({name: 'body', type: 'richText', group: 'content'}),
     defineField({name: 'geo', type: 'geopoint', group: 'local', description: 'City center, for areaServed schema'}),
     defineField({name: 'county', type: 'string', group: 'local', initialValue: 'Maricopa County'}),

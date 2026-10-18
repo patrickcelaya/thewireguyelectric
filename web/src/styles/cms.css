@@ -56,6 +56,8 @@
 /* narrow desktops: the frame is tall for its width, so the photo is cropped at the sides and a face can come near the left edge:
    a shorter feather there keeps every face at full strength */
 @media (min-width:900px) and (max-width:1199px){.ihero__side{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%);mask-image:linear-gradient(90deg,transparent,#000 7%)}}
+/* a head in the photo's left third (ServiceHero: .ihero__side--near): the short feather at every desktop width */
+@media (min-width:900px){.ihero__side--near{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%);mask-image:linear-gradient(90deg,transparent,#000 6%)}}
 /* tablets: a wider frame, so the H1 under the photo still starts in the first screen */
 @media (min-width:640px) and (max-width:899px){.ihero__side{aspect-ratio:2/1}}
 
@@ -147,3 +149,26 @@ html:not(.oo):not(.oc) .facts__status{display:none}
 /* blog topics: the services the guides are written around */
 .topic-hubs{margin-top:clamp(56px,6vw,96px);padding-top:clamp(28px,2.6vw,40px);border-top:1.5px solid var(--ink)}
 .topic-hubs__h{font-size:clamp(1.5rem,1.15rem + 1vw,2.25rem);letter-spacing:-.03em}
+
+/* ===================================================================== RECENT WORK (components/sections/WorkGallery): the owner's own photos,
+   captions under them (never over a face), in one of three layouts per page. Every cell has a fixed box, so the lazy photos
+   move nothing as they arrive. */
+.work-s .wg{--gap:clamp(10px,1.1vw,18px);display:grid;gap:var(--gap);margin-top:clamp(28px,3vw,48px)}
+.wg__item{min-width:0;min-height:0}
+.wg figure{display:flex;flex-direction:column;height:100%;margin:0}
+.wg img{display:block;flex:1 1 auto;width:100%;min-height:0;object-fit:cover;border-radius:var(--r-md);background:var(--sand-2)}
+.wg figcaption{flex:none;margin-top:10px;font-size:.875rem;line-height:1.35;color:var(--muted)}
+.wg--row{grid-template-columns:repeat(4,minmax(0,1fr))}
+.wg--row img{aspect-ratio:4/5;flex:none}
+.wg--lead,.wg--mosaic{height:clamp(440px,42vw,720px);grid-template-rows:repeat(2,minmax(0,1fr))}
+.wg--lead{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.wg--mosaic{grid-template-columns:minmax(0,2fr) repeat(2,minmax(0,1fr))}
+.wg--lead .wg__item:first-child,.wg--mosaic .wg__item:first-child{grid-row:1/-1}
+@media (max-width:699px){
+  .wg--row,.wg--lead,.wg--mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;height:auto}
+  .wg img,.wg--row img{flex:none;aspect-ratio:4/5}
+  .wg--lead .wg__item:first-child,.wg--mosaic .wg__item:first-child{grid-row:auto;grid-column:1/-1}
+  .wg--lead .wg__item:first-child img,.wg--mosaic .wg__item:first-child img{aspect-ratio:3/2}
+  .wg figcaption{font-size:.8125rem}
+}
+.work-s.cv{contain-intrinsic-size:auto 900px}

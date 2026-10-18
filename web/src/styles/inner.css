@@ -292,7 +292,7 @@
 
 @media (max-width:699px){
   .ihero--sky .ihero__photo{aspect-ratio:16/10;overflow:hidden}
-  .ihero--sky .ihero__photo img{position:absolute;bottom:0;left:calc(50% - 170% * .525);width:170%;max-width:none;height:auto;aspect-ratio:auto;object-fit:fill}
+  .ihero--sky .ihero__photo img{position:absolute;bottom:0;left:calc(50% - 100% * var(--pw,1.7) * var(--pc,.525));width:calc(100% * var(--pw,1.7));max-width:none;height:auto;aspect-ratio:auto;object-fit:fill}
 }
 
 /* phones: the fixed call bar (Call now · Free Estimate, from the first paint) is the hero's button pair, so the hero's own

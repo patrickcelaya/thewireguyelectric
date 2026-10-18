@@ -29,6 +29,7 @@ import {
   POST_COVER,
   articleHtml,
   guideCards,
+  ctaBandPhoto,
   markShown,
   mergeFaqs,
   photoTiles,
@@ -160,5 +161,5 @@ const image = imageObjectNode(cover, {id: primaryImageId})
 
   <PostNav prev={older} next={newer} />
 
-  <CtaBand settings={settings} />
+  <CtaBand settings={settings} photo={ctaBandPhoto(path, shown)} />
 </SiteLayout>

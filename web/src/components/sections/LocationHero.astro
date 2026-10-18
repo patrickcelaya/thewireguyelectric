@@ -1,18 +1,19 @@
 ---
-// A city page's hero (round-5 Gilbert mockup): the fleet under the open Arizona sky,
-// the H1 on the sky far above the crew (the town in copper), the lede, the estimate
-// and call buttons, Emma's status, and the glass trust card on the empty sky at the
-// right (below the photo on phones, over the asphalt). A city with an office of its
-// own (Scottsdale) shows that office in the card. The photo is the page's LCP image:
-// the page preloads the same renditions (FLEET_HERO). Styles: styles/inner.css (.ihero--sky),
-// styles/cms.css (.ihero--office, and the photo set lower from 1100 to 1399 px).
+// A city page's hero (round-5 Gilbert mockup): the city's own photo of the crew or the
+// trucks under the open Arizona sky (lib/cms.ts cityHero: each city has its own), the H1
+// on the sky far above the people (the town in copper), the lede, the estimate and call
+// buttons, Emma's status, and the glass trust card on the empty sky at the right (below
+// the photo on phones, over the asphalt). Every hero photo is framed so the heads start at
+// 71.5% of it, where the fleet's did; on phones the window onto the photo is centred on
+// them (--pc). A city with an office of its own (Scottsdale) shows that office in the card.
+// The photo is the page's LCP image: the page preloads the same renditions. Styles:
+// styles/inner.css (.ihero--sky), styles/cms.css (.ihero--office, the photo lower at 1100–1399 px).
 import type {LocationDoc, PostalAddress, SiteSettings} from '../../lib/types'
 import type {Crumb} from '../../lib/seo'
 import {ESTIMATE_PATH, telHref} from '../../lib/site'
-import {FLEET_PHOTO} from '../../lib/brand-photos'
 import {imageDimensions, imageUrl} from '../../lib/image'
 import {accentParts} from '../../lib/format'
-import {FLEET_HERO, cityAccent} from '../../lib/cms'
+import {cityAccent, cityHero} from '../../lib/cms'
 import Breadcrumbs from '../ui/Breadcrumbs.astro'
 import Eyebrow from '../ui/Eyebrow.astro'
 import Button from '../ui/Button.astro'
@@ -34,24 +35,25 @@ const {location, heading, settings, crumbs, office} = Astro.props
 const city = location.shortName || location.name
 const eyebrow = [location.cityNameForSeo ?? `${city}, AZ`, location.county].filter(Boolean).join(' · ')
 const [before, town, after] = accentParts(heading, cityAccent(heading, city))
-const fleet = FLEET_PHOTO.image
-const size = imageDimensions(fleet)
+const hero = cityHero(location)
+const photo = hero.image
+const size = imageDimensions(photo)
 ---
 
 <section class:list={['ihero ihero--sky', office && 'ihero--office']} aria-labelledby="hero-h">
   <div class="ihero__stage">
-    <figure class="ihero__photo">
+    <figure class="ihero__photo" style={`--pc:${hero.center};--pw:${hero.zoom}`}>
       <img
-        src={imageUrl(fleet, {width: 1086})}
-        srcset={FLEET_HERO.srcset}
-        sizes={FLEET_HERO.sizes}
+        src={imageUrl(photo, {width: 1086})}
+        srcset={hero.srcset}
+        sizes={hero.sizes}
         width={size?.width}
         height={size?.height}
-        alt={fleet.alt}
+        alt={photo.alt}
         loading="eager"
         decoding="sync"
         fetchpriority="high"
-        data-faces={FLEET_PHOTO.faces}
+        data-faces={hero.faces}
       />
     </figure>
     <div class="wrap ihero__copy">

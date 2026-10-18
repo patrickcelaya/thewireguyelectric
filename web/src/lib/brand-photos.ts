@@ -4,35 +4,62 @@
 // keeps clear (x0,y0,x1,y1 as fractions of the photo), for QA tooling.
 import type {ImageRef} from './types'
 import {resolveImage} from './image'
+import LIBRARY from './library-photos.json'
 
 function asset(id: string, alt: string): ImageRef {
   return {alt, asset: {_id: id, url: ''}}
 }
 
-/** The estimate band: a Wire Guy electrician seen from behind, looking at a company van. */
-export const VAN_PHOTO = {
-  image: asset(
-    'image-039889c72aabf099f0b700d9e4f9dc301153852e-1280x853-avif',
-    'A Wire Guy electrician, seen from behind in a company shirt with the phone number on the back, looking at a company van',
-  ),
-  faces: '0.25,0.27,0.375,0.415',
+/**
+ * The owner's photo library (migration/brand-photos/library.json, uploaded by upload.mjs and
+ * registered by registry.mjs): what each photo shows (`subject`, `services`), whether people
+ * are in it (`kind`, with their head boxes in `faces`), and the slots it was picked for
+ * (`roles`: "cityHero:gilbert", "ctaBand", "serviceSecond:panels", "team:cody-taylor", …).
+ */
+export interface LibraryPhoto {
+  id: string
+  name: string
+  alt: string
+  /** A short factual caption (the alt's first clause); it never names a place. */
+  caption: string
+  kind: 'job' | 'people'
+  /** What the library's catalogue says it shows, finer than `subject` (chandelier-pendant, tech-at-work, crew-group, …). */
+  shows: string
+  subject?: PhotoSubject
+  services: string[]
+  faces?: string
+  orientation: 'landscape' | 'portrait' | 'square'
+  quality: number
+  roles: string[]
+  /** A city hero's frame (Sanity crop fractions): the heads start at 71.5% of it, under the sky. */
+  heroCrop?: {top: number; left: number; bottom: number; right: number}
+  /** Photos from one shoot of one subject (the same truck): a page shows at most one of them. */
+  group?: string
+  /** Where the subject sits (fractions), for frames that crop the photo. */
+  hotspot?: {x: number; y: number}
+}
+export const LIBRARY_PHOTOS = LIBRARY as LibraryPhoto[]
+/** The library photo picked for a slot ("van", "cityHero:gilbert"), if any. */
+export const photoFor = (role: string) => LIBRARY_PHOTOS.find((p) => p.roles.includes(role))
+export const libraryImage = (p: LibraryPhoto, alt = p.alt): ImageRef => ({...asset(p.id, alt), ...(p.hotspot ? {hotspot: {...p.hotspot, width: 1, height: 1}} : {})})
+function libraryRole(role: string) {
+  const p = photoFor(role)
+  if (!p) throw new Error(`brand-photos: no library photo for "${role}" (migration/brand-photos/library.json)`)
+  return p
 }
 
-/**
- * The valley poster: the fleet in the desert under the real sky. The largest export
- * is 1,086 px; for big screens it is served as carefully enlarged copies (Lanczos
- * plus a light unsharp mask) from public/img until the original arrives.
- */
+/** A Wire Guy electrician seen from behind, looking at a company van (the original of the old 1,280 px export). */
+const VAN = libraryRole('van')
+export const VAN_PHOTO = {
+  image: libraryImage(VAN, 'A Wire Guy electrician, seen from behind in a company shirt with the phone number on the back, looking at a company van'),
+  faces: VAN.faces!,
+}
+
+/** The valley poster: the fleet in the desert under the real sky (the full-resolution original, graded like the old export). */
+const FLEET = libraryRole('fleet')
 export const FLEET_PHOTO = {
-  image: asset(
-    'image-69873586fe760f2a1192b56c3bc9202d34fdedbb-1086x724-avif',
-    'Three Wire Guy Electric vans and a company pickup lined up in the desert, with four electricians and the Superstition Mountains behind them',
-  ),
-  enlarged: [
-    {src: '/img/fleet-1600.avif', width: 1600},
-    {src: '/img/fleet-2172.avif', width: 2172},
-  ],
-  faces: '0.255,0.715,0.295,0.775;0.435,0.715,0.48,0.775;0.595,0.72,0.635,0.78;0.755,0.72,0.795,0.78',
+  image: libraryImage(FLEET, 'Three Wire Guy Electric vans and a company pickup lined up in the desert, with four electricians and the mountains behind them'),
+  faces: FLEET.faces!,
 }
 
 /**
@@ -75,14 +102,71 @@ const PHOTO_FACES: Record<string, string> = {
   'image-93e149ea8e7a592e9d305c197b9c5b235c40e141-1280x960-jpg': '0.41,0.255,0.485,0.38',
   'image-630b928b18849bf1ee4a32a0fc96b32a5fccc28a-1280x960-jpg': '0.36,0.25,0.44,0.385',
   'image-7f5550e12af844babb390fc349948db55fb34598-1280x960-jpg': '0.40,0.23,0.62,0.44',
-  [VAN_PHOTO.image.asset!._id]: VAN_PHOTO.faces,
-  [FLEET_PHOTO.image.asset!._id]: FLEET_PHOTO.faces,
+  // the old exports of the estimate band's and the valley poster's photos (the library holds their originals)
+  'image-039889c72aabf099f0b700d9e4f9dc301153852e-1280x853-avif': '0.25,0.27,0.375,0.415',
+  'image-69873586fe760f2a1192b56c3bc9202d34fdedbb-1086x724-avif': '0.255,0.715,0.295,0.775;0.435,0.715,0.48,0.775;0.595,0.72,0.635,0.78;0.755,0.72,0.795,0.78',
+  // four of the crew giving a thumbs-up beside a new panel and meter on a block wall (the bucket hat at the left
+  // touches the top of the frame in the photo itself)
+  'image-06e0b3fd4f83f9990bbd9f130cf956025cebdcf1-1633x1088-png': '0.15,0.004,0.265,0.161;0.379,0.42,0.464,0.60;0.571,0.41,0.65,0.59;0.674,0.146,0.75,0.32',
+  // the library: every photo of people, with its head boxes (each checked by eye on the photo)
+  ...Object.fromEntries(LIBRARY_PHOTOS.filter((p) => p.kind === 'people').map((p) => [p.id, p.faces!])),
 }
 
 /** The head boxes of a company photo of people, for data-faces (undefined for every other image). */
 export function facesOf(image: ImageRef | null | undefined) {
   const ref = resolveImage(image)?.ref
   return ref ? PHOTO_FACES[ref] : undefined
+}
+
+/**
+ * The head boxes of a photo of people in the frame it is served in: after the editor's crop and, with `aspect`, after
+ * the CDN's crop to that ratio around the hotspot (lib/image.ts), as fractions of what the visitor gets. data-faces must
+ * describe the served image, or the QA face check would test the wrong places.
+ */
+export function facesInFrame(image: ImageRef | null | undefined, aspect?: number) {
+  const faces = facesOf(image)
+  const r = resolveImage(image)
+  if (!faces || !r) return faces
+  const c = r.crop ?? {top: 0, left: 0, bottom: 0, right: 0}
+  // the frame after the editor's crop, in fractions of the whole photo
+  let x0 = c.left, y0 = c.top, fw = 1 - c.left - c.right, fh = 1 - c.top - c.bottom
+  if (aspect) {
+    const w = r.width * fw, h = r.height * fh
+    const hx = r.hotspot?.x ?? 0.5, hy = r.hotspot?.y ?? 0.5
+    if (w / h > aspect) {
+      const cw = (h * aspect) / r.width
+      x0 = Math.min(Math.max(hx - cw / 2, x0), x0 + fw - cw)
+      fw = cw
+    } else {
+      const ch = w / aspect / r.height
+      y0 = Math.min(Math.max(hy - ch / 2, y0), y0 + fh - ch)
+      fh = ch
+    }
+  }
+  if (!x0 && !y0 && fw === 1 && fh === 1) return faces
+  const k = (v: number) => Math.round(v * 1000) / 1000
+  return faces
+    .split(';')
+    .map((b) => {
+      const [a, bb, cc, d] = b.split(',').map(Number)
+      return [k((a - x0) / fw), k((bb - y0) / fh), k((cc - x0) / fw), k((d - y0) / fh)].join(',')
+    })
+    .join(';')
+}
+
+/**
+ * Whether every head in a photo of people has room around it inside the photo itself (15% of its height above, 6% of
+ * its width at each side, as the QA face check asks). A head at the photo's own edge (the bucket hat in the four at the
+ * new panel) can't be framed with room by any layout, so the pickers leave such a photo out. True for job photos.
+ */
+export function headsHaveRoom(image: ImageRef | null | undefined) {
+  return (facesOf(image) ?? '')
+    .split(';')
+    .filter(Boolean)
+    .every((b) => {
+      const [x0, y0, x1, y1] = b.split(',').map(Number)
+      return y0 - (y1 - y0) * 0.15 >= 0 && x0 - (x1 - x0) * 0.06 >= 0 && x1 + (x1 - x0) * 0.06 <= 1
+    })
 }
 
 /** Two of the crew walking up a customer's front path: "we come to you" (city pages). */
@@ -115,8 +199,8 @@ export const VANS_PHOTO = {
  * subject. The tools flat-lay is the neutral photo: it suits a guide with no subject of its
  * own (troubleshooting, safety).
  */
-export type PhotoSubject = 'lighting' | 'panel' | 'tools' | 'ev' | 'exterior'
-const PHOTO_SUBJECTS: readonly string[] = ['lighting', 'panel', 'tools', 'ev', 'exterior'] satisfies PhotoSubject[]
+export type PhotoSubject = 'lighting' | 'panel' | 'tools' | 'ev' | 'exterior' | 'wiring' | 'fleet'
+const PHOTO_SUBJECTS: readonly string[] = ['lighting', 'panel', 'tools', 'ev', 'exterior', 'wiring', 'fleet'] satisfies PhotoSubject[]
 /** Whether a blog topic's slug is also a photo subject (lighting is; commercial is not). */
 export const isPhotoSubject = (slug: string): slug is PhotoSubject => PHOTO_SUBJECTS.includes(slug)
 interface JobPhoto {
@@ -152,6 +236,14 @@ const JOB_PHOTO_LIST: JobPhoto[] = [
   {subject: 'lighting', services: ['fixture-replacements', 'hanging-lights'], image: asset('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg', 'Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting')},
   {subject: 'lighting', services: ['recessed-lights-installation', 'electrical-remodels'], image: asset('image-d338d7dc5dae879faa96751651f476d868aa99e6-1186x1120-avif', 'A remodeled kitchen at night lit by recessed ceiling lights')},
   {subject: 'tools', image: asset('image-d11c56eea7e73639905734cb2b5137587ae500d0-853x1280-avif', 'Klein wire strippers, linesman pliers and a voltage tester on a coil of yellow Romex cable')},
+  // the library's photos without people. `wiring` is outlets, switches and rough-in wiring; `fleet` (the vans and
+  // trucks) and `ev` are narrow: a truck is never a guide's cover, an EV charger only an EV guide's
+  ...LIBRARY_PHOTOS.filter((p) => p.kind === 'job').map((p) => ({
+    subject: p.subject!,
+    ...(p.services.length ? {services: p.services} : {}),
+    ...(p.subject === 'ev' || p.subject === 'fleet' ? {narrow: true} : {}),
+    image: libraryImage(p),
+  })),
 ]
 export const JOB_PHOTOS: ImageRef[] = JOB_PHOTO_LIST.map((p) => p.image)
 

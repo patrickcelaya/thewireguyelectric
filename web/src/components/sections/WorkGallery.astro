@@ -1,0 +1,55 @@
+---
+// "Recent work by our crew" on city and service pages: three to five of the owner's own
+// photos (lib/cms.ts cityWork / serviceWork: never one the page shows elsewhere, a
+// different set on every page), each with a short factual caption under it, never over
+// it, so no face is covered. The caption says what the photo shows, never where it was
+// taken. Three layouts (`layout`, picked per page by its slug so neighbouring pages
+// differ): "lead" (one large photo, two beside it), "mosaic" (one large, four beside it)
+// and "row" (four in a row). Photos of people are framed on their faces. Renders nothing
+// without photos. Styles: styles/cms.css "RECENT WORK".
+import type {WorkLayout, WorkPhoto} from '../../lib/cms'
+import {facesFocus} from '../../lib/cms'
+import {facesOf} from '../../lib/brand-photos'
+import SectionHeader from '../ui/SectionHeader.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  photos: WorkPhoto[]
+  layout: WorkLayout
+  heading: string
+  intro?: string
+  number?: number
+  id: string
+}
+
+const {photos, layout, heading, intro, number, id} = Astro.props
+// the large cell is about two thirds of the row on desktop; the others a third or a quarter (full width / half on phones)
+const sizes = (i: number) =>
+  layout === 'row' ? '(max-width:699px) 46vw, 23vw' : i === 0 ? '(max-width:699px) 92vw, 56vw' : layout === 'mosaic' ? '(max-width:699px) 46vw, 20vw' : '(max-width:699px) 46vw, 30vw'
+---
+
+{
+  photos.length > 0 && (
+    <section class="section work-s cv" aria-labelledby={id}>
+      <div class="wrap">
+        <SectionHeader eyebrow="Our work" number={number} heading={heading} id={id} intro={intro} />
+        <ul class={`wg wg--${layout}`} role="list">
+          {photos.map((p, i) => (
+            <li class="wg__item">
+              <figure>
+                <SanityImage
+                  image={p.image}
+                  widths={i === 0 && layout !== 'row' ? [640, 960, 1280, 1600] : [480, 720, 960]}
+                  sizes={sizes(i)}
+                  alt=""
+                  style={p.people ? `object-position:${facesFocus(facesOf(p.image)) ?? '50% 50%'}` : undefined}
+                />
+                <figcaption>{p.caption}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

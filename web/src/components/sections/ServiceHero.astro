@@ -35,6 +35,13 @@ const staging = heroStaging(service.mainImage)
 const eyebrow = [service.category && `${service.category.name} service`, 'Mesa and the Phoenix valley'].filter(Boolean).join(' · ')
 // the photo of the crew, framed on their faces
 const focus = staging === 'split' ? facesFocus(facesOf(service.mainImage)) : undefined
+// a head in the left third of the photo would sit in the panel's feather: that panel fades over a shorter run
+const nearLeft =
+  staging === 'split' &&
+  (facesOf(service.mainImage) ?? '')
+    .split(';')
+    .filter(Boolean)
+    .some((b) => Number(b.split(',')[0]) < 0.3)
 // the longest word's length: on phones the H1 sets small enough for it to fit the line (styles/inner.css)
 const longestWord = Math.max(...heading.split(/\s+/).map((word) => word.length))
 ---
@@ -50,7 +57,7 @@ const longestWord = Math.max(...heading.split(/\s+/).map((word) => word.length))
     }
     {
       staging === 'split' && (
-        <figure class="ihero__side">
+        <figure class:list={['ihero__side', nearLeft && 'ihero__side--near']}>
           <SanityImage
             image={service.mainImage}
             widths={[...SERVICE_HERO_IMAGE.split.widths]}
