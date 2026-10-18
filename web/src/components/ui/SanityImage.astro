@@ -18,7 +18,11 @@ interface Props {
   sizes: string
   /** Crop every rendition to this ratio (width / height). */
   aspect?: number
-  /** Alt text; defaults to the image's own. Pass "" for a decorative image beside its caption or title. */
+  /**
+   * Alt text; defaults to the image's own, which a thumbnail beside its title or a captioned photo keeps too
+   * (docs/DESIGN_SYSTEM.md section 7). Pass "" only for art that shows nothing (the valley relief), a background
+   * texture, or a video poster inside its labelled link.
+   */
   alt?: string
   priority?: boolean
   class?: string

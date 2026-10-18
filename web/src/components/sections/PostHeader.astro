@@ -1,11 +1,12 @@
 ---
 // A blog post's head: the breadcrumb, the topic and reading time, the H1 (the post's
-// title) and the byline, beside the cover (a real photo: the post's own approved image, lib/cms.ts ownPostImage, else postCover). The
-// byline is the business (the owner's choice) unless the post names an author;
-// "Updated" shows only for a material update (updatedAt set and different from the
-// publish date); "Reviewed by" only when a reviewer is set. The cover keeps its own alt
-// text (what the photo shows, never the post's title): it is the page's main image, the
-// article's image and its share image. Styles: styles/post.css.
+// title) and the byline, beside the cover (a real photo: the post's own approved image,
+// lib/cms.ts ownPostImage, else postCover). The byline is the business (the owner's
+// choice) unless the post names an author; "Updated" shows only for a material update
+// (updatedAt set and different from the publish date); "Reviewed by" only when a
+// reviewer is set. The cover keeps its own alt text (what the photo shows, never the
+// post's title): it is the page's main image, the article's image and its share image.
+// Styles: styles/post.css.
 import type {ImageRef, PostDoc, SiteSettings} from '../../lib/types'
 import type {Crumb} from '../../lib/seo'
 import {formatDate, isoDate} from '../../lib/format'
