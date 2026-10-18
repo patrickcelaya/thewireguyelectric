@@ -3,7 +3,8 @@
 // the blog). A card picked with its own cover shows that photo, topic and cover words
 // here; the post page keeps its own image. A card without a cover photo shows the post's
 // own image only when it is one of the company's job photos, else the plain copper cover
-// (never stock). Renders the block only: the page puts it in a section (on the homepage
+// (never unapproved stock). A post's owner-approved own image comes as its cover with
+// `ownCover` (blog pages only, lib/cms.ts guideCards) and shows untinted. Renders the block only: the page puts it in a section (on the homepage
 // it shares the sand "answers" band with the questions).
 import type {PostsSection} from '../../lib/types'
 import {ctaHref} from '../../lib/site'
@@ -40,7 +41,12 @@ const count = section.posts.length
       )}
       <ul class:list={['guides', count !== 3 && count <= 5 && `guides--${count}`]} role="list">
         {section.posts.map((post) => (
-          <GuideCard post={{...post, mainImage: post.cover ?? (companyPhoto(post.mainImage) === 'job' ? post.mainImage : undefined)}} label={post.label ?? undefined} coverWords={post.coverWords ?? undefined} />
+          <GuideCard
+            post={{...post, mainImage: post.cover ?? (companyPhoto(post.mainImage) === 'job' ? post.mainImage : undefined)}}
+            label={post.label ?? undefined}
+            coverWords={post.coverWords ?? undefined}
+            own={Boolean(post.cover && post.ownCover)}
+          />
         ))}
       </ul>
     </div>

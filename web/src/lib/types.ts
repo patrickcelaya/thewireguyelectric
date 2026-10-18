@@ -233,6 +233,11 @@ export interface PostSummary {
   publishedAt: string
   featured?: boolean
   mainImage?: ImageRef
+  /**
+   * The owner approved the main image for the blog pages (its cover, share image and cards there; lib/cms.ts
+   * ownPostImage). Unset: the main image is stock or AI-made and never shows.
+   */
+  showMainImage?: boolean
   category?: {name: string; slug: string}
   /** The service page the post supports (its first related service), when it has one. */
   service?: NamedLink | null
@@ -527,6 +532,10 @@ export interface PostCard extends PostSummary {
   coverWords?: string
   /** A cover photo for this card (else the post's main image). */
   cover?: ImageRef | null
+  /** The cover is the post's own owner-approved image (ownPostImage): shown in its natural colour, never under the copper tint. */
+  ownCover?: boolean
+  /** The blog archive's thumbnail for the row (lib/cms.ts postThumb), set by the /blog route. */
+  thumb?: ImageRef
 }
 
 export interface PostsSection extends SectionBase {

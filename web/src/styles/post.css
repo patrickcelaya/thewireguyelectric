@@ -75,4 +75,13 @@
 .post-nav__a--next .post-nav__k::before{display:none}
 .post-nav__t{font:700 clamp(1.125rem,1rem + .4vw,1.375rem)/1.3 var(--font-display);letter-spacing:-.015em;color:var(--ink)}
 .post-nav__a:hover .post-nav__t{color:var(--copper-700)}
+/* a thumbnail beside the words: at the left of the previous post, at the right of the next */
+.post-nav__a--thumb{grid-template-columns:auto minmax(0,1fr);column-gap:clamp(16px,1.8vw,24px);align-content:center}
+.post-nav__a--thumb>:not(.post-nav__thumb){grid-column:2}
+.post-nav__a--next.post-nav__a--thumb{grid-template-columns:minmax(0,1fr) auto}
+.post-nav__a--next.post-nav__a--thumb>:not(.post-nav__thumb){grid-column:1}
+.post-nav__thumb{grid-row:1 / span 2;align-self:center;width:clamp(88px,9vw,128px);aspect-ratio:4/3;overflow:hidden;border-radius:var(--r-md);background:var(--sand-2)}
+.post-nav__a--next .post-nav__thumb{grid-column:2}
+.post-nav__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-out)}
+.post-nav__a:hover .post-nav__thumb img{transform:scale(1.04)}
 @media (max-width:699px){.post-nav{grid-template-columns:minmax(0,1fr)}.post-nav__a--next{grid-column:auto}}

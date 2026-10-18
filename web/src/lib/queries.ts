@@ -105,6 +105,7 @@ const POST_CARD = /* groq */ `{
   publishedAt,
   featured,
   "mainImage": mainImage${IMAGE},
+  showMainImage,
   "category": category->{name, "slug": slug.current},
   "service": relatedServices[0]->${NAMED_LINK}
 }`
@@ -599,6 +600,7 @@ export function getPost(slug: string) {
     defineQuery(`*[_type == "post" && slug.current == $slug][0]{
       _id, _updatedAt, title, "slug": slug.current, excerpt, quickAnswer, publishedAt, updatedAt,
       "mainImage": mainImage${IMAGE},
+      showMainImage,
       body${RICH_TEXT},
       "category": category->{name, "slug": slug.current},
       "author": author->{name, role, "slug": slug.current, credentials, "photo": photo${IMAGE}},
@@ -621,6 +623,7 @@ export const getPostIndex = memo(() =>
     defineQuery(`*[_type == "post" && defined(slug.current) && defined(publishedAt)] | order(publishedAt desc, _id asc){
       _id, title, "slug": slug.current, excerpt, publishedAt, featured,
       "mainImage": mainImage${IMAGE},
+      showMainImage,
       "category": category->{name, "slug": slug.current},
       "services": coalesce(relatedServices[]->slug.current, []),
       "text": coalesce(pt::text(body), "")

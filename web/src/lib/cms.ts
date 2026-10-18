@@ -5,7 +5,7 @@
 import type {FaqItem, ImageRef, PortableTextValue, PostCard, PostIndexEntry, PostSummary, Review, ServiceSummary} from './types'
 import type {City} from './cities'
 import {FLEET_PHOTO, JOB_PHOTOS, LIBRARY_PHOTOS, VAN_PHOTO, VANS_PHOTO, WALK_PHOTO, companyPhoto, facesInFrame, headsHaveRoom, isPhotoSubject, jobPhoto, jobPhotoImage, libraryImage, photoFor, photoId, type LibraryPhoto, type PhotoSubject} from './brand-photos'
-import {imageSrcSet} from './image'
+import {hasImage, imageAlt, imageSrcSet} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
 
@@ -308,7 +308,8 @@ function firstServicePhotos(post: PostSummary, index: PostIndexEntry[], services
  * of the post's subject is left there is none: the card shows its plain copper cover (GuideCard), never
  * a photo of something else. A natural cover (the post's own page, its main image) may show people too,
  * framed on their faces, and always gets a photo: past its subject, any unused job photo but the narrow
- * EV charger. `seed` varies the picks from page to page.
+ * EV charger. `seed` varies the picks from page to page. `fresh` natural covers (the blog's list thumbnails,
+ * the previous and next posts) never repeat a photo in `taken` either: with none left there is none.
  */
 /** Things a guide's title can name that the library has photos of in particular (LibraryPhoto.shows). */
 const TITLE_THINGS = [{title: /\bceiling fans?\b/i, shows: 'ceiling-fan'}]
@@ -317,7 +318,7 @@ export function postCover(
   post: PostSummary,
   index: PostIndexEntry[],
   services: ServiceSummary[],
-  {tinted = true, taken = new Set<string>(), seed = 0}: {tinted?: boolean; taken?: Set<string>; seed?: number} = {},
+  {tinted = true, taken = new Set<string>(), seed = 0, fresh = false}: {tinted?: boolean; taken?: Set<string>; seed?: number; fresh?: boolean} = {},
 ): ImageRef | undefined {
   const entry = index.find((p) => p.slug === post.slug)
   const own = entry?.services ?? []
@@ -382,7 +383,7 @@ export function postCover(
   const fits = (image: ImageRef | null | undefined): image is ImageRef => (tinted ? companyPhoto(image) === 'job' : Boolean(companyPhoto(image)))
   const usable = candidates.filter(fits)
   // the same photo may be an asset reference, a pre-import Webflow URL or a second upload: compare which photo it is
-  const pick = usable.find((image) => !taken.has(photoId(image))) ?? (tinted ? undefined : usable[0])
+  const pick = usable.find((image) => !taken.has(photoId(image))) ?? (tinted || fresh ? undefined : usable[0])
   if (!pick) return undefined
   markShown(taken, pick)
   // a card crops the job photo as listed in brand-photos (its hotspot frames the subject)
@@ -392,16 +393,54 @@ export function postCover(
 /**
  * Posts as guide cards with real covers (postCover) and their topic as the label, for GuidesBlock.
  * `taken` holds the photos the page shows elsewhere, so no card repeats one; a card left without an
- * unused photo of its own subject has no cover photo.
+ * unused photo of its own subject has no cover photo. On the blog's own pages (`own`: a post's related
+ * articles) a post whose own image the owner approved shows that image first (ownPostImage, `ownCover`:
+ * natural colour, never under the tint); service and city pages leave `own` off and keep the job photos.
  */
-export function guideCards(posts: PostSummary[], index: PostIndexEntry[], services: ServiceSummary[], seed = 0, taken = new Set<string>()): PostCard[] {
+export function guideCards(posts: PostSummary[], index: PostIndexEntry[], services: ServiceSummary[], seed = 0, taken = new Set<string>(), {own = false}: {own?: boolean} = {}): PostCard[] {
+  const covers = new Map<number, ImageRef | undefined>()
+  const owned = new Set<number>()
+  if (own)
+    posts.forEach((post, i) => {
+      const image = ownPostImage(post)
+      if (!image || taken.has(photoId(image))) return
+      markShown(taken, image)
+      covers.set(i, image)
+      owned.add(i)
+    })
   // the most specific card picks first: one whose first service has photos made for it (the recessed guide takes the
   // recessed kitchen before a flicker guide that only has the Lighting topic), then one whose label has a photo
   // subject (the panel cost guide gets the panel photo before a breaker guide that lists panels second), then the rest
   const rank = (post: PostSummary) => (firstServicePhotos(post, index, services).any ? 0 : coverTopic(post, index, services) ? 1 : 2)
-  const covers = new Map<number, ImageRef | undefined>()
-  for (const tier of [0, 1, 2]) posts.forEach((post, i) => rank(post) === tier && covers.set(i, postCover(post, index, services, {taken, seed: seed + i})))
-  return posts.map((post, i) => ({...post, mainImage: undefined, cover: covers.get(i), label: postTopic(post, index, services)}))
+  for (const tier of [0, 1, 2]) posts.forEach((post, i) => !owned.has(i) && rank(post) === tier && covers.set(i, postCover(post, index, services, {taken, seed: seed + i})))
+  return posts.map((post, i) => ({...post, mainImage: undefined, cover: covers.get(i), ownCover: owned.has(i) || undefined, label: postTopic(post, index, services)}))
+}
+
+/**
+ * A post's own main image when the owner approved it for the blog pages (post.showMainImage, set through
+ * migration/content-data/cms-templates.json `postImages`): a real photo, stock or the crew's, at least 1,200 px
+ * wide, never AI-made, never text or drawn-on effects, with alt text that says what is visible. Undefined for
+ * every other post. It shows on blog pages only: as the post's cover and share image, as its thumbnail on /blog,
+ * and on the related-article and previous/next cards of other posts; never on a service or city page, and never
+ * under the copper tint.
+ */
+export function ownPostImage(post: Pick<PostSummary, 'mainImage' | 'showMainImage'>): ImageRef | undefined {
+  const image = post.mainImage
+  return post.showMainImage && hasImage(image) && imageAlt(image) ? image : undefined
+}
+
+/**
+ * A post's thumbnail on a blog page (the /blog list, the previous and next posts): its own approved image (ownPostImage)
+ * unless the page already shows it, else a company photo of its subject the page doesn't show yet (postCover, `fresh`),
+ * else none. Marks it shown.
+ */
+export function postThumb(post: PostSummary, index: PostIndexEntry[], services: ServiceSummary[], taken: Set<string>, seed = 0): ImageRef | undefined {
+  const own = ownPostImage(post)
+  if (own && !taken.has(photoId(own))) {
+    markShown(taken, own)
+    return own
+  }
+  return postCover(post, index, services, {tinted: false, taken, seed, fresh: true})
 }
 
 /** The city a post is about: the first city its title names (most posts are valley-wide and name none). */
@@ -488,6 +527,21 @@ export function facesFocus(faces: string | undefined) {
   if (!boxes.length) return undefined
   const x = (Math.min(...boxes.map((b) => b[0])) + Math.max(...boxes.map((b) => b[2]))) / 2
   const y = (Math.min(...boxes.map((b) => b[1])) + Math.max(...boxes.map((b) => b[3]))) / 2
+  return `${Math.round(x * 1000) / 10}% ${Math.round(y * 1000) / 10}%`
+}
+
+/**
+ * Like facesFocus, but sure to keep every head in view: on each axis the boxes' span sits at the same share of the
+ * overflow as the margin before it (x0 / (x0 + 1 - x1)), so whatever the frame crops, as long as it is at least as
+ * large as the span, no head is cut. The centre can cut a head at the photo's edge (the bucket hat at the top of the
+ * crew at the new panel); this never does. For covers and thumbnails that crop with object-fit: cover.
+ */
+export function facesInView(faces: string | undefined) {
+  const boxes = (faces ?? '').split(';').map((b) => b.split(',').map(Number)).filter((b) => b.length === 4 && b.every(Number.isFinite))
+  if (!boxes.length) return undefined
+  const at = (lo: number, hi: number) => (lo + 1 - hi > 0 ? lo / (lo + 1 - hi) : 0.5)
+  const x = at(Math.min(...boxes.map((b) => b[0])), Math.max(...boxes.map((b) => b[2])))
+  const y = at(Math.min(...boxes.map((b) => b[1])), Math.max(...boxes.map((b) => b[3])))
   return `${Math.round(x * 1000) / 10}% ${Math.round(y * 1000) / 10}%`
 }
 

@@ -217,7 +217,9 @@ interface JobPhoto {
  * give a guide whose own image is stock. Most service and post images imported from
  * Webflow are stock (redesign asset audit, section 4), so a template shows a CMS photo
  * large only when it is listed here or in PHOTO_FACES. Add new job photos here, with
- * what they show.
+ * what they show. The one exception is a post's own image the owner approved
+ * (post.showMainImage, lib/cms.ts ownPostImage): on blog pages only, never under a tint,
+ * never on a service or city page; it is not a job photo and is never listed here.
  */
 const JOB_PHOTO_LIST: JobPhoto[] = [
   {subject: 'panel', services: ['panels'], image: asset('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'A new Siemens panel with labeled breakers next to an SRP meter on a stucco wall')},

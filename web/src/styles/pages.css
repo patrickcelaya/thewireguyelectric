@@ -297,8 +297,18 @@
 .postgrp__rest[open] summary::after{transform:rotate(180deg)}
 .postgrp__rest[open]{display:flex;flex-direction:column;align-items:flex-start}
 .postgrp__rest[open] .postgrp__list{align-self:stretch;border-top:0}
+/* the thumbnail: a third column at the right of the words; on phones beside the date and title */
+.postrow--thumb{grid-template-columns:7.25rem minmax(0,1fr) clamp(120px,11vw,168px)}
+.postrow__thumb{grid-column:3;grid-row:1;align-self:start;aspect-ratio:4/3;overflow:hidden;border-radius:var(--r-md);background:var(--sand-2)}
+.postrow__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease-out)}
+.postrow:is(:hover,:focus-within) .postrow__thumb img{transform:scale(1.04)}
 @media (max-width:899px){.postgrp{grid-template-columns:minmax(0,1fr)}.postgrp__head{position:static}.postgrp__h{max-width:none}}
-@media (max-width:599px){.postrow{grid-template-columns:minmax(0,1fr)}.postrow__d{padding-top:0}}
+@media (max-width:599px){
+  .postrow{grid-template-columns:minmax(0,1fr)}.postrow__d{padding-top:0}
+  .postrow--thumb{grid-template-columns:minmax(0,1fr) 96px;column-gap:16px}
+  .postrow--thumb .postrow__d,.postrow--thumb .postrow__body{grid-column:1}
+  .postrow__thumb{grid-column:2;grid-row:1 / span 2;margin-top:2px}
+}
 
 
 /* ===================================================================== FAQ TOPICS: an index beside the headed groups; the
