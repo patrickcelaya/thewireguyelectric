@@ -426,7 +426,8 @@ export default async function pageSections(ctx) {
         _type: 'featureGridSection',
         _key: 'value-props',
         eyebrow: 'Our promise',
-        // lifted from the Amazing Quality card: "get it done right the first time"
+        // lifted from the Amazing Quality card: "get it done right the first time" (the card itself is now
+        // titled "Big jobs and small ones", so the phrase shows once as a title: D1-09)
         heading: 'Done right the first time.',
         headingAccent: 'first time.',
         style: 'cards',
@@ -555,8 +556,8 @@ export default async function pageSections(ctx) {
         _type: 'postsSection',
         _key: 'guides',
         eyebrow: 'Guides',
-        heading: 'Guides from our electricians',
-        intro: 'Plain-English answers to the questions Arizona homeowners ask us most.',
+        heading: 'Guides from our blog',
+        intro: 'Plain-English answers to common questions from Arizona homeowners.',
         // Tier-1 guides (Search Console), on the plain copper cover with their cover words: the
         // panel, tools and EV charger photos they had are already on the homepage (services,
         // capabilities, gallery), and a photo shows once per page. The permit guide and the
@@ -957,7 +958,7 @@ export default async function pageSections(ctx) {
       {
         _type: 'heroSection',
         _key: 'hero',
-        eyebrow: 'Guides from our electricians',
+        eyebrow: 'Guides',
         text: c.text(0, 'p'),
         image: photo('troubleshooting-ceiling-wiring.avif'),
         showPhone: false,

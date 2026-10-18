@@ -4316,6 +4316,90 @@
       "verdict": "accept",
       "reason": "first sentence restates the heading (\"Step 3: Connect the New GFCI\") (removes the whole block)",
       "added_by_verifier": true
+    },
+    {
+      "id": "excerpt-posts-a-001",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "excerpt"
+      },
+      "old_text": "Phoenix summers aren’t just hot — they’re extreme.",
+      "new_text": "Phoenix heat loosens wiring connections, overloads breakers at peak AC load and cracks outdoor wire insulation. The warning signs and how to prevent it.",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-002",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "excerpt"
+      },
+      "old_text": "Living in Scottsdale, Arizona, comes with its unique set of challenges. One of these is dealing with common electrical issues in homes.",
+      "new_text": "Overheating parts, surges, outdated wiring, tripping breakers and dead GFCI outlets: the electrical problems Scottsdale homes see most, and warning signs.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-003",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "excerpt"
+      },
+      "old_text": "Identify the signs that your electrical panel needs an upgrade to enhance safety, efficiency, and compliance with modern power demands.",
+      "new_text": "Frequent trips, flickering lights, a fuse box, new appliances tripping breakers, scorch marks, power-strip overuse, rising bills: 7 signs to upgrade a panel.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-004",
+      "url": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ee33d99d-318d-4525-b6f0-a774888a68af",
+        "field": "excerpt"
+      },
+      "old_text": "Bathroom or garage outlets not working? Learn how to reset a GFCI, common reasons it fails, and when to call The Wire Guy Electric in Phoenix.",
+      "new_text": "A dead bathroom or garage outlet is usually a tripped GFCI, often on another outlet. Where to find it, how to reset it, and when the wiring is the problem.",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-005",
+      "url": "/blog-posts/electrical-panel-hot-to-the-touch-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "abca5015-bede-446d-b482-44ee57c9406a",
+        "field": "excerpt"
+      },
+      "old_text": "An electrical panel that is hot to the touch can be normal summer heat, or a warning sign of a failing connection. Here is how to tell the difference, and what to do about it.",
+      "new_text": "A panel that is warm in Arizona sun can be normal; one hot from the inside points to a failing connection. How to tell the difference and what to do now.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-006",
+      "url": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "328f03a0-a669-4752-8b37-731c2772d00f",
+        "field": "excerpt"
+      },
+      "old_text": "Planning a hot tub in your Phoenix backyard? Here's what the electrical hookup actually costs in Arizona, what's required by code, and what separates a safe install from a dangerous one.",
+      "new_text": "What hot tub electrical costs in the Phoenix metro in 2026, what code requires (GFCI, a disconnect in sight, wire sizing, bonding) and red flags in a quote.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
     }
   ]
 }

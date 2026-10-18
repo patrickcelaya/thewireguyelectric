@@ -1083,6 +1083,45 @@
       "verdict": "accept",
       "reason": "Exclamation mark in body copy (the researcher removed the same thing from the FAQs and the forms). September 2023 stays. Shown on /our-team and /about-us (bios). Does not overlap with edit 055 (first sentence of the same block). Source: Webflow team item.",
       "added_by_verifier": true
+    },
+    {
+      "id": "review-pages-001",
+      "url": "/",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "heading: 'Guides from our electricians',",
+      "new_text": "heading: 'Guides from our blog',",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-6: the authorship claim slop-pages-073/075 took off the service and post pages (owner rule: blog authors are not shown); the service and city pages already say \"Guides from our blog\"."
+    },
+    {
+      "id": "review-pages-002",
+      "url": "/",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "intro: 'Plain-English answers to the questions Arizona homeowners ask us most.',",
+      "new_text": "intro: 'Plain-English answers to common questions from Arizona homeowners.',",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-6: the unsupported \"ask us most\" claim slop-cities-059 changed on the city pages; the homepage block now reads like the pages it links to."
+    },
+    {
+      "id": "review-pages-003",
+      "url": "/blog",
+      "target": {
+        "kind": "file",
+        "file": "scripts/migrate/content/page-sections.mjs"
+      },
+      "old_text": "eyebrow: 'Guides from our electricians',",
+      "new_text": "eyebrow: 'Guides',",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-6: the same authorship claim as the homepage guides heading, on the /blog hero; the H1 \"The Wire Guy Blog\" is unchanged."
     }
   ]
 }

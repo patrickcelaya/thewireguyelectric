@@ -954,7 +954,8 @@
       "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"National Fire Protection Association (NFPA)\" → https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home",
       "How do I choose a good electrician in Phoenix?: \"Arizona Registrar of Contractors (ROC) website\" → https://roc.az.gov/",
       "dryer-outlet-for-ev: \"APS Marketplace\" → (link removed)",
-      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"Department of Energy\" → (link removed)"
+      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"Department of Energy\" → (link removed)",
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: \"While circuit breakers are designed to protect your home, extreme summer temperatures can make them more sensitive, leading to \"nuisance tripping\" or revealing underlying electrical issues.\" → https://arxiv.org/html/2410.08425v1 (linked words now \"nuisance tripping\")"
     ],
     "postCategories": {
       "lighting": 6
@@ -987,6 +988,28 @@
       "emfs-in-your-phoenix-home"
     ]
   },
+  "internalLinks": {
+    "source": "migration/content-data/internal-links.json",
+    "added": 124,
+    "documents": 59,
+    "moved": 1
+  },
+  "titlesMeta": {
+    "source": "migration/content-data/titles-meta.json",
+    "applied": 60,
+    "held": [
+      "/locations/ahwatukee title",
+      "/locations/ahwatukee meta",
+      "/locations/chandler title",
+      "/locations/chandler meta",
+      "/locations/phoenix title",
+      "/locations/phoenix meta",
+      "/locations/san-tan-valley title",
+      "/locations/san-tan-valley meta",
+      "/locations/scottsdale title",
+      "/locations/scottsdale meta"
+    ]
+  },
   "contentEdits": {
     "source": "migration/content-edits/",
     "applied": {
@@ -994,8 +1017,8 @@
       "cities": 58,
       "decisions": 17,
       "services": 95,
-      "posts-a": 251,
-      "posts-b": 179
+      "posts-a": 257,
+      "posts-b": 185
     },
     "splits": [
       "D5-01"
@@ -1023,33 +1046,14 @@
       "slop-pages-074 web/src/pages/blog-posts/[slug].astro",
       "slop-pages-075 web/src/pages/blog-posts/[slug].astro",
       "slop-pages-076 web/src/pages/locations/[slug].astro",
+      "review-pages-001 scripts/migrate/content/page-sections.mjs",
+      "review-pages-002 scripts/migrate/content/page-sections.mjs",
+      "review-pages-003 scripts/migrate/content/page-sections.mjs",
       "slop-services-081 migration/content-data/cms-templates.json",
       "slop-services-082 migration/content-data/cms-templates.json",
       "slop-services-083 migration/content-data/cms-templates.json",
       "slop-services-086 web/src/pages/services/[slug].astro",
       "slop-cities-059 web/src/pages/locations/[slug].astro"
-    ]
-  },
-  "internalLinks": {
-    "source": "migration/content-data/internal-links.json",
-    "added": 124,
-    "documents": 59,
-    "moved": 1
-  },
-  "titlesMeta": {
-    "source": "migration/content-data/titles-meta.json",
-    "applied": 60,
-    "held": [
-      "/locations/ahwatukee title",
-      "/locations/ahwatukee meta",
-      "/locations/chandler title",
-      "/locations/chandler meta",
-      "/locations/phoenix title",
-      "/locations/phoenix meta",
-      "/locations/san-tan-valley title",
-      "/locations/san-tan-valley meta",
-      "/locations/scottsdale title",
-      "/locations/scottsdale meta"
     ]
   },
   "legacyImages": {

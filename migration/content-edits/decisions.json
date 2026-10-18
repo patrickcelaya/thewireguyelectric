@@ -78,9 +78,9 @@
       "url": "/",
       "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "valueProps[1].title"},
       "old_text": "Amazing Quality",
-      "new_text": "Done right the first time",
+      "new_text": "Big jobs and small ones",
       "tier": "tier1",
-      "reason": "D1: stock benefit title; the replacement is the card's own promise (\"get it done right the first time\")."
+      "reason": "D1: stock benefit title, replaced with a plain one from the card's own text (\"We'll tackle your problems big or small\"). Not \"Done right the first time\": the section heading right above says that, and the card's text ends with it."
     },
     {
       "id": "D1-10",

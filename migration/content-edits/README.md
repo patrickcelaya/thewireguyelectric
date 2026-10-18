@@ -7,11 +7,11 @@ live site has them; these files hold what changes, edit by edit, so every change
 
 | File | Edits | What |
 |---|---|---|
-| `pages.json` | 78 | Homepage and the 8 page-builder pages, shared FAQ answers, team bios, Site settings copy, shared template lines |
+| `pages.json` | 81 | Homepage and the 8 page-builder pages, shared FAQ answers, team bios, Site settings copy, shared template lines; the homepage and /blog guides lines (`review-pages-*`) |
 | `services.json` | 104 | The 21 service bodies, the service template, service image alts; the hanging-lights de-slop (16) |
 | `cities.json` | 59 | The 10 city bodies and the city template |
-| `posts-a.json` | 251 | Blog posts 1–27 by slug |
-| `posts-b.json` | 179 | Blog posts 28–53 by slug |
+| `posts-a.json` | 257 | Blog posts 1–27 by slug; 6 excerpts (`excerpt-posts-a-*`) |
+| `posts-b.json` | 185 | Blog posts 28–53 by slug; 6 excerpts (`excerpt-posts-b-*`) |
 | `decisions.json` | | The lead's copy decisions (FIX_BRIEF D1, D6) and the Ahwatukee body split (D5) |
 
 The five slop files are the verified lists of the 2026-10-17 copy review: every edit was researched, then checked
@@ -56,14 +56,16 @@ description is its `seo.description`, so the applier's guard lets it change.
 
 ## When each edit applies
 
-The module runs at three points of the migration, so each edit lands before the checks that read its text:
+The module runs at four points of the migration, so each edit lands before the checks that read its text:
 
 1. **early**, after `fixes`: FAQ answers and city bodies. `local-facts` then checks its neighbourhood quotes against the
    edited city bodies, and `cms-templates` checks the Panels at-a-glance evidence against the edited FAQ answers.
 2. **service**, inside `cms-templates`, after the price edits and before the quick-answer and at-a-glance checks.
-3. **late**, last: page sections and team members (made by `page-sections`), Site settings (after `page-sections` has
+3. **late**: page sections and team members (made by `page-sections`), Site settings (after `page-sections` has
    compared its shared lists and CTA band with the live copy, so the pages keep using them) and post bodies (written
    against the bodies `cms-templates` leaves).
+4. **final**, last, after `titles-meta`: post excerpts (`excerpt-posts-*`). An excerpt is the post's meta description
+   until `titles-meta` sets `seo.description`; after that it is card and quick-answer text, which an edit may change.
 
 Every replaced live string on the 9 static pages has a `copy` entry in `migration/page-content/_omissions.json`, so
 `verify-content.mjs` still accounts for all live copy. Titles, H1s, meta descriptions and slugs never change; the
@@ -110,12 +112,10 @@ end of every block, so their `old_text` ends at the full stop.
    figures ($5,200–$6,500). Left as is.
 5. **/services/hanging-lights** shows the published 2024 copy with its stock lines taken out (`slop-services-hl-*`:
    "perfect for businesses looking to enhance their ambiance", "meticulous attention to detail", "bespoke … not only
-   meet but exceed expectations" and the "Why Choose" list are gone; the fixtures, steps and call to action stay). Its
-   approved meta description was written from the unpublished draft ("hung on rated support with dimming that
-   works"), which this copy never mentions; proposed instead: "Commercial hanging lights in Mesa and the Phoenix
-   valley: pendants over dining areas, chandeliers in lobbies, track lighting in galleries. Free estimates." Approve
-   it, or publish the 2026-08-18 rewrite held as a draft in Webflow. The quick answer only restates the edited copy.
+   meet but exceed expectations" and the "Why Choose" list are gone; the fixtures, steps and call to action stay). The
+   meta description approved from the unpublished draft ("hung on rated support with dimming that works") was
+   replaced with one this copy supports: "Commercial hanging lights in Mesa and the Phoenix valley: pendants over
+   dining areas, chandeliers in lobbies, track lighting in galleries. Free estimates." Approve it, or publish the
+   2026-08-18 rewrite held as a draft in Webflow. The quick answer only restates the edited copy.
 6. **Homepage team intro** still names Emma with her photo and link (live copy).
 7. **"Over 9 years"** in the business FAQ goes stale in 2027.
-8. **Homepage "Our promise":** the section heading "Done right the first time." now repeats the second card's
-   title (D1). Keep both, or give the section another heading.

@@ -576,8 +576,8 @@
       "doc": "service:hanging-lights",
       "sets": "seo.description",
       "old": "Hanging lights for commercial settings, perfect for businesses looking to enhance their ambiance and visual appeal.",
-      "new": "Commercial pendants, chandeliers and suspended lighting for restaurants, lobbies, offices and retail floors, hung on rated support with dimming that works.",
-      "why": "Slop: the stored seo.description (\"perfect for businesses looking to enhance their ambiance and visual appeal\") is generic marketing copy. The new text is the page's own quick answer, shortened."
+      "new": "Commercial hanging lights in Mesa and the Phoenix valley: pendants over dining areas, chandeliers in lobbies, track lighting in galleries. Free estimates.",
+      "why": "Slop: the stored seo.description (\"perfect for businesses looking to enhance their ambiance and visual appeal\") is generic marketing copy. The approved text was written from the unpublished draft (rated support, dimming), which the published copy that ships (D10) never mentions; this one names what the page says: pendant lights in dining areas, chandeliers in hotel lobbies, track lighting in art galleries, Mesa and the Phoenix valley, free estimates (launch review CQ-3)."
     },
     {
       "path": "/services/led-lights",

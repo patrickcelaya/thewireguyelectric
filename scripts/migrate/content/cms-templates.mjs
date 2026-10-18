@@ -20,8 +20,10 @@
 //   linkFixes       links in a post, city body or FAQ answer that point to the wrong place:
 //                   estimate requests the "free estimate" phrase rule misses (sent to
 //                   /estimate) and a citation wrapped in a search URL; a citation whose
-//                   page is gone (`to` null) loses its link and keeps its words; each must
-//                   match exactly one link by its text and target
+//                   page is gone (`to` null) loses its link and keeps its words; `keep`
+//                   narrows a link to those words of its text (a citation that had become
+//                   a whole paragraph); each must match exactly one link by its text and
+//                   target
 //   postCategories  post.category for the blog topic pages
 //
 //   textFixes       typing slips in a post body ("afternoon?The"); each must occur exactly
@@ -147,7 +149,7 @@ export default async function cmsTemplates(ctx, stage) {
     b.children = [...b.children, {_type: 'span', _key: `${key}-sp`, text: ' ', marks: []}, {_type: 'span', _key: `${key}-t`, text: target.title, marks: [key]}]
   }
 
-  for (const {post, location, faq, text, from, to} of data.linkFixes.fixes) {
+  for (const {post, location, faq, text, from, to, keep} of data.linkFixes.fixes) {
     const where = post ?? location ?? faq
     const doc = post ? bySlug('post', post) : location ? bySlug('location', location) : (docs.find((d) => d._type === 'faq' && d.question === faq) ?? fail(`linkFixes: no faq "${faq}"`))
     const blocks = ((faq ? doc.answer : doc.body) ?? []).filter((b) => b._type === 'block')
@@ -159,6 +161,7 @@ export default async function cmsTemplates(ctx, stage) {
     )
     if (hits.length !== 1) fail(`linkFixes ${where}: "${text}" → ${from} matches ${hits.length} links, not 1`)
     const [{block, def}] = hits
+    if (keep) narrowLink(block, def, keep, (msg) => fail(`linkFixes ${where}: ${msg}`))
     if (to) def.href = to
     else {
       // a dead citation with no current page: the words stay, the link goes
@@ -220,7 +223,7 @@ export default async function cmsTemplates(ctx, stage) {
     quickAnswers: Object.keys(data.quickAnswers.answers),
     bodyEdits: edited,
     bodyLinks: data.bodyLinks.links.map((l) => `${l.service} → ${l.post}`),
-    linkFixes: data.linkFixes.fixes.map((f) => `${f.post ?? f.location ?? f.faq}: "${f.text}" → ${f.to ?? '(link removed)'}`),
+    linkFixes: data.linkFixes.fixes.map((f) => `${f.post ?? f.location ?? f.faq}: "${f.text}" → ${f.to ?? '(link removed)'}${f.keep ? ` (linked words now "${f.keep}")` : ''}`),
     postCategories: Object.fromEntries(Object.entries(data.postCategories.byCategory).map(([c, posts]) => [c, posts.length])),
     textFixes: data.textFixes.fixes.map((f) => `${f.post}: ${f.replace}`),
     bodyRemovals: data.bodyRemovals.removals.map((r) => `${r.slug}: ${r.text ?? r.image}`),
@@ -303,4 +306,23 @@ function editBody(doc, find, replace, fail) {
   }
   insert()
   block.children = children
+}
+
+/**
+ * Narrows a link to `keep`, words that occur once in its text: the linked span is cut in three and only the middle
+ * keeps the link mark (every other mark stays on all three). The link must be one span.
+ */
+function narrowLink(block, def, keep, fail) {
+  const linked = (block.children ?? []).filter((c) => c.marks?.includes(def._key))
+  if (linked.length !== 1) fail(`the link is ${linked.length} spans, not 1`)
+  const [span] = linked
+  const at = span.text.indexOf(keep)
+  if (at < 0 || span.text.indexOf(keep, at + 1) >= 0) fail(`"${keep}" does not occur exactly once in the link`)
+  const others = span.marks.filter((m) => m !== def._key)
+  const parts = [
+    {...span, _key: `${span._key}-a`, text: span.text.slice(0, at), marks: others},
+    {...span, _key: `${span._key}-b`, text: keep, marks: span.marks},
+    {...span, _key: `${span._key}-c`, text: span.text.slice(at + keep.length), marks: others},
+  ].filter((c) => c.text)
+  block.children.splice(block.children.indexOf(span), 1, ...parts)
 }

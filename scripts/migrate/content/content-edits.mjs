@@ -16,18 +16,23 @@
 // An edit with `skip` stays in the list with its reason but is not applied. Edits of kind "file" were made in
 // the file itself (page-sections.mjs, the templates, content-data/); they are listed so the record is whole.
 //
-// The module runs three times, so every edit lands before the checks that read its text:
+// The module runs four times, so every edit lands before the checks that read its text:
 //   early    after fixes: FAQ answers and city bodies (local-facts then checks its neighbourhood quotes
 //            against the city bodies, and cms-templates checks at-a-glance evidence in the FAQ answers)
 //   service  from cms-templates, after the price edits and before the quick-answer and at-a-glance checks
-//   late     last: page sections and team members (made by page-sections), Site settings (after
-//            page-sections has compared its shared lists with the live copy, so the pages keep pointing at
-//            them) and post bodies (written against the bodies cms-templates leaves)
-// The late run fails if any edit was not applied. Titles, H1s, meta descriptions and slugs never change.
+//   late     page sections and team members (made by page-sections), Site settings (after page-sections has
+//            compared its shared lists with the live copy, so the pages keep pointing at them) and post
+//            bodies (written against the bodies cms-templates leaves)
+//   final    last, after titles-meta: post excerpts. A post's excerpt is its meta description until
+//            titles-meta sets seo.description, so it may only change once that is set
+// The final run fails if any edit was not applied. Titles, H1s, meta descriptions and slugs never change.
 
 const DIR = 'migration/content-edits/'
 const FILES = ['pages', 'services', 'cities', 'posts-a', 'posts-b', 'decisions']
-const STAGES = {early: ['faq', 'location'], service: ['service'], late: ['page', 'siteSettings', 'teamMember', 'post']}
+const STAGES = {early: ['faq', 'location'], service: ['service'], late: ['page', 'siteSettings', 'teamMember', 'post'], final: ['post']}
+/** Fields edited in the final stage only (see above); every other field in the stage for its document type. */
+const FINAL_FIELDS = new Set(['excerpt'])
+const stageOf = (e, doc) => (FINAL_FIELDS.has(e.target.field) ? 'final' : Object.keys(STAGES).find((s) => s !== 'final' && STAGES[s].includes(doc._type)))
 
 const blockText = (b) => (b.children ?? []).map((c) => c.text ?? '').join('')
 const count = (text, find) => text.split(find).length - 1
@@ -70,14 +75,14 @@ export default async function contentEdits(ctx, stage) {
       throw new Error(`${DIR}${e.file}.json ${e.id}: ${msg}`)
     }
     if (!doc) fail(`no document ${e.target.doc_id}`)
-    if (!types.includes(doc._type)) continue
+    if (!types.includes(doc._type) || stageOf(e, doc) !== stage) continue
     applyEdit(doc, e, emptied, fail)
     state.applied.add(e.id)
     state.byFile[e.file] = (state.byFile[e.file] ?? 0) + 1
   }
   for (const s of state.splits) {
     const doc = byId.get(s.target.doc_id)
-    if (!doc || !types.includes(doc._type)) continue
+    if (!doc || !types.includes(doc._type) || stage === 'final') continue
     splitBlock(doc, s, (msg) => {
       throw new Error(`${DIR}${s.file}.json ${s.id}: ${msg}`)
     })
@@ -88,7 +93,7 @@ export default async function contentEdits(ctx, stage) {
 
   if (seoSnapshot(docs) !== before) throw new Error('content-edits: a title, H1, meta description or slug changed; copy edits must never do that')
 
-  if (stage === 'late') {
+  if (stage === 'final') {
     const missing = [...state.edits.filter((e) => !e.skip && e.target?.kind === 'ndjson'), ...state.splits].filter((e) => !state.applied.has(e.id))
     if (missing.length) throw new Error(`content-edits: ${missing.length} edit(s) never applied (no stage handles their document type): ${missing.map((e) => e.id).join(', ')}`)
     report.contentEdits = {
@@ -103,13 +108,16 @@ export default async function contentEdits(ctx, stage) {
 }
 
 // Every field that feeds a title, H1, meta description or URL (the same guard as fixes.mjs). A service's short
-// description is its meta description only while seo.description is empty (lib/seo.ts resolveDescription);
-// otherwise it is card and hero text, which copy edits may change.
+// description and a post's excerpt are the meta description only while seo.description is empty (lib/seo.ts
+// resolveDescription); otherwise they are card, hero and quick-answer text, which copy edits may change.
 const seoSnapshot = (docs) =>
   JSON.stringify(
     docs
       .filter((d) => ['location', 'service', 'post', 'page', 'serviceCategory', 'postCategory'].includes(d._type))
-      .map((d) => [d._id, d.slug?.current, d.heading, d.title, d.cityNameForSeo, d.description, d.seo?.description?.trim() ? null : d.shortDescription, d.excerpt, d.seo]),
+      .map((d) => {
+        const own = Boolean(d.seo?.description?.trim())
+        return [d._id, d.slug?.current, d.heading, d.title, d.cityNameForSeo, d.description, own ? null : d.shortDescription, own ? null : d.excerpt, d.seo]
+      }),
   )
 
 /** The node a field path names ("sections[3].services[1].text", "body[17]", "answer[0]") and its parent. */

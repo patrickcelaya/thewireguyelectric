@@ -53,10 +53,10 @@
         "field": "body[1]"
       },
       "old_text": "Electrical systems must be maintained and updated to meet modern energy demands. As Ahwatukee neighborhoods continue to grow and develop, the need for experienced, licensed electricians remains a priority. The Wire Guy Electric is proud to offer services that align with the city’s commitment to sustainability and smart home integration.",
-      "new_text": "Ahwatukee is in SRP’s electric service area. Because Ahwatukee Foothills is one of Phoenix’s 15 urban villages, electrical permits come from the City of Phoenix Planning and Development Department, and we pull the permit, schedule the inspection, and make sure everything passes.",
+      "new_text": "Power here comes from SRP, and because Ahwatukee is a Phoenix urban village, the City of Phoenix issues the permits; we handle the permit and the inspection for you.",
       "tier": "normal",
-      "verdict": "accept",
-      "reason": "Block _key k002. Swap-test paragraph with no facts (generic \"must be maintained\", growth filler, an invented \"city’s commitment to sustainability and smart home integration\": Ahwatukee is not a city). Rewritten from Ahwatukee’s own sourced permitNotes (SRP; one of Phoenix’s 15 urban villages, so City of Phoenix PDD issues permits) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Inside span k003."
+      "verdict": "lead",
+      "reason": "Block _key k002. Swap-test paragraph with no facts (generic \"must be maintained\", growth filler, an invented \"city’s commitment to sustainability and smart home integration\": Ahwatukee is not a city). Rewritten from Ahwatukee’s own sourced permitNotes (SRP; one of Phoenix’s 15 urban villages, so City of Phoenix PDD issues permits) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Inside span k003. Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
     },
     {
       "id": "slop-cities-005",
@@ -208,10 +208,10 @@
         "field": "body[3]"
       },
       "old_text": "As Chandler continues to grow with new residential neighborhoods and commercial centers, the need for experienced, dependable electricians rises. The Wire Guy Electric is committed to delivering top-tier service, energy-efficient solutions, and code-compliant workmanship across the city.",
-      "new_text": "Most of Chandler is on SRP; APS serves parts of the city, including the area between Ray and Pecos roads from Alma School Road to McQueen Road. Electrical permits come from the City of Chandler Development Services Department, whose homeowner permit manual asks for a panel schedule showing existing and new breakers, and sometimes load calculations. We pull the permit, schedule the inspection, and make sure everything passes.",
+      "new_text": "Chandler homes are mostly on SRP, with some on APS, and the city’s Development Services Department issues the permits; we handle the permit and the inspection for you.",
       "tier": "normal",
-      "verdict": "accept",
-      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"top-tier\", \"is committed to delivering\" triplet. Rewritten from Chandler’s own sourced permitNotes (SRP/APS split; Development Services; the permit manual’s panel schedule and load calculations) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" \"code-compliant workmanship\" is carried by \"make sure everything passes\"."
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"top-tier\", \"is committed to delivering\" triplet. Rewritten from Chandler’s own sourced permitNotes (SRP/APS split; Development Services; the permit manual’s panel schedule and load calculations) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" \"code-compliant workmanship\" is carried by \"make sure everything passes\". Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
     },
     {
       "id": "slop-cities-016",
@@ -292,10 +292,10 @@
         "field": "body[3]"
       },
       "old_text": "As Fountain Hills continues to grow with new residential developments and commercial spaces, the demand for dependable electricians increases. The Wire Guy Electric remains committed to supporting Fountain Hills’ homeowners and businesses with trusted electrical solutions tailored to the area’s unique needs.",
-      "new_text": "Fountain Hills is in SRP’s electric service area. Electrical permits come from the Town’s Development Services Building Safety Division through TOPPS, its online permitting system, and we pull the permit, schedule the inspection, and make sure everything passes. Pricing is flat-rate, with no hidden fees.",
+      "new_text": "Fountain Hills is on SRP, and the Town issues permits through TOPPS, its online system; we handle the permit and the inspection for you.",
       "tier": "normal",
-      "verdict": "amend",
-      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test (\"remains committed to\", \"trusted electrical solutions tailored to the area’s unique needs\"), no facts. Rewritten from Fountain Hills’ own sourced permitNotes (SRP; Building Safety Division; TOPPS) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\""
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test (\"remains committed to\", \"trusted electrical solutions tailored to the area’s unique needs\"), no facts. Rewritten from Fountain Hills’ own sourced permitNotes (SRP; Building Safety Division; TOPPS) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
     },
     {
       "id": "slop-cities-022",
@@ -377,10 +377,10 @@
         "field": "body[3]"
       },
       "old_text": "As Gilbert continues to attract new residents and businesses, the need for reliable, licensed electricians grows. The Wire Guy Electric is committed to delivering expert service, energy-efficient solutions, and quality workmanship that meets the needs of Gilbert’s dynamic growth.",
-      "new_text": "Most of Gilbert is on SRP; APS serves a pocket between Guadalupe and Warner roads, from Cooper Road to Lindsay Road. Permits come from the Town of Gilbert’s Development Services department, and we pull the permit, schedule the inspection, and make sure everything passes.",
+      "new_text": "Most of Gilbert is on SRP, with a small APS area, and the Town of Gilbert issues permits; we handle the permit and the inspection for you.",
       "tier": "normal",
-      "verdict": "accept",
-      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"is committed to delivering\" triplet, \"dynamic growth\", no facts. Rewritten from Gilbert’s own sourced permitNotes (SRP/APS pocket; Town Development Services) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\""
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"is committed to delivering\" triplet, \"dynamic growth\", no facts. Rewritten from Gilbert’s own sourced permitNotes (SRP/APS pocket; Town Development Services) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
     },
     {
       "id": "slop-cities-028",
@@ -604,10 +604,10 @@
         "field": "body[3]"
       },
       "old_text": "As new residential developments and commercial centers expand across San Tan Valley, reliable electrical services remain a top priority. The Wire Guy Electric provides services tailored to the unique needs of the area’s homes and businesses, with a focus on safety, energy efficiency, and quality workmanship.",
-      "new_text": "San Tan Valley voted to incorporate as a town in 2025. During the transition, Pinal County Building Safety has handled plan review, permits, and inspections for the new town under an intergovernmental agreement. The town is inside SRP’s electric service area. We pull the permit and schedule the inspection for you.",
+      "new_text": "San Tan Valley is on SRP, and during its transition to a town, Pinal County has handled permits and inspections; we handle the permit and the inspection for you.",
       "tier": "normal",
-      "verdict": "amend",
-      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test (\"remain a top priority\", \"tailored to the unique needs\", padding triplet), no facts. Rewritten from San Tan Valley’s own sourced permitNotes (2025 incorporation; Pinal County Building Safety under the IGA; SRP) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Worded like permitNotes (\"has handled ... during the transition\") so it stays true when the IGA ends 2026-12-31; recheck it with the permit note after January 2027."
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test (\"remain a top priority\", \"tailored to the unique needs\", padding triplet), no facts. Rewritten from San Tan Valley’s own sourced permitNotes (2025 incorporation; Pinal County Building Safety under the IGA; SRP) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Worded like permitNotes (\"has handled ... during the transition\") so it stays true when the IGA ends 2026-12-31; recheck it with the permit note after January 2027. Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
     },
     {
       "id": "slop-cities-044",
@@ -689,10 +689,10 @@
         "field": "body[3]"
       },
       "old_text": "As Scottsdale continues to expand with new developments and custom homes, expert electrical services are increasingly in demand. The Wire Guy Electric ensures that every project meets local code requirements while supporting Scottsdale’s commitment to innovation and energy efficiency.",
-      "new_text": "Scottsdale is split between two utilities: SRP serves much of central and south Scottsdale, and APS serves most of north Scottsdale plus a pocket of south Scottsdale. Permits come from the city’s Planning & Development department through the Scottsdale SPUR portal, and the city fines unpermitted work double the permit fee. We pull the permit, schedule the inspection, and make sure everything passes.",
+      "new_text": "Scottsdale homes get power from SRP or APS depending on the part of the city, permits go through the city’s SPUR portal, and we handle the permit and the inspection for you.",
       "tier": "normal",
-      "verdict": "accept",
-      "reason": "Block _key k007. Growth-filler paragraph that passes the swap test, an invented \"Scottsdale’s commitment to innovation and energy efficiency\". Rewritten from Scottsdale’s own sourced permitNotes (SRP/APS split; Planning & Development; SPUR; the double-fee fine) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" \"every project meets local code requirements\" is carried by \"make sure everything passes\"."
+      "verdict": "lead",
+      "reason": "Block _key k007. Growth-filler paragraph that passes the swap test, an invented \"Scottsdale’s commitment to innovation and energy efficiency\". Rewritten from Scottsdale’s own sourced permitNotes (SRP/APS split; Planning & Development; SPUR; the double-fee fine) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" \"every project meets local code requirements\" is carried by \"make sure everything passes\". Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
     },
     {
       "id": "slop-cities-050",
@@ -774,10 +774,10 @@
         "field": "body[3]"
       },
       "old_text": "As Tempe continues to grow with new construction, tech hubs, and residential communities, the demand for experienced electricians increases. The Wire Guy Electric is committed to providing Tempe homeowners and business owners with quality workmanship, transparent pricing, and dependable service.",
-      "new_text": "Most of Tempe is on SRP; APS serves an area around downtown Tempe, roughly Broadway Road north to Weber Drive, between Beck Avenue and Dorsey Lane. Electrical permits come from the City of Tempe’s Building Safety Division through the Tempe Citizen Access Portal, and we pull the permit and schedule the inspection for you. Pricing is flat-rate, with no hidden fees.",
+      "new_text": "Tempe is mostly on SRP, with APS around downtown, and permits go through the city’s Citizen Access Portal; we handle the permit and the inspection for you.",
       "tier": "normal",
-      "verdict": "accept",
-      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"is committed to providing\" triplet. Rewritten from Tempe’s own sourced permitNotes (SRP/APS area around downtown; Building Safety Division; Citizen Access Portal) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" The paragraph’s one real claim, transparent pricing, kept concretely from Site settings valueProps (\"flat-rate pricing ... no hidden fees\")."
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"is committed to providing\" triplet. Rewritten from Tempe’s own sourced permitNotes (SRP/APS area around downtown; Building Safety Division; Citizen Access Portal) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" The paragraph’s one real claim, transparent pricing, kept concretely from Site settings valueProps (\"flat-rate pricing ... no hidden fees\"). Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
     },
     {
       "id": "slop-cities-056",

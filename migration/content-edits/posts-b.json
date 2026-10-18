@@ -3020,6 +3020,90 @@
       "verdict": "accept",
       "reason": "vague generic benefit (\"helps stabilize your electrical system\"): a surge protector diverts spikes, it does not stabilize the system; the appliance-life point stays",
       "added_by_verifier": true
+    },
+    {
+      "id": "excerpt-posts-b-001",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "excerpt"
+      },
+      "old_text": "Learn why whole-house surge protection is essential for Phoenix homeowners. Protect your home’s wiring and electronics with The Wire Guy Electric’s professional installation.",
+      "new_text": "Why plug-in surge strips are not enough for Phoenix homes, what causes surges here, how a panel-mounted surge protector is installed and what it costs.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-002",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "excerpt"
+      },
+      "old_text": "Is your Phoenix home ready for remote learning, after-school gaming, and smart devices? Discover top electrical upgrades and safety tips for modern families this school year.",
+      "new_text": "GFCI and AFCI outlets, a panel check, smoke and CO detectors, dedicated circuits for study and gaming rooms, and USB outlets for the Phoenix school year.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-003",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "excerpt"
+      },
+      "old_text": "Prepare your home for the extreme Arizona heat with summer electrical safety tips from The Wire Guy Electric. Trusted residential and commercial electricians in Scottsdale and beyond.",
+      "new_text": "Five ways to ready an Arizona home for triple-digit heat: panel capacity, whole-home surge protection, ceiling fans, LED outdoor lighting and a wiring check.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-004",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "excerpt"
+      },
+      "old_text": "Want to upgrade your outdoor space this fall? Discover expert tips on outdoor lighting design, safety, and installation for Phoenix homes — from landscape lights to smart upgrades.",
+      "new_text": "Low-voltage landscape lights, wall washes, step lights and smart bulbs for Phoenix yards, plus the safety basics: weatherproof fixtures, GFCI, buried cable.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-005",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "excerpt"
+      },
+      "old_text": "Breaker keeps tripping in your Phoenix home? Learn the most common causes — and how The Wire Guy Electric can fix it safely with same-day service.",
+      "new_text": "Overloaded circuits, short circuits, worn-out breakers and Phoenix heat: the four usual reasons a breaker keeps tripping, and when to call an electrician.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-006",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "excerpt"
+      },
+      "old_text": "Wondering why your lights flicker in the afternoon in Phoenix? Learn the common causes, from peak heat power demand to loose wiring, and how The Wire Guy Electric can fix it fast.",
+      "new_text": "Afternoon light flicker in Phoenix: peak AC load, loose wiring, overloaded circuits or utility voltage dips. When it's a warning sign, and how to fix it.",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
     }
   ]
 }
