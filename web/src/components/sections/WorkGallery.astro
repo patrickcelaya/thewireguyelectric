@@ -3,7 +3,8 @@
 // photos (lib/cms.ts cityWork / serviceWork: never one the page shows elsewhere, a
 // different set on every page), each with a short factual caption under it, never over
 // it, so no face is covered. The caption says what the photo shows, never where it was
-// taken. Three layouts (`layout`, picked per page by its slug so neighbouring pages
+// taken. Each photo keeps its own alt text, the fuller description (the caption is its
+// first clause), so the photo is never silent to a screen reader. Three layouts (`layout`, picked per page by its slug so neighbouring pages
 // differ): "lead" (one large photo, two beside it), "mosaic" (one large, four beside it)
 // and "row" (four in a row). Photos of people are framed on their faces. Renders nothing
 // without photos. Styles: styles/cms.css "RECENT WORK".
@@ -41,7 +42,6 @@ const sizes = (i: number) =>
                   image={p.image}
                   widths={i === 0 && layout !== 'row' ? [640, 960, 1280, 1600] : [480, 720, 960]}
                   sizes={sizes(i)}
-                  alt=""
                   style={p.people ? `object-position:${facesFocus(facesOf(p.image)) ?? '50% 50%'}` : undefined}
                 />
                 <figcaption>{p.caption}</figcaption>

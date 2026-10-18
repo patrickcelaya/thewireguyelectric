@@ -32,7 +32,7 @@ import {absoluteUrl} from '../../lib/seo'
 import {serviceAreaCities} from '../../lib/cities'
 import {imagePreload} from '../../lib/image'
 import {SERVICE_HERO_IMAGE, WORK_LAYOUTS, allSupport, ctaBandPhoto, guideCards, heroStaging, liftSigns, markShown, mergeFaqs, photoTiles, pickReviews, serviceFigure, serviceGuides, serviceTopic, serviceWork, withoutPrices, workLayout} from '../../lib/cms'
-import {jobPhoto} from '../../lib/brand-photos'
+import {LIBRARY_PHOTOS, jobPhoto, photoId} from '../../lib/brand-photos'
 import {inSentence} from '../../lib/format'
 
 export async function getStaticPaths() {
@@ -109,9 +109,12 @@ const n = {
 const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
 // the photo the hero shows (a company photo); a stock image the page hides is never its image or preview
 const ownPhoto = hero ? service.mainImage : undefined
-// A second photo of the service's work halfway down the article (never the hero's); its caption describes it, so
-// the image itself is decorative there.
-const inlineFigure = figurePhoto?.alt ? {...figurePhoto, alt: '', caption: `Our work: ${figurePhoto.alt.charAt(0).toLowerCase()}${figurePhoto.alt.slice(1).replace(/\.$/, '')}.`} : undefined
+// A second photo of the service's work halfway down the article (never the hero's): it keeps its alt (the full
+// description) and its caption says it is our work in a few words (the library's short caption, the alt's first clause)
+const figureCaption = figurePhoto && (LIBRARY_PHOTOS.find((p) => p.id === photoId(figurePhoto))?.caption ?? figurePhoto.alt)
+// after "Our work:" the caption runs on in lower case, but an acronym or a brand keeps its capitals (LED, Tesla, Siemens)
+const runOn = (text: string) => (/^([A-Z]{2,}|Tesla|Siemens|Wire Guy)\b/.test(text) ? text : text.charAt(0).toLowerCase() + text.slice(1))
+const inlineFigure = figurePhoto?.alt && figureCaption ? {...figurePhoto, caption: `Our work: ${runOn(figureCaption).replace(/\.$/, '')}.`} : undefined
 const preload = hero && imagePreload(service.mainImage, [...hero.widths], hero.sizes)
 const serviceId = `${absoluteUrl(path)}#service`
 ---
