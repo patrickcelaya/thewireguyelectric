@@ -97,6 +97,9 @@ async function fetchSitemapPaths() {
   }
 }
 
+/** Off the site: neither the crawled host (www or apex) nor one of the business's own hosts (as normalizePath). */
+const offSite = (u) => !sameSite(u) && !u.hostname.endsWith('thewireguyelectric.com');
+
 async function fetchWithChain(path) {
   const chain = [];
   let url = new URL(path, base);
@@ -106,6 +109,9 @@ async function fetchWithChain(path) {
       const next = new URL(res.headers.get('location'), url);
       chain.push({ status: res.status, from: url.href, to: next.href });
       await res.arrayBuffer().catch(() => {});
+      // a redirect off the site (the /review short link to Google's review form) ends here: the crawl
+      // records where it goes and never fetches someone else's pages (or Google's sign-in page) as ours
+      if (offSite(next)) return { res: null, finalUrl: next.href, chain, external: true, status: res.status };
       url = next;
       continue;
     }
@@ -215,7 +221,8 @@ function extract(html, pageUrl) {
 async function crawlOne(path) {
   const started = Date.now();
   try {
-    const { res, finalUrl, chain, error } = await fetchWithChain(path);
+    const { res, finalUrl, chain, error, external, status } = await fetchWithChain(path);
+    if (external) return { path, status, finalUrl, redirectChain: chain, external: true, ms: Date.now() - started };
     if (!res) return { path, error, redirectChain: chain };
     const contentType = res.headers.get('content-type') ?? '';
     const record = {

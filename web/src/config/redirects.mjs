@@ -58,8 +58,12 @@ export const LEGACY_REDIRECTS = {
 /**
  * Short links the business hands out, as temporary (302) redirects: the destination is someone else's URL and may
  * change, and a short link is no page of its own (no 200, nothing to index, not in the sitemap).
- * - /review: Google's "write a review" form for the business's profile ("Had us out? Leave a Google review" in
- *   the footer, and the link the crew can text or print after a job).
+ * - /review: Google's "write a review" form for the business's MAIN Google Business Profile, the Mesa one
+ *   (maps.app.goo.gl/j4qZJwx8ttVZo93w5; "Had us out? Leave a Google review" in the footer, and the link the crew
+ *   can text or print after a job). Not the Scottsdale profile. The place ID was read from that profile's place
+ *   card; it encodes the profile's CID, 4489697358306155784 (0x3e4e9bf5bed91d08), the same CID as the Google
+ *   entry in migration/content-data/profiles.json sameAs (the JSON-LD sameAs and hasMap). web/scripts/
+ *   short-links.test.mjs decodes it and fails if the two ever disagree; scripts/launch/verify.mjs checks the 302.
  * @type {Record<string, {status: 302, destination: string}>}
  */
 export const SHORT_LINKS = {

@@ -2,8 +2,9 @@
 // The site footer (round 5): light and rich, the logo large.
 //   Top: the logo, the family-owned line, the licence (linked to the ROC lookup),
 //     the rating with "Had us out? Leave a Google review" under it (/review, the short
-//     link to Google's review form: src/config/redirects.mjs SHORT_LINKS), and Get a
-//     Free Estimate with the phone.
+//     link to Google's review form: src/config/redirects.mjs SHORT_LINKS; it leaves the
+//     site, so it is an ExternalLink styled like the rating's Google link, and nofollow so
+//     crawlers do not walk into Google's sign-in flow), and Get a Free Estimate with the phone.
 //   Grid (#footer-nav, the no-JS menu target): contact info (both offices linked to
 //     their Google Business Profiles in the live wording, the Scottsdale one with its
 //     profile name; phone, email, hours), the residential and commercial services,
@@ -42,7 +43,7 @@ const year = isoDate(new Date().toISOString()).slice(0, 4)
         <p class="foot-say">Family-owned electricians, serving the entire valley.</p>
         <p class="foot-roc"><RocLink settings={settings} separator="." /></p>
         <RatingLine settings={settings} variant="foot" />
-        <p class="foot-review"><a href="/review">Had us out? Leave a Google review</a></p>
+        <p class="foot-review"><ExternalLink class="rating__g" href="/review" rel="nofollow noopener">Had us out? Leave a Google review</ExternalLink></p>
       </div>
       <div class="foot-act">
         <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}

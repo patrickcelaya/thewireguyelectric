@@ -544,8 +544,6 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .foot-roc a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.2em}
 .rating--foot{margin-top:12px}
 .foot-review{margin-top:8px;font-size:.9375rem;line-height:1.35}
-.site-footer .foot-review a{display:inline-flex;align-items:center;min-height:24px;color:var(--copper-700);font-weight:650;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
-.site-footer .foot-review a:hover{color:var(--copper-800)}
 .foot-act{display:grid;gap:14px;justify-items:center}
 .foot-phone{font:760 1.5rem/1 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
 .foot-grid{display:grid;grid-template-columns:1.35fr 1fr 1.15fr .85fr .8fr;gap:44px 36px;padding-block:clamp(48px,5vw,80px)}

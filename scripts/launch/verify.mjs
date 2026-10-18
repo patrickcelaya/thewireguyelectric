@@ -287,7 +287,25 @@ async function checkRedirects() {
       .map(({rule, r}) => `${rule.from} want ${rule.status} ${rule.destination}; got ${hopText(r)}`)
       .join(' ;; '),
   )
-  const gone = ['/checkout', '/paypal-checkout', '/order-confirmation', '/search', '/templates/style-guide', `/verify-${Date.now().toString(36)}-should-404`]
+  // Short links (/review) point off-site, and Google's review form itself redirects a signed-out client to
+  // its sign-in page, so these check the one local hop only: exactly the 302 to the destination.
+  const {SHORT_LINKS = {}} = await import(pathToFileURL(path.join(repo, 'web/src/config/redirects.mjs')).href)
+  const shortRows = await pool(
+    Object.entries(SHORT_LINKS).flatMap(([source, v]) => [source, `${source}/`].map((from) => ({from, ...v}))),
+    async (rule) => {
+      const res = await get(at(rule.from)).catch((e) => ({status: `error ${errorCode(e)}`, headers: new Headers()}))
+      await res.arrayBuffer?.().catch(() => {})
+      return {rule, status: res.status, location: res.headers.get('location') ?? ''}
+    },
+  )
+  const badShort = shortRows.filter(({rule, status, location}) => status !== rule.status || location !== rule.destination)
+  record(
+    'redirects',
+    badShort.length ? 'FAIL' : 'PASS',
+    `${Object.keys(SHORT_LINKS).length} short link(s) (${Object.keys(SHORT_LINKS).join(', ')}), with and without a trailing slash: one ${[...new Set(Object.values(SHORT_LINKS).map((v) => v.status))].join('/')} to the exact destination (not followed: it is off-site)`,
+    badShort.map(({rule, status, location}) => `${rule.from} want ${rule.status} ${rule.destination}; got ${status} ${location || '(no location)'}`).join(' ;; '),
+  )
+  const gone = ['/checkout','/paypal-checkout', '/order-confirmation', '/search', '/templates/style-guide', `/verify-${Date.now().toString(36)}-should-404`]
   const goneRows = await pool(gone, async (p) => ({p, r: await chain(at(p))}))
   const notGone = goneRows.filter(({r}) => r.hops.length || ![404, 410].includes(r.status))
   record('redirects', notGone.length ? 'FAIL' : 'PASS', 'removed and unknown URLs answer 404/410 (no soft 404s)', notGone.map(({p, r}) => `${p} ${hopText(r)}`).join(', '))
