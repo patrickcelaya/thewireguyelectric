@@ -7,10 +7,11 @@
 // before the page builder) still lists every post, so no post loses its link from /blog.
 // Every post in the archive gets a thumbnail (lib/cms.ts postThumb): its own image when the
 // owner approved it, else a company photo of its subject; no photo shows twice on the page
-// (the hero's and the most-read cards' covers are taken first, the estimate band skips them all).
+// (the hero's and the most-read cards' covers are taken first, then every row's own approved image
+// is set aside for its row, and the estimate band skips them all).
 import PageBuilderPage from '../components/PageBuilderPage.astro'
 import {getPage, getPostIndex, getPosts, getServices, getSettings} from '../lib/queries'
-import {markShown, postThumb} from '../lib/cms'
+import {markShown, postThumb, reserveOwnImages} from '../lib/cms'
 import {companyPhoto} from '../lib/brand-photos'
 import {resolveDescription, ogImageMeta, resolveTitle} from '../lib/seo'
 import {blogNode} from '../lib/schema'
@@ -35,8 +36,10 @@ for (const s of composed) {
   if (s._type === 'heroSection') markShown(taken, s.image)
   if (s._type === 'postsSection' && s.layout !== 'byService') markShown(taken, ...s.posts.map((p) => p.cover ?? (companyPhoto(p.mainImage) === 'job' ? p.mainImage : undefined)))
 }
+// every row's own approved image is set aside for it first, so an earlier row's fallback never takes it
+const reserved = reserveOwnImages(taken, composed.flatMap((s) => (s._type === 'postsSection' && s.layout === 'byService' ? s.posts : [])))
 const withThumbs = composed.map((s) =>
-  s._type === 'postsSection' && s.layout === 'byService' ? {...s, posts: s.posts.map((p, i) => ({...p, thumb: postThumb(p, postIndex, services, taken, i)}))} : s,
+  s._type === 'postsSection' && s.layout === 'byService' ? {...s, posts: s.posts.map((p, i) => ({...p, thumb: postThumb(p, postIndex, services, taken, i, reserved)}))} : s,
 )
 const shown = {...page, sections: withThumbs}
 ---

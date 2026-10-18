@@ -396,15 +396,22 @@ export function postCover(
  * unused photo of its own subject has no cover photo. On the blog's own pages (`own`: a post's related
  * articles) a post whose own image the owner approved shows that image first (ownPostImage, `ownCover`:
  * natural colour, never under the tint); service and city pages leave `own` off and keep the job photos.
+ * `reserved` (reserveOwnImages) lets a card show its own image that the page set aside for it.
  */
-export function guideCards(posts: PostSummary[], index: PostIndexEntry[], services: ServiceSummary[], seed = 0, taken = new Set<string>(), {own = false}: {own?: boolean} = {}): PostCard[] {
+export function guideCards(
+  posts: PostSummary[],
+  index: PostIndexEntry[],
+  services: ServiceSummary[],
+  seed = 0,
+  taken = new Set<string>(),
+  {own = false, reserved}: {own?: boolean; reserved?: Reserved} = {},
+): PostCard[] {
   const covers = new Map<number, ImageRef | undefined>()
   const owned = new Set<number>()
   if (own)
     posts.forEach((post, i) => {
       const image = ownPostImage(post)
-      if (!image || taken.has(photoId(image))) return
-      markShown(taken, image)
+      if (!image || !claimOwn(post, image, taken, reserved)) return
       covers.set(i, image)
       owned.add(i)
     })
@@ -429,17 +436,47 @@ export function ownPostImage(post: Pick<PostSummary, 'mainImage' | 'showMainImag
   return post.showMainImage && hasImage(image) && imageAlt(image) ? image : undefined
 }
 
+/** Own images a page has set aside for their posts (reserveOwnImages): photo id to post slug. */
+export type Reserved = Map<string, string>
+
+/**
+ * Sets aside each post's own approved image (ownPostImage) for that post before any fallback picks: it is marked
+ * shown, so no other card's company-photo fallback (postCover) can take it first just because it comes earlier on
+ * the page (a job photo can be one post's own image and another post's subject photo). Images the page already
+ * shows are not reserved. The pickers (postThumb, guideCards `own`) give a reserved image to its post only, once.
+ */
+export function reserveOwnImages(taken: Set<string>, posts: Array<PostSummary | null | undefined>): Reserved {
+  const reserved: Reserved = new Map()
+  for (const post of posts) {
+    const own = post && ownPostImage(post)
+    const id = own ? photoId(own) : ''
+    if (!post || !id || taken.has(id)) continue
+    taken.add(id)
+    reserved.set(id, post.slug)
+  }
+  return reserved
+}
+
+/** Whether `post` may show its own image here: the page doesn't show it yet, or set it aside for this post. Marks it. */
+function claimOwn(post: PostSummary, own: ImageRef, taken: Set<string>, reserved?: Reserved) {
+  const id = photoId(own)
+  if (reserved?.get(id) === post.slug) {
+    reserved.delete(id)
+    return true
+  }
+  if (taken.has(id)) return false
+  markShown(taken, own)
+  return true
+}
+
 /**
  * A post's thumbnail on a blog page (the /blog list, the previous and next posts): its own approved image (ownPostImage)
- * unless the page already shows it, else a company photo of its subject the page doesn't show yet (postCover, `fresh`),
- * else none. Marks it shown.
+ * unless the page already shows it (an image `reserved` for this post counts as its own), else a company photo of its
+ * subject the page doesn't show yet (postCover, `fresh`), else none. Marks it shown.
  */
-export function postThumb(post: PostSummary, index: PostIndexEntry[], services: ServiceSummary[], taken: Set<string>, seed = 0): ImageRef | undefined {
+export function postThumb(post: PostSummary, index: PostIndexEntry[], services: ServiceSummary[], taken: Set<string>, seed = 0, reserved?: Reserved): ImageRef | undefined {
   const own = ownPostImage(post)
-  if (own && !taken.has(photoId(own))) {
-    markShown(taken, own)
-    return own
-  }
+  if (own && claimOwn(post, own, taken, reserved)) return own
   return postCover(post, index, services, {tinted: false, taken, seed, fresh: true})
 }
 

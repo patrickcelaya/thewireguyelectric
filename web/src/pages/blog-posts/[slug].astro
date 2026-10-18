@@ -2,11 +2,11 @@
 // A blog post (the site's biggest traffic tier), as a premium editorial article: the
 // head (breadcrumb, topic, H1, byline and dates) beside a real photo as the cover (the
 // post's own image when the owner approved it, else a company photo of its subject),
-// the quick answer with the
-// early link to the post's hub service, the body verbatim (tables, figures, videos,
-// CTA blocks) beside "In this article" and the contact card, a local link when the post
-// is about one city, questions and related articles, the services the post mentions,
-// previous and next posts (with their thumbnails), and the estimate band.
+// the quick answer with the early link to the post's hub service, the body verbatim
+// (tables, figures, videos, CTA blocks) beside "In this article" and the contact card,
+// a local link when the post is about one city, questions and related articles, the
+// services the post mentions, previous and next posts (with their thumbnails), and the
+// estimate band.
 // Title, description, canonical, H1 and crumbs are unchanged from the live site.
 import SiteLayout from '../../layouts/SiteLayout.astro'
 import '../../styles/bundles/page-post.css'
@@ -41,6 +41,7 @@ import {
   postTopic,
   readingMinutes,
   relatedArticles,
+  reserveOwnImages,
   serviceTopic,
   withoutTitleHeading,
 } from '../../lib/cms'
@@ -82,15 +83,24 @@ const city = postCity(post.title, serviceAreaCities(settings.homeCity, locations
 // guides); also the article's image (the page's primary image), its share image and the first image to
 // load. Every photo shows once on the page: a service card further down whose photo is the cover shows
 // as a text row, the related articles (picked by the post's hub services; their own approved images
-// first) and the previous and next posts show others
+// first) and the previous and next posts show others. The related and previous/next posts' own approved
+// images are set aside for them before this post's fallback cover is picked (reserveOwnImages), so the
+// cover never takes another post's own job photo; a service card that shows one releases it (that card
+// keeps its service's photo and the post's card falls back).
 const shown = new Set<string>()
-const cover = ownPostImage(post) ?? postCover(post, postIndex, services, {tinted: false, seed, taken: shown}) ?? FLEET_PHOTO.image
+const ownCover = ownPostImage(post)
+markShown(shown, ownCover)
+const relatedPosts = relatedArticles(post.slug, postIndex, pillars)
+const reserved = reserveOwnImages(shown, [...relatedPosts, older, newer])
+const cover = ownCover ?? postCover(post, postIndex, services, {tinted: false, seed, taken: shown}) ?? FLEET_PHOTO.image
 markShown(shown, cover)
 const serviceCards = (post.relatedServices ?? []).map((s) => (photoId(s.mainImage) === photoId(cover) ? {...s, mainImage: undefined} : s))
-markShown(shown, ...photoTiles(serviceCards, 3).cards.map((s) => s.mainImage))
-const related = guideCards(relatedArticles(post.slug, postIndex, pillars), postIndex, services, seed + 1, shown, {own: true})
-const olderThumb = older && postThumb(older, postIndex, services, shown, seed + 2)
-const newerThumb = newer && postThumb(newer, postIndex, services, shown, seed + 3)
+const servicePhotos = photoTiles(serviceCards, 3).cards.map((s) => s.mainImage)
+markShown(shown, ...servicePhotos)
+for (const image of servicePhotos) reserved.delete(photoId(image))
+const related = guideCards(relatedPosts, postIndex, services, seed + 1, shown, {own: true, reserved})
+const olderThumb = older && postThumb(older, postIndex, services, shown, seed + 2, reserved)
+const newerThumb = newer && postThumb(newer, postIndex, services, shown, seed + 3, reserved)
 const preload = imagePreload(cover, POST_COVER.widths, POST_COVER.sizes)
 const primaryImageId = `${absoluteUrl(path)}#primaryimage`
 const image = imageObjectNode(cover, {id: primaryImageId})
