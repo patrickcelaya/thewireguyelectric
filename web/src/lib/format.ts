@@ -21,9 +21,12 @@ export function inSentence(name: string) {
   return name.replace(/\S+/g, (word) => (/^[A-Z0-9]{2,}$/.test(word) ? word : word.toLowerCase()))
 }
 
-/** "2026-02-12" for <time datetime>. */
+/**
+ * "2026-02-12" for <time datetime>: the calendar date Arizona sees, the one formatDate
+ * shows (a post published at 6:38 pm in Phoenix is already the next day in UTC).
+ */
 export function isoDate(iso: string) {
-  return iso.slice(0, 10)
+  return /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso : new Date(iso).toLocaleDateString('en-CA', {timeZone: 'America/Phoenix'})
 }
 
 /**
