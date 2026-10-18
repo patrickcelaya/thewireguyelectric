@@ -2,9 +2,12 @@
 // A blog post as a guide card: a cover (the post's photo under a warm copper tint,
 // the topic on a pill, optional big cover words, the small bulb that lights on
 // hover), the date, the title (the card's one link, stretched over the card) and
-// the excerpt. Render inside <ul class="guides" role="list">.
+// the excerpt. Without a photo (no unused photo of its subject on the page) the cover
+// is plain copper, lit from the corner the bulb sits in. Render inside
+// <ul class="guides" role="list">.
 import type {PostSummary} from '../../lib/types'
 import {formatDate, isoDate} from '../../lib/format'
+import {hasImage} from '../../lib/image'
 import SanityImage from '../ui/SanityImage.astro'
 import MiniBulb from '../ui/MiniBulb.astro'
 
@@ -23,7 +26,7 @@ const {post, label = post.category?.name ?? 'Guide', coverWords, focus, as: Titl
 ---
 
 <li class="guide">
-  <div class="cover" aria-hidden="true">
+  <div class:list={['cover', !hasImage(post.mainImage) && 'cover--plain']} aria-hidden="true">
     <SanityImage image={post.mainImage} widths={[420, 640, 900]} aspect={1.6} sizes="(max-width:899px) 92vw, 30vw" alt="" style={focus && `object-position:${focus}`} />
     <span class="lab">{label}</span>{' '}
     {coverWords && <span class="big">{coverWords}</span>}

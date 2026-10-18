@@ -1,10 +1,13 @@
 ---
 // Blog posts as guide cards under an editorial head (eyebrow, H2, intro, a link to
 // the blog). A card picked with its own cover shows that photo, topic and cover words
-// here; the post page keeps its own image. Renders the block only: the page puts it
-// in a section (on the homepage it shares the sand "answers" band with the questions).
+// here; the post page keeps its own image. A card without a cover photo shows the post's
+// own image only when it is one of the company's job photos, else the plain copper cover
+// (never stock). Renders the block only: the page puts it in a section (on the homepage
+// it shares the sand "answers" band with the questions).
 import type {PostsSection} from '../../lib/types'
 import {ctaHref} from '../../lib/site'
+import {companyPhoto} from '../../lib/brand-photos'
 import {getRedirectMap} from '../../lib/queries'
 import SectionHeader from '../ui/SectionHeader.astro'
 import TextLink from '../ui/TextLink.astro'
@@ -19,7 +22,7 @@ const {section, number} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const {cta} = section
-// three to a row; four and five have layouts of their own (styles/cms.css)
+// three to a row; one, two, four and five have layouts of their own (styles/cms.css), so no row has an empty column
 const count = section.posts.length
 ---
 
@@ -35,9 +38,9 @@ const count = section.posts.length
           )}
         </SectionHeader>
       )}
-      <ul class:list={['guides', (count === 4 || count === 5) && `guides--${count}`]} role="list">
+      <ul class:list={['guides', count !== 3 && count <= 5 && `guides--${count}`]} role="list">
         {section.posts.map((post) => (
-          <GuideCard post={{...post, mainImage: post.cover ?? post.mainImage}} label={post.label ?? undefined} coverWords={post.coverWords ?? undefined} />
+          <GuideCard post={{...post, mainImage: post.cover ?? (companyPhoto(post.mainImage) === 'job' ? post.mainImage : undefined)}} label={post.label ?? undefined} coverWords={post.coverWords ?? undefined} />
         ))}
       </ul>
     </div>

@@ -4,7 +4,7 @@
 // results, so a page renders the same from the local dataset and from Sanity.
 import type {FaqItem, ImageRef, PortableTextValue, PostCard, PostIndexEntry, PostSummary, Review, ServiceSummary} from './types'
 import type {City} from './cities'
-import {FLEET_PHOTO, JOB_PHOTOS, companyPhoto, jobPhoto, photoId} from './brand-photos'
+import {FLEET_PHOTO, JOB_PHOTOS, VANS_PHOTO, WALK_PHOTO, companyPhoto, jobPhoto, jobPhotoImage, photoId, type PhotoSubject} from './brand-photos'
 import {imageSrcSet} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
@@ -174,50 +174,129 @@ export function postTopic(post: PostSummary, index: PostIndexEntry[], services: 
   return post.category?.name ?? services.find((s) => s.slug === primary)?.name ?? 'Guide'
 }
 
+// ---------------------------------------------------------------------------
+// Photos on a page: each one shows once
+
 /**
- * A real cover for a post: its own image when it is one of the company's photos, else
- * the photo of a service it supports (in the order it lists them), else one of the
- * company's job photos (JOB_PHOTOS): those of the post's own subject first, then those
- * that suit any guide (never the EV charger on a guide about breakers). Stock images
- * are never used. `tinted` covers (the guide cards, under a copper tint) take job photos
- * only; natural ones (the post's own page) may show people too, framed on their faces.
- * `taken` keeps the covers in one row different from each other; `seed` varies the
- * fallback from page to page.
+ * Adds the photos a page shows to `shown` (which photo each is: a second upload counts as its original),
+ * so the pickers below never show one of them again. A page keeps one set from top to bottom.
+ */
+export function markShown(shown: Set<string>, ...images: Array<ImageRef | null | undefined>) {
+  for (const image of images) {
+    const id = photoId(image)
+    if (id) shown.add(id)
+  }
+  return shown
+}
+
+/**
+ * How ServiceCards lays out services: those with one of the company's photos as photo cards, in whole
+ * rows of three (at most `maxCards`), every other one as a text row. Pages call it too, to know which
+ * service photos their cards show.
+ */
+export function photoTiles<T extends Pick<ServiceSummary, 'mainImage'>>(services: T[], maxCards = 6) {
+  const withPhoto = services.filter((s) => companyPhoto(s.mainImage))
+  const count = Math.min(maxCards, withPhoto.length - (withPhoto.length % 3))
+  const cards = withPhoto.slice(0, count)
+  return {cards, rows: services.filter((s) => !cards.includes(s))}
+}
+
+/**
+ * The city glance photo ("We come to you"): the city's own company photo when the editor set one, else
+ * the crew walking up to a door, else (when a service card on the page already shows that one) Steven at
+ * the vans. Marks it shown.
+ */
+export function cityPhoto(own: ImageRef | null | undefined, shown: Set<string>): ImageRef {
+  const photo = [companyPhoto(own) ? own : undefined, WALK_PHOTO.image, VANS_PHOTO.image].find((image): image is ImageRef => Boolean(image) && !shown.has(photoId(image))) ?? WALK_PHOTO.image
+  markShown(shown, photo)
+  return photo
+}
+
+/**
+ * What a guide card's label names (postTopic), as a photo subject: the blog topic, else what the post's first
+ * service's photo is of, else what the job photo kept for that service's guides is of (the EV charger for EV
+ * charger installation). Undefined when neither has a photo subject (troubleshooting, safety).
+ */
+function coverTopic(post: PostSummary, index: PostIndexEntry[], services: ServiceSummary[]): string | undefined {
+  const entry = index.find((p) => p.slug === post.slug)
+  const first = entry?.services[0]
+  return (
+    (entry?.category ?? post.category)?.slug ??
+    jobPhoto(services.find((s) => s.slug === first)?.mainImage)?.subject ??
+    JOB_PHOTOS.map(jobPhoto).find((p) => first && p?.services?.includes(first))?.subject
+  )
+}
+
+/**
+ * A real cover for a post: its own image when it is one of the company's photos, else the photo of a
+ * service it supports (in the order it lists them), else one of the company's job photos (JOB_PHOTOS)
+ * of the post's subject: what its own and its services' photos show, and its blog topic (lighting). A
+ * post with no subject of its own (troubleshooting, safety) may take the neutral tools photo. Stock
+ * images are never used, and no photo in `taken` (the page's) is used again.
+ *
+ * `tinted` covers (the guide cards, under a copper tint) take job photos only, and when no unused photo
+ * of the post's subject is left there is none: the card shows its plain copper cover (GuideCard), never
+ * a photo of something else. A natural cover (the post's own page, its main image) may show people too,
+ * framed on their faces, and always gets a photo: past its subject, any unused job photo but the narrow
+ * EV charger. `seed` varies the picks from page to page.
  */
 export function postCover(
   post: PostSummary,
   index: PostIndexEntry[],
   services: ServiceSummary[],
   {tinted = true, taken = new Set<string>(), seed = 0}: {tinted?: boolean; taken?: Set<string>; seed?: number} = {},
-): ImageRef {
+): ImageRef | undefined {
   const entry = index.find((p) => p.slug === post.slug)
   const own = entry?.services ?? []
-  const linked = [post.mainImage, ...own.map((slug) => services.find((s) => s.slug === slug)?.mainImage)]
-  // what the post is about: what its own and its services' job photos show, and its blog topic, whose slug names one (lighting)
-  const subjects = new Set<string | undefined>([...linked.map((image) => jobPhoto(image)?.subject), (entry?.category ?? post.category)?.slug])
+  const serviceImages = own.map((slug) => services.find((s) => s.slug === slug)?.mainImage)
+  const category = (entry?.category ?? post.category)?.slug
+  const topic = coverTopic(post, index, services)
+  // everything the post is about: what its own and its services' job photos are of, and its blog topic
+  const subjects = new Set<string>([...[post.mainImage, ...serviceImages].map((image) => jobPhoto(image)?.subject), category].filter((s): s is string => Boolean(s)))
   const rotated = [...JOB_PHOTOS.slice(seed % JOB_PHOTOS.length), ...JOB_PHOTOS.slice(0, seed % JOB_PHOTOS.length)]
-  const onSubject = (image: ImageRef) => {
+  const of = (image: ImageRef, wanted: (s: string) => boolean) => {
     const photo = jobPhoto(image)
-    return Boolean(photo && (subjects.has(photo.subject) || photo.services?.some((slug) => own.includes(slug))))
+    return Boolean(photo && [photo.subject, ...(photo.also ?? [])].some(wanted))
   }
-  // so a lighting guide whose own photo another card already shows gets another lighting photo, not the EV charger
-  const fallback = [...rotated.filter(onSubject), ...rotated.filter((image) => !onSubject(image) && !jobPhoto(image)?.narrow)]
-  const candidates = [...linked, ...fallback]
-  // the same photo may be an asset reference, a pre-import Webflow URL or a second upload: compare which photo it is
-  const id = (image: ImageRef | null | undefined) => photoId(image)
+  const onSubject = (image: ImageRef) => of(image, (s) => subjects.has(s)) || Boolean(jobPhoto(image)?.services?.some((slug) => own.includes(slug)))
+  // the label's own subject first, so a "Lighting" card never takes the panel photo of a service it lists second;
+  // a card whose label has a subject shows a photo of it or none
+  // (a photo is of a service's topic by what it is of, or the services it lists; what else it suits counts for a
+  // blog topic only: the lamp-lined walk is a lighting photo for the Lighting topic, not for a kitchen remodel)
+  const isTopic = (image: ImageRef) => {
+    const photo = jobPhoto(image)
+    return Boolean(photo && (photo.subject === topic || photo.services?.includes(own[0]) || (category && photo.also?.includes(category as PhotoSubject))))
+  }
+  const ofTopic = [post.mainImage, ...(category ? [] : serviceImages.slice(0, 1)), ...(topic ? rotated.filter(isTopic) : [])]
+  const broader = [
+    ...serviceImages,
+    ...rotated.filter(onSubject),
+    // the tools flat-lay suits a guide with no subject of its own
+    ...(subjects.size ? [] : rotated.filter((image) => jobPhoto(image)?.subject === 'tools')),
+  ]
+  const candidates = tinted ? [...ofTopic, ...(topic ? [] : broader)] : [...ofTopic, ...broader, ...rotated.filter((image) => !onSubject(image) && !jobPhoto(image)?.narrow)]
   const fits = (image: ImageRef | null | undefined): image is ImageRef => (tinted ? companyPhoto(image) === 'job' : Boolean(companyPhoto(image)))
   const usable = candidates.filter(fits)
-  const cover = usable.find((image) => !taken.has(id(image))) ?? usable[0]
-  taken.add(id(cover))
-  return cover
+  // the same photo may be an asset reference, a pre-import Webflow URL or a second upload: compare which photo it is
+  const pick = usable.find((image) => !taken.has(photoId(image))) ?? (tinted ? undefined : usable[0])
+  if (!pick) return undefined
+  markShown(taken, pick)
+  // a card crops the job photo as listed in brand-photos (its hotspot frames the subject)
+  return tinted ? jobPhotoImage(pick) : pick
 }
 
 /**
  * Posts as guide cards with real covers (postCover) and their topic as the label, for GuidesBlock.
- * `taken` holds photos the page already shows (a post's own cover), so no card repeats them.
+ * `taken` holds the photos the page shows elsewhere, so no card repeats one; a card left without an
+ * unused photo of its own subject has no cover photo.
  */
 export function guideCards(posts: PostSummary[], index: PostIndexEntry[], services: ServiceSummary[], seed = 0, taken = new Set<string>()): PostCard[] {
-  return posts.map((post, i) => ({...post, mainImage: undefined, cover: postCover(post, index, services, {taken, seed: seed + i}), label: postTopic(post, index, services)}))
+  // a card whose label has a photo subject picks first, so the panel cost guide gets the panel photo before a
+  // breaker guide that lists panels second
+  const topical = (post: PostSummary) => Boolean(coverTopic(post, index, services))
+  const covers = new Map<number, ImageRef | undefined>()
+  for (const first of [true, false]) posts.forEach((post, i) => topical(post) === first && covers.set(i, postCover(post, index, services, {taken, seed: seed + i})))
+  return posts.map((post, i) => ({...post, mainImage: undefined, cover: covers.get(i), label: postTopic(post, index, services)}))
 }
 
 /** The city a post is about: the first city its title names (most posts are valley-wide and name none). */

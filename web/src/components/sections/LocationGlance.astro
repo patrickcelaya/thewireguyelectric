@@ -7,7 +7,7 @@
 // shows them here, as a note under the facts. Every fact comes from the location
 // document (migration/local-facts); a missing one is left out, never filled.
 // Styles: styles/inner.css (.glance, .facts) and styles/cms.css.
-import type {FaqItem, LocationDoc, PostalAddress, SiteSettings} from '../../lib/types'
+import type {FaqItem, ImageRef, LocationDoc, PostalAddress, SiteSettings} from '../../lib/types'
 import {officeHours} from '../../lib/site'
 import {WALK_PHOTO, companyPhoto} from '../../lib/brand-photos'
 import {blockText, listOf} from '../../lib/cms'
@@ -23,6 +23,8 @@ interface Props {
   office?: PostalAddress
   /** The city's own questions, shown further down the page. */
   faqs?: FaqItem[]
+  /** The photo, when the page picked it (lib/cms.ts cityPhoto: one the page shows nowhere else). */
+  photo?: ImageRef
 }
 
 const {location, settings, number, office, faqs = []} = Astro.props
@@ -32,8 +34,8 @@ const hoods = location.neighborhoods ?? []
 const utilities = location.utilityProviders ?? []
 const zips = location.zipCodes ?? []
 const hours = officeHours(settings).line
-// a real job photo of this city when the editor set one, else the crew walking up to a door
-const photo = companyPhoto(location.mainImage) ? location.mainImage! : WALK_PHOTO.image
+// the page's pick; else a real job photo of this city when the editor set one, else the crew walking up to a door
+const photo = Astro.props.photo ?? (companyPhoto(location.mainImage) ? location.mainImage! : WALK_PHOTO.image)
 const answered = faqs.flatMap((f) => (f.answer ?? []).map(blockText)).join('\n')
 const notes = (location.permitNotes ?? []).filter((b) => !answered.includes(blockText(b)))
 const facts = [

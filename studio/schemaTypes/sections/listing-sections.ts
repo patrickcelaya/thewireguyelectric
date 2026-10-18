@@ -146,7 +146,11 @@ export const postsSection = defineArrayMember({
               description: 'Optional. Two or three words set large on the cover, e.g. "Heat and breakers". The post title stays the link below.',
               validation: (rule) => rule.max(28).warning('Keep the cover words short'),
             }),
-            sectionImageField('image', 'Cover photo', 'Optional. A real job photo for this card, replacing the post\'s main image here (the post page keeps its own).'),
+            sectionImageField(
+              'image',
+              'Cover photo',
+              'Optional. A real job photo for this card (the post page keeps its own). Without one the card shows the post\'s main image when it is a company job photo, else a plain copper cover with the cover words. Pick a photo the page does not show elsewhere.',
+            ),
           ],
           preview: {
             select: {title: 'post.title', words: 'coverWords', media: 'image', postMedia: 'post.mainImage'},

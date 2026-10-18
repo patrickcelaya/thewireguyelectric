@@ -30,7 +30,7 @@ import {faqNode, serviceNode, webPageNode} from '../../lib/schema'
 import {absoluteUrl} from '../../lib/seo'
 import {serviceAreaCities} from '../../lib/cities'
 import {imagePreload} from '../../lib/image'
-import {SERVICE_HERO_IMAGE, allSupport, guideCards, heroStaging, liftSigns, mergeFaqs, pickReviews, serviceGuides, serviceTopic, withoutPrices} from '../../lib/cms'
+import {SERVICE_HERO_IMAGE, allSupport, guideCards, heroStaging, liftSigns, markShown, mergeFaqs, photoTiles, pickReviews, serviceGuides, serviceTopic, withoutPrices} from '../../lib/cms'
 import {inSentence} from '../../lib/format'
 
 export async function getStaticPaths() {
@@ -70,8 +70,12 @@ const reviewsIntro =
 const ownFaqs = [...withoutPrices(service.faqs), ...withoutPrices(taggedFaqs)]
 const faqs = mergeFaqs([ownFaqs, withoutPrices(commonFaqs)])
 const guidePosts = serviceGuides(service.relatedPosts, service.slug, postIndex)
-const guides = guideCards(guidePosts, postIndex, services, seed)
 const related = service.relatedServices ?? []
+// every photo shows once on the page: the hero's (which the article repeats in true colour, by design, as its
+// captioned figure) and the related services' cards, then the guide covers
+const staging = heroStaging(service.mainImage)
+const shown = markShown(new Set<string>(), staging === 'plain' ? undefined : service.mainImage, ...photoTiles(related, 3).cards.map((s) => s.mainImage))
+const guides = guideCards(guidePosts, postIndex, services, seed, shown)
 // headings name the service where what they head is about it: questions it has its own of, guides that all support it
 const topic = serviceTopic(service)
 const faqHeading = ownFaqs.length ? `Questions about ${topic}` : 'Questions, answered'
@@ -92,7 +96,6 @@ const n = {
   cta: next(),
 }
 
-const staging = heroStaging(service.mainImage)
 const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
 // the photo the hero shows (a company photo); a stock image the page hides is never its image or preview
 const ownPhoto = hero ? service.mainImage : undefined

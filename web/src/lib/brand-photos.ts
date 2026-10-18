@@ -94,17 +94,30 @@ export const WALK_PHOTO = {
 }
 
 /**
- * What a job photo shows, so a guide can fall back to a photo of its own subject
- * (postCover). `services` names the services whose guides it suits although their own
- * photo shows something else (the EV charger install photo has a person in it, so a
- * guide card cannot use it). A photo of a narrow subject (`narrow`: the EV charger)
- * covers only guides on that subject; the others (rooms, lights, panels, tools) suit
- * any guide.
+ * Steven at a service van, Cody behind him (a portrait): the city glance photo where the walk-up photo is
+ * already on the page as the Electrical Safety Inspections card, so no photo shows twice.
  */
-export type PhotoSubject = 'lighting' | 'panel' | 'tools' | 'ev'
+export const VANS_PHOTO = {
+  image: asset(
+    'image-2c9400de0ad740f382a00e4d7ec354818f6c0a5b-724x1086-avif',
+    'Owner Steven Taylor standing beside a Wire Guy Electric service van with a ladder rack, a second technician behind him',
+  ),
+}
+
+/**
+ * What a job photo shows, so a guide card shows a photo of its own subject (postCover).
+ * `subject` is what it is a photo of; `also` names other subjects it suits (the lamp-lined
+ * front walk is exterior work and lighting). `services` names the services whose guides it
+ * suits although their own photo shows something else (the EV charger install photo has a
+ * person in it, so a guide card cannot use it). A photo of a narrow subject (`narrow`: the
+ * EV charger) is never borrowed for another subject. The tools flat-lay is the neutral
+ * photo: it suits a guide with no subject of its own (troubleshooting, safety).
+ */
+export type PhotoSubject = 'lighting' | 'panel' | 'tools' | 'ev' | 'exterior'
 interface JobPhoto {
   image: ImageRef
   subject: PhotoSubject
+  also?: PhotoSubject[]
   services?: string[]
   narrow?: boolean
 }
@@ -121,9 +134,15 @@ const JOB_PHOTO_LIST: JobPhoto[] = [
   {subject: 'panel', image: asset('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'A new Siemens panel with labeled breakers next to an SRP meter on a stucco wall')},
   {subject: 'tools', image: asset('image-1a1a63ffa572abef13cc6693c8bf6e80602a0a7d-3924x5887-jpg', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire')},
   {subject: 'lighting', image: asset('image-8ac78ca58f507beef3cc08a6e092ec742956e3e2-1280x960-jpg', 'A remodeled kitchen with recessed lights over a marble-look island')},
-  {subject: 'ev', narrow: true, services: ['ev-charger-installation'], image: asset('image-77b2debafc6c3cd45ac8cfbf5109126a1c0e2574-1536x2048-webp', 'A Tesla Wall Connector installed on a garage wall')},
+  // a portrait: card crops (1.6:1) keep the connector in frame, not the bare wall under it
+  {
+    subject: 'ev',
+    narrow: true,
+    services: ['ev-charger-installation'],
+    image: {...asset('image-77b2debafc6c3cd45ac8cfbf5109126a1c0e2574-1536x2048-webp', 'A Tesla Wall Connector installed on a garage wall'), hotspot: {x: 0.5, y: 0.3, width: 1, height: 1}},
+  },
   {subject: 'lighting', image: asset('image-f9be117f7e0a911de638ca5b42fd0ca9a1caf0d8-3748x2811-jpg', 'Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters')},
-  {subject: 'lighting', image: asset('image-8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536-jpg', 'A front walk lined with lamp posts and roses at a brick home')},
+  {subject: 'exterior', also: ['lighting'], image: asset('image-8418e8bb0d98b7681c7a2fa81807df71b08646a6-2048x1536-jpg', 'A front walk lined with lamp posts and roses at a brick home')},
   {subject: 'lighting', image: asset('image-ed1de73427c40093df37f55b742ec7dbede75d0c-4284x5712-jpg', 'Recessed lights in the vaulted ceiling of a kitchen')},
   {subject: 'lighting', image: asset('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg', 'Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting')},
   {subject: 'lighting', image: asset('image-d338d7dc5dae879faa96751651f476d868aa99e6-1186x1120-avif', 'A remodeled kitchen at night lit by recessed ceiling lights')},
@@ -147,6 +166,12 @@ const JOB_PHOTO_BY_ID = new Map(JOB_PHOTO_LIST.map((p) => [p.image.asset!._id, p
 export function jobPhoto(image: ImageRef | null | undefined): Omit<JobPhoto, 'image'> | undefined {
   const ref = resolveImage(image)?.ref
   return ref ? JOB_PHOTO_BY_ID.get(ref) : undefined
+}
+
+/** The job photo as listed above (with its card hotspot), else the image itself. */
+export function jobPhotoImage(image: ImageRef): ImageRef {
+  const ref = resolveImage(image)?.ref
+  return (ref && JOB_PHOTO_BY_ID.get(ref)?.image) || image
 }
 
 /**

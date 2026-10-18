@@ -557,16 +557,15 @@ export default async function pageSections(ctx) {
         eyebrow: 'Guides',
         heading: 'Guides from our electricians',
         intro: 'Plain-English answers to the questions Arizona homeowners ask us most.',
-        // Tier-1 guides (Search Console), each on a real job photo. The permit guide and the
+        // Tier-1 guides (Search Console), on the plain copper cover with their cover words: the
+        // panel, tools and EV charger photos they had are already on the homepage (services,
+        // capabilities, gallery), and a photo shows once per page. The permit guide and the
         // DIY guide (permits again) stay on the blog, the service pages and the city pages
         // (owner, round 5: minimise permit talk on the homepage).
         posts: [
-          postCard('can-hot-weather-cause-your-circuit-breaker-to-trip', 'Troubleshooting', 'Heat and breakers', {
-            ...photo('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png'),
-            ...focus(0.5, 0.42),
-          }),
-          postCard('outdated-wiring-in-older-phoenix-homes', 'Older homes', 'Old wiring', imageOf('service', 'electrical-troubleshooting', 'Pliers, wire strippers and a voltage tester on a coil of yellow wire', focus(0.5, 0.52))),
-          postCard('tesla-wall-connector-vs-chargepoint-home-flex-phoenix', 'EV chargers', 'Tesla or ChargePoint', imageOf('post', 'installing-car-charger', 'A Tesla Wall Connector installed on a garage wall', focus(0.5, 0.42))),
+          postCard('can-hot-weather-cause-your-circuit-breaker-to-trip', 'Troubleshooting', 'Heat and breakers'),
+          postCard('outdated-wiring-in-older-phoenix-homes', 'Older homes', 'Old wiring'),
+          postCard('tesla-wall-connector-vs-chargepoint-home-flex-phoenix', 'EV chargers', 'Tesla or ChargePoint'),
         ],
         cta: link('All guides on the blog', '/blog'),
       },
@@ -1088,8 +1087,9 @@ export default async function pageSections(ctx) {
         heading: c.text('7.0', 'h2'),
         headingAccent: c.accent('7.0', 'h2'),
         images: [
-          // the cells crop: each people photo is framed on its heads
-          {...galleryImage('commercial-ti-cable-pull.png', 'tenant-improvements', 'ti'), ...hotspot(0.6, 0.34)},
+          // the cells crop: each people photo is framed on its heads. The tenant-improvement cable pull is the
+          // first services card above, and a photo shows once per page, so the first cell is the EV charger
+          {...imageFrom('post', 'installing-car-charger', 'A Tesla Wall Connector installed on a garage wall', hotspot(0.5, 0.3)), _type: 'galleryImage', _key: 'charger', service: reference(service('ev-charger-installation'))},
           galleryImage('image-cb001b94a2ca55b0d2c7ccecb4b2641334220a3c-1280x1256-png', 'panels', 'panel'),
           // a chandelier the crew hung (the restaurant pendants lead the services cards above)
           {...galleryImage('image-49a454c64fdde0f5b5fc7b306b53f880eef5c97f-960x1280-jpg', 'fixture-replacements', 'chandelier'), ...hotspot(0.5, 0.3)},

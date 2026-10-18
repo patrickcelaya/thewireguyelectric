@@ -117,6 +117,15 @@ html:not(.oo):not(.oc) .facts__status{display:none}
   .guides--5>.guide:nth-child(4){grid-column:2/span 2}
 }
 @media (min-width:1100px){.guides--4{grid-template-columns:repeat(4,minmax(0,1fr))}.guides--4 .guide h3{font-size:1.25rem}}
+/* one or two guides fill the row: two side by side, one as a wide card with its words beside the cover */
+@media (min-width:900px){
+  .guides--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .guides--1{grid-template-columns:minmax(0,1fr)}
+  .guides--1>.guide{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:clamp(24px,2.8vw,44px);align-content:center}
+  .guides--1>.guide>.cover{grid-row:1 / span 3}
+  .guides--1>.guide>:not(.cover){grid-column:2}
+  .guides--1>.guide>.meta{margin-top:0}
+}
 
 /* ===================================================================== a section head with several links */
 .head .more:has(.textlink+.textlink){display:flex;flex-wrap:wrap;gap:14px 28px}

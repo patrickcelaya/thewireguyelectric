@@ -25,7 +25,7 @@ import {getFaqs, getLocations, getPostIndex, getReviews, getServices, getSetting
 import {absoluteUrl, ogImageMeta, resolveDescription, resolveTitle} from '../../lib/seo'
 import {branchFor, branchId, faqNode, locationServiceNode, webPageNode} from '../../lib/schema'
 import {CITY_ORDER, serviceAreaCities} from '../../lib/cities'
-import {CITY_SHARED_QUESTIONS, FLEET_HERO, cityGuides, guideCards, listOf, mergeFaqs, pickFaqs, pickReviews} from '../../lib/cms'
+import {CITY_SHARED_QUESTIONS, FLEET_HERO, cityGuides, cityPhoto, guideCards, listOf, markShown, mergeFaqs, photoTiles, pickFaqs, pickReviews} from '../../lib/cms'
 import {companyPhoto} from '../../lib/brand-photos'
 import type {LocationDoc} from '../../lib/types'
 
@@ -66,11 +66,15 @@ const reviewsIntro = local
 // the city's own questions (its utility and permit office, from the sourced local facts), then the shared ones
 const ownFaqs = location.faqs ?? []
 const faqs = mergeFaqs([ownFaqs, pickFaqs(sharedFaqs, CITY_SHARED_QUESTIONS)])
+// every photo shows once on the page: the service cards' photos, then the glance photo, then the guide covers
+const shown = markShown(new Set<string>(), ...photoTiles(featured).cards.map((s) => s.mainImage))
+const glancePhoto = cityPhoto(location.mainImage, shown)
 const guides = guideCards(
   cityGuides(city, featured.map((s) => s.slug), postIndex),
   postIndex,
   services,
   seed,
+  shown,
 )
 const cities = serviceAreaCities(settings.homeCity, locations)
 const nearby = (location.nearbyLocations ?? []).map((l) => l.shortName || l.name)
@@ -96,7 +100,7 @@ const serviceId = `${absoluteUrl(path)}#service`
   </Fragment>
 
   <LocationHero location={location} heading={heading} settings={settings} crumbs={crumbs} office={office} />
-  <LocationGlance location={location} settings={settings} number={1} office={office} faqs={ownFaqs} />
+  <LocationGlance location={location} settings={settings} number={1} office={office} faqs={ownFaqs} photo={glancePhoto} />
 
   {
     featured.length > 0 && (

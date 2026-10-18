@@ -6,7 +6,7 @@
 // orphan card. Each card's title is its one link. Styles: styles/inner.css (.tiles3,
 // .tile--card) and styles/cms.css (.svc-rows).
 import type {ServiceSummary} from '../../lib/types'
-import {companyPhoto} from '../../lib/brand-photos'
+import {photoTiles} from '../../lib/cms'
 import ServiceTile from './ServiceTile.astro'
 
 interface Props {
@@ -16,10 +16,8 @@ interface Props {
 }
 
 const {services, maxCards = 6} = Astro.props
-const withPhoto = services.filter((s) => companyPhoto(s.mainImage))
-const cardCount = Math.min(maxCards, withPhoto.length - (withPhoto.length % 3))
-const cards = withPhoto.slice(0, cardCount)
-const rows = services.filter((s) => !cards.includes(s))
+// the page reads the same split (lib/cms.ts photoTiles), so its other photos never repeat a card's
+const {cards, rows} = photoTiles(services, maxCards)
 ---
 
 {
