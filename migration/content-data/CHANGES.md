@@ -163,6 +163,11 @@ Values your team edits once and the whole site uses, all copied from the live si
 ### 8. Photos
 16 real company photos were added to your Sanity media library (crew, vans, job photos), plus five job photos already there. Each has a written description (alt text) for accessibility and image search. They replace the stock photos and the broken photo feed.
 
+### New and retitled service pages (2026-10-19, decision D18)
+
+- Three new pages: `/services/whole-home-rewiring`, `/services/hot-tub-pool-spa-electrical` and `/services/whole-house-surge-protection`. Every sentence restates your own posts, `/faq` answers or the sourced local facts; none shows a price (each links its cost guide). They are in the Services menu, on `/services`, in the sitemap, and linked from their posts.
+- Retitled, same URLs: `/services/fixture-replacements` is "Ceiling Fan & Light Fixture Installation" (menu: "Ceiling Fans & Light Fixtures") with a new ceiling fan section; `/services/exterior-electrical` is "Landscape & Outdoor Lighting Installation" (menu: "Landscape & Outdoor Lighting") with a new landscape lighting section.
+
 ## What did not change
 - Every page title, H1, meta description and URL (105 live URLs checked).
 - The body copy of every service, city and blog post page.

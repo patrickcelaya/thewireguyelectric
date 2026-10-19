@@ -118,9 +118,9 @@ Standalone pages: `index` (home), about-us, our-team, careers, faq, contact-us, 
 | name | string | H1 fallback, card title, link text |
 | slug | slug | Frozen |
 | category | ref serviceCategory | Residential or Commercial; breadcrumb |
-| heading | string | Optional H1 override (empty on all 21 today, so the H1 is the name) |
+| heading | string | Optional H1 override. Set where the approved H1 differs from the name (titles-meta.json): the retitled services and the three added by D18 |
 | shortDescription | text | Lede under the H1, card text, meta description fallback |
-| **linkLabel** | string | **New.** Lower-case words for the early link from a guide to its hub service, read as "See our {linkLabel} service": the words people search for ("electrical troubleshooting", not "Troubleshooting"). Empty on all 21 today: the site then uses its built-in wording for the 8 hub services (`HUB_LINK_LABELS` in `web/src/lib/cms.ts`), else the name |
+| **linkLabel** | string | **New.** Lower-case words for the early link from a guide to its hub service, read as "See our {linkLabel} service": the words people search for ("electrical troubleshooting", not "Troubleshooting"). Empty on all 24 today: the site then uses its built-in wording for the 11 hub services (`HUB_LINK_LABELS` in `web/src/lib/cms.ts`), else the name |
 | **quickAnswer** | text | **New.** The answer-first line of the "{Service}, the short version" block: what the service covers, 25–60 words, only what the body says, no prices (warns outside 25–60 words). Empty = a line about the business from Site settings |
 | mainImage | image (+alt) | When it is one of the crew's job photos (no people), the hero shows it under the copper tint and the article shows it again in true colour halfway down, captioned "Our work: …" |
 | body | richText | The article |

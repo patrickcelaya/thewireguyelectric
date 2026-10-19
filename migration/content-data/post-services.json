@@ -1,5 +1,5 @@
 {
-  "$comment": "post.relatedServices per blog post slug, applied by scripts/migrate/content/fixes.mjs. The first service is the primary (hub) service from the hub-and-spoke map in docs/SEO_STRATEGY.md §2 and redesign seo-requirements §4. Any further service is one the hub map names for that post, one the post body already links to on the live site, or one whose live service page body links to the post (its 'Related Reading'). The single exception, can-hot-weather-cause-your-circuit-breaker-to-trip → panels, is a post whose own text is about the overheating panel. The internal-links review (2026-10-17, decision D14) added a service the post body discusses to 10 posts (and swapped kitchen circuits' commercial Dedicated Circuits page for Custom Lighting); no primary changed. See README.md §4.",
+  "$comment": "post.relatedServices per blog post slug, applied by scripts/migrate/content/fixes.mjs. The first service is the primary (hub) service from the hub-and-spoke map in docs/SEO_STRATEGY.md §2 and redesign seo-requirements §4. Any further service is one the hub map names for that post, one the post body already links to on the live site, or one whose live service page body links to the post (its 'Related Reading'). The single exception, can-hot-weather-cause-your-circuit-breaker-to-trip → panels, is a post whose own text is about the overheating panel. The internal-links review (2026-10-17, decision D14) added a service the post body discusses to 10 posts (and swapped kitchen circuits' commercial Dedicated Circuits page for Custom Lighting); no primary changed. Decision D18 (2026-10-19): the rewire cost guide, the aluminum wiring post, the hot tub and pool pump posts and the two surge posts hub on the service page written for them (whole-home-rewiring, hot-tub-pool-spa-electrical, whole-house-surge-protection), each keeping its other services; the outdated-wiring post (Tier 1) keeps inspections first and adds rewiring. See README.md §4.",
   "posts": {
     "7-signs-you-need-an-electrical-panel-upgrade": ["panels"],
     "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell": ["panels"],
@@ -8,8 +8,8 @@
     "federal-pacific-zinsco-panels-arizona": ["panels", "electrical-safety-inspections"],
     "cutting-corners-panel-upgrades-phoenix": ["panels"],
     "casita-adu-electrical-requirements-arizona": ["panels", "new-construction-wiring"],
-    "whole-house-surge-protector-guide-arizona": ["panels"],
-    "is-whole-house-surge-protection-necessary": ["panels"],
+    "whole-house-surge-protector-guide-arizona": ["whole-house-surge-protection", "panels"],
+    "is-whole-house-surge-protection-necessary": ["whole-house-surge-protection", "panels"],
     "swamp-cooler-to-ac-conversion-electrical-arizona": ["panels"],
     "mini-split-electrical-requirements-arizona": ["panels"],
 
@@ -44,19 +44,19 @@
     "landscape-lighting-installation-cost-phoenix": ["exterior-electrical", "custom-lighting"],
     "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall": ["exterior-electrical"],
 
-    "hot-tub-electrical-installation-cost-arizona": ["exterior-electrical", "panels"],
-    "pool-pump-electrical-requirements-arizona": ["exterior-electrical", "panels"],
+    "hot-tub-electrical-installation-cost-arizona": ["hot-tub-pool-spa-electrical", "panels"],
+    "pool-pump-electrical-requirements-arizona": ["hot-tub-pool-spa-electrical", "panels"],
 
     "electrical-inspection-before-selling-a-home": ["electrical-safety-inspections"],
     "electrical-safety-tips": ["electrical-safety-inspections"],
-    "aluminum-wiring-older-phoenix-homes": ["electrical-safety-inspections", "electrical-remodels"],
-    "outdated-wiring-in-older-phoenix-homes": ["electrical-safety-inspections"],
+    "aluminum-wiring-older-phoenix-homes": ["whole-home-rewiring", "electrical-safety-inspections", "electrical-remodels"],
+    "outdated-wiring-in-older-phoenix-homes": ["electrical-safety-inspections", "whole-home-rewiring"],
     "emfs-in-your-phoenix-home": ["electrical-safety-inspections"],
     "diy-electrical-work-in-arizona": ["electrical-safety-inspections", "panels", "fixture-replacements"],
     "permit-for-electrical-work": ["electrical-safety-inspections", "panels"],
     "phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes": ["electrical-safety-inspections"],
 
     "kitchen-remodel-electrical-circuits-arizona": ["electrical-remodels", "panels", "custom-lighting"],
-    "cost-to-rewire-house-arizona": ["electrical-remodels", "electrical-safety-inspections", "panels"]
+    "cost-to-rewire-house-arizona": ["whole-home-rewiring", "electrical-remodels", "electrical-safety-inspections", "panels"]
   }
 }

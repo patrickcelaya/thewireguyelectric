@@ -1,5 +1,5 @@
 {
-  "$comment": "Titles, meta descriptions and H1s from the verified titles-meta review (2026-10-17): 70 approved changes on 42 pages (the rejected DIY meta is not here). Applied by scripts/migrate/content/titles-meta.mjs, last in the run. Each row names the page, the field Google reads (title, meta or h1), the document and the field that sets it, the value Google shows today (old) and the approved value (new). Rows with \"hold\" are approved but held back (the wave 2 cities): they are checked, not applied. migration/seo-intentional-changes.json, which the parity gate reads, must list exactly these values. See README.md section 10.",
+  "$comment": "Titles, meta descriptions and H1s from the verified titles-meta review (2026-10-17): 70 approved changes on 42 pages (the rejected DIY meta is not here). Applied by scripts/migrate/content/titles-meta.mjs, last in the run. Each row names the page, the field Google reads (title, meta or h1), the document and the field that sets it, the value Google shows today (old) and the approved value (new). Rows with \"hold\" are approved but held back (the wave 2 cities): they are checked, not applied. migration/seo-intentional-changes.json, which the parity gate reads, must list exactly these values. See README.md section 10. Decision D18 (owner, 2026-10-19) adds 15 rows: the title, meta and H1 of three new service pages (`added`: old is null, the allowlist holds them under `added`) and the retitles of /services/fixture-replacements and /services/exterior-electrical.",
   "source": "scratchpad seo/titles-meta/verified.json (verdicts accept/amend, the amended text where amended), D7 (review count 560+), D11 (wave 2 held back)",
   "changes": [
     {
@@ -641,6 +641,150 @@
       "old": "Recessed Lighting",
       "new": "Recessed Lighting Installation",
       "why": "12.3k impressions; the top query is \"recessed lighting installation mesa az\" (310 at 7.6) and \"installation\" is missing from both the title and the H1 (the body H2 already says \"Recessed Lighting Installation in the Phoenix Valley\")."
+    },
+    {
+      "path": "/services/whole-home-rewiring",
+      "field": "title",
+      "doc": "service:whole-home-rewiring",
+      "sets": "seo.title",
+      "old": null,
+      "new": "Whole-Home Rewiring in Mesa, AZ | The Wire Guy",
+      "added": true,
+      "why": "New page (D18, owner 2026-10-19: the business offers whole-home rewiring). Targets \"whole house rewiring mesa az\" and \"aluminum wiring replacement\": the rewire cost guide has 2,312 impressions at 7.5 and \"gilbert whole home wiring\" 346 at 9.0 with no service page behind them (seo-audit PLAN section 4, page 2). Title and H1 follow the service pattern (\"{Service} in Mesa, AZ | The Wire Guy\", H1 the service)."
+    },
+    {
+      "path": "/services/whole-home-rewiring",
+      "field": "meta",
+      "doc": "service:whole-home-rewiring",
+      "sets": "seo.description",
+      "old": null,
+      "new": "Whole-home rewiring in Mesa and the Phoenix valley: aluminum wiring replacement, AlumiConn repairs, old cloth wiring and two-prong outlets. ROC #365306.",
+      "added": true,
+      "why": "New page (D18, owner 2026-10-19: the business offers whole-home rewiring). Targets \"whole house rewiring mesa az\" and \"aluminum wiring replacement\": the rewire cost guide has 2,312 impressions at 7.5 and \"gilbert whole home wiring\" 346 at 9.0 with no service page behind them (seo-audit PLAN section 4, page 2). Title and H1 follow the service pattern (\"{Service} in Mesa, AZ | The Wire Guy\", H1 the service)."
+    },
+    {
+      "path": "/services/whole-home-rewiring",
+      "field": "h1",
+      "doc": "service:whole-home-rewiring",
+      "sets": "heading",
+      "old": null,
+      "new": "Whole-Home Rewiring",
+      "added": true,
+      "why": "New page (D18, owner 2026-10-19: the business offers whole-home rewiring). Targets \"whole house rewiring mesa az\" and \"aluminum wiring replacement\": the rewire cost guide has 2,312 impressions at 7.5 and \"gilbert whole home wiring\" 346 at 9.0 with no service page behind them (seo-audit PLAN section 4, page 2). Title and H1 follow the service pattern (\"{Service} in Mesa, AZ | The Wire Guy\", H1 the service)."
+    },
+    {
+      "path": "/services/hot-tub-pool-spa-electrical",
+      "field": "title",
+      "doc": "service:hot-tub-pool-spa-electrical",
+      "sets": "seo.title",
+      "old": null,
+      "new": "Hot Tub, Pool & Spa Electrical in Mesa, AZ | The Wire Guy",
+      "added": true,
+      "why": "New page (D18, owner 2026-10-19: the business offers hot tub, pool and spa electrical). Targets \"hot tub electrical installation\", \"pool pump wiring\" and \"spa electrical\": the hot tub and pool posts have no service page behind them, and three competitors have one (seo-audit PLAN section 4, page 9)."
+    },
+    {
+      "path": "/services/hot-tub-pool-spa-electrical",
+      "field": "meta",
+      "doc": "service:hot-tub-pool-spa-electrical",
+      "sets": "seo.description",
+      "old": null,
+      "new": "Hot tub, pool and spa electrical in Mesa and the Phoenix valley: dedicated circuits, GFCI, disconnects, bonding and pool pump wiring. ROC #365306.",
+      "added": true,
+      "why": "New page (D18, owner 2026-10-19: the business offers hot tub, pool and spa electrical). Targets \"hot tub electrical installation\", \"pool pump wiring\" and \"spa electrical\": the hot tub and pool posts have no service page behind them, and three competitors have one (seo-audit PLAN section 4, page 9)."
+    },
+    {
+      "path": "/services/hot-tub-pool-spa-electrical",
+      "field": "h1",
+      "doc": "service:hot-tub-pool-spa-electrical",
+      "sets": "heading",
+      "old": null,
+      "new": "Hot Tub, Pool & Spa Electrical",
+      "added": true,
+      "why": "New page (D18, owner 2026-10-19: the business offers hot tub, pool and spa electrical). Targets \"hot tub electrical installation\", \"pool pump wiring\" and \"spa electrical\": the hot tub and pool posts have no service page behind them, and three competitors have one (seo-audit PLAN section 4, page 9)."
+    },
+    {
+      "path": "/services/whole-house-surge-protection",
+      "field": "title",
+      "doc": "service:whole-house-surge-protection",
+      "sets": "seo.title",
+      "old": null,
+      "new": "Whole-House Surge Protector Installation in Mesa, AZ | The Wire Guy",
+      "added": true,
+      "why": "New page (D18; surge protection is on the live /faq list of services). Targets \"whole house surge protector installation\": two surge posts exist with no service page behind them (seo-audit PLAN section 4, page 5). The title is 67 characters, the length of the two retitles below."
+    },
+    {
+      "path": "/services/whole-house-surge-protection",
+      "field": "meta",
+      "doc": "service:whole-house-surge-protection",
+      "sets": "seo.description",
+      "old": null,
+      "new": "Whole-house surge protector installation in Mesa and the Phoenix valley, mounted at your panel to guard your AC, appliances and pool pump. ROC #365306.",
+      "added": true,
+      "why": "New page (D18; surge protection is on the live /faq list of services). Targets \"whole house surge protector installation\": two surge posts exist with no service page behind them (seo-audit PLAN section 4, page 5). The title is 67 characters, the length of the two retitles below."
+    },
+    {
+      "path": "/services/whole-house-surge-protection",
+      "field": "h1",
+      "doc": "service:whole-house-surge-protection",
+      "sets": "heading",
+      "old": null,
+      "new": "Whole-House Surge Protector Installation",
+      "added": true,
+      "why": "New page (D18; surge protection is on the live /faq list of services). Targets \"whole house surge protector installation\": two surge posts exist with no service page behind them (seo-audit PLAN section 4, page 5). The title is 67 characters, the length of the two retitles below."
+    },
+    {
+      "path": "/services/fixture-replacements",
+      "field": "title",
+      "doc": "service:fixture-replacements",
+      "sets": "seo.title",
+      "old": "Fixture Replacements in Mesa, AZ | The Wire Guy",
+      "new": "Ceiling Fan & Light Fixture Installation in Mesa, AZ | The Wire Guy",
+      "why": "Retitle (D18). The page has 3 impressions in 16 months, so nothing is lost; the ceiling fan cost post has 2,645 impressions at 10.3 for \"ceiling fan installation\" (12,100 a month in the US) with this page as its hub (seo-audit PLAN section 4, page 3). The body gains a ceiling fan section from that post (new-services.json). Not a Tier 1 page."
+    },
+    {
+      "path": "/services/fixture-replacements",
+      "field": "meta",
+      "doc": "service:fixture-replacements",
+      "sets": "seo.description",
+      "old": "Fixture, chandelier, pendant, and ceiling fan replacement. Rated boxes, proper bracing, and dimmer compatibility so LEDs do not buzz.",
+      "new": "Ceiling fan and light fixture installation in Mesa and the Phoenix valley: fan-rated boxes and bracing, chandeliers, pendants and dimmers. ROC #365306.",
+      "why": "Retitle (D18). The page has 3 impressions in 16 months, so nothing is lost; the ceiling fan cost post has 2,645 impressions at 10.3 for \"ceiling fan installation\" (12,100 a month in the US) with this page as its hub (seo-audit PLAN section 4, page 3). The body gains a ceiling fan section from that post (new-services.json). Not a Tier 1 page."
+    },
+    {
+      "path": "/services/fixture-replacements",
+      "field": "h1",
+      "doc": "service:fixture-replacements",
+      "sets": "heading",
+      "old": "Fixture Replacements",
+      "new": "Ceiling Fan & Light Fixture Installation",
+      "why": "Retitle (D18). The page has 3 impressions in 16 months, so nothing is lost; the ceiling fan cost post has 2,645 impressions at 10.3 for \"ceiling fan installation\" (12,100 a month in the US) with this page as its hub (seo-audit PLAN section 4, page 3). The body gains a ceiling fan section from that post (new-services.json). Not a Tier 1 page."
+    },
+    {
+      "path": "/services/exterior-electrical",
+      "field": "title",
+      "doc": "service:exterior-electrical",
+      "sets": "seo.title",
+      "old": "Exterior Electrical in Mesa, AZ | The Wire Guy",
+      "new": "Landscape & Outdoor Lighting Installation in Mesa, AZ | The Wire Guy",
+      "why": "Retitle (D18). The page has 1 impression in 16 months, so nothing is lost; its body already sells landscape lighting and gains a short section from the landscape lighting cost post (new-services.json). Targets \"landscape lighting installation mesa\" (seo-audit PLAN section 4, page 10). Not a Tier 1 page."
+    },
+    {
+      "path": "/services/exterior-electrical",
+      "field": "meta",
+      "doc": "service:exterior-electrical",
+      "sets": "seo.description",
+      "old": "Outdoor outlets, landscape and security lighting, patio and detached structure power. UV-rated and built for Arizona sun and monsoon.",
+      "new": "Landscape and outdoor lighting installation in Mesa and the Phoenix valley: low-voltage LED, path and uplights, patio power and outdoor outlets.",
+      "why": "Retitle (D18). The page has 1 impression in 16 months, so nothing is lost; its body already sells landscape lighting and gains a short section from the landscape lighting cost post (new-services.json). Targets \"landscape lighting installation mesa\" (seo-audit PLAN section 4, page 10). Not a Tier 1 page."
+    },
+    {
+      "path": "/services/exterior-electrical",
+      "field": "h1",
+      "doc": "service:exterior-electrical",
+      "sets": "heading",
+      "old": "Exterior Electrical",
+      "new": "Landscape & Outdoor Lighting Installation",
+      "why": "Retitle (D18). The page has 1 impression in 16 months, so nothing is lost; its body already sells landscape lighting and gains a short section from the landscape lighting cost post (new-services.json). Targets \"landscape lighting installation mesa\" (seo-audit PLAN section 4, page 10). Not a Tier 1 page."
     }
   ]
 }

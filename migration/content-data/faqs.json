@@ -210,7 +210,8 @@
       "question": "What is a whole house surge protector and do I need one?",
       "answerHtml": "A whole house surge protector installs at your electrical panel and protects every circuit in your home from voltage spikes. These spikes can come from lightning, utility grid fluctuations, or even your own AC unit cycling on and off. In Arizona, monsoon season is a real threat to electronics and appliances. A surge protector won't stop a direct lightning strike, but it handles the more common surges that quietly damage things like your refrigerator, washer, smart TV, and HVAC system over time. For the cost, which is typically between $300 and $600 installed, it's one of the best investments you can make to protect thousands of dollars worth of equipment. Read our full guide: <a href=\"/blog-posts/whole-house-surge-protector-guide-arizona\">Is Whole-House Surge Protection Necessary in My Home?</a>",
       "services": [
-        "panels"
+        "panels",
+        "whole-house-surge-protection"
       ],
       "shownOn": [
         "/faq"
@@ -236,7 +237,8 @@
       "question": "What are the signs of bad electrical wiring in a house?",
       "answerHtml": "Watch for flickering or dimming lights, a burning smell near outlets or switches, discolored or warm outlet covers, frequently tripping breakers, buzzing sounds from your panel or walls, and outlets that don't work. Any of these could indicate a wiring problem that needs attention. Older homes in the Phoenix area, especially those built prior to 1975, sometimes have single strand aluminum or cloth insulated wiring that can be a fire hazard if not properly maintained or completely replaced. If you notice any of these signs, <a href=\"/contact-us\">call us</a> and we'll come diagnose the issue with our <a href=\"/services/electrical-troubleshooting\">electrical troubleshooting service</a>.",
       "services": [
-        "electrical-troubleshooting"
+        "electrical-troubleshooting",
+        "whole-home-rewiring"
       ],
       "shownOn": [
         "/faq"
@@ -249,6 +251,7 @@
       "question": "Is aluminum wiring dangerous? Should I replace it?",
       "answerHtml": "Single Strand Aluminum wiring was commonly used in homes built during the 1960s and 1970s. It can be dangerous, and it does require more attention than copper wiring. Single Strand Aluminum wiring expands and contracts more with heat, which can loosen connections over time and create fire hazards at outlets, switches, and junction boxes. In most cases we recommend a full rewire. In some cases, we can install an aluminum to copper pigtail with special connectors (called AlumiConn connectors) at every connection point. We see a lot of single strand aluminum wiring in older <a href=\"/\" target=\"_blank\">Mesa</a>, <a href=\"/locations/tempe\" target=\"_blank\">Tempe</a>, and <a href=\"/locations/phoenix\" target=\"_blank\">Phoenix</a> homes, and can assess your situation during a <a href=\"/contact-us\" target=\"_blank\">free estimate</a>.",
       "services": [
+        "whole-home-rewiring",
         "electrical-remodels",
         "electrical-safety-inspections"
       ],

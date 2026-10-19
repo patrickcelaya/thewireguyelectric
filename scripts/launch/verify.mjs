@@ -33,7 +33,7 @@
 //
 // Options:
 //   --allow-noindex     a pre-launch build: noindex/robots-blocked/no-GA are reported, not failed
-//   --expect-sitemap N  expected sitemap size (default 94: 96 until the two generator posts were removed, D15)
+//   --expect-sitemap N  expected sitemap size (default 97: 96 until the two generator posts were removed, D15; 94 until the three D18 service pages were added)
 //   --ga-id ID          default G-4ZYV7JMRJH;  --gsv VALUE  default the Sanity value (mW1y…)
 //   --no-domain --no-redirects --no-form --no-hygiene --no-parity   skip a group
 //   --concurrency N     parallel requests (default 3)
@@ -62,7 +62,7 @@ const APEX = 'thewireguyelectric.com'
 const PROD_ALIAS = 'thewireguyelectric.vercel.app'
 const base = new URL(opt('base', SITE))
 const allowNoindex = flag('allow-noindex')
-const expectSitemap = Number(opt('expect-sitemap', 94))
+const expectSitemap = Number(opt('expect-sitemap', 97))
 const gaId = opt('ga-id', 'G-4ZYV7JMRJH')
 const gsv = opt('gsv', 'mW1yfCySi6NNyQyHBXBsvC650sFk8im69Ps7eNQ7Jy0')
 const concurrency = Number(opt('concurrency', 3))

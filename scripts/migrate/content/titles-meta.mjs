@@ -17,6 +17,10 @@
 //     doesn't hold back), so the site and the gate can't drift apart;
 //   - a row would change the title or H1 of a Tier 1 page.
 //
+// Rows with `added` are pages new to the site (migration/content-data/new-services.json): their
+// old value is null, the path must not be live in the baseline, and the allowlist holds the value
+// under `added` (with a title, meta and H1 for every added page) instead of `changes`.
+//
 // Runs last, after the copy edits (whose guard forbids exactly these fields).
 
 const DATA = 'migration/content-data/titles-meta.json'
@@ -51,11 +55,18 @@ export default async function titlesMeta(ctx) {
     const doc = docs.find((d) => d._type === type && d.slug?.current === slug) ?? fail(row, `no ${type} "${slug}"`)
     if (SETS[type]?.[row.field] !== row.sets) fail(row, `a ${type}'s ${row.field} is set by ${SETS[type]?.[row.field] ?? 'nothing'}, not ${row.sets}`)
     if (row.field !== 'meta' && frozen.has(row.path)) fail(row, 'the title and H1 of a Tier 1 page never change')
-    const page = live(row.path) ?? fail(row, 'not a live page in migration/seo-baseline.json')
-    if (norm(LIVE[row.field](page)) !== norm(row.old)) fail(row, `old is not the live value "${LIVE[row.field](page)}"`)
+    if (row.added) {
+      // a page new to the site (new-services.json): nothing live to replace, and the allowlist's `added` holds it
+      if (live(row.path)) fail(row, 'marked added, but it is a live page in migration/seo-baseline.json')
+      if (row.old !== null) fail(row, 'a new page has no old value (null)')
+      if (row.hold) fail(row, 'a new page ships with its title, meta and H1')
+    } else {
+      const page = live(row.path) ?? fail(row, 'not a live page in migration/seo-baseline.json')
+      if (norm(LIVE[row.field](page)) !== norm(row.old)) fail(row, `old is not the live value "${LIVE[row.field](page)}"`)
+    }
 
-    const approved = allowlist.changes?.[row.path]?.[row.field]
-    if (approved !== row.new) fail(row, `new differs from ${ALLOWLIST} ("${approved ?? 'nothing approved'}")`)
+    const approved = (row.added ? allowlist.added : allowlist.changes)?.[row.path]?.[row.field]
+    if (approved !== row.new) fail(row, `new differs from ${ALLOWLIST} ${row.added ? 'added' : 'changes'} ("${approved ?? 'nothing approved'}")`)
     if (Boolean(row.hold) !== Boolean(held[row.path])) fail(row, row.hold ? `held back here but not in ${ALLOWLIST} notDeployed` : `held back in ${ALLOWLIST} notDeployed but not here`)
     if (row.hold) continue
 
@@ -66,9 +77,13 @@ export default async function titlesMeta(ctx) {
     holder[field] = row.new
     applied.push(key)
   }
-  for (const [path, fields] of Object.entries(allowlist.changes ?? {})) {
-    for (const field of Object.keys(fields)) if (!seen.has(`${path} ${field}`)) throw new Error(`${ALLOWLIST}: ${path} ${field} is approved but ${DATA} has no row for it`)
+  for (const [path, fields] of [...Object.entries(allowlist.changes ?? {}), ...Object.entries(allowlist.added ?? {})]) {
+    for (const field of Object.keys(fields).filter((f) => LIVE[f])) if (!seen.has(`${path} ${field}`)) throw new Error(`${ALLOWLIST}: ${path} ${field} is approved but ${DATA} has no row for it`)
+  }
+  for (const [path, fields] of Object.entries(allowlist.added ?? {})) {
+    for (const field of Object.keys(LIVE)) if (fields[field] === undefined) throw new Error(`${ALLOWLIST}: added page ${path} needs an approved ${field}`)
+    if (allowlist.changes?.[path]) throw new Error(`${ALLOWLIST}: ${path} is both added and changed`)
   }
 
-  report.titlesMeta = {source: DATA, applied: applied.length, held: changes.filter((r) => r.hold).map((r) => `${r.path} ${r.field}`)}
+  report.titlesMeta = {source: DATA, applied: applied.length, added: changes.filter((r) => r.added).length, held: changes.filter((r) => r.hold).map((r) => `${r.path} ${r.field}`)}
 }

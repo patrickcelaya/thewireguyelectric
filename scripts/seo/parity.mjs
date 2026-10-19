@@ -11,7 +11,8 @@
 // wrong canonical; noindex on a page that's indexable today; lost JSON-LD types
 // that weren't deliberately removed.
 // WARNINGS: big word-count drops, fewer internal links, more images without alt,
-// approved changes held back on purpose (notDeployed).
+// approved changes held back on purpose (notDeployed). Pages added on purpose (`added` in the allowlist) must be
+// live with exactly their approved title, meta description and H1.
 
 import {readFile, writeFile} from 'node:fs/promises'
 
@@ -41,6 +42,9 @@ const FIELDS = {title: 'title', meta: 'description', h1: 'h1'}
 // Live pages taken off the site on purpose ({path: {redirect, reason}}, e.g. the generator posts, decision D15):
 // each must answer a 301 in one hop to its approved page, which must be live.
 const REMOVED = allowFile.removed ?? {}
+// Pages new to the site on purpose ({path: {title, meta, h1, reason}}, decision D18: three service pages): each must
+// answer 200, indexable, with its own canonical and exactly the approved title, meta description and H1.
+const ADDED = allowFile.added ?? {}
 
 // Schema types removed on purpose (see docs/SEO_STRATEGY.md).
 const INTENTIONALLY_REMOVED_TYPES = new Set(['AggregateRating'])
@@ -149,9 +153,37 @@ for (const [path, r] of Object.entries(REMOVED)) {
 }
 for (const path of Object.keys(NOT_DEPLOYED)) if (!allow[path]) add('error', path, 'allowlist', 'held back in notDeployed, but no change is approved for it')
 
-// New URLs (not on the live site) are fine but worth listing.
+for (const [path, want] of Object.entries(ADDED)) {
+  const b = baseline.pages[path]
+  if (b?.status === 200) {
+    add('error', path, 'allowlist', 'approved as a new page, but it is a live page in the baseline')
+    continue
+  }
+  if (allow[path] || REMOVED[path]) add('error', path, 'allowlist', 'added, and also approved for a change or a removal')
+  for (const f of Object.keys(FIELDS)) if (want[f] === undefined) add('error', path, 'allowlist', `added page needs an approved ${f}`)
+  const after = candidate.pages[path]
+  if (!after) {
+    add('error', path, 'added', 'approved new page not crawled on the new site (missing from the sitemap and every link?)')
+    continue
+  }
+  if (after.redirectChain?.length || after.status !== 200) {
+    add('error', path, 'added', `approved new page answers ${after.redirectChain?.length ? `a redirect to ${after.finalUrl}` : after.status}, not 200`)
+    continue
+  }
+  const now = {title: after.title, meta: after.metaDescription, h1: after.h1?.[0]}
+  const wrong = Object.keys(FIELDS).filter((f) => want[f] !== undefined && norm(now[f]) !== norm(want[f]))
+  for (const f of wrong) add('error', path, FIELDS[f], `new page shows "${now[f] ?? ''}", not the approved "${want[f]}"`)
+  if ((after.h1?.length ?? 0) !== 1) add('warn', path, 'h1-count', `${after.h1?.length ?? 0} H1s`)
+  if (after.canonical !== canonicalFor(path)) add('error', path, 'canonical', `expected ${canonicalFor(path)}, got ${after.canonical ?? 'none'}`)
+  if (/noindex/i.test(after.metaRobots ?? '') || /noindex/i.test(after.xRobotsTag ?? '')) add(allowNoindex ? 'info' : 'error', path, 'robots', `noindex on an approved new page (${after.metaRobots ?? after.xRobotsTag})`)
+  const brokenTargets = (after.internalLinks ?? []).filter((l) => candidate.pages[l] && candidate.pages[l].status >= 400)
+  if (brokenTargets.length) add('error', path, 'broken-links', brokenTargets.join(', '))
+  if (!wrong.length) add('info', path, 'added', `approved new page: "${now.title}"`)
+}
+
+// Other new URLs (not on the live site) are fine but worth listing.
 for (const path of Object.keys(candidate.pages)) {
-  if (!baseline.pages[path] && candidate.pages[path].status === 200) add('info', path, 'new-url', 'not on the live site')
+  if (!baseline.pages[path] && !ADDED[path] && candidate.pages[path].status === 200) add('info', path, 'new-url', 'not on the live site')
 }
 
 const summary = rows.reduce((acc, r) => ((acc[r.level] = (acc[r.level] ?? 0) + 1), acc), {})

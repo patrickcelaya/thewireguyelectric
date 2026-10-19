@@ -124,14 +124,35 @@
         "y": 0.425
       },
       "source": "The owner's photo library (migration/brand-photos/library.json, electricians-reviewing-commercial-panel-conduits): the crew's own photo of this work in place of the export's stock image (photo library pass, 2026-10-18). A photo of people: the hero shows it beside the words, and the hotspot (the centre of their heads) keeps them in a card's crop."
+    },
+    {
+      "service": "whole-home-rewiring",
+      "photo": "library/rough-in-wiring-subpanel-wall-framing.jpg",
+      "alt": "Open wall framing with coiled wire and a new subpanel during rough-in",
+      "source": "D18: the owner's photo library (migration/brand-photos/library.json, rough-in-wiring-subpanel-wall-framing): the crew's own wiring rough-in, new wire run through open walls, which is what a rewire puts in. The same photo is new-construction-wiring's; neither page lists the other among its related services. No people in it: the hero may lay its copper tint over it."
+    },
+    {
+      "service": "whole-house-surge-protection",
+      "photo": "library/labeled-breaker-panel-surge-protector.jpg",
+      "alt": "Panel with handwritten circuit labels including surge protector, pool and A/C breakers",
+      "source": "D18: the owner's photo library (migration/brand-photos/library.json, labeled-breaker-panel-surge-protector): a panel with a breaker labeled for the surge protector, the install this page sells. No people in it."
+    },
+    {
+      "service": "fixture-replacements",
+      "photo": "library/ceiling-fan-light-kit-recessed-lights.jpg",
+      "alt": "Dark three-blade ceiling fan with light kit and recessed lights in a room with a sliding door",
+      "hotspot": {
+        "x": 0.45,
+        "y": 0.28
+      },
+      "source": "D18: the page now leads with ceiling fans, so its hero is the library's ceiling fan photo (migration/brand-photos/library.json, ceiling-fan-light-kit-recessed-lights) in place of the chandelier photo. The hotspot keeps the fan in a card's crop."
     }
   ],
   "serviceAlts": {
-    "source": "Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt. The 12 stock photos (new-construction-wiring onward) are described from the images themselves (SEO review, 2026-10-17); hanging-lights reuses the alt page-sections gives the same photo. The services given a photo from the owner's library (serviceImages) carry that photo's alt instead; ballast-replacement keeps its stock image, which the templates never show.",
+    "source": "Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt. The 12 stock photos (new-construction-wiring onward) are described from the images themselves (SEO review, 2026-10-17); hanging-lights reuses the alt page-sections gives the same photo. The services given a photo from the owner's library (serviceImages) carry that photo's alt instead; ballast-replacement keeps its stock image, which the templates never show. fixture-replacements left this list when D18 gave it the library's ceiling fan photo.",
     "alts": {
       "panels": "A new Siemens electrical panel with labeled breakers next to an SRP meter on a stucco wall",
       "custom-lighting": "Soaking tub alcove lit by LED cove and toe-kick lighting below plantation shutters",
-      "fixture-replacements": "Chandelier hanging over a dining table in a room with a coffered ceiling and wainscoting",
       "electrical-remodels": "A finished kitchen remodel with recessed lights, white cabinets and a stone island",
       "exterior-electrical": "Lamp posts lighting a brick front walk lined with roses",
       "recessed-lights-installation": "New recessed lights glowing in a vaulted kitchen ceiling",
@@ -709,6 +730,54 @@
     ]
   },
   "atAGlance": {
+    "whole-home-rewiring": [
+      {
+        "label": "Permits",
+        "value": "We pull the permit",
+        "detail": "We schedule the inspection and make sure everything passes.",
+        "source": "faq:Do I need a permit for electrical work in Arizona?",
+        "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."
+      },
+      {
+        "label": "Typical timeline",
+        "value": "3 to 5 days",
+        "detail": "Of electrical work, for a typical single-story home.",
+        "source": "body",
+        "evidence": "A full rewire on a typical single-story home takes about 3 to 5 days of electrical work."
+      }
+    ],
+    "hot-tub-pool-spa-electrical": [
+      {
+        "label": "Permits",
+        "value": "We pull the permit",
+        "detail": "We schedule the inspection and make sure everything passes.",
+        "source": "faq:Do I need a permit for electrical work in Arizona?",
+        "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."
+      },
+      {
+        "label": "Hot tub hookups",
+        "value": "Most take one day",
+        "detail": "Inspection the next business day, then power-up.",
+        "source": "body",
+        "evidence": "Most residential hot tub hookups are a one-day job: rough-in the same day, inspection the next business day, and the final connection and power-up after the inspector signs off."
+      }
+    ],
+    "whole-house-surge-protection": [
+      {
+        "label": "Install time",
+        "value": "About an hour",
+        "detail": "One visit, with no drywall work and no trenching.",
+        "source": "body",
+        "evidence": "It takes about an hour to install, with no drywall work and no trenching."
+      },
+      {
+        "label": "Lifespan",
+        "value": "5 to 10 years",
+        "detail": "Check its status light once a year.",
+        "source": "body",
+        "evidence": "In the Phoenix area a unit typically lasts 5 to 10 years."
+      }
+    ],
     "panels": [
       {
         "label": "Most common job",
@@ -743,6 +812,39 @@
   "quickAnswers": {
     "source": "service.quickAnswer: the answer-first line of each service page's \"short version\" (round-5 Panels mockup; the Panels text is the mockup's). Each one only restates what the service's own body says: every `evidence` phrase must appear word for word in that body (quote style ignored), and no answer may carry a price.",
     "answers": {
+      "whole-home-rewiring": {
+        "text": "We rewire older homes across Mesa and the Phoenix valley: full and partial rewires with new copper wiring to current code, single strand aluminum branch wiring replaced or made safe with AlumiConn connectors, and cloth, knob-and-tube and ungrounded wiring taken out. We pull the permit and schedule the inspection.",
+        "evidence": [
+          "Whole-Home Rewiring in Mesa and the Phoenix Valley",
+          "new copper wiring that meets current National Electrical Code (NEC) standards",
+          "A partial rewire brings that area up to code",
+          "install AlumiConn connectors at every outlet, switch and junction box",
+          "Cloth, Knob-and-Tube and Ungrounded Wiring",
+          "We pull the permit, schedule the inspection"
+        ]
+      },
+      "hot-tub-pool-spa-electrical": {
+        "text": "We wire hot tubs, spas and pool equipment across the Phoenix valley: a dedicated circuit for each hot tub, GFCI protection, a disconnect within sight, the right wire size and bonding, plus pool pump circuits, equipment pads and the panel capacity to carry them.",
+        "evidence": [
+          "Hot Tub, Pool and Spa Electrical in the Phoenix Valley",
+          "each one gets a dedicated circuit",
+          "GFCI protection",
+          "A disconnect within sight of the tub",
+          "The right wire size",
+          "Bonding",
+          "we work on pool equipment circuits, bonding, disconnects and panels"
+        ]
+      },
+      "whole-house-surge-protection": {
+        "text": "We install whole-house surge protectors at the main electrical panel across the Phoenix valley, as a standalone job or along with a panel upgrade. One protector covers every circuit in the house, including hardwired equipment like the AC and the pool pump, and the install takes about an hour.",
+        "evidence": [
+          "Whole-House Surge Protectors in the Phoenix Valley",
+          "mounts at your main electrical panel and protects every circuit in the house",
+          "we install them as a standalone job or along with a panel upgrade",
+          "hardwired or permanently connected",
+          "It takes about an hour to install"
+        ]
+      },
       "panels": {
         "text": "We replace residential electrical panels across Mesa and the Phoenix valley: 200-amp like-for-like swaps, full service replacements with a new meter base, recall-brand replacements, and service upgrades, coordinated with APS or SRP from start to finish.",
         "evidence": [

@@ -6,11 +6,11 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 |---|---|
 | `city-relations.json` | `location.name`, `cardBlurb`, `featuredServices` and `nearbyLocations` for the 10 cities; `siteSettings.homeCity.cardBlurb` for Mesa |
 | `faqs.json` | `question`, `answer`, `topic`, `order` and `services` on the 28 `faq` documents, copied verbatim from the visible `/faq` page |
-| `service-relations.json` | `priceRange` (3 services), `relatedServices` (21) and `relatedPosts` (21) |
+| `service-relations.json` | `priceRange` (3 services), `relatedServices` (24) and `relatedPosts` (24) |
 | `post-services.json` | `relatedServices` on all 51 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
-Four later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11) and `internal-links.json` (§12). `removed-posts.json` (§13) is read by `webflow-to-sanity.mjs` itself.
+Five later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11), `internal-links.json` (§12) and `new-services.json` (§14). `removed-posts.json` (§13) is read by `webflow-to-sanity.mjs` itself.
 
 The data files use slugs, not document IDs. The module turns each slug into a reference. The migration stops with an error naming the file and entry if any of these happens:
 
@@ -76,10 +76,10 @@ The `/our-team` FAQs and the 3 generic FAQs on service pages are the same docume
 | EV cost | ev-charger-installation |
 | Signs the panel needs upgrading | panels |
 | 100 vs 200 amp | panels |
-| Whole-house surge protector | panels (it is installed at the panel; this follows the hub map until a surge page exists) |
+| Whole-house surge protector | panels, whole-house-surge-protection (D18) |
 | Inspection frequency | electrical-safety-inspections |
-| Signs of bad wiring | electrical-troubleshooting |
-| Aluminum wiring | electrical-remodels, electrical-safety-inspections |
+| Signs of bad wiring | electrical-troubleshooting, whole-home-rewiring (D18) |
+| Aluminum wiring | whole-home-rewiring (D18), electrical-remodels, electrical-safety-inspections |
 | Breaker tripping | electrical-troubleshooting |
 | EV DIY | ev-charger-installation |
 | Recessed type | recessed-lights-installation |
@@ -174,7 +174,7 @@ The first service is the primary hub service from the hub map (seo-requirements 
 
 One exception: `can-hot-weather-cause-your-circuit-breaker-to-trip` → panels. Neither page links the other, but the post is about the panel itself. It names the panel about ten times: a hot panel in a garage or in direct sun, conductors loosening in the panel, "The electrical panel feels hot to the touch" as a reason to call. It sits with the hot-to-the-touch post, which is in the panel hub.
 
-Surge posts sit under panels, as the hub map says ("until dedicated pages exist"). `/faq` lists generator installs among the services the company doesn't offer, and the two generator posts (standby units and interlocks) were removed by decision D15 (§13).
+Surge posts sat under panels, as the hub map said ("until dedicated pages exist"); since D18 they hub on `whole-house-surge-protection`, the rewire cost and aluminum posts on `whole-home-rewiring`, and the hot tub and pool pump posts on `hot-tub-pool-spa-electrical` (§14). `/faq` lists generator installs among the services the company doesn't offer, and the two generator posts (standby units and interlocks) were removed by decision D15 (§13).
 
 `common-electrical-issues-in-scottsdale-homes` hubs on `/locations/scottsdale`, which can't be a `relatedServices` target, so its service is electrical-troubleshooting.
 
@@ -195,12 +195,12 @@ The verified internal-links review changed both lists; no post's primary service
 | commercial | commercial-service |
 | panels / breaker box | panels |
 | EV | ev-charger-installation |
-| rewiring / aluminum | electrical-remodels (the hub map's "Remodels & rewiring") |
+| rewiring / aluminum | whole-home-rewiring (electrical-remodels until D18) |
 | lighting | recessed-lights-installation |
 | ceiling fans | fixture-replacements |
 | inspection | electrical-safety-inspections |
 | new construction | new-construction-wiring |
-| pool & spa | exterior-electrical (its body lists "pool and spa equipment circuits") |
+| pool & spa | hot-tub-pool-spa-electrical (exterior-electrical until D18) |
 
 Some intents have no service page and get no card:
 - "residential electrician" (a category, not a service);
@@ -259,7 +259,7 @@ The other five cities have no tile copy and stay empty; nothing is written for t
 2. **Hero quotes:** confirm they come from real reviews, and name the reviewers if you can, so they can link to `review` documents.
 3. **"Wiring Solutions"** has no service page. Should it link to `electrical-remodels`, `new-construction-wiring`, or nothing?
 4. **Do you offer** the following? If so, they deserve service pages or cards:
-   - surge protector installs (priced on `/faq`);
+   - ~~surge protector installs (priced on `/faq`)~~: yes, and rewiring and hot tub, pool and spa work too (D18, §14);
    - emergency or same-day service;
    - low-voltage or smart-home work;
    - work on mobile and manufactured homes (Apache Junction demand).
@@ -372,3 +372,19 @@ Both sat under the panels hub (§4) and dealt with equipment wired at the panel,
 The migration stops if a slug is not a published post in the Webflow export, a removal is a Tier 1 page, `removed-posts.json` and the allowlist disagree in either direction, or any remaining document still links to a removed post. `web/scripts/removed-posts.test.mjs` (`pnpm --filter web test`) checks the redirects against both files.
 
 What went with them: their entries in `post-services.json`, `cms-templates.json` (`postImages`) and `internal-links.json`; their twelve copy edits (`slop-posts-a-223` … `-228`, `slop-posts-b-133` … `-138`) stay on record with `skip`. Generator lines elsewhere were taken out by copy edits D15-01 … D15-06 (the monsoon post's backfeed clause, its "Don't DIY Generator Hookups" tip and its "Generator installation & hookup" offer; "a generator" in the permit post's list; the Scottsdale post's backup-generator suggestion). The `/faq` answer that lists generator installs among the services the company doesn't offer stays.
+
+## 14. Service pages added after the export (`new-services.json`)
+
+Decision D18 (owner, 2026-10-19): the business offers whole-home rewiring and hot tub, pool and spa electrical, and `/faq` already lists surge protection among its services. Applied by `scripts/migrate/content/new-services.mjs` in two stages:
+
+- **First** (before `fixes`): the three service documents, `whole-home-rewiring`, `hot-tub-pool-spa-electrical` and `whole-house-surge-protection` (Residential), with name, short description, body, 4 questions of their own and `order`. Bodies and answers are HTML converted with the export's `toPortableText`, so links are normalized like every other body. Their IDs are `idFor('service:new:<slug>')` in `id-map.json`. Because they exist before `fixes`, they take part in everything after it: relations (`service-relations.json`, with a `why` each), city cards (`city-relations.json`: the rewiring intent in six cities and the pool & spa intent in Apache Junction now point to them), FAQ tags (`faqs.json`), photos, quick answers and at-a-glance facts (`cms-templates.json`), internal links and the titles.
+- **`inserts`** (after `cms-templates`): `bodyInserts` adds a ceiling fan section to `fixture-replacements` and a landscape lighting section to `exterior-electrical`, each before a named heading. It runs after the copy edits because those name service blocks by position. `names` renames those two services (their menu label, card title and breadcrumb): "Ceiling Fans & Light Fixtures" and "Landscape & Outdoor Lighting".
+
+The module stops if a slug exists or is live in the baseline, a category, service or heading is missing, a name is not the one it says it replaces, or any new text names a price or a 24/7 claim. `cms-templates` then checks the bodies for prices again with every other service.
+
+**Facts.** Every sentence restates something already on the site: the cost guide and posts on each subject (`cost-to-rewire-house-arizona`, `aluminum-wiring-older-phoenix-homes`, `outdated-wiring-in-older-phoenix-homes`, `hot-tub-electrical-installation-cost-arizona`, `pool-pump-electrical-requirements-arizona`, `whole-house-surge-protector-guide-arizona`, `is-whole-house-surge-protection-necessary`, `ceiling-fan-installation-cost-arizona`, `landscape-lighting-installation-cost-phoenix`), the `/faq` answers (permits, aluminum wiring, surge protectors, flat-rate pricing), the panels body (meter pull) and `migration/local-facts/mesa.json` (the Mesa permit office). No prices: each page links its cost guide.
+
+**Titles.** Each new page's title, meta description and H1 are rows in `titles-meta.json` with `added: true` and `old: null`, and the same values sit under `added` in `migration/seo-intentional-changes.json`; `titles-meta.mjs` fails if they disagree or if an added path is live in the baseline, and `scripts/seo/parity.mjs` fails unless each added page answers 200, indexable, with its canonical and exactly those values. The two retitles are ordinary `changes` rows (neither page is Tier 1).
+
+**Photos.** Rewiring uses the library's rough-in photo (also new construction's hero; `photoTiles` now shows a photo once in a list of service cards, so a page that lists both shows it on one card), surge protection the panel with a breaker labelled for the surge protector, and fixture replacements the ceiling fan photo (its chandelier photo left `serviceAlts`). There is no pool or spa photo, so that page has the plain hero.
+

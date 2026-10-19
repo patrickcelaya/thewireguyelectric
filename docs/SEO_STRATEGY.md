@@ -92,7 +92,7 @@ The owner asked for SEO work, and for every trace of AI-written filler to go, be
 
 Start 4–6 weeks after launch, once Search Console shows the migration has settled. Change one variable at a time.
 
-### 1. Deepen the 21 service pages (weeks 4–8)
+### 1. Deepen the 24 service pages (weeks 4–8)
 
 Each service page becomes the hub for its topic. For each page:
 
@@ -103,7 +103,7 @@ Each service page becomes the hub for its topic. For each page:
 - **3–6 FAQs** taken from what customers actually ask.
 - **Links:** to its cost guide, its problem posts, and the cities where it's in demand.
 
-Add a **Surge protection** service page if that service is offered. Blog posts already target it, but there's no service page for them to link to. No generator page: the business does not do generator work, and the two generator posts were removed and 301 to `/services/panels` (owner, 2026-10-19, decision D15).
+Three service pages were added before launch (owner, 2026-10-19, decision D18): `/services/whole-home-rewiring`, `/services/hot-tub-pool-spa-electrical` and `/services/whole-house-surge-protection`, each written only from facts already on the site (its cost guide and posts, /faq, local facts), with no prices, and linked both ways with their posts. `/services/fixture-replacements` is retitled "Ceiling Fan & Light Fixture Installation" and `/services/exterior-electrical` "Landscape & Outdoor Lighting Installation" (URLs unchanged; 3 and 1 impressions in 16 months). They are in `migration/seo-intentional-changes.json` (`added` and `changes`). No generator page: the business does not do generator work, and the two generator posts were removed and 301 to `/services/panels` (owner, 2026-10-19, decision D15).
 
 ### 2. Hubs and clusters around existing URLs
 
@@ -113,9 +113,12 @@ Keep every existing URL. Link each post to its hub service page early, with a de
 |---|---|---|
 | Panels and upgrades | `/services/panels`, `/services/electrical-upgrades` | 7 signs, do-you-need, cost, hot-to-touch, FPE/Zinsco, cutting corners |
 | EV charging | `/services/ev-charger-installation` | installing, L1 vs L2, hardwired vs plug-in, Tesla vs ChargePoint, dryer outlet |
-| Lighting | recessed, LED, custom, fixtures | recessed in Phoenix, landscape cost, ceiling fan cost |
+| Lighting | recessed, LED, custom, ceiling fans and fixtures, landscape and outdoor lighting | recessed in Phoenix, landscape cost, ceiling fan cost |
 | Troubleshooting | `/services/electrical-troubleshooting` | 6 breaker posts, 3 flicker posts, outlets, half the house out |
 | Arizona-specific | (cross-hub) | heat, monsoon, AC disconnect, mini-split, pool pump, swamp-cooler conversion |
+| Rewiring | `/services/whole-home-rewiring` | rewire cost, aluminum wiring, outdated wiring |
+| Pool and spa | `/services/hot-tub-pool-spa-electrical` | hot tub cost, pool pump |
+| Surge protection | `/services/whole-house-surge-protection` | surge guide, is surge protection necessary |
 
 **Consolidate the cannibalizing clusters** 6+ weeks after launch, guided by Search Console data. There are 6 posts on breaker tripping and 3 on flickering lights. Merge the weaker posts into the strongest one and 301 the rest.
 

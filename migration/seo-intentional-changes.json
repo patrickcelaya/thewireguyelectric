@@ -1,5 +1,5 @@
 {
-  "$comment": "Approved title, meta description and H1 changes for the parity gate (scripts/seo/parity.mjs reads this file). Each value is the exact new text; any other change to a title, meta or H1 is still an error. Source: the verified titles-meta review of 2026-10-17 (70 changes on 42 pages: 60 accepted, 4 amended, 6 added by the verifier; the DIY meta was rejected and is not here), with \"380+\" read as \"560+\" in the four metas that state the Google review count (decision D7: the Mesa profile shows 567 reviews on 2026-10-17). The values ship through the content pipeline (migration/content-data/titles-meta.json, scripts/migrate/content/titles-meta.mjs), which checks that every value it sets equals the one here. notDeployed lists the approved changes held back on purpose: the gate reports them as pending, and as an error if one ships early. frozenTitleAndH1: the 13 Tier 1 pages, whose title and H1 can never be approved for a change. Empty changes after the post-launch re-baseline. removed: live pages taken off the site on purpose (decision D15, 2026-10-19: the generator posts), each with the page it now 301s to in one hop; the gate reports the redirect as approved, and as an error if the page still answers 200, redirects elsewhere or chains. The content pipeline (migration/content-data/removed-posts.json) checks that it holds the same paths and redirects. A Tier 1 page can never be removed.",
+  "$comment": "Approved title, meta description and H1 changes for the parity gate (scripts/seo/parity.mjs reads this file). Each value is the exact new text; any other change to a title, meta or H1 is still an error. Source: the verified titles-meta review of 2026-10-17 (70 changes on 42 pages: 60 accepted, 4 amended, 6 added by the verifier; the DIY meta was rejected and is not here), with \"380+\" read as \"560+\" in the four metas that state the Google review count (decision D7: the Mesa profile shows 567 reviews on 2026-10-17). The values ship through the content pipeline (migration/content-data/titles-meta.json, scripts/migrate/content/titles-meta.mjs), which checks that every value it sets equals the one here. notDeployed lists the approved changes held back on purpose: the gate reports them as pending, and as an error if one ships early. frozenTitleAndH1: the 13 Tier 1 pages, whose title and H1 can never be approved for a change. Empty changes after the post-launch re-baseline. removed: live pages taken off the site on purpose (decision D15, 2026-10-19: the generator posts), each with the page it now 301s to in one hop; the gate reports the redirect as approved, and as an error if the page still answers 200, redirects elsewhere or chains. The content pipeline (migration/content-data/removed-posts.json) checks that it holds the same paths and redirects. A Tier 1 page can never be removed. added: pages new to the site on purpose (decision D18, 2026-10-19: three service pages), each with its exact title, meta description and H1; the gate fails if one is missing, answers anything but 200, is noindexed, has another canonical or shows another value, or if an added path is already live in the baseline. The content pipeline (migration/content-data/titles-meta.json rows with `added`) checks that it holds the same values.",
   "frozenTitleAndH1": [
     "/",
     "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
@@ -176,6 +176,16 @@
     },
     "/services/custom-lighting": {
       "meta": "Custom cabinet lighting cut and soldered to fit, plus recessed cans, chandeliers, pendants and cove lighting, hardwired with no visible wiring."
+    },
+    "/services/fixture-replacements": {
+      "title": "Ceiling Fan & Light Fixture Installation in Mesa, AZ | The Wire Guy",
+      "meta": "Ceiling fan and light fixture installation in Mesa and the Phoenix valley: fan-rated boxes and bracing, chandeliers, pendants and dimmers. ROC #365306.",
+      "h1": "Ceiling Fan & Light Fixture Installation"
+    },
+    "/services/exterior-electrical": {
+      "title": "Landscape & Outdoor Lighting Installation in Mesa, AZ | The Wire Guy",
+      "meta": "Landscape and outdoor lighting installation in Mesa and the Phoenix valley: low-voltage LED, path and uplights, patio power and outdoor outlets.",
+      "h1": "Landscape & Outdoor Lighting Installation"
     }
   },
   "removed": {
@@ -188,6 +198,26 @@
       "redirect": "/services/panels",
       "tier1": false,
       "reason": "D15 (owner, 2026-10-19): \"remove generator\". Generator interlock installation, which the business does not do."
+    }
+  },
+  "added": {
+    "/services/whole-home-rewiring": {
+      "title": "Whole-Home Rewiring in Mesa, AZ | The Wire Guy",
+      "meta": "Whole-home rewiring in Mesa and the Phoenix valley: aluminum wiring replacement, AlumiConn repairs, old cloth wiring and two-prong outlets. ROC #365306.",
+      "h1": "Whole-Home Rewiring",
+      "reason": "New page (D18, owner 2026-10-19: the business offers whole-home rewiring). Targets \"whole house rewiring mesa az\" and \"aluminum wiring replacement\": the rewire cost guide has 2,312 impressions at 7.5 and \"gilbert whole home wiring\" 346 at 9.0 with no service page behind them (seo-audit PLAN section 4, page 2). Title and H1 follow the service pattern (\"{Service} in Mesa, AZ | The Wire Guy\", H1 the service)."
+    },
+    "/services/hot-tub-pool-spa-electrical": {
+      "title": "Hot Tub, Pool & Spa Electrical in Mesa, AZ | The Wire Guy",
+      "meta": "Hot tub, pool and spa electrical in Mesa and the Phoenix valley: dedicated circuits, GFCI, disconnects, bonding and pool pump wiring. ROC #365306.",
+      "h1": "Hot Tub, Pool & Spa Electrical",
+      "reason": "New page (D18, owner 2026-10-19: the business offers hot tub, pool and spa electrical). Targets \"hot tub electrical installation\", \"pool pump wiring\" and \"spa electrical\": the hot tub and pool posts have no service page behind them, and three competitors have one (seo-audit PLAN section 4, page 9)."
+    },
+    "/services/whole-house-surge-protection": {
+      "title": "Whole-House Surge Protector Installation in Mesa, AZ | The Wire Guy",
+      "meta": "Whole-house surge protector installation in Mesa and the Phoenix valley, mounted at your panel to guard your AC, appliances and pool pump. ROC #365306.",
+      "h1": "Whole-House Surge Protector Installation",
+      "reason": "New page (D18; surge protection is on the live /faq list of services). Targets \"whole house surge protector installation\": two surge posts exist with no service page behind them (seo-audit PLAN section 4, page 5). The title is 67 characters, the length of the two retitles below."
     }
   }
 }

@@ -562,7 +562,8 @@ push({
   googleSiteVerification: live('/')?.googleSiteVerification ?? undefined,
 })
 
-// Content added on top of the Webflow export: page-builder sections for the static
+// Content added on top of the Webflow export: the service pages added since (new-services, first, so
+// every later module treats them like the others), page-builder sections for the static
 // pages, data fixes, the business's profiles, real reviews, sourced local facts, the launch
 // copy edits, contextual internal links and the approved titles, meta descriptions and H1s.
 // Each module receives the document list and helpers and edits or adds documents in place.
@@ -571,7 +572,7 @@ push({
 // answers after the late edits, so it checks them against the bodies as they ship; the final
 // edits (post excerpts) wait for titles-meta, which makes seo.description the posts' meta.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'cms-templates:posts', 'internal-links', 'titles-meta', 'content-edits:final']) {
+for (const step of ['new-services', 'fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'new-services:inserts', 'content-edits:late', 'cms-templates:posts', 'internal-links', 'titles-meta', 'content-edits:final']) {
   const [name, stage] = step.split(':')
   await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }

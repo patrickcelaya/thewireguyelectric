@@ -1,5 +1,5 @@
 {
-  "$comment": "Contextual internal links from the verified internal-links review (2026-10-17, decision D14): post to service, service to post, city to service and post to post, each a link mark on words already in the body (no word changes). Applied by scripts/migrate/content/internal-links.mjs after the copy edits. Each entry names the document (type:slug), the block (_key), the anchor (the words as they read after the copy pass) and the target; a retarget names the link it moves (from). See README.md section 12.",
+  "$comment": "Contextual internal links from the verified internal-links review (2026-10-17, decision D14), and the links to and from the three service pages added by decision D18 (2026-10-19): post to service, service to post, city to service and post to post, each a link mark on words already in the body (no word changes). Applied by scripts/migrate/content/internal-links.mjs after the copy edits. Each entry names the document (type:slug), the block (_key), the anchor (the words as they read after the copy pass) and the target; a retarget names the link it moves (from). See README.md section 12.",
   "source": "scratchpad seo/internal-links/verified.json `contextual` (verdicts accept/amend, the amended anchor or target where amended; the rejected \"same-visit repair\" link left out). Two retargets of closing calls to action are not here: the copy pass already sends them to /estimate (decision D5).",
   "links": [
     {
@@ -20,9 +20,9 @@
       "doc": "post:pool-pump-electrical-requirements-arizona",
       "block": "k03d",
       "anchor": "pool equipment circuits",
-      "href": "/services/exterior-electrical",
+      "href": "/services/hot-tub-pool-spa-electrical",
       "kind": "post-to-service",
-      "why": "the hub; Exterior Electrical lists \"Pool and spa equipment circuits, including bonding and disconnects\""
+      "why": "the hub; Exterior Electrical lists \"Pool and spa equipment circuits, including bonding and disconnects\" D18 (2026-10-19): retargeted from /services/exterior-electrical to the hot tub, pool and spa page written for this subject."
     },
     {
       "doc": "post:casita-adu-electrical-requirements-arizona",
@@ -102,9 +102,9 @@
       "doc": "post:hot-tub-electrical-installation-cost-arizona",
       "block": "k007",
       "anchor": "Hot tub electrical work",
-      "href": "/services/exterior-electrical",
+      "href": "/services/hot-tub-pool-spa-electrical",
       "kind": "post-to-service",
-      "why": "the hub; Exterior Electrical lists spa equipment circuits"
+      "why": "the hub; Exterior Electrical lists spa equipment circuits D18 (2026-10-19): retargeted from /services/exterior-electrical to the hot tub, pool and spa page written for this subject."
     },
     {
       "doc": "post:hot-tub-electrical-installation-cost-arizona",
@@ -964,6 +964,78 @@
       "href": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
       "kind": "service-to-post",
       "why": "Missed: the hub service page's own list (\"What We Get Called For\") names tripping \"only in the heat\", which is exactly the #1 page's subject (1,348 clicks). Today the page links that post only from the guide module; a contextual link from the hub body is the strongest internal signal the site can send it. The body already links why-does-my-breaker-keep-tripping, half-house and the outlets post from its \"Related Reading\" list at the end, not from this bullet. With #87 and #88 this list gets two links to different posts. Check slop-services: no edit touches k00h."
+    },
+    {
+      "doc": "post:cost-to-rewire-house-arizona",
+      "block": "k01a",
+      "anchor": "full house rewire",
+      "href": "/services/whole-home-rewiring",
+      "kind": "post-to-service",
+      "why": "D18: the rewire cost guide (Tier 1, body link only) to the service page written for it; first paragraph after the cost section, the words that define the job."
+    },
+    {
+      "doc": "post:aluminum-wiring-older-phoenix-homes",
+      "block": "k02o",
+      "anchor": "whole-home rewire",
+      "href": "/services/whole-home-rewiring",
+      "kind": "post-to-service",
+      "why": "D18: \"Option 3: Full Rewire\" names the job the new page sells."
+    },
+    {
+      "doc": "post:outdated-wiring-in-older-phoenix-homes",
+      "block": "k01l",
+      "anchor": "Knob-and-tube wiring",
+      "href": "/services/whole-home-rewiring",
+      "kind": "post-to-service",
+      "why": "D18: the list of old wiring types the rewiring page replaces (Tier 1, body link only; its third new service link, the module allows three)."
+    },
+    {
+      "doc": "service:exterior-electrical",
+      "block": "k00t",
+      "anchor": "bonding and disconnects",
+      "href": "/services/hot-tub-pool-spa-electrical",
+      "kind": "service-to-service",
+      "why": "D18: the pool and spa line now points to the page that covers it; the line's first words already link the pool pump post."
+    },
+    {
+      "doc": "service:panels",
+      "block": "k00n",
+      "anchor": "hot tub",
+      "href": "/services/hot-tub-pool-spa-electrical",
+      "kind": "service-to-service",
+      "why": "D18: a hot tub is one of the loads this bullet names."
+    },
+    {
+      "doc": "service:new-construction-wiring",
+      "block": "k01r",
+      "anchor": "Pool and spa equipment",
+      "href": "/services/hot-tub-pool-spa-electrical",
+      "kind": "service-to-service",
+      "why": "D18: the pool and spa line of the new-construction list."
+    },
+    {
+      "doc": "post:whole-house-surge-protector-guide-arizona",
+      "block": "k026",
+      "anchor": "whole house surge protectors",
+      "href": "/services/whole-house-surge-protection",
+      "kind": "post-to-service",
+      "why": "D18: \"We install whole house surge protectors\" in the closing section, to the service page written for it."
+    },
+    {
+      "doc": "post:is-whole-house-surge-protection-necessary",
+      "block": "k024",
+      "anchor": "whole-house surge protectors",
+      "href": "/services/whole-house-surge-protection",
+      "kind": "post-to-service",
+      "why": "D18: \"we install whole-house surge protectors at your main panel\" in the closing section."
+    },
+    {
+      "doc": "post:phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "block": "k02r",
+      "anchor": "install whole-home surge protection",
+      "href": "/services/whole-house-surge-protection",
+      "kind": "post-to-service",
+      "why": "D18: the closing line names the service; the same line already links \"upgrade panels\"."
     }
   ]
 }

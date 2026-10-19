@@ -204,10 +204,14 @@ const HUB_LINK_LABELS: Record<string, string> = {
   panels: 'electrical panel replacement',
   'electrical-safety-inspections': 'electrical safety inspection',
   'ev-charger-installation': 'EV charger installation',
-  'exterior-electrical': 'exterior electrical',
+  'exterior-electrical': 'landscape and outdoor lighting',
   'recessed-lights-installation': 'recessed lighting installation',
-  'fixture-replacements': 'light fixture replacement',
+  'fixture-replacements': 'ceiling fan and light fixture installation',
   'electrical-remodels': 'remodel electrical',
+  // the hubs added by decision D18 (2026-10-19)
+  'whole-home-rewiring': 'whole-home rewiring',
+  'hot-tub-pool-spa-electrical': 'hot tub, pool and spa electrical',
+  'whole-house-surge-protection': 'whole-house surge protection',
 }
 
 export function hubLinkLabel(service: Pick<ServiceSummary, 'slug' | 'name' | 'linkLabel'>) {
@@ -243,7 +247,13 @@ export function markShown(shown: Set<string>, ...images: Array<ImageRef | null |
  * service photos their cards show.
  */
 export function photoTiles<T extends Pick<ServiceSummary, 'mainImage'>>(services: T[], maxCards = 6) {
-  const withPhoto = services.filter((s) => companyPhoto(s.mainImage))
+  // a photo shows once: a second service with the same photo (rewiring and new construction share the rough-in) is a row
+  const seen = new Set<string>()
+  const withPhoto = services.filter((s) => {
+    if (!companyPhoto(s.mainImage)) return false
+    const id = photoId(s.mainImage!)
+    return seen.has(id) ? false : (seen.add(id), true)
+  })
   const count = Math.min(maxCards, withPhoto.length - (withPhoto.length % 3))
   const cards = withPhoto.slice(0, count)
   return {cards, rows: services.filter((s) => !cards.includes(s))}

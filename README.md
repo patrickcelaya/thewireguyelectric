@@ -177,7 +177,7 @@ Scheduled workflows run from the default branch.
 - apex → www and http → https, each in one hop;
 - `/x/` → `/x` for every sitemap path;
 - every legacy, post and Sanity redirect, with and without a trailing slash, and removed URLs answering 404;
-- robots.txt, the sitemap's 94 URLs and their lastmod;
+- robots.txt, the sitemap's 97 URLs and their lastmod;
 - 200, no noindex and one www canonical on every sitemap page;
 - GA on every page;
 - `GET /api/contact` answering 405 with `Allow: POST` and an empty POST answering 400;

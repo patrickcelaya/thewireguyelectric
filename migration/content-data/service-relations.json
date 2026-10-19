@@ -1,7 +1,22 @@
 {
-  "$comment": "Per-service price ranges, related services and related posts, applied by scripts/migrate/content/fixes.mjs. Slugs only; the module resolves them to references and fails on any slug that is not a live document. Every price is a figure the live site publishes today, quoted in `source`. Rationale for every list is in README.md.",
+  "$comment": "Per-service price ranges, related services and related posts, applied by scripts/migrate/content/fixes.mjs. Slugs only; the module resolves them to references and fails on any slug that is not a live document. Every price is a figure the live site publishes today, quoted in `source`. Rationale for every list is in README.md; the three services added by decision D18 carry their own `why`.",
   "priceAsOf": "2026-10-13",
   "services": {
+    "whole-home-rewiring": {
+      "why": "D18: the services its body links (panels, remodels, inspections) and troubleshooting; its cost guide first, then the aluminum and outdated-wiring posts and the two its signs and permit lines draw on.",
+      "relatedServices": ["panels", "electrical-safety-inspections", "electrical-remodels", "electrical-troubleshooting"],
+      "relatedPosts": ["cost-to-rewire-house-arizona", "aluminum-wiring-older-phoenix-homes", "outdated-wiring-in-older-phoenix-homes", "electrical-inspection-before-selling-a-home", "permit-for-electrical-work"]
+    },
+    "hot-tub-pool-spa-electrical": {
+      "why": "D18: the services its body links (panels, surge protection, troubleshooting) and the outdoor page these posts hubbed on before; its cost guide and the pool pump post, then the panel-upgrade post that names hot tubs as a load.",
+      "relatedServices": ["panels", "exterior-electrical", "whole-house-surge-protection", "electrical-troubleshooting"],
+      "relatedPosts": ["hot-tub-electrical-installation-cost-arizona", "pool-pump-electrical-requirements-arizona", "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell"]
+    },
+    "whole-house-surge-protection": {
+      "why": "D18: the services its body links (panels, pool and spa, EV chargers) and troubleshooting; the two surge posts, then the posts that send readers to surge protection (monsoon, AC disconnect, mini-split).",
+      "relatedServices": ["panels", "hot-tub-pool-spa-electrical", "ev-charger-installation", "electrical-troubleshooting"],
+      "relatedPosts": ["whole-house-surge-protector-guide-arizona", "is-whole-house-surge-protection-necessary", "phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system", "ac-disconnect-box-arizona", "mini-split-electrical-requirements-arizona"]
+    },
     "panels": {
       "priceRange": {
         "low": 5200,
@@ -54,7 +69,7 @@
       ]
     },
     "electrical-safety-inspections": {
-      "relatedServices": ["panels", "electrical-troubleshooting", "electrical-remodels"],
+      "relatedServices": ["panels", "electrical-troubleshooting", "electrical-remodels", "whole-home-rewiring"],
       "relatedPosts": [
         "diy-electrical-work-in-arizona",
         "outdated-wiring-in-older-phoenix-homes",
@@ -64,7 +79,7 @@
       ]
     },
     "exterior-electrical": {
-      "relatedServices": ["custom-lighting", "ev-charger-installation", "fixture-replacements"],
+      "relatedServices": ["custom-lighting", "ev-charger-installation", "fixture-replacements", "hot-tub-pool-spa-electrical"],
       "relatedPosts": [
         "landscape-lighting-installation-cost-phoenix",
         "pool-pump-electrical-requirements-arizona",

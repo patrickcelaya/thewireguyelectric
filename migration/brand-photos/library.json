@@ -305,7 +305,8 @@
    "subject": "wiring-rough-in",
    "photoSubject": "wiring",
    "services": [
-    "new-construction-wiring"
+    "new-construction-wiring",
+    "whole-home-rewiring"
    ],
    "kind": "job",
    "orientation": "portrait",
@@ -1092,7 +1093,8 @@
    "photoSubject": "panel",
    "services": [
     "panels",
-    "electrical-upgrades"
+    "electrical-upgrades",
+    "whole-house-surge-protection"
    ],
    "kind": "job",
    "orientation": "portrait",
@@ -1321,7 +1323,7 @@
    "file": "library/cone-pendant-bay-window.jpg",
    "name": "cone-pendant-bay-window",
    "alt": "Cone pendant light hanging in a bay window",
-   "caption": "Cone pendant light hanging in a bay window",
+   "caption": "Cone pendant light in a bay window",
    "subject": "chandelier-pendant",
    "photoSubject": "lighting",
    "services": [

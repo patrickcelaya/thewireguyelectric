@@ -21,8 +21,8 @@ export function inSentence(name: string) {
   return name.replace(/\S+/g, (word) => (/^[A-Z0-9]{2,}$/.test(word) ? word : word.toLowerCase()))
 }
 
-/** Where a heading names a service mid-sentence, the words that read naturally ("Questions about exterior electrical work"). */
-const SERVICE_TOPICS: Record<string, string> = {'exterior-electrical': 'exterior electrical work', 'electrical-troubleshooting': 'electrical troubleshooting'}
+/** Where a heading names a service mid-sentence, the words that read naturally ("Questions about hot tub, pool and spa electrical"). */
+const SERVICE_TOPICS: Record<string, string> = {'electrical-troubleshooting': 'electrical troubleshooting', 'hot-tub-pool-spa-electrical': 'hot tub, pool and spa electrical'}
 
 /** A service named inside a heading: "EV charger installation", "LED lights" (inSentence). */
 export function serviceTopic(service: {slug: string; name: string}) {

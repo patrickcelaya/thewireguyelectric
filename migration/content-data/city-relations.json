@@ -16,9 +16,9 @@
         "panels",
         "recessed-lights-installation",
         "new-construction-wiring",
-        "electrical-remodels"
+        "whole-home-rewiring"
       ],
-      "featuredEvidence": "§5 order 'repair · EV · commercial · residential · panels · lighting · low voltage'. Repair 200/9; EV 288/542 ('electric car charger installation gilbert' 227 @15.9); commercial 113/421 ('commercial electrician gilbert' 412 @8.0); panels 73/7; lighting 69 ('lighting electrician gilbert' 38 @5.3); new construction 52 ('gilbert new construction electrical' 32 @21.1); rewire 82 ('gilbert whole home wiring' 19 @14.7). Residential and low voltage have no single service page.",
+      "featuredEvidence": "§5 order 'repair · EV · commercial · residential · panels · lighting · low voltage'. Repair 200/9; EV 288/542 ('electric car charger installation gilbert' 227 @15.9); commercial 113/421 ('commercial electrician gilbert' 412 @8.0); panels 73/7; lighting 69 ('lighting electrician gilbert' 38 @5.3); new construction 52 ('gilbert new construction electrical' 32 @21.1); rewire 82 ('gilbert whole home wiring' 19 @14.7). Residential and low voltage have no single service page. D18 (2026-10-19): the rewiring card goes to the new /services/whole-home-rewiring, which is written for this intent, in place of electrical-remodels.",
       "nearbyLocations": ["chandler", "queen-creek", "tempe"],
       "nearbyEvidence": "Borders Chandler and Queen Creek (and Mesa); Tempe is the next closest city centre (10.1 mi)."
     },
@@ -30,10 +30,10 @@
         "commercial-service",
         "panels",
         "ev-charger-installation",
-        "electrical-remodels",
+        "whole-home-rewiring",
         "new-construction-wiring"
       ],
-      "featuredEvidence": "§5 order 'repair · residential · commercial · panel repair · EV outlet · rewiring'. Repair 315/728 ('electric repair service chandler az' 303 @9.2); commercial 74/792 ('chandler commercial electrician' 563 @8.6); panels 133/75; EV 65/692 ('chandler electric car charger outlet installation' 304 @11.5); rewire 65/254 ('electrical rewiring chandler' 11 @34); new construction 0/27 ('chandler new construction electrical' 27 @7.7).",
+      "featuredEvidence": "§5 order 'repair · residential · commercial · panel repair · EV outlet · rewiring'. Repair 315/728 ('electric repair service chandler az' 303 @9.2); commercial 74/792 ('chandler commercial electrician' 563 @8.6); panels 133/75; EV 65/692 ('chandler electric car charger outlet installation' 304 @11.5); rewire 65/254 ('electrical rewiring chandler' 11 @34); new construction 0/27 ('chandler new construction electrical' 27 @7.7). D18 (2026-10-19): the rewiring card goes to the new /services/whole-home-rewiring, which is written for this intent, in place of electrical-remodels.",
       "nearbyLocations": ["gilbert", "tempe", "ahwatukee"],
       "nearbyEvidence": "Borders Gilbert, Tempe and Ahwatukee (Phoenix) across I-10."
     },
@@ -43,14 +43,14 @@
       "featuredServices": [
         "electrical-troubleshooting",
         "commercial-service",
-        "electrical-remodels",
+        "whole-home-rewiring",
         "panels",
         "ev-charger-installation",
         "recessed-lights-installation",
         "fixture-replacements",
         "new-construction-wiring"
       ],
-      "featuredEvidence": "§5 order 'repair · commercial · residential · rewiring/aluminum · panel replacement · EV · low voltage'. Repair 608/195 ('electrical repair scottsdale' 368 @12.4); commercial 321/134; rewire 367/116 ('whole home rewiring scottsdale' 96 @9.5, 'aluminum wiring replacement scottsdale' 51 @7.3); panels 334/346 ('electrical panel replacement scottsdale' 127 @15.7); EV 19/111 ('ev charger installation scottsdale' 744 @15.7 over 16 mo, McCormick Ranch 120 @4.3); lighting 94/26 ('recessed lighting installation scottsdale' 28 @6.6); ceiling fan 5/135 ('ceiling fan installation scottsdale' 63 @3.0); new construction 86 ('new construction electrical scottsdale' 33 @11.6).",
+      "featuredEvidence": "§5 order 'repair · commercial · residential · rewiring/aluminum · panel replacement · EV · low voltage'. Repair 608/195 ('electrical repair scottsdale' 368 @12.4); commercial 321/134; rewire 367/116 ('whole home rewiring scottsdale' 96 @9.5, 'aluminum wiring replacement scottsdale' 51 @7.3); panels 334/346 ('electrical panel replacement scottsdale' 127 @15.7); EV 19/111 ('ev charger installation scottsdale' 744 @15.7 over 16 mo, McCormick Ranch 120 @4.3); lighting 94/26 ('recessed lighting installation scottsdale' 28 @6.6); ceiling fan 5/135 ('ceiling fan installation scottsdale' 63 @3.0); new construction 86 ('new construction electrical scottsdale' 33 @11.6). D18 (2026-10-19): the rewiring card goes to the new /services/whole-home-rewiring, which is written for this intent, in place of electrical-remodels.",
       "nearbyLocations": ["tempe", "phoenix", "fountain-hills"],
       "nearbyEvidence": "Borders Tempe, Phoenix and Fountain Hills."
     },
@@ -62,10 +62,10 @@
         "panels",
         "commercial-service",
         "ev-charger-installation",
-        "electrical-remodels",
+        "whole-home-rewiring",
         "electrical-safety-inspections"
       ],
-      "featuredEvidence": "§5 order 'repair · panels · commercial · residential'. Repair 316/1 ('electrical repair tempe az' 143 @8.7); panels 85/197 ('electric panel upgrade tempe az' 60 @21.1); commercial 17/191 ('commercial electrician tempe' 99 @14.7); EV 2/132 ('electric car charger installation tempe az' 109 @33.1); inspection 0/21 ('electrical inspections tempe az'). Rewiring: the live /faq answer on aluminum wiring names 'older Mesa, Tempe, and Phoenix homes', and gsc-queries §4.2 lists older Tempe homes (aluminum, knob-and-tube) as a Tempe FAQ topic.",
+      "featuredEvidence": "§5 order 'repair · panels · commercial · residential'. Repair 316/1 ('electrical repair tempe az' 143 @8.7); panels 85/197 ('electric panel upgrade tempe az' 60 @21.1); commercial 17/191 ('commercial electrician tempe' 99 @14.7); EV 2/132 ('electric car charger installation tempe az' 109 @33.1); inspection 0/21 ('electrical inspections tempe az'). Rewiring: the live /faq answer on aluminum wiring names 'older Mesa, Tempe, and Phoenix homes', and gsc-queries §4.2 lists older Tempe homes (aluminum, knob-and-tube) as a Tempe FAQ topic. D18 (2026-10-19): the rewiring card goes to the new /services/whole-home-rewiring, which is written for this intent, in place of electrical-remodels.",
       "nearbyLocations": ["scottsdale", "phoenix", "chandler", "ahwatukee"],
       "nearbyEvidence": "Borders Scottsdale, Phoenix, Chandler and Ahwatukee (and Mesa)."
     },
@@ -80,9 +80,9 @@
         "new-construction-wiring",
         "commercial-service",
         "electrical-safety-inspections",
-        "electrical-remodels"
+        "whole-home-rewiring"
       ],
-      "featuredEvidence": "§5 'link out to EV / panels / recessed lighting / generator pages · residential · repair · new construction'. EV 665/368 ('ev charger installation phoenix' 1,857 @10.2); panels 243/666 ('electrical panel upgrades phoenix' 361 @9.3); recessed 196 @11.3; repair 320/76; new construction 79 ('new construction electrician phoenix az' 12 @43.8); commercial 143/994; inspection 14/432 ('electrical safety inspection phoenix az' 179 @12); rewire 239/60 (aluminum wiring named in the live /faq answer for Phoenix homes). Generator: not offered (live /faq 'services we don't currently offer'), so no card.",
+      "featuredEvidence": "§5 'link out to EV / panels / recessed lighting / generator pages · residential · repair · new construction'. EV 665/368 ('ev charger installation phoenix' 1,857 @10.2); panels 243/666 ('electrical panel upgrades phoenix' 361 @9.3); recessed 196 @11.3; repair 320/76; new construction 79 ('new construction electrician phoenix az' 12 @43.8); commercial 143/994; inspection 14/432 ('electrical safety inspection phoenix az' 179 @12); rewire 239/60 (aluminum wiring named in the live /faq answer for Phoenix homes). Generator: not offered (live /faq 'services we don't currently offer'), so no card. D18 (2026-10-19): the rewiring card goes to the new /services/whole-home-rewiring, which is written for this intent, in place of electrical-remodels.",
       "nearbyLocations": ["ahwatukee", "tempe", "scottsdale"],
       "nearbyEvidence": "Ahwatukee is a Phoenix village; Phoenix borders Tempe and Scottsdale."
     },
@@ -92,11 +92,11 @@
         "panels",
         "electrical-troubleshooting",
         "commercial-service",
-        "electrical-remodels",
+        "whole-home-rewiring",
         "ev-charger-installation",
         "electrical-safety-inspections"
       ],
-      "featuredEvidence": "§5 order 'same-day/urgent · panels/breaker box/subpanel · residential · repair · commercial · rewiring · GFCI/outlets · smart home/battery backup · EV'. Panels 151/224 ('breaker box upgrade queen creek' 127 @12.9); repair 249/41 (incl. 'gfci outlet repair queen creek' 50 @16.1, which the troubleshooting page covers); commercial 37/372 ('commercial electrician queen creek' 277 @3.3); rewire 125 ('rewire house queen creek' 41 @8.6); EV 39/80; inspection 5 ('wiring inspection queen creek' 5 @21). Urgent, smart home and battery backup have no service page.",
+      "featuredEvidence": "§5 order 'same-day/urgent · panels/breaker box/subpanel · residential · repair · commercial · rewiring · GFCI/outlets · smart home/battery backup · EV'. Panels 151/224 ('breaker box upgrade queen creek' 127 @12.9); repair 249/41 (incl. 'gfci outlet repair queen creek' 50 @16.1, which the troubleshooting page covers); commercial 37/372 ('commercial electrician queen creek' 277 @3.3); rewire 125 ('rewire house queen creek' 41 @8.6); EV 39/80; inspection 5 ('wiring inspection queen creek' 5 @21). Urgent, smart home and battery backup have no service page. D18 (2026-10-19): the rewiring card goes to the new /services/whole-home-rewiring, which is written for this intent, in place of electrical-remodels.",
       "nearbyLocations": ["san-tan-valley", "gilbert", "apache-junction"],
       "nearbyEvidence": "Borders San Tan Valley and Gilbert (and Mesa); Apache Junction is the next closest city centre (12.5 mi)."
     },
@@ -120,11 +120,11 @@
         "panels",
         "electrical-troubleshooting",
         "ev-charger-installation",
-        "exterior-electrical",
+        "hot-tub-pool-spa-electrical",
         "electrical-safety-inspections",
         "recessed-lights-installation"
       ],
-      "featuredEvidence": "§5 order 'urgent · panels · repair · EV · pool & spa · mobile homes'. Panels 264/1 ('panel upgrades apache junction az' 182 @13.2); repair 70 ('electrical repair apache junction' 36 @3.8); EV 25/22 ('ev charger installation apache junction' 11 @8.9); pool & spa 18 @2.7 (exterior-electrical installs 'pool and spa equipment circuits'); inspection 7 ('electrical safety inspection apache junction az' 7 @30.1); lighting 4 ('lighting installation apache junction az'). Urgent and mobile homes have no service page.",
+      "featuredEvidence": "§5 order 'urgent · panels · repair · EV · pool & spa · mobile homes'. Panels 264/1 ('panel upgrades apache junction az' 182 @13.2); repair 70 ('electrical repair apache junction' 36 @3.8); EV 25/22 ('ev charger installation apache junction' 11 @8.9); pool & spa 18 @2.7 (exterior-electrical installs 'pool and spa equipment circuits'); inspection 7 ('electrical safety inspection apache junction az' 7 @30.1); lighting 4 ('lighting installation apache junction az'). Urgent and mobile homes have no service page. D18 (2026-10-19): the pool & spa card goes to the new /services/hot-tub-pool-spa-electrical in place of exterior-electrical.",
       "nearbyLocations": ["queen-creek", "gilbert", "san-tan-valley"],
       "nearbyEvidence": "Borders only Mesa among the served cities; Queen Creek (12.5 mi), Gilbert (14.5 mi) and San Tan Valley (15.5 mi) are the closest city centres."
     },
