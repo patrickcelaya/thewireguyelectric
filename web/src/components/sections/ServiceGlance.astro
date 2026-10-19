@@ -4,10 +4,13 @@
 // the right. The service's own "At a glance" facts come first (only what the business
 // confirmed, from Sanity, each with its supporting line); the verifiable standard facts
 // fill the grid to four: free estimates, the licence (linked to the ROC lookup) and the
-// office hours with Emma's status. No price is ever shown here (owner rule).
+// office hours with Emma's status. The warranty line always closes the grid (owner, D17:
+// that the work comes with a warranty, no terms), so most services show four facts and
+// Panels five, whose last one spans both columns (the odd-count rule in inner.css).
+// No price is ever shown here (owner rule).
 // Styles: styles/inner.css (.glance--wide, .facts--grid) and styles/cms.css.
 import type {ServiceDoc, SiteSettings} from '../../lib/types'
-import {businessSummary, licence, officeHours} from '../../lib/site'
+import {WARRANTY_LINE, businessSummary, licence, officeHours} from '../../lib/site'
 import Eyebrow from '../ui/Eyebrow.astro'
 import ExternalLink from '../ui/ExternalLink.astro'
 import OfficeStatus from '../ui/OfficeStatus.astro'
@@ -28,7 +31,10 @@ const standard = [
   roc && {key: 'licence', label: 'License', value: 'Licensed, bonded, and insured'},
   hours && {key: 'hours', label: 'Office hours', value: hours},
 ].filter((f): f is {key: string; label: string; value: string; detail?: string} => Boolean(f))
-const facts = [...own.map((f) => ({key: f._key, label: f.label, value: f.value, detail: f.detail ?? undefined})), ...standard].slice(0, Math.max(4, own.length))
+const facts = [
+  ...[...own.map((f) => ({key: f._key, label: f.label, value: f.value, detail: f.detail ?? undefined})), ...standard].slice(0, Math.max(4, own.length)),
+  {key: 'warranty', label: 'Warranty', value: WARRANTY_LINE},
+]
 const summary = service.quickAnswer?.trim() || businessSummary(settings)
 ---
 

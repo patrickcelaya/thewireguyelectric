@@ -7,11 +7,12 @@
 // ways to talk; three Google reviews about booking and estimates; the questions people
 // ask before they book. Copy is the mockup's (approved); hours, phone, rating, licence
 // and the year founded come from Site settings; the reviews and questions are the
-// documents themselves (a missing one is simply left out).
+// documents themselves (a missing one is simply left out). The warranty line is the
+// owner's one plain sentence (decision D17, lib/site.ts WARRANTY_LINE), no terms.
 import SiteLayout from '../layouts/SiteLayout.astro'
 import '../styles/inner.css'
 import {getFaqs, getReviews, getSettings} from '../lib/queries'
-import {officeHours, telHref} from '../lib/site'
+import {WARRANTY_LINE, officeHours, telHref} from '../lib/site'
 import {faqNode, webPageNode} from '../lib/schema'
 import {ogImageMeta} from '../lib/seo'
 import {retargetLinks} from '../lib/portable-text'
@@ -103,6 +104,7 @@ const family = homeCity && settings.foundingDate ? `Family-owned in ${homeCity} 
           {hours.line && <p class="cta__hours">Our Office Hours: {hours.line}</p>}
           <RatingLine settings={settings} variant="quiet" />
           <p class="cta__roc"><RocLink settings={settings} /></p>
+          <p class="next__fam">{WARRANTY_LINE}</p>
           {family && <p class="next__fam">{family}</p>}
         </div>
       </aside>

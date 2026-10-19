@@ -12,7 +12,7 @@ live site has them; these files hold what changes, edit by edit, so every change
 | `cities.json` | 59 | The 10 city bodies and the city template |
 | `posts-a.json` | 257 | Blog posts 1–27 by slug; 6 excerpts (`excerpt-posts-a-*`) |
 | `posts-b.json` | 185 | Blog posts 28–53 by slug; 6 excerpts (`excerpt-posts-b-*`) |
-| `decisions.json` | | The lead's copy decisions (FIX_BRIEF D1, D6) and the Ahwatukee body split (D5) |
+| `decisions.json` | | The lead's copy decisions (FIX_BRIEF D1, D6) and the Ahwatukee body split (D5); the owner's decisions of 2026-10-19 (D15 generator lines out, D16 conflicting prices to the higher figure, D17 the warranty line) |
 
 The five slop files are the verified lists of the 2026-10-17 copy review: every edit was researched, then checked
 by an adversarial verifier. Only verdicts `accept` and `amend` are here (for `amend`, `new_text` is the verifier's
@@ -95,6 +95,17 @@ end of every block, so their `old_text` ends at the full stop.
   split into paragraphs and a list (`decisions.json` D5-01).
 - **D6** Mountain America Stadium, the onboard charger's AC-to-DC conversion and "line-voltage (120 V)"
   (`decisions.json` D6-01 … D6-04); the NFPA citation links nfpa.org instead of a Google search (`linkFixes`).
+- **D15** (owner, 2026-10-19: "remove generator"): the two generator posts are removed and 301 to /services/panels
+  (`migration/content-data/removed-posts.json`, README §13 there); their twelve slop edits are kept with `skip`. D15-01 …
+  D15-06 take generator lines out of the monsoon, permit and Scottsdale posts.
+- **D16** (owner, 2026-10-19: "Always go with the higher amounts"): every price the site gave two ways now reads the
+  higher range: surge protector and recessed lighting on /faq, the Level 1 vs Level 2 post (Level 2 installed, Level 1,
+  200-amp panel), the ceiling fan post, the rewire guide (full rewire, AlumiConn remediation) and the recessed service's
+  priceRange (D16-01 … D16-11, each with its old and new figure).
+- **D17** (owner, 2026-10-19: "lets not talk about warranty but just say work comes w/ a warranty"): the FAQ "Do you
+  warranty your work?" answers "Yes. Our work comes with a warranty." (D17-01; `drop_links` lets it delete the "Contact
+  us" link with its sentence), and the homepage card "We come back if anything's wrong" gains that line (D17-02). The
+  service at-a-glance facts and /estimate show it from `WARRANTY_LINE` in `web/src/lib/site.ts`.
 - **D10** /services/hanging-lights ships its published copy (`webflow-to-sanity.mjs`, live snapshot
   `migration/live-snapshots/services_hanging-lights.html`), with a quick answer rewritten from that copy.
 
@@ -108,8 +119,9 @@ end of every block, so their `old_text` ends at the full stop.
    businesses" stays: please confirm the number.
 3. **Promises in posts:** "free post-storm safety inspections" and "free safety check" (monsoon post) and
    "same-day service available" (surge-protection and breaker posts; also the breaker post's meta description).
-4. **Level 1 vs Level 2 post:** its 200 A panel upgrade price ($1,800–$2,500) disagrees with the site's panel
-   figures ($5,200–$6,500). Left as is.
+4. ~~**Level 1 vs Level 2 post:** its 200 A panel upgrade price ($1,800–$2,500) disagrees with the site's panel
+   figures ($5,200–$6,500).~~ Answered (D16-07): it reads $5,200–$6,500. Still open: the rewire cost guide's size
+   breakdown sits below its new headline range (D16-11); confirm figures for it or drop it.
 5. **/services/hanging-lights** shows the published 2024 copy with its stock lines taken out (`slop-services-hl-*`:
    "perfect for businesses looking to enhance their ambiance", "meticulous attention to detail", "bespoke … not only
    meet but exceed expectations" and the "Why Choose" list are gone; the fixtures, steps and call to action stay). The

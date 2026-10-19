@@ -604,7 +604,7 @@ export interface TrustBarSection extends SectionBase {
 export interface ResolvedTrustItem {
   key: string
   fact: TrustFact
-  /** Emphasized part, e.g. "5.0", "ROC #365306", "2017", "2-year". */
+  /** Emphasized part, e.g. "5.0", "ROC #365306", "2017", "100+". */
   value?: string
   label?: string
   href?: string

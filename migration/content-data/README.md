@@ -7,10 +7,10 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 | `city-relations.json` | `location.name`, `cardBlurb`, `featuredServices` and `nearbyLocations` for the 10 cities; `siteSettings.homeCity.cardBlurb` for Mesa |
 | `faqs.json` | `question`, `answer`, `topic`, `order` and `services` on the 28 `faq` documents, copied verbatim from the visible `/faq` page |
 | `service-relations.json` | `priceRange` (3 services), `relatedServices` (21) and `relatedPosts` (21) |
-| `post-services.json` | `relatedServices` on all 53 posts |
+| `post-services.json` | `relatedServices` on all 51 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
-Four later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11) and `internal-links.json` (§12).
+Four later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11) and `internal-links.json` (§12). `removed-posts.json` (§13) is read by `webflow-to-sanity.mjs` itself.
 
 The data files use slugs, not document IDs. The module turns each slug into a reference. The migration stops with an error naming the file and entry if any of these happens:
 
@@ -96,18 +96,20 @@ A price is set only where the live site publishes a figure for that exact servic
 | Service | Range | Published on |
 |---|---|---|
 | panels | $5,200–$6,500 (standard 200-amp like-for-like). The note adds the published full-service replacement range, $6,400–$8,750 | `/faq` and the `/services/panels` body. The same figures appear in the electrical-remodels and new-construction-wiring bodies and in the panel cost post |
-| recessed-lights-installation | $1,050–$1,750 (six LED cans, existing room) | `/faq` |
+| recessed-lights-installation | $1,400–$2,200 (six LED cans, existing finished ceiling; $1,050–$1,750 until decision D16) | `/blog-posts/recessed-lighting-installation-phoenix`, and `/faq` since D16-02 |
 | ev-charger-installation | $750–$3,500 (Level 2, home) | `/faq` |
 
 Not priced:
 - **`electrical-upgrades`:** it is the commercial panel, feeder and service page, and the published figures are for a home's 200-amp panel.
-- **Surge protection:** `/faq` publishes $300–$600, but there is no surge service document.
+- **Surge protection:** `/faq` and both surge posts publish $400–$800 (`/faq` said $300–$600 until D16), but there is no surge service document.
 - **Hourly rate:** `/faq` quotes it as other electricians' rates.
 
-**Conflicting figures elsewhere on the live site.** These are left as they are and flagged for the owner:
-- EV: the `/services/ev-charger-installation` body says "Tesla Wall Connector … $650 to $1,800" and "NEMA 14-50 … $450 to $1,200". Both start below the `/faq` $750. The older `level-1-vs-level-2` post says $600–$2,500, plus a "200 A panel upgrade" at "$1,800 to $2,500".
-- Recessed: `/blog-posts/recessed-lighting-installation-phoenix` says 6 lights on a finished ceiling cost "$1,400 and $2,200". `/faq` says $1,050–$1,750.
-- Surge: `/blog-posts/whole-house-surge-protector-guide-arizona` says $400–$800. `/faq` says $300–$600.
+**Conflicting figures elsewhere on the live site.** The live site priced some jobs differently on different pages. The owner's answer (decision D16, 2026-10-19: "Always go with the higher amounts") sets each to the higher range; every change, old and new, is an edit in `migration/content-edits/decisions.json` (D16-01 … D16-11):
+- EV: the `/services/ev-charger-installation` body's ranges ("Tesla Wall Connector … $650 to $1,800", "NEMA 14-50 … $450 to $1,200") were already taken out (`bodyEdits`, no prices on service pages). The `level-1-vs-level-2` post's Level 2 total, installed, read $600–$2,500 and now reads the `/faq` $750–$3,500 (text and table); its Level 1 figures ($80–$180 in two lines, $300–$600 in its table) read $300–$600; its "200 A panel upgrade" at "$1,800 to $2,500" reads $5,200 to $6,500.
+- Recessed: `/faq` said $1,050–$1,750 for six lights and now says $1,400–$2,200, the cost guide's figure for six lights on a finished ceiling; the service's `priceRange` follows.
+- Surge: `/faq` said $300–$600 and now says $400–$800, as both surge posts do.
+- Rewiring: the rewire cost guide said a full rewire runs $8,000–$15,000 and AlumiConn remediation $2,500–$5,000; the aluminum wiring post says $12,000–$25,000+ and $3,000–$7,000 for the same work. The guide now gives the higher ranges; its size breakdown is left as published, for the owner to confirm.
+- Ceiling fans: the ceiling fan cost post said $150–$350 and, further down, $150–$300 for the same install on existing wiring; both read $150–$350.
 
 ## 4. Related services and posts (`service-relations.json`, `post-services.json`)
 
@@ -149,13 +151,12 @@ Every service page shows at least three guides (QA, 2026-10-17: an empty or thin
 
 Several residential services also list fewer than 5 posts, because their hub has fewer.
 
-### Post → related services (all 53)
+### Post → related services (all 51)
 
 The first service is the primary hub service from the hub map (seo-requirements §4, which spells out the `docs/SEO_STRATEGY.md` §2 table post by post). Further services are added only when:
 - the hub map names them: casita → new-construction-wiring;
 - the post body already links them:
   - `dryer-outlet-for-ev` → panels;
-  - `generator-interlock-in-arizona` → troubleshooting;
   - `bathroom-or-garage-outlets-not-working-heres-how-to-fix` → panels;
   - `ceiling-fan-installation-cost-arizona` → recessed;
   - `landscape-lighting-installation-cost-phoenix` → custom-lighting;
@@ -173,7 +174,7 @@ The first service is the primary hub service from the hub map (seo-requirements 
 
 One exception: `can-hot-weather-cause-your-circuit-breaker-to-trip` → panels. Neither page links the other, but the post is about the panel itself. It names the panel about ten times: a hot panel in a garage or in direct sun, conductors loosening in the panel, "The electrical panel feels hot to the touch" as a reason to call. It sits with the hot-to-the-touch post, which is in the panel hub.
 
-Surge and generator posts sit under panels, as the hub map says ("until dedicated pages exist"). `/faq` lists generator installs among the services the company doesn't offer; the generator posts are about interlocks and standby units, which are wired at the panel.
+Surge posts sit under panels, as the hub map says ("until dedicated pages exist"). `/faq` lists generator installs among the services the company doesn't offer, and the two generator posts (standby units and interlocks) were removed by decision D15 (§13).
 
 `common-electrical-issues-in-scottsdale-homes` hubs on `/locations/scottsdale`, which can't be a `relatedServices` target, so its service is electrical-troubleshooting.
 
@@ -254,7 +255,7 @@ The other five cities have no tile copy and stay empty; nothing is written for t
 
 ## 7. Questions for the owner
 
-1. **EV, recessed and surge prices conflict across the live site** (§3). The `/faq` figures are used. Confirm them, or give one set to publish everywhere.
+1. ~~**EV, recessed and surge prices conflict across the live site** (§3).~~ Answered 2026-10-19 (D16): the higher figure everywhere. Still to confirm: the rewire cost guide's size breakdown (1,000–1,500 sq ft $6,000–$10,000 … 3,500+ sq ft $20,000+) sits below its new headline range ($12,000–$25,000); give figures for it or say to drop it.
 2. **Hero quotes:** confirm they come from real reviews, and name the reviewers if you can, so they can link to `review` documents.
 3. **"Wiring Solutions"** has no service page. Should it link to `electrical-remodels`, `new-construction-wiring`, or nothing?
 4. **Do you offer** the following? If so, they deserve service pages or cards:
@@ -273,12 +274,12 @@ A successful run means no dangling references, because the script exits on any. 
 - 10 cities;
 - 28 FAQs updated, 5 renamed, 0 created, 0 unmatched;
 - 3 services priced, 21 with related posts;
-- 53 posts mapped.
+- 51 posts mapped.
 
 Checked on 2026-10-13 against a run without this module. The only fields this module changes are:
 - `faq`: question (5), answer (28), topic (28), services (14);
 - `service`: priceRange (3), relatedServices (21), relatedPosts (21);
-- `post`: relatedServices (53);
+- `post`: relatedServices (51);
 - `location`: name (10), cardBlurb (5), featuredServices (10), nearbyLocations (10);
 - `siteSettings`: the fields in §6 plus `homeCity.cardBlurb`.
 
@@ -298,7 +299,7 @@ Applied by `scripts/migrate/content/cms-templates.mjs`, which runs last (after `
 | `featuredPosts` | `post.featured` on 7 posts, so guide lists on city and service pages lead with them | Search Console, the Tier-1 posts by clicks |
 | `serviceImages` | `service.mainImage` for `ev-charger-installation` and `electrical-troubleshooting`: the crew's own photos of that work in place of a stock image or a photo of tools (the asset must be in the dataset) | `migration/brand-photos` |
 | `serviceAlts` | alt text for the services' own photos (all were empty; a replaced image carries its alt in `serviceImages`) | the asset audit and the brand-photos manifest |
-| `postImages` | the owner's decision on each post's own main image (2026-10-18): `shown` (35 posts: real stock or crew photos, 1,200 px or wider, not AI-made, no text, known source, not misleading) sets `post.showMainImage` and the image's alt (what is visible; a stock photo's alt never implies the people in it work for us; the module rejects one that names the business, crew or trade) and, where a crop must keep heads in frame, its hotspot; `notShown` (18) gives the reason for each other post. Every post is in exactly one list | the seo-audit blog image table and inventory (PLAN section 8, "If yes"), each image looked at; `installing-car-charger`'s alt as `web/src/lib/brand-photos.ts` records the photo |
+| `postImages` | the owner's decision on each post's own main image (2026-10-18): `shown` (34 posts: real stock or crew photos, 1,200 px or wider, not AI-made, no text, known source, not misleading) sets `post.showMainImage` and the image's alt (what is visible; a stock photo's alt never implies the people in it work for us; the module rejects one that names the business, crew or trade) and, where a crop must keep heads in frame, its hotspot; `notShown` (17) gives the reason for each other post. Every post is in exactly one list | the seo-audit blog image table and inventory (PLAN section 8, "If yes"), each image looked at; `installing-car-charger`'s alt as `web/src/lib/brand-photos.ts` records the photo |
 | `atAGlance` | `service.atAGlance` facts for `panels` (most common job, panels installed, utility, permits), each with its supporting line (`detail`) | each fact quotes `evidence` that must appear word for word in the service body or the named `/faq` answer |
 | `quickAnswers` | `service.quickAnswer` on all 21 services: the answer-first line of the page's "short version" (the Panels text is the round-5 mockup's) | each answer lists the body phrases it restates (`evidence`), which must appear word for word in that service's body; 25–60 words, no price |
 | `bodyEdits` | the dollar ranges in four service bodies (Panels "What It Costs", EV charger, remodels, new construction) taken out, the rest of each sentence and every link kept; Panels gets the live city pages' flat-rate sentence | owner rule: prices stay inside FAQ answers and blog posts. Each `find` must match exactly once and not cut a link; the run fails if any service body still names a price |
@@ -351,8 +352,23 @@ The business description in Site settings states the count too; it reads "560+" 
 
 ## 12. Contextual internal links (`internal-links.json`)
 
-Applied by `scripts/migrate/content/internal-links.mjs`, after the copy edits and before the titles. The 125 links are the verified internal-links review (decision D14): 71 post → service, 28 city → service, 10 service → post and 15 post → post links, each a link mark on words already in the body, and 1 retarget (the generator post's "service upgrade" goes to `/services/panels` instead of `/services`). The words never change.
+Applied by `scripts/migrate/content/internal-links.mjs`, after the copy edits and before the titles. The 123 links are the verified internal-links review (decision D14): 71 post → service, 28 city → service, 10 service → post and 14 post → post links, each a link mark on words already in the body. The review's retarget and one post → post link were in the two generator posts, removed with them (D15, §13). The words never change.
 
 Each entry names the document (`type:slug`), the block (`_key`), the anchor as the block reads after the copy pass (where a copy edit rewrote the sentence, the review gave the anchor that survives) and the target. The module finds the anchor by its text, splits the spans at its edges and links the middle; it stops if an anchor occurs other than exactly once in its block, the block is a heading or a quote, the anchor overlaps a link, the body already links the target, a post would get more than 3 new service links, or the block's text changes.
 
 Left out: the "same-visit repair" link the review rejected (not a service name, in a price clause), and two retargets of closing calls to action (`why-your-lights-flicker`, `breaker-trips-ac`) to the troubleshooting page: the copy pass already sends them to `/estimate` (decision D5, `linkFixes` in `cms-templates.json`). The review's nine deferred city CTAs to the homepage are in the copy pass's `linkFixes` under D5 too.
+
+## 13. Removed posts (`removed-posts.json`)
+
+Read by `scripts/migrate/webflow-to-sanity.mjs` before it converts the posts. The two generator posts are left out of the dataset (decision D15, owner 2026-10-19: "remove generator"; the business does not do generator work):
+
+| Post | Redirect (301) | Tier 1 | Search Console, 16 months |
+|---|---|---|---|
+| `/blog-posts/whole-home-standby-generator-installation-phoenix` | `/services/panels` | no | 5 clicks, 1,971 impressions, position 20.5 |
+| `/blog-posts/generator-interlock-in-arizona` | `/services/panels` | no | none recorded |
+
+Both sat under the panels hub (§4) and dealt with equipment wired at the panel, so their URLs go to the panels service page. The redirects are in `web/src/config/redirects.mjs` (`LEGACY_REDIRECTS`, with each post's old `/blog/` path, which `postRedirects()` no longer covers), and the parity gate's allowlist holds each removal under `removed` in `migration/seo-intentional-changes.json`, where `scripts/seo/parity.mjs` reports the 301 as approved and anything else (a 200, another target, a chain) as an error.
+
+The migration stops if a slug is not a published post in the Webflow export, a removal is a Tier 1 page, `removed-posts.json` and the allowlist disagree in either direction, or any remaining document still links to a removed post. `web/scripts/removed-posts.test.mjs` (`pnpm --filter web test`) checks the redirects against both files.
+
+What went with them: their entries in `post-services.json`, `cms-templates.json` (`postImages`) and `internal-links.json`; their twelve copy edits (`slop-posts-a-223` … `-228`, `slop-posts-b-133` … `-138`) stay on record with `skip`. Generator lines elsewhere were taken out by copy edits D15-01 … D15-06 (the monsoon post's backfeed clause, its "Don't DIY Generator Hookups" tip and its "Generator installation & hookup" offer; "a generator" in the permit post's list; the Scottsdale post's backup-generator suggestion). The `/faq` answer that lists generator installs among the services the company doesn't offer stays.

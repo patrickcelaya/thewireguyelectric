@@ -401,7 +401,7 @@
       "page": "*",
       "tag": "faq-a",
       "text": "A whole house surge protector installs at your electrical panel and protects every circuit in your home from voltage spikes. These spikes can come from lightning, utility grid fluctuations, or even your own AC unit cycling on and off. In Arizona, monsoon season is a real threat to electronics and appliances. A surge protector won't stop a direct lightning strike, but it handles the more common surges that quietly damage things like your refrigerator, washer, smart TV, and HVAC system over time. For the cost, which is typically between $300 and $600 installed, it's one of the best investments you can make to protect thousands of dollars worth of equipment. Read our full guide: Is Whole-House Surge Protection Necessary in My Home?",
-      "reason": "Launch copy pass (2026-10-17): slop-pages-066 in migration/content-edits/pages.json. Sales superlative \"one of the best investments you can make\". The price stays (FAQ answer)."
+      "reason": "Launch copy pass (2026-10-17): slop-pages-066 in migration/content-edits/pages.json. Sales superlative \"one of the best investments you can make\". The price stays (FAQ answer). Decision D16 (owner, 2026-10-19: \"Always go with the higher amounts\"; D16-01 in migration/content-edits/decisions.json): the price reads $400–$800, as both surge posts say."
     },
     {
       "page": "*",
@@ -564,6 +564,18 @@
       "tag": "faq-a",
       "text": "Yes. The Wire Guy Electric is fully licensed, bonded, and insured in the state of Arizona. Our ROC (Registrar of Contractors) license number is 365306, which you can verify at azroc.gov. This protects you as the homeowner because it means our work is backed by the state's contractor recovery fund, and our insurance covers any accidents or damage on the job. Never hire an electrician who can't provide proof of licensing and insurance. Learn more about us.",
       "reason": "Decision D13 (citations R6, amended): \"which you can verify at azroc.gov\" reads \"roc.az.gov\", the Registrar of Contractors' own host, the site the ROC link in \"How do I choose a good electrician in Phoenix?\" now goes to (D13-01 in migration/content-edits/decisions.json). Every other word and link is unchanged."
+    },
+    {
+      "page": "*",
+      "tag": "faq-a",
+      "text": "Yes, we do. We offer a 2-year warranty on services we provide. Contact us for full warranty details.",
+      "reason": "Decision D17 (owner, 2026-10-19: \"lets not talk about warranty but just say work comes w/ a warranty\"; D17-01 in migration/content-edits/decisions.json): the answer reads \"Yes. Our work comes with a warranty.\", with no term or conditions; the \"Contact us\" link goes with its sentence (see links)."
+    },
+    {
+      "page": "faq",
+      "tag": "faq-a",
+      "text": "For a typical installation of six recessed LED can lights in an existing room, most homeowners in the Phoenix valley can expect to pay somewhere between $1,050 and $1,750. That includes the fixtures, wiring, switches, and labor. The price can vary depending on how accessible your ceiling is, whether we need to add new switch locations, and how many lights you want. We have a detailed recessed lighting cost guide on our blog with more specifics for Arizona homeowners.",
+      "reason": "Decision D16 (owner, 2026-10-19: \"Always go with the higher amounts\"; D16-02 in migration/content-edits/decisions.json): the price reads $1,400–$2,200, the figure the recessed lighting cost guide gives for six lights on a finished ceiling. Every other word stays."
     }
   ],
   "links": [
@@ -634,6 +646,18 @@
       "text": "Arizona Registrar of Contractors (ROC) website",
       "href": "https://azroc.gov",
       "reason": "Decision D13 (citations R6, amended): the link keeps its words and goes to https://roc.az.gov/, the Registrar's own host (www.azroc.gov 301s to it); linkFixes in migration/content-data/cms-templates.json."
+    },
+    {
+      "page": "faq",
+      "text": "Contact us",
+      "href": "/contact-us",
+      "reason": "Decision D17 (D17-01 in migration/content-edits/decisions.json): the warranty answer's \"Contact us for full warranty details\" is gone, link included; /contact-us stays linked from the page's other answers and its CTA band."
+    },
+    {
+      "page": "our-team",
+      "text": "Contact us",
+      "href": "/contact-us",
+      "reason": "Decision D17 (D17-01 in migration/content-edits/decisions.json): the warranty answer's \"Contact us for full warranty details\" is gone, link included; /contact-us stays linked from the page's other answers and its CTA band."
     }
   ],
   "changes": [

@@ -3827,7 +3827,8 @@
       "tier": "normal",
       "verdict": "amend",
       "reason": "filler transition",
-      "verifier_note": "deleting the sentence outright leaves no \"Arizona\" in the intro of a post titled \"...Generator Interlock in Arizona?\". This keeps the geo keyword in the first 100 words without the filler, and it matches what the sections cover (NEC 702, APS/SRP rules, the cities)."
+      "verifier_note": "deleting the sentence outright leaves no \"Arizona\" in the intro of a post titled \"...Generator Interlock in Arizona?\". This keeps the geo keyword in the first 100 words without the filler, and it matches what the sections cover (NEC 702, APS/SRP rules, the cities).",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-a-224",
@@ -3844,7 +3845,8 @@
       "new_text": "",
       "tier": "normal",
       "verdict": "accept",
-      "reason": "filler one-liner (removes the whole block)"
+      "reason": "filler one-liner (removes the whole block)",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-a-225",
@@ -3862,7 +3864,8 @@
       "tier": "normal",
       "verdict": "amend",
       "reason": "\"Why This Matters\" heading; now names the section",
-      "verifier_note": "keeps the geo keyword that the original H2 carried. Keep the strong mark on the whole heading."
+      "verifier_note": "keeps the geo keyword that the original H2 carried. Keep the strong mark on the whole heading.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-a-226",
@@ -3880,7 +3883,8 @@
       "tier": "normal",
       "verdict": "amend",
       "reason": "\"seamless\"",
-      "verifier_note": "the proposed text read \"...automatic transfer switch switches your home over...\", which says \"switch\" twice."
+      "verifier_note": "the proposed text read \"...automatic transfer switch switches your home over...\", which says \"switch\" twice.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-a-227",
@@ -3898,7 +3902,8 @@
       "tier": "normal",
       "verdict": "accept",
       "reason": "rhetorical stock CTA heading",
-      "verifier_note": "apply: the whole heading is bold in the source; keep it bold."
+      "verifier_note": "apply: the whole heading is bold in the source; keep it bold.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-a-228",
@@ -3916,7 +3921,8 @@
       "tier": "normal",
       "verdict": "accept",
       "reason": "stock \"Don't risk\" opener + padding triplet; CTA kept",
-      "verifier_note": "apply: keep the strong mark on \"The Wire Guy Electric\"."
+      "verifier_note": "apply: keep the strong mark on \"The Wire Guy Electric\".",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-a-229",

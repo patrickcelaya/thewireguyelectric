@@ -1,5 +1,5 @@
 {
-  "$comment": "Approved title, meta description and H1 changes for the parity gate (scripts/seo/parity.mjs reads this file). Each value is the exact new text; any other change to a title, meta or H1 is still an error. Source: the verified titles-meta review of 2026-10-17 (70 changes on 42 pages: 60 accepted, 4 amended, 6 added by the verifier; the DIY meta was rejected and is not here), with \"380+\" read as \"560+\" in the four metas that state the Google review count (decision D7: the Mesa profile shows 567 reviews on 2026-10-17). The values ship through the content pipeline (migration/content-data/titles-meta.json, scripts/migrate/content/titles-meta.mjs), which checks that every value it sets equals the one here. notDeployed lists the approved changes held back on purpose: the gate reports them as pending, and as an error if one ships early. frozenTitleAndH1: the 13 Tier 1 pages, whose title and H1 can never be approved for a change. Empty changes after the post-launch re-baseline.",
+  "$comment": "Approved title, meta description and H1 changes for the parity gate (scripts/seo/parity.mjs reads this file). Each value is the exact new text; any other change to a title, meta or H1 is still an error. Source: the verified titles-meta review of 2026-10-17 (70 changes on 42 pages: 60 accepted, 4 amended, 6 added by the verifier; the DIY meta was rejected and is not here), with \"380+\" read as \"560+\" in the four metas that state the Google review count (decision D7: the Mesa profile shows 567 reviews on 2026-10-17). The values ship through the content pipeline (migration/content-data/titles-meta.json, scripts/migrate/content/titles-meta.mjs), which checks that every value it sets equals the one here. notDeployed lists the approved changes held back on purpose: the gate reports them as pending, and as an error if one ships early. frozenTitleAndH1: the 13 Tier 1 pages, whose title and H1 can never be approved for a change. Empty changes after the post-launch re-baseline. removed: live pages taken off the site on purpose (decision D15, 2026-10-19: the generator posts), each with the page it now 301s to in one hop; the gate reports the redirect as approved, and as an error if the page still answers 200, redirects elsewhere or chains. The content pipeline (migration/content-data/removed-posts.json) checks that it holds the same paths and redirects. A Tier 1 page can never be removed.",
   "frozenTitleAndH1": [
     "/",
     "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
@@ -176,6 +176,18 @@
     },
     "/services/custom-lighting": {
       "meta": "Custom cabinet lighting cut and soldered to fit, plus recessed cans, chandeliers, pendants and cove lighting, hardwired with no visible wiring."
+    }
+  },
+  "removed": {
+    "/blog-posts/whole-home-standby-generator-installation-phoenix": {
+      "redirect": "/services/panels",
+      "tier1": false,
+      "reason": "D15 (owner, 2026-10-19): \"remove generator\". Standby generator installation, which the business does not do."
+    },
+    "/blog-posts/generator-interlock-in-arizona": {
+      "redirect": "/services/panels",
+      "tier1": false,
+      "reason": "D15 (owner, 2026-10-19): \"remove generator\". Generator interlock installation, which the business does not do."
     }
   }
 }

@@ -383,9 +383,33 @@ for (const it of items(await readJson('migration/webflow-cms/locations.json'))) 
   })
 }
 
+// Posts removed on purpose (migration/content-data/removed-posts.json, README.md section 13 there): left out of the
+// dataset, each 301ing to the page the parity allowlist approved. The two files must agree, every slug must be a
+// published post, and no remaining document may link to a removed post (checked after the content modules).
+const removedPosts = await readJson('migration/content-data/removed-posts.json')
+const removedSlugs = new Set(removedPosts.posts.map((r) => r.slug))
+{
+  const fail = (msg) => {
+    console.error(`migration/content-data/removed-posts.json: ${msg}`)
+    process.exit(1)
+  }
+  const allowed = (await readJson('migration/seo-intentional-changes.json')).removed ?? {}
+  const frozen = new Set((await readJson('migration/seo-intentional-changes.json')).frozenTitleAndH1 ?? [])
+  const published = new Set(items(await readJson('migration/webflow-cms/blog-posts.json')).filter((it) => !it.isArchived && !it.isDraft).map((it) => it.fieldData.slug))
+  if (removedSlugs.size !== removedPosts.posts.length) fail('a slug is listed twice')
+  for (const {slug: s, redirect} of removedPosts.posts) {
+    const path = `/blog-posts/${s}`
+    if (!published.has(s)) fail(`${s} is not a published post in the Webflow export`)
+    if (frozen.has(path)) fail(`${path} is a Tier 1 page and can never be removed`)
+    if (!redirect?.startsWith('/') || removedSlugs.has(redirect.replace('/blog-posts/', ''))) fail(`${s}: redirect must be a live page, not "${redirect}"`)
+    if (allowed[path]?.redirect !== redirect) fail(`${path}: migration/seo-intentional-changes.json removed says ${allowed[path]?.redirect ?? 'nothing'}, not ${redirect}`)
+  }
+  for (const path of Object.keys(allowed)) if (!removedSlugs.has(path.replace('/blog-posts/', ''))) fail(`${path} is removed in migration/seo-intentional-changes.json but not listed here`)
+}
+
 // Blog posts (archived posts were never live; they get redirects instead)
 for (const it of items(await readJson('migration/webflow-cms/blog-posts.json'))) {
-  if (it.isArchived || it.isDraft) continue
+  if (it.isArchived || it.isDraft || removedSlugs.has(it.fieldData.slug)) continue
   const f = it.fieldData
   const path = `/blog-posts/${f.slug}`
   push({
@@ -550,6 +574,26 @@ const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, l
 for (const step of ['fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'content-edits:late', 'cms-templates:posts', 'internal-links', 'titles-meta', 'content-edits:final']) {
   const [name, stage] = step.split(':')
   await (await import(`./content/${name}.mjs`)).default(ctx, stage)
+}
+
+// No remaining document may link to a removed post (its URL is a redirect now): fix the link in the content data.
+{
+  const gone = new Set([...removedSlugs].flatMap((s) => [`/blog-posts/${s}`, `/blog/${s}`]))
+  const hits = []
+  const look = (node, from) => {
+    if (Array.isArray(node)) return node.forEach((n) => look(n, from))
+    if (!node || typeof node !== 'object') return
+    for (const [k, v] of Object.entries(node)) {
+      if (typeof v === 'string' && ['href', 'url', 'path'].includes(k) && gone.has(v.replace(/^https?:\/\/(www\.)?thewireguyelectric\.com/i, '').split(/[?#]/)[0].replace(/\/+$/, ''))) hits.push(`${from}: ${v}`)
+      else look(v, from)
+    }
+  }
+  docs.forEach((d) => look(d, d.slug?.current ?? d._id))
+  if (hits.length) {
+    console.error('Links to removed posts (migration/content-data/removed-posts.json):', hits)
+    process.exit(1)
+  }
+  report.removedPosts = [...removedSlugs]
 }
 
 // Self-contained images: every image the export gave as a Webflow URL (image@…) becomes a reference

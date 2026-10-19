@@ -118,7 +118,7 @@ export const trustBarSection = defineArrayMember({
   type: 'object',
   icon: CheckmarkCircleIcon,
   description:
-    'A row of short, verifiable facts: rating, license, years in business, warranty. Leave empty for the standard strip built from Site settings. Only state facts the business can back up.',
+    'A row of short, verifiable facts: rating, license, years in business. Leave empty for the standard strip built from Site settings. Only state facts the business can back up.',
   fields: [
     defineField({
       name: 'items',
@@ -142,13 +142,13 @@ export const trustBarSection = defineArrayMember({
             defineField({
               name: 'value',
               type: 'string',
-              description: 'The short emphasized part, e.g. "2-year" or "100+".',
+              description: 'The short emphasized part, e.g. "100+".',
               hidden: ({parent}) => (parent as {fact?: string} | undefined)?.fact !== 'custom',
             }),
             defineField({
               name: 'label',
               type: 'string',
-              description: 'The rest, e.g. "warranty on services we provide". For facts from Site settings, optional wording next to the value (e.g. "Licensed, bonded & insured").',
+              description: 'The rest, e.g. "Arizona businesses". Never a warranty term (owner, D17). For facts from Site settings, optional wording next to the value (e.g. "Licensed, bonded & insured").',
             }),
             defineField({name: 'href', title: 'Link', type: 'string', description: 'Optional. Rating and license link to the reviews and ROC lookup automatically.'}),
             iconField(),

@@ -1,5 +1,5 @@
 {
-  "about": "Copy changes the lead decided on (FIX_BRIEF, 2026-10-17): D1 homepage and shared headings, D6 minimal factual corrections, D5's split of the one-block Ahwatukee body, D7's review count in the business description and D13's ROC lookup site. Same format as the slop files; these run after them, so an edit here may change a slop edit's new text.",
+  "about": "Copy changes the lead decided on (FIX_BRIEF, 2026-10-17): D1 homepage and shared headings, D6 minimal factual corrections, D5's split of the one-block Ahwatukee body, D7's review count in the business description, D13's ROC lookup site, and the owner's decisions of 2026-10-19: D15 generator mentions out, D16 every conflicting price set to the higher figure, D17 one plain warranty line. Same format as the slop files; these run after them, so an edit here may change a slop edit's new text.",
   "edits": [
     {
       "id": "D1-01",
@@ -153,6 +153,178 @@
       "new_text": "which you can verify at roc.az.gov",
       "tier": "normal",
       "reason": "D13 (citations R6, amended): roc.az.gov is the Registrar of Contractors' own host (www.azroc.gov 301s to it). The link in \"How do I choose a good electrician in Phoenix?\" now points there (linkFixes in migration/content-data/cms-templates.json), so this answer names the same site."
+    },
+    {
+      "id": "D15-01",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {"kind": "ndjson", "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578", "field": "body", "block_key": "k00r"},
+      "old_text": "leaving homes with partial power or dangerous backfeed issues if a generator is installed incorrectly.",
+      "new_text": "leaving homes with partial power.",
+      "tier": "normal",
+      "reason": "D15 (owner, 2026-10-19: \"remove generator\"): the business does not do generator work. The clause about generators installed wrongly goes; the downed-lines point stays."
+    },
+    {
+      "id": "D15-02",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {"kind": "ndjson", "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578", "field": "body", "block_key": "k02j"},
+      "old_text": "Don’t DIY Generator Hookups",
+      "new_text": "",
+      "tier": "normal",
+      "reason": "D15 (owner, 2026-10-19: \"remove generator\"): the business does not do generator work. The \"Don’t DIY Generator Hookups\" tip (heading and text, D15-03) told readers to have a pro install their generator; the other storm-protection tips stay."
+    },
+    {
+      "id": "D15-03",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {"kind": "ndjson", "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578", "field": "body", "block_key": "k02m"},
+      "old_text": "If you’re using a generator, improper wiring can backfeed into the grid and cause deadly hazards. Always have a pro install it.",
+      "new_text": "",
+      "tier": "normal",
+      "reason": "D15 (owner, 2026-10-19: \"remove generator\"): the business does not do generator work. The text under the heading D15-02 removes."
+    },
+    {
+      "id": "D15-04",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {"kind": "ndjson", "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578", "field": "body", "block_key": "k033"},
+      "old_text": "Generator installation & hookup",
+      "new_text": "",
+      "tier": "normal",
+      "reason": "D15 (owner, 2026-10-19: \"remove generator\"): the business does not do generator work. \"Generator installation & hookup\" is taken off the \"We offer\" list."
+    },
+    {
+      "id": "D15-05",
+      "url": "/blog-posts/permit-for-electrical-work",
+      "target": {"kind": "ndjson", "doc_id": "9715870e-cbfc-44d3-bf32-be75eeb0a484", "field": "body", "block_key": "k00s"},
+      "old_text": "Installing a generator or EV charger",
+      "new_text": "Installing an EV charger",
+      "tier": "tier1",
+      "reason": "D15 (owner, 2026-10-19: \"remove generator\"): the business does not do generator work. The list of work that needs a permit names only work the business does. Tier 1 post: body only; its title, meta and H1 do not change."
+    },
+    {
+      "id": "D15-06",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {"kind": "ndjson", "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e", "field": "body", "block_key": "k01j"},
+      "old_text": "Outages are frequent too, and a backup generator can carry you through them.",
+      "new_text": "Outages are frequent too.",
+      "tier": "normal",
+      "reason": "D15 (owner, 2026-10-19: \"remove generator\"): the business does not do generator work. The backup-generator suggestion goes; the outage fact under \"Power Surges and Outages\" stays. Applies to slop-posts-a-090's new text."
+    },
+    {
+      "id": "D16-01",
+      "url": "/faq",
+      "target": {"kind": "ndjson", "doc_id": "ca05d3be-77f2-49c1-8c8e-2067ed6f9caa", "field": "answer"},
+      "old_text": "between $300 and $600 installed",
+      "new_text": "between $400 and $800 installed",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): whole-house surge protector, installed. /faq said $300–$600; /blog-posts/whole-house-surge-protector-guide-arizona and /blog-posts/is-whole-house-surge-protection-necessary say $400–$800, so the FAQ takes $400–$800. Applies to slop-pages-066's new text."
+    },
+    {
+      "id": "D16-02",
+      "url": "/faq",
+      "target": {"kind": "ndjson", "doc_id": "9446f6a2-ce52-423a-a05d-5df98964ddd4", "field": "answer"},
+      "old_text": "between $1,050 and $1,750",
+      "new_text": "between $1,400 and $2,200",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): six recessed LED lights in an existing (finished) ceiling, all in. /faq said $1,050–$1,750; /blog-posts/recessed-lighting-installation-phoenix says $1,400–$2,200 for six lights on a finished ceiling, so the FAQ takes $1,400–$2,200. The recessed service's priceRange follows (D16-10)."
+    },
+    {
+      "id": "D16-03",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {"kind": "ndjson", "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8", "field": "body", "block_key": "k016"},
+      "old_text": "Costs $600–$2,500, including installation.",
+      "new_text": "Costs $750–$3,500, including installation.",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): a Level 2 home charger, installed. This post said $600–$2,500; /faq and the EV service's priceRange say $750–$3,500. The installation-only figure ($400–$1,700) and the unit price ($160–$2,000) are parts of the total, not the same price, and stay."
+    },
+    {
+      "id": "D16-04",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {"kind": "ndjson", "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8", "field": "body[11].rows[5].cells[2]"},
+      "old_text": "$600 – $2,500",
+      "new_text": "$750 – $3,500",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): the \"Typical Cost Range\" cell for Level 2 in the Technical Specifications table, as D16-03."
+    },
+    {
+      "id": "D16-05",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {"kind": "ndjson", "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8", "field": "body", "block_key": "k013"},
+      "old_text": "Costs $80–$180,",
+      "new_text": "Costs $300–$600,",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): a Level 1 charger. The post said $80–$180 in two places and $300–$600 in its Technical Specifications table (\"Typical Cost Range\"); both now read $300–$600."
+    },
+    {
+      "id": "D16-06",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {"kind": "ndjson", "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8", "field": "body", "block_key": "k04p"},
+      "old_text": "between $80 and $180",
+      "new_text": "between $300 and $600",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): the Cost Overview line for Level 1, as D16-05."
+    },
+    {
+      "id": "D16-07",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {"kind": "ndjson", "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8", "field": "body", "block_key": "k04s"},
+      "old_text": "expect to pay $1,800 to $2,500.",
+      "new_text": "expect to pay $5,200 to $6,500.",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): a 200-amp panel. This post said $1,800–$2,500; /faq, the panels service priceRange and every panel post say $5,200–$6,500 for a standard 200-amp panel (owner question 4 in migration/content-edits/README.md)."
+    },
+    {
+      "id": "D16-08",
+      "url": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "target": {"kind": "ndjson", "doc_id": "19572e8e-6607-44bc-a1ed-cf9c9f7f4f77", "field": "body", "block_key": "k01f"},
+      "old_text": "Budget $150 to $300 for labor.",
+      "new_text": "Budget $150 to $350 for labor.",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): installing a fan on existing wiring and a fan-rated box. The same post says $150–$350 under \"The Short Answer\"; the replacement section now matches it."
+    },
+    {
+      "id": "D16-09",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {"kind": "ndjson", "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7", "field": "body", "block_key": "k03f"},
+      "old_text": "typically $2,500 to $5,000 for a whole house",
+      "new_text": "typically $3,000 to $7,000 for a whole house",
+      "tier": "tier1",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): whole-house aluminum wiring remediation with AlumiConn connectors. This post said $2,500–$5,000; /blog-posts/aluminum-wiring-older-phoenix-homes says $3,000–$7,000 for the same method. Tier 1 post: body only."
+    },
+    {
+      "id": "D16-10",
+      "url": "/services/recessed-lights-installation",
+      "target": {"kind": "file", "file": "migration/content-data/service-relations.json", "field": "services.recessed-lights-installation.priceRange"},
+      "old_text": "low 1050, high 1750",
+      "new_text": "low 1400, high 2200",
+      "tier": "normal",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): the recessed service's priceRange (structured data only; service pages show no price) follows the FAQ figure D16-02 sets."
+    },
+    {
+      "id": "D16-11",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {"kind": "ndjson", "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7", "field": "body", "block_key": "k00p"},
+      "old_text": "a full rewire costs between $8,000 and $15,000.",
+      "new_text": "a full rewire costs between $12,000 and $25,000.",
+      "tier": "tier1",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): a full house rewire. This post said $8,000–$15,000 for a typical single-story home; /blog-posts/aluminum-wiring-older-phoenix-homes gives $12,000–$25,000+ and calls it the same as any whole-home rewire, pointing to this guide. The size breakdown below it is left as published (no figures were invented); the owner is asked to confirm it. Tier 1 post: body only."
+    },
+    {
+      "id": "D17-01",
+      "url": "/faq",
+      "target": {"kind": "ndjson", "doc_id": "181a31e5-a638-40c6-8f5f-12cebbc05c60", "field": "answer"},
+      "old_text": "Yes, we do. We offer a 2-year warranty on services we provide. Contact us for full warranty details.",
+      "new_text": "Yes. Our work comes with a warranty.",
+      "tier": "normal",
+      "reason": "D17 (owner, 2026-10-19: \"lets not talk about warranty but just say work comes w/ a warranty\"): the answer says the work comes with a warranty and nothing more: no term, no conditions, no \"contact us for details\" (its \"Contact us\" link goes with the sentence). The question stays; the answer shows on /faq and /our-team.",
+      "drop_links": ["Contact us"]
+    },
+    {
+      "id": "D17-02",
+      "url": "/",
+      "target": {"kind": "ndjson", "doc_id": "siteSettings", "field": "valueProps[2].text"},
+      "old_text": "and we'll always come back if you have any issues.",
+      "new_text": "and we'll always come back if you have any issues. Our work comes with a warranty.",
+      "tier": "normal",
+      "reason": "D17 (owner, 2026-10-19: \"lets not talk about warranty but just say work comes w/ a warranty\"): the homepage card \"We come back if anything's wrong\" (Site settings → value props) gains the one plain line. No term or conditions."
     }
   ],
   "splits": [

@@ -13,6 +13,8 @@
 //     the spans: kept words keep their marks, new words take the bold/italic of the words they replace,
 //     linked words (links, team mentions) never change, and a block the edits leave empty is dropped.
 //     `format` sets the bold/italic of the new words where the verifier asked for a different layout.
+//     `drop_links` names linked words the edit may delete outright (never reword) where the decision removes the
+//     sentence they sit in (D17: the warranty answer loses its "Contact us for full warranty details").
 // An edit with `skip` stays in the list with its reason but is not applied. Edits of kind "file" were made in
 // the file itself (page-sections.mjs, the templates, content-data/); they are listed so the record is whole.
 //
@@ -164,7 +166,7 @@ function applyEdit(doc, e, emptied, fail) {
   if (!e.target.block_key && blockNamed && block !== node) fail(`found in another block than ${e.target.field}`)
   const text = blockText(block)
   const start = text.indexOf(find)
-  replaceInBlock(block, start, start + find.length, replace, e.format, fail)
+  replaceInBlock(block, start, start + find.length, replace, e.format, fail, e.drop_links ?? [])
   const after = blockText(block)
   if (!after.trim()) emptied.set(block, field)
   else if (slips(after) > slips(text)) fail(`leaves a spacing slip in block ${block._key}: "${after}"`)
@@ -245,7 +247,7 @@ function lcs(a, b) {
   return pairs
 }
 
-function replaceInBlock(block, start, end, replace, format, fail) {
+function replaceInBlock(block, start, end, replace, format, fail, dropLinks = []) {
   const annotations = new Set((block.markDefs ?? []).map((m) => m._key))
   const isLink = (m) => annotations.has(m)
   const chars = charsOf(block)
@@ -256,10 +258,13 @@ function replaceInBlock(block, start, end, replace, format, fail) {
   if (end < chars.length && chars[end].marks.some((m) => isLink(m) && inside.at(-1)?.marks.includes(m))) fail('old_text ends inside linked words')
 
   const oldTokens = tokensOf(inside, isLink)
+  // linked runs the edit deletes on purpose (`drop_links`): each must be named, and must not reappear in new_text
+  const dropped = new Set(oldTokens.filter((t) => t.link && dropLinks.includes(t.text) && !replace.includes(t.text)))
+  for (const name of dropLinks) if (![...dropped].some((t) => t.text === name)) fail(`drop_links: "${name}" is not linked words this edit deletes`)
   // the new text, with each linked run of the old text found in order as one token
   const newTokens = []
   let at = 0
-  for (const run of oldTokens.filter((t) => t.link)) {
+  for (const run of oldTokens.filter((t) => t.link && !dropped.has(t))) {
     const i = replace.indexOf(run.text, at)
     if (i < 0) fail(`the linked words "${run.text}" are not kept word for word`)
     for (const m of replace.slice(at, i).matchAll(TOKEN)) newTokens.push({text: m[0]})
@@ -270,7 +275,7 @@ function replaceInBlock(block, start, end, replace, format, fail) {
   if (newTokens.map((t) => t.text).join('') !== replace) fail('new_text did not tokenize back to itself')
 
   const pairs = lcs(oldTokens, newTokens)
-  for (const t of oldTokens.filter((t) => t.link)) if (!pairs.some(([i]) => oldTokens[i] === t)) fail(`the linked words "${t.text}" would change`)
+  for (const t of oldTokens.filter((t) => t.link && !dropped.has(t))) if (!pairs.some(([i]) => oldTokens[i] === t)) fail(`the linked words "${t.text}" would change`)
 
   // Walk the alignment: kept tokens keep their characters; new tokens take the marks of what they replace.
   const out = []
@@ -317,6 +322,11 @@ function replaceInBlock(block, start, end, replace, format, fail) {
     }
   }
   block.children = spansOf(block, [...chars.slice(0, start), ...out, ...chars.slice(end)])
+  // a link the edit deleted leaves no annotation behind
+  if (dropped.size) {
+    const used = new Set(block.children.flatMap((c) => c.marks ?? []))
+    block.markDefs = (block.markDefs ?? []).filter((m) => used.has(m._key))
+  }
 }
 
 // ---------------------------------------------------------------------------

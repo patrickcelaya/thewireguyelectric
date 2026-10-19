@@ -315,31 +315,6 @@
       "to": "/"
     },
     {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/services/panels",
-      "to": "/services/panels"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/services/electrical-troubleshooting",
-      "to": "/services/electrical-troubleshooting"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/locations/phoenix",
-      "to": "/locations/phoenix"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
-      "to": "/locations/scottsdale"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/locations/mesa",
-      "to": "/"
-    },
-    {
       "doc": "/blog-posts/dryer-outlet-for-ev",
       "from": "https://www.thewireguyelectric.com/services/ev-charger-installation",
       "to": "/services/ev-charger-installation"
@@ -597,12 +572,12 @@
       "priced": [
         "ev-charger-installation 750-3500",
         "panels 5200-6500",
-        "recessed-lights-installation 1050-1750"
+        "recessed-lights-installation 1400-2200"
       ],
       "withRelatedPosts": 21
     },
     "posts": {
-      "mapped": 53,
+      "mapped": 51,
       "unmapped": []
     },
     "siteSettings": [
@@ -925,7 +900,6 @@
         "ac-keeps-tripping-breaker-arizona",
         "ev-charger-hardwired-vs-plug-in-phoenix",
         "aluminum-wiring-older-phoenix-homes",
-        "whole-home-standby-generator-installation-phoenix",
         "hot-tub-electrical-installation-cost-arizona",
         "landscape-lighting-installation-cost-phoenix",
         "cost-to-rewire-house-arizona",
@@ -959,7 +933,6 @@
         "how-to-wire-a-gfci-outlet",
         "why-does-my-breaker-keep-tripping",
         "bathroom-or-garage-outlets-not-working-heres-how-to-fix",
-        "generator-interlock-in-arizona",
         "dryer-outlet-for-ev",
         "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
         "phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
@@ -1067,9 +1040,9 @@
   },
   "internalLinks": {
     "source": "migration/content-data/internal-links.json",
-    "added": 124,
-    "documents": 59,
-    "moved": 1
+    "added": 123,
+    "documents": 58,
+    "moved": 0
   },
   "titlesMeta": {
     "source": "migration/content-data/titles-meta.json",
@@ -1092,22 +1065,34 @@
     "applied": {
       "pages": 64,
       "cities": 58,
-      "decisions": 17,
+      "decisions": 35,
       "services": 95,
-      "posts-a": 257,
-      "posts-b": 185
+      "posts-a": 251,
+      "posts-b": 179
     },
     "splits": [
       "D5-01"
     ],
-    "blocksDropped": 111,
+    "blocksDropped": 112,
     "skipped": [
       "slop-pages-022",
       "slop-services-065",
       "slop-services-066",
       "slop-services-067",
       "slop-services-084",
-      "slop-services-085"
+      "slop-services-085",
+      "slop-posts-a-223",
+      "slop-posts-a-224",
+      "slop-posts-a-225",
+      "slop-posts-a-226",
+      "slop-posts-a-227",
+      "slop-posts-a-228",
+      "slop-posts-b-133",
+      "slop-posts-b-134",
+      "slop-posts-b-135",
+      "slop-posts-b-136",
+      "slop-posts-b-137",
+      "slop-posts-b-138"
     ],
     "inFiles": [
       "slop-pages-006 scripts/migrate/content/page-sections.mjs",
@@ -1130,12 +1115,17 @@
       "slop-services-082 migration/content-data/cms-templates.json",
       "slop-services-083 migration/content-data/cms-templates.json",
       "slop-services-086 web/src/pages/services/[slug].astro",
-      "slop-cities-059 web/src/pages/locations/[slug].astro"
+      "slop-cities-059 web/src/pages/locations/[slug].astro",
+      "D16-10 migration/content-data/service-relations.json"
     ]
   },
+  "removedPosts": [
+    "whole-home-standby-generator-installation-phoenix",
+    "generator-interlock-in-arizona"
+  ],
   "legacyImages": {
-    "referenced": 64,
-    "assetDocumentsAdded": 61
+    "referenced": 62,
+    "assetDocumentsAdded": 59
   },
   "contentDates": []
 }

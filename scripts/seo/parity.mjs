@@ -38,6 +38,9 @@ const FROZEN = new Set(allowFile.frozenTitleAndH1 ?? [])
 // then, and an error if one ships early. Every other approved change must be live.
 const NOT_DEPLOYED = allowFile.notDeployed ?? {}
 const FIELDS = {title: 'title', meta: 'description', h1: 'h1'}
+// Live pages taken off the site on purpose ({path: {redirect, reason}}, e.g. the generator posts, decision D15):
+// each must answer a 301 in one hop to its approved page, which must be live.
+const REMOVED = allowFile.removed ?? {}
 
 // Schema types removed on purpose (see docs/SEO_STRATEGY.md).
 const INTENTIONALLY_REMOVED_TYPES = new Set(['AggregateRating'])
@@ -65,6 +68,16 @@ for (const [path, before] of Object.entries(baseline.pages)) {
   }
   if (!after) {
     add('error', path, 'missing', 'not crawled on the new site')
+    continue
+  }
+  if (REMOVED[path]) {
+    const want = REMOVED[path].redirect
+    const hops = after.redirectChain ?? []
+    const target = hops.length ? new URL(after.finalUrl).pathname : undefined
+    if (hops.length !== 1 || hops[0].status !== 301) add('error', path, 'removed', `removed on purpose, so it must 301 in one hop to ${want}; got ${hops.length ? hops.map((h) => `${h.status} ${h.from} -> ${h.to}`).join(' | ') : `status ${after.status}`}`)
+    else if (target !== want) add('error', path, 'removed', `removed on purpose, but redirects to ${target}, not the approved ${want}`)
+    else if (after.status !== 200) add('error', path, 'removed', `redirects to ${want}, which returns ${after.status}`)
+    else add('info', path, 'removed', `approved removal: 301 to ${want}`)
     continue
   }
   if (after.redirectChain?.length) {
@@ -126,6 +139,13 @@ for (const [path, fields] of Object.entries(allow)) {
   if (!b || b.status !== 200 || /noindex/i.test(b.metaRobots ?? '')) add('error', path, 'allowlist', `approved ${Object.keys(fields).join(', ')} for a URL that is not an indexable page in the baseline`)
   for (const f of Object.keys(fields)) if (!FIELDS[f]) add('error', path, 'allowlist', `unknown field "${f}" (use title, meta or h1)`)
   for (const f of ['title', 'h1']) if (fields[f] !== undefined && FROZEN.has(path)) add('error', path, 'allowlist', `${f} of a Tier 1 page is frozen and cannot be approved`)
+}
+for (const [path, r] of Object.entries(REMOVED)) {
+  const b = baseline.pages[path]
+  if (!b || b.status !== 200) add('error', path, 'allowlist', 'removal approved for a URL that is not a live page in the baseline')
+  if (FROZEN.has(path)) add('error', path, 'allowlist', 'a Tier 1 page can never be removed')
+  if (allow[path]) add('error', path, 'allowlist', 'removed, and also approved for a title, meta or H1 change')
+  if (!r?.redirect?.startsWith('/') || REMOVED[r.redirect]) add('error', path, 'allowlist', `removal needs a redirect to a live page, not "${r?.redirect}"`)
 }
 for (const path of Object.keys(NOT_DEPLOYED)) if (!allow[path]) add('error', path, 'allowlist', 'held back in notDeployed, but no change is approved for it')
 

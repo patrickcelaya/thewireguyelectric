@@ -152,7 +152,7 @@
 .facts dd{margin-top:6px;font-size:var(--fs-small);line-height:1.55;color:var(--text)}
 .facts dd b{display:block;font:700 1.125rem/1.3 var(--font-display);letter-spacing:-.012em;color:var(--ink);margin-bottom:2px}
 .facts--grid{margin-top:0}
-/* an odd count (three standard facts on most services) leaves no empty cell: the last fact spans both columns */
+/* an odd count (Panels: its four own facts and the warranty line) leaves no empty cell: the last fact spans both columns */
 @media (min-width:900px){.facts>div:last-child:nth-child(odd){grid-column:1 / -1}}
 .glance__line{margin-top:26px;font-size:var(--fs-small);color:var(--text);line-height:1.7}
 .glance__line b{color:var(--ink)}

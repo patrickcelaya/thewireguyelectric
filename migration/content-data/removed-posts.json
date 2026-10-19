@@ -1,0 +1,18 @@
+{
+  "$comment": "Posts taken off the site on purpose, applied by scripts/migrate/webflow-to-sanity.mjs (README.md section 13): the migration leaves each one out of the dataset, and stops if a slug is not a published post in the Webflow export, if migration/seo-intentional-changes.json `removed` does not hold the same paths and redirects, or if any remaining document still links to a removed post. Each removed URL 301s in one hop to `redirect` (web/src/config/redirects.mjs, LEGACY_REDIRECTS), and so does its old /blog/ path. Neither post is Tier 1.",
+  "decision": "D15 (owner, 2026-10-19): \"remove generator\". The business does not do generator work.",
+  "posts": [
+    {
+      "slug": "whole-home-standby-generator-installation-phoenix",
+      "redirect": "/services/panels",
+      "tier1": false,
+      "reason": "Standby generator sizing, cost and installation: generator work the business does not do. The post sat under the panels hub (post-services.json), so its URL goes to the panels service page. Search Console, 16 months: 5 clicks, 1,971 impressions, average position 20.5."
+    },
+    {
+      "slug": "generator-interlock-in-arizona",
+      "redirect": "/services/panels",
+      "tier1": false,
+      "reason": "Generator interlock kits and transfer switches at the panel, ending in an offer to install one: generator work the business does not do. Its subject is panel equipment and it sat under the panels hub, so its URL goes to the panels service page. Search Console, 16 months: no clicks or impressions recorded."
+    }
+  ]
+}

@@ -24,11 +24,12 @@
     },
     "recessed-lights-installation": {
       "priceRange": {
-        "low": 1050,
-        "high": 1750,
-        "note": "Typical installation of six recessed LED can lights in an existing room, including fixtures, wiring, switches and labor. Published on /faq, Oct 2026.",
+        "low": 1400,
+        "high": 2200,
+        "note": "Typical installation of six recessed LED can lights in an existing (finished) ceiling, including fixtures, wiring, switches and labor. Published on /blog-posts/recessed-lighting-installation-phoenix and, from decision D16 (owner, 2026-10-19: the higher figure wherever the site disagreed; it said $1,050–$1,750), on /faq.",
         "source": [
-          "/faq, 'How much does it cost to install recessed can lighting?': \"For a typical installation of six recessed LED can lights in an existing room, most homeowners in the Phoenix valley can expect to pay somewhere between $1,050 and $1,750. That includes the fixtures, wiring, switches, and labor.\""
+          "/blog-posts/recessed-lighting-installation-phoenix: \"a kitchen with 6 recessed lights on a finished ceiling, wired to an existing circuit with a dimmer switch, typically lands between $1,400 and $2,200 all in\"",
+          "/faq, 'How much does it cost to install recessed can lighting?', after D16-02 in migration/content-edits/decisions.json: \"For a typical installation of six recessed LED can lights in an existing room, most homeowners in the Phoenix valley can expect to pay somewhere between $1,400 and $2,200.\""
         ]
       },
       "relatedServices": ["custom-lighting", "fixture-replacements", "led-lights", "electrical-remodels"],
@@ -155,7 +156,7 @@
     }
   },
   "notPriced": {
-    "surge protection": "/faq publishes \"typically between $300 and $600 installed\" for a whole-house surge protector, but there is no surge protection service document to attach it to (and /blog-posts/whole-house-surge-protector-guide-arizona says $400 to $800). Left out.",
+    "surge protection": "/faq and both surge posts publish $400 to $800 installed for a whole-house surge protector (the /faq answer said $300 to $600 until decision D16, 2026-10-19), but there is no surge protection service document to attach it to. Left out.",
     "hourly rates": "/faq quotes \"$125 and $375 per hour\" as what other Phoenix electricians charge, not a price of this business. Left out.",
     "electrical-upgrades": "The /faq panel figures are for a home's 200-amp panel; electrical-upgrades is the commercial panel, feeder and service upgrade page. Left unpriced."
   }

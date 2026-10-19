@@ -465,7 +465,7 @@ Render the heading as H2. Add the phone number and hours from Site settings. `st
 A row of short, verifiable facts.
 
 `items: trustItem[]`, each `{fact, value, label, href, icon}`. `fact` is one of:
-- `custom`: the value/label as typed, e.g. "2-year" + "warranty on services we provide";
+- `custom`: the value/label as typed, e.g. "100+" + "Arizona businesses". Never a warranty term: the only warranty wording is "Our work comes with a warranty." (owner, D17);
 - `reviews`: rating, count and reviews link from Site settings;
 - `license`: "ROC #365306" + ROC lookup link;
 - `founded`: "2017".
@@ -550,7 +550,7 @@ Office cards from `siteSettings.addresses`.
 
 ### processStepsSection (Process steps, new): `ProcessStepsSection`
 
-How working with us goes. Only steps the business really follows, from live copy: call or send the form, free estimate, flat-rate quote (and, on service and city pages, permit and inspection). Never a warranty tag (owner, round 2), and no permit step on the homepage (owner, round 5).
+How working with us goes. Only steps the business really follows, from live copy: call or send the form, free estimate, flat-rate quote (and, on service and city pages, permit and inspection). Never a warranty tag (owner, round 2; the one plain warranty line lives in the at-a-glance facts, /estimate and the homepage value card, D17), and no permit step on the homepage (owner, round 5).
 
 `eyebrow`, `heading`, **`headingAccent`** (round 5), `intro`, `steps: processStep[]` `{title, text, icon, showContact}` (Studio warns under 2), `cta`. Render as an ordered list. **`showContact`** (round 5) adds the phone number and office hours from Site settings and a link to the estimate page under that step, so no step stores its own copy of the NAP.
 

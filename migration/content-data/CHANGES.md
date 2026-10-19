@@ -23,6 +23,8 @@ These need your answer before launch. Each one says what the site shows today an
    | Whole-house surge protector | $300–$600 | Surge protector post: $400–$800 |
 
    Panel prices agree everywhere: $5,200–$6,500 for a standard 200-amp panel, and $6,400–$8,750 for a full service replacement.
+
+   **Answered 2026-10-19 ("Always go with the higher amounts", decision D16):** wherever two pages priced the same job differently, both now show the higher range. Six recessed lights read $1,400–$2,200 and a whole-house surge protector $400–$800 on `/faq`; the Level 1 vs Level 2 post reads $750–$3,500 for a Level 2 charger installed. The full list, old and new, is D16-01 … D16-11 in `migration/content-edits/decisions.json`.
 2. **No price table anywhere.** Per your note of Oct 13, prices only appear where you already publish them, inside the `/faq` answers. The `/services` price table we had drafted is gone, and service pages have no price modules. The ranges stay stored on each service in Sanity (hidden) in case you ever want them.
 ### Your address
 - **The Mesa street address shows only in the footer** (and in the search-engine data, which keeps your name/address/phone consistent for local SEO). It no longer appears in the Contact Us or Careers page content, office cards, maps or directions links. In Studio this is the new "Show only in the footer" switch on the address.
@@ -43,7 +45,7 @@ These need your answer before launch. Each one says what the site shows today an
 ### Links and wording we changed
 12. **Two links went to the wrong place, and we fixed them.** On About Us, "See all services" went to `/contact-us`; it now goes to `/services`. On `/commercial-electrician`, the "Panel Upgrades" card went to commercial troubleshooting (and its photo to EV chargers); it now goes to Electrical Upgrades.
 13. **We dropped the "🟢 Active Now" line** on `/our-team` and `/services`, because it isn't true outside office hours. Those pages now show your other live line, "Free estimates available". Say the word if you want it back.
-14. **Trust strip labels are new short wording built from your own facts:** "30+ years of combined experience" (About Us), "2-year warranty on services we provide" (`/faq`), "Flat-rate pricing with no hidden fees" (the Contact Us description) and "Free estimates available". Please confirm the wording is fine.
+14. **Trust strip labels are new short wording built from your own facts:** "30+ years of combined experience" (About Us), "2-year warranty on services we provide" (`/faq`), "Flat-rate pricing with no hidden fees" (the Contact Us description) and "Free estimates available". Please confirm the wording is fine. **Warranty answered 2026-10-19 (decision D17):** no term is stated anywhere; the site says only "Our work comes with a warranty." (the `/faq` answer, the service pages' at-a-glance facts, `/estimate` and the homepage card "We come back if anything's wrong").
 15. **Punctuation.** The Chandler tile ended with a stray comma, so we changed it to a period. The Mesa tile had no period, so we added one.
 16. **"Wiring Solutions"** in the home page checklist doesn't link to any service. Should it link to Electrical Remodels, New Construction Wiring, or nothing?
 
@@ -219,11 +221,11 @@ Added after the launch review. Launch is planned for Thursday 2026-10-22; the st
 26. **Home page hero quotes.** "Went above and beyond, great prices too!", "Could not be more pleased!" and "Excellent, polite and timely service!" are still shown with stars (live copy). None matches a review. Are they real? If you can name the reviewers, we'll link them; otherwise we'd cut them.
 27. **"Trusted by 100+ Arizona businesses"** on `/commercial-electrician`. We kept it because the live page shows it word for word. Is the number right?
 28. **Free inspections and same-day service.** The monsoon post offers "free post-storm safety inspections" and a "free safety check". The surge-protection and breaker posts (and the breaker post's search description) say "same-day service available". We kept all three. We did change "Emergency troubleshooting" to "Electrical troubleshooting" in the monsoon post, since you don't offer an emergency line.
-29. **Prices in the Level 1 vs Level 2 charger post.** It prices a 200-amp panel upgrade at $1,800–$2,500, against $5,200–$6,500 everywhere else, and its two tables disagree (Level 1: $80–$180 and $300–$600; Level 2 installed: $400–$1,700 and $600–$2,500). We left the prices as they are. Which figures are right, or should the post be rewritten? We fixed one fact in it: the car's onboard charger, not the Level 1 charger, turns AC into DC.
+29. **Prices in the Level 1 vs Level 2 charger post.** It prices a 200-amp panel upgrade at $1,800–$2,500, against $5,200–$6,500 everywhere else, and its two tables disagree (Level 1: $80–$180 and $300–$600; Level 2 installed: $400–$1,700 and $600–$2,500). **Answered 2026-10-19 (D16, the higher figure):** the panel reads $5,200–$6,500, Level 1 $300–$600, and Level 2 installed $750–$3,500 (the `/faq` figure); the installation-only line ($400–$1,700) is a part of that total and stays. Which figures are right, or should the post be rewritten? We fixed one fact in it: the car's onboard charger, not the Level 1 charger, turns AC into DC.
 30. **Claims in posts we kept but can't source:**
     - "the #1 cause of summer tripping" and "30–50° hotter" (hot-weather breaker post);
     - "a 53% return on investment" and "can void your homeowner's insurance" (7 signs post);
-    - "Phoenix has the strictest enforcement in the Valley" (generator interlock post);
+    - "Phoenix has the strictest enforcement in the Valley" (generator interlock post; the post is gone since decision D15, 2026-10-19);
     - the quote attributed to City of Phoenix Code Enforcement (DIY post);
     - "one of the most documented hazards" (hardwired vs plug-in EV post);
     - "+15–20% home value" and "a 50% return" from "multiple real estate studies" (landscape lighting post);

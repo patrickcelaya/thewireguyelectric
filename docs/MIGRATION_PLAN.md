@@ -97,7 +97,7 @@ Run on 2026-10-17 against the Sanity-backed preview and an indexable local build
 | Parity crawl against the preview (`--allow-noindex`) | 124 URLs: 0 errors, 0 warnings |
 | Redirects: 80 legacy, misspelling and `/blog/` rules in one 301 each; `/x/` → `/x` in one 308 for 95 paths; query strings kept | Pass |
 | `scripts/launch/verify.mjs --allow-noindex` on the preview (the redirect matrix, robots, sitemap, pages, form endpoint) | 18 passed, 0 failures (parity group run separately) |
-| Indexable build: sitemap, canonicals, GA, structured data | 96 sitemap URLs, each with one www canonical; GA on every page; validator.schema.org 0 errors |
+| Indexable build: sitemap, canonicals, GA, structured data | 94 sitemap URLs, each with one www canonical; GA on every page; validator.schema.org 0 errors |
 | No reference to `*.webflow.io`, `website-files.com` or `webflow.com` in any page, CSS or JS | None |
 | Webflow changes since the 2026-10-12 baseline crawl | None: identical HTML on all 124 URLs, CMS unchanged |
 | Forms end to end | Waiting for `FORMSPARK_FORM_ID` (the preview answers 503) |
@@ -126,7 +126,7 @@ Still to do before launch, each in [`LAUNCH_RUNBOOK.md`](LAUNCH_RUNBOOK.md):
 4. Check that build on the protected alias. The alias always sends `X-Robots-Tag: noindex` (every host but www does), so check the page's robots tag reads `index, follow`.
 5. Vercel Authentication → **Standard Protection**, or visitors on the real domain get a Vercel login.
 6. DNS at WordPress.com: edit the apex A and the www CNAME in place to the values on the Vercel domain cards. Keep everything else: the 5 Google Workspace MX records, SPF, `google-site-verification` (it backs the Search Console Domain property), `openai-domain-verification`, `_domainconnect`, the `*` CNAME and the nameservers.
-7. `node scripts/launch/verify.mjs --base https://www.thewireguyelectric.com` exits 0. It replaces the old three curl checks: apex → www, http → https, slashes, the 80 redirects, robots, a 96-URL sitemap, every page 200 and indexable with its canonical, GA, the form endpoint and the parity crawl with 0 errors.
+7. `node scripts/launch/verify.mjs --base https://www.thewireguyelectric.com` exits 0. It replaces the old three curl checks: apex → www, http → https, slashes, the 82 redirects, robots, a 94-URL sitemap, every page 200 and indexable with its canonical, GA, the form endpoint and the parity crawl with 0 errors.
 8. Phone, form and email tests on a real phone.
 9. `node scripts/launch/indexnow.mjs`.
 10. **Search Console:** both properties still verified (the meta tag keeps its value, now served from Site settings; the DNS TXT covers the Domain property), sitemap submitted, indexing requested for the top pages. **Bing:** the live site has no Bing verification, so import the site from Search Console, then submit the sitemap. **GA4:** annotate the launch, mark the key events.

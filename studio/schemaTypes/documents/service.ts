@@ -46,7 +46,7 @@ export const service = defineType({
       title: 'At a glance',
       type: 'array',
       group: 'content',
-      description: 'Optional short facts shown near the top, e.g. "Warranty" → "2-year warranty on services we provide". Only facts the business confirms; leave empty rather than guess.',
+      description: 'Optional short facts shown near the top, e.g. "Most common job" → "200-amp like-for-like replacement" (Panels). Only facts the business confirms; leave empty rather than guess. The warranty line ("Our work comes with a warranty.") is added to every service by the template; never state a warranty term.',
       of: [
         defineArrayMember({
           name: 'glanceFact',

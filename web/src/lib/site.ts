@@ -12,6 +12,13 @@ export const ESTIMATE_PATH = '/estimate'
 /** When the Free Estimate page (a code route, not a Sanity document) last changed: its sitemap <lastmod>. */
 export const ESTIMATE_PAGE_UPDATED = '2026-10-16'
 
+/**
+ * The one warranty line (owner, 2026-10-19, decision D17: "lets not talk about warranty but just say work comes
+ * w/ a warranty"). No term, length or conditions, ever: the service pages' at-a-glance facts and /estimate show
+ * these words, and the FAQ "Do you warranty your work?" answers "Yes. Our work comes with a warranty."
+ */
+export const WARRANTY_LINE = 'Our work comes with a warranty.'
+
 /** Appended to the text of every link that opens a new tab (screen readers). */
 export const NEW_TAB_NOTE = ' (opens in a new tab)'
 

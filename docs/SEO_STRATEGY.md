@@ -103,7 +103,7 @@ Each service page becomes the hub for its topic. For each page:
 - **3–6 FAQs** taken from what customers actually ask.
 - **Links:** to its cost guide, its problem posts, and the cities where it's in demand.
 
-Add **Generator** and **Surge protection** service pages if those services are offered. Blog posts already target both, but there's no service page for them to link to.
+Add a **Surge protection** service page if that service is offered. Blog posts already target it, but there's no service page for them to link to. No generator page: the business does not do generator work, and the two generator posts were removed and 301 to `/services/panels` (owner, 2026-10-19, decision D15).
 
 ### 2. Hubs and clusters around existing URLs
 
@@ -128,7 +128,7 @@ Cost guides are the most linkable and highest-converting content type for a cont
 - 2–3 dated real jobs;
 - "Updated <month year>" and "Reviewed by <licensed electrician>".
 
-Re-price them twice a year. Start with the panel upgrade guide (it exists; deepen it), then EV charger, standby generator, recessed lighting and whole-house rewire.
+Re-price them twice a year. Start with the panel upgrade guide (it exists; deepen it), then EV charger, recessed lighting and whole-house rewire. Where two pages price the same job differently, use the higher figure (owner, 2026-10-19, decision D16).
 
 ### 4. Service × city pages (weeks 4–12, gated)
 

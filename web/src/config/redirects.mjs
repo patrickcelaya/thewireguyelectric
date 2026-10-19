@@ -40,6 +40,15 @@ export const LEGACY_REDIRECTS = {
   '/blog-posts/the-benefits-and-efficiency-of-lighting': '/services/led-lights',
   '/blog-posts/understanding-of-residential-wiring': '/blog-posts/outdated-wiring-in-older-phoenix-homes',
 
+  // Live posts removed on purpose (decision D15, owner 2026-10-19: the business does not do generator work), with
+  // their old /blog/ paths, which postRedirects() no longer covers. migration/content-data/removed-posts.json and
+  // the parity allowlist's `removed` (migration/seo-intentional-changes.json) name the same targets;
+  // web/scripts/removed-posts.test.mjs checks that the three agree.
+  '/blog-posts/whole-home-standby-generator-installation-phoenix': '/services/panels',
+  '/blog/whole-home-standby-generator-installation-phoenix': '/services/panels',
+  '/blog-posts/generator-interlock-in-arizona': '/services/panels',
+  '/blog/generator-interlock-in-arizona': '/services/panels',
+
   // Webflow e-commerce template filler (200 and indexable today, ~7 words each).
   // /checkout, /paypal-checkout, /order-confirmation, /search, /401 and
   // /templates/* are deliberately NOT redirected: they never had value, and a

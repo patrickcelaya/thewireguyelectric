@@ -2242,7 +2242,8 @@
       "new_text": "Phoenix doesn't get hurricanes or ice storms, but we install more whole-home standby generators every year.",
       "tier": "normal",
       "verdict": "accept",
-      "reason": "rhetorical-question opener"
+      "reason": "rhetorical-question opener",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-b-134",
@@ -2259,7 +2260,8 @@
       "tier": "normal",
       "verdict": "amend",
       "reason": "\"isn't just X ... it's Y\"; follows the reworded opener; the rest of the block stays",
-      "verifier_note": "Dropped the stiff \"The reason:\" lead-in; it reads straight on from the reworded opener (edit 133). Every fact kept."
+      "verifier_note": "Dropped the stiff \"The reason:\" lead-in; it reads straight on from the reworded opener (edit 133). Every fact kept.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-b-135",
@@ -2275,7 +2277,8 @@
       "new_text": "",
       "tier": "normal",
       "verdict": "accept",
-      "reason": "filler signpost; removes the block [whole block: drop the block]"
+      "reason": "filler signpost; removes the block [whole block: drop the block]",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-b-136",
@@ -2291,7 +2294,8 @@
       "new_text": "What About Solar and Battery Instead?",
       "tier": "normal",
       "verdict": "accept",
-      "reason": "symbol (+) in a heading"
+      "reason": "symbol (+) in a heading",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-b-137",
@@ -2307,7 +2311,8 @@
       "new_text": "",
       "tier": "normal",
       "verdict": "accept",
-      "reason": "filler opener"
+      "reason": "filler opener",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-b-138",
@@ -2323,7 +2328,8 @@
       "new_text": "For a long Phoenix outage, a natural gas standby generator is still the most reliable option.",
       "tier": "normal",
       "verdict": "accept",
-      "reason": "cliché (\"the gold standard\")"
+      "reason": "cliché (\"the gold standard\")",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
     },
     {
       "id": "slop-posts-b-139",

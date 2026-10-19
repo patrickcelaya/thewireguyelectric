@@ -545,15 +545,6 @@
       "why": "the hub. The first mention (k003, \"the installation of electric car chargers\") is rewritten by slop-posts-b-001; its replacement phrase \"an electric car charger at home\" repeats this post's own title keyword, so it should not point at the service page. k00z keeps \"EV charger installations\" before and after slop-posts-b-003"
     },
     {
-      "doc": "post:whole-home-standby-generator-installation-phoenix",
-      "block": "k028",
-      "anchor": "service upgrade",
-      "href": "/services/panels",
-      "from": "/services",
-      "kind": "retarget",
-      "why": "a service upgrade is Panels work (\"Service upgrades (200 to 400 amp)\")"
-    },
-    {
       "doc": "post:electrical-safety-tips",
       "block": "k00m",
       "anchor": "DIY electrical work",
@@ -608,14 +599,6 @@
       "anchor": "Outdated panels (Federal Pacific, Zinsco, etc.)",
       "href": "/blog-posts/federal-pacific-zinsco-panels-arizona",
       "kind": "post-to-post"
-    },
-    {
-      "doc": "post:generator-interlock-in-arizona",
-      "block": "k01p",
-      "anchor": "standby generator",
-      "href": "/blog-posts/whole-home-standby-generator-installation-phoenix",
-      "kind": "post-to-post",
-      "why": "the target has no inbound body link today"
     },
     {
       "doc": "post:top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",

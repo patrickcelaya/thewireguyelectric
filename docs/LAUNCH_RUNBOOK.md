@@ -179,7 +179,7 @@ Expect the new A and CNAME, no AAAA, and the MX and TXT answers unchanged (5 Goo
 node scripts/launch/verify.mjs --base https://www.thewireguyelectric.com
 ```
 
-It checks, and fails on any miss: apex → www in one 301/308 with the path kept; http → https; `/x/` → `/x`; the 80 legacy, misspelling and `/blog/` redirects; `robots.txt` allows crawling and lists the sitemap; the sitemap has **96** URLs, each 200, no noindex, one correct canonical; GA4 `G-4ZYV7JMRJH` on every page; `/api/contact` deployed (GET answers 405, an empty POST 400) with a lead destination set for the build; the parity crawl against the baseline with 0 errors. Also by hand:
+It checks, and fails on any miss: apex → www in one 301/308 with the path kept; http → https; `/x/` → `/x`; the 82 legacy, misspelling, removed-post and `/blog/` redirects; `robots.txt` allows crawling and lists the sitemap; the sitemap has **94** URLs, each 200, no noindex, one correct canonical; GA4 `G-4ZYV7JMRJH` on every page; `/api/contact` deployed (GET answers 405, an empty POST 400) with a lead destination set for the build; the parity crawl against the baseline with 0 errors. Also by hand:
 
 ```bash
 curl -sI https://www.thewireguyelectric.com/
@@ -289,7 +289,7 @@ Owner, L12.
 
 **Google Search Console** (https://search.google.com/search-console):
 1. **Settings → Ownership verification** on both properties: the URL-prefix property (meta tag, which the new site serves from Site settings, value `mW1y…`) and the Domain property (the DNS TXT `azRl…`). Both must stay verified.
-2. **Sitemaps** → add `sitemap.xml` → **Submit**. Expect 96 discovered URLs.
+2. **Sitemaps** → add `sitemap.xml` → **Submit**. Expect 94 discovered URLs.
 3. **URL inspection** → `https://www.thewireguyelectric.com/` → **Request indexing**. Repeat for the pages with the most clicks (16 months): `/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip`, `/blog-posts/diy-electrical-work-in-arizona`, `/blog-posts/permit-for-electrical-work`, the 10 `/locations/*` pages, `/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix`, `/blog-posts/electrical-panel-upgrade-cost-arizona`, `/services/ev-charger-installation`, `/our-team`, `/contact-us` and `/estimate`. The daily quota is small; spread the rest over L+1.
 4. **Pages** (indexing report): daily in week 1, then weekly. Watch Not found (404), Excluded by noindex and Duplicate without user-selected canonical.
 
