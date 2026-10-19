@@ -110,14 +110,14 @@ body:not(.over) .hdr-glass,.hdr-c .hdr-glass,.menu-open .hdr-glass{opacity:1}
 .hdr>*{pointer-events:auto}
 .hdr-c .hdr{transform:translateY(calc((var(--hdr-c) - var(--hdr-h)) / 2))}
 /* the link itself scales with the logo when the bar condenses, so its focus ring hugs the 84 px logo (round-5 QA) */
-.logo{flex:none;display:block;border-radius:8px;line-height:0;transform-origin:0 50%;transition:transform .45s var(--ease-out)}
+.logo{flex:none;display:block;border-radius:var(--r-2);line-height:0;transform-origin:0 50%;transition:transform .45s var(--ease-out)}
 .logo img{height:var(--logo-h);width:auto}
 .hdr-c .logo{transform:scale(var(--logo-k))}
 .hdr-c .logo:focus-visible{outline-width:calc(2.5px / var(--logo-k));outline-offset:calc(2px / var(--logo-k));border-radius:calc(8px / var(--logo-k))}
 .hdr-body{flex:1;min-width:0;height:var(--logo-h);display:flex;flex-direction:column}
 /* tier 1: the utility line */
 .hdr-util{position:relative;flex:none;display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--util-h);border-bottom:1px solid rgb(15 42 53 / .12);font:500 .8125rem/1.25 var(--font-text);color:var(--text);white-space:nowrap;transition:opacity .25s var(--ease),transform .45s var(--ease-out),visibility 0s}
-.over .hdr-util::before{content:"";position:absolute;inset:-4px -14px 0;z-index:-1;border-radius:12px 12px 0 0;background:linear-gradient(90deg,rgb(247 243 236 / 0),rgb(247 243 236 / .55) 6%,rgb(247 243 236 / .55) 94%,rgb(247 243 236 / 0))}
+.over .hdr-util::before{content:"";position:absolute;inset:-4px -14px 0;z-index:-1;background:linear-gradient(90deg,rgb(247 243 236 / 0),rgb(247 243 236 / .55) 6%,rgb(247 243 236 / .55) 94%,rgb(247 243 236 / 0))}
 .hdr-c .hdr-util{opacity:0;transform:translateY(-12px);visibility:hidden;transition:opacity .2s var(--ease),transform .45s var(--ease-out),visibility 0s .45s}
 .hu-l,.hu-r{display:flex;align-items:center;min-width:0}
 .hu-sep{flex:none;display:inline-block;width:1px;height:13px;margin:0 16px;background:rgb(15 42 53 / .22)}
@@ -128,7 +128,7 @@ body:not(.over) .hdr-glass,.hdr-c .hdr-glass,.menu-open .hdr-glass{opacity:1}
 .status--util b{font-weight:600;color:var(--ink)}
 /* no JS (or before the gate ran): the hours alone, never a claim */
 html:not(.oo):not(.oc) .status--util,html:not(.oo):not(.oc) .hu-l .hu-sep{display:none}
-.hu-link{display:inline-flex;align-items:center;gap:7px;min-height:28px;padding-block:2px;color:var(--text);text-decoration:none;border-radius:6px;line-height:1.25}
+.hu-link{display:inline-flex;align-items:center;gap:7px;min-height:28px;padding-block:2px;color:var(--text);text-decoration:none;border-radius:var(--r-1);line-height:1.25}
 .hu-link b{font:700 .9375rem/1.2 var(--font-display);letter-spacing:0;color:var(--ink);font-variant-numeric:tabular-nums}
 .hu-link:hover,.hu-link:hover b{color:var(--copper-700)}
 .hu-link:hover .hu-lab{text-decoration:underline;text-underline-offset:.2em}

@@ -328,8 +328,8 @@ function firstServicePhotos(post: PostSummary, index: PostIndexEntry[], services
  * the recessed lighting guide a recessed-light kitchen, not the walk. A post whose first service has none (the
  * flicker guides list troubleshooting first) goes by its blog topic.
  *
- * `tinted` covers (the guide cards, under a copper tint) take job photos only, and when no unused photo
- * of the post's subject is left there is none: the card shows its plain copper cover (GuideCard), never
+ * `tinted` covers (the guide cards, whose cover words may sit on a scrim) take job photos only, and when no unused
+ * photo of the post's subject is left there is none: the card shows its plain sand cover (GuideCard), never
  * a photo of something else. A natural cover (the post's own page, its main image) may show people too,
  * framed on their faces, and always gets a photo: past its subject, any unused job photo but the narrow
  * EV charger. `seed` varies the picks from page to page. `fresh` natural covers (the blog's list thumbnails,
@@ -455,7 +455,7 @@ export function guideCards(
  * wide, never AI-made, never text or drawn-on effects, with alt text that says what is visible. Undefined for
  * every other post. It shows on blog pages only: as the post's cover and share image, as its thumbnail on /blog,
  * and on the related-article and previous/next cards of other posts; never on a service or city page, and never
- * under the copper tint.
+ * under a scrim or cover words.
  */
 export function ownPostImage(post: Pick<PostSummary, 'mainImage' | 'showMainImage'>): ImageRef | undefined {
   const image = post.mainImage

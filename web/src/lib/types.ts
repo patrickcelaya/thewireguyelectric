@@ -309,7 +309,7 @@ export interface LocationDoc {
   description?: string
   cardBlurb?: string
   mainImage?: ImageRef
-  /** The hero photo under the open sky (one of the company's photos, framed so the heads sit below the words). */
+  /** The hero photo (one of the company's photos, shown as a band under the words, anchored on the heads). */
   heroImage?: ImageRef
   body?: PortableTextValue
   geo?: {lat: number; lng: number}
@@ -526,13 +526,13 @@ export interface TeamSection extends SectionBase {
 /** A post as a card in a section: the summary plus the card's own cover, when the editor gave it one. */
 export interface PostCard extends PostSummary {
   _key?: string
-  /** The topic pill on the cover (else the post's category). */
+  /** The topic label on the cover (else the post's category). */
   label?: string
   /** A few words set large on the cover. */
   coverWords?: string
   /** A cover photo for this card (else the post's main image). */
   cover?: ImageRef | null
-  /** The cover is the post's own owner-approved image (ownPostImage): shown in its natural colour, never under the copper tint. */
+  /** The cover is the post's own owner-approved image (ownPostImage): no cover words over it. */
   ownCover?: boolean
   /** The blog archive's thumbnail for the row (lib/cms.ts postThumb), set by the /blog route. */
   thumb?: ImageRef
