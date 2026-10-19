@@ -23,8 +23,6 @@ interface Props {
   heading?: string
   /** The line under the photo; defaults to the CTA band's text, else the standard line. */
   text?: string
-  /** Section number for the eyebrow. */
-  number?: number | string
   /** Prefix for the form's field ids. */
   formId?: string
   /** The form's "City or ZIP" example (EstimateForm). */
@@ -33,7 +31,7 @@ interface Props {
   photo?: ImageRef
 }
 
-const {settings, number, formId = 'cta', zipPlaceholder} = Astro.props
+const {settings, formId = 'cta', zipPlaceholder} = Astro.props
 const photo = Astro.props.photo ?? ctaBandPhoto(Astro.url.pathname)
 const band = settings.ctaBand
 const hours = officeHours(settings)
@@ -52,7 +50,7 @@ const text =
     </figure>
     <div class="cta__wall">
       <div class="cta__words">
-        <Eyebrow number={number}>Free estimates</Eyebrow>
+        <Eyebrow>Free estimates</Eyebrow>
         <h2 id="cta-h">{heading}</h2>
       </div>
       <Bulb lead="right" />

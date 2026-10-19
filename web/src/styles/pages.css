@@ -228,8 +228,8 @@
 .offices .office{padding:clamp(24px,2.4vw,36px);border-radius:var(--r-2);background:var(--paper);box-shadow:var(--hairline)}
 
 
-/* ===================================================================== SERVICES DIRECTORY: every service as a numbered row;
-   grouped, each category's heading beside its list (sticky on wide screens) */
+/* ===================================================================== SERVICES DIRECTORY: every service as a ruled row (a list, not a
+   sequence: no numbers, no arrows); grouped, each category's heading beside its list (sticky on wide screens) */
 .svcdir-s{background:var(--bone)}
 .svcdir{display:grid;grid-template-columns:minmax(0,1fr)}
 .svcdir--grouped{grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);align-items:start;gap:32px clamp(48px,7vw,128px)}
@@ -239,23 +239,18 @@
 .svcdir__intro{margin-top:20px;font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:28rem}
 .svcdir__more{margin-top:26px}
 .svcdir__list{border-top:1px solid var(--line-strong)}
-.svcrow{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr) 40px;gap:12px;align-items:baseline;padding:clamp(20px,1.8vw,28px) 0;border-bottom:1px solid var(--line-strong)}
-.svcrow__n{font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;font-variant-numeric:tabular-nums;color:var(--copper-700)}
+.svcrow{position:relative;padding:clamp(20px,1.8vw,28px) 0;border-bottom:1px solid var(--line-strong)}
 .svcrow__h{font-size:clamp(1.3125rem,1.1rem + .6vw,1.875rem);letter-spacing:-.024em;line-height:1.18}
 .svcrow__h a{color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
 .svcrow__h a::after{content:"";position:absolute;inset:0;z-index:1}
 .svcrow__p{margin-top:8px;font-size:var(--fs-small);line-height:1.6;color:var(--text);max-width:var(--measure)}
-.svcrow::after{content:"";align-self:center;justify-self:end;width:20px;height:20px;background:var(--copper-700);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease),opacity .25s var(--ease)}
-.svcrow .mini-bulb{top:calc(50% - 22px);bottom:auto;right:0;width:26px}
 .svcrow:is(:hover,:focus-within) .svcrow__h a{color:var(--copper-700)}
-@media (hover:hover){.svcrow:is(:hover,:focus-within)::after{opacity:0;transform:translateX(6px)}}
 .svcrow:focus-within{outline:2.5px solid var(--ink);outline-offset:4px;border-radius:6px}
 .svcrow__h a:focus-visible{outline:none}
 .svcdir__cta{margin-top:clamp(32px,3vw,48px)}
 /* one list without groups (a category's services): two columns of rows on wide screens */
 @media (min-width:1100px){.svcdir:not(.svcdir--grouped) .svcdir__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(48px,5vw,96px);border-top:0}.svcdir:not(.svcdir--grouped) .svcrow{border-top:1px solid var(--line-strong);border-bottom:0}.svcdir:not(.svcdir--grouped) .svcrow:nth-last-child(-n+2){border-bottom:1px solid var(--line-strong)}}
 @media (max-width:899px){.svcdir--grouped{grid-template-columns:minmax(0,1fr)}.svcdir__head{position:static}.svcdir__h{max-width:none}}
-@media (max-width:599px){.svcrow{grid-template-columns:34px minmax(0,1fr) 24px}}
 
 
 /* ===================================================================== BLOG INDEX: every post by the service it supports */

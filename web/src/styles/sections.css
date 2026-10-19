@@ -45,31 +45,21 @@
 /* phones: stacked, divided by horizontal hairlines */
 @media (max-width:900px){.vcards{grid-template-columns:minmax(0,1fr)}.vcard,.vcard:first-child{padding:28px 0;border-left:0;border-top:1px solid rgb(255 244 236 / .28)}.vcard:last-child{padding-bottom:0}}
 
-/* ===================================================================== 03 · SOLUTIONS: huge type on a copper-toned photo of the tools */
-.solutions{position:relative;isolation:isolate;overflow:clip;color:#fff;padding-block:var(--section-y);background:var(--copper-800)}
-.solutions__media{position:absolute;inset:-14% 0;z-index:-2}
-.solutions__media img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05)}
-.solutions::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgb(78 34 19 / .95) 0%,rgb(106 46 25 / .92) 38%,rgb(142 64 36 / .84) 70%,rgb(170 80 46 / .74) 100%)}
+/* ===================================================================== WHAT WE DO: the capabilities as a ruled list on paper (a list, not a
+   sequence: no numbers, no arrows); the row's title is its link */
+.solutions{padding-block:var(--section-y);background:var(--paper)}
 .solutions__grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:56px clamp(56px,7vw,140px);align-items:start}
-.solutions .display{color:#fff;max-width:11ch}
-.solutions .hl{color:var(--glow)}
-.solutions__lede{margin-top:28px;font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;color:var(--cream);max-width:20em}
+.solutions .display{max-width:11ch}
+.solutions__lede{margin-top:28px;font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;color:var(--text);max-width:20em}
 .solutions__cats{display:flex;flex-wrap:wrap;gap:18px 32px;margin-top:40px}
-.solutions :focus-visible{outline-color:var(--cream)}
-.sol{border-top:1px solid rgb(255 244 236 / .3)}
-.sol li{border-bottom:1px solid rgb(255 244 236 / .3)}
-.sol a,.sol__row{position:relative;display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;gap:8px 16px;min-height:clamp(80px,7vw,116px);color:#fff;text-decoration:none}
-.sol a::after{content:"";width:26px;height:26px;background:var(--glow);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .3s var(--ease)}
-.sol__k{font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;color:var(--glow)}
-.sol h3{color:#fff;font-size:clamp(1.5rem,1.1rem + 1.4vw,2.75rem);letter-spacing:-.034em;line-height:1.05;transition:transform .35s var(--ease)}
-.sol a:hover h3{transform:translateX(10px)}
-.sol a:hover::after{transform:translateX(6px)}
-/* the list's closing link (round-5 QA: "+ More!" no longer dressed as a numbered service row) */
-.sol__more{margin-top:22px}.sol__more .textlink{font-size:1rem}
-.sol-bulb{position:absolute;right:48px;top:50%;width:26px;height:auto;overflow:visible;opacity:0;transform:translateY(-50%) scale(.9);transition:opacity .3s var(--ease),transform .3s var(--ease);pointer-events:none;--mb-line:var(--glow);--mb-glass:var(--glow);filter:drop-shadow(0 0 10px rgb(255 214 150 / .9))}
-.sol a:is(:hover,:focus-visible) .sol-bulb{opacity:1;transform:translateY(-50%) scale(1)}
-@media (hover:none){.sol-bulb{display:none}}
-@media (max-width:980px){.solutions__grid{grid-template-columns:minmax(0,1fr)}.sol a,.sol__row{grid-template-columns:40px minmax(0,1fr) auto}}
+.sol{border-top:1px solid var(--line-strong)}
+.sol li{border-bottom:1px solid var(--line-strong)}
+.sol a,.sol__row{display:flex;align-items:center;min-height:clamp(76px,6.4vw,104px);padding-block:12px;color:var(--ink);text-decoration:none}
+.sol h3{font-size:clamp(1.625rem,1.15rem + 1.1vw,2.5rem);font-weight:600;letter-spacing:-.025em;line-height:1.1;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:.16em;transition:color .15s var(--ease),text-decoration-color .15s var(--ease)}
+.sol a:hover h3{color:var(--copper-700);text-decoration-color:var(--copper)}
+/* the list's closing link ("+ More!") */
+.sol__more{margin-top:22px}
+@media (max-width:980px){.solutions__grid{grid-template-columns:minmax(0,1fr)}}
 
 /* ===================================================================== PULL-QUOTE: Susan's words on the ceiling she had lit (no dark tint: ink on a bright ceiling)
    About 70% of the window tall; the quote is centred on the clean ceiling between two rows of new lights, with the
@@ -94,24 +84,24 @@
 .process__head .display{max-width:13ch}
 .process__lede{font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:28rem}
 @media (min-width:981px){.process__head{padding-right:calc(clamp(104px,9.4vw,150px) * 1.35)}}
-.process__body{position:relative;display:grid;grid-template-columns:repeat(var(--steps,4),minmax(0,1fr)) var(--bcol);gap:40px clamp(24px,3vw,56px);margin-top:clamp(80px,7.5vw,128px);--node:56px;--bcol:clamp(104px,9.4vw,150px);--bw:calc(var(--bcol) * .92)}
+.process__body{position:relative;display:grid;grid-template-columns:repeat(var(--steps,4),minmax(0,1fr)) var(--bcol);gap:40px clamp(24px,3vw,56px);margin-top:clamp(80px,7.5vw,128px);--node:44px;--bcol:clamp(104px,9.4vw,150px);--bw:calc(var(--bcol) * .92)}
 .process__wire{position:absolute;left:calc(-1 * var(--pad-x));right:calc(var(--bcol) / 2);top:calc(var(--node) / 2 - 1.25px);height:2.5px;border-radius:2px;background:linear-gradient(90deg,rgb(170 80 46 / 0),var(--copper) 18%,var(--copper));pointer-events:none;transform-origin:0 50%}
 .steps{display:contents}
 .step{position:relative;display:flex;flex-direction:column;gap:14px}
-.step__n{position:relative;z-index:1;display:grid;place-items:center;width:var(--node);height:var(--node);border-radius:50%;background:var(--copper);color:#fff;font:750 1rem/1 var(--font-display);letter-spacing:.02em;box-shadow:0 0 0 8px var(--bone)}
+/* the steps are a real sequence: numbered nodes on the wire (white on copper 5.39:1) */
+.step__n{position:relative;z-index:1;display:grid;place-items:center;width:var(--node);height:var(--node);border-radius:50%;background:var(--copper);color:#fff;font:600 1.0625rem/1 var(--font-display);font-variant-numeric:tabular-nums;box-shadow:0 0 0 8px var(--bone)}
 .step h3{margin-top:14px;font-size:clamp(1.375rem,1.15rem + .7vw,1.875rem);letter-spacing:-.026em}
 .step p{color:var(--text);max-width:22em}
 .step__contact{margin-top:-4px}
 /* the bulb stands on the end of the wire: its base sits on the line (the base's foot is 91.5% down the bulb's box) */
 .process__bulb{position:relative;align-self:start;justify-self:center;width:var(--bw);margin-top:calc(var(--node) / 2 - var(--bw) * 1.2368 * .915)}
-.process__bulb::before{content:"";position:absolute;left:50%;top:40%;width:250%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgb(255 214 150 / .55),rgb(255 196 120 / .22) 45%,rgb(255 196 120 / 0));pointer-events:none}
-.pb{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 18px rgb(255 190 110 / .5))}
+.pb{width:100%;height:auto;overflow:visible}
 .pb .line{fill:none;stroke:var(--copper);stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
 .pb .bars>*{fill:var(--copper)}
 .pb .glass{fill:var(--glow)}
 @media (max-width:980px){
   .process__head{grid-template-columns:minmax(0,1fr)}
-  .process__body{grid-template-columns:var(--node) minmax(0,1fr);gap:40px 22px;--node:48px;--bw:64px}
+  .process__body{grid-template-columns:var(--node) minmax(0,1fr);gap:40px 22px;--node:44px;--bw:64px}
   .process__wire{left:calc(var(--node) / 2 - 1.25px);right:auto;top:calc(var(--node) / 2);bottom:72px;width:2.5px;height:auto;background:var(--copper);transform-origin:50% 0}
   .step{grid-column:1/-1;display:grid;grid-template-columns:var(--node) minmax(0,1fr);column-gap:22px}
   .step__n{grid-row:1/span 2}
@@ -151,28 +141,16 @@
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion:no-preference){
     @keyframes on{0%{opacity:0}45%{opacity:.85}55%{opacity:.25}75%{opacity:1}100%{opacity:1}}
-    .motion .tile{animation:tile-in linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
-    @keyframes tile-in{from{transform:translateY(56px) scale(.97)}to{transform:none}}   /* photos of people: movement only, never faded */
-    .solutions__media{animation:par-y linear both;animation-timeline:view();animation-range:cover}
-    @keyframes par-y{from{transform:translateY(-7%)}to{transform:translateY(7%)}}
-    .motion .sol li{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
-    .pull__media img{animation:settle linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
-    @keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
-    @media (min-width:900px){
-      .mosaic__col{animation:drift linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
-      .mosaic__col--a{--d:28px}.mosaic__col--b{--d:72px}.mosaic__col--c{--d:44px}
-    }
-    @keyframes drift{from{transform:translateY(var(--d))}to{transform:none}}
     /* how it works: pinned under the header while the wire runs and the bulb builds itself */
     .process__wire{animation:wire-x linear both;animation-timeline:--proc;animation-range:var(--r-wire)}
     @keyframes wire-x{from{transform:scaleX(0)}to{transform:scaleX(1)}}
     .step__n{animation:node-on steps(1,jump-end) both;animation-timeline:--proc}
-    @keyframes node-on{from{background-color:var(--bone);color:var(--copper-700);box-shadow:0 0 0 8px var(--bone),inset 0 0 0 2px var(--copper)}to{background-color:var(--copper);color:#fff;box-shadow:0 0 0 8px var(--bone),inset 0 0 0 2px var(--copper)}}
+    @keyframes node-on{from{background-color:var(--bone);color:var(--copper-700);box-shadow:0 0 0 8px var(--bone),inset 0 0 0 1.5px var(--copper)}to{background-color:var(--copper);color:#fff;box-shadow:0 0 0 8px var(--bone),inset 0 0 0 1.5px var(--copper)}}
     .pb .line{stroke-dasharray:1;animation:draw linear both;animation-timeline:--proc;animation-range:var(--r-line)}
     @keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
     .pb .bars>*{transform-box:fill-box;animation:bar-in linear both;animation-timeline:--proc;animation-range:var(--r-bars)}
     @keyframes bar-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-    .pb .glass,.pb .halo,.process__bulb::before{animation:on linear both;animation-timeline:--proc;animation-range:var(--r-glow)}
+    .pb .glass,.pb .halo{animation:on linear both;animation-timeline:--proc;animation-range:var(--r-glow)}
     .process{view-timeline:--proc block;--r-wire:cover 20% cover 50%;--r-line:cover 46% cover 56%;--r-bars:cover 54% cover 59%;--r-glow:cover 58% cover 66%}
     /* each number fills as the wire reaches it: step --k of --steps, spread over the wire's run */
     .step__n{animation-range:cover calc(24% + var(--k,0) * 28% / var(--steps,4)) cover calc(27% + var(--k,0) * 28% / var(--steps,4))}

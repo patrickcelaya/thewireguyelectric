@@ -47,7 +47,8 @@
 .vy-mtn{position:absolute;z-index:2;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:max-content;max-width:11em;padding:2px 5px 2px 7px;font:700 .6875rem/1.35 var(--font-text);letter-spacing:.2em;text-transform:uppercase;text-align:center;color:#6A5646;pointer-events:none;text-wrap:balance}
 .vy-pin{position:absolute;z-index:3;left:var(--x);top:var(--y);width:0;height:0;cursor:pointer;transition:opacity .25s var(--ease)}
 .vy-pin i{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,#FFF6E8 0 30%,var(--copper) 36% 100%);box-shadow:0 0 0 2.5px rgb(253 251 247 / .96),0 3px 8px rgb(78 34 19 / .35);transition:transform .3s var(--ease-out)}
-.vy-pin i::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:radial-gradient(closest-side,rgb(255 210 150 / .82),rgb(255 190 120 / .3) 46%,rgb(255 190 120 / 0));transition:transform .4s var(--ease-out),opacity .3s}
+.vy-pin i::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:radial-gradient(closest-side,rgb(255 210 150 / .82),rgb(255 190 120 / .3) 46%,rgb(255 190 120 / 0));opacity:0;transition:transform .4s var(--ease-out),opacity .3s}
+.vy-pin.is-on i::before,.vy-pin.is-here i::before{opacity:1}
 .vy-pin b{position:absolute;left:0;top:0;padding:3px 6px 4px;white-space:nowrap;font:700 1rem/1.15 var(--font-display);letter-spacing:-.012em;color:var(--ink);transform:translate(var(--tx,13px),var(--ty,-50%));transition:color .2s var(--ease)}
 /* each label's side of its light, per layout (valleymap.SIDE_D / SIDE_T / SIDE_M): data-d desktop, data-t tablet, data-m phone */
 @media (min-width:1280px){.vy-pin[data-d=l]{--tx:calc(-100% - 13px)}.vy-pin[data-d=t]{--tx:-50%;--ty:calc(-100% - 13px)}.vy-pin[data-d=b]{--tx:-50%;--ty:13px}.vy-pin[data-d=tr]{--tx:8px;--ty:calc(-100% - 8px)}.vy-pin[data-d=tl]{--tx:calc(-100% - 8px);--ty:calc(-100% - 8px)}.vy-pin[data-d=br]{--tx:8px;--ty:8px}.vy-pin[data-d=bl]{--tx:calc(-100% - 8px);--ty:8px}}
@@ -60,25 +61,23 @@
 .vy-pin.is-on b{color:var(--copper-800)}
 .vy-pin.is-on i::after,.vy-pin.is-here i::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.5px solid var(--copper);opacity:0}
 .vy-pin.is-here i::after{opacity:1}
-.vy-pin.is-here b{color:var(--copper-800);font-weight:800}
+.vy-pin.is-here b{color:var(--copper-800)}
 @media (prefers-reduced-motion:no-preference){.vy-pin.is-on i::after{animation:vy-ring 1.6s var(--ease-out) infinite}}
 @keyframes vy-ring{from{transform:scale(.7);opacity:.9}to{transform:scale(2.2);opacity:0}}
 /* the floating card: the town and its neighbourhoods over the map at the pin (built by site.js from the list item) */
 .vy-callout{position:absolute;z-index:6;left:0;top:0;width:max-content;max-width:min(290px,70cqw);padding:13px 16px 14px;border-radius:var(--r-2);background:rgb(253 251 247 / .97);box-shadow:0 0 0 1px var(--line-strong),var(--shadow-float);pointer-events:none;opacity:0;transform:translate(var(--cx,0),var(--cy,0)) translateY(6px) scale(.97);transform-origin:50% 100%;transition:opacity .18s var(--ease),transform .28s var(--ease-out)}
 .vy-callout.is-on{opacity:1;transform:translate(var(--cx,0),var(--cy,0))}
 .vy-callout b{display:block;font:740 1.1875rem/1.15 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
-.vy-callout b::after{content:"";display:inline-block;width:15px;height:15px;margin-left:6px;vertical-align:-1px;background:var(--copper);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
 .vy-callout span{display:block;margin-top:6px;font-size:.875rem;line-height:1.45;color:var(--text)}
 
 /* the index on a paper panel (97%, a hairline), over the west valley */
 .vy-wrap{position:relative;pointer-events:none}
 .vy-index{pointer-events:auto;width:var(--pw);padding:clamp(28px,2.4vw,40px) clamp(28px,2.6vw,44px) clamp(30px,2.6vw,42px);border-radius:var(--r-2);background:rgb(253 251 247 / .97);box-shadow:var(--hairline)}
-.vy-lab{display:flex;align-items:center;gap:9px;margin-bottom:8px;font:700 .75rem/1.2 var(--font-text);letter-spacing:.14em;text-transform:uppercase;color:var(--copper-700)}
-.vy-lab::before{content:"";flex:none;width:12px;height:16px;background:currentColor;-webkit-mask:var(--bulb-mark) center/contain no-repeat;mask:var(--bulb-mark) center/contain no-repeat}
+.vy-lab{margin-bottom:8px;font:600 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
 .vy-cities{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(var(--r2,6),auto);grid-auto-flow:column;gap:0 clamp(20px,2vw,32px)}
 .vy-cities li{position:relative;padding:14px 0 15px;border-top:1px solid var(--line)}
 /* the hover / focus rule: a copper line draws across the top of the row */
-.vy-cities li::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:linear-gradient(90deg,var(--copper),#E9A275);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease-out)}
+.vy-cities li::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--copper);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease-out)}
 .vy-cities li.is-on::after,.vy-cities li:hover::after,.vy-cities li:focus-within::after{transform:none}
 .vy-cities h3,.vy-cities--names li{position:relative;padding-left:24px}
 .vy-cities h3{font-size:clamp(1.25rem,1rem + .6vw,1.5rem);font-weight:740;letter-spacing:-.024em;line-height:1.15}
@@ -87,9 +86,7 @@
 .vy-cities h3 a,.vy-cities--names a{display:inline-flex;align-items:baseline;gap:8px;min-height:34px;padding-block:4px;white-space:nowrap;color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
 .vy-cities h3 a::before,.vy-cities--names a::before{content:"";position:absolute;inset:0;border-radius:6px}
 .vy-cities .az{margin-left:-8px;font-size:.62em;font-weight:750;letter-spacing:.08em;color:var(--copper-700)}
-.vy-cities h3 a::after,.vy-cities--names a::after{content:"";flex:none;align-self:center;width:16px;height:16px;background:var(--copper-700);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transform:translateX(-2px);transition:transform .25s var(--ease)}
 .vy-cities li.is-on a,.vy-cities li:hover a{color:var(--copper-700)}
-.vy-cities li.is-on a::after,.vy-cities li:hover a::after{transform:translateX(4px)}
 .vy-cities a:hover{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
 .vy-cities a:focus-visible{outline:none}
 .vy-cities a:focus-visible::before{outline:2.5px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px rgb(253 251 247 / .95)}
@@ -110,7 +107,6 @@
   .valley .vy-cities li{padding:11px 0 12px}
   .valley .vy-cities h3{padding-left:21px;font-size:clamp(1.125rem,.6rem + .6vw,1.3125rem)}
   .valley .vy-cities h3 a{gap:6px;min-height:30px;padding-block:2px}
-  .valley .vy-cities h3 a::after{width:13px;height:13px}
   .valley .vy-cities .az{margin-left:-6px}
   .valley .vy-cities p{width:0;min-width:100%;margin-top:0;padding-left:21px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font-size:.8125rem;line-height:1.45;color:var(--text)}
   .valley .vy-cities h3::before{left:0;width:11px;height:11px;top:calc(50% - 5.5px)}
@@ -133,7 +129,6 @@
   .vy-index--inner .vy-cities{grid-template-columns:repeat(3,minmax(max-content,1fr));grid-template-rows:repeat(var(--r3,4),auto);gap:0 clamp(16px,1.4vw,26px);margin-top:22px}
   .vy-index--inner .vy-cities--names li{padding-block:7px;font-size:clamp(1.0625rem,.55rem + .55vw,1.25rem)}
   .vy-index--inner .vy-cities--names a{gap:5px;min-height:32px}
-  .vy-index--inner .vy-cities--names a::after{width:12px;height:12px}
   .vy-index--inner .vy-cities .az{margin-left:-5px}
 }
 /* the wire draws itself once the map arrives, each town switching on as the current reaches it (a halo flicker and a
@@ -150,7 +145,7 @@
   .motion .is-live .vy-wire__halo{animation:vy-fade .9s var(--ease) calc(var(--T) * .92) both}
   .motion .is-live .vy-wire__spark{animation:vy-spark var(--T) cubic-bezier(.2,0,.6,1) .25s both}
   .motion .is-live .vy-pin i{animation:vy-on .9s linear calc(.25s + var(--t) * var(--T)) both}
-  .motion .is-live .vy-pin i::before{animation:vy-halo 1.1s linear calc(.25s + var(--t) * var(--T)) both}
+  .motion .is-live .vy-pin i::before{animation:vy-halo 1.1s linear calc(.25s + var(--t) * var(--T)) backwards}
   .motion .is-live .vy-cities h3::before,.motion .is-live .vy-cities--names li::before{animation:vy-socket .9s linear calc(.25s + var(--t) * var(--T)) both}
   .motion .is-live .vy-end__bars>*{animation:vy-bar .4s var(--ease) calc(.25s + var(--T) * .97) both}
   .motion .is-live .vy-end__glass{animation:glass-on 1.1s var(--ease) calc(.35s + var(--T)) both}
@@ -166,7 +161,7 @@
     30%{background:radial-gradient(circle,#E9C9A0 0 30%,#B8724E 36% 100%);transform:scale(1.2)}
     44%{background:radial-gradient(circle,#FFF6E8 0 30%,#AA502E 36% 100%);transform:scale(1.3)}
     100%{background:radial-gradient(circle,#FFF6E8 0 30%,#AA502E 36% 100%);transform:scale(1)}}
-  @keyframes vy-halo{0%{opacity:0;transform:scale(.3)}20%{opacity:1;transform:scale(1.7)}30%{opacity:.2}42%{opacity:.95;transform:scale(1.25)}100%{opacity:1;transform:scale(1)}}
+  @keyframes vy-halo{0%{opacity:0;transform:scale(.3)}20%{opacity:1;transform:scale(1.7)}30%{opacity:.2}42%{opacity:.95;transform:scale(1.25)}100%{opacity:0;transform:scale(1)}}
   @keyframes vy-socket{0%{background:#FDFBF7;box-shadow:0 0 0 2px #C9BAA6}18%{background:radial-gradient(circle,#F1B978 0 28%,#C8693E 34% 100%);box-shadow:0 0 0 2px rgb(253 251 247 / .9),0 0 14px 3px rgb(255 190 120 / .9)}
     30%{background:radial-gradient(circle,#E9C9A0 0 28%,#B8724E 34% 100%);box-shadow:0 0 0 2px rgb(253 251 247 / .9)}
     100%{background:radial-gradient(circle,#FFF6E8 0 28%,#AA502E 34% 100%);box-shadow:0 0 0 2px rgb(253 251 247 / .9),0 0 10px 1px rgb(255 190 120 / .7)}}

@@ -18,10 +18,9 @@ import SanityImage from '../ui/SanityImage.astro'
 interface Props {
   section: HighlightsSection
   settings: SiteSettings
-  number?: number
 }
 
-const {section, settings, number} = Astro.props
+const {section, settings} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const points = section.checklist.filter((p) => p.lead || p.text)
@@ -36,7 +35,7 @@ const asideParts = roc && settings.rocLicenseUrl ? [asideHeading!.slice(0, roc.i
 <section class:list={['section hls', !image && 'hls--solo']} {...sectionLabel(id, section.heading, section.eyebrow)}>
   <div class="wrap hls__grid">
     <div class="hls__copy">
-      {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
+      {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
       {
         section.heading && (
           <h2 class="h2" id={id}>

@@ -1,7 +1,7 @@
 ---
 // The services directory (servicesSection, layouts "grid" and "grouped"): every
-// service once, as a numbered row (the name is the row's one link, the card text
-// under it), so /services lists all of them visibly (the live page hid them in tabs)
+// service once, as a ruled row (the name is the row's one link, the card text under
+// it; not a sequence, so no numbers), so /services lists all of them visibly (the live page hid them in tabs)
 // and the commercial page links every commercial service. "grouped" sets each
 // category apart: its heading beside the list (sticky on wide screens), its intro
 // when the category has one, and a link to the category page. Rows carry text only:
@@ -15,14 +15,12 @@ import PortableText from '../PortableText.astro'
 import SectionHeader from '../ui/SectionHeader.astro'
 import Eyebrow from '../ui/Eyebrow.astro'
 import TextLink from '../ui/TextLink.astro'
-import MiniBulb from '../ui/MiniBulb.astro'
 
 interface Props {
   section: ServicesSection
-  number?: number
 }
 
-const {section, number} = Astro.props
+const {section} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const {cta} = section
@@ -35,7 +33,6 @@ const grouped = groups.length > 1 || Boolean(groups[0].name)
 const GroupTitle = section.heading ? 'h3' : 'h2'
 // each row one level below its group (or the section) heading
 const RowTitle = section.heading && grouped ? 'h4' : 'h3'
-const pad = (n: number) => String(n).padStart(2, '0')
 const rowText = (s: ServiceCard) => s.text ?? s.shortDescription
 ---
 
@@ -44,7 +41,7 @@ const rowText = (s: ServiceCard) => s.text ?? s.shortDescription
     <section class="section svcdir-s" {...sectionLabel(id, section.heading, section.eyebrow ?? 'Services')}>
       <div class="wrap">
         {section.heading && (
-          <SectionHeader heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+          <SectionHeader heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} intro={section.intro}>
             {cta && (
               <TextLink slot="more" href={ctaHref(cta, redirects)}>
                 {cta.label}
@@ -58,7 +55,7 @@ const rowText = (s: ServiceCard) => s.text ?? s.shortDescription
             <div class:list={['svcdir', grouped && 'svcdir--grouped']} aria-labelledby={grouped ? gid : undefined} role={grouped ? 'group' : undefined}>
               {grouped && (
                 <div class="svcdir__head">
-                  {!section.heading && group === groups[0] && <Eyebrow number={number}>{section.eyebrow ?? 'Services'}</Eyebrow>}
+                  {!section.heading && group === groups[0] && <Eyebrow>{section.eyebrow ?? 'Services'}</Eyebrow>}
                   <GroupTitle class="svcdir__h" id={gid}>
                     {group.heading ?? `${group.name} services`}
                   </GroupTitle>
@@ -70,22 +67,18 @@ const rowText = (s: ServiceCard) => s.text ?? s.shortDescription
                   </p>
                 </div>
               )}
-              <ol class="svcdir__list" role="list">
-                {group.services.map((s, i) => (
-                  <li class="svcrow svc-tile">
-                    <span class="svcrow__n" aria-hidden="true">
-                      {pad(i + 1)}
-                    </span>
+              <ul class="svcdir__list" role="list">
+                {group.services.map((s) => (
+                  <li class="svcrow">
                     <div class="svcrow__body">
                       <RowTitle class="svcrow__h">
                         <a href={`/services/${s.slug}`}>{s.title}</a>
                       </RowTitle>
                       {rowText(s) && <p class="svcrow__p">{rowText(s)}</p>}
                     </div>
-                    <MiniBulb />
                   </li>
                 ))}
-              </ol>
+              </ul>
             </div>
           )
         })}

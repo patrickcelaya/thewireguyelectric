@@ -66,10 +66,7 @@
 .post-nav__a{position:relative;display:grid;gap:8px;align-content:start;padding:clamp(22px,2.2vw,30px) clamp(24px,2.4vw,34px);border-radius:var(--r-2);background:var(--paper);box-shadow:var(--hairline-soft);text-decoration:none;transition:box-shadow .15s var(--ease)}
 .post-nav__a:hover{box-shadow:inset 0 0 0 1px var(--ink)}
 .post-nav__a--next{grid-column:2;text-align:right;justify-items:end}
-.post-nav__k{display:inline-flex;align-items:center;gap:8px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
-.post-nav__k::before,.post-nav__a--next .post-nav__k::after{content:"";width:16px;height:16px;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
-.post-nav__a--prev .post-nav__k::before{transform:scaleX(-1)}
-.post-nav__a--next .post-nav__k::before{display:none}
+.post-nav__k{font:600 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
 .post-nav__t{font:700 clamp(1.125rem,1rem + .4vw,1.375rem)/1.3 var(--font-display);letter-spacing:-.015em;color:var(--ink)}
 .post-nav__a:hover .post-nav__t{color:var(--copper-700)}
 /* a thumbnail beside the words: at the left of the previous post, at the right of the next */

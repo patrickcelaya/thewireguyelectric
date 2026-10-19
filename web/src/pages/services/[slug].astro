@@ -91,21 +91,6 @@ const faqHeading = ownFaqs.length ? `Questions about ${topic}` : 'Questions, ans
 const guidesHeading = allSupport(guidePosts, service.slug, postIndex) ? `Guides on ${topic}` : 'Guides from our blog'
 const cities = serviceAreaCities(settings.homeCity, locations)
 
-// chapter numbers, in page order, for the sections that have content
-let chapter = 0
-const next = () => ++chapter
-const n = {
-  glance: next(),
-  signs: signs ? next() : undefined,
-  work: work.length ? next() : undefined,
-  reviews: reviews.length ? next() : undefined,
-  faq: faqs.length ? next() : undefined,
-  guides: guides.length ? next() : undefined,
-  related: related.length ? next() : undefined,
-  areas: next(),
-  cta: next(),
-}
-
 const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
 // the photo the hero shows (a company photo); a stock image the page hides is never its image or preview
 const ownPhoto = hero ? service.mainImage : undefined
@@ -133,17 +118,17 @@ const serviceId = `${absoluteUrl(path)}#service`
   </Fragment>
 
   <ServiceHero service={service} heading={heading} settings={settings} crumbs={crumbs} />
-  <ServiceGlance service={service} settings={settings} number={n.glance} />
-  {signs && <WarningSigns signs={signs} number={n.signs} />}
+  <ServiceGlance service={service} settings={settings} />
+  {signs && <WarningSigns signs={signs} />}
 
   {/* a body without an H2 is named apart from the hero (which the H1 names), so landmark names stay unique */}
   <LongForm body={body} label={`${heading}, in detail`} variant="service" figure={inlineFigure}>
     <ContactCard slot="aside" settings={settings} />
   </LongForm>
 
-  <WorkGallery photos={work} layout={layout} heading="Recent work by our crew" intro="Our own photos of the crew and their work." number={n.work} id="work-h" />
+  <WorkGallery photos={work} layout={layout} heading="Recent work by our crew" intro="Our own photos of the crew and their work." id="work-h" />
 
-  <ReviewsStatic settings={settings} reviews={reviews} heading="What our customers say" intro={reviewsIntro} number={n.reviews} />
+  <ReviewsStatic settings={settings} reviews={reviews} heading="What our customers say" intro={reviewsIntro} />
 
   <AnswersBand
     faqs={faqs}
@@ -152,14 +137,13 @@ const serviceId = `${absoluteUrl(path)}#service`
     posts={guides}
     guidesHeading={guidesHeading}
     guidesIntro="Read up on the details before you call."
-    numbers={{faq: n.faq, guides: n.guides}}
   />
 
   {
     related.length > 0 && (
       <section class="section isvc cv" aria-labelledby="rel-h">
         <div class="wrap">
-          <SectionHeader eyebrow="Related services" number={n.related} heading={service.category ? `More ${service.category.name.toLowerCase()} electrical services` : 'More electrical services'} id="rel-h">
+          <SectionHeader eyebrow="Related services" heading={service.category ? `More ${service.category.name.toLowerCase()} electrical services` : 'More electrical services'} id="rel-h">
             <Fragment slot="more">
               <TextLink href={service.category ? `/services-categories/${service.category.slug}` : '/services'}>
                 {service.category ? `All ${service.category.name.toLowerCase()} services` : 'View All Services'}
@@ -180,7 +164,7 @@ const serviceId = `${absoluteUrl(path)}#service`
     )
   }
 
-  <Valley settings={settings} cities={cities} variant="inner" heading={`${heading} across the valley`} number={n.areas} />
+  <Valley settings={settings} cities={cities} variant="inner" heading={`${heading} across the valley`} />
 
-  <CtaBand settings={settings} number={n.cta} photo={ctaPhoto} />
+  <CtaBand settings={settings} photo={ctaPhoto} />
 </SiteLayout>

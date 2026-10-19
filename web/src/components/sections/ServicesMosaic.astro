@@ -13,12 +13,10 @@ import {sectionLabel} from '../../lib/sections'
 import Eyebrow from '../ui/Eyebrow.astro'
 import Accent from '../ui/Accent.astro'
 import TextLink from '../ui/TextLink.astro'
-import MiniBulb from '../ui/MiniBulb.astro'
 import SanityImage from '../ui/SanityImage.astro'
 
 interface Props {
   section: ServicesSection
-  number?: number
 }
 
 /** The mosaic's slots, in card order: their place in the grid (styles/home.css) and how wide they are. */
@@ -37,7 +35,7 @@ const SIZES = {
   narrow: '(max-width:699px) 92vw, (max-width:1099px) 48vw, 25vw',
 }
 
-const {section, number} = Astro.props
+const {section} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const cards = section.services
@@ -51,9 +49,9 @@ const icon = {prev: 'M15 5.5 8.5 12l6.5 6.5', next: 'm9 5.5 6.5 6.5L9 18.5'}
     <section class="section services cv" {...sectionLabel(id, section.heading, section.eyebrow)} data-rail>
       <div class="wrap head">
         <div>
-          {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
+          {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
           {section.heading && (
-            <h2 class="display" id={id} data-reveal>
+            <h2 class="display" id={id}>
               <Accent text={section.heading} accent={section.headingAccent} />
             </h2>
           )}
@@ -113,7 +111,6 @@ const icon = {prev: 'M15 5.5 8.5 12l6.5 6.5', next: 'm9 5.5 6.5 6.5L9 18.5'}
                   <span class="tile__go" aria-hidden="true">
                     Read more
                   </span>
-                  <MiniBulb />
                 </div>
               </li>
             )

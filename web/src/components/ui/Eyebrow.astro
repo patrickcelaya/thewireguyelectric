@@ -1,26 +1,23 @@
 ---
-// The editorial kicker above a heading: an optional section number and hairline,
-// the small bulb mark, then the label. Always a <p>, never part of the heading. A label
-// in parts ("Family-owned in Mesa, Arizona · Since 2017") sets them as .seps parts, so a
-// part that wraps on a phone takes its dot with it instead of leaving it at a line end.
+// The label above a heading: words only, in Red Hat Text 600, copper-700 on light
+// surfaces (cream on the copper bands). No number, no rule, no bulb mark: sections are
+// not a sequence. Always a <p>, never part of the heading. A label in parts
+// ("Family-owned in Mesa, Arizona · Since 2017") sets them as .seps parts, so a part
+// that wraps on a phone takes its dot with it instead of leaving it at a line end.
 interface Props {
-  /** Section number ("06"); numbers are zero-padded. */
-  number?: number | string
-  variant?: 'pill' | 'cream' | 'sky'
+  variant?: 'cream'
   class?: string
 }
 
-const {number, variant, class: className} = Astro.props
-const n = typeof number === 'number' ? String(number).padStart(2, '0') : number
-const label = await Astro.slots.render('default')
+const {variant, class: className} = Astro.props
+const label = (await Astro.slots.render('default')).trim()
 const parts = label.split(' · ').map((p) => p.trim())
 ---
 
-<p class:list={['kicker', variant && `kicker--${variant}`, className]}>
-  {n && <><span class="kicker__n" aria-hidden="true">{n}</span>{' '}</>}
-  {
-    parts.length > 1 ? (
-      <span class="kicker__t">
+{
+  label && (
+    <p class:list={['kicker', variant && `kicker--${variant}`, className]}>
+      {parts.length > 1 ? (
         <span class="seps">
           {parts.map((p, i) => (
             <>
@@ -29,9 +26,9 @@ const parts = label.split(' · ').map((p) => p.trim())
             </>
           ))}
         </span>
-      </span>
-    ) : (
-      <span class="kicker__t" set:html={label} />
-    )
-  }
-</p>
+      ) : (
+        <Fragment set:html={label} />
+      )}
+    </p>
+  )
+}

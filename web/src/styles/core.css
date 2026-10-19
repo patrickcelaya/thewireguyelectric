@@ -40,14 +40,10 @@ h1 .accent{color:var(--copper)}
 .link--ext::after{margin-left:4px;vertical-align:-1px}
 .btn--tel::before{-webkit-mask-image:var(--phone);mask-image:var(--phone);width:18px;height:18px}
 
-/* ===================================================================== type: the numbered kicker, display sizes */
-.kicker{display:flex;align-items:center;gap:12px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700);letter-spacing:.01em;margin-bottom:clamp(18px,1.8vw,28px)}
-.kicker__n{font:700 .8125rem/1 var(--font-display);letter-spacing:.06em;font-variant-numeric:tabular-nums}
-.kicker__n::after{content:"";display:inline-block;vertical-align:middle;width:clamp(28px,3vw,48px);height:1.5px;margin-left:12px;background:currentColor;opacity:.55}
-.kicker__t{display:inline-flex;align-items:center;gap:9px}
-.kicker__t::before{content:"";flex:none;width:13px;height:17px;background:currentColor;-webkit-mask:var(--bulb-mark) center/contain no-repeat;mask:var(--bulb-mark) center/contain no-repeat}
+/* ===================================================================== type: the label above a heading (words only: copper-700 6.53:1
+   on bone, 5.93:1 on sand; cream 8.7:1 on copper-800), display sizes */
+.kicker{font:600 var(--fs-small)/1.3 var(--font-text);letter-spacing:0;color:var(--copper-700);margin-bottom:clamp(16px,1.4vw,20px)}
 .kicker--cream{color:var(--cream)}
-.kicker--sky{color:#fff}
 .display{font-size:var(--fs-display);letter-spacing:-.042em;line-height:.96;font-weight:720}
 .h2{font-size:var(--fs-h2);letter-spacing:-.036em;line-height:1}
 .link{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
@@ -278,11 +274,6 @@ body:not(.over) main{padding-top:var(--hdr-h)}
 .head--stack{grid-template-columns:minmax(0,1fr);gap:22px;align-items:start}
 @media (max-width:880px){.head{grid-template-columns:1fr;gap:20px}}
 
-/* ===================================================================== the bulb that switches on under the pointer (hidden at rest: never an icon in a column) */
-.mini-bulb{position:absolute;right:22px;bottom:22px;width:30px;height:auto;overflow:visible;color:var(--copper);opacity:0;transform:translateY(4px);transition:opacity .35s var(--ease),transform .35s var(--ease),filter .5s var(--ease);pointer-events:none;--mb-line:currentColor;--mb-glass:rgb(255 226 184 / 0)}
-:is(.tile,.svc-tile,.guide):is(:hover,:focus-within) .mini-bulb{opacity:1;transform:none;--mb-glass:var(--glow);filter:drop-shadow(0 0 10px rgb(255 214 150 / .9)) drop-shadow(0 0 24px rgb(255 190 120 / .55))}
-@media (hover:none){.mini-bulb{display:none}}
-
 /* ===================================================================== the photo tile: the words on a feathered tint at the photo's foot (home bento, inner pages) */
 .tile{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;border-radius:var(--r-2);background:var(--sand-2)}
 .tile__media{position:absolute;inset:0;z-index:-1;overflow:hidden}
@@ -295,11 +286,8 @@ body:not(.over) main{padding-top:var(--hdr-h)}
 .tile h3 a::after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit}
 .tile .tile__body>p{font-size:.9375rem;line-height:1.5;color:#fff;max-width:34em}
 .t-ev .tile__body>p,.t-trouble .tile__body>p{font-size:.875rem}
-.tile__go{display:inline-flex;align-items:center;gap:8px;margin-top:2px;font-weight:650;font-size:.9375rem;color:var(--glow)}
-.tile__go::after{content:"";width:17px;height:17px;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease)}
-.tile:hover .tile__go::after{transform:translateX(4px)}
+.tile__go{margin-top:2px;font-weight:600;font-size:.9375rem;color:var(--glow)}
 .tile :focus-visible{outline-color:#fff}
-.tile .mini-bulb{color:var(--glow)}
 
 /* phones: every photo tile becomes a card: the photo, then the words on paper (no text on any face) */
 @media (max-width:699px){
@@ -419,17 +407,17 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .rating--quiet .rating__l{flex-basis:100%}
 .cta__roc a{font-size:var(--fs-small);color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
 .cta__roc a:hover{color:var(--copper-700)}
-/* the bulb drawn by its wire (Copper & Ink): copper on the wall */
+/* the bulb drawn by its wire: copper on the wall, a line drawing (the bloom behind it shows only where a bulb answers an action:
+   the /estimate hero when the request is sent) */
 .bulb{position:relative;display:flex;justify-content:flex-end}
 .bulb svg{width:100%;height:auto;overflow:visible}
 .bulb .wire,.bulb .ghost path{fill:none;stroke:var(--copper);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
 .bulb .ghost path{stroke-opacity:.2}
-.bulb .glass{fill:var(--glow);opacity:.0}
+.bulb .glass{fill:var(--glow)}
+.bulb .glass,.bulb .glow{opacity:0}
 .bulb .bars>*{fill:var(--copper)}
-.bulb .glow{opacity:.85}
 @media (prefers-reduced-motion:no-preference){
   .motion .bulb .wire{stroke-dasharray:1;stroke-dashoffset:1}
-  .motion .bulb .glow{opacity:0}
   .motion .bulb .bars>*{opacity:.3;transform:translateY(5px);transform-box:fill-box}
   .motion .bulb.is-in .wire--lead{stroke-dashoffset:0;transition:stroke-dashoffset .5s cubic-bezier(.55,.05,.45,1)}
   .motion .bulb.is-in .wire--bulb{stroke-dashoffset:0;transition:stroke-dashoffset .8s .4s var(--ease)}
@@ -437,8 +425,6 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
   .motion .bulb.is-in .bars>:nth-child(1){transition-delay:1.05s}
   .motion .bulb.is-in .bars>:nth-child(2){transition-delay:1.13s}
   .motion .bulb.is-in .bars>:nth-child(3){transition-delay:1.21s}
-  .motion .bulb.is-in .glow{animation:switch-on 1.1s 1.3s var(--ease) forwards}
-  .motion .bulb.is-in .glass{animation:glass-on 1.1s 1.38s var(--ease) forwards}
 }
 @keyframes switch-on{0%{opacity:0}18%{opacity:.85}26%{opacity:.15}40%{opacity:.95}52%{opacity:.5}100%{opacity:.85}}
 @keyframes glass-on{0%{opacity:0}18%{opacity:.7}26%{opacity:.1}40%{opacity:.8}100%{opacity:.75}}
@@ -574,19 +560,6 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 }
 @media (max-width:639px) and (max-height:399px){.callbar{position:static}body{padding-bottom:0}}
 
-/* ===================================================================== reveals: enhancement only. An element can start transparent ONLY
-   when all three hold: the page's script ran (html.motion is set in <head>, and only when the visitor allows motion), the
-   browser supports scroll-driven animations, and prefers-reduced-motion is no-preference. Browsers without scroll timelines
-   get .reveal-js, which site.js adds only once its IntersectionObserver is running. No JS or reduced motion: all visible. */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion:no-preference){
-    .motion [data-reveal]{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 65%}
-    @keyframes rise{from{opacity:0;transform:translateY(44px)}to{opacity:1;transform:none}}
-  }
-}
-.reveal-js [data-reveal]{transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
-.reveal-js [data-reveal]:not(.is-in){opacity:0;transform:translateY(36px)}
-@media print{[data-reveal]{animation:none!important;opacity:1!important;transform:none!important}}
 /* below-the-fold sections are laid out and painted only as they approach (their last size is remembered). Homepage only:
    on the shorter inner pages the size estimates put the targets below them (the footer's links, a FAQ under the valley)
    in the wrong place until they render, which tools that measure target spacing at load read as overlaps */

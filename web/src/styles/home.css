@@ -96,7 +96,8 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 /* laptops (1240-1599 px): at most 14 px between the eyebrow, the H1 and the buttons, so the CTA line's 18 px gap still fits
    on the wall of a tall window (1240x900, 1280x1024, 1366x1024: the words used to stack above the photo there) */
 @media (min-width:1240px) and (max-width:1599px){.hero__inner{gap:min(14px,2svh)}}
-.hero__kicker{margin:0;padding:4px 16px 4px 14px;border-radius:var(--r-1);background:rgb(253 251 247 / .82);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .07),0 8px 24px -16px rgb(15 42 53 / .4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+/* the eyebrow on the photo wall: plain ink words on the wall's light (no pill) */
+.hero__kicker{margin:0;color:var(--ink)}
 .hero h1{font-size:clamp(2.75rem,min(5cqw,7.3svh),7.5rem);line-height:.96;letter-spacing:-.045em;font-weight:760;text-wrap:initial}
 .hero h1 .ln{display:block;white-space:nowrap}
 .hero h1 .accent{color:var(--copper-700)}
@@ -173,7 +174,7 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .hero__copy{display:contents}
   .hero__inner{display:contents}
   .hero__copy,.hero__photo,.proof{--hw:136cqw;--S:0px}
-  .hero__kicker{order:1;align-self:flex-start;margin:calc(var(--hdr-h) + 16px) var(--gutter) 0;padding:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .hero__kicker{order:1;align-self:flex-start;margin:calc(var(--hdr-h) + 16px) var(--gutter) 0;color:var(--copper-700)}
   .hero h1{order:2;margin:14px var(--gutter) 0;font-size:clamp(2.375rem,10.6cqw,4rem);text-align:left}
   .hero h1 .ln{display:inline;white-space:normal}
   .hero__actions{order:3;justify-content:flex-start;gap:12px;margin:22px var(--gutter) 28px}
@@ -260,14 +261,11 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 .vy-photo{position:relative;height:var(--bh);margin:0;overflow:hidden}
 .vy-photo img{position:absolute;left:0;bottom:0;width:100%;max-width:none;height:var(--ph)}
 .vy-photo::after{content:"";position:absolute;inset:auto 0 0;height:calc(var(--ph) * .06);background:linear-gradient(rgb(243 237 227 / 0),rgb(243 237 227 / .55) 55%,var(--atlas));pointer-events:none}
-/* a sun-haze baked into the sky: very wide and soft (no ring at any width), lighter where the copper words sit; it ends
-   above the peaks */
-.vy-sky::before{content:"";position:absolute;z-index:1;inset:0 0 auto;height:calc(var(--bh) - var(--ph) * .37);background:radial-gradient(ellipse 72% 92% at 50% 74%,rgb(240 247 255 / .5) 0%,rgb(240 247 255 / .44) 22%,rgb(240 247 255 / .3) 46%,rgb(240 247 255 / .15) 68%,rgb(240 247 255 / .05) 86%,rgb(240 247 255 / 0) 100%);-webkit-mask-image:linear-gradient(#000 75%,transparent);mask-image:linear-gradient(#000 75%,transparent);pointer-events:none}
 .vy-title{position:absolute;z-index:2;inset:0 0 auto;height:calc(var(--bh) - var(--ph) * .385);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:clamp(28px,3cqw,64px) 0 clamp(14px,1.4cqw,30px);text-align:center}
-.kicker--pill{margin:0 0 clamp(14px,1.3cqw,24px);padding:8px 16px 8px 14px;border-radius:var(--r-1);background:rgb(253 251 247 / .9);color:var(--copper-700);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .6),0 10px 26px -16px rgb(15 42 53 / .55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.vy-title .kicker{margin:0 0 clamp(14px,1.3cqw,24px);color:var(--ink)}
 .vy-h{display:flex;flex-direction:column;align-items:center;font-weight:740;color:var(--ink);line-height:1;text-wrap:balance}
 .vy-h__a{font-size:clamp(1.75rem,.8rem + 3.1cqw,5rem);letter-spacing:-.036em;line-height:1.05}
-.vy-h__b{margin-top:-.04em;font-size:min(6rem + 8.5cqw,min(100cqw - 2 * var(--gutter),var(--max)) / var(--vy-em,5.6),20rem);white-space:nowrap;font-weight:760;letter-spacing:-.052em;line-height:1;color:var(--copper-800);padding-bottom:.04em}
+.vy-h__b{margin-top:-.04em;font-size:min(6rem + 8.5cqw,min(100cqw - 2 * var(--gutter),var(--max)) / var(--vy-em,5.6),20rem);white-space:nowrap;font-weight:760;letter-spacing:-.052em;line-height:1;color:var(--ink);padding-bottom:.04em}
 .vy-intro{margin-top:clamp(6px,.6cqw,14px);max-width:30em;font:550 clamp(1.0625rem,.92rem + .5cqw,1.5rem)/1.4 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
 @media (min-width:1600px){.vy-photo img{filter:url(#grain) saturate(1.02) contrast(1.03)}}
 /* laptops and up (round-5 QA: "a quarter of the photo is asphalt"): the photo is cut 4.5% at its foot, so the lot below
@@ -277,22 +275,13 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .vy-sky{--cut:.045;--bh:min(var(--ph) * (1 - var(--cut)),calc(var(--need) + var(--ph) * (.375 - var(--cut))))}
   .vy-photo img{bottom:calc(var(--ph) * var(--cut) * -1)}
   .vy-photo::after{height:calc(var(--ph) * .05)}
-  .vy-sky::before{height:calc(var(--bh) - var(--ph) * (.36 - var(--cut)))}
   .vy-title{height:calc(var(--bh) - var(--ph) * (.375 - var(--cut)))}
 }
 @media (min-width:1600px){.vy-sky{--need:clamp(560px,9cqw + 420px,640px)}.vy-title{padding-bottom:clamp(12px,.8cqw,20px)}}
-/* the words drift up a little slower than the page (scroll-driven; only ever away from the crew) */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion:no-preference){
-    .vy-title{animation:vy-drift linear both;animation-timeline:view();animation-range:cover 10% cover 90%}
-    @keyframes vy-drift{from{transform:translateY(0)}to{transform:translateY(-48px)}}
-  }
-}
 /* tablets and phones: the sky continues above the photo (the photo's own top colours), so the title has room and the
    crew keeps its size; the frame is centred on the crew (all four with headroom) */
 @media (max-width:759px){
   .vy-sky{--pw:150cqw;--ph:calc(var(--pw) / 1.5);display:flex;flex-direction:column;background:linear-gradient(rgb(122 172 242),rgb(150 196 249) 58%,rgb(156 200 250))}
-  .vy-sky::before{display:none}
   .vy-title{position:relative;order:1;height:auto;padding:44px var(--gutter) 8px}
   .vy-photo{order:2;height:calc(var(--ph) * .54);margin-top:-1px}
   .vy-photo img{left:calc(50cqw - .525 * var(--pw));width:var(--pw);height:var(--ph);-webkit-mask-image:linear-gradient(transparent calc(var(--ph) * .46),#000 calc(var(--ph) * .56));mask-image:linear-gradient(transparent calc(var(--ph) * .46),#000 calc(var(--ph) * .56))}
@@ -300,18 +289,4 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .vy-h__b{font-size:clamp(2rem,(100cqw - 2 * var(--gutter)) / var(--vy-em,5.6),6rem)}
   .vy-intro{font-size:1.0625rem;max-width:22em}
 }
-@media (max-width:599px){.vy-sky{--pw:176cqw}.kicker--pill{gap:8px;padding:7px 13px 7px 12px;font-size:.8125rem}.kicker--pill .kicker__n::after{width:18px;margin-left:8px}.kicker--pill .kicker__t{gap:7px}}
-
-/* ===================================================================== scroll-driven motion (transform, opacity, colour). The resting state
-   is the finished page: without support, without JS or with reduced motion everything is simply there. */
-@supports (animation-timeline: view()){
-  @media (prefers-reduced-motion:no-preference){
-    /* hero: the words lift away as you leave (transform only, away from the faces) */
-    .hero__inner{animation:lift linear both;animation-timeline:scroll(root);animation-range:0 70svh}
-    @keyframes lift{to{transform:translateY(-12svh)}}
-    /* the lit statement: each phrase turns from warm grey (3.6:1, already large-text AA) to ink as it rises */
-    .statement{view-timeline:--stmt block}
-    .motion .statement .w{animation:lit linear both;animation-timeline:--stmt;animation-range:cover calc(14% + var(--i) * 5%) cover calc(24% + var(--i) * 5%)}
-    @keyframes lit{from{color:var(--dim)}to{color:var(--ink)}}
-  }
-}
+@media (max-width:599px){.vy-sky{--pw:176cqw}}

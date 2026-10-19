@@ -11,7 +11,7 @@
 // Nothing here animates in: the H1, the buttons, the card and the LCP photo are
 // painted at full opacity at once. The page H1 comes from the page (never from the
 // section); its accent words come from the section. Under the hero, the live hero
-// paragraph: its first sentence as the lit statement, the rest as a quiet lede.
+// paragraph: its first sentence as the statement, the rest as a quiet lede.
 // Geometry: styles/home.css "HERO"; the stacking safety net: scripts/site/motion.ts.
 // Without a photo the words and the proof card simply sit on the page (hero--bare).
 import type {HeroSection, SiteSettings} from '../../lib/types'
@@ -52,10 +52,8 @@ const trustParts = trust && rocAt >= 0 ? [trust.slice(0, rocAt), trust.slice(roc
 // "… insured · ROC #…": the claim and the number as .seps parts, so the dot goes with the number when it wraps
 const dotted = trustParts && /·\s*$/.test(trustParts[0])
 
-// The lit statement turns from warm grey to ink a few words at a time as it rises.
 // A non-breaking space keeps the dash in "service - keeping" off the start of a line.
 const [statement, lede] = firstSentence((section.text ?? '').replace(/ - /g, ' - '))
-const phrases = statement.match(/\S+(?:\s+\S+){0,2}/g) ?? []
 
 const image = section.image
 const photo = hasImage(image) ? image : undefined
@@ -169,17 +167,9 @@ const [phone, wide] = HERO_SOURCES
     )
   }
   {
-    phrases.length > 0 && (
+    statement && (
       <div class="wrap creed">
-        <p class="statement" data-lit>
-          {phrases.map((words, i) => (
-            <>
-              <span class="w" style={`--i:${i}`}>
-                {words}
-              </span>{' '}
-            </>
-          ))}
-        </p>
+        <p class="statement">{statement}</p>
         {lede && <p class="creed__more">{lede}</p>}
       </div>
     )

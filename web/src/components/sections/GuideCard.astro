@@ -11,7 +11,6 @@ import type {PostSummary} from '../../lib/types'
 import {formatDate, isoDate} from '../../lib/format'
 import {hasImage} from '../../lib/image'
 import SanityImage from '../ui/SanityImage.astro'
-import MiniBulb from '../ui/MiniBulb.astro'
 
 interface Props {
   post: PostSummary
@@ -36,7 +35,6 @@ const words = coverWords && !(photo && own) ? coverWords : undefined
     <SanityImage image={post.mainImage} widths={[420, 640, 900]} aspect={1.6} sizes="(max-width:899px) 92vw, 30vw" style={focus && `object-position:${focus}`} />
     <span class="lab">{label}</span>{' '}
     {words && <span class="big">{words}</span>}
-    <MiniBulb />
   </div>
   {
     post.publishedAt && (

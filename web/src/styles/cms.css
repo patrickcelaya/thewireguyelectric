@@ -71,13 +71,11 @@
 /* ===================================================================== services without a company photo: a two-column index under the cards */
 .svc-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,3.4vw,64px);border-top:1.5px solid var(--ink)}
 .svc-rows--after{margin-top:clamp(40px,4vw,64px)}
-.svc-row{position:relative;padding:22px 52px 24px 0;border-bottom:1px solid var(--line-strong)}
+.svc-row{position:relative;padding:22px 24px 24px 0;border-bottom:1px solid var(--line-strong)}
 .svc-row h3{font-size:clamp(1.25rem,1.1rem + .45vw,1.5rem);letter-spacing:-.02em}
 .svc-row h3 a{color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
 .svc-row h3 a::after{content:"";position:absolute;inset:0}
-.svc-row::after{content:"";position:absolute;right:6px;top:28px;width:18px;height:18px;background:var(--copper-700);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease)}
 .svc-row:hover h3 a{color:var(--copper-700)}
-.svc-row:hover::after{transform:translateX(4px)}
 .svc-row p{margin-top:6px;font-size:var(--fs-small);line-height:1.55;color:var(--text);max-width:34em}
 .svc-row :focus-visible{outline-offset:2px}
 .svc-rows:has(>.svc-row:only-child){grid-template-columns:minmax(0,1fr)}

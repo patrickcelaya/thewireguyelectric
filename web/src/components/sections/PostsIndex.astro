@@ -19,10 +19,9 @@ import PostRow from './PostRow.astro'
 
 interface Props {
   section: PostsSection
-  number?: number
 }
 
-const {section, number} = Astro.props
+const {section} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const {cta} = section
@@ -53,7 +52,7 @@ const SHOWN = 5
     <section class="section blogidx-s" {...sectionLabel(id, section.heading, section.eyebrow ?? 'Every guide')}>
       <div class="wrap">
         {section.heading && (
-          <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+          <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} intro={section.intro}>
             {cta && (
               <TextLink slot="more" href={ctaHref(cta, redirects)}>
                 {cta.label}

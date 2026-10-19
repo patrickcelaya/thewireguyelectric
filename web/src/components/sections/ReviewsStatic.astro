@@ -12,7 +12,6 @@ interface Props {
   reviews: Review[]
   heading: string
   intro?: string
-  number?: number | string
   id?: string
   /** Background: bone (default) or sand. */
   tone?: 'sand'
@@ -20,7 +19,7 @@ interface Props {
   cta?: {label: string; href: string}
 }
 
-const {settings, reviews, heading, intro, number, id = 'reviews-h', tone, cta} = Astro.props
+const {settings, reviews, heading, intro, id = 'reviews-h', tone, cta} = Astro.props
 ---
 
 {
@@ -29,7 +28,7 @@ const {settings, reviews, heading, intro, number, id = 'reviews-h', tone, cta} =
       <div class="wrap">
         <div class="reviews__head">
           <div>
-            <Eyebrow number={number}>Reviews</Eyebrow>
+            <Eyebrow>Reviews</Eyebrow>
             <h2 class="h2" id={id}>
               {heading}
             </h2>

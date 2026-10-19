@@ -16,7 +16,6 @@ import SanityImage from '../ui/SanityImage.astro'
 
 interface Props {
   section: GallerySection
-  number?: number
 }
 
 /** The mosaic's cells, in photo order: column, cell shape, and the order on phones (o) and tablets (ot). */
@@ -29,7 +28,7 @@ const MOSAIC = [
   {col: 'c', cell: 'g-tall g-half g-sc', o: 6, ot: 6},
 ]
 
-const {section, number} = Astro.props
+const {section} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const photos: Array<{key: string; image: ImageRef; caption?: string}> = [
@@ -46,7 +45,7 @@ const {cta} = section
   photos.length > 0 && (
     <section class="section work cv" {...sectionLabel(id, section.heading, section.eyebrow)} data-eager-photos>
       {section.heading && (
-        <SectionHeader class="wrap" heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} number={number} size="display" intro={section.intro} reveal>
+        <SectionHeader class="wrap" heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} size="display" intro={section.intro}>
           {cta && (
             <TextLink slot="more" href={ctaHref(cta, redirects)} external={isExternal(cta.href)}>
               {cta.label}

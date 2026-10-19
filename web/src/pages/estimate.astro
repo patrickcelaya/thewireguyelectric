@@ -86,7 +86,7 @@ const family = homeCity && settings.foundingDate ? `Family-owned in ${homeCity} 
             steps.map((step, i) => (
               <li>
                 <span class="next__n" aria-hidden="true">
-                  {String(i + 1).padStart(2, '0')}
+                  {i + 1}
                 </span>{' '}
                 <div>
                   <h3>{step.title}</h3> <p>{step.text}</p>

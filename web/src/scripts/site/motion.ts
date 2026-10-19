@@ -1,18 +1,6 @@
-// Scroll motion that needs a script. Everything starts visible: these only add
-// classes once their observer runs (see core.css "reveals").
-import {all, hasIO, hasScrollTimeline, idle, onceVisible, reduceMotion} from './util'
-
-/**
- * [data-reveal]: browsers with scroll-driven animations animate them in CSS; the
- * others get a one-shot fade (html.reveal-js), added only once the observer is running.
- */
-function reveals() {
-  if (hasScrollTimeline || reduceMotion || !hasIO) return
-  const els = all('[data-reveal]')
-  if (!els.length) return
-  document.documentElement.classList.add('reveal-js')
-  onceVisible(els, (el) => el.classList.add('is-in'), {rootMargin: '0px 0px -8% 0px', threshold: 0.01})
-}
+// Page behaviour that needs a script (no section fades or rises in: everything is
+// simply there).
+import {all, idle, onceVisible, reduceMotion} from './util'
 
 /**
  * [data-eager-photos] sections far down the page start loading their photos about a
@@ -64,7 +52,6 @@ function rails() {
 }
 
 export function initMotion() {
-  reveals()
   eagerPhotos()
   heroFit()
   rails()

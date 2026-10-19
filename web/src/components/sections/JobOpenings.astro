@@ -15,12 +15,11 @@ import Button from '../ui/Button.astro'
 
 interface Props {
   section: JobsSection
-  number?: number
   /** Where "Apply Now" goes: the application form on the page ("#apply-now"), else the contact page. */
   applyHref?: string
 }
 
-const {section, number, applyHref = '/contact-us'} = Astro.props
+const {section, applyHref = '/contact-us'} = Astro.props
 const id = `${section._key}-h`
 const jobs = currentJobs(section.jobs)
 ---
@@ -30,7 +29,7 @@ const jobs = currentJobs(section.jobs)
     <section class="section jobs-s" {...sectionLabel(id, section.heading, 'Current openings')}>
       <div class="wrap jobs">
         <div class="jobs__head">
-          <Eyebrow number={number}>{jobs.length === 1 ? 'Now hiring' : `${jobs.length} open positions`}</Eyebrow>
+          <Eyebrow>{jobs.length === 1 ? 'Now hiring' : `${jobs.length} open positions`}</Eyebrow>
           {section.heading && (
             <h2 class="h2" id={id}>
               {section.heading}

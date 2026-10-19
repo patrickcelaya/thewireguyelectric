@@ -15,7 +15,6 @@ interface Props {
   intro?: string
   id?: string
   eyebrow?: string
-  number?: number | string
   /** The link under the intro; pass null to leave it out (e.g. on /faq itself). */
   more?: {href: string; label: string} | null
   /**
@@ -25,7 +24,7 @@ interface Props {
   image?: ImageRef | null
 }
 
-const {faqs, heading, intro, id = 'faq-h', eyebrow = 'Questions', number, more = {href: '/faq', label: 'All questions on our FAQ'}, image} = Astro.props
+const {faqs, heading, intro, id = 'faq-h', eyebrow = 'Questions', more = {href: '/faq', label: 'All questions on our FAQ'}, image} = Astro.props
 const size = image ? imageDimensions(image) : undefined
 const aspect = size && size.height > size.width ? 4 / 5 : undefined
 ---
@@ -34,7 +33,7 @@ const aspect = size && size.height > size.width ? 4 / 5 : undefined
   faqs.length > 0 && (
     <div class="faq">
       <div class="faq__aside">
-        <Eyebrow number={number}>{eyebrow}</Eyebrow>
+        <Eyebrow>{eyebrow}</Eyebrow>
         <h2 class="h2" id={id}>
           {heading}
         </h2>

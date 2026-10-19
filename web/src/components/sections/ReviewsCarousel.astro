@@ -20,7 +20,6 @@ interface Props {
   heading?: string
   /** Words of the heading set in copper. */
   accent?: string
-  number?: number | string
   id?: string
   /** The button under the 5.0 (default "Get a Free Estimate Now" → the estimate page). */
   cta?: {label: string; href: string}
@@ -31,7 +30,6 @@ const {
   reviews,
   heading = 'What our customers say',
   accent = 'customers say',
-  number,
   id = 'reviews',
   cta = {label: 'Get a Free Estimate Now', href: ESTIMATE_PATH},
 } = Astro.props
@@ -50,7 +48,7 @@ const icon = {
     <section class="section reviews cv" id={id} aria-labelledby={`${id}-h`}>
       <div class="wrap reviews__head">
         <div class="reviews__title">
-          <Eyebrow number={number}>Reviews</Eyebrow>
+          <Eyebrow>Reviews</Eyebrow>
           <h2 class="display" id={`${id}-h`}>
             <Accent text={heading} accent={accent} />
           </h2>

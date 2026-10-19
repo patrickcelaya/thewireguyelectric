@@ -17,10 +17,9 @@ import SanityImage from '../ui/SanityImage.astro'
 
 interface Props {
   section: TeamSection
-  number?: number
 }
 
-const {section, number} = Astro.props
+const {section} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const showBios = section.showBios !== false
@@ -37,7 +36,7 @@ const sizes = showBios ? '(max-width:599px) 92vw, (max-width:1099px) 46vw, 30vw'
   section.members.length > 0 && (
     <section class="section crew-s" {...sectionLabel(id, heading)}>
       <div class="wrap">
-        <SectionHeader heading={heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+        <SectionHeader heading={heading} id={id} eyebrow={section.eyebrow} intro={section.intro}>
           {cta && (
             <TextLink slot="more" href={ctaHref(cta, redirects)}>
               {cta.label}

@@ -31,7 +31,6 @@ interface Props {
   /** Inner: the slug of this page's city (marked on the map, left out of the index). */
   current?: string
   eyebrow?: string
-  number?: number | string
   id?: string
   /** The closing line under the index (the live site's words). */
   note?: string
@@ -46,7 +45,6 @@ const {
   intro,
   current,
   eyebrow = 'Serving the whole Phoenix valley',
-  number,
   id = variant === 'home' ? 'valley-h' : 'areas-h',
   note = "If you don't see your city listed, give us a call and we'll let you know if you're in our service radius.",
 } = Astro.props
@@ -90,9 +88,7 @@ const fleetSrcset = imageSrcSet(fleet, [640, 828, 1086, 1600, 2172, 2400])
             />
           </figure>
           <div class="wrap vy-title">
-            <Eyebrow number={number} variant="pill">
-              {eyebrow}
-            </Eyebrow>
+            <Eyebrow>{eyebrow}</Eyebrow>
             <h2 class="vy-h" id={id} style={`--vy-em:${accentEm}`}>
               <span class="vy-h__a">{headLead}</span> {headAccent && <span class="vy-h__b">{headAccent}</span>}
             </h2>
@@ -162,7 +158,7 @@ const fleetSrcset = imageSrcSet(fleet, [640, 828, 1086, 1600, 2172, 2400])
               <p class="vy-lab">Cities and neighborhoods</p>
             ) : (
               <>
-                <Eyebrow number={number}>{eyebrow}</Eyebrow>
+                <Eyebrow>{eyebrow}</Eyebrow>
                 <h2 class="h2" id={id}>
                   {heading}
                 </h2>

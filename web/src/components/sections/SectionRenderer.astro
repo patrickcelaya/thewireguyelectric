@@ -4,9 +4,8 @@
 // fields (a feature grid's style, a services list's layout, a quote's source, a posts
 // list's layout) and the page (the homepage gets the title-card hero, the review lanes
 // and the valley with its sky; every other page the inner hero with its breadcrumb
-// trail, the picked reviews and the valley's atlas). Empty sections render nothing;
-// chapters are numbered in order and the questions and guides share one band
-// (lib/sections.ts). The page H1 is page.heading, shown by the hero; no section
+// trail, the picked reviews and the valley's atlas). Empty sections render nothing,
+// and the questions and guides share one band (lib/sections.ts). The page H1 is page.heading, shown by the hero; no section
 // renders an H1.
 //
 // A section type or variant no component draws yet stops the build with a clear
@@ -120,7 +119,7 @@ plan.forEach((item, i) => {
 {
   plan.map((item, index) => {
     if (item.kind === 'answers') {
-      const {faq, posts, numbers} = item
+      const {faq, posts} = item
       const headingId = faq?.heading ? `${faq._key}-h` : posts?.heading ? `${posts._key}-h` : undefined
       return (
         <section class:list={['section answers cv', bone.has(index) && 'answers--bone']} aria-labelledby={headingId} aria-label={headingId ? undefined : (faq?.eyebrow ?? 'Questions')}>
@@ -132,7 +131,6 @@ plan.forEach((item, i) => {
                 intro={faq.intro}
                 id={`${faq._key}-h`}
                 eyebrow={faq.eyebrow}
-                number={numbers.faq}
                 more={page.slug === 'faq' ? null : undefined}
                 image={home ? undefined : faq.image}
               />
@@ -140,16 +138,15 @@ plan.forEach((item, i) => {
             {faq && faq.groups.some((g) => g.faqs.length) && (
               <FaqTopics
                 section={{...faq, groups: faq.groups.map((g) => ({...g, faqs: toForm(g.faqs)}))}}
-                number={faq.faqs.length ? undefined : numbers.faq}
                 nested={faq.faqs.length > 0}
               />
             )}
-            {posts && <GuidesBlock section={posts} number={numbers.posts} />}
+            {posts && <GuidesBlock section={posts} />}
           </div>
         </section>
       )
     }
-    const {section: s, number} = item
+    const {section: s} = item
     switch (s._type) {
       case 'heroSection':
         return home ? (
@@ -158,26 +155,25 @@ plan.forEach((item, i) => {
           <HeroInner section={s} heading={page.heading ?? page.title} settings={settings} crumbs={crumbs} />
         )
       case 'teamIntroSection':
-        return <TeamIntro section={s} settings={settings} number={number} />
+        return <TeamIntro section={s} settings={settings} />
       case 'featureGridSection':
-        return s.style === 'checklist' ? <Capabilities section={s} categories={nav.serviceGroups} number={number} /> : <ValueCards section={s} />
+        return s.style === 'checklist' ? <Capabilities section={s} categories={nav.serviceGroups} /> : <ValueCards section={s} />
       case 'servicesSection':
-        if (s.layout !== 'featured') return <ServicesDirectory section={s} number={number} />
-        return home ? <ServicesMosaic section={s} number={number} /> : <FeaturedServices section={s} number={number} />
+        if (s.layout !== 'featured') return <ServicesDirectory section={s} />
+        return home ? <ServicesMosaic section={s} /> : <FeaturedServices section={s} />
       case 'quoteSection':
         return s.review ? <PullQuote section={{...s, review: s.review}} settings={settings} /> : <Statement section={s} />
       case 'processStepsSection':
-        return <ProcessSteps section={s} settings={settings} number={number} />
+        return <ProcessSteps section={s} settings={settings} />
       case 'reviewsSection':
         return home ? (
-          <ReviewsCarousel settings={settings} reviews={s.reviews} heading={s.heading} accent={s.headingAccent} number={number} cta={link(s.cta)} />
+          <ReviewsCarousel settings={settings} reviews={s.reviews} heading={s.heading} accent={s.headingAccent} cta={link(s.cta)} />
         ) : (
           <ReviewsStatic
             settings={settings}
             reviews={s.reviews}
             heading={s.heading ?? 'What our customers say'}
             intro={s.intro}
-            number={number}
             id={`${s._key}-h`}
             cta={link(s.cta)}
           />
@@ -192,31 +188,30 @@ plan.forEach((item, i) => {
             accent={s.headingAccent}
             intro={s.intro}
             eyebrow={s.eyebrow}
-            number={number}
           />
         )
       case 'gallerySection':
-        return <Gallery section={s} number={number} />
+        return <Gallery section={s} />
       case 'postsSection':
-        return <PostsIndex section={s} number={number} />
+        return <PostsIndex section={s} />
       case 'ctaSection':
-        return s.cta && !contact && <CtaBand settings={settings} heading={s.cta.heading} text={s.cta.text} number={number} photo={ctaBandPhoto(path, pagePhotos)} />
+        return s.cta && !contact && <CtaBand settings={settings} heading={s.cta.heading} text={s.cta.text} photo={ctaBandPhoto(path, pagePhotos)} />
       case 'richTextSection':
-        return <RichText section={s} number={number} />
+        return <RichText section={s} />
       case 'mediaTextSection':
-        return <MediaText section={s} number={number} />
+        return <MediaText section={s} />
       case 'highlightsSection':
-        return <Highlights section={s} settings={settings} number={number} />
+        return <Highlights section={s} settings={settings} />
       case 'trustBarSection':
         return <TrustFacts section={s} settings={settings} />
       case 'teamSection':
-        return <TeamGrid section={s} number={number} />
+        return <TeamGrid section={s} />
       case 'jobsSection':
-        return <JobOpenings section={s} number={number} applyHref={applyHref} />
+        return <JobOpenings section={s} applyHref={applyHref} />
       case 'contactSection':
-        return <ContactBlock section={s} settings={settings} number={number} />
+        return <ContactBlock section={s} settings={settings} />
       case 'officeLocationsSection':
-        return <OfficeLocations section={s} settings={settings} number={number} />
+        return <OfficeLocations section={s} settings={settings} />
       default:
         return unbuilt(s)
     }

@@ -107,13 +107,13 @@ const serviceId = `${absoluteUrl(path)}#service`
   </Fragment>
 
   <LocationHero location={location} heading={heading} settings={settings} crumbs={crumbs} office={office} />
-  <LocationGlance location={location} settings={settings} number={1} office={office} faqs={ownFaqs} photo={glancePhoto} />
+  <LocationGlance location={location} settings={settings} office={office} faqs={ownFaqs} photo={glancePhoto} />
 
   {
     featured.length > 0 && (
       <section class="section isvc cv" aria-labelledby="svc-h">
         <div class="wrap">
-          <SectionHeader eyebrow="Services" number={2} heading={`Electrical services in ${city}`} id="svc-h">
+          <SectionHeader eyebrow="Services" heading={`Electrical services in ${city}`} id="svc-h">
             <TextLink slot="more" href="/services">
               View All Services
             </TextLink>
@@ -129,9 +129,9 @@ const serviceId = `${absoluteUrl(path)}#service`
   </LongForm>
 
   {/* the live template's heading; a non-breaking hyphen keeps "5-Star" on one line */}
-  <ReviewsStatic settings={settings} reviews={reviews} heading={'Hundreds of 5\u2011Star Reviews'} intro={reviewsIntro} number={3} />
+  <ReviewsStatic settings={settings} reviews={reviews} heading={'Hundreds of 5\u2011Star Reviews'} intro={reviewsIntro} />
 
-  <WorkGallery photos={work} layout={layout} heading="Recent work by our crew" intro="Our own photos of the crew and their work." number={work.length ? 4 : undefined} id="work-h" />
+  <WorkGallery photos={work} layout={layout} heading="Recent work by our crew" intro="Our own photos of the crew and their work." id="work-h" />
 
   <AnswersBand
     faqs={faqs}
@@ -140,7 +140,6 @@ const serviceId = `${absoluteUrl(path)}#service`
     posts={guides}
     guidesHeading="Guides from our blog"
     guidesIntro="Plain-English answers to common questions from Arizona homeowners."
-    numbers={work.length ? {faq: 5, guides: 6} : {faq: 4, guides: 5}}
   />
 
   <Valley
@@ -150,8 +149,7 @@ const serviceId = `${absoluteUrl(path)}#service`
     current={location.slug}
     heading="Other areas we serve"
     intro={nearby.length ? `Near ${city}: ${listOf(nearby)}.` : undefined}
-    number={work.length ? 7 : 6}
   />
 
-  <CtaBand settings={settings} number={work.length ? 8 : 7} photo={ctaPhoto} zipPlaceholder={location.zipCodes?.length ? `${city} or ${location.zipCodes[0]}` : city} />
+  <CtaBand settings={settings} photo={ctaPhoto} zipPlaceholder={location.zipCodes?.length ? `${city} or ${location.zipCodes[0]}` : city} />
 </SiteLayout>
