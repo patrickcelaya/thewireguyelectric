@@ -383,10 +383,10 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 /* a bone light on the wall only: it fades to nothing by 20% of the band (the back of his head starts at 25%) */
 .cta__media::after{content:"";position:absolute;inset:0 0 auto;height:calc(var(--chp) * .2);background:linear-gradient(rgb(247 243 236 / .62),rgb(247 243 236 / .5) 40%,rgb(247 243 236 / .22) 75%,rgb(247 243 236 / 0));pointer-events:none}
 /* past 1600 px the 1,280 px source is upscaled: a fine film grain (the photo's own filter, never a layer over anyone) */
-@media (min-width:1600px){.cta__media img,.ihero--sky .ihero__photo img{filter:url(#grain) saturate(.94) contrast(1.04)}}
+@media (min-width:1600px){.cta__media img,.ihero--city .ihero__photo img{filter:url(#grain) saturate(.94) contrast(1.04)}}
 .cta__wall{position:absolute;inset:0 0 auto;height:calc(var(--chp) * .235);width:min(100% - 2*var(--gutter),var(--max));margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .cta__words{padding-top:clamp(8px,1vw,20px)}
-.cta__words .kicker{margin-bottom:clamp(8px,1vw,16px)}
+.cta__words .kicker{margin-bottom:clamp(8px,1vw,16px);color:var(--ink)}
 .cta__words h2{font-size:clamp(2.5rem,5.2cqw,7rem);font-weight:760;letter-spacing:-.045em;line-height:.96;white-space:nowrap}
 .cta .bulb{flex:none;width:clamp(84px,8cqw,170px);align-self:center}
 /* the lower row: "Prefer to talk?" on bone, the form card rising onto the photo's foot */

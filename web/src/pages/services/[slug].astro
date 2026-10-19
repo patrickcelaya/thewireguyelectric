@@ -1,6 +1,6 @@
 ---
-// A service page (round-5 Panels mockup), built from the service document: the copper
-// hero (the crew's own photo when there is one), the short version (the service's
+// A service page (round-5 Panels mockup), built from the service document: the hero
+// (the crew's own photo beside the words when there is one), the short version (the service's
 // confirmed facts, then the standard ones), the warning signs when the body lists them,
 // the body verbatim beside the contact card (its job photo halfway down), real reviews (the service's own first),
 // questions (the service's, then the ones /faq tags with it, then the three the live
@@ -91,7 +91,7 @@ const faqHeading = ownFaqs.length ? `Questions about ${topic}` : 'Questions, ans
 const guidesHeading = allSupport(guidePosts, service.slug, postIndex) ? `Guides on ${topic}` : 'Guides from our blog'
 const cities = serviceAreaCities(settings.homeCity, locations)
 
-const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE[staging]
+const hero = staging === 'plain' ? undefined : SERVICE_HERO_IMAGE
 // the photo the hero shows (a company photo); a stock image the page hides is never its image or preview
 const ownPhoto = hero ? service.mainImage : undefined
 // A second photo of the service's work halfway down the article (never the hero's): it keeps its alt (the full

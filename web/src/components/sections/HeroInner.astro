@@ -8,12 +8,13 @@
 // (the call bar is the button pair there, as on the city and service heroes).
 //
 // The H1 is the page heading (never the section's); its accent words come from the
-// section. With the trust strip on, the glass trust card (the 5.0, the Google link,
-// the licence, the section's credentials line and up to three review quotes) closes
-// the hero. Nothing animates in. Styles: styles/pages.css "INNER HERO".
+// section. Under the hero, over a hairline: the quiet trust line (the rating with the
+// trust strip on, and the licence; below 1240 px only, where the header has no utility
+// line), the section's credentials line and up to three review quotes. Nothing animates
+// in. Styles: styles/pages.css "INNER HERO".
 import type {HeroSection, SiteSettings} from '../../lib/types'
 import type {Crumb} from '../../lib/seo'
-import {ESTIMATE_PATH, ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
+import {ESTIMATE_PATH, ctaHref, telHref} from '../../lib/site'
 import {hasImage} from '../../lib/image'
 import {innerHeroImage} from '../../lib/hero'
 import {getRedirectMap} from '../../lib/queries'
@@ -21,11 +22,10 @@ import Breadcrumbs from '../ui/Breadcrumbs.astro'
 import Eyebrow from '../ui/Eyebrow.astro'
 import Accent from '../ui/Accent.astro'
 import Button from '../ui/Button.astro'
-import ExternalLink from '../ui/ExternalLink.astro'
 import OfficeStatus from '../ui/OfficeStatus.astro'
-import RocLink from '../ui/RocLink.astro'
 import SanityImage from '../ui/SanityImage.astro'
 import Stars from '../ui/Stars.astro'
+import TrustLine from './TrustLine.astro'
 
 interface Props {
   section: HeroSection
@@ -46,7 +46,7 @@ const {tall, low} = frame
 // Long headings ("Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ") set a size smaller.
 const long = heading.length > 44
 const notes = (section.ctaNotes ?? []).filter(Boolean)
-const rating = section.showTrustBar ? siteRating(settings) : undefined
+const rating = section.showTrustBar === true
 const quotes = section.reviewSnippets.filter((q) => q.text).slice(0, 3)
 const {primaryCta, secondaryCta} = section
 const showPhone = section.showPhone === true
@@ -87,7 +87,7 @@ const est = (href?: string) => (href === ESTIMATE_PATH ? 'phero__est' : undefine
       }
       {
         notes.length > 0 && (
-          <p class="phero__notes">
+          <p class="phero__notes seps">
             {notes.map((note) => (
               <>
                 <span>{note}</span>{' '}
@@ -121,50 +121,17 @@ const est = (href?: string) => (href === ESTIMATE_PATH ? 'phero__est' : undefine
   {
     (rating || quotes.length > 0 || section.trustLine) && (
       <div class="wrap phero__proof">
-        <div class="itrust__card phero__card">
-          {rating && (
-            <div class="phero__score">
-              <p class="itrust__num" aria-hidden="true">
-                {rating.value}
-              </p>
-              <div class="itrust__meta">
-                <p class="itrust__rating">
-                  <Stars />{' '}
-                  <span>
-                    <span class="sr-only">Rated {rating.value} out of 5 </span>
-                    {ratingSummary(rating)}
-                  </span>
-                </p>
-                {rating.href && (
-                  <p>
-                    <ExternalLink class="link link--ext" href={rating.href}>
-                      Read our reviews on {rating.source}
-                    </ExternalLink>
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
-          {(settings.rocLicense || section.trustLine) && (
-            <div class="phero__creds">
-              {settings.rocLicense && (
-                <p class="itrust__roc">
-                  <RocLink settings={settings} />
-                </p>
-              )}
-              {section.trustLine && <p class="phero__line">{section.trustLine}</p>}
-            </div>
-          )}
-          {quotes.length > 0 && (
-            <ul class="phero__quotes" role="list" aria-label="What customers say">
-              {quotes.map((q) => (
-                <li>
-                  <Stars /> <p>“{q.text}”</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        {(rating || settings.rocLicense) && <TrustLine settings={settings} rating={rating} />}
+        {section.trustLine && <p class="phero__line">{section.trustLine}</p>}
+        {quotes.length > 0 && (
+          <ul class="phero__quotes" role="list" aria-label="What customers say">
+            {quotes.map((q) => (
+              <li>
+                <Stars /> <p>“{q.text}”</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     )
   }

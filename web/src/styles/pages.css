@@ -8,7 +8,7 @@
 /* ===================================================================== INNER HERO: the words on the page grid, one real
    photo running off the right edge (the homepage's "who we are" composition). Phones: the trail and the words, then the
    photo edge to edge; the call bar is the estimate and call pair there. */
-.phero{position:relative;overflow:clip;padding-top:clamp(18px,2.2vw,40px);padding-bottom:clamp(64px,6vw,120px);background:radial-gradient(ellipse 58% 72% at 16% 34%,rgb(232 160 122 / .14),rgb(232 160 122 / 0) 70%),var(--bone)}
+.phero{position:relative;overflow:clip;padding-top:clamp(18px,2.2vw,40px);padding-bottom:clamp(64px,6vw,120px);background:var(--bone)}
 .phero__grid{display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr);align-items:center;gap:40px clamp(40px,5.4vw,112px);padding-left:var(--pad-x)}
 .phero__copy{display:grid;grid-template-columns:minmax(0,1fr);justify-items:start;align-content:center;padding-block:clamp(4px,1vw,24px)}
 .phero__crumbs{margin-bottom:clamp(22px,2.6vw,44px)}
@@ -16,8 +16,7 @@
 .phero__h--long{font-size:clamp(2.125rem,1rem + 3.1vw,5.25rem);line-height:1.02;letter-spacing:-.038em;max-width:17ch}
 .phero__lede{margin-top:clamp(20px,2vw,34px);font:500 clamp(1.1875rem,.98rem + .62vw,1.625rem)/1.42 var(--font-display);letter-spacing:-.014em;color:var(--ink);max-width:31em}
 .phero__btns{margin-top:clamp(26px,2.4vw,40px)}
-.phero__notes{margin-top:16px;font:550 1rem/1.4 var(--font-text);color:var(--ink)}
-.phero__notes>span+span::before{content:"";display:inline-block;width:4px;height:4px;margin:0 10px 0 6px;border-radius:50%;background:var(--copper);vertical-align:.24em}
+.phero__notes{--sep-color:var(--muted);margin-top:16px;font:500 1rem/1.4 var(--font-text);color:var(--ink)}
 .phero__status{margin-top:14px;font-size:.9375rem;color:var(--muted)}
 /* Emma's status is in the header's utility line on wide screens (as on the city and service heroes): once is enough */
 @media (min-width:1240px){.phero__status{display:none}}
@@ -31,24 +30,13 @@
 .phero--bare .phero__grid{grid-template-columns:minmax(0,1fr);padding-right:var(--pad-x)}
 .phero--bare .phero__h{max-width:16ch}
 
-/* the trust card under the hero: the 5.0, the licence and the section's line, then the review quotes */
-.phero__proof{margin-top:clamp(40px,4vw,72px)}
-.phero__card{display:grid;grid-template-columns:auto auto minmax(0,1fr);align-items:center;gap:20px clamp(24px,2.6vw,48px);padding:clamp(18px,1.8vw,26px) clamp(22px,2.4vw,36px)}
-.phero__score{display:flex;align-items:center;gap:16px}
-.phero__creds{display:grid;gap:6px;padding-left:clamp(20px,2.4vw,40px);border-left:1px solid var(--line-strong)}
-.phero__creds .itrust__roc{padding:0;border:0}
+/* under the hero, over a hairline: the quiet trust line (below 1240 px), the section's credentials line and the review quotes */
+.phero__proof{display:flex;flex-wrap:wrap;align-items:center;gap:10px 28px;margin-top:clamp(40px,4vw,72px);padding-top:18px;border-top:1px solid var(--line-strong)}
+.phero__proof .itrust{margin:0;padding:0;border:0}
 .phero__line{font:650 .9375rem/1.4 var(--font-text);color:var(--ink)}
-.phero__quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;padding-left:clamp(20px,2.4vw,40px);border-left:1px solid var(--line-strong)}
+.phero__quotes{flex-basis:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 32px;margin-top:6px}
 .phero__quotes li{display:grid;gap:6px;align-content:start}
 .phero__quotes p{font:650 1rem/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink);overflow-wrap:break-word}
-.phero__card>:only-child,.phero__card>:first-child:is(.phero__creds,.phero__quotes){padding-left:0;border-left:0}
-
-/* the quotes keep a row of their own until the card is wide enough for three readable columns beside the score (the
-   card is 1,560 px at most; below 1,680 px the three columns would wrap each quote to three lines) */
-@media (max-width:1679px){
-  .phero__card{grid-template-columns:auto minmax(0,1fr)}
-  .phero__quotes{grid-column:1/-1;padding:16px 0 0;border-left:0;border-top:1px solid var(--line)}
-}
 @media (max-width:899px){
   .phero__grid{grid-template-columns:minmax(0,1fr);padding-left:0;gap:32px}
   .phero--tall .phero__grid{grid-template-columns:minmax(0,1fr)}
@@ -58,8 +46,6 @@
   .phero__photo figcaption{margin-inline:var(--gutter)}
   /* a portrait photo as a 4:3 band (its heads sit in the middle half of the frame) */
   .phero--tall .phero__photo img{aspect-ratio:4/3;object-fit:cover}
-  .phero__card{grid-template-columns:minmax(0,1fr);gap:14px}
-  .phero__creds{padding:14px 0 0;border-left:0;border-top:1px solid var(--line)}
   .phero__quotes{grid-template-columns:minmax(0,1fr)}
 }
 /* people standing low under a big sky (the fleet): a wide band down to the asphalt, so the crew fills the frame instead

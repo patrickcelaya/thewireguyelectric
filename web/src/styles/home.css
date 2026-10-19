@@ -103,13 +103,13 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 .hero h1 .accent{color:var(--copper-700)}
 .hero__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:clamp(0px,.4cqw - 4px,6px)}
 .hero__status{display:none}
-/* the line under both buttons: the business's own words (free estimates, flat-rate pricing, no pressure and no obligation).
-   Round-5 QA: it sits 18 px under the pair (8 px row gap + 10 px), no longer on a pill: 16 px ink on a soft paper halo,
-   no wider than the two buttons, so it reads as their caption rather than a tag */
-.hero__sub{order:3;flex-basis:100%;display:flex;justify-content:center;margin:10px 0 0;font:550 1rem/1.35 var(--font-text);letter-spacing:.002em;color:var(--ink)}
+/* the line under both buttons: the business's own words (free estimates, flat-rate pricing, no pressure and no obligation),
+   18 px under the pair (8 px row gap + 10 px): 16 px ink, its parts set apart by a muted middle dot, on a soft bone light
+   that hugs it (functional: the tree behind it would take the line to 1.02:1 without it; with it, 8:1 or better) */
+.hero__sub{order:3;flex-basis:100%;display:flex;justify-content:center;margin:10px 0 0;font:500 1rem/1.35 var(--font-text);color:var(--ink)}
 .hero__sub-in{display:inline-flex;align-items:center}
 .hero__sub-in>span{white-space:nowrap}
-.hero__sub-in>span+span::before{content:"";display:inline-block;width:4px;height:4px;margin:0 12px 0 10px;border-radius:50%;background:var(--copper);vertical-align:.24em}
+.hero__sub-in>span+span::before{content:"·";margin:0 .7em;color:var(--muted)}
 @media (min-width:900px){
   .hero__sub-in{position:relative;isolation:isolate}
   .hero__sub-in::before{content:"";position:absolute;inset:-7px -26px;z-index:-1;border-radius:999px;background:rgb(247 243 236 / .9);filter:blur(11px);pointer-events:none}

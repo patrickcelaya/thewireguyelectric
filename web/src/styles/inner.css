@@ -24,121 +24,74 @@
 @media (max-width:899px){.rv-row{grid-template-columns:1fr}}
 
 /* ===================================================================== INNER PAGES: the homepage's language on a location page, a service
-   page and /estimate (photo heroes with the words where nobody stands, glass trust card, numbered kickers, photo tiles,
-   copper and bone surfaces, the bulb). */
+   page and /estimate (the words on bone, the crew's real photos in natural colour beside or under them, ruled facts, photo
+   cards, copper and bone surfaces, the bulb). */
 
-/* ===================================================================== photo hero (city: the sky above the fleet; service: a copper-toned photo) */
+/* ===================================================================== inner heroes: the words on bone (ink H1, copper-700 eyebrow,
+   --text lede) and the photo in natural colour beside them (service) or under them (city): never under a tint, a scrim, a
+   chip or a card. Below 1240 px, where the header has no utility line, Emma's status and the quiet trust line follow the
+   buttons; from 1240 px the utility line states them, once a screen. */
 .ihero{position:relative;container-type:inline-size;background:var(--bone)}
-.ihero__stage{--vw:100cqw;--hp:calc(var(--vw) / 1.5);position:relative;isolation:isolate;overflow:clip}
-.ihero__photo{position:relative;margin:0 auto;width:var(--vw);z-index:-1}
-.ihero__photo img{width:100%;height:auto}
-.ihero__copy{position:absolute;inset:0 0 auto;padding-top:clamp(28px,3cqw,56px);color:#fff}
-.ihero h1{font-size:clamp(2.75rem,4.8cqw,6.75rem);font-weight:760;letter-spacing:-.045em;line-height:.98;color:#fff;max-width:12em;margin-top:2px}
-.ihero__lede{margin-top:clamp(16px,1.6cqw,26px);font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;max-width:26em}
-.ihero .btn-row{margin-top:clamp(22px,2.2cqw,36px)}
-.ihero__status{display:none;margin-top:14px;font-size:.9375rem}
-@media (max-width:1239px){.ihero__status{display:flex}}
-.ihero__status .status{color:inherit}
-.ihero .kicker{margin:clamp(14px,1.6cqw,26px) 0 clamp(12px,1.2cqw,20px)}
-.ihero :focus-visible{outline-color:#fff}
-.crumbs--sky ol,.crumbs--sky a,.crumbs--sky [aria-current]{color:#fff}
-.crumbs--sky a{text-decoration-color:rgb(255 255 255 / .55)}
-.crumbs--sky [aria-current]{color:var(--glow)}
-/* the city: the fleet anchored under its own sky; a petrol dusk on the sky only (0–62% of the photo: heads start at 71.5%) */
-/* the photo always runs edge to edge (owner: no inset images). The box shows the fleet down to the asphalt (the bottom
-   8% is trimmed) and as much open sky above it as the window allows: on short, wide windows more of the sky's top is
-   trimmed, so the crew and vans reach the first screen, but never so much that the heads (71.5% of the photo) come
-   within 24 px of the words' foot (estimated as 250 px + 18.5% of the width, at most 640 px; measured 416–604 px). */
-.ihero--sky .ihero__stage{--sh:min(calc(var(--hp) * .8),max(620px,calc(100svh - var(--hdr-h) + 140px),calc(var(--hp) * .205 + min(250px + 18.5cqw,640px) + 24px)));background:#3d6f9f;height:var(--sh)}
-/* the trust card floats on the empty sky at the right, far above the crew */
-@media (min-width:1100px){.ihero--sky .itrust{position:absolute;z-index:2;top:clamp(28px,3cqw,56px);right:max(var(--gutter),calc((100% - var(--max)) / 2));margin:0;padding:0;width:min(25rem,30%)}.ihero--sky .itrust__card{display:grid;gap:14px;padding:22px 24px}.ihero--sky .itrust__roc,.ihero--sky .itrust__status{padding:12px 0 0;border-left:0;border-top:1px solid var(--line)}.ihero--sky .ihero__copy{padding-right:calc(min(25rem,30%) + 48px)}}
-.ihero--sky .ihero__photo{position:absolute;top:calc(var(--sh) - var(--hp) * .92);left:0}
-.ihero--sky .ihero__photo::after{content:"";position:absolute;inset:0 0 auto;height:67.5%;background:linear-gradient(rgb(var(--scrim) / .8),rgb(var(--scrim) / .78) 50%,rgb(var(--scrim) / .72) 76%,rgb(var(--scrim) / .5) 90%,rgb(var(--scrim) / 0));pointer-events:none}
-.ihero--sky .hl-sky{color:var(--glow)}
-/* round 5: the homepage valley's language. No petrol dusk on the sky: the real Arizona sky, a soft sun-haze where the
-   words sit (it ends at 62% of the photo, above the peaks; the heads start at 71.5%), the H1 in ink with the town in copper */
-@media (min-width:1100px){
-  .ihero--sky .ihero__stage{background:#6c9fe9}
-  .ihero--sky .ihero__photo::after{height:62%;background:radial-gradient(ellipse 62% 86% at 24% 36%,rgb(240 247 255 / .62),rgb(240 247 255 / .44) 40%,rgb(240 247 255 / .2) 66%,rgb(240 247 255 / 0) 88%);-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
-  .ihero--sky .ihero__copy,.ihero--sky h1,.ihero--sky .ihero__lede{color:var(--ink)}
-  .ihero--sky .hl-sky{color:var(--copper-700)}
-  .ihero--sky .crumbs--sky ol,.ihero--sky .crumbs--sky a{color:var(--ink)}
-  .ihero--sky .crumbs--sky a{text-decoration-color:rgb(15 42 53 / .4)}
-  .ihero--sky .crumbs--sky [aria-current]{color:var(--copper-800)}
-  .ihero--sky .ihero__status{color:var(--ink)}
-  .ihero--sky :focus-visible{outline-color:var(--ink)}
-}
+.ihero__stage{position:relative}
+.ihero__copy{padding-block:clamp(28px,3cqw,56px) clamp(48px,4.4cqw,80px)}
+.ihero .crumbs{margin-bottom:clamp(20px,2.2cqw,36px)}
+.ihero h1{font-size:clamp(2.5rem,4.6cqw,6.25rem);font-weight:700;letter-spacing:-.04em;line-height:.98;max-width:13em}
+.ihero__lede{margin-top:clamp(16px,1.6cqw,26px);font:500 var(--fs-stand)/1.4 var(--font-display);letter-spacing:-.016em;color:var(--text);max-width:28em}
+.ihero .btn-row{margin-top:clamp(22px,2.2cqw,32px)}
+.ihero__status{display:none;margin-top:14px;font-size:.9375rem;color:var(--muted)}
+/* the quiet trust line: the rating and the licence on one line over a hairline */
+.itrust{display:flex;flex-wrap:wrap;align-items:center;gap:6px 28px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line-strong);font-size:.9375rem}
+.itrust__roc a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
+.itrust__roc a:hover{color:var(--copper-700)}
+@media (max-width:1239px){.ihero__status{display:block}}
+@media (min-width:1240px){.itrust{display:none}}
+/* the service with a company photo (a job or the crew): the photo in the right 44% (at most 960 px), flush to the edge, the
+   stage's full height, cropped on its hotspot (people on their faces); the words keep a lane clear of it */
+.ihero--side .ihero__stage{--sw:min(44cqw,960px);display:flex;align-items:center;min-height:clamp(480px,38cqw,720px)}
+.ihero__side{position:absolute;top:0;right:0;bottom:0;width:var(--sw);margin:0;background:var(--sand-2)}
+.ihero__side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ihero--side .ihero__copy{padding-right:max(0px,calc(var(--sw) + clamp(40px,4cqw,72px) - max(var(--gutter),(100cqw - var(--max)) / 2)))}
+/* the city: the eyebrow and the H1 beside the lede and the buttons, then the city's photo of the crew as an edge-to-edge band
+   at most 640 px tall, the heads starting 34% down it (--fy: the top of the highest head in photo widths, --r: the photo's
+   height over its width, from lib/cms.ts cityHero); the photo always covers the band's foot */
+.ihero--city .ihero__copy{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);grid-template-areas:"crumbs crumbs" "title aside";column-gap:clamp(40px,5cqw,96px);align-items:end}
+.ihero--city .crumbs{grid-area:crumbs}
+.ihero__title{grid-area:title}
+.ihero__aside{grid-area:aside;padding-bottom:4px}
+.ihero--city h1{max-width:none}
+.ihero--city .ihero__lede{margin-top:0;font-size:var(--fs-lede);line-height:1.5}
+.ihero--city .ihero__photo{position:relative;margin:0;aspect-ratio:2.885;max-height:640px;width:100%;overflow:hidden;background:var(--sand-2)}
+.ihero--city .ihero__photo img{position:absolute;left:0;width:100%;max-width:none;height:auto;top:max(100% - var(--r) * 100cqw,min(0px,34% - var(--fy) * 100cqw))}
 @media (min-width:900px) and (max-width:1099px){
-  .ihero--sky .ihero__stage{display:flex;flex-direction:column;height:auto;background:none}
-  .ihero--sky .ihero__copy{position:relative;order:1;padding:28px var(--gutter) 32px;width:auto;color:var(--ink)}
-  .ihero--sky h1,.ihero--sky .ihero__lede{color:var(--ink)}
-  .ihero--sky .hl-sky{color:var(--copper)}
-  .ihero--sky .crumbs--sky ol,.ihero--sky .crumbs--sky a{color:var(--text)}
-  .ihero--sky .crumbs--sky [aria-current]{color:var(--copper-700)}
-  .ihero--sky .btn--cream{background:transparent;border-color:var(--ink)}
-  .ihero--sky .ihero__photo{position:relative;top:auto;left:auto;order:2;width:100%;z-index:0}
-  .ihero--sky .ihero__photo img{aspect-ratio:5/2;object-fit:cover;object-position:50% 100%}
-  .ihero--sky .ihero__photo::after{display:none}
-  .ihero--sky .itrust{order:3;margin-top:-40px}
-  .ihero--sky :focus-visible{outline-color:var(--ink)}
+  .ihero--city .ihero__copy{grid-template-columns:minmax(0,1fr);grid-template-areas:"crumbs" "title" "aside";row-gap:clamp(16px,1.6cqw,26px)}
 }
-/* the service: the crew's own panel, copper-toned (no people in the photo, so the tint can cover all of it) */
-.ihero--copper .ihero__stage{background:var(--copper-800);min-height:clamp(480px,34cqw,720px)}
-.ihero--copper .ihero__photo{position:absolute;inset:0;width:auto}
-.ihero--copper .ihero__photo img{width:100%;height:100%;object-fit:cover;object-position:50% 42%;filter:saturate(.8) contrast(1.05)}
-.ihero--copper .ihero__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgb(78 34 19 / .95) 0%,rgb(106 46 25 / .92) 45%,rgb(130 58 32 / .86) 75%,rgb(150 68 38 / .78) 100%)}
-/* wide screens (round-5 QA): the panel photo's largest original is 1280 px wide, so the frame stops at 1440 px (at most a
-   1.13x enlargement) and feathers into the same copper light at its sides, instead of stretching to 2x on a 2560 screen */
-@media (min-width:1500px){
-  .ihero--copper .ihero__stage{background:linear-gradient(100deg,#4E2213 0%,#6A2E19 45%,#823A20 75%,#964426 100%)}
-  .ihero--copper .ihero__photo{left:50%;right:auto;width:1440px;transform:translateX(-50%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
-}
-.ihero--copper .ihero__copy{position:relative;padding-bottom:clamp(120px,10cqw,170px)}
-.ihero--copper h1{font-size:clamp(3rem,7cqw,8.5rem);max-width:none}
-/* the glass trust card on the photo's foot */
-.itrust{position:relative;z-index:3;margin-top:-72px;padding-inline:var(--pad-x)}
-.itrust__card{display:flex;flex-wrap:wrap;align-items:center;gap:12px clamp(20px,2.4cqw,40px);padding:16px clamp(20px,2cqw,30px);border-radius:var(--r-2);background:var(--paper);box-shadow:var(--hairline)}
-.itrust__num{margin-block:-.1em;font:800 3rem/1 var(--font-display);letter-spacing:-.05em;font-variant-numeric:lining-nums tabular-nums;color:var(--copper-700);white-space:nowrap}
-.itrust__meta{display:grid;gap:4px;font-size:.9375rem}
-.itrust__rating{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--ink)}
-.itrust__meta .link{font-weight:650}
-.itrust__roc a{font-size:.9375rem;color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
-.itrust__roc,.itrust__status{padding-left:clamp(20px,2.4cqw,40px);border-left:1px solid var(--line-strong)}
-.itrust__status{font-size:.9375rem;color:var(--text)}
 @media (max-width:899px){
-  .ihero--sky .ihero__stage{display:flex;flex-direction:column;height:auto;background:none}
-  .ihero--sky .ihero__copy{position:relative;order:1;padding:22px var(--gutter) 28px;width:auto;color:var(--ink)}
-  .ihero--sky h1{color:var(--ink);font-size:clamp(2.375rem,10cqw,4rem)}
-  .ihero--sky .hl-sky{color:var(--copper)}
-  .ihero--sky .crumbs--sky ol,.ihero--sky .crumbs--sky a{color:var(--text)}
-  .ihero--sky .crumbs--sky [aria-current]{color:var(--copper-700)}
-  .ihero--sky .ihero__lede{font-size:1.125rem;color:var(--text)}
-  .ihero--sky .btn--cream{background:transparent;border-color:var(--ink)}
-  .ihero--sky .ihero__photo{position:relative;top:auto;left:auto;order:2;width:100%;z-index:0}
-  .ihero--sky .ihero__photo img{aspect-ratio:4/3;object-fit:cover;object-position:52.5% 100%}
-  .ihero--sky .ihero__photo::after{display:none}
-  .ihero :focus-visible{outline-color:var(--ink)}
-  .ihero--sky .ihero__status{color:var(--muted)}
-  .ihero--copper .ihero__copy :focus-visible{outline-color:#fff}
-  /* the current page in the trail in white, not glow: on the narrow copper hero its worst pixel needs the extra contrast */
-  .ihero--copper .crumbs--sky [aria-current]{color:#fff}
+  .ihero--side .ihero__stage{display:flex;flex-direction:column;min-height:0}
+  .ihero__side{position:relative;width:100%;aspect-ratio:4/3}
+  .ihero--side .ihero__copy{padding-right:0}
+  .ihero--side .ihero__copy,.ihero--plain .ihero__copy{padding-top:22px}
   /* --word (the H1's longest word, in letters, set by ServiceHero) caps the size so that word fits the line at ~.52em a
      letter: at the usual 44 px "Troubleshooting" ran past the edge of a 320 px screen and was clipped */
-  .ihero--copper h1{font-size:min(clamp(2.75rem,12cqw,4.5rem),(100cqw - 2 * var(--gutter)) / (var(--word,1) * .52))}
-  .ihero--copper .ihero__lede{font-size:1.125rem}
+  .ihero--service h1{font-size:min(clamp(2.375rem,10cqw,4rem),(100cqw - 2 * var(--gutter)) / (var(--word,1) * .52))}
+  .ihero__lede{font-size:1.125rem}
   .ihero .btn-row .btn{flex:0 0 auto}
-  /* the card tucks over the asphalt only, below every foot (the asphalt under the crew is ~10% of the photo's width) */
-  .itrust{order:3;margin-top:-5cqw;padding-inline:var(--gutter)}
-  .itrust__card{padding:16px 18px;border-radius:var(--r-2)}
-  .itrust__roc,.itrust__status{flex-basis:100%;padding:10px 0 0;border-left:0;border-top:1px solid var(--line)}
+  /* the city on phones and tablets: the trail and the H1, then the crew (their heads end above the call bar on the first
+     screen at every phone size), then the lede, the buttons, Emma's line and the trust line */
+  .ihero--city{display:flex;flex-direction:column;padding-bottom:clamp(40px,8cqw,64px)}
+  .ihero--city .ihero__copy{display:contents}
+  .ihero--city .ihero__copy>*{margin-inline:var(--gutter)}
+  .ihero--city .crumbs{order:1;margin-top:22px}
+  .ihero__title{order:1}
+  .ihero--city h1{font-size:clamp(2.375rem,10cqw,4rem)}
+  .ihero--city .ihero__photo{order:2;margin-top:24px;aspect-ratio:16/7;max-height:none}
+  .ihero__aside{order:3;margin-top:24px}
 }
-/* tablets (round-5 QA): a wide band down to the asphalt, so the crew and the vans fill the first screen instead of
-   300 px of empty sky (the phone keeps the taller 4:3 crop from the approved mockup) */
-@media (min-width:700px) and (max-width:899px){.ihero--sky .ihero__photo img{aspect-ratio:16/7;object-position:50% 100%}}
-/* short landscape windows (an iPad on its side, 1024×768): the words fill the first 580 px, so the 5:2 band showed only a
-   strip of empty sky above the fold; a 16:5 band trims that sky, and the vans and the crew's heads (71.5–78% of the photo,
-   39–53% of this band) come up into the first screen */
-@media (min-width:900px) and (max-width:1099px) and (max-height:899px){.ihero--sky .ihero__photo img{aspect-ratio:16/5}}
+/* phones: a window onto the photo, centred on the heads (--pc) and wide enough for all of them (--pw) */
+@media (max-width:699px){
+  .ihero--city .ihero__photo{aspect-ratio:16/10}
+  .ihero--city .ihero__photo img{top:auto;bottom:0;left:calc(50% - 100% * var(--pw,1.7) * var(--pc,.525));width:calc(100% * var(--pw,1.7))}
+}
+@media (min-width:640px) and (max-width:899px){.ihero__side{aspect-ratio:2/1}}
 
 /* ===================================================================== at a glance: sourced facts */
 .glance{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px clamp(48px,6vw,120px);align-items:start}
@@ -282,27 +235,9 @@
 @media (min-width:600px) and (max-width:899px){.ehero__lede{padding-right:calc(clamp(64px,17vw,110px) + 24px)}}
 @media (max-width:599px){.ehero__bulb{display:none}.ehero .kicker{padding-right:0}}
 
-@media (max-width:699px){
-  .ihero--sky .ihero__photo{aspect-ratio:16/10;overflow:hidden}
-  .ihero--sky .ihero__photo img{position:absolute;bottom:0;left:calc(50% - 100% * var(--pw,1.7) * var(--pc,.525));width:calc(100% * var(--pw,1.7));max-width:none;height:auto;aspect-ratio:auto;object-fit:fill}
-}
-
 /* phones: the fixed call bar (Call now · Free Estimate, from the first paint) is the hero's button pair, so the hero's own
    pair is left off below 640 px (never four buttons on one screen; the links stay in the HTML) */
-@media (max-width:639px){.ihero .btn-row{display:none}.ihero--copper .ihero__stage{min-height:0}.ihero--copper .ihero__copy{padding-bottom:84px}}
-/* Gilbert on phones: the call bar is always there now, so the crew comes straight after the H1 (their heads end above the
-   bar on the first screen at every phone size), with the trust card on the asphalt, then the lede and Emma's line */
-@media (max-width:639px){
-  .ihero--sky .ihero__copy{display:contents}
-  .ihero--sky .ihero__copy>*{margin-inline:var(--gutter)}
-  .ihero--sky .crumbs{order:1;margin-top:22px}
-  .ihero--sky .kicker{order:1}
-  .ihero--sky h1{order:1;margin-bottom:22px}
-  .ihero--sky .ihero__photo{order:2}
-  .ihero--sky .itrust{order:3}
-  .ihero--sky .ihero__lede{order:4;margin-top:28px}
-  .ihero--sky .ihero__status{order:5;margin-top:12px}
-}
+@media (max-width:639px){.ihero .btn-row{display:none}}
 
 /* ===================================================================== rich text (components/PortableText.astro with class "prose"):
    the parts the long-form styles above don't cover. Numbered lists count in copper sockets; tables scroll inside their own

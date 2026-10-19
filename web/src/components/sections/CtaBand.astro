@@ -4,7 +4,7 @@
 // pages differ, never one the page already shows): the words sit on the empty top above
 // the people, the wire draws the bulb there, and the form card rises over the photo's
 // foot, clear of every head (no scrim on anyone). Copy: Site settings → CTA band (heading, status line). The band has one H2
-// (its heading); the form's title is an H3 under it.
+// (its heading); the form's title is an H3 under it. No licence line: the footer right under the band states it.
 import type {SiteSettings} from '../../lib/types'
 import {officeHours, telHref} from '../../lib/site'
 import type {ImageRef} from '../../lib/types'
@@ -14,7 +14,6 @@ import Eyebrow from '../ui/Eyebrow.astro'
 import Bulb from '../ui/Bulb.astro'
 import OfficeStatus from '../ui/OfficeStatus.astro'
 import RatingLine from '../ui/RatingLine.astro'
-import RocLink from '../ui/RocLink.astro'
 import EstimateForm from './EstimateForm.astro'
 
 interface Props {
@@ -71,7 +70,6 @@ const text =
       </p>
       {hours.line && <p class="cta__hours">Our Office Hours: {hours.line}</p>}
       <RatingLine settings={settings} variant="quiet" />
-      <p class="cta__roc"><RocLink settings={settings} /></p>
     </div>
     <div class="cta__form" id="estimate">
       <EstimateForm settings={settings} id={formId} titleTag="h3" zipPlaceholder={zipPlaceholder} />

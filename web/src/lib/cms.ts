@@ -5,14 +5,14 @@
 import type {FaqItem, ImageRef, PortableTextValue, PostCard, PostIndexEntry, PostSummary, Review, ServiceSummary} from './types'
 import type {City} from './cities'
 import {FLEET_PHOTO, JOB_PHOTOS, LIBRARY_PHOTOS, UNPHOTOGRAPHED_SERVICES, VAN_PHOTO, VANS_PHOTO, WALK_PHOTO, companyPhoto, facesInFrame, headsHaveRoom, isPhotoSubject, jobPhoto, jobPhotoImage, libraryImage, photoFor, photoId, type LibraryPhoto, type PhotoSubject} from './brand-photos'
-import {hasImage, imageAlt, imageSrcSet} from './image'
+import {hasImage, imageAlt, imageDimensions, imageSrcSet} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
 
 /**
- * A city page's hero under the open sky (its LCP image): the city's own hero photo when the editor set one of the
- * company's photos, else the photo picked for the city in the library (framed by its `heroCrop`, so the heads start
- * at 71.5% of the frame, under the words), else the fleet. Its renditions and sizes (styles/inner.css draws it 170%
+ * A city page's hero photo (its LCP image, the band under the words): the city's own hero photo when the editor set
+ * one of the company's photos, else the photo picked for the city in the library (framed by its `heroCrop`, so the
+ * heads start at 71.5% of the frame), else the fleet. Its renditions and sizes (styles/inner.css draws it 170%
  * wide on phones, less for a wide group: `zoom`) are shared by the <img> and the page's preload; `center` is where the
  * phone's window onto the photo is centred (so every head is in it), and `faces` the head boxes in the frame as served.
  */
@@ -34,11 +34,19 @@ export function cityHero(location: {slug: string; heroImage?: ImageRef | null}) 
   const half = 0.5 / zoom
   const mid = boxes.length ? (left + right) / 2 : 0.525
   const center = Math.round(Math.min(Math.max(mid, half), 1 - half) * 1000) / 1000
+  // wider screens show the photo as an edge-to-edge band anchored on the heads: the photo's height over its width
+  // (`ratio`) and the top of the highest head in units of the photo's width (`top`), so CSS can put the heads at a set
+  // share of the band whatever its height (styles/inner.css .ihero--city); the fleet's heads start at 71.5%
+  const size = imageDimensions(image)
+  const ratio = size ? Math.round((size.height / size.width) * 10000) / 10000 : 2 / 3
+  const top = Math.round((boxes.length ? Math.min(...boxes.map((b) => b[1])) : 0.715) * ratio * 10000) / 10000
   return {
     image,
     faces,
     center,
     zoom,
+    ratio,
+    top,
     srcset: imageSrcSet(image, [640, 828, 1086, 1440, 1920, 2400]) ?? '',
     sizes: `(max-width:699px) ${Math.round(zoom * 100)}vw, 100vw`,
   }
@@ -544,26 +552,21 @@ export const CITY_SHARED_QUESTIONS = ['Do I need a permit for electrical work in
 // Photos and headings
 
 /**
- * How a service hero stages its main image: "tint" for a job photo without people (the
- * copper-toned full-bleed hero), "split" for a company photo of people (shown in natural
- * colour beside the words, faces in frame), "plain" otherwise (stock or no photo: the
- * copper hero with the lit bulb, no photo).
+ * How a service hero stages its main image: "side" for any company photo, a job or the
+ * crew (in natural colour beside the words, flush to the right edge, never under a tint;
+ * a photo of people framed on their faces), "plain" otherwise (stock or no photo: the
+ * words on bone with the line-drawn bulb).
  */
-export function heroStaging(image: ImageRef | null | undefined): 'tint' | 'split' | 'plain' {
-  const kind = companyPhoto(image)
-  return kind === 'job' ? 'tint' : kind === 'people' ? 'split' : 'plain'
+export function heroStaging(image: ImageRef | null | undefined): 'side' | 'plain' {
+  return companyPhoto(image) ? 'side' : 'plain'
 }
 
 /**
- * The service hero photo's renditions per staging (styles/cms.css): full bleed behind
- * the copper tint (the frame stops at 1440 px on wide screens), or the right-hand
- * panel beside the words (full width under them on phones). The <img> and the page's
- * preload use the same values.
+ * The service hero photo's renditions (styles/cms.css .ihero--side): the right-hand panel
+ * beside the words (44% of the width, at most 960 px), full width above them on phones.
+ * The <img> and the page's preload use the same values.
  */
-export const SERVICE_HERO_IMAGE = {
-  tint: {widths: [640, 960, 1280, 1600], sizes: '(min-width:1500px) 1440px, 100vw'},
-  split: {widths: [640, 960, 1280], sizes: '(max-width:899px) 100vw, 46vw'},
-} as const
+export const SERVICE_HERO_IMAGE = {widths: [640, 960, 1280, 1600], sizes: '(max-width:899px) 100vw, min(44vw, 960px)'} as const
 
 /** A post's cover beside its title (styles/post.css: 4:3, about 40% of the page; full width on phones). */
 export const POST_COVER = {widths: [480, 720, 960, 1280], sizes: '(max-width:899px) 92vw, 42vw'}

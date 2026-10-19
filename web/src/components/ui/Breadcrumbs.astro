@@ -8,17 +8,15 @@ import type {Crumb} from '../../lib/seo'
 
 interface Props {
   crumbs: Crumb[]
-  /** White text, for a trail over a photo. */
-  variant?: 'sky'
   class?: string
 }
 
-const {crumbs, variant, class: className} = Astro.props
+const {crumbs, class: className} = Astro.props
 ---
 
 {
   crumbs.length > 1 && (
-    <nav class:list={['crumbs', variant && `crumbs--${variant}`, className]} aria-label="Breadcrumb">
+    <nav class:list={['crumbs', className]} aria-label="Breadcrumb">
       <ol>
         {crumbs.map((c, i) =>
           i === crumbs.length - 1 ? (

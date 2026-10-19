@@ -1,0 +1,23 @@
+---
+// The quiet trust line under an inner hero's buttons, over a hairline: the rating line
+// (stars, "5.0 from 560+ Google reviews", the Google link) and the licence linked to the
+// ROC lookup. Shown only below 1240 px: from there the header's utility line states both,
+// and a screen says each once. Values from Site settings only. Styles: styles/inner.css (.itrust).
+import type {SiteSettings} from '../../lib/types'
+import RatingLine from '../ui/RatingLine.astro'
+import RocLink from '../ui/RocLink.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** Leave the rating out (a page-builder hero whose trust strip is off still states the licence). */
+  rating?: boolean
+  class?: string
+}
+
+const {settings, rating = true, class: className} = Astro.props
+---
+
+<div class:list={['itrust', className]}>
+  {rating && <RatingLine settings={settings} />}
+  {settings.rocLicense && <p class="itrust__roc"><RocLink settings={settings} /></p>}
+</div>
