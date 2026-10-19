@@ -119,6 +119,7 @@ pnpm exec sanity dataset import ../migration/sanity-import/production.ndjson pro
 ```
 
 - `CONTENT_DATE` is the day given to any material change that `migration/sanity-import/content-dates.json` doesn't record yet (none, when the tree is clean); without it, such a change would be dated the day of the run. `git diff --exit-code` proves the regenerated dataset is the committed one the gates passed on, so that is what gets imported.
+- Until this import, Sanity holds the older content: a plain `pnpm build` (`web/.env` sets `PUBLIC_SANITY_PROJECT_ID`) and every Vercel preview show none of the owner decisions D15–D18 (the generator posts are still there, the three new service pages and the two retitles are missing). Run the gates and screenshots before it with `PUBLIC_SANITY_PROJECT_ID=` (the local dataset), and do the preview QA of that work only after the import.
 - `--replace` overwrites any Studio edit made since the last import. That is why Studio edits are frozen from T-1.
 - The import fires one webhook per document. With **Run up to one build per branch** they collapse into one or two builds.
 

@@ -393,15 +393,17 @@ const removedSlugs = new Set(removedPosts.posts.map((r) => r.slug))
     console.error(`migration/content-data/removed-posts.json: ${msg}`)
     process.exit(1)
   }
-  const allowed = (await readJson('migration/seo-intentional-changes.json')).removed ?? {}
-  const frozen = new Set((await readJson('migration/seo-intentional-changes.json')).frozenTitleAndH1 ?? [])
+  const allowlist = await readJson('migration/seo-intentional-changes.json')
+  const allowed = allowlist.removed ?? {}
+  const frozen = new Set(allowlist.frozenTitleAndH1 ?? [])
   const published = new Set(items(await readJson('migration/webflow-cms/blog-posts.json')).filter((it) => !it.isArchived && !it.isDraft).map((it) => it.fieldData.slug))
   if (removedSlugs.size !== removedPosts.posts.length) fail('a slug is listed twice')
   for (const {slug: s, redirect} of removedPosts.posts) {
     const path = `/blog-posts/${s}`
     if (!published.has(s)) fail(`${s} is not a published post in the Webflow export`)
     if (frozen.has(path)) fail(`${path} is a Tier 1 page and can never be removed`)
-    if (!redirect?.startsWith('/') || removedSlugs.has(redirect.replace('/blog-posts/', ''))) fail(`${s}: redirect must be a live page, not "${redirect}"`)
+    // a path here, not another removed post; that it is a page this dataset builds is checked after the modules
+    if (!redirect?.startsWith('/') || removedSlugs.has(redirect.replace('/blog-posts/', ''))) fail(`${s}: redirect must be a site path and not a removed post, not "${redirect}"`)
     if (allowed[path]?.redirect !== redirect) fail(`${path}: migration/seo-intentional-changes.json removed says ${allowed[path]?.redirect ?? 'nothing'}, not ${redirect}`)
   }
   for (const path of Object.keys(allowed)) if (!removedSlugs.has(path.replace('/blog-posts/', ''))) fail(`${path} is removed in migration/seo-intentional-changes.json but not listed here`)
@@ -592,6 +594,14 @@ for (const step of ['new-services', 'fixes', 'profiles', 'content-edits:early', 
   docs.forEach((d) => look(d, d.slug?.current ?? d._id))
   if (hits.length) {
     console.error('Links to removed posts (migration/content-data/removed-posts.json):', hits)
+    process.exit(1)
+  }
+  // Each redirect target must be a page this dataset builds (a typo like /services/panel would 404).
+  const ROUTE = {service: '/services/', post: '/blog-posts/', location: '/locations/', serviceCategory: '/services-categories/', postCategory: '/posts-categories/', page: '/'}
+  const built = new Set(['/estimate', ...docs.filter((d) => ROUTE[d._type] && d.slug?.current).map((d) => (d._type === 'page' && d.slug.current === 'index' ? '/' : ROUTE[d._type] + d.slug.current))])
+  const dead = removedPosts.posts.filter((r) => !built.has(r.redirect))
+  if (dead.length) {
+    console.error('migration/content-data/removed-posts.json: redirect targets that are not pages in the dataset:', dead.map((r) => `${r.slug} -> ${r.redirect}`))
     process.exit(1)
   }
   report.removedPosts = [...removedSlugs]

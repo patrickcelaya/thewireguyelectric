@@ -4,7 +4,7 @@
 // results, so a page renders the same from the local dataset and from Sanity.
 import type {FaqItem, ImageRef, PortableTextValue, PostCard, PostIndexEntry, PostSummary, Review, ServiceSummary} from './types'
 import type {City} from './cities'
-import {FLEET_PHOTO, JOB_PHOTOS, LIBRARY_PHOTOS, VAN_PHOTO, VANS_PHOTO, WALK_PHOTO, companyPhoto, facesInFrame, headsHaveRoom, isPhotoSubject, jobPhoto, jobPhotoImage, libraryImage, photoFor, photoId, type LibraryPhoto, type PhotoSubject} from './brand-photos'
+import {FLEET_PHOTO, JOB_PHOTOS, LIBRARY_PHOTOS, UNPHOTOGRAPHED_SERVICES, VAN_PHOTO, VANS_PHOTO, WALK_PHOTO, companyPhoto, facesInFrame, headsHaveRoom, isPhotoSubject, jobPhoto, jobPhotoImage, libraryImage, photoFor, photoId, type LibraryPhoto, type PhotoSubject} from './brand-photos'
 import {hasImage, imageAlt, imageSrcSet} from './image'
 import {portableTextToHtml, type PortableTextOptions} from './portable-text'
 import {toPlainText} from './schema'
@@ -236,10 +236,16 @@ export function postTopic(post: PostSummary, index: PostIndexEntry[], services: 
 export function markShown(shown: Set<string>, ...images: Array<ImageRef | null | undefined>) {
   for (const image of images) {
     const id = photoId(image)
-    if (id) shown.add(id)
+    if (!id) continue
+    shown.add(id)
+    // a photo from a group (one shoot of one subject: the same truck, the same fireplace) counts its siblings as
+    // shown too, so a page never shows the same scene twice
+    const group = LIBRARY_GROUP.get(id)
+    if (group) for (const sibling of LIBRARY_PHOTOS) if (sibling.group === group) shown.add(sibling.id)
   }
   return shown
 }
+const LIBRARY_GROUP = new Map(LIBRARY_PHOTOS.filter((p) => p.group).map((p) => [p.id, p.group!]))
 
 /**
  * How ServiceCards lays out services: those with one of the company's photos as photo cards, in whole
@@ -383,12 +389,14 @@ export function postCover(
   )
   // a guide whose title names a thing the library has its own photos of (a ceiling fan) shows one of those or none:
   // a ceiling fan guide never shows a bathtub, a pendant or a sconce because all of them are "lighting"
+  // a card labeled with a service whose work the library has no photo of yet (hot tubs) shows none, not a stand-in
+  const unphotographed = Boolean(forFirst.first && UNPHOTOGRAPHED_SERVICES.includes(forFirst.first))
   const named = TITLE_THINGS.find((t) => t.title.test(post.title))
   const ofThing = named && LIBRARY_PHOTOS.filter((p) => p.shows === named.shows).map(libraryRef)
   const candidates = ofThing
     ? rotate(ofThing, seed)
     : tinted
-      ? [...ofTopic, ...(topic ? [] : listed)]
+      ? [...ofTopic, ...(topic || unphotographed ? [] : listed)]
       : [...ofTopic, ...broader, ...rotated.filter((image) => !onSubject(image) && !jobPhoto(image)?.narrow)]
   const fits = (image: ImageRef | null | undefined): image is ImageRef => (tinted ? companyPhoto(image) === 'job' : Boolean(companyPhoto(image)))
   const usable = candidates.filter(fits)

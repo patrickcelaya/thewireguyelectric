@@ -1090,7 +1090,7 @@
     "applied": {
       "pages": 64,
       "cities": 58,
-      "decisions": 35,
+      "decisions": 40,
       "services": 95,
       "posts-a": 251,
       "posts-b": 179
@@ -1098,7 +1098,7 @@
     "splits": [
       "D5-01"
     ],
-    "blocksDropped": 112,
+    "blocksDropped": 114,
     "skipped": [
       "slop-pages-022",
       "slop-services-065",

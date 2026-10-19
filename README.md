@@ -111,7 +111,7 @@ pnpm seo:baseline                                     # re-crawl the live Webflo
 PUBLIC_SANITY_PROJECT_ID= SITE_INDEXABLE=true pnpm build   # the local dataset; drop the first variable to build from Sanity
 node scripts/seo/serve-build.mjs &                    # serve web/.vercel/output like Vercel does
 node scripts/seo/crawl.mjs --base http://localhost:4321 --paths-from migration/seo-baseline.json --out migration/seo-candidate.json
-node scripts/seo/parity.mjs                           # exits 1 on any SEO regression
+node scripts/seo/parity.mjs --out migration/parity-report.json   # exits 1 on any SEO regression; the report matches this build
 ```
 
 To check the real Vercel deployment, crawl https://thewireguyelectric.vercel.app instead. It sits behind Vercel Authentication, so export `VERCEL_AUTOMATION_BYPASS_SECRET` (Project → Settings → Deployment Protection → Protection Bypass for Automation) and add `--allow-noindex`, since the site is noindexed until launch. CI runs the local version on every pull request.

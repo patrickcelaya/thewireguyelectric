@@ -101,11 +101,15 @@ end of every block, so their `old_text` ends at the full stop.
 - **D16** (owner, 2026-10-19: "Always go with the higher amounts"): every price the site gave two ways now reads the
   higher range: surge protector and recessed lighting on /faq, the Level 1 vs Level 2 post (Level 2 installed, Level 1,
   200-amp panel), the ceiling fan post, the rewire guide (full rewire, AlumiConn remediation) and the recessed service's
-  priceRange (D16-01 … D16-11, each with its old and new figure).
+  priceRange (D16-01 … D16-11, each with its old and new figure). In the rewire guide the full-rewire line follows its
+  source ("$12,000 to $25,000 or more", no "single-story" claim) and the size breakdown, which priced most homes below
+  it, is removed (D16-12 … D16-14): no figures were invented.
 - **D17** (owner, 2026-10-19: "lets not talk about warranty but just say work comes w/ a warranty"): the FAQ "Do you
   warranty your work?" answers "Yes. Our work comes with a warranty." (D17-01; `drop_links` lets it delete the "Contact
   us" link with its sentence), and the homepage card "We come back if anything's wrong" gains that line (D17-02). The
   service at-a-glance facts and /estimate show it from `WARRANTY_LINE` in `web/src/lib/site.ts`.
+- **D18** (owner, 2026-10-19): the two retitled services' first body H2 follows the new H1 (D18-01 fixture
+  replacements, D18-02 exterior electrical). The new pages themselves are data in `migration/content-data/new-services.json`.
 - **D10** /services/hanging-lights ships its published copy (`webflow-to-sanity.mjs`, live snapshot
   `migration/live-snapshots/services_hanging-lights.html`), with a quick answer rewritten from that copy.
 
@@ -120,8 +124,8 @@ end of every block, so their `old_text` ends at the full stop.
 3. **Promises in posts:** "free post-storm safety inspections" and "free safety check" (monsoon post) and
    "same-day service available" (surge-protection and breaker posts; also the breaker post's meta description).
 4. ~~**Level 1 vs Level 2 post:** its 200 A panel upgrade price ($1,800–$2,500) disagrees with the site's panel
-   figures ($5,200–$6,500).~~ Answered (D16-07): it reads $5,200–$6,500. Still open: the rewire cost guide's size
-   breakdown sits below its new headline range (D16-11); confirm figures for it or drop it.
+   figures ($5,200–$6,500).~~ Answered (D16-07): it reads $5,200–$6,500. The rewire cost guide's size breakdown, which sat below
+   its new headline range, is removed (D16-12, D16-13); give us real figures by home size to bring it back.
 5. **/services/hanging-lights** shows the published 2024 copy with its stock lines taken out (`slop-services-hl-*`:
    "perfect for businesses looking to enhance their ambiance", "meticulous attention to detail", "bespoke … not only
    meet but exceed expectations" and the "Why Choose" list are gone; the fixtures, steps and call to action stay). The

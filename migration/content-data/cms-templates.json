@@ -733,10 +733,10 @@
     "whole-home-rewiring": [
       {
         "label": "Permits",
-        "value": "We pull the permit",
-        "detail": "We schedule the inspection and make sure everything passes.",
-        "source": "faq:Do I need a permit for electrical work in Arizona?",
-        "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."
+        "value": "We walk you through it",
+        "detail": "When we pull one, we schedule the inspection too.",
+        "source": "body",
+        "evidence": "When we pull the permit, we schedule the inspection and make sure everything passes."
       },
       {
         "label": "Typical timeline",
@@ -749,10 +749,10 @@
     "hot-tub-pool-spa-electrical": [
       {
         "label": "Permits",
-        "value": "We pull the permit",
-        "detail": "We schedule the inspection and make sure everything passes.",
-        "source": "faq:Do I need a permit for electrical work in Arizona?",
-        "evidence": "We pull the permit, schedule the inspection, and make sure everything passes."
+        "value": "We walk you through it",
+        "detail": "When we pull one, we schedule the inspection too.",
+        "source": "body",
+        "evidence": "When we pull the permit, we schedule the inspection and make sure everything passes."
       },
       {
         "label": "Hot tub hookups",
@@ -813,14 +813,13 @@
     "source": "service.quickAnswer: the answer-first line of each service page's \"short version\" (round-5 Panels mockup; the Panels text is the mockup's). Each one only restates what the service's own body says: every `evidence` phrase must appear word for word in that body (quote style ignored), and no answer may carry a price.",
     "answers": {
       "whole-home-rewiring": {
-        "text": "We rewire older homes across Mesa and the Phoenix valley: full and partial rewires with new copper wiring to current code, single strand aluminum branch wiring replaced or made safe with AlumiConn connectors, and cloth, knob-and-tube and ungrounded wiring taken out. We pull the permit and schedule the inspection.",
+        "text": "We rewire older homes across Mesa and the Phoenix valley: full and partial rewires with new copper wiring to current code, single strand aluminum branch wiring replaced or made safe with AlumiConn connectors, and cloth, knob-and-tube and ungrounded wiring taken out.",
         "evidence": [
           "Whole-Home Rewiring in Mesa and the Phoenix Valley",
           "new copper wiring that meets current National Electrical Code (NEC) standards",
           "A partial rewire brings that area up to code",
           "install AlumiConn connectors at every outlet, switch and junction box",
-          "Cloth, Knob-and-Tube and Ungrounded Wiring",
-          "We pull the permit, schedule the inspection"
+          "Cloth, Knob-and-Tube and Ungrounded Wiring"
         ]
       },
       "hot-tub-pool-spa-electrical": {
@@ -895,7 +894,7 @@
       "exterior-electrical": {
         "text": "We install outdoor electrical across the Phoenix valley: weatherproof outlets in in-use covers, landscape and security lighting, patio and ramada power, and feeders to garages, shops and casitas, built with UV-rated materials and proper burial for Arizona sun and monsoon.",
         "evidence": [
-          "Exterior Electrical in the Phoenix Valley",
+          "Landscape & Outdoor Lighting Installation in the Phoenix Valley",
           "Exterior outlets and GFCI receptacles in weatherproof in-use covers",
           "Landscape and path lighting",
           "Security and flood lighting",
@@ -908,7 +907,7 @@
       "fixture-replacements": {
         "text": "We replace light fixtures, chandeliers, pendants, ceiling fans and vanity lights across the Phoenix valley, on a box rated for the weight with real bracing where it is needed, and with dimmers matched to the fixture so LEDs do not buzz or flicker. Several fixtures can go in one visit.",
         "evidence": [
-          "Light Fixture Replacement in the Phoenix Valley",
+          "Ceiling Fan & Light Fixture Installation in the Phoenix Valley",
           "Chandeliers in entries, dining rooms, and stairwells, which usually need a rated box and real bracing",
           "Pendants over islands and nooks",
           "Ceiling fans, which need a fan-rated box every time",

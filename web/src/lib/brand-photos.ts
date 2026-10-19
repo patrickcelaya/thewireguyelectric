@@ -203,6 +203,13 @@ export type PhotoSubject = 'lighting' | 'panel' | 'tools' | 'ev' | 'exterior' | 
 const PHOTO_SUBJECTS: readonly string[] = ['lighting', 'panel', 'tools', 'ev', 'exterior', 'wiring', 'fleet'] satisfies PhotoSubject[]
 /** Whether a blog topic's slug is also a photo subject (lighting is; commercial is not). */
 export const isPhotoSubject = (slug: string): slug is PhotoSubject => PHOTO_SUBJECTS.includes(slug)
+/**
+ * Services whose work is a subject of its own that the library has no photo of yet (no pool, spa or hot tub
+ * photo). A guide card labeled with one shows a photo of it or none, like any other subject (postCover): never
+ * the panel or tools photos a card with no subject (troubleshooting, safety) falls back to. Take a service off
+ * once the library has a photo of its work.
+ */
+export const UNPHOTOGRAPHED_SERVICES: readonly string[] = ['hot-tub-pool-spa-electrical']
 interface JobPhoto {
   image: ImageRef
   subject: PhotoSubject

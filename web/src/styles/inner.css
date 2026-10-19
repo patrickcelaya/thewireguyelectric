@@ -281,7 +281,7 @@
 .next__steps h3{font-size:1.25rem;margin-top:9px}
 .next__steps p{margin-top:6px;color:var(--text);font-size:var(--fs-small)}
 .next__talk{display:grid;gap:10px;justify-items:start;margin-top:44px;padding-top:32px;border-top:1px solid var(--line-strong)}
-.next__fam{font-size:var(--fs-small);color:var(--muted)}
+.next__fam,.next__warranty{font-size:var(--fs-small);color:var(--muted)}
 .reviews--sand{background:var(--sand)}
 .answers--bone{background:var(--bone)}
 @media (max-width:899px){.ehero__grid{grid-template-columns:minmax(0,1fr);position:relative}.ehero__bulb{position:absolute;right:0;top:clamp(96px,22vw,150px);width:clamp(64px,17vw,110px);margin:0}.ehero h1{max-width:6.2em}.ehero .kicker{padding-right:clamp(70px,19vw,120px)}.est-page{grid-template-columns:minmax(0,1fr)}}

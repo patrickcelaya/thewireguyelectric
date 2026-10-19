@@ -171,7 +171,7 @@
     }
   },
   "notPriced": {
-    "surge protection": "/faq and both surge posts publish $400 to $800 installed for a whole-house surge protector (the /faq answer said $300 to $600 until decision D16, 2026-10-19), but there is no surge protection service document to attach it to. Left out.",
+    "surge protection": "/faq and both surge posts publish $400 to $800 installed for a whole-house surge protector (the /faq answer said $300 to $600 until decision D16, 2026-10-19), and since D18 there is a surge service document (/services/whole-house-surge-protection). It was added without a priceRange: service pages show no prices (owner rule), the figure stays on /faq and the two surge posts, and putting it in the service's structured data is left for the owner to approve. Left out.",
     "hourly rates": "/faq quotes \"$125 and $375 per hour\" as what other Phoenix electricians charge, not a price of this business. Left out.",
     "electrical-upgrades": "The /faq panel figures are for a home's 200-amp panel; electrical-upgrades is the commercial panel, feeder and service upgrade page. Left unpriced."
   }

@@ -1028,7 +1028,8 @@
   "quality": 3,
   "roles": [
    "serviceSecond:fixture-replacements"
-  ]
+  ],
+  "group": "arched-fireplace-sconces"
  },
  {
   "id": "image-94c34f24f751b547cbcbfccb5eb154804d27ed4d-2400x1600-jpg",
@@ -1065,7 +1066,8 @@
   ],
   "orientation": "portrait",
   "quality": 3,
-  "roles": []
+  "roles": [],
+  "group": "arched-fireplace-sconces"
  },
  {
   "id": "image-bfdbca0e551278779359cb6ad69f5b3ff1e446b9-1600x2400-jpg",
@@ -1115,7 +1117,8 @@
   ],
   "orientation": "portrait",
   "quality": 3,
-  "roles": []
+  "roles": [],
+  "group": "arched-fireplace-sconces"
  },
  {
   "id": "image-cac42500e8de97ac2da401d972ffbd425c097cd1-1600x2400-jpg",
@@ -1209,6 +1212,7 @@
   "orientation": "portrait",
   "quality": 3,
   "roles": [],
+  "group": "arched-fireplace-sconces",
   "hotspot": {
    "x": 0.5,
    "y": 0.35
@@ -1509,6 +1513,7 @@
   "orientation": "portrait",
   "quality": 3,
   "roles": [],
+  "group": "arched-fireplace-sconces",
   "hotspot": {
    "x": 0.5,
    "y": 0.15

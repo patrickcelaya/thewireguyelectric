@@ -1643,7 +1643,7 @@
       "order": 3,
       "sectionType": "NEW trustBarSection",
       "fromInventorySection": null,
-      "fields": "NEW for SEO/conversion: 5.0 rating + review count (from siteSettings.reviewSummary), ROC #365306, Since 2017, family-owned, 2-year warranty, flat-rate pricing. All facts already appear in site copy."
+      "fields": "NEW for SEO/conversion: 5.0 rating + review count (from siteSettings.reviewSummary), ROC #365306, Since 2017, family-owned, warranty line (\"Our work comes with a warranty.\", no term), flat-rate pricing. All facts already appear in site copy."
     },
     {
       "order": 4,

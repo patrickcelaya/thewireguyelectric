@@ -302,10 +302,37 @@
       "id": "D16-11",
       "url": "/blog-posts/cost-to-rewire-house-arizona",
       "target": {"kind": "ndjson", "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7", "field": "body", "block_key": "k00p"},
-      "old_text": "a full rewire costs between $8,000 and $15,000.",
-      "new_text": "a full rewire costs between $12,000 and $25,000.",
+      "old_text": "For a typical single-story home in the Phoenix metro area, a full rewire costs between $8,000 and $15,000.",
+      "new_text": "In the Phoenix metro area, a full rewire costs $12,000 to $25,000 or more.",
       "tier": "tier1",
-      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): a full house rewire. This post said $8,000–$15,000 for a typical single-story home; /blog-posts/aluminum-wiring-older-phoenix-homes gives $12,000–$25,000+ and calls it the same as any whole-home rewire, pointing to this guide. The size breakdown below it is left as published (no figures were invented); the owner is asked to confirm it. Tier 1 post: body only."
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): a full house rewire. This post said $8,000–$15,000 for a typical single-story home; /blog-posts/aluminum-wiring-older-phoenix-homes gives \"$12,000 to $25,000+ depending on home size and access\" and calls it the same as any whole-home rewire, pointing to this guide. The sentence follows that source: no \"single-story\" claim, and \"or more\" for its \"+\". The size breakdown below it priced the same job lower, so it goes (D16-12, D16-13); no figures were invented. Tier 1 post: body only."
+    },
+    {
+      "id": "D16-12",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {"kind": "ndjson", "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7", "field": "body", "block_key": "k00t"},
+      "old_text": "Here's a rough breakdown by home size:",
+      "new_text": "",
+      "tier": "tier1",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): the lead-in to the size breakdown D16-13 removes. Tier 1 post: body only."
+    },
+    {
+      "id": "D16-13",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {"kind": "ndjson", "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7", "field": "body", "block_key": "k00v"},
+      "old_text": "1,000 to 1,500 sq ft: $6,000 to $10,000\n1,500 to 2,500 sq ft: $10,000 to $15,000\n2,500 to 3,500 sq ft: $15,000 to $22,000\n3,500+ sq ft: $20,000+",
+      "new_text": "",
+      "tier": "tier1",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): the size breakdown priced most homes below the full-rewire range D16-11 sets ($6,000–$10,000 and $10,000–$15,000 against $12,000 to $25,000 or more), so the post contradicted itself. The site has no higher figures by size and none are invented, so the breakdown goes and the one range stands. Tier 1 post: body only."
+    },
+    {
+      "id": "D16-14",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {"kind": "ndjson", "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7", "field": "body", "block_key": "k014"},
+      "old_text": "These ranges include labor, materials (wire, outlets, switches, boxes), a new electrical panel if needed. They don't include",
+      "new_text": "That range includes labor, materials (wire, outlets, switches, boxes), a new electrical panel if needed. It doesn't include",
+      "tier": "tier1",
+      "reason": "D16 (owner, 2026-10-19: \"Always go with the higher amounts\"): with the breakdown gone (D16-13) one range is left. Tier 1 post: body only."
     },
     {
       "id": "D17-01",
@@ -325,6 +352,24 @@
       "new_text": "and we'll always come back if you have any issues. Our work comes with a warranty.",
       "tier": "normal",
       "reason": "D17 (owner, 2026-10-19: \"lets not talk about warranty but just say work comes w/ a warranty\"): the homepage card \"We come back if anything's wrong\" (Site settings → value props) gains the one plain line. No term or conditions."
+    },
+    {
+      "id": "D18-01",
+      "url": "/services/fixture-replacements",
+      "target": {"kind": "ndjson", "doc_id": "b774cb00-152b-4a01-bdc0-74e5e7a242a1", "field": "body", "block_key": "k006"},
+      "old_text": "Light Fixture Replacement in the Phoenix Valley",
+      "new_text": "Ceiling Fan & Light Fixture Installation in the Phoenix Valley",
+      "tier": "normal",
+      "reason": "D18 (owner, 2026-10-19): the page is retitled \"Ceiling Fan & Light Fixture Installation\" (title, meta and H1 in titles-meta.json), so the body's first H2 follows, the way each new page's first H2 repeats its H1. Body H2s are not frozen SEO fields; the URL, title, meta and H1 are untouched here."
+    },
+    {
+      "id": "D18-02",
+      "url": "/services/exterior-electrical",
+      "target": {"kind": "ndjson", "doc_id": "666e45e8-7138-4287-9b30-a5da05db4bd2", "field": "body", "block_key": "k006"},
+      "old_text": "Exterior Electrical in the Phoenix Valley",
+      "new_text": "Landscape & Outdoor Lighting Installation in the Phoenix Valley",
+      "tier": "normal",
+      "reason": "D18 (owner, 2026-10-19): the page is retitled \"Landscape & Outdoor Lighting Installation\" (title, meta and H1 in titles-meta.json), so the body's first H2 follows, as D18-01. The later section headings, which describe the outdoor outlets, patio power and feeders the page still covers, stay."
     }
   ],
   "splits": [

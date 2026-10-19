@@ -148,7 +148,7 @@ export const trustBarSection = defineArrayMember({
             defineField({
               name: 'label',
               type: 'string',
-              description: 'The rest, e.g. "Arizona businesses". Never a warranty term (owner, D17). For facts from Site settings, optional wording next to the value (e.g. "Licensed, bonded & insured").',
+              description: 'The rest, e.g. "Arizona businesses". Never a warranty term: the only warranty wording is "Our work comes with a warranty." For facts from Site settings, optional wording next to the value (e.g. "Licensed, bonded & insured").',
             }),
             defineField({name: 'href', title: 'Link', type: 'string', description: 'Optional. Rating and license link to the reviews and ROC lookup automatically.'}),
             iconField(),

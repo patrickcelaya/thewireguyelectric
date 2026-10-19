@@ -24,7 +24,7 @@ These need your answer before launch. Each one says what the site shows today an
 
    Panel prices agree everywhere: $5,200–$6,500 for a standard 200-amp panel, and $6,400–$8,750 for a full service replacement.
 
-   **Answered 2026-10-19 ("Always go with the higher amounts", decision D16):** wherever two pages priced the same job differently, both now show the higher range. Six recessed lights read $1,400–$2,200 and a whole-house surge protector $400–$800 on `/faq`; the Level 1 vs Level 2 post reads $750–$3,500 for a Level 2 charger installed. The full list, old and new, is D16-01 … D16-11 in `migration/content-edits/decisions.json`.
+   **Answered 2026-10-19 ("Always go with the higher amounts", decision D16):** wherever two pages priced the same job differently, both now show the higher range. Six recessed lights read $1,400–$2,200 and a whole-house surge protector $400–$800 on `/faq`; the Level 1 vs Level 2 post reads $750–$3,500 for a Level 2 charger installed. The rewire cost guide reads "$12,000 to $25,000 or more" for a full rewire, and its size breakdown is gone, since it priced most homes below that and we have no higher figures by size (send them and we will put it back). The full list, old and new, is D16-01 … D16-14 in `migration/content-edits/decisions.json`.
 2. **No price table anywhere.** Per your note of Oct 13, prices only appear where you already publish them, inside the `/faq` answers. The `/services` price table we had drafted is gone, and service pages have no price modules. The ranges stay stored on each service in Sanity (hidden) in case you ever want them.
 ### Your address
 - **The Mesa street address shows only in the footer** (and in the search-engine data, which keeps your name/address/phone consistent for local SEO). It no longer appears in the Contact Us or Careers page content, office cards, maps or directions links. In Studio this is the new "Show only in the footer" switch on the address.
@@ -166,7 +166,8 @@ Values your team edits once and the whole site uses, all copied from the live si
 ### New and retitled service pages (2026-10-19, decision D18)
 
 - Three new pages: `/services/whole-home-rewiring`, `/services/hot-tub-pool-spa-electrical` and `/services/whole-house-surge-protection`. Every sentence restates your own posts, `/faq` answers or the sourced local facts; none shows a price (each links its cost guide). They are in the Services menu, on `/services`, in the sitemap, and linked from their posts.
-- Retitled, same URLs: `/services/fixture-replacements` is "Ceiling Fan & Light Fixture Installation" (menu: "Ceiling Fans & Light Fixtures") with a new ceiling fan section; `/services/exterior-electrical` is "Landscape & Outdoor Lighting Installation" (menu: "Landscape & Outdoor Lighting") with a new landscape lighting section.
+- Retitled, same URLs: `/services/fixture-replacements` is "Ceiling Fan & Light Fixture Installation" (menu: "Ceiling Fans & Light Fixtures") with a new ceiling fan section; `/services/exterior-electrical` is "Landscape & Outdoor Lighting Installation" (menu: "Landscape & Outdoor Lighting") with a new landscape lighting section. Each page's first heading in the body now matches its new name.
+- **Permits on the new pages** follow your posts, not the `/faq` line: "we walk you through whether a permit makes sense, and when we pull one we schedule the inspection". `/faq` still says "Permits are required for all major electrical work", and the Panels page's at-a-glance fact still reads "We pull the permit". Which stance do you want the whole site to take?
 
 ## What did not change
 - Every page title, H1, meta description and URL (105 live URLs checked).

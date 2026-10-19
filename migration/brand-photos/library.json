@@ -1157,7 +1157,8 @@
    "quality": 3,
    "roles": [
     "serviceSecond:fixture-replacements"
-   ]
+   ],
+   "group": "arched-fireplace-sconces"
   },
   {
    "key": "gp-007",
@@ -1197,7 +1198,8 @@
    "kind": "job",
    "orientation": "portrait",
    "quality": 3,
-   "roles": []
+   "roles": [],
+   "group": "arched-fireplace-sconces"
   },
   {
    "key": "gp-016",
@@ -1250,7 +1252,8 @@
    "kind": "job",
    "orientation": "portrait",
    "quality": 3,
-   "roles": []
+   "roles": [],
+   "group": "arched-fireplace-sconces"
   },
   {
    "key": "gp-027",
@@ -1351,7 +1354,12 @@
    "kind": "job",
    "orientation": "portrait",
    "quality": 3,
-   "roles": []
+   "roles": [],
+   "group": "arched-fireplace-sconces",
+   "hotspot": {
+    "x": 0.5,
+    "y": 0.35
+   }
   },
   {
    "key": "gp-054",
@@ -1674,7 +1682,12 @@
    "kind": "job",
    "orientation": "portrait",
    "quality": 3,
-   "roles": []
+   "roles": [],
+   "group": "arched-fireplace-sconces",
+   "hotspot": {
+    "x": 0.5,
+    "y": 0.15
+   }
   },
   {
    "key": "gp-241",

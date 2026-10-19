@@ -53,7 +53,10 @@ export default async function newServices(ctx, stage) {
 
   // The copy edits name service blocks by position (content-edits.mjs, "body[17]"), so blocks are inserted only
   // after they have run (the "inserts" stage, after cms-templates); the heading is named as it then reads.
-  if (stage === 'inserts') return insertBlocks(ctx, data, bySlug, fail, checkText)
+  if (stage === 'inserts') {
+    const approvedH1 = new Set((await readJson('migration/content-data/titles-meta.json')).changes.filter((r) => r.field === 'h1' && !r.hold).map((r) => r.path))
+    return insertBlocks(ctx, data, bySlug, fail, checkText, approvedH1)
+  }
 
   const added = []
   const seen = new Set()
@@ -89,7 +92,7 @@ export default async function newServices(ctx, stage) {
   report.newServices = {source: DATA, added}
 }
 
-function insertBlocks(ctx, data, bySlug, fail, checkText) {
+function insertBlocks(ctx, data, bySlug, fail, checkText, approvedH1) {
   const {report} = ctx
   const inserted = []
   for (const [n, {service, before, body}] of data.bodyInserts.entries()) {
@@ -106,7 +109,10 @@ function insertBlocks(ctx, data, bySlug, fail, checkText) {
   for (const {service, was, name} of data.names) {
     const doc = bySlug('service', service) ?? fail(`names: no service "${service}"`)
     if (doc.name !== was) fail(`names ${service}: the name is "${doc.name}", not "${was}"`)
-    // the H1 falls back to the name: it must already come from heading (titles-meta sets it) or stay put
+    // The H1 falls back to the name, and H1s change only through the allowlist: a rename needs the service's
+    // approved H1 (a non-held h1 row in titles-meta.json, which titles-meta then sets as its heading), or an H1
+    // already set apart from the name.
+    if (!doc.heading && !approvedH1.has(`/services/${service}`)) fail(`names ${service}: renaming it would change its H1; add an approved h1 row for /services/${service} to migration/content-data/titles-meta.json first`)
     doc.name = name
   }
 
