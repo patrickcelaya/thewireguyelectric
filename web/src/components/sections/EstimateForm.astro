@@ -78,7 +78,7 @@ const hours = officeHours(settings).prose
       <textarea id={`${id}-message`} name="message" rows="3" placeholder="Breaker keeps tripping, new EV charger, more lights in the kitchen…"></textarea>
     </div>
     <div class="submit">
-      <button class="btn btn--primary btn--lg btn--go" type="submit"><span data-submit-label>{submitLabel}</span></button>
+      <button class="btn btn--primary btn--lg" type="submit"><span data-submit-label>{submitLabel}</span></button>
     </div>
     {hours && <p class="promise">We call back during office hours, {hours}.</p>}
   </form>

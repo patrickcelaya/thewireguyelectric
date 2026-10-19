@@ -97,7 +97,6 @@
 .vy-cta{margin-top:12px;padding-top:22px;border-top:1.5px solid var(--ink)}
 .vy-cta p{font:500 1.0625rem/1.55 var(--font-text);color:var(--ink);max-width:34em}
 .vy-cta .btn-row{margin-top:18px;gap:12px}
-.vy-cta .btn{min-height:54px;padding:0 24px}
 .vy-credit{position:absolute;right:max(14px,(100% - var(--max)) / 2 * .55);bottom:12px;z-index:1;padding:3px 9px;border-radius:var(--r-pill);background:rgb(243 237 227 / .86);font-size:.6875rem;line-height:1.4;color:var(--muted)}
 /* homepage, 1280 px and up (round-5 QA: "the map and the list never fit in one screen"): the index is three columns of
    city names, each with ONE line of its neighbourhoods, cut with an ellipsis. The full list stays in the HTML (crawlers,

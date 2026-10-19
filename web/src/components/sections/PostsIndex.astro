@@ -55,7 +55,7 @@ const SHOWN = 5
         {section.heading && (
           <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
             {cta && (
-              <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+              <TextLink slot="more" href={ctaHref(cta, redirects)}>
                 {cta.label}
               </TextLink>
             )}
@@ -85,7 +85,7 @@ const SHOWN = 5
               </p>
               {t.service && (
                 <p class="postgrp__more">
-                  <TextLink href={`/services/${t.service.slug}`} icon="go">
+                  <TextLink href={`/services/${t.service.slug}`}>
                     Our {t.service.name} service
                   </TextLink>
                 </p>

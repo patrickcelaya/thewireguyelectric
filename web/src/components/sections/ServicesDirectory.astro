@@ -46,7 +46,7 @@ const rowText = (s: ServiceCard) => s.text ?? s.shortDescription
         {section.heading && (
           <SectionHeader heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
             {cta && (
-              <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+              <TextLink slot="more" href={ctaHref(cta, redirects)}>
                 {cta.label}
               </TextLink>
             )}
@@ -64,7 +64,7 @@ const rowText = (s: ServiceCard) => s.text ?? s.shortDescription
                   </GroupTitle>
                   {group.description && group.description.length > 0 && <PortableText value={group.description} class="svcdir__intro" />}
                   <p class="svcdir__more">
-                    <TextLink href={`/services-categories/${group.slug}`} icon="go">
+                    <TextLink href={`/services-categories/${group.slug}`}>
                       {group.name} services overview
                     </TextLink>
                   </p>
@@ -91,7 +91,7 @@ const rowText = (s: ServiceCard) => s.text ?? s.shortDescription
         })}
         {!section.heading && cta && (
           <p class="svcdir__cta">
-            <TextLink href={ctaHref(cta, redirects)} icon="go">
+            <TextLink href={ctaHref(cta, redirects)}>
               {cta.label}
             </TextLink>
           </p>

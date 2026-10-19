@@ -1,19 +1,19 @@
 ---
-// An underlined text link (the underline retracts on hover). `icon="go"` adds the
-// arrow; `external` opens a new tab (with the ↗ glyph and a screen-reader note).
+// An underlined text link (the underline retracts on hover), no arrow: internal links
+// rely on the underline and colour. `external` opens a new tab (with the ↗ glyph, which
+// carries information there, and a screen-reader note).
 import type {HTMLAttributes} from 'astro/types'
 import ExternalLink from './ExternalLink.astro'
 
 type Props = HTMLAttributes<'a'> & {
   href: string
-  icon?: 'go'
   external?: boolean
   /** Light text for copper and photo backgrounds. */
   tone?: 'cream'
 }
 
-const {icon, external, tone, class: className, ...attrs} = Astro.props
-const classes = ['textlink', icon === 'go' && 'textlink--go', external && 'textlink--ext', tone && `textlink--${tone}`, className]
+const {external, tone, class: className, ...attrs} = Astro.props
+const classes = ['textlink', external && 'textlink--ext', tone && `textlink--${tone}`, className]
 ---
 
 {

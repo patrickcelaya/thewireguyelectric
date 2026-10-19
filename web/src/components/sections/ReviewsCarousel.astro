@@ -58,7 +58,7 @@ const icon = {
         <div class="reviews__score">
           <ScoreBlock settings={settings} />
           <p class="reviews__cta">
-            <Button href={cta.href} icon="go">{cta.label}</Button>
+            <Button href={cta.href}>{cta.label}</Button>
           </p>
         </div>
       </div>
@@ -95,7 +95,7 @@ const icon = {
         ))}
       </div>
       <p class="wrap rv-all">
-        <TextLink href={`#${id}-all`} icon="go">
+        <TextLink href={`#${id}-all`}>
           Show all {reviews.length} reviews
         </TextLink>
       </p>

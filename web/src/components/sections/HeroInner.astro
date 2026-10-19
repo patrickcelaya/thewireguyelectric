@@ -68,7 +68,7 @@ const est = (href?: string) => (href === ESTIMATE_PATH ? 'phero__est' : undefine
         hasButtons && (
           <div class="btn-row phero__btns">
             {primaryCta && primaryHref && (
-              <Button href={primaryHref} icon="go" class={est(primaryHref)}>
+              <Button href={primaryHref} class={est(primaryHref)}>
                 {primaryCta.label}
               </Button>
             )}{' '}
@@ -78,7 +78,7 @@ const est = (href?: string) => (href === ESTIMATE_PATH ? 'phero__est' : undefine
               </Button>
             )}{' '}
             {showPhone && (
-              <Button href={telHref(settings)} variant="paper" icon="tel">
+              <Button href={telHref(settings)} variant="ghost" icon="tel">
                 <span class="tnum">Call {settings.phone}</span>
               </Button>
             )}

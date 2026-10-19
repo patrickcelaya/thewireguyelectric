@@ -123,7 +123,7 @@ function cta(value: CallToAction, redirects: RedirectMap) {
     href,
     escapeHTML(value.label || 'Get a Free Estimate'),
     false,
-    'btn btn--primary btn--go',
+    'btn btn--primary',
   )}</div>`
 }
 

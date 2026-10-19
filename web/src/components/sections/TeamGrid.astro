@@ -39,7 +39,7 @@ const sizes = showBios ? '(max-width:599px) 92vw, (max-width:1099px) 46vw, 30vw'
       <div class="wrap">
         <SectionHeader heading={heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
           {cta && (
-            <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+            <TextLink slot="more" href={ctaHref(cta, redirects)}>
               {cta.label}
             </TextLink>
           )}

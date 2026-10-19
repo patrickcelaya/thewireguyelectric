@@ -1,12 +1,13 @@
 ---
-// A link styled as a button. `icon="go"` adds the arrow, `icon="tel"` the phone glyph.
+// A link styled as a button: squared, flat, no arrow (the label says where it goes).
+// `icon="tel"` adds the phone glyph: it says the button dials.
 import type {HTMLAttributes} from 'astro/types'
 
 type Props = HTMLAttributes<'a'> & {
   href: string
   variant?: 'primary' | 'ghost' | 'paper' | 'cream'
   size?: 'md' | 'lg'
-  icon?: 'go' | 'tel'
+  icon?: 'tel'
 }
 
 const {variant = 'primary', size = 'lg', icon, class: className, ...attrs} = Astro.props

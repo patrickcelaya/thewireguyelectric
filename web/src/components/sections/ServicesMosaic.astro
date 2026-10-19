@@ -63,7 +63,7 @@ const icon = {prev: 'M15 5.5 8.5 12l6.5 6.5', next: 'm9 5.5 6.5 6.5L9 18.5'}
           {(section.cta || categories.length > 0) && (
             <p class="svc-links">
               {section.cta && (
-                <TextLink href={ctaHref(section.cta, redirects)} icon="go">
+                <TextLink href={ctaHref(section.cta, redirects)}>
                   {section.cta.label}
                 </TextLink>
               )}{' '}

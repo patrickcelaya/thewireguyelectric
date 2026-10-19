@@ -44,7 +44,7 @@ const pad = (n: number) => String(n).padStart(2, '0')
               </span>{' '}
               <h3>{item.service ? <a href={`/services/${item.service.slug}`}>{item.title}</a> : item.title}</h3> {item.text && <p>{item.text}</p>}{' '}
               {item.link && (
-                <TextLink class="vcard__go" href={ctaHref(item.link, redirects)} icon="go" tone="cream">
+                <TextLink class="vcard__go" href={ctaHref(item.link, redirects)} tone="cream">
                   {item.link.label}
                 </TextLink>
               )}

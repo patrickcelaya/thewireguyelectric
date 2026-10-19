@@ -161,13 +161,13 @@ const serviceId = `${absoluteUrl(path)}#service`
         <div class="wrap">
           <SectionHeader eyebrow="Related services" number={n.related} heading={service.category ? `More ${service.category.name.toLowerCase()} electrical services` : 'More electrical services'} id="rel-h">
             <Fragment slot="more">
-              <TextLink href={service.category ? `/services-categories/${service.category.slug}` : '/services'} icon="go">
+              <TextLink href={service.category ? `/services-categories/${service.category.slug}` : '/services'}>
                 {service.category ? `All ${service.category.name.toLowerCase()} services` : 'View All Services'}
               </TextLink>
               {service.category?.slug === 'commercial' && (
                 <>
                   {' '}
-                  <TextLink href="/commercial-electrician" icon="go">
+                  <TextLink href="/commercial-electrician">
                     Commercial electricians
                   </TextLink>
                 </>

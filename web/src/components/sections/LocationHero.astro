@@ -62,7 +62,7 @@ const size = imageDimensions(photo)
       <h1 id="hero-h">{before}{town && <span class="hl-sky">{town}</span>}{after}</h1>
       {location.description && <p class="ihero__lede">{location.description}</p>}
       <div class="btn-row">
-        <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
+        <Button href={ESTIMATE_PATH}>Get a Free Estimate</Button>{' '}
         <Button href={telHref(settings)} variant="cream" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
       </div>
       <p class="ihero__status"><OfficeStatus settings={settings} /></p>

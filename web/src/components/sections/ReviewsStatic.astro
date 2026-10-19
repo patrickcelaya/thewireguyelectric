@@ -38,7 +38,7 @@ const {settings, reviews, heading, intro, number, id = 'reviews-h', tone, cta} =
             </p>
           </div>
           <ScoreBlock settings={settings}>
-            <a class="link link--go" href="/#reviews">
+            <a class="link" href="/#reviews">
               More reviews on our homepage
             </a>
           </ScoreBlock>
@@ -50,7 +50,7 @@ const {settings, reviews, heading, intro, number, id = 'reviews-h', tone, cta} =
         </ul>
         {cta && (
           <p class="reviews__cta reviews__cta--static">
-            <Button href={cta.href} icon="go">
+            <Button href={cta.href}>
               {cta.label}
             </Button>
           </p>

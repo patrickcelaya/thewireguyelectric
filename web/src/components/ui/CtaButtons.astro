@@ -16,6 +16,6 @@ const {settings, estimateLabel = 'Get a Free Estimate', estimateHref = ESTIMATE_
 ---
 
 <div class:list={['btn-row', className]}>
-  <Button href={estimateHref} icon="go">{estimateLabel}</Button>{' '}
+  <Button href={estimateHref}>{estimateLabel}</Button>{' '}
   <Button href={telHref(settings)} variant="ghost" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
 </div>

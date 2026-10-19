@@ -57,7 +57,7 @@ const pad = (n: number) => String(n).padStart(2, '0')
             <p class="solutions__cats">
               {categories.map((c) => (
                 <>
-                  <TextLink href={c.href} icon="go" tone="cream">
+                  <TextLink href={c.href} tone="cream">
                     {c.label} services
                   </TextLink>{' '}
                 </>
@@ -89,7 +89,7 @@ const pad = (n: number) => String(n).padStart(2, '0')
           </ul>
           {closers.map((item) => (
             <p class="sol__more">
-              <TextLink href={resolveHref(item.link!.href, redirects)} icon="go" tone="cream">
+              <TextLink href={resolveHref(item.link!.href, redirects)} tone="cream">
                 {item.title}
               </TextLink>
             </p>

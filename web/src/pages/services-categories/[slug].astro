@@ -59,13 +59,13 @@ const name = category.name.toLowerCase()
         <div class="wrap">
           <SectionHeader eyebrow={`${category.name} services`} number={1} heading={`Our ${name} electrical services`} id="svc-h">
             <Fragment slot="more">
-              <TextLink href="/services" icon="go">
+              <TextLink href="/services">
                 View All Services
               </TextLink>
               {others.map((o) => (
                 <>
                   {' '}
-                  <TextLink href={`/services-categories/${o.slug}`} icon="go">
+                  <TextLink href={`/services-categories/${o.slug}`}>
                     {o.name} services
                   </TextLink>
                 </>
@@ -73,7 +73,7 @@ const name = category.name.toLowerCase()
               {category.slug === 'commercial' && (
                 <>
                   {' '}
-                  <TextLink href="/commercial-electrician" icon="go">
+                  <TextLink href="/commercial-electrician">
                     Commercial electricians
                   </TextLink>
                 </>

@@ -101,12 +101,20 @@
   --glass-k: .61538;     /* 96 / 156 */
   --callbar-h: 64px;
 
-  /* shape + depth */
-  --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 22px;
-  --r-xl: 30px;
-  --r-pill: 999px;
+  /* shape: two radii. 4 px for controls (buttons, fields, labels, small media), 8 px for cards, photos and panels; 0 for
+     full-bleed photos and bands; 50% only for true circles (map pins, process nodes). A child inside a padded parent
+     uses outer − padding; past 24 px of padding the two are chosen independently (the form card at 8, its fields at 4). */
+  --r-1: 4px;
+  --r-2: 8px;
+  --r-sm: var(--r-1);
+  --r-md: var(--r-2);
+  --r-lg: var(--r-2);
+  --r-xl: var(--r-2);
+  --r-pill: var(--r-1);
+  /* depth: hairlines for edges (a shadow, so no layout effect); one shadow, only for what floats over content */
+  --hairline: inset 0 0 0 1px var(--line-strong);
+  --hairline-soft: inset 0 0 0 1px var(--line);
+  --shadow-float: 0 1px 2px rgb(15 42 53 / .06), 0 16px 32px -20px rgb(15 42 53 / .28);
   --shadow-1: 0 1px 2px rgb(15 42 53 / .05), 0 2px 10px -3px rgb(15 42 53 / .07);
   --shadow-2: 0 1px 2px rgb(15 42 53 / .05), 0 22px 44px -22px rgb(15 42 53 / .3);
   --shadow-3: 0 2px 4px rgb(58 20 6 / .06), 0 40px 80px -36px rgb(58 20 6 / .45);

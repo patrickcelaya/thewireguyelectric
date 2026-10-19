@@ -74,7 +74,7 @@ const longestWord = Math.max(...heading.split(/\s+/).map((word) => word.length))
       <h1 id="hero-h" style={`--word:${longestWord}`}>{heading}</h1>
       {service.shortDescription && <p class="ihero__lede">{service.shortDescription}</p>}
       <div class="btn-row">
-        <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
+        <Button href={ESTIMATE_PATH}>Get a Free Estimate</Button>{' '}
         <Button href={telHref(settings)} variant="cream" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
       </div>
       <p class="ihero__status"><OfficeStatus settings={settings} /></p>

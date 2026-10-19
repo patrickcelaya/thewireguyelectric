@@ -34,7 +34,7 @@ const count = section.posts.length
       {section.heading && (
         <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
           {cta && (
-            <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+            <TextLink slot="more" href={ctaHref(cta, redirects)}>
               {cta.label}
             </TextLink>
           )}

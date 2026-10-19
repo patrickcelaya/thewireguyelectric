@@ -32,14 +32,12 @@ p{text-wrap:pretty}
 .i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .i--sm{width:16px;height:16px}
 .stars{--s:15px;display:inline-block;flex:none;width:calc(var(--s) * 5.333);height:var(--s);background:currentColor;color:var(--copper);-webkit-mask:var(--stars5) center/100% 100% no-repeat;mask:var(--stars5) center/100% 100% no-repeat;vertical-align:-1px}
-/* glyphs: CSS masks on pseudo-elements (decorative, no extra DOM) */
-.btn--go::after,.textlink--go::after,.link--go::after,.textlink--ext::after,.link--ext::after,.rating__g::after,.btn--tel::before{content:"";flex:none;display:inline-block;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
-.btn--go::after{width:19px;height:19px;transition:transform .25s var(--ease)}
-.textlink--go::after,.link--go::after{width:17px;height:17px;transition:transform .25s var(--ease)}
-.link--go::after{width:15px;height:15px;margin-left:5px;vertical-align:-2px}
-.textlink--ext::after,.link--ext::after,.rating__g::after{-webkit-mask-image:var(--ext);mask-image:var(--ext);width:14px;height:14px}
+/* glyphs: CSS masks on pseudo-elements (decorative, no extra DOM): ↗ on new-tab links (it says where it goes), the phone on
+   the buttons that dial. Internal links and buttons carry no arrow: the underline and the colour say they are links. */
+.textlink--ext::after,.link--ext::after,.rating__g::after,.btn--tel::before{content:"";flex:none;display:inline-block;background:currentColor;-webkit-mask:var(--ext) center/contain no-repeat;mask:var(--ext) center/contain no-repeat}
+.textlink--ext::after,.link--ext::after,.rating__g::after{width:12px;height:12px}
 .link--ext::after{margin-left:4px;vertical-align:-1px}
-.btn--tel::before{-webkit-mask-image:var(--phone);mask-image:var(--phone);width:19px;height:19px}
+.btn--tel::before{-webkit-mask-image:var(--phone);mask-image:var(--phone);width:18px;height:18px}
 
 /* ===================================================================== type: the numbered kicker, display sizes */
 .kicker{display:flex;align-items:center;gap:12px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700);letter-spacing:.01em;margin-bottom:clamp(18px,1.8vw,28px)}
@@ -54,23 +52,27 @@ p{text-wrap:pretty}
 .link{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
 .link:hover{color:var(--copper-800)}
 
-/* ===================================================================== buttons + text links */
-.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:var(--r-pill);border:1.5px solid transparent;font:650 1rem/1 var(--font-text);letter-spacing:.005em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),box-shadow .25s var(--ease),transform .2s var(--ease)}
-.btn:active{transform:translateY(1px) scale(.985)}
-.btn--primary{background:var(--copper);color:#fff;box-shadow:0 1px 0 rgb(255 255 255 / .2) inset,0 12px 26px -12px rgb(142 64 36 / .75)}
-.btn--primary:hover{background:var(--copper-700);box-shadow:0 1px 0 rgb(255 255 255 / .2) inset,0 18px 34px -14px rgb(142 64 36 / .85)}
-.btn--ghost{border-color:var(--ink);color:var(--ink);background:transparent}
-.btn--ghost:hover{background:var(--ink);color:var(--bone)}
-.btn--paper{background:var(--paper);color:var(--ink);border-color:rgb(15 42 53 / .14);box-shadow:0 10px 24px -14px rgb(15 42 53 / .4)}
-.btn--paper:hover{border-color:var(--ink)}
+/* ===================================================================== buttons + text links: squared (4 px), flat, one weight. Primary
+   copper (white 5.39:1, hover copper-700 7.22:1, pressed copper-800); ghost an ink hairline on any light surface; paper on
+   photos only (on bone it has no edge: use ghost); cream on copper. The phone glyph sits 2 px nearer the edge (optical). */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 20px;border:0;border-radius:var(--r-1);font:600 1rem/1 var(--font-text);letter-spacing:0;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .15s var(--ease),box-shadow .15s var(--ease),color .15s var(--ease),transform .1s var(--ease)}
+.btn--lg{min-height:52px;padding:0 26px}
+.btn:active{transform:scale(.98)}
+.btn--tel{padding-left:18px}
+.btn--lg.btn--tel{padding-left:24px}
+.btn--primary{background:var(--copper);color:#fff}
+.btn--primary:hover{background:var(--copper-700)}
+.btn--primary:active{background:var(--copper-800)}
+.btn--ghost{color:var(--ink);background:transparent;box-shadow:inset 0 0 0 1px var(--ink)}
+.btn--ghost:hover{background:rgb(15 42 53 / .06)}
+.btn--paper{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .3)}
+.btn--paper:hover{box-shadow:inset 0 0 0 1px var(--ink)}
 .btn--cream{background:var(--cream);color:var(--ink)}
 .btn--cream:hover{background:#fff}
-.btn--lg{min-height:58px;padding:0 30px;font-size:1.0625rem;gap:12px}
-.btn:hover::after{transform:translateX(4px)}
 .btn-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
-.textlink{display:inline-flex;align-items:center;gap:8px;font:650 1rem/1.3 var(--font-text);color:var(--ink);text-decoration:none;padding-bottom:4px;background:linear-gradient(var(--copper),var(--copper)) 0 100%/100% 1.5px no-repeat;transition:background-size .3s var(--ease),color .2s}
+.textlink{display:inline-flex;align-items:center;gap:6px;font:600 1rem/1.3 var(--font-text);color:var(--ink);text-decoration:none;padding-bottom:4px;background:linear-gradient(var(--copper),var(--copper)) 0 100%/100% 1.5px no-repeat;transition:background-size .3s var(--ease),color .2s var(--ease)}
 .textlink:hover{color:var(--copper-700);background-size:0 1.5px;background-position:100% 100%}
-.textlink:hover::after{transform:translateX(4px)}
+.textlink--ext::after{transition:transform .2s var(--ease)}
 .textlink--ext:hover::after{transform:translate(2px,-2px)}
 .textlink--cream{color:#fff;background-image:linear-gradient(var(--glow),var(--glow))}
 .textlink--cream:hover{color:var(--glow)}

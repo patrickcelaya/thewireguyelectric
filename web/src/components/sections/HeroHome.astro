@@ -77,7 +77,7 @@ const [phone, wide] = HERO_SOURCES
         }
       </h1>
       <div class="hero__actions">
-        {section.primaryCta && <Button href={ctaHref(section.primaryCta, redirects)} icon="go">{section.primaryCta.label}</Button>}{' '}
+        {section.primaryCta && <Button href={ctaHref(section.primaryCta, redirects)}>{section.primaryCta.label}</Button>}{' '}
         {section.secondaryCta && <Button href={ctaHref(section.secondaryCta, redirects)} variant="paper">{section.secondaryCta.label}</Button>}{' '}
         {
           section.showPhone !== false && (
