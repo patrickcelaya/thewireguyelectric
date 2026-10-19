@@ -30,7 +30,7 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 .marquee.is-moving .track{padding-left:0}
 .marquee.is-moving .belt{animation:mq var(--mq-dur,300s) linear infinite;will-change:transform}
 .marquee.is-moving .lane--b .belt{animation-direction:reverse}
-.marquee:hover .belt,.marquee:focus-within .belt,.marquee.is-paused .belt,.marquee.is-off .belt,.rv-open .marquee .belt{animation-play-state:paused}
+.marquee:hover .belt,.marquee:focus-within .belt,.marquee.is-paused .belt,.marquee.is-off .belt{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(calc(-1 * var(--mq-w,50%)))}}
 @media (prefers-reduced-motion:reduce){.marquee .belt{animation:none!important}}
 .rv__more{align-self:flex-start;margin-top:8px;padding:2px 0;border:0;background:none;color:var(--copper-700);font:600 .875rem/1.4 var(--font-text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;cursor:pointer}
