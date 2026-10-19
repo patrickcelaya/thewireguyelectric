@@ -133,6 +133,7 @@ html:not(.oo):not(.oc) .status--util,html:not(.oo):not(.oc) .hu-l .hu-sep{displa
 .hu-link:hover,.hu-link:hover b{color:var(--copper-700)}
 .hu-link:hover .hu-lab{text-decoration:underline;text-underline-offset:.2em}
 .stars--util{--s:12px;vertical-align:0}
+.hu-roc .hu-lab{margin-right:-3px}
 .hu-rate::after,.hu-roc::after{content:"";flex:none;width:11px;height:11px;background:currentColor;opacity:.65;-webkit-mask:var(--ext) center/contain no-repeat;mask:var(--ext) center/contain no-repeat}
 /* tier 2: the main bar */
 .hdr-main{flex:1;display:flex;align-items:center;min-width:0;transition:transform .45s var(--ease-out)}
