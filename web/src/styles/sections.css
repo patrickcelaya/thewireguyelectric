@@ -11,7 +11,7 @@
 .team__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(48px,6vw,120px);padding-left:var(--pad-x)}
 .team__copy{display:grid;gap:0;justify-items:start;max-width:40rem;padding-block:clamp(8px,1vw,24px)}
 .team__grid--solo{grid-template-columns:minmax(0,1fr);padding-right:var(--pad-x)}   /* no photo: the words alone */
-.team__copy .display{max-width:12ch}
+.team__copy .h2{max-width:14ch}
 .team__answer{margin-top:clamp(28px,2.6vw,44px);font:500 var(--fs-stand)/1.38 var(--font-display);letter-spacing:-.018em;color:var(--ink);max-width:24em}
 .team__more{margin-top:22px;font-size:var(--fs-lede);line-height:1.62;color:var(--text);max-width:var(--measure)}
 .team__more a{color:var(--copper-700);text-decoration-thickness:1.5px;text-underline-offset:.2em}
@@ -36,10 +36,10 @@
 .vcard{display:flex;flex-direction:column;gap:14px;padding:4px clamp(24px,2.6vw,44px) 4px;border-left:1px solid rgb(255 244 236 / .28)}
 .vcard:first-child{padding-left:0;border-left:0}
 .vcard:last-child{padding-right:0}
-.vcard h3{font-size:clamp(1.5rem,1.25rem + .8vw,2.125rem);font-weight:700;letter-spacing:-.025em;color:#fff}
+.vcard h3{font-size:clamp(1.5rem,1.25rem + .8vw,2.125rem);color:#fff}
 .vcard h3 a{color:inherit;text-decoration-thickness:1.5px;text-underline-offset:.16em}
 .vcard p{color:#fff;font-size:1.0625rem;line-height:1.6;max-width:30em}
-.vcard strong{color:#fff;font-weight:700}
+.vcard strong{color:#fff;font-weight:600}
 .vcard .textlink{margin-top:auto;align-self:flex-start}
 .vals :focus-visible{outline-color:#fff}
 /* phones: stacked, divided by horizontal hairlines */
@@ -49,13 +49,13 @@
    sequence: no numbers, no arrows); the row's title is its link */
 .solutions{padding-block:var(--section-y);background:var(--paper)}
 .solutions__grid{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:56px clamp(56px,7vw,140px);align-items:start}
-.solutions .display{max-width:11ch}
+.solutions .h2{max-width:14ch}
 .solutions__lede{margin-top:28px;font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;color:var(--text);max-width:20em}
 .solutions__cats{display:flex;flex-wrap:wrap;gap:18px 32px;margin-top:40px}
 .sol{border-top:1px solid var(--line-strong)}
 .sol li{border-bottom:1px solid var(--line-strong)}
 .sol a,.sol__row{display:flex;align-items:center;min-height:clamp(76px,6.4vw,104px);padding-block:12px;color:var(--ink);text-decoration:none}
-.sol h3{font-size:clamp(1.625rem,1.15rem + 1.1vw,2.5rem);font-weight:600;letter-spacing:-.025em;line-height:1.1;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:.16em;transition:color .15s var(--ease),text-decoration-color .15s var(--ease)}
+.sol h3{font-size:clamp(1.625rem,1.15rem + 1.1vw,2.5rem);line-height:1.1;text-decoration:underline;text-decoration-color:transparent;text-decoration-thickness:2px;text-underline-offset:.16em;transition:color .15s var(--ease),text-decoration-color .15s var(--ease)}
 .sol a:hover h3{color:var(--copper-700);text-decoration-color:var(--copper)}
 /* the list's closing link ("+ More!") */
 .sol__more{margin-top:22px}
@@ -69,7 +69,7 @@
 .pull__media img{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .pull__media::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 58% 46% at 34% 50%,rgb(247 243 236 / .55),rgb(247 243 236 / .3) 60%,rgb(247 243 236 / 0) 100%)}
 .pull__fig{max-width:min(15em,100%);font-size:clamp(2.125rem,1rem + 3.6vw,5.75rem)}
-.pull blockquote p{font:740 1em/1 var(--font-display);letter-spacing:-.045em;color:var(--ink);text-wrap:balance}
+.pull blockquote p{font:500 1em/1 var(--font-display);letter-spacing:-.045em;color:var(--ink);text-wrap:balance}
 .pull figcaption{display:inline-flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:clamp(20px,2.2vw,32px);padding:10px 16px;border-radius:var(--r-1);background:var(--paper);font:400 1rem/1.4 var(--font-text);letter-spacing:0;color:var(--ink)}
 .pull figcaption .stars{--s:15px}
 .pull cite{font-style:normal;font-weight:600}
@@ -81,8 +81,8 @@
 .process{position:relative;background:var(--bone)}
 .process__pin{padding-block:var(--section-y);overflow:clip}
 .process__head{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:24px 72px;align-items:end}
-.process__head .display{max-width:13ch}
-.process__lede{font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:28rem}
+.process__head .h2{max-width:15ch}
+.process__lede{font-size:var(--fs-lede);line-height:1.45;max-width:28rem}
 @media (min-width:981px){.process__head{padding-right:calc(clamp(104px,9.4vw,150px) * 1.35)}}
 .process__body{position:relative;display:grid;grid-template-columns:repeat(var(--steps,4),minmax(0,1fr)) var(--bcol);gap:40px clamp(24px,3vw,56px);margin-top:clamp(80px,7.5vw,128px);--node:44px;--bcol:clamp(104px,9.4vw,150px);--bw:calc(var(--bcol) * .92)}
 .process__wire{position:absolute;left:calc(-1 * var(--pad-x));right:calc(var(--bcol) / 2);top:calc(var(--node) / 2 - 1.25px);height:2.5px;border-radius:2px;background:linear-gradient(90deg,rgb(170 80 46 / 0),var(--copper) 18%,var(--copper));pointer-events:none;transform-origin:0 50%}
@@ -90,7 +90,7 @@
 .step{position:relative;display:flex;flex-direction:column;gap:14px}
 /* the steps are a real sequence: numbered nodes on the wire (white on copper 5.39:1) */
 .step__n{position:relative;z-index:1;display:grid;place-items:center;width:var(--node);height:var(--node);border-radius:50%;background:var(--copper);color:#fff;font:600 1.0625rem/1 var(--font-display);font-variant-numeric:tabular-nums;box-shadow:0 0 0 8px var(--bone)}
-.step h3{margin-top:14px;font-size:clamp(1.375rem,1.15rem + .7vw,1.875rem);letter-spacing:-.026em}
+.step h3{margin-top:14px;font-size:clamp(1.375rem,1.15rem + .7vw,1.875rem)}
 .step p{color:var(--text);max-width:22em}
 .step__contact{margin-top:-4px}
 /* the bulb stands on the end of the wire: its base sits on the line (the base's foot is 91.5% down the bulb's box) */

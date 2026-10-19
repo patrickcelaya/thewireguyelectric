@@ -30,7 +30,7 @@
 
 /* ===================================================================== city at a glance: the permit and power notes under the facts */
 .local-note{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,1fr);gap:20px clamp(32px,5vw,96px);padding-top:clamp(28px,2.6vw,40px);border-top:1.5px solid var(--ink)}
-.local-note__h{font-size:clamp(1.5rem,1.15rem + 1vw,2.25rem);letter-spacing:-.03em;line-height:1.08;max-width:11em}
+.local-note__h{font-size:clamp(1.5rem,1.15rem + 1vw,2.25rem);line-height:1.08;max-width:11em}
 .local-note__text{columns:2 22rem;column-gap:clamp(28px,3vw,56px);font-size:var(--fs-body);line-height:1.65;color:var(--text)}
 .local-note__text p{margin-bottom:14px}
 @media (max-width:899px){.local-note{grid-template-columns:minmax(0,1fr)}}
@@ -39,7 +39,7 @@
 .svc-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,3.4vw,64px);border-top:1.5px solid var(--ink)}
 .svc-rows--after{margin-top:clamp(40px,4vw,64px)}
 .svc-row{position:relative;padding:22px 24px 24px 0;border-bottom:1px solid var(--line-strong)}
-.svc-row h3{font-size:clamp(1.25rem,1.1rem + .45vw,1.5rem);letter-spacing:-.02em}
+.svc-row h3{font-size:clamp(1.25rem,1.1rem + .45vw,1.5rem)}
 .svc-row h3 a{color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
 .svc-row h3 a::after{content:"";position:absolute;inset:0}
 .svc-row:hover h3 a{color:var(--copper-700)}
@@ -53,8 +53,7 @@
 /* imported headings often wrap their words in <strong>: a heading keeps its own weight, bold or not */
 .prose :is(h2,h3,h4) :is(strong,b){font-weight:inherit}
 /* a city's "Service Areas within {City} include:" line and its list: a copper kicker over two columns of neighbourhoods */
-.prose--city p:has(> strong:only-child):has(+ ul){display:flex;align-items:center;gap:14px;margin:52px 0 18px;font:700 .875rem/1.35 var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:var(--copper-700)}
-.prose--city p:has(> strong:only-child):has(+ ul)::before{content:"";flex:none;width:28px;height:1.5px;background:var(--copper)}
+.prose--city p:has(> strong:only-child):has(+ ul){margin:48px 0 14px;font:600 var(--fs-small)/1.35 var(--font-text);color:var(--copper-700)}
 .prose--city p:has(> strong:only-child):has(+ ul) strong{color:inherit;font-weight:inherit}
 .prose--city p:has(> strong:only-child)+ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px;margin:0 0 24px}
 .prose--city p:has(> strong:only-child)+ul li{padding:12px 0 12px 26px;border-top:1px solid var(--line);font:600 1.0625rem/1.4 var(--font-display);color:var(--ink)}
@@ -65,7 +64,7 @@
 .prose--service ul:has(> li > strong:first-child)>li::before{top:calc(16px + .62em)}
 
 /* ===================================================================== warning signs: the body's own paragraph under the heading */
-.signs__more p{font-size:var(--fs-lede);line-height:1.6;color:var(--muted)}
+.signs__more p{font-size:var(--fs-lede);line-height:1.45}
 .signs__more a{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
 .signs__t a{color:var(--copper-700);text-decoration:underline;text-underline-offset:.2em}
 

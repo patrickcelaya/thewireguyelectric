@@ -1,26 +1,30 @@
 /* =====================================================================
-   The Wire Guy Electric · design tokens (ported from the approved round-5 mockups; see docs/DESIGN_SYSTEM.md)
-   Built on "Editorial Luxe" (numbered kickers, oversized Red Hat Display, real photos edge to edge) with the strongest
-   ideas grafted from "Cinematic" (title-card hero, glass proof card, lit statement, copper values, photo bento).
+   The Wire Guy Electric · design tokens (see docs/DESIGN_SYSTEM.md). "Lettered, not decorated": oversized Red Hat Display
+   set on bone, the crew's real photos in natural colour, copper for the one action and the wire. Structure (hairlines,
+   numbers, labels) only where the content is a list, a table or a sequence.
 
-   TYPE  Red Hat Display 500–900 (display) + Red Hat Text 400–700 (text). Self-hosted latin-subset woff2 (src/assets/fonts,
-         bundled by Vite with hashed names; SiteLayout preloads the display face). Metric-matched local fallbacks keep line breaks identical while the fonts load (no CLS).
-   COLOUR  warm bone / paper / sand surfaces, copper and copper gradients. No flat black anywhere: deep petrol exists only
-         as type colour and as a tint ON photos, feathered, never across a face.
+   TYPE  Red Hat Display (display) + Red Hat Text (text), six weights, each with one job: Display 700 for H1s and H2s,
+         Display 600 for H3s, card titles and phone numbers, Display 500 for standfirsts and quotes; Text 600 for buttons
+         and labels, Text 500 for nav and meta, Text 400 for body. Self-hosted latin-subset woff2 (src/assets/fonts, bundled
+         by Vite with hashed names; SiteLayout preloads the display face). Metric-matched local fallbacks keep line breaks
+         identical while the fonts load (no CLS).
+   COLOUR  warm bone / paper / sand surfaces, copper flat (no gradients). No flat black anywhere: deep petrol exists only as
+         type colour and as the scrim under words set on a photo, feathered, never across a face.
 
    CONTRAST LEDGER (WCAG 2.2; text over photos is measured at the worst pixel by contrast.mjs + contrast.py)
      ink   #0F2A35 on bone 13.53 · paper 14.48 · sand 12.29
      text  #1D3039 on bone 12.38 · paper 13.24 · sand 11.24
      muted #53646B on bone 5.58 · paper 5.97 · sand 5.07
      copper #AA502E on bone 4.87 · paper 5.22
-     copper-700 #8E4024 on bone 6.53 · paper 6.98 · sand 5.93 · wash 6.0
-     white on copper 5.39 · on copper-700 7.24 · on copper-800 9.33 · cream #FFF4EC on copper-800 8.6 · glow #FFE2B8 on copper-800 7.6
+     copper-700 #8E4024 on bone 6.53 · paper 6.98 · sand 5.93 · wash 5.97
+     white on copper 5.39 · on copper-700 7.22 · on copper-800 9.40 · cream #FFF4EC on copper-800 8.69 · glow #FFE2B8 on copper-800 7.53
+     field line #7A878D on paper 3.58 (a control's edge, needs 3)
    ===================================================================== */
 @font-face{font-family:"Red Hat Display";src:url("../assets/fonts/redhat-display-latin.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
 @font-face{font-family:"Red Hat Text";src:url("../assets/fonts/redhat-text-latin.woff2") format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
-/* fallbacks measured from the woff2 files with fontTools (size-adjust from the advance widths of the H1 + lede at wght 740 / 400) */
-@font-face{font-family:"RHD Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("LiberationSans-Bold");font-weight:500 900;size-adjust:97.1%;ascent-override:104.84%;descent-override:31.41%;line-gap-override:0%}
-@font-face{font-family:"RHD Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("LiberationSans");font-weight:300 499;size-adjust:97.1%;ascent-override:104.84%;descent-override:31.41%;line-gap-override:0%}
+/* fallbacks measured from the woff2 files with fontTools (size-adjust from the advance widths of the H1 + lede at wght 700 / 400) */
+@font-face{font-family:"RHD Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("LiberationSans-Bold");font-weight:500 900;size-adjust:96.34%;ascent-override:105.67%;descent-override:31.66%;line-gap-override:0%}
+@font-face{font-family:"RHD Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("LiberationSans");font-weight:300 499;size-adjust:96.34%;ascent-override:105.67%;descent-override:31.66%;line-gap-override:0%}
 @font-face{font-family:"RHT Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("LiberationSans");font-weight:300 549;size-adjust:100.17%;ascent-override:101.63%;descent-override:30.45%;line-gap-override:0%}
 @font-face{font-family:"RHT Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("LiberationSans-Bold");font-weight:550 900;size-adjust:100.17%;ascent-override:101.63%;descent-override:30.45%;line-gap-override:0%}
 :root {
@@ -56,8 +60,8 @@
   /* type */
   --font-display: "Red Hat Display", "RHD Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-text: "Red Hat Text", "RHT Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --fs-display: clamp(2.5rem, 1rem + 5vw, 7.25rem);           /* 40 → 116: the editorial H2s */
-  --fs-h2: clamp(2.125rem, 1rem + 3vw, 4.5rem);               /* 34 → 72 */
+  --fs-display: clamp(2.5rem, 1rem + 4.4vw, 6.25rem);         /* 40 → 100: H1s, the valley title, the CTA band */
+  --fs-h2: clamp(2.125rem, 1.1rem + 2.6vw, 3.75rem);          /* 34 → 60: every other section H2 */
   --fs-h3: clamp(1.25rem, 1.1rem + .45vw, 1.5rem);
   --fs-stand: clamp(1.25rem, .95rem + 1.05vw, 2rem);          /* 20 → 32 */
   --fs-lede: clamp(1.125rem, 1.02rem + .4vw, 1.375rem);
@@ -106,7 +110,6 @@
   /* motion */
   --ease: cubic-bezier(.2, .7, .2, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
-  --ease-draw: cubic-bezier(.65, 0, .25, 1);
 }
 @media (max-width: 1599px) { :root { --hdr-h: 144px; --logo-h: 112px; --logo-k: .75; --glass-k: .66667; } }
 @media (max-width: 1365px) { :root { --hdr-h: 132px; --hdr-c: 92px; --logo-h: 100px; --logo-k: .8; --glass-k: .69697; } }

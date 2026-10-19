@@ -22,7 +22,7 @@ const asParagraph = (block: SignsSection['items'][number]) => [{...block, listIt
   <div class="wrap signs">
     <div class="signs__head">
       <Eyebrow>Know the warning signs</Eyebrow>
-      <h2 class="display" id="signs-h">{signs.heading}</h2>
+      <h2 class="h2" id="signs-h">{signs.heading}</h2>
       {signs.after.length > 0 && <PortableText value={signs.after} class="signs__more" />}
     </div>
     <ul class="signs__list" role="list">

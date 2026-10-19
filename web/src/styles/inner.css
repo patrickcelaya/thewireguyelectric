@@ -4,7 +4,7 @@
 .crumbs li+li::before{content:"";width:6px;height:6px;margin:0 12px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor;transform:rotate(45deg);opacity:.6}
 .crumbs a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
 .crumbs a:hover{color:var(--copper-700)}
-.crumbs [aria-current]{color:var(--copper-700);font-weight:650}
+.crumbs [aria-current]{color:var(--copper-700);font-weight:600}
 /* phones: the links keep their whole names. The current page's name stays on the trail's line while 8em of it (or all
    of a shorter one) fits there, shortened with an ellipsis if need be (the H1 right below repeats it; the whole trail
    stays in the HTML); with less room it moves to a second line, so it never shrinks to a stub like "Tr…" */
@@ -16,7 +16,7 @@
   .crumbs a{display:block;padding-block:4px}
   .crumbs [aria-current]{display:block;overflow:hidden;text-overflow:ellipsis}
 }
-.reviews__intro{margin-top:18px;font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:30rem}
+.reviews__intro{margin-top:18px;font-size:var(--fs-lede);line-height:1.45;max-width:30rem}
 .reviews--static{background:var(--bone)}
 .rv-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
 .rv--static{width:auto;height:auto;min-height:100%}
@@ -98,9 +98,9 @@
 .glance .answer{margin-top:22px;font:500 var(--fs-stand)/1.4 var(--font-display);letter-spacing:-.016em;color:var(--ink);max-width:26em}
 .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;margin-top:40px;border-top:1.5px solid var(--ink)}
 .facts div{padding:18px 0 20px;border-bottom:1px solid var(--line-strong)}
-.facts dt{font:650 var(--fs-meta)/1.3 var(--font-text);color:var(--copper-700)}
+.facts dt{font:600 var(--fs-meta)/1.3 var(--font-text);color:var(--copper-700)}
 .facts dd{margin-top:6px;font-size:var(--fs-small);line-height:1.55;color:var(--text)}
-.facts dd b{display:block;font:700 1.125rem/1.3 var(--font-display);letter-spacing:-.012em;color:var(--ink);margin-bottom:2px}
+.facts dd b{display:block;font:600 1.125rem/1.3 var(--font-display);letter-spacing:-.012em;color:var(--ink);margin-bottom:2px}
 .facts--grid{margin-top:0}
 /* an odd count (Panels: its four own facts and the warranty line) leaves no empty cell: the last fact spans both columns */
 @media (min-width:900px){.facts>div:last-child:nth-child(odd){grid-column:1 / -1}}
@@ -135,13 +135,13 @@
 /* ===================================================================== OFFICE: an office as an <address> (components/sections/OfficeCard;
    framed as a card in styles/pages.css, inside the city hero's trust card in styles/cms.css) */
 .office{display:grid;gap:6px;font-style:normal}
-.office__k{font:650 var(--fs-meta)/1.3 var(--font-text);color:var(--copper-700)}
-.office__name{font:700 1.0625rem/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
+.office__k{font:600 var(--fs-meta)/1.3 var(--font-text);color:var(--copper-700)}
+.office__name{font:600 1.0625rem/1.35 var(--font-display);letter-spacing:-.01em;color:var(--ink)}
 .office__appt{font-weight:600;color:var(--text)}
 .office__lines{font-size:var(--fs-small);line-height:1.55;color:var(--text)}
 .office__lines span{display:block}
 .office__note{color:var(--muted)}
-.office__tel a{font-weight:650;color:var(--ink);text-decoration:none}
+.office__tel a{font-weight:600;color:var(--ink);text-decoration:none}
 .office__tel a:hover{color:var(--copper-700)}
 .office__map .link{display:inline-block;min-height:24px;padding-block:2px;font-size:var(--fs-small);font-weight:600}
 
@@ -152,11 +152,9 @@
 .article-s{background:var(--paper)}
 .article{display:grid;grid-template-columns:minmax(0,1fr) min(25rem,34%);gap:48px clamp(48px,6vw,112px);align-items:start}
 .prose{max-width:68ch;font-size:var(--fs-body);line-height:1.75;color:var(--text)}
-.prose h2{font-size:clamp(2rem,1rem + 2.4vw,3.5rem);letter-spacing:-.036em;line-height:1.02;margin-bottom:28px;max-width:16em}
+.prose h2{font-size:clamp(2rem,1rem + 2.4vw,3.5rem);margin-bottom:28px;max-width:16em}
 .prose h2+p{font-size:1.25rem;line-height:1.6;color:var(--ink)}
-.prose h3,.prose__k{display:flex;align-items:center;gap:14px;margin:52px 0 18px;font:700 .875rem/1.35 var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:var(--copper-700)}
-.prose h3::before,.prose__k::before{content:"";flex:none;width:28px;height:1.5px;background:var(--copper)}
-.prose .prose__k strong{color:inherit;font-weight:inherit}
+.prose h3{margin:48px 0 14px;font-size:1.375rem;line-height:1.25}
 .prose p+p{margin-top:16px}
 .prose a{color:var(--copper-700);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1.5px}
 .prose ul{display:grid;gap:10px;margin:18px 0}
@@ -176,8 +174,8 @@
 .aside{position:sticky;top:calc(var(--hdr-c) + 32px)}
 .contact-card{display:grid;gap:10px;justify-items:start;padding:clamp(26px,2.4vw,36px);border-radius:var(--r-2);background:var(--paper);box-shadow:var(--hairline)}
 .contact-card .cc-rating{width:100%;padding-bottom:16px;margin-bottom:8px;border-bottom:1px solid var(--line)}
-.contact-card__k{font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
-.contact-card__h{font:700 clamp(1.5rem,1.2rem + .8vw,2rem)/1.2 var(--font-display);letter-spacing:-.028em;color:var(--ink);text-wrap:balance}
+.contact-card__k{font:600 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.contact-card__h{font:600 clamp(1.5rem,1.2rem + .8vw,2rem)/1.2 var(--font-display);letter-spacing:-.028em;color:var(--ink);text-wrap:balance}
 .contact-card__ph{display:grid;gap:6px;margin-top:6px}
 .contact-card__ph a{font:700 2rem/1 var(--font-display);letter-spacing:-.025em;color:var(--ink);text-decoration:none}
 .contact-card__ph a:hover{color:var(--copper-700)}
@@ -192,12 +190,12 @@
 .signs-s{background:var(--bone)}
 .signs{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px clamp(48px,7vw,128px);align-items:start}
 .signs__head{position:sticky;top:calc(var(--hdr-c) + 40px)}
-.signs__head .display{font-size:clamp(2.5rem,1rem + 4vw,5.75rem);max-width:10ch}
-.signs__more{margin-top:24px;font-size:var(--fs-lede);color:var(--muted);max-width:26rem}
+.signs__head .h2{max-width:12ch}
+.signs__more{margin-top:24px;font-size:var(--fs-lede);line-height:1.45;max-width:26rem}
 .signs__list{border-top:1px solid var(--line-strong)}
 .signs__list li{position:relative;padding:clamp(18px,1.8vw,26px) 0 clamp(18px,1.8vw,26px) 28px;border-bottom:1px solid var(--line-strong)}
 .signs__list li::before{content:"";position:absolute;left:0;top:calc(clamp(18px,1.8vw,26px) + .62em);width:12px;height:2px;background:var(--copper)}
-.signs__list p{font:650 clamp(1.25rem,1rem + .8vw,1.875rem)/1.25 var(--font-display);letter-spacing:-.022em;color:var(--ink)}
+.signs__list p{font:600 clamp(1.25rem,1rem + .8vw,1.875rem)/1.25 var(--font-display);letter-spacing:-.022em;color:var(--ink)}
 .signs__list p .link{display:block;margin-top:8px;font:500 var(--fs-small)/1.5 var(--font-text);letter-spacing:0}
 @media (max-width:899px){.signs{grid-template-columns:minmax(0,1fr)}.signs__head{position:static}}
 
@@ -243,8 +241,8 @@
    the parts the long-form styles above don't cover. Numbered lists count in copper sockets; tables scroll inside their own
    region; videos are a poster with a copper play button until clicked; CTA blocks sit on the copper wash. */
 .prose>*+h2{margin-top:clamp(48px,5vw,72px)}
-.prose h4{margin:32px 0 10px;font-size:1.1875rem;letter-spacing:-.014em}
-.prose h5,.prose h6{margin:28px 0 8px;font:700 1rem/1.35 var(--font-text);color:var(--ink)}
+.prose h4{margin:32px 0 10px;font-size:1.1875rem}
+.prose h5,.prose h6{margin:28px 0 8px;font:600 1rem/1.35 var(--font-text);color:var(--ink)}
 .prose ol{display:grid;gap:12px;margin:18px 0;counter-reset:pt}
 .prose ol>li{counter-increment:pt;padding-left:28px}
 .prose ol>li::before{content:counter(pt) ".";top:0;left:0;width:auto;height:auto;background:none;color:var(--copper-700);font:600 1em/inherit var(--font-display);font-variant-numeric:tabular-nums}
@@ -256,8 +254,8 @@
 .pt-table table{width:100%;min-width:32rem;border-collapse:collapse;font-size:.9375rem;line-height:1.5}
 .pt-table th,.pt-table td{padding:12px 16px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
 .pt-table tr:last-child>*{border-bottom:0}
-.pt-table thead th{background:var(--sand);color:var(--ink);font-weight:700}
-.pt-table tbody th{color:var(--ink);font-weight:650}
+.pt-table thead th{background:var(--sand);color:var(--ink);font-weight:600}
+.pt-table tbody th{color:var(--ink);font-weight:600}
 .pt-table caption{caption-side:bottom;padding:10px 16px;text-align:left;font-size:var(--fs-meta);color:var(--muted)}
 /* phones: a table with a header row becomes one card per row, each value under its column's name, so a comparison reads
    whole without sideways scrolling (the header row stays for screen readers) */
@@ -269,7 +267,7 @@
   .pt-table--stack tr{display:grid;padding:16px 18px 6px;border-radius:var(--r-2);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line)}
   .pt-table--stack tbody th{display:block;padding:0 0 10px;border:0;font:700 1.0625rem/1.3 var(--font-display);letter-spacing:-.01em}
   .pt-table--stack td{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:14px;padding:10px 0;border:0;border-top:1px solid var(--line)}
-  .pt-table--stack td::before{content:attr(data-label);font:650 var(--fs-meta)/1.5 var(--font-text);color:var(--copper-700)}
+  .pt-table--stack td::before{content:attr(data-label);font:600 var(--fs-meta)/1.5 var(--font-text);color:var(--copper-700)}
   .pt-table--stack caption{display:block;padding:10px 2px 0}
 }
 .pt-video{margin:32px 0}
@@ -282,7 +280,7 @@
 .pt-video__link:focus-visible{outline-offset:4px}
 .pt-video__frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--r-2)}
 .pt-cta{display:grid;gap:12px;justify-items:start;margin:36px 0;padding:clamp(24px,2.4vw,34px);border-radius:var(--r-2);background:var(--paper);box-shadow:var(--hairline)}
-.pt-cta__h{font:740 clamp(1.375rem,1.1rem + .7vw,1.75rem)/1.2 var(--font-display);letter-spacing:-.022em;color:var(--ink)}
+.pt-cta__h{font:600 clamp(1.375rem,1.1rem + .7vw,1.75rem)/1.2 var(--font-display);letter-spacing:-.022em;color:var(--ink)}
 .prose .pt-cta p+p{margin-top:0}
 .prose .pt-cta .btn{margin-top:6px;color:#fff;text-decoration:none}
 
@@ -319,7 +317,7 @@
 .hub__chips a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:var(--r-1);background:var(--bone);box-shadow:var(--hairline);font:600 .9375rem/1 var(--font-text);color:var(--ink);text-decoration:none;transition:box-shadow .2s var(--ease),color .2s var(--ease),background-color .2s var(--ease)}
 .hub__chips a:hover{background:var(--paper);box-shadow:inset 0 0 0 1px var(--ink);color:var(--copper-700)}
 .hub__phone{margin-top:18px}
-.hub__phone a{font:760 clamp(2rem,1.4rem + 1.6vw,3rem)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
+.hub__phone a{font:600 clamp(2rem,1.4rem + 1.6vw,3rem)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
 .hub__phone a:hover{color:var(--copper-700)}
 .hub__status{margin-top:12px;font-size:.9375rem;color:var(--muted)}
 .hub__hours{margin-top:4px;font-size:var(--fs-small);color:var(--muted)}

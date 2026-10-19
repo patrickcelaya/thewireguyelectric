@@ -45,7 +45,7 @@ const {cta} = section
   photos.length > 0 && (
     <section class="section work cv" {...sectionLabel(id, section.heading, section.eyebrow)} data-eager-photos>
       {section.heading && (
-        <SectionHeader class="wrap" heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} size="display" intro={section.intro}>
+        <SectionHeader class="wrap" heading={section.heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} intro={section.intro}>
           {cta && (
             <TextLink slot="more" href={ctaHref(cta, redirects)} external={isExternal(cta.href)}>
               {cta.label}

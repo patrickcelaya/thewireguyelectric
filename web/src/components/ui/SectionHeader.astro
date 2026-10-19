@@ -11,21 +11,20 @@ interface Props {
   accent?: string
   id?: string
   eyebrow?: string
-  size?: 'display' | 'h2'
   as?: 'h2' | 'h3'
   intro?: string
   layout?: 'split' | 'stack'
   class?: string
 }
 
-const {heading, accent, id, eyebrow, size = 'h2', as: Tag = 'h2', intro, layout = 'split', class: className} = Astro.props
+const {heading, accent, id, eyebrow, as: Tag = 'h2', intro, layout = 'split', class: className} = Astro.props
 const hasMore = Astro.slots.has('more')
 ---
 
 <div class:list={['head', layout === 'stack' && 'head--stack', className]}>
   <div>
     {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-    <Tag class={size} id={id}><Accent text={heading} accent={accent} /></Tag>
+    <Tag class="h2" id={id}><Accent text={heading} accent={accent} /></Tag>
   </div>
   {
     (intro || hasMore) && (

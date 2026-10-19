@@ -44,7 +44,7 @@
 /* map labels knock the relief out under themselves (the valley-floor colour, feathered), so no wire or ridge shadow ever
    passes under a letter */
 .vy-mtn,.vy-pin b{background:rgb(243 237 227 / .9);box-shadow:0 0 10px 4px rgb(243 237 227 / .72);border-radius:var(--r-1)}
-.vy-mtn{position:absolute;z-index:2;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:max-content;max-width:11em;padding:2px 5px 2px 7px;font:700 .6875rem/1.35 var(--font-text);letter-spacing:.2em;text-transform:uppercase;text-align:center;color:#6A5646;pointer-events:none;text-wrap:balance}
+.vy-mtn{position:absolute;z-index:2;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:max-content;max-width:11em;padding:2px 5px 2px 7px;font:600 .6875rem/1.35 var(--font-text);letter-spacing:.2em;text-transform:uppercase;text-align:center;color:#6A5646;pointer-events:none;text-wrap:balance}
 .vy-pin{position:absolute;z-index:3;left:var(--x);top:var(--y);width:0;height:0;cursor:pointer;transition:opacity .25s var(--ease)}
 .vy-pin i{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,#FFF6E8 0 30%,var(--copper) 36% 100%);box-shadow:0 0 0 2.5px rgb(253 251 247 / .96),0 3px 8px rgb(78 34 19 / .35);transition:transform .3s var(--ease-out)}
 .vy-pin i::before{content:"";position:absolute;left:50%;top:50%;z-index:-1;width:76px;height:76px;margin:-38px 0 0 -38px;border-radius:50%;background:radial-gradient(closest-side,rgb(255 210 150 / .82),rgb(255 190 120 / .3) 46%,rgb(255 190 120 / 0));opacity:0;transition:transform .4s var(--ease-out),opacity .3s}
@@ -67,7 +67,7 @@
 /* the floating card: the town and its neighbourhoods over the map at the pin (built by site.js from the list item) */
 .vy-callout{position:absolute;z-index:6;left:0;top:0;width:max-content;max-width:min(290px,70cqw);padding:13px 16px 14px;border-radius:var(--r-2);background:rgb(253 251 247 / .97);box-shadow:0 0 0 1px var(--line-strong),var(--shadow-float);pointer-events:none;opacity:0;transform:translate(var(--cx,0),var(--cy,0)) translateY(6px) scale(.97);transform-origin:50% 100%;transition:opacity .18s var(--ease),transform .28s var(--ease-out)}
 .vy-callout.is-on{opacity:1;transform:translate(var(--cx,0),var(--cy,0))}
-.vy-callout b{display:block;font:740 1.1875rem/1.15 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
+.vy-callout b{display:block;font:600 1.1875rem/1.15 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
 .vy-callout span{display:block;margin-top:6px;font-size:.875rem;line-height:1.45;color:var(--text)}
 
 /* the index on a paper panel (97%, a hairline), over the west valley */
@@ -80,12 +80,12 @@
 .vy-cities li::after{content:"";position:absolute;left:0;right:0;top:-1px;height:2px;background:var(--copper);transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease-out)}
 .vy-cities li.is-on::after,.vy-cities li:hover::after,.vy-cities li:focus-within::after{transform:none}
 .vy-cities h3,.vy-cities--names li{position:relative;padding-left:24px}
-.vy-cities h3{font-size:clamp(1.25rem,1rem + .6vw,1.5rem);font-weight:740;letter-spacing:-.024em;line-height:1.15}
+.vy-cities h3{font-size:clamp(1.25rem,1rem + .6vw,1.5rem);line-height:1.15}
 /* the socket: lights with its town on the map */
 .vy-cities h3::before,.vy-cities--names li::before{content:"";position:absolute;left:1px;top:calc(50% - 6px);width:12px;height:12px;border-radius:50%;background:radial-gradient(circle,#FFF6E8 0 28%,var(--copper) 34% 100%);box-shadow:0 0 0 2px rgb(253 251 247 / .9),0 0 10px 1px rgb(255 190 120 / .7)}
 .vy-cities h3 a,.vy-cities--names a{display:inline-flex;align-items:baseline;gap:8px;min-height:34px;padding-block:4px;white-space:nowrap;color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
 .vy-cities h3 a::before,.vy-cities--names a::before{content:"";position:absolute;inset:0;border-radius:6px}
-.vy-cities .az{margin-left:-8px;font-size:.62em;font-weight:750;letter-spacing:.08em;color:var(--copper-700)}
+.vy-cities .az{margin-left:-8px;font-size:.62em;font-weight:600;letter-spacing:0;color:var(--copper-700)}
 .vy-cities li.is-on a,.vy-cities li:hover a{color:var(--copper-700)}
 .vy-cities a:hover{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
 .vy-cities a:focus-visible{outline:none}
@@ -118,7 +118,7 @@
 .vy-index--inner .kicker{margin-bottom:16px}
 .vy-index--inner .areas__intro{margin-top:16px;font-size:var(--fs-lede);line-height:1.55;color:var(--text);max-width:30rem}
 .vy-index--inner .vy-cities{margin-top:26px}
-.vy-cities--names li{padding:9px 0 9px 24px;font:740 1.1875rem/1.2 var(--font-display);letter-spacing:-.018em}
+.vy-cities--names li{padding:9px 0 9px 24px;font:600 1.1875rem/1.2 var(--font-display);letter-spacing:-.018em}
 
 /* inner pages, 1280 px and up: the panel as wide as the homepage's, the names in three columns of four (so the panel stays
    about one screen tall with the map's lights beside it) */
