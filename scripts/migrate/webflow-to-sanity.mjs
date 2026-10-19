@@ -557,6 +557,7 @@ push({
   sisterCompanies: [
     {_type: 'linkItem', _key: 'cooling', label: 'The Cooling Guy HVAC', href: 'https://www.thecoolingguyhvac.com'},
     {_type: 'linkItem', _key: 'water', label: 'The Water Guy Plumbing', href: 'https://www.thewaterguyplumbing.com'},
+    {_type: 'linkItem', _key: 'taylor', label: 'Taylor Brothers Builders', href: 'https://www.taylorbrothersbuilders.com'},
   ],
   primaryCta: {_type: 'linkItem', label: 'Free Estimate', href: '/contact-us'},
   titleSuffix: 'The Wire Guy Electric',

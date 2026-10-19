@@ -103,6 +103,7 @@ export function profiles(settings: SiteSettings) {
 const SISTER_LOGOS: Record<string, string> = {
   'thecoolingguyhvac.com': 'cooling',
   'thewaterguyplumbing.com': 'water',
+  'taylorbrothersbuilders.com': 'taylor',
 }
 
 export interface SisterBrand {

@@ -577,7 +577,7 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .foot-legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;padding-block:24px 32px;border-top:1px solid var(--line-strong);font-size:.8125rem;color:var(--muted)}
 .foot-legal a{color:var(--muted);text-decoration:underline;text-underline-offset:.2em}
 @media (max-width:1199px){.foot-grid{grid-template-columns:1fr 1fr 1fr}.foot-nap{grid-column:1/-1}.foot-top{grid-template-columns:auto minmax(0,1fr)}.foot-act{grid-column:1/-1;justify-items:start;grid-auto-flow:column;align-items:center;justify-content:start;gap:24px}}
-@media (max-width:720px){.foot-top{grid-template-columns:minmax(0,1fr)}.foot-logo img{height:150px}.foot-grid{grid-template-columns:1fr 1fr;gap:36px 20px}.foot-col li a{padding-block:6px}.badges{margin-left:0}.sister img{width:116px}.foot-act{grid-auto-flow:row;justify-items:stretch}.foot-act .btn{width:100%}.foot-act .foot-phone{justify-self:start}}
+@media (max-width:720px){.foot-top{grid-template-columns:minmax(0,1fr)}.foot-logo img{height:150px}.foot-grid{grid-template-columns:1fr 1fr;gap:36px 20px}.foot-col li a{padding-block:6px}.badges{margin-left:0}.sisters{gap:12px}.sister img{width:104px}.foot-act{grid-auto-flow:row;justify-items:stretch}.foot-act .btn{width:100%}.foot-act .foot-phone{justify-self:start}}
 
 /* ===================================================================== mobile call bar (present from first paint below 640 px) */
 .callbar{display:none}
