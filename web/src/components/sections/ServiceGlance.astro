@@ -18,9 +18,10 @@ import OfficeStatus from '../ui/OfficeStatus.astro'
 interface Props {
   service: ServiceDoc
   settings: SiteSettings
+  number?: number
 }
 
-const {service, settings} = Astro.props
+const {service, settings, number} = Astro.props
 const name = service.heading ?? service.name
 const roc = licence(settings)
 const hours = officeHours(settings).line
@@ -40,7 +41,7 @@ const summary = service.quickAnswer?.trim() || businessSummary(settings)
 <section class="section glance-s" aria-labelledby="glance-h">
   <div class="wrap glance glance--wide">
     <div class="glance__copy">
-      <Eyebrow>At a glance</Eyebrow>
+      <Eyebrow number={number}>At a glance</Eyebrow>
       <h2 class="h2" id="glance-h">{name}, the short version</h2>
       {summary && <p class="answer">{summary}</p>}
     </div>

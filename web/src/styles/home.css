@@ -1,15 +1,15 @@
 /* ===================================================================== shared components only the homepage uses (moved out of core.css): the moving review lanes and the full-review dialog */
 .mq-ctrl{display:flex;align-items:center;gap:8px}
 html:not(.js) .mq-ctrl,html:not(.js) [data-rail-step],html:not(.js) .rail-nav{display:none!important}
-.mq-btn,.mq-toggle{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;border:0;border-radius:var(--r-1);background:var(--paper);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .3);color:var(--ink);font:600 .9375rem/1 var(--font-text);cursor:pointer;transition:box-shadow .15s var(--ease)}
+.mq-btn,.mq-toggle{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;border-radius:var(--r-pill);border:1.5px solid var(--line-strong);background:var(--paper);color:var(--ink);font:650 .9375rem/1 var(--font-text);cursor:pointer;transition:background-color .15s var(--ease),border-color .15s var(--ease)}
 .mq-btn{width:44px}
 .mq-toggle{padding:0 18px 0 16px}
-.mq-btn:hover,.mq-toggle:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.mq-btn:hover,.mq-toggle:hover{border-color:var(--ink)}
 .mq-toggle .ic-play{display:none;fill:currentColor;stroke:none}
 .mq-toggle.is-paused .ic-play{display:block}
 .mq-toggle.is-paused .ic-pause{display:none}
 .marquee{display:grid;grid-template-columns:minmax(0,1fr);gap:20px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.lane{min-width:0;contain:paint;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent;padding-block:4px 24px;border-radius:var(--r-2)}
+.lane{min-width:0;contain:paint;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent;padding-block:4px 24px;border-radius:var(--r-md)}
 .lane:focus-visible{outline-offset:-2px}
 .belt{display:flex;width:max-content}
 .track{display:flex;gap:20px;padding-inline:var(--gutter) 20px}
@@ -30,15 +30,15 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 .marquee.is-moving .track{padding-left:0}
 .marquee.is-moving .belt{animation:mq var(--mq-dur,300s) linear infinite;will-change:transform}
 .marquee.is-moving .lane--b .belt{animation-direction:reverse}
-.marquee:hover .belt,.marquee:focus-within .belt,.marquee.is-paused .belt,.marquee.is-off .belt{animation-play-state:paused}
+.marquee:hover .belt,.marquee:focus-within .belt,.marquee.is-paused .belt,.marquee.is-off .belt,.rv-open .marquee .belt{animation-play-state:paused}
 @keyframes mq{to{transform:translateX(calc(-1 * var(--mq-w,50%)))}}
 @media (prefers-reduced-motion:reduce){.marquee .belt{animation:none!important}}
-.rv__more{align-self:flex-start;margin-top:8px;padding:2px 0;border:0;background:none;color:var(--copper-700);font:600 .875rem/1.4 var(--font-text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;cursor:pointer}
+.rv__more{align-self:flex-start;margin-top:8px;padding:2px 0;border:0;background:none;color:var(--copper-700);font:650 .875rem/1.4 var(--font-text);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;cursor:pointer}
 .rv__more:hover{color:var(--copper-800)}
-.rv-dialog{width:min(640px,calc(100vw - 32px));max-height:min(80vh,760px);padding:0;border:0;border-radius:var(--r-2);background:var(--paper);color:var(--text);box-shadow:var(--shadow-float)}
-.rv-dialog::backdrop{background:rgb(15 42 53 / .42)}
+.rv-dialog{width:min(640px,calc(100vw - 32px));max-height:min(80vh,760px);padding:0;border:0;border-radius:var(--r-xl);background:var(--paper);color:var(--text);box-shadow:var(--shadow-3)}
+.rv-dialog::backdrop{background:rgb(15 42 53 / .42);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .rv-dialog__in{display:grid;gap:14px;padding:clamp(24px,4vw,40px)}
-.rv-dialog__k{display:flex;align-items:center;gap:12px;font:600 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
+.rv-dialog__k{display:flex;align-items:center;gap:12px;font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
 .rv-dialog__k::before{content:"";width:calc(15px * 5.333);height:15px;background:var(--copper);-webkit-mask:var(--stars5) center/100% 100% no-repeat;mask:var(--stars5) center/100% 100% no-repeat}
 .rv-dialog blockquote{margin:0;font-size:1.0625rem;line-height:1.7;color:var(--text);white-space:pre-line}
 .rv-dialog .rv__by{padding-top:4px}
@@ -96,20 +96,22 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 /* laptops (1240-1599 px): at most 14 px between the eyebrow, the H1 and the buttons, so the CTA line's 18 px gap still fits
    on the wall of a tall window (1240x900, 1280x1024, 1366x1024: the words used to stack above the photo there) */
 @media (min-width:1240px) and (max-width:1599px){.hero__inner{gap:min(14px,2svh)}}
-/* the eyebrow on the photo wall: plain ink words on the wall's light (no pill) */
-.hero__kicker{margin:0;color:var(--ink)}
-.hero h1{font-size:clamp(2.75rem,min(5cqw,7.3svh),7.5rem);line-height:.96;letter-spacing:-.045em;font-weight:700;text-wrap:initial}
+.hero__kicker{margin:0;padding:4px 16px 4px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .82);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .07),0 8px 24px -16px rgb(15 42 53 / .4);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.hero h1{font-size:clamp(2.75rem,min(5cqw,7.3svh),7.5rem);line-height:.96;letter-spacing:-.045em;font-weight:760;text-wrap:initial}
 .hero h1 .ln{display:block;white-space:nowrap}
 .hero h1 .accent{color:var(--copper-700)}
 .hero__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:clamp(0px,.4cqw - 4px,6px)}
+.hero__actions .btn--primary{box-shadow:0 1px 0 rgb(255 255 255 / .2) inset,0 10px 20px -12px rgb(116 51 28 / .8)}
+.hero__actions .btn--paper{box-shadow:0 8px 18px -12px rgb(15 42 53 / .4)}
+@media (min-width:900px) and (max-height:720px){.hero .btn--lg{min-height:50px;padding:0 24px;font-size:1rem}.hero__kicker{padding:6px 14px 6px 12px}}
 .hero__status{display:none}
-/* the line under both buttons: the business's own words (free estimates, flat-rate pricing, no pressure and no obligation),
-   18 px under the pair (8 px row gap + 10 px): 16 px ink, its parts set apart by a muted middle dot, on a soft bone light
-   that hugs it (functional: the tree behind it would take the line to 1.02:1 without it; with it, 8:1 or better) */
-.hero__sub{order:3;flex-basis:100%;display:flex;justify-content:center;margin:10px 0 0;font:500 1rem/1.35 var(--font-text);color:var(--ink)}
+/* the line under both buttons: the business's own words (free estimates, flat-rate pricing, no pressure and no obligation).
+   Round-5 QA: it sits 18 px under the pair (8 px row gap + 10 px), no longer on a pill: 16 px ink on a soft paper halo,
+   no wider than the two buttons, so it reads as their caption rather than a tag */
+.hero__sub{order:3;flex-basis:100%;display:flex;justify-content:center;margin:10px 0 0;font:550 1rem/1.35 var(--font-text);letter-spacing:.002em;color:var(--ink)}
 .hero__sub-in{display:inline-flex;align-items:center}
 .hero__sub-in>span{white-space:nowrap}
-.hero__sub-in>span+span::before{content:"·";margin:0 .7em;color:var(--muted)}
+.hero__sub-in>span+span::before{content:"";display:inline-block;width:4px;height:4px;margin:0 12px 0 10px;border-radius:50%;background:var(--copper);vertical-align:.24em}
 @media (min-width:900px){
   .hero__sub-in{position:relative;isolation:isolate}
   .hero__sub-in::before{content:"";position:absolute;inset:-7px -26px;z-index:-1;border-radius:999px;background:rgb(247 243 236 / .9);filter:blur(11px);pointer-events:none}
@@ -126,7 +128,7 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .hero__actions::after{content:"";order:2;flex-basis:100%}
   .hero__sub{flex-basis:auto}
   .hero__status{order:4;display:flex;align-items:center;margin-top:10px}
-  .hero__status .status{position:relative;isolation:isolate;padding-left:20px;font-size:.9375rem;font-weight:500;color:var(--ink)}
+  .hero__status .status{position:relative;isolation:isolate;padding-left:20px;font-size:.9375rem;font-weight:550;color:var(--ink)}
   .hero__status .status::after{content:"";position:absolute;left:0;top:15%;bottom:15%;width:1px;background:var(--line-strong)}
   .hero__status .status::before{content:"";position:absolute;inset:-4px -24px -4px -12px;z-index:-1;border-radius:999px;background:rgb(247 243 236 / .9);filter:blur(5px)}
   /* the light under the last row stays inside the wall (it ends 1.5% of the photo above the tallest head) */
@@ -140,28 +142,31 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 .hero--stacked .hero__copy{position:static;height:auto;padding-block:calc(var(--hdr-h) + 24px) 32px}
 .hero--stacked .hero__photo::after{display:none}
 
-/* the proof card: flat paper with a hairline, hanging off the photo's foot, below every chin. Its quotes are always there; the
-   rating line and the licence only below 1240 px (from there the header's utility line states them: one mention a screen) */
+/* the glass proof card: hangs off the photo's foot, below every chin */
 @media (min-width:900px) and (max-width:999px){.hero{--ch:200px}}
 @media (min-width:1000px) and (max-width:1239px){.hero{--ch:156px}}
-/* from 1240 px the card holds the quotes alone (one line each): a shorter card */
-@media (min-width:1240px){.hero{--ch:112px}}
+@media (min-width:1240px) and (max-width:1365px){.hero{--ch:132px}}
+@media (min-width:1366px) and (max-width:1439px){.hero{--ch:140px}}
+@media (min-width:1440px) and (max-width:1599px){.hero{--ch:146px}}
 .proof{position:relative;z-index:3;margin-top:-80px;padding-inline:var(--pad-x)}
-.proof__card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px clamp(28px,3cqw,48px);align-items:center;box-sizing:border-box;height:var(--ch);max-width:1240px;margin-inline:auto;padding:clamp(18px,1.6cqw,26px) clamp(22px,2.2cqw,36px);border-radius:var(--r-2);background:var(--paper);box-shadow:var(--hairline)}
-.proof__score{display:grid;gap:6px;justify-items:start}
+.proof__card{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px clamp(28px,3cqw,48px);align-items:center;box-sizing:border-box;height:var(--ch);max-width:1240px;margin-inline:auto;padding:clamp(18px,1.6cqw,26px) clamp(22px,2.2cqw,36px);border-radius:var(--r-xl);background:rgb(253 251 247 / .9);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),var(--shadow-3)}
+.proof__score{display:flex;align-items:center;gap:18px}
+.proof__num{margin-block:-.1em;font:800 clamp(3.25rem,2.2rem + 2.2cqw,4.75rem)/1 var(--font-display);letter-spacing:-.05em;font-variant-numeric:lining-nums tabular-nums;color:var(--copper-700);white-space:nowrap}
+.proof__meta{display:grid;gap:5px;font-size:.9375rem;line-height:1.3}
+.proof__rating{display:flex;align-items:center;gap:10px;color:var(--ink);font-weight:600}
+.proof__meta .link{font-weight:650;font-size:.9375rem}
 .proof__roc a{color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em;font-size:.875rem}
 .proof__roc a:hover{color:var(--copper-700)}
 .proof__quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px clamp(16px,2cqw,32px)}
 .proof__quotes li{display:grid;align-content:center;gap:8px;padding-left:clamp(16px,2cqw,28px);border-left:1px solid var(--line-strong)}
-.proof__quotes p{font:600 clamp(1rem,.9rem + .35cqw,1.25rem)/1.28 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
+.proof__quotes p{font:650 clamp(1rem,.9rem + .35cqw,1.25rem)/1.28 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
 .proof__quotes .stars{--s:13px}
-@media (min-width:1240px){.proof__score{display:none}.proof__card{grid-template-columns:minmax(0,1fr)}.proof__quotes li:first-child{padding-left:0;border-left:0}}
 @media (min-width:900px) and (max-width:1239px){.proof__quotes{grid-template-columns:repeat(2,minmax(0,1fr))}.proof__quotes li:nth-child(3){display:none}}
 
 /* the promise: the live hero paragraph. Sentence one is the lit statement, sentence two a quiet lede beside it */
 .creed{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:28px clamp(40px,6vw,120px);align-items:end;padding-block:clamp(72px,7vw,128px) clamp(56px,5vw,96px)}
-.statement{font:500 clamp(1.625rem,1rem + 1.6vw,2.625rem)/1.16 var(--font-display);letter-spacing:-.028em;color:var(--ink);max-width:23em;text-wrap:pretty}
-.creed__more{font-size:var(--fs-lede);line-height:1.45;max-width:26rem;padding-bottom:4px}
+.statement{font:650 clamp(1.625rem,1rem + 1.6vw,2.625rem)/1.16 var(--font-display);letter-spacing:-.028em;color:var(--ink);max-width:23em;text-wrap:pretty}
+.creed__more{font-size:var(--fs-lede);line-height:1.6;color:var(--muted);max-width:26rem;padding-bottom:4px}
 @media (max-width:899px){.creed{grid-template-columns:1fr}}
 
 /* phones and portrait tablets: the eyebrow, the H1, then the call to action (round-5 QA: on the first screen), then the crew
@@ -174,7 +179,7 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .hero__copy{display:contents}
   .hero__inner{display:contents}
   .hero__copy,.hero__photo,.proof{--hw:136cqw;--S:0px}
-  .hero__kicker{order:1;align-self:flex-start;margin:calc(var(--hdr-h) + 16px) var(--gutter) 0;color:var(--copper-700)}
+  .hero__kicker{order:1;align-self:flex-start;margin:calc(var(--hdr-h) + 16px) var(--gutter) 0;padding:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
   .hero h1{order:2;margin:14px var(--gutter) 0;font-size:clamp(2.375rem,10.6cqw,4rem);text-align:left}
   .hero h1 .ln{display:inline;white-space:normal}
   .hero__actions{order:3;justify-content:flex-start;gap:12px;margin:22px var(--gutter) 28px}
@@ -187,9 +192,11 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .hero__photo img{top:calc(var(--hp) * -.31);left:calc(50% - var(--hw) * .503)}
   .hero__photo::after{height:calc(var(--hp) * .12);background:linear-gradient(var(--bone),rgb(247 243 236 / 0));-webkit-mask-image:none;mask-image:none}
   .proof,.proof__card{display:contents}
-  .proof__score{order:5;position:relative;z-index:3;margin:-34px var(--gutter) 0;padding:16px 18px;border-radius:var(--r-2);background:var(--paper);box-shadow:var(--hairline)}
+  .proof__score{order:5;position:relative;z-index:3;margin:-34px var(--gutter) 0;padding:16px 18px;border-radius:var(--r-lg);background:rgb(253 251 247 / .94);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),var(--shadow-3)}
   .creed{order:8;width:auto;margin-inline:var(--gutter);padding-top:clamp(56px,12vw,80px)}
+  .proof__score{gap:14px}
   .proof__card{height:auto}
+  .proof__num{font-size:3rem}
   .proof__quotes{order:7;grid-template-columns:1fr;gap:12px;margin:36px var(--gutter) 0;padding-top:20px;border-top:1px solid var(--line-strong)}
   .proof__quotes li{grid-template-columns:auto minmax(0,1fr);align-items:center;gap:12px;padding:0;border:0}
   .proof__quotes p{font-size:1rem}
@@ -209,7 +216,7 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 
 /* ===================================================================== 02 · SERVICES: the bento (words on the photos, a feathered tint under the words only) */
 .services{background:var(--sand)}
-.services .head .h2{max-width:14ch}
+.services .head .display{max-width:12ch}
 .rail-nav{display:none;gap:8px;margin-top:20px}
 .bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(112px,9.5vw,150px);gap:clamp(12px,1.2vw,18px)}
 .t-panel{grid-column:1/3;grid-row:span 4}
@@ -261,12 +268,15 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
 .vy-photo{position:relative;height:var(--bh);margin:0;overflow:hidden}
 .vy-photo img{position:absolute;left:0;bottom:0;width:100%;max-width:none;height:var(--ph)}
 .vy-photo::after{content:"";position:absolute;inset:auto 0 0;height:calc(var(--ph) * .06);background:linear-gradient(rgb(243 237 227 / 0),rgb(243 237 227 / .55) 55%,var(--atlas));pointer-events:none}
+/* a sun-haze baked into the sky: very wide and soft (no ring at any width), lighter where the copper words sit; it ends
+   above the peaks */
+.vy-sky::before{content:"";position:absolute;z-index:1;inset:0 0 auto;height:calc(var(--bh) - var(--ph) * .37);background:radial-gradient(ellipse 72% 92% at 50% 74%,rgb(240 247 255 / .5) 0%,rgb(240 247 255 / .44) 22%,rgb(240 247 255 / .3) 46%,rgb(240 247 255 / .15) 68%,rgb(240 247 255 / .05) 86%,rgb(240 247 255 / 0) 100%);-webkit-mask-image:linear-gradient(#000 75%,transparent);mask-image:linear-gradient(#000 75%,transparent);pointer-events:none}
 .vy-title{position:absolute;z-index:2;inset:0 0 auto;height:calc(var(--bh) - var(--ph) * .385);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:clamp(28px,3cqw,64px) 0 clamp(14px,1.4cqw,30px);text-align:center}
-.vy-title .kicker{margin:0 0 clamp(14px,1.3cqw,24px);color:var(--ink)}
-.vy-h{display:flex;flex-direction:column;align-items:center;font-weight:700;color:var(--ink);line-height:1;text-wrap:balance}
+.kicker--pill{margin:0 0 clamp(14px,1.3cqw,24px);padding:8px 16px 8px 14px;border-radius:var(--r-pill);background:rgb(253 251 247 / .9);color:var(--copper-700);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .6),0 10px 26px -16px rgb(15 42 53 / .55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.vy-h{display:flex;flex-direction:column;align-items:center;font-weight:740;color:var(--ink);line-height:1;text-wrap:balance}
 .vy-h__a{font-size:clamp(1.75rem,.8rem + 3.1cqw,5rem);letter-spacing:-.036em;line-height:1.05}
-.vy-h__b{margin-top:-.04em;font-size:min(6rem + 8.5cqw,min(100cqw - 2 * var(--gutter),var(--max)) / var(--vy-em,5.6),20rem);white-space:nowrap;font-weight:700;letter-spacing:-.052em;line-height:1;color:var(--ink);padding-bottom:.04em}
-.vy-intro{margin-top:clamp(6px,.6cqw,14px);max-width:30em;font:500 clamp(1.0625rem,.92rem + .5cqw,1.5rem)/1.4 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
+.vy-h__b{margin-top:-.04em;font-size:min(6rem + 8.5cqw,min(100cqw - 2 * var(--gutter),var(--max)) / var(--vy-em,5.6),20rem);white-space:nowrap;font-weight:760;letter-spacing:-.052em;line-height:1;color:var(--copper-800);padding-bottom:.04em}
+.vy-intro{margin-top:clamp(6px,.6cqw,14px);max-width:30em;font:550 clamp(1.0625rem,.92rem + .5cqw,1.5rem)/1.4 var(--font-display);letter-spacing:-.012em;color:var(--ink)}
 @media (min-width:1600px){.vy-photo img{filter:url(#grain) saturate(1.02) contrast(1.03)}}
 /* laptops and up (round-5 QA: "a quarter of the photo is asphalt"): the photo is cut 4.5% at its foot, so the lot below
    the crew's feet (90.5%) is a short strip before the fade, and the words end at 62.5% of the photo (the peaks start at
@@ -275,13 +285,22 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .vy-sky{--cut:.045;--bh:min(var(--ph) * (1 - var(--cut)),calc(var(--need) + var(--ph) * (.375 - var(--cut))))}
   .vy-photo img{bottom:calc(var(--ph) * var(--cut) * -1)}
   .vy-photo::after{height:calc(var(--ph) * .05)}
+  .vy-sky::before{height:calc(var(--bh) - var(--ph) * (.36 - var(--cut)))}
   .vy-title{height:calc(var(--bh) - var(--ph) * (.375 - var(--cut)))}
 }
 @media (min-width:1600px){.vy-sky{--need:clamp(560px,9cqw + 420px,640px)}.vy-title{padding-bottom:clamp(12px,.8cqw,20px)}}
+/* the words drift up a little slower than the page (scroll-driven; only ever away from the crew) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .vy-title{animation:vy-drift linear both;animation-timeline:view();animation-range:cover 10% cover 90%}
+    @keyframes vy-drift{from{transform:translateY(0)}to{transform:translateY(-48px)}}
+  }
+}
 /* tablets and phones: the sky continues above the photo (the photo's own top colours), so the title has room and the
    crew keeps its size; the frame is centred on the crew (all four with headroom) */
 @media (max-width:759px){
   .vy-sky{--pw:150cqw;--ph:calc(var(--pw) / 1.5);display:flex;flex-direction:column;background:linear-gradient(rgb(122 172 242),rgb(150 196 249) 58%,rgb(156 200 250))}
+  .vy-sky::before{display:none}
   .vy-title{position:relative;order:1;height:auto;padding:44px var(--gutter) 8px}
   .vy-photo{order:2;height:calc(var(--ph) * .54);margin-top:-1px}
   .vy-photo img{left:calc(50cqw - .525 * var(--pw));width:var(--pw);height:var(--ph);-webkit-mask-image:linear-gradient(transparent calc(var(--ph) * .46),#000 calc(var(--ph) * .56));mask-image:linear-gradient(transparent calc(var(--ph) * .46),#000 calc(var(--ph) * .56))}
@@ -289,4 +308,18 @@ html:not(.js) .marquee:not(:target)+.rv-all{display:block}
   .vy-h__b{font-size:clamp(2rem,(100cqw - 2 * var(--gutter)) / var(--vy-em,5.6),6rem)}
   .vy-intro{font-size:1.0625rem;max-width:22em}
 }
-@media (max-width:599px){.vy-sky{--pw:176cqw}}
+@media (max-width:599px){.vy-sky{--pw:176cqw}.kicker--pill{gap:8px;padding:7px 13px 7px 12px;font-size:.8125rem}.kicker--pill .kicker__n::after{width:18px;margin-left:8px}.kicker--pill .kicker__t{gap:7px}}
+
+/* ===================================================================== scroll-driven motion (transform, opacity, colour). The resting state
+   is the finished page: without support, without JS or with reduced motion everything is simply there. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    /* hero: the words lift away as you leave (transform only, away from the faces) */
+    .hero__inner{animation:lift linear both;animation-timeline:scroll(root);animation-range:0 70svh}
+    @keyframes lift{to{transform:translateY(-12svh)}}
+    /* the lit statement: each phrase turns from warm grey (3.6:1, already large-text AA) to ink as it rises */
+    .statement{view-timeline:--stmt block}
+    .motion .statement .w{animation:lit linear both;animation-timeline:--stmt;animation-range:cover calc(14% + var(--i) * 5%) cover calc(24% + var(--i) * 5%)}
+    @keyframes lit{from{color:var(--dim)}to{color:var(--ink)}}
+  }
+}

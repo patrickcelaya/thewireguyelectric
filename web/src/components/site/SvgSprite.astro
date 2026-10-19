@@ -1,6 +1,8 @@
 ---
-// Shared SVG definitions, once per page: the bulb's glow gradient and the film-grain
-// filter that big-screen photos use while their originals are small.
+// Shared SVG definitions, once per page: the bulb's glow gradient, the small bulb
+// symbol (#mb, used by MiniBulb and the menu sign-off) and the film-grain filter
+// that big-screen photos use while their originals are small.
+import {BULB_BARS, BULB_CAP, BULB_PATH} from '../../lib/bulb'
 ---
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -11,6 +13,14 @@
       <stop offset=".62" stop-color="#FFC08F" stop-opacity=".2"></stop>
       <stop offset="1" stop-color="#FFB07A" stop-opacity="0"></stop>
     </radialGradient>
+    <symbol id="mb" viewBox="-40 -40 380 470">
+      <path d={`${BULB_PATH} Z`} style="fill:var(--mb-glass,transparent)"></path>
+      <path d={BULB_PATH} fill="none" style="stroke:var(--mb-line,currentColor)" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"></path>
+      <g style="fill:var(--mb-line,currentColor)">
+        {BULB_BARS.map(([x, y, width, height]) => <rect x={x} y={y} width={width} height={height} rx="10" />)}
+        <path d={BULB_CAP}></path>
+      </g>
+    </symbol>
     <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
       <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch" result="n"></feTurbulence>
       <feColorMatrix in="n" type="matrix" values=".33 .33 .33 0 0 .33 .33 .33 0 0 .33 .33 .33 0 0 0 0 0 0 1" result="g"></feColorMatrix>

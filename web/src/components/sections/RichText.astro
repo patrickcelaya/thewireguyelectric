@@ -6,12 +6,14 @@
 import type {RichTextSection} from '../../lib/types'
 import {sectionLabel} from '../../lib/sections'
 import PortableText from '../PortableText.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
 
 interface Props {
   section: RichTextSection
+  number?: number
 }
 
-const {section} = Astro.props
+const {section, number} = Astro.props
 const id = `${section._key}-h`
 ---
 
@@ -21,6 +23,7 @@ const id = `${section._key}-h`
       <div class="wrap rt">
         {section.heading && (
           <div class="rt__head">
+            {number !== undefined && <Eyebrow number={number} />}
             <h2 class="h2" id={id}>
               {section.heading}
             </h2>

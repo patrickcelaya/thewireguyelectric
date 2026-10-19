@@ -2,20 +2,18 @@
 // The homepage hero: a title card on the crew photo (round 5).
 //   Desktop: the photo runs edge to edge and is never cropped above the heads; the
 //   eyebrow, the H1 and the buttons sit on the wall in a box that ends above the
-//   tallest head; the proof card (three review quotes; below 1240 px, where the header
-//   has no utility line, also the rating line and the licence) hangs off the photo's
-//   foot, below every chin. At 1240 px and up the header's utility line states the
-//   rating and the licence, so the hero doesn't repeat them (one mention a screen).
+//   tallest head; the glass proof card (the 5.0, the Google link, the licence and
+//   three review quotes) hangs off the photo's foot, below every chin.
 //   Phones: the eyebrow, the H1, the line under the buttons and Emma's status, then the
 //   crew and the proof card. Below 640 px the call bar is the button pair.
 // Nothing here animates in: the H1, the buttons, the card and the LCP photo are
 // painted at full opacity at once. The page H1 comes from the page (never from the
 // section); its accent words come from the section. Under the hero, the live hero
-// paragraph: its first sentence as the statement, the rest as a quiet lede.
+// paragraph: its first sentence as the lit statement, the rest as a quiet lede.
 // Geometry: styles/home.css "HERO"; the stacking safety net: scripts/site/motion.ts.
 // Without a photo the words and the proof card simply sit on the page (hero--bare).
 import type {HeroSection, SiteSettings} from '../../lib/types'
-import {ctaHref, siteRating, telHref} from '../../lib/site'
+import {ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
 import {balancedLines, firstSentence} from '../../lib/format'
 import {HERO_SOURCES} from '../../lib/hero'
 import {imageAlt, imageDimensions, imageSrcSet, imageUrl, hasImage} from '../../lib/image'
@@ -26,7 +24,6 @@ import Accent from '../ui/Accent.astro'
 import Button from '../ui/Button.astro'
 import ExternalLink from '../ui/ExternalLink.astro'
 import OfficeStatus from '../ui/OfficeStatus.astro'
-import RatingLine from '../ui/RatingLine.astro'
 import Stars from '../ui/Stars.astro'
 
 interface Props {
@@ -52,8 +49,10 @@ const trustParts = trust && rocAt >= 0 ? [trust.slice(0, rocAt), trust.slice(roc
 // "… insured · ROC #…": the claim and the number as .seps parts, so the dot goes with the number when it wraps
 const dotted = trustParts && /·\s*$/.test(trustParts[0])
 
+// The lit statement turns from warm grey to ink a few words at a time as it rises.
 // A non-breaking space keeps the dash in "service - keeping" off the start of a line.
 const [statement, lede] = firstSentence((section.text ?? '').replace(/ - /g, ' - '))
+const phrases = statement.match(/\S+(?:\s+\S+){0,2}/g) ?? []
 
 const image = section.image
 const photo = hasImage(image) ? image : undefined
@@ -78,7 +77,7 @@ const [phone, wide] = HERO_SOURCES
         }
       </h1>
       <div class="hero__actions">
-        {section.primaryCta && <Button href={ctaHref(section.primaryCta, redirects)}>{section.primaryCta.label}</Button>}{' '}
+        {section.primaryCta && <Button href={ctaHref(section.primaryCta, redirects)} icon="go">{section.primaryCta.label}</Button>}{' '}
         {section.secondaryCta && <Button href={ctaHref(section.secondaryCta, redirects)} variant="paper">{section.secondaryCta.label}</Button>}{' '}
         {
           section.showPhone !== false && (
@@ -132,25 +131,43 @@ const [phone, wide] = HERO_SOURCES
         <div class="proof__card">
           {rating && (
             <div class="proof__score">
-              <RatingLine settings={settings} variant="quiet" />
-              {trust && (
-                <p class="proof__roc">
-                  {trustParts && settings.rocLicenseUrl ? (
-                    dotted ? (
-                      <ExternalLink class="seps" href={settings.rocLicenseUrl}>
-                        <span>{trustParts[0].replace(/\s*·\s*$/, '')}</span> <span class="nw">{trustParts[1]}</span>
-                      </ExternalLink>
-                    ) : (
-                      <ExternalLink href={settings.rocLicenseUrl}>
-                        {trustParts[0]}
-                        <span class="nw">{trustParts[1]}</span>
-                      </ExternalLink>
-                    )
-                  ) : (
-                    trust
-                  )}
+              <p class="proof__num" aria-hidden="true">
+                {rating.value}
+              </p>
+              <div class="proof__meta">
+                <p class="proof__rating">
+                  <Stars />{' '}
+                  <span>
+                    <span class="sr-only">Rated {rating.value} out of 5 </span>
+                    {ratingSummary(rating)}
+                  </span>
                 </p>
-              )}
+                {rating.href && (
+                  <p>
+                    <ExternalLink class="link link--ext" href={rating.href}>
+                      Read our reviews on {rating.source}
+                    </ExternalLink>
+                  </p>
+                )}
+                {trust && (
+                  <p class="proof__roc">
+                    {trustParts && settings.rocLicenseUrl ? (
+                      dotted ? (
+                        <ExternalLink class="seps" href={settings.rocLicenseUrl}>
+                          <span>{trustParts[0].replace(/\s*·\s*$/, '')}</span> <span class="nw">{trustParts[1]}</span>
+                        </ExternalLink>
+                      ) : (
+                        <ExternalLink href={settings.rocLicenseUrl}>
+                          {trustParts[0]}
+                          <span class="nw">{trustParts[1]}</span>
+                        </ExternalLink>
+                      )
+                    ) : (
+                      trust
+                    )}
+                  </p>
+                )}
+              </div>
             </div>
           )}
           {quotes.length > 0 && (
@@ -167,9 +184,17 @@ const [phone, wide] = HERO_SOURCES
     )
   }
   {
-    statement && (
+    phrases.length > 0 && (
       <div class="wrap creed">
-        <p class="statement">{statement}</p>
+        <p class="statement" data-lit>
+          {phrases.map((words, i) => (
+            <>
+              <span class="w" style={`--i:${i}`}>
+                {words}
+              </span>{' '}
+            </>
+          ))}
+        </p>
         {lede && <p class="creed__more">{lede}</p>}
       </div>
     )

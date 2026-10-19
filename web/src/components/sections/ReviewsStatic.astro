@@ -12,6 +12,7 @@ interface Props {
   reviews: Review[]
   heading: string
   intro?: string
+  number?: number | string
   id?: string
   /** Background: bone (default) or sand. */
   tone?: 'sand'
@@ -19,7 +20,7 @@ interface Props {
   cta?: {label: string; href: string}
 }
 
-const {settings, reviews, heading, intro, id = 'reviews-h', tone, cta} = Astro.props
+const {settings, reviews, heading, intro, number, id = 'reviews-h', tone, cta} = Astro.props
 ---
 
 {
@@ -28,7 +29,7 @@ const {settings, reviews, heading, intro, id = 'reviews-h', tone, cta} = Astro.p
       <div class="wrap">
         <div class="reviews__head">
           <div>
-            <Eyebrow>Reviews</Eyebrow>
+            <Eyebrow number={number}>Reviews</Eyebrow>
             <h2 class="h2" id={id}>
               {heading}
             </h2>
@@ -37,7 +38,7 @@ const {settings, reviews, heading, intro, id = 'reviews-h', tone, cta} = Astro.p
             </p>
           </div>
           <ScoreBlock settings={settings}>
-            <a class="link" href="/#reviews">
+            <a class="link link--go" href="/#reviews">
               More reviews on our homepage
             </a>
           </ScoreBlock>
@@ -49,7 +50,7 @@ const {settings, reviews, heading, intro, id = 'reviews-h', tone, cta} = Astro.p
         </ul>
         {cta && (
           <p class="reviews__cta reviews__cta--static">
-            <Button href={cta.href}>
+            <Button href={cta.href} icon="go">
               {cta.label}
             </Button>
           </p>

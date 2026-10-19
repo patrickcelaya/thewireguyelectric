@@ -1,7 +1,7 @@
 ---
 // A customer's words pulled out of their review, set huge over a photo of the kind of
 // work they praise (ink on a bright photo, no dark tint), with the stars, their name,
-// the review's date and service, and the link to every review on a solid paper
+// the review's date and service, and the link to every review on a light glass
 // caption. The quote is an excerpt of the review, word for word (checked in Studio
 // and by the migration). Styles: styles/sections.css "PULL-QUOTE".
 import type {QuoteSection, SiteSettings} from '../../lib/types'
@@ -31,7 +31,7 @@ const rating = siteRating(settings)
     )
   }
   <div class="wrap pull__wrap">
-    <figure class="pull__fig">
+    <figure class="pull__fig" data-reveal>
       <blockquote id={id}><p>“{section.quote.trim()}”</p></blockquote>
       <figcaption>
         <Stars />{' '}

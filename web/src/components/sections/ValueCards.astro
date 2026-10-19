@@ -1,7 +1,7 @@
 ---
-// The promise on the copper band: the values in three columns divided by hairlines
-// (title, text, a cream text link; a `service` links the title) under the heading. Not
-// a sequence, so no numbers; no cards, glass or glow. Styles: styles/sections.css "OUR PROMISE".
+// The promise on the copper band: the value cards (title, text, a cream text link),
+// numbered, under a big heading with the lit bulb. The band's bulb switches on as it
+// arrives (scroll-driven CSS); the cards rise in. Styles: styles/sections.css "OUR PROMISE".
 import type {FeatureGridSection} from '../../lib/types'
 import {ctaHref} from '../../lib/site'
 import {getRedirectMap} from '../../lib/queries'
@@ -9,6 +9,7 @@ import {sectionLabel} from '../../lib/sections'
 import Eyebrow from '../ui/Eyebrow.astro'
 import Accent from '../ui/Accent.astro'
 import TextLink from '../ui/TextLink.astro'
+import LitBulb from '../ui/LitBulb.astro'
 
 interface Props {
   section: FeatureGridSection
@@ -18,32 +19,38 @@ const {section} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const items = section.items.filter((i) => i.title)
+const pad = (n: number) => String(n).padStart(2, '0')
 ---
 
 {
   items.length > 0 && (
     <section class="vals" {...sectionLabel(id, section.heading, section.eyebrow)}>
+      <div class="vals__leak" aria-hidden="true" />
       <div class="wrap vals__grid">
         <div class="vals__head">
           {section.eyebrow && <Eyebrow variant="cream">{section.eyebrow}</Eyebrow>}
           {section.heading && (
-            <h2 class="h2" id={id}>
-              <Accent text={section.heading} accent={section.headingAccent} />
+            <h2 class="display" id={id} data-reveal>
+              <Accent text={section.heading} accent={section.headingAccent} tone="glow-word" />
             </h2>
           )}
+          <LitBulb class="vals__bulb" />
         </div>
-        <ul class="vcards" role="list">
-          {items.map((item) => (
-            <li class="vcard">
+        <ol class="vcards" role="list">
+          {items.map((item, i) => (
+            <li class="vcard" data-reveal>
+              <span class="vcard__n" aria-hidden="true">
+                {pad(i + 1)}
+              </span>{' '}
               <h3>{item.service ? <a href={`/services/${item.service.slug}`}>{item.title}</a> : item.title}</h3> {item.text && <p>{item.text}</p>}{' '}
               {item.link && (
-                <TextLink class="vcard__go" href={ctaHref(item.link, redirects)} tone="cream">
+                <TextLink class="vcard__go" href={ctaHref(item.link, redirects)} icon="go" tone="cream">
                   {item.link.label}
                 </TextLink>
               )}
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </section>
   )

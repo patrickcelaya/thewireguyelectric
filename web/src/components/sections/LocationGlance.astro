@@ -18,6 +18,7 @@ import PortableText from '../PortableText.astro'
 interface Props {
   location: LocationDoc
   settings: SiteSettings
+  number?: number
   /** The office in this city, if it has one (Scottsdale). */
   office?: PostalAddress
   /** The city's own questions, shown further down the page. */
@@ -26,7 +27,7 @@ interface Props {
   photo?: ImageRef
 }
 
-const {location, settings, office, faqs = []} = Astro.props
+const {location, settings, number, office, faqs = []} = Astro.props
 const city = location.shortName || location.name
 const home = settings.homeCity?.name
 const hoods = location.neighborhoods ?? []
@@ -48,7 +49,7 @@ const facts = [
 <section class="section glance-s" aria-labelledby="glance-h">
   <div class="wrap glance">
     <div class="glance__copy">
-      <Eyebrow>{city} at a glance</Eyebrow>
+      <Eyebrow number={number}>{city} at a glance</Eyebrow>
       <h2 class="h2" id="glance-h">Licensed electrician serving {city}, AZ</h2>
       <p class="answer">
         {settings.businessName} is a family-owned, licensed electrician{

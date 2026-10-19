@@ -2,9 +2,9 @@
 // Blog posts as guide cards under an editorial head (eyebrow, H2, intro, a link to the
 // blog). A card picked with its own cover shows that photo, topic and cover words here;
 // the post page keeps its own image. A card without a cover photo shows the post's own
-// image only when it is one of the company's job photos, else the plain sand cover
+// image only when it is one of the company's job photos, else the plain copper cover
 // (never unapproved stock). A post's owner-approved own image comes as its cover with
-// `ownCover` (blog pages only, lib/cms.ts guideCards), without cover words. Renders the
+// `ownCover` (blog pages only, lib/cms.ts guideCards) and shows untinted. Renders the
 // block only: the page puts it in a section (on the homepage it shares the sand
 // "answers" band with the questions).
 import type {PostsSection} from '../../lib/types'
@@ -17,9 +17,10 @@ import GuideCard from './GuideCard.astro'
 
 interface Props {
   section: PostsSection
+  number?: number
 }
 
-const {section} = Astro.props
+const {section, number} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const {cta} = section
@@ -31,9 +32,9 @@ const count = section.posts.length
   section.posts.length > 0 && (
     <div class="guides-block">
       {section.heading && (
-        <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} intro={section.intro}>
+        <SectionHeader heading={section.heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
           {cta && (
-            <TextLink slot="more" href={ctaHref(cta, redirects)}>
+            <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
               {cta.label}
             </TextLink>
           )}

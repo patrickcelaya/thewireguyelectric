@@ -1,10 +1,10 @@
 ---
-// "What we do": the capabilities as a ruled list on paper, beside the heading, the lede
-// and a text link to each service category. Each item linked to a service is a row whose
-// title is the link (copper with an underline on hover); an item without a service is the
-// same row, unlinked; an item that only carries a link ("+ More!") closes the list as a
-// text link. A list, not a sequence: no numbers, no arrows. The section's texture photo
-// (decorative) is not shown. Styles: styles/sections.css "WHAT WE DO".
+// "What we do": the capabilities checklist as huge type on a copper-toned photo.
+// Each item linked to a service is a numbered row (the arrow moves and a small bulb
+// lights on hover); an item without a service is the same row, unlinked; an item
+// that only carries a link ("+ More!") closes the list as a text link. Beside the
+// heading, the lede and a link to each service category.
+// Styles: styles/sections.css "SOLUTIONS".
 import type {FeatureGridSection} from '../../lib/types'
 import type {ServiceGroup} from '../../lib/nav'
 import {resolveHref} from '../../lib/links'
@@ -13,30 +13,43 @@ import {sectionLabel} from '../../lib/sections'
 import Eyebrow from '../ui/Eyebrow.astro'
 import Accent from '../ui/Accent.astro'
 import TextLink from '../ui/TextLink.astro'
+import MiniBulb from '../ui/MiniBulb.astro'
+import SanityImage from '../ui/SanityImage.astro'
 
 interface Props {
   section: FeatureGridSection
   /** The service categories (Residential, Commercial), linked under the lede. */
   categories: ServiceGroup[]
+  number?: number
 }
 
-const {section, categories} = Astro.props
+const {section, categories, number} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const items = section.items.filter((i) => i.title)
 const rows = items.filter((i) => i.service || !i.link)
 const closers = items.filter((i) => !i.service && i.link)
+const pad = (n: number) => String(n).padStart(2, '0')
 ---
 
 {
   items.length > 0 && (
     <section class="solutions cv" {...sectionLabel(id, section.heading, section.eyebrow)}>
+      {section.image && (
+        <div class="solutions__media" aria-hidden="true">
+          <SanityImage image={section.image} widths={[900, 1600, 2400]} sizes="100vw" alt="" />
+        </div>
+      )}
       <div class="wrap solutions__grid">
         <div class="solutions__copy">
-          {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
+          {section.eyebrow && (
+            <Eyebrow variant="cream" number={number}>
+              {section.eyebrow}
+            </Eyebrow>
+          )}
           {section.heading && (
-            <h2 class="h2" id={id}>
-              <Accent text={section.heading} accent={section.headingAccent} />
+            <h2 class="display" id={id} data-reveal>
+              <Accent text={section.heading} accent={section.headingAccent} tone="hl" />
             </h2>
           )}
           {section.intro && <p class="solutions__lede">{section.intro}</p>}
@@ -44,7 +57,7 @@ const closers = items.filter((i) => !i.service && i.link)
             <p class="solutions__cats">
               {categories.map((c) => (
                 <>
-                  <TextLink href={c.href}>
+                  <TextLink href={c.href} icon="go" tone="cream">
                     {c.label} services
                   </TextLink>{' '}
                 </>
@@ -54,14 +67,20 @@ const closers = items.filter((i) => !i.service && i.link)
         </div>
         <div class="sol-wrap">
           <ul class="sol" role="list">
-            {rows.map((item) => (
+            {rows.map((item, i) => (
               <li>
                 {item.service ? (
                   <a href={`/services/${item.service.slug}`}>
-                    <h3>{item.title}</h3>
+                    <span class="sol__k" aria-hidden="true">
+                      {pad(i + 1)}
+                    </span>{' '}
+                    <h3>{item.title}</h3> <MiniBulb class="sol-bulb" />
                   </a>
                 ) : (
                   <div class="sol__row">
+                    <span class="sol__k" aria-hidden="true">
+                      {pad(i + 1)}
+                    </span>{' '}
                     <h3>{item.title}</h3>
                   </div>
                 )}
@@ -70,7 +89,7 @@ const closers = items.filter((i) => !i.service && i.link)
           </ul>
           {closers.map((item) => (
             <p class="sol__more">
-              <TextLink href={resolveHref(item.link!.href, redirects)}>
+              <TextLink href={resolveHref(item.link!.href, redirects)} icon="go" tone="cream">
                 {item.title}
               </TextLink>
             </p>

@@ -1,6 +1,6 @@
 // The light bulb: the logo's own single-line outline, in a 300 × 430 box. One
-// path, drawn by the wire (components/ui/Bulb.astro), in the form's success state
-// (LitBulb), the process steps and at the end of the valley map's wire.
+// path, drawn by the wire (components/ui/Bulb.astro), used as a sprite symbol
+// (MiniBulb, the menu sign-off) and at the end of the valley map's wire.
 
 /** From the left of the base, up and around the glass, the filament loop, back down to the right of the base. */
 export const BULB_PATH =

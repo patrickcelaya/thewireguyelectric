@@ -2,6 +2,8 @@
 
 export const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches
 export const hasIO = 'IntersectionObserver' in window
+/** Scroll-driven animations (the CSS reveals) are supported. */
+export const hasScrollTimeline = Boolean(window.CSS?.supports?.('animation-timeline: view()'))
 /** The desktop header (menus are dropdowns); below it the nav is the menu sheet. */
 export const wideHeader = matchMedia('(min-width: 1240px)')
 

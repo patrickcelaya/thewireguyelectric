@@ -19,9 +19,10 @@ import SanityImage from '../ui/SanityImage.astro'
 interface Props {
   section: TeamIntroSection
   settings: SiteSettings
+  number?: number
 }
 
-const {section, settings} = Astro.props
+const {section, settings, number} = Astro.props
 const redirects = await getRedirectMap()
 const id = `${section._key}-h`
 const summary = section.showSummary ? businessSummary(settings) : undefined
@@ -33,9 +34,9 @@ const {cta, secondaryCta, image} = section
     <section class="section team" {...sectionLabel(id, section.heading, section.eyebrow)}>
       <div class:list={['team__grid', !image && 'team__grid--solo']}>
         <div class="team__copy">
-          {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
+          {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
           {section.heading && (
-            <h2 class="h2" id={id}>
+            <h2 class="display" id={id} data-reveal>
               <Accent text={section.heading} accent={section.headingAccent} />
             </h2>
           )}
@@ -51,7 +52,7 @@ const {cta, secondaryCta, image} = section
                 </Button>
               )}{' '}
               {secondaryCta && (
-                <TextLink href={ctaHref(secondaryCta, redirects)}>
+                <TextLink href={ctaHref(secondaryCta, redirects)} icon="go">
                   {secondaryCta.label}
                 </TextLink>
               )}

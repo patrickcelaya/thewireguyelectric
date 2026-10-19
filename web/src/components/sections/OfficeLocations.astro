@@ -11,9 +11,10 @@ import OfficeCard from './OfficeCard.astro'
 interface Props {
   section: OfficeLocationsSection
   settings: SiteSettings
+  number?: number
 }
 
-const {section, settings} = Astro.props
+const {section, settings, number} = Astro.props
 const id = `${section._key}-h`
 const offices = visibleOffices(section.offices)
 const heading = section.heading ?? (offices.length === 1 ? 'Our office' : 'Our offices')
@@ -23,7 +24,7 @@ const heading = section.heading ?? (offices.length === 1 ? 'Our office' : 'Our o
   offices.length > 0 && (
     <section class="section offices-s" aria-labelledby={id}>
       <div class="wrap">
-        <SectionHeader heading={heading} id={id} eyebrow={section.eyebrow} intro={section.intro} />
+        <SectionHeader heading={heading} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro} />
         <div class="offices">
           {offices.map((office) => (
             <OfficeCard office={office} settings={settings} />

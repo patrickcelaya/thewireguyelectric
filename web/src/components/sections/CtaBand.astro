@@ -4,7 +4,7 @@
 // pages differ, never one the page already shows): the words sit on the empty top above
 // the people, the wire draws the bulb there, and the form card rises over the photo's
 // foot, clear of every head (no scrim on anyone). Copy: Site settings → CTA band (heading, status line). The band has one H2
-// (its heading); the form's title is an H3 under it. No licence line: the footer right under the band states it.
+// (its heading); the form's title is an H3 under it.
 import type {SiteSettings} from '../../lib/types'
 import {officeHours, telHref} from '../../lib/site'
 import type {ImageRef} from '../../lib/types'
@@ -14,6 +14,7 @@ import Eyebrow from '../ui/Eyebrow.astro'
 import Bulb from '../ui/Bulb.astro'
 import OfficeStatus from '../ui/OfficeStatus.astro'
 import RatingLine from '../ui/RatingLine.astro'
+import RocLink from '../ui/RocLink.astro'
 import EstimateForm from './EstimateForm.astro'
 
 interface Props {
@@ -22,6 +23,8 @@ interface Props {
   heading?: string
   /** The line under the photo; defaults to the CTA band's text, else the standard line. */
   text?: string
+  /** Section number for the eyebrow. */
+  number?: number | string
   /** Prefix for the form's field ids. */
   formId?: string
   /** The form's "City or ZIP" example (EstimateForm). */
@@ -30,7 +33,7 @@ interface Props {
   photo?: ImageRef
 }
 
-const {settings, formId = 'cta', zipPlaceholder} = Astro.props
+const {settings, number, formId = 'cta', zipPlaceholder} = Astro.props
 const photo = Astro.props.photo ?? ctaBandPhoto(Astro.url.pathname)
 const band = settings.ctaBand
 const hours = officeHours(settings)
@@ -49,7 +52,7 @@ const text =
     </figure>
     <div class="cta__wall">
       <div class="cta__words">
-        <Eyebrow>Free estimates</Eyebrow>
+        <Eyebrow number={number}>Free estimates</Eyebrow>
         <h2 id="cta-h">{heading}</h2>
       </div>
       <Bulb lead="right" />
@@ -60,7 +63,9 @@ const text =
       <p class="cta__sub">{text}</p>
       {
         band?.statusText && (
-          <p class="avail">{band.statusText}</p>
+          <p class="avail">
+            <span class="dot dot--live" aria-hidden="true" /> {band.statusText}
+          </p>
         )
       }
       <p class="cta__talk-k">Prefer to talk?</p>
@@ -70,6 +75,7 @@ const text =
       </p>
       {hours.line && <p class="cta__hours">Our Office Hours: {hours.line}</p>}
       <RatingLine settings={settings} variant="quiet" />
+      <p class="cta__roc"><RocLink settings={settings} /></p>
     </div>
     <div class="cta__form" id="estimate">
       <EstimateForm settings={settings} id={formId} titleTag="h3" zipPlaceholder={zipPlaceholder} />

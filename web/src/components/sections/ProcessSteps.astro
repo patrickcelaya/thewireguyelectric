@@ -16,12 +16,14 @@ import LitBulb from '../ui/LitBulb.astro'
 interface Props {
   section: ProcessStepsSection
   settings: SiteSettings
+  number?: number
 }
 
-const {section, settings} = Astro.props
+const {section, settings, number} = Astro.props
 const id = `${section._key}-h`
 const steps = section.steps.filter((s) => s.title)
 const hours = officeHours(settings).line
+const pad = (n: number) => String(n).padStart(2, '0')
 ---
 
 {
@@ -30,9 +32,9 @@ const hours = officeHours(settings).line
       <div class="process__pin">
         <div class="wrap process__head">
           <div>
-            {section.eyebrow && <Eyebrow>{section.eyebrow}</Eyebrow>}
+            {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
             {section.heading && (
-              <h2 class="h2" id={id}>
+              <h2 class="display" id={id}>
                 <Accent text={section.heading} accent={section.headingAccent} />
               </h2>
             )}
@@ -45,7 +47,7 @@ const hours = officeHours(settings).line
             {steps.map((step, i) => (
               <li class="step" style={`--k:${i}`}>
                 <span class="step__n" aria-hidden="true">
-                  {i + 1}
+                  {pad(i + 1)}
                 </span>{' '}
                 <h3>{step.title}</h3> {step.text && <p>{step.text}</p>}{' '}
                 {step.showContact && (
@@ -57,7 +59,7 @@ const hours = officeHours(settings).line
                       {hours && <span> · {hours}</span>}
                     </p>{' '}
                     <p class="step__contact">
-                      <TextLink href={ESTIMATE_PATH}>
+                      <TextLink href={ESTIMATE_PATH} icon="go">
                         Request a free estimate
                       </TextLink>
                     </p>

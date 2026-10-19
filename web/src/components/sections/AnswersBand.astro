@@ -14,9 +14,11 @@ interface Props {
   posts: PostCard[]
   guidesHeading: string
   guidesIntro?: string
+  /** Chapter numbers for the two eyebrows. */
+  numbers?: {faq?: number; guides?: number}
 }
 
-const {faqs, faqHeading, faqIntro, posts, guidesHeading, guidesIntro} = Astro.props
+const {faqs, faqHeading, faqIntro, posts, guidesHeading, guidesIntro, numbers = {}} = Astro.props
 const guides: PostsSection = {
   _type: 'postsSection',
   _key: 'guides',
@@ -33,8 +35,8 @@ const label = faqs.length ? {'aria-labelledby': 'faq-h'} : {'aria-labelledby': '
   (faqs.length > 0 || posts.length > 0) && (
     <section class="section answers cv" {...label}>
       <div class="wrap">
-        <FaqBlock faqs={faqs} heading={faqHeading} intro={faqIntro} />
-        <GuidesBlock section={guides} />
+        <FaqBlock faqs={faqs} heading={faqHeading} intro={faqIntro} number={numbers.faq} />
+        <GuidesBlock section={guides} number={numbers.guides} />
       </div>
     </section>
   )

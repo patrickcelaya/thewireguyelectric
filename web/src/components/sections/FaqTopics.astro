@@ -11,11 +11,12 @@ import FaqList from './FaqList.astro'
 
 interface Props {
   section: FaqSection
+  number?: number
   /** Below the section's own questions (FaqBlock): the aside is only the index, and the groups sit under its H2. */
   nested?: boolean
 }
 
-const {section, nested = false} = Astro.props
+const {section, number, nested = false} = Astro.props
 const groups = section.groups.filter((g) => g.faqs.length)
 const Title = section.heading || nested ? 'h3' : 'h2'
 const showHead = !nested
@@ -26,7 +27,7 @@ const anchor = (key: string) => `${section._key}-${key}`
   groups.length > 0 && (
     <div class:list={['faqt', nested && 'faqt--nested']}>
       <div class="faqt__aside">
-        {showHead && <Eyebrow>{section.eyebrow ?? 'Questions by topic'}</Eyebrow>}
+        {showHead && <Eyebrow number={number}>{section.eyebrow ?? 'Questions by topic'}</Eyebrow>}
         {showHead && section.heading && (
           <h2 class="h2" id={`${section._key}-h`}>
             {section.heading}

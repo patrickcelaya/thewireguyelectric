@@ -220,7 +220,7 @@ interface JobPhoto {
 
 /**
  * The company's own job photos without people (finished rooms, panels, tools): the only
- * photos a template may set words on (over a scrim), and the covers the CMS templates
+ * photos a template may lay a full copper tint over, and the covers the CMS templates
  * give a guide whose own image is stock. Most service and post images imported from
  * Webflow are stock (redesign asset audit, section 4), so a template shows a CMS photo
  * large only when it is listed here or in PHOTO_FACES. Add new job photos here, with

@@ -20,10 +20,11 @@ interface Props {
   layout: WorkLayout
   heading: string
   intro?: string
+  number?: number
   id: string
 }
 
-const {photos, layout, heading, intro, id} = Astro.props
+const {photos, layout, heading, intro, number, id} = Astro.props
 // the large cell is about two thirds of the row on desktop; the others a third or a quarter (full width / half on phones)
 const sizes = (i: number) =>
   layout === 'row' ? '(max-width:699px) 46vw, 23vw' : i === 0 ? '(max-width:699px) 92vw, 56vw' : layout === 'mosaic' ? '(max-width:699px) 46vw, 20vw' : '(max-width:699px) 46vw, 30vw'
@@ -33,7 +34,7 @@ const sizes = (i: number) =>
   photos.length > 0 && (
     <section class="section work-s cv" aria-labelledby={id}>
       <div class="wrap">
-        <SectionHeader eyebrow="Our work" heading={heading} id={id} intro={intro} />
+        <SectionHeader eyebrow="Our work" number={number} heading={heading} id={id} intro={intro} />
         <ul class={`wg wg--${layout}`} role="list">
           {photos.map((p, i) => (
             <li class="wg__item">

@@ -44,6 +44,7 @@ const hubs = services.filter((s) => postIndex.some((p) => p.services[0] === s.sl
   <section class="section answers" aria-labelledby="guides-h">
     <div class="wrap">
       <GuidesBlock
+        number={1}
         section={{
           _type: 'postsSection',
           _key: 'guides',
@@ -72,5 +73,5 @@ const hubs = services.filter((s) => postIndex.some((p) => p.services[0] === s.sl
     </div>
   </section>
 
-  <CtaBand settings={settings} />
+  <CtaBand settings={settings} number={2} />
 </SiteLayout>
