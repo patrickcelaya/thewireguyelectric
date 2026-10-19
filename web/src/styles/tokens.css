@@ -54,9 +54,7 @@
   --grad-copper: linear-gradient(120deg, #6A2E19 0%, #8E4024 34%, #AA502E 72%, #B95A33 100%);
   --grad-copper-text: linear-gradient(160deg, #8E4024 10%, #AA502E 60%, #9A4626 100%);
 
-  /* signals */
-  --live: #2E9B5E;
-  --off: #7D8A90;
+  /* signals (the office status is stated in words, never as a light) */
   --error: #9E1F17;
 
   /* type */

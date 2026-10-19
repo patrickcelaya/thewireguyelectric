@@ -77,37 +77,35 @@ p{text-wrap:pretty}
 .textlink--cream{color:#fff;background-image:linear-gradient(var(--glow),var(--glow))}
 .textlink--cream:hover{color:var(--glow)}
 
-/* ===================================================================== status (Emma, one quiet line) and rating.
-   The <head> gate sets html.oo (open) or html.oc (closed; + oc-far when the next opening is more than a day away) before first paint; without JS neither exists and the
-   line states only the published hours (it never claims "ready" at 10 pm). */
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--line-strong);flex:none}
-.oo .dot{background:var(--live);box-shadow:0 0 0 3px rgb(46 155 94 / .16)}
-.oc .dot{background:var(--off);box-shadow:0 0 0 3px rgb(125 138 144 / .18)}
-.status{display:inline-flex;align-items:center;gap:8px}
+/* ===================================================================== status (Emma, one quiet line, in words) and rating.
+   The <head> gate sets html.oo (open) or html.oc (closed; + oc-far when the next opening is more than a day away) before first
+   paint; without JS neither exists and the line states only the published hours (it never claims "ready" at 10 pm). The state
+   changes the words, never a colour: no light, no pulse (WCAG 1.4.1). */
+.status{display:inline-flex;align-items:baseline}
 .st-open,.st-closed,.st-day{display:none}
 .oo .st-open,.oc .st-closed{display:inline}
 .oc-far .st-day{display:inline}
 .oo .st-hours,.oc .st-hours{display:none}
 .rating{--sep:1.6em;--room:6px;--sep-color:var(--muted);display:flex;align-items:center;row-gap:4px;font-size:.9375rem;line-height:1.35;color:var(--text)}
-.rating b{font:750 1rem/1.2 var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums}
+.rating b{font:700 1rem/1.2 var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums}
 .rating__s{display:inline-flex;align-items:center;gap:10px}
-.rating__g{display:inline-flex;align-items:center;gap:5px;min-height:24px;color:var(--copper-700);font-weight:650;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
+.rating__g{display:inline-flex;align-items:center;gap:5px;min-height:24px;color:var(--copper-700);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em}
 .rating__g:hover{color:var(--copper-800)}
 
-/* ===================================================================== header (round 5, from explore-a with the judges' fixes): two tiers
-   beside a big logo that spans both (100–124 px tall on desktop, unchanged from round 4).
-     tier 1, the utility line: the office status (Emma, subtle) and the hours; the 5.0 on Google and the ROC licence;
+/* ===================================================================== header: two tiers beside a big logo that spans both (100–124 px
+   tall on desktop).
+     tier 1, the utility line: the office status in words (Emma) and the hours; the 5.0 on Google and the ROC licence;
        13 px type over a hairline, on a faint paper wash so it reads at AA over the hero's wall;
      tier 2, the main bar: the nav in plain type (a thin copper wire draws under the item you point at and stays under
-       the open dropdown, the current page and the current section) and ONE capsule: the phone, whose glyph wears a thin
-       status ring, and Get a Free Estimate in copper.
-   Condensed (once the page moves): tier 1 folds up and away, a near-opaque bone strip with a hairline slides in, the logo
-   eases to 80–84 px with at least 8 px of strip below it, and the main bar centres in the strip. Transform + opacity only.
-   Tablets: the logo, a phone pill (the number, with the ring) and a labelled Menu pill. Phones: the logo and Menu.
+       the open dropdown, the current page and the current section), then the lettered pair: a hairline, the phone number
+       set as lettering, the way it is on the van door, and Get a Free Estimate, the one squared copper button.
+   Condensed (once the page moves): tier 1 folds up and away, a solid bone strip with a hairline slides in, the logo eases
+   to 80–84 px with at least 8 px of strip below it, and the main bar centres in the strip. Transform + opacity only.
+   Tablets: the logo, the phone as lettering and a squared Menu button. Phones: the logo and Menu.
    Without JS the header scrolls away with the page and Menu is a link to the footer navigation. */
 .site-header{position:absolute;inset:0 0 auto;z-index:50;height:var(--hdr-h);pointer-events:none;--util-h:34px}
 .js .site-header{position:fixed}
-.hdr-glass{position:absolute;inset:0 0 auto;height:var(--hdr-h);background:rgb(247 243 236 / .97);-webkit-backdrop-filter:saturate(1.2) blur(16px);backdrop-filter:saturate(1.2) blur(16px);box-shadow:0 1px 0 rgb(205 191 170 / .8),0 16px 32px -26px rgb(15 42 53 / .34);transform-origin:50% 0;opacity:0;transition:opacity .35s var(--ease),transform .45s var(--ease-out)}
+.hdr-glass{position:absolute;inset:0 0 auto;height:var(--hdr-h);background:var(--bone);box-shadow:0 1px 0 var(--line-strong);transform-origin:50% 0;opacity:0;transition:opacity .35s var(--ease),transform .45s var(--ease-out)}
 body:not(.over) .hdr-glass,.hdr-c .hdr-glass,.menu-open .hdr-glass{opacity:1}
 .hdr-c .hdr-glass{transform:scaleY(var(--glass-k))}
 .hdr{position:relative;display:flex;align-items:center;gap:clamp(24px,2.2vw,40px);height:var(--hdr-h);transition:transform .45s var(--ease-out)}
@@ -115,10 +113,9 @@ body:not(.over) .hdr-glass,.hdr-c .hdr-glass,.menu-open .hdr-glass{opacity:1}
 .hdr-c .hdr{transform:translateY(calc((var(--hdr-c) - var(--hdr-h)) / 2))}
 /* the link itself scales with the logo when the bar condenses, so its focus ring hugs the 84 px logo (round-5 QA) */
 .logo{flex:none;display:block;border-radius:8px;line-height:0;transform-origin:0 50%;transition:transform .45s var(--ease-out)}
-.logo img{height:var(--logo-h);width:auto;transition:filter .3s}
+.logo img{height:var(--logo-h);width:auto}
 .hdr-c .logo{transform:scale(var(--logo-k))}
 .hdr-c .logo:focus-visible{outline-width:calc(2.5px / var(--logo-k));outline-offset:calc(2px / var(--logo-k));border-radius:calc(8px / var(--logo-k))}
-.logo:hover img{filter:drop-shadow(0 0 14px rgb(255 214 150 / .55))}
 .hdr-body{flex:1;min-width:0;height:var(--logo-h);display:flex;flex-direction:column}
 /* tier 1: the utility line */
 .hdr-util{position:relative;flex:none;display:flex;align-items:center;justify-content:space-between;gap:24px;height:var(--util-h);border-bottom:1px solid rgb(15 42 53 / .12);font:500 .8125rem/1.25 var(--font-text);color:var(--text);white-space:nowrap;transition:opacity .25s var(--ease),transform .45s var(--ease-out),visibility 0s}
@@ -127,14 +124,14 @@ body:not(.over) .hdr-glass,.hdr-c .hdr-glass,.menu-open .hdr-glass{opacity:1}
 .hu-l,.hu-r{display:flex;align-items:center;min-width:0}
 .hu-sep{flex:none;display:inline-block;width:1px;height:13px;margin:0 16px;background:rgb(15 42 53 / .22)}
 .hu-hours{display:inline-flex;align-items:center;color:var(--text)}
-.status--util{gap:9px;color:var(--ink)}
-.status--util b{font-weight:700;color:var(--ink)}
-.status--util .sep{color:var(--text)}
-.status--util .dot{width:7px;height:7px}
+.status--util{color:var(--ink)}
+.status--util .st-open{font-weight:600}
+.status--util .st-closed{color:var(--text)}
+.status--util b{font-weight:600;color:var(--ink)}
 /* no JS (or before the gate ran): the hours alone, never a claim */
 html:not(.oo):not(.oc) .status--util,html:not(.oo):not(.oc) .hu-l .hu-sep{display:none}
 .hu-link{display:inline-flex;align-items:center;gap:7px;min-height:28px;padding-block:2px;color:var(--text);text-decoration:none;border-radius:6px;line-height:1.25}
-.hu-link b{font:750 .9375rem/1.2 var(--font-display);letter-spacing:0;color:var(--ink);font-variant-numeric:tabular-nums}
+.hu-link b{font:700 .9375rem/1.2 var(--font-display);letter-spacing:0;color:var(--ink);font-variant-numeric:tabular-nums}
 .hu-link:hover,.hu-link:hover b{color:var(--copper-700)}
 .hu-link:hover .hu-lab{text-decoration:underline;text-underline-offset:.2em}
 .stars--util{--s:12px;vertical-align:0}
@@ -145,7 +142,7 @@ html:not(.oo):not(.oc) .status--util,html:not(.oo):not(.oc) .hu-l .hu-sep{displa
 .nav{margin-left:auto}
 .nav__list{display:flex;align-items:center}
 .nav__status,.nav__cta{display:none}
-.nav__list a,.dd-btn{--w:0px;position:relative;display:inline-flex;align-items:center;gap:6px;height:46px;padding:0 13px;border-radius:var(--r-sm);font:550 1rem/1 var(--font-text);color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer;white-space:nowrap}
+.nav__list a,.dd-btn{--w:0px;position:relative;display:inline-flex;align-items:center;gap:6px;height:46px;padding:0 13px;border-radius:var(--r-1);font:500 1rem/1 var(--font-text);color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer;white-space:nowrap}
 /* the wire: a thin copper line draws under the label (not under the chevron) */
 .nav__list>li>a::before,.dd-btn::before{content:"";position:absolute;left:13px;bottom:6px;height:2px;width:calc(100% - 26px - var(--w));border-radius:2px;background:var(--copper);transform:scaleX(0);transform-origin:0 50%;transition:transform .32s var(--ease-out)}
 .dd-btn{--w:20px}
@@ -154,15 +151,15 @@ html:not(.oo):not(.oc) .status--util,html:not(.oo):not(.oc) .hu-l .hu-sep{displa
 .dd-btn[aria-expanded=true]::after{transform:rotate(180deg)}
 .nav__list a:hover,.dd-btn:hover,.dd-btn[aria-expanded=true],.dd-btn.is-cur,.nav__list a[aria-current=page]{color:var(--copper-700)}
 .dd{position:relative}
-/* the dropdowns: a paper card that lifts in with a pointer nub; copper small-caps group labels (from explore-b) */
-.dd-panel{position:absolute;top:calc(100% + 14px);left:-6px;min-width:252px;background:var(--paper);border-radius:var(--r-lg);box-shadow:0 0 0 1px rgb(205 191 170 / .7),0 30px 60px -28px rgb(15 42 53 / .42),0 4px 12px -6px rgb(15 42 53 / .12);padding:10px;transition:opacity .2s var(--ease),translate .25s var(--ease-out)}
+/* the dropdowns: a paper panel (8 px, a hairline ring and the one floating shadow) with a pointer nub; the group labels in copper, sentence case */
+.dd-panel{position:absolute;top:calc(100% + 14px);left:-6px;min-width:252px;background:var(--paper);border-radius:var(--r-2);box-shadow:0 0 0 1px var(--line-strong),var(--shadow-float);padding:10px;transition:opacity .2s var(--ease),translate .25s var(--ease-out)}
 @starting-style{.dd-panel{opacity:0;translate:0 -6px}}
-.dd-panel::before{content:"";position:absolute;top:-6px;left:36px;width:12px;height:12px;background:var(--paper);box-shadow:-1px -1px 0 rgb(205 191 170 / .7);transform:rotate(45deg);border-radius:2px 0 0 0}
+.dd-panel::before{content:"";position:absolute;top:-6px;left:36px;width:12px;height:12px;background:var(--paper);box-shadow:-1px -1px 0 var(--line-strong);transform:rotate(45deg);border-radius:2px 0 0 0}
 .dd-panel--cols::before,.dd-panel--mega::before{left:calc(50% - 6px)}
-.dd-panel a{display:flex;align-items:center;height:auto;min-height:40px;padding:8px 14px;border-radius:12px;font:500 .9375rem/1.25 var(--font-text);color:var(--text);text-decoration:none;transition:background-color .15s,color .15s}
+.dd-panel a{display:flex;align-items:center;height:auto;min-height:40px;padding:8px 14px;border-radius:var(--r-1);font:500 .9375rem/1.25 var(--font-text);color:var(--text);text-decoration:none;transition:background-color .15s,color .15s}
 .dd-panel a::before{display:none}
 .dd-panel a:hover{background:var(--bone);color:var(--copper-700)}
-.dd-panel a[aria-current=page]{color:var(--copper-700);font-weight:650;background:var(--wash)}
+.dd-panel a[aria-current=page]{color:var(--copper-700);font-weight:600}
 .dd-panel--cols ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 6px}
 .dd-panel--cols{width:min(500px,80vw);left:50%;transform:translateX(-50%);padding:14px}
 .dd-panel--mega{display:flex;flex-direction:column;width:min(740px,86vw);left:50%;transform:translateX(-50%);padding:0;
@@ -179,44 +176,39 @@ html:not(.js) .dd::after{content:"";position:absolute;inset:100% 0 auto;height:1
 html:not(.js) .dd:is(:hover,:focus-within) .dd-panel--mega{display:flex}
 .js .dd-btn[aria-expanded=true]+.dd-panel{display:block}
 .js .dd-btn[aria-expanded=true]+.dd-panel--mega{display:flex}
-.dd-panel .grp a{display:inline-flex;min-height:0;padding:4px 14px 8px;font:700 .75rem/1.2 var(--font-text);letter-spacing:.12em;text-transform:uppercase;color:var(--copper-700)}
+.dd-panel .grp a{display:inline-flex;min-height:0;padding:4px 14px 8px;font:600 .8125rem/1.2 var(--font-text);color:var(--copper-700)}
 .dd-panel .grp a:hover{background:none;text-decoration:underline;text-underline-offset:.3em}
 .dd-panel .all{grid-column:1/-1;border-top:1px solid var(--line);margin-top:8px;padding-top:10px}
 .dd-panel[hidden]{display:none!important}
-.dd-panel .all a{font-weight:650;color:var(--copper-700)}
-/* the pair: one capsule, the phone on paper and the estimate in copper */
-.hdr-cta{flex:none;display:flex;align-items:center;margin-left:clamp(14px,1.4vw,26px);padding:4px;border-radius:var(--r-pill);background:rgb(253 251 247 / .88);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .13),0 14px 30px -22px rgb(15 42 53 / .5)}
-.hdr-tel,.hdr-call{display:inline-flex;align-items:center;gap:12px;height:50px;padding:0 18px 0 6px;border-radius:var(--r-pill);color:var(--ink);text-decoration:none;transition:background-color .2s var(--ease)}
-.hdr-tel:hover,.hdr-call:hover{background:rgb(15 42 53 / .06)}
-.hdr-tel b,.hdr-call b{font:750 1.0625rem/1.2 var(--font-display);letter-spacing:-.008em}
-.hdr-tel:hover b{color:var(--copper-700)}
-/* the phone glyph and its status ring: green while the office is open, grey when it is closed, a neutral hairline without
-   JS (no claim). Three slow pulses when the page opens, then still. */
-/* round-5 QA: ONE 1.5 px ring in the status colour (no paper gap, no second ring), so it reads as a status, not a radio button */
-.tel-ic{position:relative;flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--wash);color:var(--copper-700);box-shadow:inset 0 0 0 1.5px var(--line-strong)}
-.tel-ic::before{content:"";width:17px;height:17px;background:currentColor;-webkit-mask:var(--phone) center/contain no-repeat;mask:var(--phone) center/contain no-repeat}
-.oo .tel-ic{box-shadow:inset 0 0 0 1.5px var(--live)}
-.oc .tel-ic{box-shadow:inset 0 0 0 1.5px var(--off)}
-.tel-ic::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--live);opacity:0;pointer-events:none}
-.motion.oo .tel-ic::after{animation:live-ring 2.6s var(--ease-out) .6s 3}
-@keyframes live-ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.4);opacity:0}}
-.hdr-est{position:relative;display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 22px 0 24px;border-radius:var(--r-pill);background:var(--copper);color:#fff;font:650 1rem/1 var(--font-text);letter-spacing:.005em;text-decoration:none;white-space:nowrap;box-shadow:0 1px 0 rgb(255 255 255 / .22) inset,0 10px 22px -12px rgb(142 64 36 / .8);transition:background-color .2s var(--ease)}
-.hdr-est::after{content:"";width:17px;height:17px;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease)}
+.dd-panel .all a{font-weight:600;color:var(--copper-700)}
+/* the lettered pair: no container. A hairline separates navigating from acting; the phone is lettering (ink, 13.5:1 on bone;
+   on the homepage it sits on the hero's wash like the nav), the estimate the one squared copper button. Same size in both
+   header states, so condensing moves it and never resizes it. */
+.hdr-cta{flex:none;display:flex;align-items:center;gap:24px;margin-left:clamp(20px,2vw,36px)}
+.hdr-cta::before{content:"";flex:none;width:1px;height:28px;background:rgb(15 42 53 / .18)}
+.hdr-tel,.hdr-call{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;border-radius:2px;color:var(--ink);text-decoration:none;transition:color .15s var(--ease)}
+.hdr-tel b,.hdr-call b{font:700 1.1875rem/1 var(--font-display);letter-spacing:-.01em}
+.hdr-tel:hover,.hdr-call:hover{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.24em}
+.hdr-tel:active,.hdr-call:active{color:var(--copper-800)}
+.hdr-tel:focus-visible,.hdr-call:focus-visible{outline:2px solid var(--ink);outline-offset:4px;border-radius:3px}
+.hdr-est{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:var(--r-1);background:var(--copper);color:#fff;font:600 1rem/1 var(--font-text);text-decoration:none;white-space:nowrap;transition:background-color .15s var(--ease),transform .1s var(--ease)}
 .hdr-est:hover{background:var(--copper-700)}
-.hdr-est:hover::after{transform:translateX(3px)}
-.hdr-est[aria-current=page]{background:var(--copper-700)}
+.hdr-est:active{background:var(--copper-800);transform:scale(.98)}
+.hdr-est:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+.hdr-est[aria-current=page]{background:var(--copper-800)}
 .menu-btn,.hdr-call,.menu-link{display:none}
 @media (min-width:1600px){.site-header{--util-h:36px}.hdr-util{font-size:.84375rem}}
 @media (max-width:1439px){.nav__list a,.dd-btn{padding:0 10px;font-size:.96875rem}.nav__list>li>a::before,.dd-btn::before{left:10px;width:calc(100% - 20px - var(--w))}}
-@media (max-width:1365px){.site-header{--util-h:32px}.hu-roc .hu-more{display:none}.hdr-est{padding:0 18px 0 20px}.hdr-est::after{display:none}.hdr-tel{padding-right:14px}.hdr{gap:22px}}
+@media (max-width:1365px){.site-header{--util-h:32px}.hu-roc .hu-more{display:none}.hdr-cta{gap:18px}.hdr-est{padding:0 18px}.hdr{gap:22px}}
 @media (max-width:1239px){
   .hdr-cta,.hdr-util{display:none}
   .hdr-body{height:auto}
-  .hdr-main{justify-content:flex-end;gap:10px}
+  .hdr-main{justify-content:flex-end;gap:20px}
   .hdr-c .hdr-main{transform:none}
-  .hdr-call{display:inline-flex;height:48px;padding:0 18px 0 5px;background:rgb(253 251 247 / .86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1.5px rgb(15 42 53 / .16)}
-  .hdr-call .tel-ic{width:36px;height:36px}
-  .js .menu-btn{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 18px 0 20px;border-radius:var(--r-pill);border:0;background:rgb(253 251 247 / .86);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1.5px rgb(15 42 53 / .16);color:var(--ink);font:650 .9375rem/1 var(--font-text);cursor:pointer}
+  .hdr-call{display:inline-flex;padding:0 4px}
+  .hdr-call b{font-size:1.125rem}
+  /* Menu: a squared paper button (solid, so it reads over the homepage hero) */
+  .js .menu-btn{display:inline-flex;align-items:center;gap:12px;height:44px;padding:0 14px 0 16px;border-radius:var(--r-1);border:0;background:var(--paper);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .35);color:var(--ink);font:600 .9375rem/1 var(--font-text);cursor:pointer}
   .menu-btn__l{min-width:2.6em;text-align:left}
   .menu-btn__i{position:relative;display:block;width:18px;height:12px}
   .menu-btn__i i{position:absolute;left:0;height:2px;border-radius:2px;background:currentColor;transition:transform .3s var(--ease-out),width .3s var(--ease-out),top .3s var(--ease-out),left .3s var(--ease-out)}
@@ -226,27 +218,23 @@ html:not(.js) .dd:is(:hover,:focus-within) .dd-panel--mega{display:flex}
   .menu-btn[aria-expanded=true] .menu-btn__i i{top:5px;width:18px;left:0}
   .menu-btn[aria-expanded=true] .menu-btn__i i:first-child{transform:rotate(45deg)}
   .menu-btn[aria-expanded=true] .menu-btn__i i:last-child{transform:rotate(-45deg)}
-  html:not(.js) .menu-link{display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:var(--r-pill);background:rgb(253 251 247 / .86);box-shadow:inset 0 0 0 1.5px rgb(15 42 53 / .16);color:var(--ink);font:650 .9375rem/1 var(--font-text);text-decoration:none}
+  html:not(.js) .menu-link{display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:var(--r-1);background:var(--paper);box-shadow:inset 0 0 0 1px rgb(15 42 53 / .35);color:var(--ink);font:600 .9375rem/1 var(--font-text);text-decoration:none}
   /* the menu sheet: the same <nav>, under the visible edge of the bar (the bar may be condensed: .hdr is then moved up) */
   .nav{display:none;position:absolute;left:calc(-1 * var(--gutter));right:calc(-1 * var(--gutter));top:var(--hdr-h);height:calc(100dvh - var(--hdr-h));margin:0;padding:18px var(--gutter) 0;overflow:auto;overscroll-behavior:contain;background:var(--bone);border-top:1px solid var(--line)}
   .hdr-c .nav{top:calc((var(--hdr-h) + var(--hdr-c)) / 2);height:calc(100dvh - var(--hdr-c))}
   .menu-open .nav{display:block}
   .motion.menu-open .nav{animation:sheet-in .35s var(--ease-out)}
   @keyframes sheet-in{from{opacity:0;transform:translateY(-8px)}}
-  .nav__status{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 16px;margin-bottom:10px;padding:14px 16px;border-radius:var(--r-md);background:var(--paper);box-shadow:inset 0 0 0 1px var(--line);font-size:.875rem;line-height:1.35;color:var(--text)}
-  .nav__status .status{flex-wrap:wrap;gap:6px 9px}
-  .nav__hours{color:var(--muted);font-size:.8125rem}
+  /* the status in words, the hours under it, a hairline below (no card) */
+  .nav__status{display:grid;gap:4px;padding:4px 0 16px;border-bottom:1px solid var(--line);font-size:.9375rem;line-height:1.4;color:var(--ink)}
+  .nav__hours{color:var(--muted);font-size:.875rem}
   html:not(.oo):not(.oc) .nav__status .status{display:none}
   .nav__list{display:block}
   .nav__list>li{border-bottom:1px solid var(--line)}
   .nav__list>li>a::before,.dd-btn::before{display:none}
-  .nav__list>li>a,.nav .dd-btn{display:flex;justify-content:space-between;width:100%;height:auto;min-height:64px;padding:0;border-radius:0;font:700 1.5rem/1.1 var(--font-display);letter-spacing:-.024em;color:var(--ink);background:none}
-  .nav__list>li>a::after{content:"";width:16px;height:16px;margin-right:9px;background:var(--copper);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
-  .nav .dd-btn{position:relative}
-  .nav .dd-btn::after{flex:none;width:34px;height:34px;border-radius:50%;background:none;-webkit-mask:none;mask:none;box-shadow:inset 0 0 0 1.5px var(--line-strong);transform:none}
-  .nav .dd-btn::before{display:block;content:"";position:absolute;left:auto;right:9px;bottom:auto;top:calc(50% - 8px);width:16px;height:16px;border-radius:0;background:var(--ink);transform:none;-webkit-mask:var(--chev) center/contain no-repeat;mask:var(--chev) center/contain no-repeat;transform-origin:50% 50%;transition:transform .2s var(--ease)}
-  .nav .dd-btn[aria-expanded=true]::before{transform:rotate(180deg)}
-  .nav .dd-btn[aria-expanded=true]::after{background:var(--wash);box-shadow:none;transform:none}
+  .nav__list>li>a,.nav .dd-btn{display:flex;justify-content:space-between;width:100%;height:auto;min-height:64px;padding:0;border-radius:0;font:600 1.5rem/1.1 var(--font-display);letter-spacing:-.015em;color:var(--ink);background:none}
+  /* a disclosure's chevron: 16 px, ink, no circle; it turns when the list is open */
+  .nav .dd-btn::after{flex:none;width:16px;height:16px;margin-right:4px;background:var(--ink)}
   .nav .dd-btn.is-cur,.nav__list>li>a[aria-current=page]{color:var(--copper-700)}
   .nav .dd-panel,.nav .dd-panel--cols,.nav .dd-panel--mega{position:static;transform:none;translate:none;width:auto;min-width:0;padding:0 0 18px;background:none;box-shadow:none;border:0;border-radius:0}
   .nav .dd-panel::before{display:none}
@@ -255,30 +243,27 @@ html:not(.js) .dd:is(:hover,:focus-within) .dd-panel--mega{display:flex}
   .nav .dd-mega{display:block;padding:0;overflow:visible}
   .nav .dd-panel ul{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 16px}
   .nav .dd-panel a{min-height:44px;padding:0;font-size:.9375rem;font-weight:500;color:var(--text);white-space:normal;border-radius:0;background:none}
-  .nav .dd-panel a[aria-current=page]{color:var(--copper-700);font-weight:650}
+  .nav .dd-panel a[aria-current=page]{color:var(--copper-700);font-weight:600}
   .nav .dd-panel .grp{margin-top:8px}
-  .nav .dd-panel .grp a{display:inline-flex;min-height:36px;padding:0;font-weight:700;color:var(--copper-700)}
+  .nav .dd-panel .grp a{display:inline-flex;min-height:36px;padding:0;color:var(--copper-700)}
   .nav .dd-panel .all{margin-top:6px;padding-top:4px}
-  .nav .dd-panel .all a{font-weight:650;color:var(--copper-700)}
   /* .nav__cta dissolves into the sheet, so its button pair can stay pinned at the sheet's foot while a long list
-     (Services) scrolls; at the end of the sheet the pair settles in place above the 5.0, the licence and the bulb */
+     (Services) scrolls; at the end of the sheet the pair settles in place above the 5.0 and the licence */
   .nav__cta{display:contents}
   .nav__btns{position:sticky;bottom:0;z-index:1;display:grid;gap:10px;margin:22px calc(-1 * var(--gutter)) 0;padding:18px var(--gutter) calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(rgb(247 243 236 / 0),var(--bone) 18px)}
   .nav__btns .btn{width:100%}
-  .nav__btns a.btn--primary:hover{background:var(--copper-700)}
   .nav__proof{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 8px;margin-top:6px;font-size:.875rem;line-height:1.4;color:var(--text)}
   .nav__proof .stars{--s:13px}
-  .nav__proof b{font:750 1rem/1.2 var(--font-display);color:var(--ink)}
+  .nav__proof b{font:700 1rem/1.2 var(--font-display);color:var(--ink)}
   .nav__proof .rating__g{min-height:32px;padding-block:4px}
   .nav__sep{color:var(--muted)}
   .nav__roc{text-align:center;font-size:.875rem}
+  .nav__roc{margin-bottom:28px}
   .nav__roc a{display:inline-flex;justify-content:center;padding:10px 0;color:var(--text);text-decoration:underline;text-decoration-color:rgb(29 48 57 / .35);text-underline-offset:.22em}
-  .nav__bulb{display:block;margin:6px auto 32px;width:30px;height:38px;color:var(--copper);opacity:.6;--mb-line:currentColor}
   .nav a:hover,.nav .dd-btn:hover,.nav .dd-btn[aria-expanded=true]{background:none}
 }
 @media (max-width:699px){
   .hdr-call{display:none}
-  .js .menu-btn{height:46px}
   .nav__list>li>a,.nav .dd-btn{min-height:60px;font-size:1.375rem}
 }
 body:not(.over) main{padding-top:var(--hdr-h)}
@@ -428,9 +413,7 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .cta__form{position:relative;z-index:2;margin-top:calc(var(--chp) * -.2)}
 .cta__talk{padding-top:clamp(48px,4.4vw,80px);display:grid;gap:12px;justify-items:start;max-width:32rem}
 .cta__sub{font:500 var(--fs-stand)/1.35 var(--font-display);letter-spacing:-.016em;color:var(--ink)}
-.cta .avail{display:flex;align-items:center;gap:10px;margin:6px 0 34px;font:650 1.0625rem/1.3 var(--font-text);color:var(--ink)}
-/* free estimates are available at every hour, so this dot is always green (not Emma's office status) */
-.cta .avail .dot--live{width:11px;height:11px;background:var(--live);box-shadow:0 0 0 4px rgb(46 155 94 / .2)}
+.cta .avail{margin:6px 0 34px;font:600 1.0625rem/1.3 var(--font-text);color:var(--ink)}
 .cta__talk-k{font:650 var(--fs-small)/1.3 var(--font-text);color:var(--copper-700)}
 .cta__phone{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px}
 .cta__phone a{font:760 clamp(2rem,1.4rem + 2vw,3.25rem)/1 var(--font-display);letter-spacing:-.03em;color:var(--ink);text-decoration:none}
@@ -586,9 +569,9 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 @media (max-width:639px){
   body{padding-bottom:var(--callbar-h)}
   html{scroll-padding-bottom:calc(var(--callbar-h) + 8px)}
-  .callbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;height:var(--callbar-h);padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:rgb(247 243 236 / .97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
-  .callbar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:var(--r-pill);font:650 1rem/1 var(--font-text);text-decoration:none}
-  .callbar .call{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+  .callbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;height:var(--callbar-h);padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:var(--bone);border-top:1px solid var(--line-strong)}
+  .callbar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:var(--r-1);font:600 1rem/1 var(--font-text);text-decoration:none}
+  .callbar .call{box-shadow:inset 0 0 0 1px var(--ink);color:var(--ink)}
   .callbar .call::before{width:18px;height:18px}
   .callbar .est-l{background:var(--copper);color:#fff}
   /* the open menu has its own Call and Free Estimate pair; the bar, inert then, would cover them, and taps

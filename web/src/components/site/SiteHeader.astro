@@ -1,10 +1,10 @@
 ---
-// The site header (round 5): a big logo spanning two tiers.
-//   Tier 1, the utility line: the office status (Emma, subtle) and the hours; the
+// The site header: a big logo spanning two tiers.
+//   Tier 1, the utility line: the office status in words (Emma) and the hours; the
 //     5.0 on Google and the ROC licence.
 //   Tier 2, the main bar: About Us ▾, Locations ▾, Commercial, Services ▾, Careers,
-//     Blog, then one capsule with the phone (its glyph wears the office-status ring)
-//     and Get a Free Estimate.
+//     Blog, then the lettered pair: the phone number set as lettering and Get a Free
+//     Estimate, the one squared copper button. No container, no status light.
 // Once the page scrolls, tier 1 folds away and the bar condenses (html.hdr-c, set by
 // site.ts). Below 1240 px the same <nav> becomes the menu sheet (Menu/Close button).
 // Every link is in the HTML: without JS the dropdowns open on hover and focus, and
@@ -129,18 +129,13 @@ const servicesCur = current === '/services' || current.startsWith('/services/') 
               )
             }
             <p class="nav__roc"><RocLink settings={settings} /></p>
-            <svg class="nav__bulb" viewBox="-40 -40 380 470" aria-hidden="true" focusable="false"><use href="#mb"></use></svg>
           </div>
         </nav>
         <div class="hdr-cta">
-          <a class="hdr-tel" href={tel}
-            ><span class="tel-ic" data-office aria-hidden="true"></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
-          >{' '}
+          <a class="hdr-tel" href={tel}><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a>{' '}
           <a class="hdr-est" href={ESTIMATE_PATH} aria-current={cur(ESTIMATE_PATH)}>Get a Free Estimate</a>
         </div>
-        <a class="hdr-call" href={tel}
-          ><span class="tel-ic" data-office aria-hidden="true"></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
-        >
+        <a class="hdr-call" href={tel}><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a>
         <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"
           ><span class="menu-btn__l" data-menu-label>Menu</span><span class="menu-btn__i" aria-hidden="true"><i></i><i></i></span></button
         >
