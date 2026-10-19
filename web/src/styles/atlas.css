@@ -43,7 +43,7 @@
 .vy-end__halo{fill:url(#bulbglow);opacity:.9}
 /* map labels knock the relief out under themselves (the valley-floor colour, feathered), so no wire or ridge shadow ever
    passes under a letter */
-.vy-mtn,.vy-pin b{background:rgb(243 237 227 / .9);box-shadow:0 0 10px 4px rgb(243 237 227 / .72);border-radius:7px}
+.vy-mtn,.vy-pin b{background:rgb(243 237 227 / .9);box-shadow:0 0 10px 4px rgb(243 237 227 / .72);border-radius:var(--r-1)}
 .vy-mtn{position:absolute;z-index:2;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:max-content;max-width:11em;padding:2px 5px 2px 7px;font:700 .6875rem/1.35 var(--font-text);letter-spacing:.2em;text-transform:uppercase;text-align:center;color:#6A5646;pointer-events:none;text-wrap:balance}
 .vy-pin{position:absolute;z-index:3;left:var(--x);top:var(--y);width:0;height:0;cursor:pointer;transition:opacity .25s var(--ease)}
 .vy-pin i{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle,#FFF6E8 0 30%,var(--copper) 36% 100%);box-shadow:0 0 0 2.5px rgb(253 251 247 / .96),0 3px 8px rgb(78 34 19 / .35);transition:transform .3s var(--ease-out)}
@@ -64,15 +64,15 @@
 @media (prefers-reduced-motion:no-preference){.vy-pin.is-on i::after{animation:vy-ring 1.6s var(--ease-out) infinite}}
 @keyframes vy-ring{from{transform:scale(.7);opacity:.9}to{transform:scale(2.2);opacity:0}}
 /* the floating card: the town and its neighbourhoods over the map at the pin (built by site.js from the list item) */
-.vy-callout{position:absolute;z-index:6;left:0;top:0;width:max-content;max-width:min(290px,70cqw);padding:13px 16px 14px;border-radius:16px;background:rgb(253 251 247 / .97);box-shadow:0 0 0 1px rgb(15 42 53 / .07),0 26px 50px -24px rgb(15 42 53 / .55),0 8px 16px -12px rgb(15 42 53 / .2);pointer-events:none;opacity:0;transform:translate(var(--cx,0),var(--cy,0)) translateY(6px) scale(.97);transform-origin:50% 100%;transition:opacity .18s var(--ease),transform .28s var(--ease-out)}
+.vy-callout{position:absolute;z-index:6;left:0;top:0;width:max-content;max-width:min(290px,70cqw);padding:13px 16px 14px;border-radius:var(--r-2);background:rgb(253 251 247 / .97);box-shadow:0 0 0 1px var(--line-strong),var(--shadow-float);pointer-events:none;opacity:0;transform:translate(var(--cx,0),var(--cy,0)) translateY(6px) scale(.97);transform-origin:50% 100%;transition:opacity .18s var(--ease),transform .28s var(--ease-out)}
 .vy-callout.is-on{opacity:1;transform:translate(var(--cx,0),var(--cy,0))}
 .vy-callout b{display:block;font:740 1.1875rem/1.15 var(--font-display);letter-spacing:-.02em;color:var(--ink)}
 .vy-callout b::after{content:"";display:inline-block;width:15px;height:15px;margin-left:6px;vertical-align:-1px;background:var(--copper);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat}
 .vy-callout span{display:block;margin-top:6px;font-size:.875rem;line-height:1.45;color:var(--text)}
 
-/* the index on glass, over the west valley */
+/* the index on a paper panel (97%, a hairline), over the west valley */
 .vy-wrap{position:relative;pointer-events:none}
-.vy-index{pointer-events:auto;width:var(--pw);padding:clamp(28px,2.4vw,40px) clamp(28px,2.6vw,44px) clamp(30px,2.6vw,42px);border-radius:var(--r-xl);background:rgb(253 251 247 / .8);-webkit-backdrop-filter:saturate(1.25) blur(18px);backdrop-filter:saturate(1.25) blur(18px);box-shadow:inset 0 0 0 1px rgb(255 255 255 / .8),0 0 0 1px rgb(15 42 53 / .06),0 44px 90px -44px rgb(58 20 6 / .42)}
+.vy-index{pointer-events:auto;width:var(--pw);padding:clamp(28px,2.4vw,40px) clamp(28px,2.6vw,44px) clamp(30px,2.6vw,42px);border-radius:var(--r-2);background:rgb(253 251 247 / .97);box-shadow:var(--hairline)}
 .vy-lab{display:flex;align-items:center;gap:9px;margin-bottom:8px;font:700 .75rem/1.2 var(--font-text);letter-spacing:.14em;text-transform:uppercase;color:var(--copper-700)}
 .vy-lab::before{content:"";flex:none;width:12px;height:16px;background:currentColor;-webkit-mask:var(--bulb-mark) center/contain no-repeat;mask:var(--bulb-mark) center/contain no-repeat}
 .vy-cities{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(var(--r2,6),auto);grid-auto-flow:column;gap:0 clamp(20px,2vw,32px)}
@@ -97,7 +97,7 @@
 .vy-cta{margin-top:12px;padding-top:22px;border-top:1.5px solid var(--ink)}
 .vy-cta p{font:500 1.0625rem/1.55 var(--font-text);color:var(--ink);max-width:34em}
 .vy-cta .btn-row{margin-top:18px;gap:12px}
-.vy-credit{position:absolute;right:max(14px,(100% - var(--max)) / 2 * .55);bottom:12px;z-index:1;padding:3px 9px;border-radius:var(--r-pill);background:rgb(243 237 227 / .86);font-size:.6875rem;line-height:1.4;color:var(--muted)}
+.vy-credit{position:absolute;right:max(14px,(100% - var(--max)) / 2 * .55);bottom:12px;z-index:1;padding:3px 9px;border-radius:var(--r-1);background:rgb(243 237 227 / .86);font-size:.6875rem;line-height:1.4;color:var(--muted)}
 /* homepage, 1280 px and up (round-5 QA: "the map and the list never fit in one screen"): the index is three columns of
    city names, each with ONE line of its neighbourhoods, cut with an ellipsis. The full list stays in the HTML (crawlers,
    screen readers) and floats over the map at the town's light when a row or its pin is pointed at or focused. The panel
@@ -185,7 +185,7 @@
   .vy-stage{--s:min(100cqw * .9 / (var(--cx1) - var(--cx0)),100cqh * .86 / (var(--cy1) - var(--cy0)) * var(--A));left:calc(50cqw - (var(--cx0) + var(--cx1)) / 2 * var(--s));top:calc(50cqh - (var(--cy0) + var(--cy1)) / 2 * var(--s) / var(--A))}
   .vy-wire{--sw:1.7}
   .vy-wrap{pointer-events:auto}
-  .vy-index{width:auto;padding:40px 0 0;border-radius:0;background:none;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .vy-index{width:auto;padding:40px 0 0;border-radius:0;background:none;box-shadow:none}
   .vy-credit{position:static;display:block;width:max-content;max-width:calc(100% - 2 * var(--gutter));margin:20px 0 0 var(--gutter);padding:0;background:none}
   .vy-atlas--inner .vy-map{order:2}
 }

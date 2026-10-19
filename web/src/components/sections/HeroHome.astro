@@ -2,8 +2,10 @@
 // The homepage hero: a title card on the crew photo (round 5).
 //   Desktop: the photo runs edge to edge and is never cropped above the heads; the
 //   eyebrow, the H1 and the buttons sit on the wall in a box that ends above the
-//   tallest head; the glass proof card (the 5.0, the Google link, the licence and
-//   three review quotes) hangs off the photo's foot, below every chin.
+//   tallest head; the proof card (three review quotes; below 1240 px, where the header
+//   has no utility line, also the rating line and the licence) hangs off the photo's
+//   foot, below every chin. At 1240 px and up the header's utility line states the
+//   rating and the licence, so the hero doesn't repeat them (one mention a screen).
 //   Phones: the eyebrow, the H1, the line under the buttons and Emma's status, then the
 //   crew and the proof card. Below 640 px the call bar is the button pair.
 // Nothing here animates in: the H1, the buttons, the card and the LCP photo are
@@ -13,7 +15,7 @@
 // Geometry: styles/home.css "HERO"; the stacking safety net: scripts/site/motion.ts.
 // Without a photo the words and the proof card simply sit on the page (hero--bare).
 import type {HeroSection, SiteSettings} from '../../lib/types'
-import {ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
+import {ctaHref, siteRating, telHref} from '../../lib/site'
 import {balancedLines, firstSentence} from '../../lib/format'
 import {HERO_SOURCES} from '../../lib/hero'
 import {imageAlt, imageDimensions, imageSrcSet, imageUrl, hasImage} from '../../lib/image'
@@ -24,6 +26,7 @@ import Accent from '../ui/Accent.astro'
 import Button from '../ui/Button.astro'
 import ExternalLink from '../ui/ExternalLink.astro'
 import OfficeStatus from '../ui/OfficeStatus.astro'
+import RatingLine from '../ui/RatingLine.astro'
 import Stars from '../ui/Stars.astro'
 
 interface Props {
@@ -131,43 +134,25 @@ const [phone, wide] = HERO_SOURCES
         <div class="proof__card">
           {rating && (
             <div class="proof__score">
-              <p class="proof__num" aria-hidden="true">
-                {rating.value}
-              </p>
-              <div class="proof__meta">
-                <p class="proof__rating">
-                  <Stars />{' '}
-                  <span>
-                    <span class="sr-only">Rated {rating.value} out of 5 </span>
-                    {ratingSummary(rating)}
-                  </span>
-                </p>
-                {rating.href && (
-                  <p>
-                    <ExternalLink class="link link--ext" href={rating.href}>
-                      Read our reviews on {rating.source}
-                    </ExternalLink>
-                  </p>
-                )}
-                {trust && (
-                  <p class="proof__roc">
-                    {trustParts && settings.rocLicenseUrl ? (
-                      dotted ? (
-                        <ExternalLink class="seps" href={settings.rocLicenseUrl}>
-                          <span>{trustParts[0].replace(/\s*·\s*$/, '')}</span> <span class="nw">{trustParts[1]}</span>
-                        </ExternalLink>
-                      ) : (
-                        <ExternalLink href={settings.rocLicenseUrl}>
-                          {trustParts[0]}
-                          <span class="nw">{trustParts[1]}</span>
-                        </ExternalLink>
-                      )
+              <RatingLine settings={settings} variant="quiet" />
+              {trust && (
+                <p class="proof__roc">
+                  {trustParts && settings.rocLicenseUrl ? (
+                    dotted ? (
+                      <ExternalLink class="seps" href={settings.rocLicenseUrl}>
+                        <span>{trustParts[0].replace(/\s*·\s*$/, '')}</span> <span class="nw">{trustParts[1]}</span>
+                      </ExternalLink>
                     ) : (
-                      trust
-                    )}
-                  </p>
-                )}
-              </div>
+                      <ExternalLink href={settings.rocLicenseUrl}>
+                        {trustParts[0]}
+                        <span class="nw">{trustParts[1]}</span>
+                      </ExternalLink>
+                    )
+                  ) : (
+                    trust
+                  )}
+                </p>
+              )}
             </div>
           )}
           {quotes.length > 0 && (

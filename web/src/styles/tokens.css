@@ -51,8 +51,6 @@
   --copper-900: #4E2213;
   --copper-300: #E8A07A;
   --glow: #FFE2B8;
-  --grad-copper: linear-gradient(120deg, #6A2E19 0%, #8E4024 34%, #AA502E 72%, #B95A33 100%);
-  --grad-copper-text: linear-gradient(160deg, #8E4024 10%, #AA502E 60%, #9A4626 100%);
 
   /* signals (the office status is stated in words, never as a light) */
   --error: #9E1F17;
@@ -104,19 +102,10 @@
      uses outer − padding; past 24 px of padding the two are chosen independently (the form card at 8, its fields at 4). */
   --r-1: 4px;
   --r-2: 8px;
-  --r-sm: var(--r-1);
-  --r-md: var(--r-2);
-  --r-lg: var(--r-2);
-  --r-xl: var(--r-2);
-  --r-pill: var(--r-1);
   /* depth: hairlines for edges (a shadow, so no layout effect); one shadow, only for what floats over content */
   --hairline: inset 0 0 0 1px var(--line-strong);
   --hairline-soft: inset 0 0 0 1px var(--line);
   --shadow-float: 0 1px 2px rgb(15 42 53 / .06), 0 16px 32px -20px rgb(15 42 53 / .28);
-  --shadow-1: 0 1px 2px rgb(15 42 53 / .05), 0 2px 10px -3px rgb(15 42 53 / .07);
-  --shadow-2: 0 1px 2px rgb(15 42 53 / .05), 0 22px 44px -22px rgb(15 42 53 / .3);
-  --shadow-3: 0 2px 4px rgb(58 20 6 / .06), 0 40px 80px -36px rgb(58 20 6 / .45);
-  --glass: rgb(253 251 247 / .88);
 
   /* motion */
   --ease: cubic-bezier(.2, .7, .2, 1);
