@@ -64,7 +64,7 @@ The single source of truth for the business entity. It feeds the header, footer,
 | businessName, legalName, tagline, description | string / text | Entity names; description is used in schema |
 | phone, phoneE164 | string | Display format "(602) 769-7892" and `tel:` format "+16027697892" |
 | email | string | |
-| addresses | postalAddress[] | Offices: Mesa HQ, and Scottsdale (own GBP, appointment-only). See **postalAddress** |
+| addresses | postalAddress[] | Offices: Mesa HQ, and Scottsdale (own GBP; no office visits, the crew goes to homes). See **postalAddress** |
 | openingHours | openingHours[] | Office hours (Mon–Fri 09:00–17:00) |
 | emergencyService | boolean | Only true if after-hours emergency service is really offered |
 | **availabilityNote** | text | **New.** An honest line on when people can reach the office and what happens with urgent requests. Shown near phone numbers and forms. Never implies 24/7 service |
@@ -544,7 +544,7 @@ Office cards from `siteSettings.addresses`.
 
 **Render:**
 - Each office as `<address>`.
-- Label the Scottsdale office "The Wire Guy Electric of Scottsdale (by appointment)".
+- Label the Scottsdale office "The Wire Guy Electric of Scottsdale". (`appointmentOnly` stays in the schema but is unset: the owner confirmed on 2026-10-20 there are no office appointments.)
 - Use the main phone when `phone` is empty.
 - Show hours for an office only if they match its Google Business Profile.
 

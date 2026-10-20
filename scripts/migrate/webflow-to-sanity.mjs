@@ -527,7 +527,7 @@ push({
   phoneE164: biz.telephone ?? '+16027697892',
   email: biz.email,
   addresses: (biz.address ?? []).map((a, i) => {
-    // Scottsdale has its own Google Business Profile (appointment-only office);
+    // Scottsdale has its own Google Business Profile (the crew goes out to homes; no office visits);
     // it's modeled as a branch whose entity lives on /locations/scottsdale.
     const isScottsdale = a.addressLocality === 'Scottsdale'
     const scottsdale = isScottsdale ? locationKeys.find((k) => docs.some((d) => d._id === idFor(k) && d.slug?.current === 'scottsdale')) : undefined
@@ -541,7 +541,7 @@ push({
       postalCode: a.postalCode,
       // The Mesa address is the owners' home: keep it in the footer and schema for NAP
       // consistency, but don't advertise it anywhere else (owner, 2026-10-13).
-      ...(scottsdale ? {gbpName: 'The Wire Guy Electric of Scottsdale', locationPage: ref(scottsdale), appointmentOnly: true} : {footerOnly: true}),
+      ...(scottsdale ? {gbpName: 'The Wire Guy Electric of Scottsdale', locationPage: ref(scottsdale)} : {footerOnly: true}),
     }
   }),
   openingHours: [{_type: 'openingHours', _key: 'weekdays', days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '17:00'}],

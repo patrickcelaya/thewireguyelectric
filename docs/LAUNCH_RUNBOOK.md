@@ -366,7 +366,7 @@ From the citations review (verified 2026-10-17). Canonical details: **The Wire G
 | P2 | Facebook | Intro: ROC, phone, website, address (or service area), hours |
 | P2 | ZoomInfo, BuildZoom | Replace the old company name, the old 85204 address and (480) 789-9812 |
 | P2 | Data aggregators | Push the details to Data Axle, Foursquare and Neustar Localeze, or use BrightLocal Citation Builder; search for "(480) 789-9812" and "Wire Guy Electric Co" |
-| P3 | Google Business Profile, Scottsdale | Answer question 5 first. Google shows Mon–Fri 9–5 open; the site says "by appointment only". The two must agree |
+| P3 | Google Business Profile, Scottsdale | Owner answered question 5: no office visits or appointments; the crew goes out to homes. Remove any "by appointment" wording from the Scottsdale profile so it matches the site |
 | P3 | LinkedIn | Add Mesa, AZ 85205 and the phone |
 | P3 | Angi | Free profile with the details above |
 | P3 | Houzz | Optional free profile with project photos |
@@ -385,7 +385,7 @@ The full list, with what the site shows today and what we did, is in [`migration
 | 2 | **Formspark:** create the form and buy the bundle (above) | No leads are delivered: blocks launch |
 | 3 | **FlowDrive:** account active, separate from Webflow, `thewireguyelectric.com` allowed | Résumés can't be uploaded; applications still arrive |
 | 4 | **"Trusted by 100+ Arizona businesses" (D3)** on /commercial-electrician: is the number right? The three starred quotes there were removed: no review says them | Line stays (the live page shows it) |
-| 5 | **Scottsdale office:** staffed Mon–Fri 9–5, or by appointment only? | Schema keeps no hours for it; GBP and the site still disagree |
+| 5 | **Scottsdale office:** staffed Mon–Fri 9–5, or by appointment only? | **Answered 2026-10-20:** neither: no appointments at the office; the crew goes out to homes. "(by appointment)" removed from the site; schema still lists no office hours |
 | 6 | **Home page hero quotes:** "Went above and beyond, great prices too!", "Could not be more pleased!", "Excellent, polite and timely service!" match no review | They stay (live copy) |
 | 7 | **Promises in posts (D4):** "free post-storm safety inspections" and "free safety check" (monsoon post); "same-day service available" (surge-protection and breaker posts, and the breaker post's meta) | They stay |
 | 8 | **Prices (D6):** the Level 1 vs Level 2 post prices a 200 A panel upgrade at $1,800–$2,500 (site figure $5,200–$6,500) and has two charger price tables that disagree | Left as is |
