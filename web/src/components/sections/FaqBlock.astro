@@ -1,0 +1,58 @@
+---
+// A questions section's two columns: the eyebrow, H2, intro and a link to /faq on
+// the left; the questions on the right (FaqList). Wrap it in a <section> with the
+// background the page wants (e.g. `section answers`).
+import type {FaqItem, ImageRef} from '../../lib/types'
+import Eyebrow from '../ui/Eyebrow.astro'
+import TextLink from '../ui/TextLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+import {imageDimensions} from '../../lib/image'
+import FaqList from './FaqList.astro'
+
+interface Props {
+  faqs: FaqItem[]
+  heading: string
+  intro?: string
+  id?: string
+  eyebrow?: string
+  number?: number | string
+  /** The link under the intro; pass null to leave it out (e.g. on /faq itself). */
+  more?: {href: string; label: string} | null
+  /**
+   * A photo under the aside (the section's image), shown whole; a portrait is cut to 4:5 around its hotspot,
+   * so it never stands far below the questions beside it (faces stay in frame: the QA face check covers it).
+   */
+  image?: ImageRef | null
+}
+
+const {faqs, heading, intro, id = 'faq-h', eyebrow = 'Questions', number, more = {href: '/faq', label: 'All questions on our FAQ'}, image} = Astro.props
+const size = image ? imageDimensions(image) : undefined
+const aspect = size && size.height > size.width ? 4 / 5 : undefined
+---
+
+{
+  faqs.length > 0 && (
+    <div class="faq">
+      <div class="faq__aside">
+        <Eyebrow number={number}>{eyebrow}</Eyebrow>
+        <h2 class="h2" id={id}>
+          {heading}
+        </h2>
+        {intro && <p class="faq__intro">{intro}</p>}
+        {more && (
+          <p>
+            <TextLink href={more.href} icon="go">
+              {more.label}
+            </TextLink>
+          </p>
+        )}
+        {image && (
+          <figure class="faq__photo">
+            <SanityImage image={image} widths={[480, 720, 960]} sizes="(max-width:880px) 92vw, 34vw" aspect={aspect} />
+          </figure>
+        )}
+      </div>
+      <FaqList faqs={faqs} />
+    </div>
+  )
+}

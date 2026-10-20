@@ -1,0 +1,21 @@
+---
+// The phone call bar: below 640 px, fixed at the bottom from the first paint (its
+// space is reserved in CSS), never animated, never hidden; static on very short
+// screens. It is the hero's button pair on phones. The call link's name starts with
+// its visible text (WCAG 2.5.3).
+import type {SiteSettings} from '../../lib/types'
+import {ESTIMATE_PATH, telHref} from '../../lib/site'
+
+interface Props {
+  settings: SiteSettings
+  /** "#estimate" on a page whose estimate form is the main content. */
+  estimateHref?: string
+}
+
+const {settings, estimateHref = ESTIMATE_PATH} = Astro.props
+---
+
+<nav class="callbar" aria-label="Quick contact">
+  <a class="call btn--tel" href={telHref(settings)}>Call now<span class="sr-only"> {settings.phone}</span></a>{' '}
+  <a class="est-l" href={estimateHref}>Free Estimate</a>
+</nav>

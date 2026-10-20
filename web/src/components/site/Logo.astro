@@ -1,0 +1,22 @@
+---
+// The logo artwork (973 × 870 AVIF, with 110–440 w AVIF and WebP copies in
+// public/img and the 500 × 447 PNG as the fallback). Big on purpose (owner).
+interface Props {
+  alt?: string
+  sizes?: string
+  lazy?: boolean
+}
+
+const {
+  alt = 'The Wire Guy Electric, home',
+  sizes = '(max-width:699px) 85px, (max-width:1239px) 99px, (max-width:1365px) 112px, (max-width:1599px) 126px, 139px',
+  lazy = false,
+} = Astro.props
+const widths = [110, 220, 330, 440]
+---
+
+<picture>
+  <source type="image/avif" srcset={[...widths.map((w) => `/img/logo-${w}.avif ${w}w`), '/logo.avif 973w'].join(', ')} sizes={sizes} />
+  <source type="image/webp" srcset={widths.map((w) => `/img/logo-${w}.webp ${w}w`).join(', ')} sizes={sizes} />
+  <img src="/logo.png" alt={alt} width="500" height="447" loading={lazy ? 'lazy' : undefined} decoding={lazy ? 'async' : undefined} />
+</picture>

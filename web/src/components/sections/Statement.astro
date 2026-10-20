@@ -1,0 +1,62 @@
+---
+// A statement in the team's own words (quoteSection without a customer review): the
+// owner's words on /our-team. Set on the copper band of the homepage's "Our promise":
+// the eyebrow and H2 in cream and white, the subheading, the quote large in display
+// type with the person's name and role, and one real photo beside it (never tinted:
+// the copper is the band, not a layer over anyone). Styles: styles/pages.css "STATEMENT".
+import type {QuoteSection} from '../../lib/types'
+import {sectionLabel} from '../../lib/sections'
+import Eyebrow from '../ui/Eyebrow.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  section: QuoteSection
+}
+
+const {section} = Astro.props
+const id = `${section._key}-h`
+const {person, image} = section
+// the design sets the quotation marks; stored quotes may carry their own
+const quote = section.quote.trim().replace(/^[“"]\s*|\s*[”"]$/g, '')
+---
+
+<section class:list={['stmt-s', !image && 'stmt-s--solo']} {...sectionLabel(id, section.heading, section.eyebrow ?? 'In our words')}>
+  <div class="wrap stmt">
+    <div class="stmt__copy">
+      {section.eyebrow && <Eyebrow variant="cream">{section.eyebrow}</Eyebrow>}
+      {
+        section.heading && (
+          <h2 class="h2" id={id}>
+            {section.heading}
+          </h2>
+        )
+      }
+      {section.subheading && <h3 class="stmt__sub">{section.subheading}</h3>}
+      <figure class="stmt__quote">
+        <blockquote>
+          <p>“{quote}”</p>
+        </blockquote>
+        {
+          person && (
+            <figcaption>
+              <span class="stmt__name">{person.name}</span>
+              {person.role && (
+                <>
+                  {' '}
+                  <span class="stmt__role">{person.role}</span>
+                </>
+              )}
+            </figcaption>
+          )
+        }
+      </figure>
+    </div>
+    {
+      image && (
+        <figure class="stmt__photo">
+          <SanityImage image={image} widths={[640, 828, 1086, 1280]} sizes="(max-width:899px) 100vw, 44vw" />
+        </figure>
+      )
+    }
+  </div>
+</section>

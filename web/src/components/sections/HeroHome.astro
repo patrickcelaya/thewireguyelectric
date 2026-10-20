@@ -1,0 +1,202 @@
+---
+// The homepage hero: a title card on the crew photo (round 5).
+//   Desktop: the photo runs edge to edge and is never cropped above the heads; the
+//   eyebrow, the H1 and the buttons sit on the wall in a box that ends above the
+//   tallest head; the glass proof card (the 5.0, the Google link, the licence and
+//   three review quotes) hangs off the photo's foot, below every chin.
+//   Phones: the eyebrow, the H1, the line under the buttons and Emma's status, then the
+//   crew and the proof card. Below 640 px the call bar is the button pair.
+// Nothing here animates in: the H1, the buttons, the card and the LCP photo are
+// painted at full opacity at once. The page H1 comes from the page (never from the
+// section); its accent words come from the section. Under the hero, the live hero
+// paragraph: its first sentence as the lit statement, the rest as a quiet lede.
+// Geometry: styles/home.css "HERO"; the stacking safety net: scripts/site/motion.ts.
+// Without a photo the words and the proof card simply sit on the page (hero--bare).
+import type {HeroSection, SiteSettings} from '../../lib/types'
+import {ctaHref, ratingSummary, siteRating, telHref} from '../../lib/site'
+import {balancedLines, firstSentence} from '../../lib/format'
+import {HERO_SOURCES} from '../../lib/hero'
+import {imageAlt, imageDimensions, imageSrcSet, imageUrl, hasImage} from '../../lib/image'
+import {facesOf} from '../../lib/brand-photos'
+import {getRedirectMap} from '../../lib/queries'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Accent from '../ui/Accent.astro'
+import Button from '../ui/Button.astro'
+import ExternalLink from '../ui/ExternalLink.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import Stars from '../ui/Stars.astro'
+
+interface Props {
+  section: HeroSection
+  /** The page H1 (page.heading). */
+  heading: string
+  settings: SiteSettings
+}
+
+const {section, heading, settings} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const lines = balancedLines(heading, section.headingAccent)
+const notes = (section.ctaNotes ?? []).filter(Boolean)
+const rating = section.showTrustBar !== false ? siteRating(settings) : undefined
+const quotes = section.reviewSnippets.filter((q) => q.text)
+
+// The credentials line links to the ROC lookup when it states the licence number.
+const roc = settings.rocLicense ? `ROC #${settings.rocLicense}` : undefined
+const trust = section.trustLine
+const rocAt = roc && trust ? trust.indexOf(roc) : -1
+const trustParts = trust && rocAt >= 0 ? [trust.slice(0, rocAt), trust.slice(rocAt)] : undefined
+// "… insured · ROC #…": the claim and the number as .seps parts, so the dot goes with the number when it wraps
+const dotted = trustParts && /·\s*$/.test(trustParts[0])
+
+// The lit statement turns from warm grey to ink a few words at a time as it rises.
+// A non-breaking space keeps the dash in "service - keeping" off the start of a line.
+const [statement, lede] = firstSentence((section.text ?? '').replace(/ - /g, ' - '))
+const phrases = statement.match(/\S+(?:\s+\S+){0,2}/g) ?? []
+
+const image = section.image
+const photo = hasImage(image) ? image : undefined
+const size = imageDimensions(photo)
+const [phone, wide] = HERO_SOURCES
+---
+
+<section class:list={['hero', !photo && 'hero--bare']} aria-labelledby={id}>
+  <div class="hero__copy" data-hero-copy>
+    <div class="hero__inner">
+      {section.eyebrow && <Eyebrow class="hero__kicker">{section.eyebrow}</Eyebrow>}
+      <h1 id={id}>
+        {
+          lines.map((line, i) => (
+            <>
+              {i > 0 && ' '}
+              <span class="ln">
+                <Accent text={line} accent={section.headingAccent} />
+              </span>
+            </>
+          ))
+        }
+      </h1>
+      <div class="hero__actions">
+        {section.primaryCta && <Button href={ctaHref(section.primaryCta, redirects)} icon="go">{section.primaryCta.label}</Button>}{' '}
+        {section.secondaryCta && <Button href={ctaHref(section.secondaryCta, redirects)} variant="paper">{section.secondaryCta.label}</Button>}{' '}
+        {
+          section.showPhone !== false && (
+            <Button href={telHref(settings)} variant="paper" icon="tel">
+              <span class="tnum">Call {settings.phone}</span>
+            </Button>
+          )
+        }
+        {
+          notes.length > 0 && (
+            <p class="hero__sub">
+              <span class="hero__sub-in">
+                {notes.map((note) => (
+                  <>
+                    <span>{note}</span>{' '}
+                  </>
+                ))}
+              </span>
+            </p>
+          )
+        }
+        <span class="hero__status"><OfficeStatus settings={settings} /></span>
+      </div>
+    </div>
+  </div>
+  {
+    photo && (
+      <div class="hero__photo">
+        <div class="hero__fill" aria-hidden="true" style={`background-image:url(${imageUrl(photo, {width: 500})})`} />
+        <picture>
+          <source media={phone.media} srcset={imageSrcSet(photo, [...phone.widths])} sizes={phone.sizes} />
+          <img
+            src={imageUrl(photo, {width: 1600})}
+            srcset={imageSrcSet(photo, [...wide.widths])}
+            sizes={wide.sizes}
+            width={size?.width}
+            height={size?.height}
+            alt={imageAlt(photo) ?? ''}
+            fetchpriority="high"
+            loading="eager"
+            decoding="sync"
+            data-faces={facesOf(photo)}
+          />
+        </picture>
+      </div>
+    )
+  }
+  {
+    (rating || quotes.length > 0) && (
+      <div class="proof">
+        <div class="proof__card">
+          {rating && (
+            <div class="proof__score">
+              <p class="proof__num" aria-hidden="true">
+                {rating.value}
+              </p>
+              <div class="proof__meta">
+                <p class="proof__rating">
+                  <Stars />{' '}
+                  <span>
+                    <span class="sr-only">Rated {rating.value} out of 5 </span>
+                    {ratingSummary(rating)}
+                  </span>
+                </p>
+                {rating.href && (
+                  <p>
+                    <ExternalLink class="link link--ext" href={rating.href}>
+                      Read our reviews on {rating.source}
+                    </ExternalLink>
+                  </p>
+                )}
+                {trust && (
+                  <p class="proof__roc">
+                    {trustParts && settings.rocLicenseUrl ? (
+                      dotted ? (
+                        <ExternalLink class="seps" href={settings.rocLicenseUrl}>
+                          <span>{trustParts[0].replace(/\s*·\s*$/, '')}</span> <span class="nw">{trustParts[1]}</span>
+                        </ExternalLink>
+                      ) : (
+                        <ExternalLink href={settings.rocLicenseUrl}>
+                          {trustParts[0]}
+                          <span class="nw">{trustParts[1]}</span>
+                        </ExternalLink>
+                      )
+                    ) : (
+                      trust
+                    )}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
+          {quotes.length > 0 && (
+            <ul class="proof__quotes" role="list" aria-label="What customers say">
+              {quotes.map((q) => (
+                <li>
+                  <Stars /> <p>“{q.text}”</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    )
+  }
+  {
+    phrases.length > 0 && (
+      <div class="wrap creed">
+        <p class="statement" data-lit>
+          {phrases.map((words, i) => (
+            <>
+              <span class="w" style={`--i:${i}`}>
+                {words}
+              </span>{' '}
+            </>
+          ))}
+        </p>
+        {lede && <p class="creed__more">{lede}</p>}
+      </div>
+    )
+  }
+</section>

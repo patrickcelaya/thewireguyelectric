@@ -1,0 +1,151 @@
+---
+// The site header (round 5): a big logo spanning two tiers.
+//   Tier 1, the utility line: the office status (Emma, subtle) and the hours; the
+//     5.0 on Google and the ROC licence.
+//   Tier 2, the main bar: About Us ▾, Locations ▾, Commercial, Services ▾, Careers,
+//     Blog, then one capsule with the phone (its glyph wears the office-status ring)
+//     and Get a Free Estimate.
+// Once the page scrolls, tier 1 folds away and the bar condenses (html.hdr-c, set by
+// site.ts). Below 1240 px the same <nav> becomes the menu sheet (Menu/Close button).
+// Every link is in the HTML: without JS the dropdowns open on hover and focus, and
+// "Menu" is a link to the footer navigation.
+import type {SiteSettings} from '../../lib/types'
+import type {NavModel} from '../../lib/nav'
+import {ESTIMATE_PATH, licence, officeHours, ratingSummary, siteRating, telHref} from '../../lib/site'
+import ExternalLink from '../ui/ExternalLink.astro'
+import Stars from '../ui/Stars.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import RocLink from '../ui/RocLink.astro'
+import Button from '../ui/Button.astro'
+import Logo from './Logo.astro'
+
+interface Props {
+  settings: SiteSettings
+  nav: NavModel
+  /** Path of the current page, for aria-current and the copper wire under its section. */
+  current: string
+}
+
+const {settings, nav, current} = Astro.props
+const rating = siteRating(settings)
+const roc = licence(settings)
+const hours = officeHours(settings).line
+const tel = telHref(settings)
+
+const cur = (href: string) => (href === current ? 'page' : undefined)
+const inSection = (hrefs: string[]) => current !== '/' && hrefs.includes(current)
+const aboutCur = inSection(nav.about.map((l) => l.href))
+const citiesCur = inSection(nav.cities.map((c) => c.href))
+const servicesCur = current === '/services' || current.startsWith('/services/') || current.startsWith('/services-categories/')
+---
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="hdr-glass" aria-hidden="true"></div>
+  <div class="wrap hdr">
+    <a class="logo" href="/"><Logo /></a>
+    <div class="hdr-body">
+      <div class="hdr-util">
+        <p class="hu-l">
+          <OfficeStatus settings={settings} variant="util" />{' '}<span class="hu-sep" aria-hidden="true"></span>{' '}<span class="hu-hours">{hours}</span>
+        </p>
+        <p class="hu-r">
+          {
+            rating?.href && (
+              <ExternalLink class="hu-link hu-rate" href={rating.href}>
+                <Stars class="stars--util" />
+                <b class="tnum">{rating.value}</b>
+                <span class="hu-lab"> on {rating.source}</span>
+                <span class="sr-only">
+                  {' '}
+                  out of 5 stars {ratingSummary(rating)}. Read our reviews on {rating.source}
+                </span>
+              </ExternalLink>
+            )
+          }
+          {rating?.href && roc?.href && <> <span class="hu-sep" aria-hidden="true" /> </>}
+          {
+            roc?.href && (
+              <ExternalLink class="hu-link hu-roc" href={roc.href}>
+                <span class="hu-lab">
+                  Licensed<span class="hu-more">, bonded, and insured</span> ·{' '}
+                </span>
+                {roc.number}
+              </ExternalLink>
+            )
+          }
+        </p>
+      </div>
+      <div class="hdr-main">
+        <nav class="nav" id="site-nav" aria-label="Main">
+          <div class="nav__status">
+            <OfficeStatus settings={settings} variant="util" />{' '}
+            <span class="nav__hours">Our Office Hours: {hours}</span>
+          </div>
+          <ul class="nav__list">
+            <li class="dd">
+              <button class:list={['dd-btn', aboutCur && 'is-cur']} type="button" aria-controls="dd-about">About Us</button>
+              <div class="dd-panel" id="dd-about">
+                <ul>{nav.about.map((l) => <li><a href={l.href} aria-current={cur(l.href)}>{l.label}</a></li>)}</ul>
+              </div>
+            </li>
+            <li class="dd">
+              <button class:list={['dd-btn', citiesCur && 'is-cur']} type="button" aria-controls="dd-loc">Locations</button>
+              <div class="dd-panel dd-panel--cols" id="dd-loc">
+                <ul>{nav.cities.map((c) => <li><a href={c.href} aria-current={cur(c.href)}>{c.name}</a></li>)}</ul>
+              </div>
+            </li>
+            <li><a href={nav.commercial.href} aria-current={cur(nav.commercial.href)}>{nav.commercial.label}</a></li>
+            <li class="dd">
+              <button class:list={['dd-btn', servicesCur && 'is-cur']} type="button" aria-controls="dd-svc">Services</button>
+              <div class="dd-panel dd-panel--mega" id="dd-svc">
+                <div class="dd-mega">
+                  {
+                    nav.serviceGroups.map((g) => (
+                      <div>
+                        <p class="grp"><a href={g.href} aria-current={cur(g.href)}>{g.label}</a></p>
+                        <ul>{g.links.map((l) => <li><a href={l.href} aria-current={cur(l.href)}>{l.label}</a></li>)}</ul>
+                      </div>
+                    ))
+                  }
+                  <p class="all"><a href={nav.allServices.href} aria-current={cur(nav.allServices.href)}>{nav.allServices.label}</a></p>
+                </div>
+              </div>
+            </li>
+            <li><a href={nav.careers.href} aria-current={cur(nav.careers.href)}>{nav.careers.label}</a></li>
+            <li><a href={nav.blog.href} aria-current={cur(nav.blog.href)}>{nav.blog.label}</a></li>
+          </ul>
+          <div class="nav__cta">
+            <div class="nav__btns">
+              <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
+              <Button href={tel} variant="ghost" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
+            </div>
+            {
+              rating?.href && (
+                <p class="nav__proof">
+                  <Stars /> <b class="tnum">{rating.value}</b> <span class="nav__sep" aria-hidden="true">·</span>{' '}
+                  <ExternalLink class="rating__g" href={rating.href}>Read our reviews on {rating.source}</ExternalLink>
+                </p>
+              )
+            }
+            <p class="nav__roc"><RocLink settings={settings} /></p>
+            <svg class="nav__bulb" viewBox="-40 -40 380 470" aria-hidden="true" focusable="false"><use href="#mb"></use></svg>
+          </div>
+        </nav>
+        <div class="hdr-cta">
+          <a class="hdr-tel" href={tel}
+            ><span class="tel-ic" data-office aria-hidden="true"></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
+          >{' '}
+          <a class="hdr-est" href={ESTIMATE_PATH} aria-current={cur(ESTIMATE_PATH)}>Get a Free Estimate</a>
+        </div>
+        <a class="hdr-call" href={tel}
+          ><span class="tel-ic" data-office aria-hidden="true"></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
+        >
+        <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"
+          ><span class="menu-btn__l" data-menu-label>Menu</span><span class="menu-btn__i" aria-hidden="true"><i></i><i></i></span></button
+        >
+        <a class="menu-link" href="#footer-nav">Menu</a>
+      </div>
+    </div>
+  </div>
+</header>

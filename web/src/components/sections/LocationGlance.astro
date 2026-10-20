@@ -1,0 +1,91 @@
+---
+// "{City} at a glance" (round-5 Gilbert mockup): the answer-first summary (who we are,
+// from Site settings, and the city's own neighbourhoods), the sourced local facts
+// (electric utilities, county, ZIP codes) with the office hours, and a photo of the crew
+// coming to a customer's door. The city's permit and utility notes are answered in its
+// own questions further down the page; only a city whose questions don't carry them
+// shows them here, as a note under the facts. Every fact comes from the location
+// document (migration/local-facts); a missing one is left out, never filled.
+// Styles: styles/inner.css (.glance, .facts) and styles/cms.css.
+import type {FaqItem, ImageRef, LocationDoc, PostalAddress, SiteSettings} from '../../lib/types'
+import {officeHours} from '../../lib/site'
+import {WALK_PHOTO, companyPhoto} from '../../lib/brand-photos'
+import {blockText, listOf} from '../../lib/cms'
+import Eyebrow from '../ui/Eyebrow.astro'
+import SanityImage from '../ui/SanityImage.astro'
+import PortableText from '../PortableText.astro'
+
+interface Props {
+  location: LocationDoc
+  settings: SiteSettings
+  number?: number
+  /** The office in this city, if it has one (Scottsdale). */
+  office?: PostalAddress
+  /** The city's own questions, shown further down the page. */
+  faqs?: FaqItem[]
+  /** The photo, when the page picked it (lib/cms.ts cityPhoto: one the page shows nowhere else). */
+  photo?: ImageRef
+}
+
+const {location, settings, number, office, faqs = []} = Astro.props
+const city = location.shortName || location.name
+const home = settings.homeCity?.name
+const hoods = location.neighborhoods ?? []
+const utilities = location.utilityProviders ?? []
+const zips = location.zipCodes ?? []
+const hours = officeHours(settings).line
+// the page's pick; else a real job photo of this city when the editor set one, else the crew walking up to a door
+const photo = Astro.props.photo ?? (companyPhoto(location.mainImage) ? location.mainImage! : WALK_PHOTO.image)
+const answered = faqs.flatMap((f) => (f.answer ?? []).map(blockText)).join('\n')
+const notes = (location.permitNotes ?? []).filter((b) => !answered.includes(blockText(b)))
+const facts = [
+  utilities.length && {label: utilities.length > 1 ? 'Electric utilities' : 'Electric utility', value: listOf(utilities)},
+  location.county && {label: 'County', value: location.county},
+  zips.length && {label: zips.length > 1 ? 'ZIP codes' : 'ZIP code', value: zips.join(', ')},
+  hours && {label: 'Office hours', value: hours},
+].filter((f): f is {label: string; value: string} => Boolean(f))
+---
+
+<section class="section glance-s" aria-labelledby="glance-h">
+  <div class="wrap glance">
+    <div class="glance__copy">
+      <Eyebrow number={number}>{city} at a glance</Eyebrow>
+      <h2 class="h2" id="glance-h">Licensed electrician serving {city}, AZ</h2>
+      <p class="answer">
+        {settings.businessName} is a family-owned, licensed electrician{
+          settings.rocLicense && (
+            <>
+              {' '}
+              <strong>(AZ ROC #{settings.rocLicense})</strong>
+            </>
+          )
+        }{home && ` based in ${home}`}{office && `, with an office here in ${city}`}.{
+          hoods.length > 0 && ` We serve homes and businesses across ${city}, including ${listOf(hoods)}.`
+        }
+      </p>
+      {
+        facts.length > 0 && (
+          <dl class="facts">
+            {facts.map((f) => (
+              <div>
+                <dt>{f.label}</dt> <dd><b>{f.value}</b></dd>
+              </div>
+            ))}
+          </dl>
+        )
+      }
+    </div>
+    <figure class="glance__photo">
+      <SanityImage image={photo} widths={[480, 720, 1080]} sizes="(max-width:899px) 92vw, 40vw" aspect={4 / 5} />
+      <figcaption>We come to you</figcaption>
+    </figure>
+    {
+      notes.length ? (
+        <div class="local-note">
+          <h3 class="local-note__h">Permits and power in {city}</h3>
+          <PortableText value={notes} class="local-note__text" />
+        </div>
+      ) : null
+    }
+  </div>
+</section>

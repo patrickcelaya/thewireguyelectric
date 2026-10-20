@@ -30,11 +30,14 @@ async function loadLocalDocs() {
   localDocs ??= readFile(LOCAL_DATASET, 'utf8').then(
     (text) => {
       console.warn(`[sanity] PUBLIC_SANITY_PROJECT_ID not set; using local dataset ${LOCAL_DATASET}`)
+      // In _id order, as Sanity returns documents: groq-js keeps dataset order for ties
+      // and unordered queries, so file order would render pages production doesn't.
       return text
         .split('\n')
         .filter(Boolean)
         .map((line) => JSON.parse(line))
         .filter((doc) => !String(doc._id).startsWith('drafts.'))
+        .sort((a, b) => (a._id < b._id ? -1 : a._id > b._id ? 1 : 0))
     },
     () => {
       console.warn('[sanity] No Sanity project and no local dataset; pages will render empty')

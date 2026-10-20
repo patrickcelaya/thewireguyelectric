@@ -1,0 +1,174 @@
+/* ===================================================================== CMS TEMPLATES: city, service and category pages (the round-5 Gilbert
+   and Panels mockups, plus the parts their data needs that the mockups didn't show). Loaded after styles/inner.css, whose
+   photo heroes (.ihero), glance facts, photo cards (.tiles3), article (.prose, .contact-card) and warning signs these extend. */
+
+/* ===================================================================== the trust card with an office in it (Scottsdale) */
+.itrust__card--more{align-items:flex-start}
+/* the office (components/sections/OfficeCard, base styles in styles/inner.css) set a size larger, its phone and profile link on one row */
+.itrust__office{flex-basis:100%;padding-top:14px;border-top:1px solid var(--line);gap:4px;grid-template-columns:auto 1fr;column-gap:20px;font-size:.9375rem;line-height:1.45;color:var(--text)}
+.itrust__office>*{grid-column:1/-1}
+.itrust__office>.office__tel{grid-column:1}
+.itrust__office>.office__map{grid-column:2;align-self:center}
+.itrust__office .office__name{font-size:1.125rem;line-height:1.3;letter-spacing:-.012em}
+.itrust__office .office__lines,.itrust__office .office__map .link{font-size:inherit;line-height:inherit}
+.itrust__office .office__tel a{font:750 1.125rem/1.3 var(--font-display)}
+@media (min-width:1100px){.ihero--sky .itrust__office{padding:14px 0 0;border-left:0}}
+/* 1100-1399 px: the copy column is narrow, the lede wraps to three lines and the buttons run lower, so the fleet photo sits
+   lower too (more sky): the crew's heads stay clear of the buttons and Emma's line. An office in the trust card makes the
+   card taller, so that hero gets more sky still. Faces check: build/t1-cms/faces.mjs, 1100 to 1440 px. */
+@media (min-width:1100px) and (max-width:1399px){
+  .ihero--sky .ihero__stage{--sh:min(calc(var(--hp) * .86),max(620px,calc(100svh - var(--hdr-h) + 140px),calc(var(--hp) * .205 + min(250px + 18.5cqw,640px) + 24px)))}
+  .ihero--office .ihero__stage{--sh:min(calc(var(--hp) * .92),max(620px,calc(100svh - var(--hdr-h) + 140px),calc(var(--hp) * .205 + min(250px + 18.5cqw,640px) + 24px)))}
+  .ihero--office .itrust__card{gap:12px;padding:20px 22px;box-shadow:inset 0 0 0 1px rgb(255 255 255 / .75),0 2px 4px rgb(58 20 6 / .06),0 18px 36px -22px rgb(58 20 6 / .4)}
+}
+
+
+/* ===================================================================== the service hero without a company photo: copper light, the bulb drawn
+   on it in warm glow (stock photos are never shown) */
+.ihero--plain .ihero__stage{background:radial-gradient(ellipse 52% 70% at 84% 34%,rgb(255 214 150 / .2),rgb(255 214 150 / 0) 70%),linear-gradient(100deg,#4E2213 0%,#6A2E19 42%,#823A20 74%,#964426 100%)}
+.ihero--plain .ihero__copy{padding-right:calc(clamp(140px,15vw,250px) + 48px)}
+.ihero__bulb{position:absolute;right:max(var(--gutter),calc((100% - var(--max)) / 2));top:50%;width:clamp(140px,15vw,250px);transform:translateY(-58%)}
+.ihero__bulb .wire,.ihero__bulb .ghost path{stroke:var(--glow)}
+.ihero__bulb .ghost path{stroke-opacity:.18}
+.ihero__bulb .bars>*{fill:var(--glow)}
+.ihero__bulb .glass{fill:#FFF4E2}
+@media (max-width:899px){
+  .ihero--plain .ihero__copy{padding-right:0}
+  .ihero__bulb{top:auto;bottom:96px;right:var(--gutter);width:clamp(64px,16vw,104px);transform:none;opacity:.9}
+  .ihero--plain .ihero__copy .ihero__lede{padding-right:clamp(64px,16vw,104px)}
+}
+@media (max-width:639px){.ihero__bulb{display:none}.ihero--plain .ihero__copy .ihero__lede{padding-right:0}}
+
+/* ===================================================================== the service hero with a company photo of people: the words on copper,
+   the photo in natural colour on the right (framed on their faces; the feather never reaches a face). On phones the photo comes first,
+   right under the header (it is first in the HTML), so a face is never behind the call bar at the foot of the screen */
+.ihero--split .ihero__stage{background:linear-gradient(100deg,#4E2213 0%,#6A2E19 45%,#823A20 80%)}
+.ihero__side{position:absolute;top:0;right:0;bottom:0;width:min(46%,860px);margin:0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%);mask-image:linear-gradient(90deg,transparent,#000 18%)}
+.ihero__side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ihero--split .ihero__copy{padding-right:calc(min(46%,860px) + 24px)}
+@media (min-width:900px){.ihero--split h1{font-size:clamp(2.75rem,5.6cqw,7rem)}}
+@media (max-width:899px){
+  .ihero--split .ihero__stage{display:flex;flex-direction:column}
+  .ihero--split .ihero__copy{padding-right:0;padding-bottom:calc(32px + 5cqw)}
+  .ihero__side{position:relative;width:100%;aspect-ratio:4/3;-webkit-mask-image:none;mask-image:none}
+  .ihero--split .itrust{margin-top:-5cqw}
+}
+/* narrow desktops: the frame is tall for its width, so the photo is cropped at the sides and a face can come near the left edge:
+   a shorter feather there keeps every face at full strength */
+@media (min-width:900px) and (max-width:1199px){.ihero__side{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%);mask-image:linear-gradient(90deg,transparent,#000 7%)}}
+/* a head in the photo's left third (ServiceHero: .ihero__side--near): the short feather at every desktop width */
+@media (min-width:900px){.ihero__side--near{-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%);mask-image:linear-gradient(90deg,transparent,#000 6%)}}
+/* tablets: a wider frame, so the H1 under the photo still starts in the first screen */
+@media (min-width:640px) and (max-width:899px){.ihero__side{aspect-ratio:2/1}}
+
+/* ===================================================================== city at a glance: the permit and power notes under the facts */
+.local-note{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.36fr) minmax(0,1fr);gap:20px clamp(32px,5vw,96px);padding-top:clamp(28px,2.6vw,40px);border-top:1.5px solid var(--ink)}
+.local-note__h{font-size:clamp(1.5rem,1.15rem + 1vw,2.25rem);letter-spacing:-.03em;line-height:1.08;max-width:11em}
+.local-note__text{columns:2 22rem;column-gap:clamp(28px,3vw,56px);font-size:var(--fs-body);line-height:1.65;color:var(--text)}
+.local-note__text p{margin-bottom:14px}
+@media (max-width:899px){.local-note{grid-template-columns:minmax(0,1fr)}}
+
+/* ===================================================================== services without a company photo: a two-column index under the cards */
+.svc-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(24px,3.4vw,64px);border-top:1.5px solid var(--ink)}
+.svc-rows--after{margin-top:clamp(40px,4vw,64px)}
+.svc-row{position:relative;padding:22px 52px 24px 0;border-bottom:1px solid var(--line-strong)}
+.svc-row h3{font-size:clamp(1.25rem,1.1rem + .45vw,1.5rem);letter-spacing:-.02em}
+.svc-row h3 a{color:var(--ink);text-decoration:none;transition:color .2s var(--ease)}
+.svc-row h3 a::after{content:"";position:absolute;inset:0}
+.svc-row::after{content:"";position:absolute;right:6px;top:28px;width:18px;height:18px;background:var(--copper-700);-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease)}
+.svc-row:hover h3 a{color:var(--copper-700)}
+.svc-row:hover::after{transform:translateX(4px)}
+.svc-row p{margin-top:6px;font-size:var(--fs-small);line-height:1.55;color:var(--text);max-width:34em}
+.svc-row :focus-visible{outline-offset:2px}
+.svc-rows:has(>.svc-row:only-child){grid-template-columns:minmax(0,1fr)}
+@media (max-width:760px){.svc-rows{grid-template-columns:minmax(0,1fr)}}
+
+/* ===================================================================== long-form bodies */
+.prose a strong,.prose h3 strong{color:inherit}
+/* imported headings often wrap their words in <strong>: a heading keeps its own weight, bold or not */
+.prose :is(h2,h3,h4) :is(strong,b){font-weight:inherit}
+/* a city's "Service Areas within {City} include:" line and its list: a copper kicker over two columns of neighbourhoods */
+.prose--city p:has(> strong:only-child):has(+ ul){display:flex;align-items:center;gap:14px;margin:52px 0 18px;font:700 .875rem/1.35 var(--font-text);letter-spacing:.1em;text-transform:uppercase;color:var(--copper-700)}
+.prose--city p:has(> strong:only-child):has(+ ul)::before{content:"";flex:none;width:28px;height:1.5px;background:var(--copper)}
+.prose--city p:has(> strong:only-child):has(+ ul) strong{color:inherit;font-weight:inherit}
+.prose--city p:has(> strong:only-child)+ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px;margin:0 0 24px}
+.prose--city p:has(> strong:only-child)+ul li{padding:12px 0 12px 26px;border-top:1px solid var(--line);font:600 1.0625rem/1.4 var(--font-display);color:var(--ink)}
+.prose--city p:has(> strong:only-child)+ul li::before{top:calc(12px + .42em)}
+/* a service's lists of bold-led items ("What We Do"): rows between hairlines */
+.prose--service ul:has(> li > strong:first-child){gap:0;border-top:1px solid var(--line)}
+.prose--service ul:has(> li > strong:first-child)>li{padding:16px 0 16px 26px;border-bottom:1px solid var(--line)}
+.prose--service ul:has(> li > strong:first-child)>li::before{top:calc(16px + .62em)}
+
+/* ===================================================================== warning signs: the body's own paragraph under the heading */
+.signs__more p{font-size:var(--fs-lede);line-height:1.6;color:var(--muted)}
+.signs__more a{color:var(--copper-700);text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
+.signs__t a{color:var(--copper-700);text-decoration:underline;text-underline-offset:.2em}
+
+/* ===================================================================== at a glance: Emma's status under the hours (only once the gate has run) */
+.facts__status{margin-top:6px;font-size:var(--fs-meta);color:var(--muted)}
+html:not(.oo):not(.oc) .facts__status{display:none}
+
+/* ===================================================================== the answers band without questions: the guides start at the top */
+.answers .wrap>.guides-block:first-child{margin-top:0}
+/* four or five guides (a service page shows every guide picked for it): four in a row (two by two on tablets);
+   five as three over two, every card the same width, the two centred */
+@media (min-width:900px){
+  .guides--4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .guides--5{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .guides--5>.guide{grid-column:span 2}
+  .guides--5>.guide:nth-child(4){grid-column:2/span 2}
+}
+@media (min-width:1100px){.guides--4{grid-template-columns:repeat(4,minmax(0,1fr))}.guides--4 .guide h3{font-size:1.25rem}}
+/* one or two guides fill the row: two side by side, one as a wide card with its words beside the cover */
+@media (min-width:900px){
+  .guides--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .guides--1{grid-template-columns:minmax(0,1fr)}
+  .guides--1>.guide{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);column-gap:clamp(24px,2.8vw,44px);align-content:center}
+  .guides--1>.guide>.cover{grid-row:1 / span 3}
+  .guides--1>.guide>:not(.cover){grid-column:2}
+  .guides--1>.guide>.meta{margin-top:0}
+}
+
+/* ===================================================================== a section head with several links */
+.head .more:has(.textlink+.textlink){display:flex;flex-wrap:wrap;gap:14px 28px}
+
+/* ===================================================================== category pages: the type-led hero (styles/inner.css .ehero) with the
+   trust lines, the bulb lit on the right */
+.page-cat main{background:var(--bone)}
+.chero .crumbs{margin-bottom:clamp(24px,2.6vw,40px)}
+.chero h1{max-width:12ch}
+.chero__btns{margin-top:clamp(28px,2.6vw,44px)}
+.chero__proof{display:grid;gap:10px;margin-top:clamp(22px,2vw,32px)}
+.chero__roc a{font-size:var(--fs-small);color:var(--text);text-decoration:underline;text-decoration-color:var(--line-strong);text-underline-offset:.24em}
+.chero__roc a:hover{color:var(--copper-700)}
+.chero__rich p+p{margin-top:12px}
+.chero__bulb{align-self:end;margin-bottom:-8px}
+@media (max-width:899px){.chero__bulb{position:absolute;right:0;top:clamp(96px,22vw,150px);width:clamp(64px,17vw,110px);margin:0}.chero .kicker{padding-right:clamp(70px,19vw,120px)}}
+@media (max-width:599px){.chero__bulb{display:none}.chero .kicker{padding-right:0}}
+@media (max-width:639px){.chero__btns{display:none}}
+/* blog topics: the services the guides are written around */
+.topic-hubs{margin-top:clamp(56px,6vw,96px);padding-top:clamp(28px,2.6vw,40px);border-top:1.5px solid var(--ink)}
+.topic-hubs__h{font-size:clamp(1.5rem,1.15rem + 1vw,2.25rem);letter-spacing:-.03em}
+
+/* ===================================================================== RECENT WORK (components/sections/WorkGallery): the owner's own photos,
+   captions under them (never over a face), in one of three layouts per page. Every cell has a fixed box, so the lazy photos
+   move nothing as they arrive. */
+.work-s .wg{--gap:clamp(10px,1.1vw,18px);display:grid;gap:var(--gap);margin-top:clamp(28px,3vw,48px)}
+.wg__item{min-width:0;min-height:0}
+.wg figure{display:flex;flex-direction:column;height:100%;margin:0}
+.wg img{display:block;flex:1 1 auto;width:100%;min-height:0;object-fit:cover;border-radius:var(--r-md);background:var(--sand-2)}
+.wg figcaption{flex:none;margin-top:10px;font-size:.875rem;line-height:1.35;color:var(--muted)}
+.wg--row{grid-template-columns:repeat(4,minmax(0,1fr))}
+.wg--row img{aspect-ratio:4/5;flex:none}
+.wg--lead,.wg--mosaic{height:clamp(440px,42vw,720px);grid-template-rows:repeat(2,minmax(0,1fr))}
+.wg--lead{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}
+.wg--mosaic{grid-template-columns:minmax(0,2fr) repeat(2,minmax(0,1fr))}
+.wg--lead .wg__item:first-child,.wg--mosaic .wg__item:first-child{grid-row:1/-1}
+@media (max-width:699px){
+  .wg--row,.wg--lead,.wg--mosaic{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;height:auto}
+  .wg img,.wg--row img{flex:none;aspect-ratio:4/5}
+  .wg--lead .wg__item:first-child,.wg--mosaic .wg__item:first-child{grid-row:auto;grid-column:1/-1}
+  .wg--lead .wg__item:first-child img,.wg--mosaic .wg__item:first-child img{aspect-ratio:3/2}
+  .wg figcaption{font-size:.8125rem}
+}
+.work-s.cv{contain-intrinsic-size:auto 900px}

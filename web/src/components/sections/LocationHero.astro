@@ -1,0 +1,85 @@
+---
+// A city page's hero (round-5 Gilbert mockup): the city's own photo of the crew or the
+// trucks under the open Arizona sky (lib/cms.ts cityHero: each city has its own), the H1
+// on the sky far above the people (the town in copper), the lede, the estimate and call
+// buttons, Emma's status, and the glass trust card on the empty sky at the right (below
+// the photo on phones, over the asphalt). Every hero photo is framed so the heads start at
+// 71.5% of it, where the fleet's did; on phones the window onto the photo is centred on
+// them (--pc). A city with an office of its own (Scottsdale) shows that office in the card.
+// The photo is the page's LCP image: the page preloads the same renditions. Styles:
+// styles/inner.css (.ihero--sky), styles/cms.css (.ihero--office, the photo lower at 1100–1399 px).
+import type {LocationDoc, PostalAddress, SiteSettings} from '../../lib/types'
+import type {Crumb} from '../../lib/seo'
+import {ESTIMATE_PATH, telHref} from '../../lib/site'
+import {imageDimensions, imageUrl} from '../../lib/image'
+import {accentParts} from '../../lib/format'
+import {cityAccent, cityHero} from '../../lib/cms'
+import Breadcrumbs from '../ui/Breadcrumbs.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Button from '../ui/Button.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import TrustCard from './TrustCard.astro'
+import OfficeCard from './OfficeCard.astro'
+
+interface Props {
+  location: LocationDoc
+  /** The page H1 (location.heading, as the page computes it). */
+  heading: string
+  settings: SiteSettings
+  crumbs: Crumb[]
+  /** The office whose Google Business Profile lands on this page. */
+  office?: PostalAddress
+}
+
+const {location, heading, settings, crumbs, office} = Astro.props
+const city = location.shortName || location.name
+const eyebrow = [location.cityNameForSeo ?? `${city}, AZ`, location.county].filter(Boolean).join(' · ')
+const [before, town, after] = accentParts(heading, cityAccent(heading, city))
+const hero = cityHero(location)
+const photo = hero.image
+const size = imageDimensions(photo)
+---
+
+<section class:list={['ihero ihero--sky', office && 'ihero--office']} aria-labelledby="hero-h">
+  <div class="ihero__stage">
+    <figure class="ihero__photo" style={`--pc:${hero.center};--pw:${hero.zoom}`}>
+      <img
+        src={imageUrl(photo, {width: 1086})}
+        srcset={hero.srcset}
+        sizes={hero.sizes}
+        width={size?.width}
+        height={size?.height}
+        alt={photo.alt}
+        loading="eager"
+        decoding="sync"
+        fetchpriority="high"
+        data-faces={hero.faces}
+      />
+    </figure>
+    <div class="wrap ihero__copy">
+      <Breadcrumbs crumbs={crumbs} variant="sky" />
+      <Eyebrow variant="sky">{eyebrow}</Eyebrow>
+      <h1 id="hero-h">{before}{town && <span class="hl-sky">{town}</span>}{after}</h1>
+      {location.description && <p class="ihero__lede">{location.description}</p>}
+      <div class="btn-row">
+        <Button href={ESTIMATE_PATH} icon="go">Get a Free Estimate</Button>{' '}
+        <Button href={telHref(settings)} variant="cream" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
+      </div>
+      <p class="ihero__status"><OfficeStatus settings={settings} /></p>
+    </div>
+    <TrustCard settings={settings}>
+      {
+        office && (
+          <OfficeCard
+            settings={settings}
+            office={office}
+            as="p"
+            kicker={`Our ${office.addressLocality} office`}
+            note={office.appointmentOnly ? 'Office visits by appointment only. We come to you.' : undefined}
+            class="itrust__office"
+          />
+        )
+      }
+    </TrustCard>
+  </div>
+</section>

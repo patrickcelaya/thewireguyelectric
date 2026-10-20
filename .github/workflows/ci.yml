@@ -20,6 +20,9 @@ jobs:
 
       - name: Typecheck site
         run: pnpm --filter web check
+      # The content-date rules (sitemap lastmod, dateModified) and the Ignored Build Step
+      - name: Unit tests
+        run: pnpm test
       - name: Typecheck and build Studio
         run: |
           pnpm --filter studio exec tsc --noEmit
@@ -33,6 +36,13 @@ jobs:
           SITE_INDEXABLE: 'true'
           PUBLIC_SANITY_PROJECT_ID: ${{ vars.PUBLIC_SANITY_PROJECT_ID }}
           PUBLIC_SANITY_DATASET: ${{ vars.PUBLIC_SANITY_DATASET }}
+
+      # Every page's JSON-LD and share tags: one parsing @graph with the required fields, references
+      # that resolve, images the page shows, no prices on service pages, no shortened sameAs, every
+      # served city named with its Wikipedia/Wikidata pages, and each FAQ question marked up on one
+      # page only (scripts/seo/check-structured-data.mjs).
+      - name: Structured data and share tags
+        run: pnpm seo:schema
 
       - name: SEO parity against the live-site baseline
         run: |

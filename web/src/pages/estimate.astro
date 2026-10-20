@@ -1,0 +1,132 @@
+---
+// /estimate: the Free Estimate page every "Free Estimate" link goes to (owner, round 2;
+// it used to redirect to /contact-us). A code route, not a Sanity page: the form is
+// the page. Built from the approved round-5 mockup (redesign/round5/final/estimate.html):
+// the H1 and lede on bone beside the signature bulb, which waits drawn and unlit and
+// switches on when the request is sent; the form beside "What happens next" and the
+// ways to talk; three Google reviews about booking and estimates; the questions people
+// ask before they book. Copy is the mockup's (approved); hours, phone, rating, licence
+// and the year founded come from Site settings; the reviews and questions are the
+// documents themselves (a missing one is simply left out). The warranty line is the
+// owner's one plain sentence (decision D17, lib/site.ts WARRANTY_LINE), no terms.
+import SiteLayout from '../layouts/SiteLayout.astro'
+import '../styles/inner.css'
+import {getFaqs, getReviews, getSettings} from '../lib/queries'
+import {WARRANTY_LINE, officeHours, telHref} from '../lib/site'
+import {faqNode, webPageNode} from '../lib/schema'
+import {ogImageMeta} from '../lib/seo'
+import {retargetLinks} from '../lib/portable-text'
+import type {FaqItem, PortableTextValue} from '../lib/types'
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro'
+import Eyebrow from '../components/ui/Eyebrow.astro'
+import Bulb from '../components/ui/Bulb.astro'
+import OfficeStatus from '../components/ui/OfficeStatus.astro'
+import RatingLine from '../components/ui/RatingLine.astro'
+import RocLink from '../components/ui/RocLink.astro'
+import EstimateForm from '../components/sections/EstimateForm.astro'
+import ReviewsStatic from '../components/sections/ReviewsStatic.astro'
+import FaqBlock from '../components/sections/FaqBlock.astro'
+
+const [settings, reviews, faqs] = await Promise.all([getSettings(), getReviews(), getFaqs()])
+const hours = officeHours(settings)
+const homeCity = settings.homeCity?.name
+
+const path = '/estimate'
+const title = `Get a Free Estimate | ${settings.businessName}`
+const description = `Request a free estimate from ${settings.businessName}, a family-owned, licensed electrician${homeCity ? ` in ${homeCity}` : ''} serving the whole Phoenix valley.${hours.prose ? ` We call back ${hours.prose}.` : ''}`
+const crumbs = [
+  {name: 'Home', path: '/'},
+  {name: 'Free Estimate', path},
+]
+
+// Reviews that talk about booking, the estimate and the visit, word for word.
+const picked = ['Charles Boles', 'Becky Schoen', 'Eileen Black'].flatMap((name) => reviews.filter((r) => r.authorName === name).slice(0, 1))
+
+// The questions people ask before they book. "Contact us today" in an answer points at the form on this page.
+const toForm = (answer: PortableTextValue) => retargetLinks(answer, (href) => /^\/(contact-us|estimate)\/?$/.test(href), '#estimate')
+const questions = ['Do you offer free estimates?', 'Do you have any hidden fees?', 'Are you licensed, bonded, and insured?', 'Do I need a permit for electrical work in Arizona?']
+const before: FaqItem[] = questions.flatMap((q) => faqs.filter((f) => f.question === q).slice(0, 1)).map((f) => ({...f, answer: toForm(f.answer)}))
+
+const steps = [
+  {title: 'We call you back', text: hours.prose ? `During office hours, ${hours.prose}, to set a time that works for you.` : 'To set a time that works for you.'},
+  {title: 'We look at the job', text: 'We’ll come out, look at the job, and give you a straight answer on what it’ll cost.'},
+  {title: 'You decide', text: 'We use flat-rate pricing, which means we quote you a price before we start and that’s what you pay. No surprises.'},
+]
+const family = homeCity && settings.foundingDate ? `Family-owned in ${homeCity} since ${settings.foundingDate}` : undefined
+---
+
+<SiteLayout
+  meta={{title, description, path, ...ogImageMeta(settings), breadcrumbs: crumbs}}
+  schema={[webPageNode({path, title, description, type: 'ContactPage', breadcrumbs: crumbs}), faqNode(path, before)]}
+  bodyClass="inner page-est"
+  callbarEstimateHref="#estimate"
+>
+  <section class="ehero" aria-labelledby="est-h" data-bulb-field data-est-page>
+    <div class="wrap ehero__grid">
+      <div class="ehero__copy">
+        <Breadcrumbs crumbs={crumbs} />
+        <Eyebrow>Free estimates · No pressure and no obligation</Eyebrow>
+        <h1 id="est-h" class="display">Get a free <span class="accent">estimate</span></h1>
+        <p class="ehero__lede">Tell us what’s going on. We’ll come out, look at the job, and give you a straight answer on what it’ll cost. No pressure and no obligation.</p>
+      </div>
+      <Bulb lead="right" class="ehero__bulb" />
+    </div>
+    <div class="wrap est-page">
+      <EstimateForm
+        settings={settings}
+        id="est"
+        title="Request your free estimate"
+        hint="Name and phone are all we need. Everything else helps us bring the right parts."
+        anchor="estimate"
+      />
+      <aside class="next" aria-labelledby="next-h">
+        <h2 id="next-h" class="next__h">What happens next</h2>
+        <ol class="next__steps">
+          {
+            steps.map((step, i) => (
+              <li>
+                <span class="next__n" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>{' '}
+                <div>
+                  <h3>{step.title}</h3> <p>{step.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <div class="next__talk">
+          <p class="cta__talk-k">Prefer to talk?</p>
+          <p class="cta__phone">
+            <a class="tnum" href={telHref(settings)}><span class="sr-only">Call </span>{settings.phone}</a>{' '}
+            <OfficeStatus settings={settings} />
+          </p>
+          {hours.line && <p class="cta__hours">Our Office Hours: {hours.line}</p>}
+          <RatingLine settings={settings} variant="quiet" />
+          <p class="cta__roc"><RocLink settings={settings} /></p>
+          <p class="next__warranty">{WARRANTY_LINE}</p>
+          {family && <p class="next__fam">{family}</p>}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <ReviewsStatic
+    settings={settings}
+    reviews={picked}
+    heading="What customers say about the process"
+    intro="Google reviews about booking, estimates and the visit, shown word for word."
+    id="rev-h"
+    tone="sand"
+  />
+
+  {
+    before.length > 0 && (
+      <section class="section answers answers--bone cv" aria-labelledby="faq-h">
+        <div class="wrap">
+          <FaqBlock faqs={before} heading="Before you send it" intro="The questions people ask us most before they book an estimate." id="faq-h" />
+        </div>
+      </section>
+    )
+  }
+</SiteLayout>

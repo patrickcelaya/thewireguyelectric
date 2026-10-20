@@ -1,0 +1,64 @@
+---
+// One office as an <address>: its Google Business Profile name ("The Wire Guy Electric
+// of Scottsdale" + "(by appointment)"), the street address, the phone (the main line when
+// the office has none) and "Find us on Google" (its profile). Offices come from Site
+// settings through lib/offices.ts visibleOffices() or lib/schema.ts branchFor(); an
+// address marked footerOnly (the owners' home in Mesa) renders nothing. Hours are left
+// out: the profiles' hours are not confirmed per office. The city hero's trust card adds
+// a kicker ("Our Scottsdale office") and a note.
+// Styles: styles/inner.css "OFFICE"; its frames in styles/pages.css (.offices,
+// .contact__offices) and styles/cms.css (.itrust__office).
+import type {PostalAddress, SiteSettings} from '../../lib/types'
+import {addressLines, officeName} from '../../lib/offices'
+import {telHref} from '../../lib/site'
+import ExternalLink from '../ui/ExternalLink.astro'
+
+interface Props {
+  office: PostalAddress
+  settings: SiteSettings
+  /** The office name's element in the surrounding outline. */
+  as?: 'h3' | 'h4' | 'p'
+  /** A line over the name, e.g. "Our Scottsdale office". */
+  kicker?: string
+  /** A line under the address, e.g. how visits work. */
+  note?: string
+  class?: string
+}
+
+const {office, settings, as: Name = 'h3', kicker, note, class: className} = Astro.props
+const phone = office.phone || settings.phone
+// an office's own number, else the main line (whose tel: form is in Site settings)
+const tel = office.phone ? `tel:+1${office.phone.replace(/\D/g, '').slice(-10)}` : telHref(settings)
+---
+
+{
+  !office.footerOnly && (
+    <address class:list={['office', className]}>
+      {kicker && <p class="office__k">{kicker}</p>}
+      <Name class="office__name">
+        {officeName(office, settings)}
+        {office.appointmentOnly && <span class="office__appt"> (by appointment)</span>}
+      </Name>
+      <p class="office__lines">
+        {addressLines(office).map((line) => (
+          <>
+            <span>{line}</span>{' '}
+          </>
+        ))}
+      </p>
+      {note && <p class="office__note">{note}</p>}
+      <p class="office__tel">
+        <a class="tnum" href={tel}>
+          {phone}
+        </a>
+      </p>
+      {office.googleMapsUrl && (
+        <p class="office__map">
+          <ExternalLink class="link link--ext" href={office.googleMapsUrl}>
+            Find us on Google
+          </ExternalLink>
+        </p>
+      )}
+    </address>
+  )
+}

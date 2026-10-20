@@ -1,0 +1,1697 @@
+{
+  "page": "index",
+  "url": "/",
+  "capturedAt": "2026-10-13",
+  "source": "Discovery inventory index.json: the live page (thewireguyelectric.com/) as served on 2026-10-13, verbatim",
+  "title": "Best Rated Electrician in Mesa, AZ | The Wire Guy Electric",
+  "metaDescription": "Family-owned, licensed Mesa electricians for panel upgrades, EV chargers, lighting, troubleshooting, and commercial work. Call for a free estimate.",
+  "h1": "Mesa’s top choice electricians for homes and businesses.",
+  "sections": [
+    {
+      "index": 0,
+      "element": "div.section.banner-hero",
+      "purpose": "Hero: H1 with accent words, value-prop paragraph, primary CTA, three 5-star review snippets, license line",
+      "source": "static",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Mesa’s top choice electricians for homes and businesses."
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.hero-wrapper",
+          "src": "/wf/a/66f6fc5f5eda8a0837b2d20b_Picture-folder-from-Celaya-Ventures.avif",
+          "cssSelector": ".hero-wrapper",
+          "responsiveOverrides": [
+            {
+              "media": "@media screen and (max-width:767px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            },
+            {
+              "media": "@media screen and (max-width:479px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            }
+          ],
+          "role": "REAL photo: fleet line-up (3 wrapped vans + F-250) with 4 techs, Superstition Mountains, lots of sky (1086px, low-res)"
+        },
+        {
+          "type": "card",
+          "kind": "heroReviewSnippet",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars"
+            },
+            {
+              "type": "paragraph",
+              "text": "“Went above and beyond, great prices too!”"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "heroReviewSnippet",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars"
+            },
+            {
+              "type": "paragraph",
+              "text": "“Could not be more pleased!”"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "heroReviewSnippet",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars"
+            },
+            {
+              "type": "paragraph",
+              "text": "“Excellent, polite and timely service!”"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Mesa’s top choice electricians for homes and businesses.",
+          "html": "Mesa’s <span class=\"accent\">top choice</span> electricians for homes and businesses.",
+          "accent": [
+            "top choice"
+          ]
+        },
+        {
+          "type": "paragraph",
+          "text": "We are committed to quality work and friendly service - keeping our prices competitive and our customers happy. Our family-owned team of professional electricians provide a wide range of electrical solutions for both residential and commercial clients."
+        },
+        {
+          "type": "button",
+          "label": "Get a Free Estimate",
+          "href": "/contact-us",
+          "variant": "secondary-button-with-icon",
+          "iconImage": {
+            "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+            "alt": "",
+            "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Licensed, bonded, and insured · ROC #365306"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6fc5f5eda8a0837b2d20b_Picture-folder-from-Celaya-Ventures.avif",
+          "alt": null,
+          "role": "REAL photo: fleet line-up (3 wrapped vans + F-250) with 4 techs, Superstition Mountains, lots of sky (1086px, low-res)",
+          "kind": "css background (.hero-wrapper)",
+          "responsiveOverrides": [
+            {
+              "media": "@media screen and (max-width:767px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            },
+            {
+              "media": "@media screen and (max-width:479px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            }
+          ]
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+          "alt": "",
+          "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative",
+          "kind": "img (inside button)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "H1 text also stored in Sanity page.heading (identical). Keep H1 verbatim: \"Mesa’s top choice electricians for homes and businesses.\" (curly apostrophe).",
+        "Review snippets are unattributed one-liners; attach them to real review docs (author + date) or drop."
+      ]
+    },
+    {
+      "index": 1,
+      "element": "div.section.dark-color",
+      "purpose": "Owner/team intro: one paragraph naming Steven, Cody and Emma with hover avatars linking to /our-team, plus \"About Us\" button",
+      "source": "static",
+      "headings": [],
+      "content": [
+        {
+          "type": "text",
+          "text": "At The Wire Guy Electric, Steven leads our commitment to quality workmanship and fair pricing. Our family-owned team, including Cody, provides friendly, professional electrical service. Emma helps customers schedule the right solution for their home or business.",
+          "html": "At <span class=\"accent\">The Wire Guy Electric, </span><a href=\"/our-team\">Steven</a> leads our commitment to quality workmanship and fair pricing. Our family-owned team, including <a href=\"/our-team\">Cody</a>, provides friendly, professional electrical service. <a href=\"/our-team\">Emma</a> helps customers schedule the right solution for their home or business.",
+          "links": [
+            {
+              "text": "Steven",
+              "href": "/our-team"
+            },
+            {
+              "text": "Cody",
+              "href": "/our-team"
+            },
+            {
+              "text": "Emma",
+              "href": "/our-team"
+            }
+          ],
+          "element": "div.intro-paragraph",
+          "images": [
+            {
+              "type": "backgroundImage",
+              "element": "a.span-avatar",
+              "src": "/wf/a/66f44e262c9f24104114b9ed_Steven-Team-Member.avif",
+              "cssSelector": ".span-avatar",
+              "role": "Circular avatar: Steven"
+            },
+            {
+              "type": "backgroundImage",
+              "element": "a.span-avatar.two",
+              "src": "/wf/a/66f44e32558bd80dde69d8ba_Cody-Team-Member.avif",
+              "cssSelector": ".span-avatar.two",
+              "role": "Circular avatar: Cody"
+            },
+            {
+              "type": "backgroundImage",
+              "element": "a.span-avatar.third",
+              "src": "/wf/a/66f44e3ade4575af1eb0ceb5_Emma-Team-Member.avif",
+              "cssSelector": ".span-avatar.third",
+              "role": "Circular avatar: Emma"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "About Us",
+          "href": "/about-us",
+          "variant": "secondary-button w-button"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f44e262c9f24104114b9ed_Steven-Team-Member.avif",
+          "alt": null,
+          "role": "Circular avatar: Steven",
+          "kind": "css background (.span-avatar)"
+        },
+        {
+          "src": "/wf/a/66f44e32558bd80dde69d8ba_Cody-Team-Member.avif",
+          "alt": null,
+          "role": "Circular avatar: Cody",
+          "kind": "css background (.span-avatar.two)"
+        },
+        {
+          "src": "/wf/a/66f44e3ade4575af1eb0ceb5_Emma-Team-Member.avif",
+          "alt": null,
+          "role": "Circular avatar: Emma",
+          "kind": "css background (.span-avatar.third)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "About Us",
+          "href": "/about-us"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "element": "section.section.dark-background",
+      "purpose": "Capabilities checklist: H2 + six check-icon items (H3s)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Electrician solutions tailored to your needs"
+        },
+        {
+          "level": 3,
+          "text": "Electrical Repairs"
+        },
+        {
+          "level": 3,
+          "text": "Custom Lighting Solutions"
+        },
+        {
+          "level": 3,
+          "text": "Wiring Solutions"
+        },
+        {
+          "level": 3,
+          "text": "Panel Upgrades"
+        },
+        {
+          "level": 3,
+          "text": "Electric Vehicle Chargers"
+        },
+        {
+          "level": 3,
+          "text": "+ More!"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Electrician solutions tailored to your needs",
+          "html": "Electrician solutions tailored to <span class=\"accent\">your needs</span>",
+          "accent": [
+            "your needs"
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Electrical Repairs"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Custom Lighting Solutions"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Wiring Solutions"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Panel Upgrades"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Electric Vehicle Chargers"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "+ More!"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "ctas": [],
+      "notes": [
+        "Items are H3s with no links; link each to its service page in the redesign (Electrical Repairs → /services/electrical-troubleshooting, Custom Lighting Solutions → /services/custom-lighting, Panel Upgrades → /services/panels, Electric Vehicle Chargers → /services/ev-charger-installation, + More! → /services)."
+      ]
+    },
+    {
+      "index": 3,
+      "element": "section.section.without-top-spacing",
+      "purpose": "Value props: three feature cards (icon, H3, paragraph, text link)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 3,
+          "text": "No BS pricing"
+        },
+        {
+          "level": 3,
+          "text": "Amazing Quality"
+        },
+        {
+          "level": 3,
+          "text": "Client Satisfaction"
+        }
+      ],
+      "content": [
+        {
+          "type": "card",
+          "kind": "featureCard",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-plug"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "No BS pricing"
+            },
+            {
+              "type": "paragraph",
+              "text": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote."
+            },
+            {
+              "type": "button",
+              "label": "Get a Free Estimate",
+              "href": "/contact-us",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "featureCard",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-bolt"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Amazing Quality"
+            },
+            {
+              "type": "paragraph",
+              "text": "We only offer top-quality electrical services. We'll tackle your problems big or small, and get it done right the first time."
+            },
+            {
+              "type": "button",
+              "label": "View All Services",
+              "href": "/services",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "featureCard",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-lightbulb"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Client Satisfaction"
+            },
+            {
+              "type": "paragraph",
+              "text": "Your satisfaction is our top priority. We don't go home until the job is done. We'll always come back if you have any issues.",
+              "html": "Your satisfaction is our <strong>top priority</strong>. We don't go home until the job is done. We'll always come back if you have any issues."
+            },
+            {
+              "type": "button",
+              "label": "Read About Us",
+              "href": "/about-us",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate",
+          "href": "/contact-us"
+        },
+        {
+          "label": "View All Services",
+          "href": "/services"
+        },
+        {
+          "label": "Read About Us",
+          "href": "/about-us"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "element": "div.section.without-space#reviews",
+      "purpose": "Reviews band: 5-star graphic, H3 \"Let our reviews speak for themselves\", button \"Get a Free Estimate Now\" to /contact-us, then the BrightLocal Showcase Reviews iframe",
+      "source": "embed",
+      "headings": [
+        {
+          "level": 3,
+          "text": "Let our reviews speak for themselves"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.section-testimonials-5",
+          "src": "/wf/a/66980076a856729471b47d7f_light-bulbs-copy.webp",
+          "cssSelector": ".section-testimonials-5",
+          "role": "Stock texture: pile of bulbs (600px) under a dark overlay"
+        },
+        {
+          "type": "card",
+          "kind": "reviewsIntro",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+              "width": "95"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Let our reviews speak for themselves"
+            },
+            {
+              "type": "button",
+              "label": "Get a Free Estimate Now",
+              "href": "/contact-us",
+              "variant": "primary-button-2 w-button"
+            }
+          ]
+        },
+        {
+          "type": "embedContainer",
+          "placeholderId": "21435",
+          "children": [
+            {
+              "type": "embedScript",
+              "provider": "BrightLocal \"Showcase Reviews\" widget (renders an iframe)",
+              "scriptSrc": "https://www.local-marketing-reports.com/external/showcase-reviews/embed/599158c9201cda7d9f4a0e3aa733389a1ff4d538?id=21435",
+              "scriptAttrs": {
+                "defer": ""
+              },
+              "loading": "lazy: webflow-lite injects the script when the parent is within 800px of the viewport"
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66980076a856729471b47d7f_light-bulbs-copy.webp",
+          "alt": null,
+          "role": "Stock texture: pile of bulbs (600px) under a dark overlay",
+          "kind": "css background (.section-testimonials-5)"
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate Now",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "Live widget (checked 2026-10-13) shows \"333 Total Reviews\", 5.0, newest review dated 02.26.2026: it stopped syncing ~8 months ago. siteSettings.reviewSummary says 380.",
+        "Review text inside the iframe is NOT indexable by Google. Sanity has 0 review documents; import real reviews (with permission/attribution) so they render as HTML."
+      ]
+    },
+    {
+      "index": 5,
+      "element": "section.services-section",
+      "purpose": "Featured services: H2 + three service cards (photo link, H3, custom blurb, \"Read More\") + \"View All Services\" button",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Our top electrical services"
+        },
+        {
+          "level": 3,
+          "text": "EV Chargers"
+        },
+        {
+          "level": 3,
+          "text": "Recessed Lights"
+        },
+        {
+          "level": 3,
+          "text": "Troubleshooting"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Our top electrical services"
+        },
+        {
+          "type": "card",
+          "kind": "serviceCard",
+          "children": [
+            {
+              "type": "linkWrapper",
+              "href": "/services/ev-charger-installation",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.serviceimage._1",
+                  "src": "/wf/a/66f596be1d76adb6fa3130e2_EV-Chargers.avif",
+                  "cssSelector": ".serviceimage._1",
+                  "role": "REAL photo: tech in a garage beside a Tesla Model 3 (926px)"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "EV Chargers"
+            },
+            {
+              "type": "paragraph",
+              "text": "We install or troubleshoot issues with all EV chargers that are installed to last and perform."
+            },
+            {
+              "type": "button",
+              "label": "Read More",
+              "href": "/services/ev-charger-installation",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "serviceCard",
+          "children": [
+            {
+              "type": "linkWrapper",
+              "href": "/services/recessed-lights-installation",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.serviceimage._2",
+                  "src": "/wf/a/66980076a856729471b47d83_hanging-colorklpo.webp",
+                  "cssSelector": ".serviceimage._2",
+                  "role": "Stock: dark Edison filament bulbs (600px)"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Recessed Lights"
+            },
+            {
+              "type": "paragraph",
+              "text": "Brighten and modernize any home! Recessed lights are the #1 lighting choice for our customers."
+            },
+            {
+              "type": "button",
+              "label": "Read More",
+              "href": "/services/recessed-lights-installation",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "serviceCard",
+          "children": [
+            {
+              "type": "linkWrapper",
+              "href": "/services/electrical-troubleshooting",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.serviceimage._3",
+                  "src": "/wf/a/66f59b1dd36a289c7a2b05c6_electrician-troubleshooting.avif",
+                  "cssSelector": ".serviceimage._3",
+                  "role": "REAL photo: tech working wires out of a recessed-can hole (1160px)"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Troubleshooting"
+            },
+            {
+              "type": "paragraph",
+              "text": "Something not working? We provide reliable electrical troubleshooting for any issue."
+            },
+            {
+              "type": "button",
+              "label": "Read More",
+              "href": "/services/electrical-troubleshooting",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "View All Services",
+          "href": "/services",
+          "variant": "secondary-button w-button"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f596be1d76adb6fa3130e2_EV-Chargers.avif",
+          "alt": null,
+          "role": "REAL photo: tech in a garage beside a Tesla Model 3 (926px)",
+          "kind": "css background (.serviceimage._1)"
+        },
+        {
+          "src": "/wf/a/66980076a856729471b47d83_hanging-colorklpo.webp",
+          "alt": null,
+          "role": "Stock: dark Edison filament bulbs (600px)",
+          "kind": "css background (.serviceimage._2)"
+        },
+        {
+          "src": "/wf/a/66f59b1dd36a289c7a2b05c6_electrician-troubleshooting.avif",
+          "alt": null,
+          "role": "REAL photo: tech working wires out of a recessed-can hole (1160px)",
+          "kind": "css background (.serviceimage._3)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Read More",
+          "href": "/services/ev-charger-installation"
+        },
+        {
+          "label": "Read More",
+          "href": "/services/recessed-lights-installation"
+        },
+        {
+          "label": "Read More",
+          "href": "/services/electrical-troubleshooting"
+        },
+        {
+          "label": "View All Services",
+          "href": "/services"
+        }
+      ],
+      "notes": [
+        "Card titles and blurbs differ from Sanity service.name/shortDescription (\"EV Chargers\" vs \"EV Charger Installation\"). servicesSection needs per-card title/text/image overrides to keep this copy.",
+        "Recessed Lights card uses a stock Edison-bulb photo; a real recessed-lighting job photo exists (IMG_0779_VSCO / Recessed-Lighting.avif)."
+      ]
+    },
+    {
+      "index": 6,
+      "element": "div.code-embed-3.w-embed.w-script",
+      "purpose": "Hidden Elfsight app mount (elfsightcdn.com) with no visible slot",
+      "source": "embed",
+      "headings": [],
+      "content": [
+        {
+          "type": "embedScript",
+          "provider": "Elfsight platform loader (elfsightcdn.com)",
+          "scriptSrc": "https://elfsightcdn.com/platform.js",
+          "scriptAttrs": {
+            "async": ""
+          },
+          "loading": "lazy: webflow-lite injects the script when the parent is within 800px of the viewport"
+        },
+        {
+          "type": "embedMount",
+          "provider": "Elfsight",
+          "widgetId": "e7fa68fc-7b96-47e6-8018-111822fff1a8",
+          "purpose": "Unknown Elfsight app (no visible slot; likely a floating widget such as a review badge or button)",
+          "liveStatus": "BROKEN: Elfsight boot API returns APP_VIEWS_LIMIT_REACHED (checked 2026-10-13); renders nothing"
+        }
+      ],
+      "images": [],
+      "ctas": [],
+      "notes": [
+        "Over view limit; renders nothing."
+      ]
+    },
+    {
+      "index": 7,
+      "element": "section.markets-section",
+      "purpose": "Service-area grid: H2 \"We proudly serve the entire valley!\", six city tiles (H3 \"City, AZ\" + neighborhood blurb) over regional stock photos, each linking to the city page (Mesa links to /)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "We proudly serve the entire valley!"
+        },
+        {
+          "level": 3,
+          "text": "Scottsdale, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Mesa, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Phoenix, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Gilbert, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Chandler, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Tempe, AZ"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "We proudly serve the entire valley!",
+          "html": "We proudly serve the <span class=\"accent\">entire valley!</span>",
+          "accent": [
+            "entire valley!"
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/scottsdale",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._1",
+                  "src": "/wf/a/690bd80cfa28bea3dc435ba6_pexels-jeremy-alford-211956852-12370436.jpg",
+                  "cssSelector": ".servicewrap._1",
+                  "role": "Stock: desert foothills above custom homes (Scottsdale tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Scottsdale, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._2",
+                  "src": "/wf/a/690bdd4683b26b967e8af7da_pexels-timmossholder-19457780.jpg",
+                  "cssSelector": ".servicewrap._2",
+                  "role": "Stock: Courthouse Butte, SEDONA (wrong city; used on the Mesa tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Mesa, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Eastmark, Las Sendas, Red Mountain Ranch, and Dobson Ranch"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/phoenix",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._3",
+                  "src": "/wf/a/690bddb3d93955270492cffe_pexels-justin-nealey-1251860-3391570.jpg",
+                  "cssSelector": ".servicewrap._3",
+                  "role": "Stock: saguaro desert and mountain (Phoenix tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Phoenix, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/gilbert",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._4",
+                  "src": "/wf/a/690bde01126955c1950c8def_pexels-chuck-shields-1116201851-34356412.jpg",
+                  "cssSelector": ".servicewrap._4",
+                  "role": "Stock: saguaro cluster (Gilbert tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Gilbert, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/chandler",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._5",
+                  "src": "/wf/a/690bde2dd844ca7a4551009c_pexels-jmeyer1220-15693246.jpg",
+                  "cssSelector": ".servicewrap._5",
+                  "role": "Stock: Ocotillo lake and condos, Chandler (city-specific)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Chandler, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/tempe",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._6",
+                  "src": "/wf/a/690bde56d075637845561d2e_pexels-elolson15-16922246.jpg",
+                  "cssSelector": ".servicewrap._6",
+                  "role": "Stock: ASU Tempe campus with palms (city-specific)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Tempe, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/690bd80cfa28bea3dc435ba6_pexels-jeremy-alford-211956852-12370436.jpg",
+          "alt": null,
+          "role": "Stock: desert foothills above custom homes (Scottsdale tile)",
+          "kind": "css background (.servicewrap._1)"
+        },
+        {
+          "src": "/wf/a/690bdd4683b26b967e8af7da_pexels-timmossholder-19457780.jpg",
+          "alt": null,
+          "role": "Stock: Courthouse Butte, SEDONA (wrong city; used on the Mesa tile)",
+          "kind": "css background (.servicewrap._2)"
+        },
+        {
+          "src": "/wf/a/690bddb3d93955270492cffe_pexels-justin-nealey-1251860-3391570.jpg",
+          "alt": null,
+          "role": "Stock: saguaro desert and mountain (Phoenix tile)",
+          "kind": "css background (.servicewrap._3)"
+        },
+        {
+          "src": "/wf/a/690bde01126955c1950c8def_pexels-chuck-shields-1116201851-34356412.jpg",
+          "alt": null,
+          "role": "Stock: saguaro cluster (Gilbert tile)",
+          "kind": "css background (.servicewrap._4)"
+        },
+        {
+          "src": "/wf/a/690bde2dd844ca7a4551009c_pexels-jmeyer1220-15693246.jpg",
+          "alt": null,
+          "role": "Stock: Ocotillo lake and condos, Chandler (city-specific)",
+          "kind": "css background (.servicewrap._5)"
+        },
+        {
+          "src": "/wf/a/690bde56d075637845561d2e_pexels-elolson15-16922246.jpg",
+          "alt": null,
+          "role": "Stock: ASU Tempe campus with palms (city-specific)",
+          "kind": "css background (.servicewrap._6)"
+        }
+      ],
+      "ctas": [],
+      "notes": [
+        "Only 6 of the 11 served areas get a tile; the redesign should show all 11 (Mesa, Gilbert, Chandler, Scottsdale, Phoenix, Tempe, Queen Creek, San Tan Valley, Apache Junction, Fountain Hills, Ahwatukee) for internal linking.",
+        "Blurbs are hard-coded here; Sanity location.neighborhoods is null on all 10 docs. Move each blurb into the location doc (e.g. location.cardBlurb or neighborhoods[]).",
+        "Mesa tile uses a photo of Sedona (Courthouse Butte). Replace.",
+        "Chandler blurb ends with a stray comma: \"Serving Ocotillo, Fulton Ranch, and Downtown Chandler,\"."
+      ]
+    },
+    {
+      "index": "8.0",
+      "element": "section.gallery-section → .image-gallery-heading, .elfsite-contain",
+      "purpose": "Photo gallery: H2 \"Recent photos of our work\" + Elfsight feed mount",
+      "source": "embed",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Recent photos of our work"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "section.gallery-section",
+          "src": "/wf/a/66b294e9a28024cec652f08c_Electrician-website-background.webp",
+          "cssSelector": ".gallery-section",
+          "role": "Stock texture: ring of clear bulbs on white"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Recent photos of our work",
+          "html": "Recent photos of <span class=\"accent\">our work</span>",
+          "accent": [
+            "our work"
+          ]
+        },
+        {
+          "type": "embedScript",
+          "provider": "Elfsight platform loader (static.elfsight.com)",
+          "scriptSrc": "https://static.elfsight.com/platform/platform.js",
+          "scriptAttrs": {
+            "data-use-service-core": "",
+            "defer": ""
+          },
+          "loading": "lazy: webflow-lite injects the script when the parent is within 800px of the viewport"
+        },
+        {
+          "type": "embedMount",
+          "provider": "Elfsight",
+          "widgetId": "926532fb-4d1f-4eb9-b78f-282cc880e690",
+          "purpose": "Photo feed under \"Recent photos of our work\" (almost certainly the Instagram feed of @thewireguyelectric)",
+          "liveStatus": "BROKEN: Elfsight boot API returns APP_VIEWS_LIMIT_REACHED (checked 2026-10-13); the mount renders 0px, so the section shows a heading over an empty background"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66b294e9a28024cec652f08c_Electrician-website-background.webp",
+          "alt": null,
+          "role": "Stock texture: ring of clear bulbs on white",
+          "kind": "css background (.gallery-section)"
+        }
+      ],
+      "ctas": [],
+      "notes": [
+        "The Elfsight widget is over its view limit (APP_VIEWS_LIMIT_REACHED) so live visitors see a heading over an empty background.",
+        "Replace with first-party job photos (Sanity `project` docs or an image array) so images are indexable, fast and have alt text."
+      ]
+    },
+    {
+      "index": "8.1",
+      "element": "section.gallery-section → .section-testimonials",
+      "purpose": "Closing CTA band: H2 \"We're ready to work for you\", bulb-icon button to /contact-us, status line \"🟢 Free estimates available\" over a photo background",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "We're ready to work for you"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.section-testimonials.override",
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "cssSelector": ".section-testimonials.override",
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "We're ready to work for you"
+        },
+        {
+          "type": "button",
+          "label": "Get a Free Estimate",
+          "href": "/contact-us",
+          "variant": "secondary-button-with-icon",
+          "iconImage": {
+            "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+            "alt": "",
+            "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "🟢 Free estimates available"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "alt": null,
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)",
+          "kind": "css background (.section-testimonials.override)"
+        },
+        {
+          "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+          "alt": "",
+          "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative",
+          "kind": "img (inside button)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "Same band repeats on most pages; make it one shared default with per-page override.",
+        "Status line text differs by page (\"Free estimates available\" vs \"Active Now\"); keep as ctaSection.statusText."
+      ]
+    }
+  ],
+  "copy": [
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "“Went above and beyond, great prices too!”"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "“Could not be more pleased!”"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "“Excellent, polite and timely service!”"
+    },
+    {
+      "section": 0,
+      "tag": "h1",
+      "text": "Mesa’s top choice electricians for homes and businesses.",
+      "html": "Mesa’s <span class=\"accent\">top choice</span> electricians for homes and businesses."
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "We are committed to quality work and friendly service - keeping our prices competitive and our customers happy. Our family-owned team of professional electricians provide a wide range of electrical solutions for both residential and commercial clients."
+    },
+    {
+      "section": 0,
+      "tag": "button",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "Licensed, bonded, and insured · ROC #365306"
+    },
+    {
+      "section": 1,
+      "tag": "text",
+      "text": "At The Wire Guy Electric, Steven leads our commitment to quality workmanship and fair pricing. Our family-owned team, including Cody, provides friendly, professional electrical service. Emma helps customers schedule the right solution for their home or business.",
+      "html": "At <span class=\"accent\">The Wire Guy Electric, </span><a href=\"/our-team\">Steven</a> leads our commitment to quality workmanship and fair pricing. Our family-owned team, including <a href=\"/our-team\">Cody</a>, provides friendly, professional electrical service. <a href=\"/our-team\">Emma</a> helps customers schedule the right solution for their home or business."
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "About Us",
+      "href": "/about-us"
+    },
+    {
+      "section": 2,
+      "tag": "h2",
+      "text": "Electrician solutions tailored to your needs",
+      "html": "Electrician solutions tailored to <span class=\"accent\">your needs</span>"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Electrical Repairs"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Custom Lighting Solutions"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Wiring Solutions"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Panel Upgrades"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Electric Vehicle Chargers"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "+ More!"
+    },
+    {
+      "section": 3,
+      "tag": "h3",
+      "text": "No BS pricing"
+    },
+    {
+      "section": 3,
+      "tag": "p",
+      "text": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote."
+    },
+    {
+      "section": 3,
+      "tag": "button",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": 3,
+      "tag": "h3",
+      "text": "Amazing Quality"
+    },
+    {
+      "section": 3,
+      "tag": "p",
+      "text": "We only offer top-quality electrical services. We'll tackle your problems big or small, and get it done right the first time."
+    },
+    {
+      "section": 3,
+      "tag": "button",
+      "text": "View All Services",
+      "href": "/services"
+    },
+    {
+      "section": 3,
+      "tag": "h3",
+      "text": "Client Satisfaction"
+    },
+    {
+      "section": 3,
+      "tag": "p",
+      "text": "Your satisfaction is our top priority. We don't go home until the job is done. We'll always come back if you have any issues.",
+      "html": "Your satisfaction is our <strong>top priority</strong>. We don't go home until the job is done. We'll always come back if you have any issues."
+    },
+    {
+      "section": 3,
+      "tag": "button",
+      "text": "Read About Us",
+      "href": "/about-us"
+    },
+    {
+      "section": 4,
+      "tag": "h3",
+      "text": "Let our reviews speak for themselves"
+    },
+    {
+      "section": 4,
+      "tag": "button",
+      "text": "Get a Free Estimate Now",
+      "href": "/contact-us"
+    },
+    {
+      "section": 5,
+      "tag": "h2",
+      "text": "Our top electrical services"
+    },
+    {
+      "section": 5,
+      "tag": "h3",
+      "text": "EV Chargers"
+    },
+    {
+      "section": 5,
+      "tag": "p",
+      "text": "We install or troubleshoot issues with all EV chargers that are installed to last and perform."
+    },
+    {
+      "section": 5,
+      "tag": "button",
+      "text": "Read More",
+      "href": "/services/ev-charger-installation"
+    },
+    {
+      "section": 5,
+      "tag": "h3",
+      "text": "Recessed Lights"
+    },
+    {
+      "section": 5,
+      "tag": "p",
+      "text": "Brighten and modernize any home! Recessed lights are the #1 lighting choice for our customers."
+    },
+    {
+      "section": 5,
+      "tag": "button",
+      "text": "Read More",
+      "href": "/services/recessed-lights-installation"
+    },
+    {
+      "section": 5,
+      "tag": "h3",
+      "text": "Troubleshooting"
+    },
+    {
+      "section": 5,
+      "tag": "p",
+      "text": "Something not working? We provide reliable electrical troubleshooting for any issue."
+    },
+    {
+      "section": 5,
+      "tag": "button",
+      "text": "Read More",
+      "href": "/services/electrical-troubleshooting"
+    },
+    {
+      "section": 5,
+      "tag": "button",
+      "text": "View All Services",
+      "href": "/services"
+    },
+    {
+      "section": 7,
+      "tag": "h2",
+      "text": "We proudly serve the entire valley!",
+      "html": "We proudly serve the <span class=\"accent\">entire valley!</span>"
+    },
+    {
+      "section": 7,
+      "tag": "h3",
+      "text": "Scottsdale, AZ"
+    },
+    {
+      "section": 7,
+      "tag": "p",
+      "text": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+    },
+    {
+      "section": 7,
+      "tag": "h3",
+      "text": "Mesa, AZ"
+    },
+    {
+      "section": 7,
+      "tag": "p",
+      "text": "Eastmark, Las Sendas, Red Mountain Ranch, and Dobson Ranch"
+    },
+    {
+      "section": 7,
+      "tag": "h3",
+      "text": "Phoenix, AZ"
+    },
+    {
+      "section": 7,
+      "tag": "p",
+      "text": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+    },
+    {
+      "section": 7,
+      "tag": "h3",
+      "text": "Gilbert, AZ"
+    },
+    {
+      "section": 7,
+      "tag": "p",
+      "text": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+    },
+    {
+      "section": 7,
+      "tag": "h3",
+      "text": "Chandler, AZ"
+    },
+    {
+      "section": 7,
+      "tag": "p",
+      "text": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,"
+    },
+    {
+      "section": 7,
+      "tag": "h3",
+      "text": "Tempe, AZ"
+    },
+    {
+      "section": 7,
+      "tag": "p",
+      "text": "Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods."
+    },
+    {
+      "section": "8.0",
+      "tag": "h2",
+      "text": "Recent photos of our work",
+      "html": "Recent photos of <span class=\"accent\">our work</span>"
+    },
+    {
+      "section": "8.1",
+      "tag": "h2",
+      "text": "We're ready to work for you"
+    },
+    {
+      "section": "8.1",
+      "tag": "button",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": "8.1",
+      "tag": "p",
+      "text": "🟢 Free estimates available"
+    }
+  ],
+  "links": [
+    {
+      "section": 0,
+      "text": "Get a Free Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    },
+    {
+      "section": 1,
+      "text": "Steven",
+      "href": "/our-team",
+      "kind": "inlineLink"
+    },
+    {
+      "section": 1,
+      "text": "Cody",
+      "href": "/our-team",
+      "kind": "inlineLink"
+    },
+    {
+      "section": 1,
+      "text": "Emma",
+      "href": "/our-team",
+      "kind": "inlineLink"
+    },
+    {
+      "section": 1,
+      "text": "About Us",
+      "href": "/about-us",
+      "kind": "button"
+    },
+    {
+      "section": 3,
+      "text": "Get a Free Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    },
+    {
+      "section": 3,
+      "text": "View All Services",
+      "href": "/services",
+      "kind": "button"
+    },
+    {
+      "section": 3,
+      "text": "Read About Us",
+      "href": "/about-us",
+      "kind": "button"
+    },
+    {
+      "section": 4,
+      "text": "Get a Free Estimate Now",
+      "href": "/contact-us",
+      "kind": "button"
+    },
+    {
+      "section": 5,
+      "text": "",
+      "href": "/services/ev-charger-installation",
+      "kind": "cardLink"
+    },
+    {
+      "section": 5,
+      "text": "Read More",
+      "href": "/services/ev-charger-installation",
+      "kind": "button"
+    },
+    {
+      "section": 5,
+      "text": "",
+      "href": "/services/recessed-lights-installation",
+      "kind": "cardLink"
+    },
+    {
+      "section": 5,
+      "text": "Read More",
+      "href": "/services/recessed-lights-installation",
+      "kind": "button"
+    },
+    {
+      "section": 5,
+      "text": "",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "cardLink"
+    },
+    {
+      "section": 5,
+      "text": "Read More",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "button"
+    },
+    {
+      "section": 5,
+      "text": "View All Services",
+      "href": "/services",
+      "kind": "button"
+    },
+    {
+      "section": 7,
+      "text": "Scottsdale, AZ",
+      "href": "/locations/scottsdale",
+      "kind": "cardLink"
+    },
+    {
+      "section": 7,
+      "text": "Mesa, AZ",
+      "href": "/",
+      "kind": "cardLink"
+    },
+    {
+      "section": 7,
+      "text": "Phoenix, AZ",
+      "href": "/locations/phoenix",
+      "kind": "cardLink"
+    },
+    {
+      "section": 7,
+      "text": "Gilbert, AZ",
+      "href": "/locations/gilbert",
+      "kind": "cardLink"
+    },
+    {
+      "section": 7,
+      "text": "Chandler, AZ",
+      "href": "/locations/chandler",
+      "kind": "cardLink"
+    },
+    {
+      "section": 7,
+      "text": "Tempe, AZ",
+      "href": "/locations/tempe",
+      "kind": "cardLink"
+    },
+    {
+      "section": "8.1",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    }
+  ],
+  "pageBuilderMapping": [
+    {
+      "order": 1,
+      "sectionType": "heroSection",
+      "fromInventorySection": 0,
+      "fields": "eyebrow: none; heading = H1 verbatim; text = hero paragraph; primaryCta {label \"Get a Free Estimate\", href /contact-us}; NEW fields reviewSnippets[3] and trustLine \"Licensed, bonded, and insured · ROC #365306\"; image = fleet line-up photo"
+    },
+    {
+      "order": 2,
+      "sectionType": "NEW teamIntroSection",
+      "fromInventorySection": 1,
+      "fields": "body with person mentions → teamMember refs (Steven, Cody, Emma); cta {About Us, /about-us}"
+    },
+    {
+      "order": 3,
+      "sectionType": "NEW trustBarSection",
+      "fromInventorySection": null,
+      "fields": "NEW for SEO/conversion: 5.0 rating + review count (from siteSettings.reviewSummary), ROC #365306, Since 2017, family-owned, warranty line (\"Our work comes with a warranty.\", no term), flat-rate pricing. All facts already appear in site copy."
+    },
+    {
+      "order": 4,
+      "sectionType": "NEW featureGridSection (checklist)",
+      "fromInventorySection": 2,
+      "fields": "heading \"Electrician solutions tailored to your needs\" (accent \"your needs\"); 6 items"
+    },
+    {
+      "order": 5,
+      "sectionType": "NEW featureGridSection (cards)",
+      "fromInventorySection": 3,
+      "fields": "3 cards with icon, title, text, cta"
+    },
+    {
+      "order": 6,
+      "sectionType": "servicesSection",
+      "fromInventorySection": 5,
+      "fields": "heading \"Our top electrical services\"; 3 items with overrides; cta {View All Services, /services}"
+    },
+    {
+      "order": 7,
+      "sectionType": "reviewsSection",
+      "fromInventorySection": 4,
+      "fields": "heading \"Let our reviews speak for themselves\"; cta {Get a Free Estimate Now, /contact-us}; source: Sanity reviews (HTML) with optional widget"
+    },
+    {
+      "order": 8,
+      "sectionType": "locationsSection",
+      "fromInventorySection": 7,
+      "fields": "heading \"We proudly serve the entire valley!\" (accent \"entire valley!\"); all 11 areas, tile blurbs from location docs"
+    },
+    {
+      "order": 9,
+      "sectionType": "NEW gallerySection",
+      "fromInventorySection": 8,
+      "fields": "heading \"Recent photos of our work\" (accent \"our work\"); first-party project photos"
+    },
+    {
+      "order": 10,
+      "sectionType": "faqSection",
+      "fromInventorySection": null,
+      "fields": "Optional for SEO: 3-5 homepage FAQs (reuse faq docs: free estimates, cities served, warranty). Visible + FAQPage schema from the same docs."
+    },
+    {
+      "order": 11,
+      "sectionType": "ctaSection",
+      "fromInventorySection": 8,
+      "fields": "heading \"We're ready to work for you\"; cta {Get a Free Estimate, /contact-us}; statusText \"Free estimates available\""
+    }
+  ]
+}

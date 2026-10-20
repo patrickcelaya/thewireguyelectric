@@ -1,0 +1,41 @@
+---
+// "★★★★★ 5.0 from 560+ Google reviews · Read our reviews on Google ↗", from Site
+// settings. The rating always sits beside the link to the reviews; the dot between them
+// is the .seps one, so it never hangs at a line end when the link wraps. Renders nothing
+// when Site settings has no rating.
+import type {SiteSettings} from '../../lib/types'
+import {ratingSummary, siteRating} from '../../lib/site'
+import ExternalLink from './ExternalLink.astro'
+import Stars from './Stars.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** quiet: the link on its own line (no separator); foot: the footer's spacing. */
+  variant?: 'quiet' | 'foot'
+  class?: string
+}
+
+const {settings, variant, class: className} = Astro.props
+const rating = siteRating(settings)
+---
+
+{
+  rating && (
+    <p class:list={['rating', 'seps', variant && `rating--${variant}`, className]}>
+      <span class="rating__s">
+        <Stars />{' '}
+        <span class="rating__t">
+          <b>{rating.value}</b> <span class="sr-only">out of 5 stars </span>{ratingSummary(rating)}
+        </span>
+      </span>
+      {rating.href && (
+        <>
+          {' '}
+          <span class="rating__l">
+            <ExternalLink class="rating__g" href={rating.href}>Read our reviews on {rating.source}</ExternalLink>
+          </span>
+        </>
+      )}
+    </p>
+  )
+}

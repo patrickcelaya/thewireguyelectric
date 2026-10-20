@@ -1,0 +1,1558 @@
+{
+  "page": "commercial-electrician",
+  "url": "/commercial-electrician",
+  "capturedAt": "2026-10-13",
+  "source": "Discovery inventory commercial-electrician.json: the live page (thewireguyelectric.com/commercial-electrician) as served on 2026-10-13, verbatim",
+  "title": "Commercial Electrician in Mesa & Phoenix | The Wire Guy",
+  "metaDescription": "Licensed commercial electricians serving Phoenix, Mesa, and Scottsdale. Tenant improvements, service and maintenance, LED retrofits, and upgrades.",
+  "h1": "Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ",
+  "sections": [
+    {
+      "index": 0,
+      "element": "div.section.banner-hero",
+      "purpose": "Hero: three commercial review snippets, H1, paragraph, CTA \"Get a Free Commercial Electrical Estimate\", trust line \"Trusted by 100+ Arizona businesses\"",
+      "source": "static",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.hero-wrapper",
+          "src": "/wf/a/66f6fc5f5eda8a0837b2d20b_Picture-folder-from-Celaya-Ventures.avif",
+          "cssSelector": ".hero-wrapper",
+          "responsiveOverrides": [
+            {
+              "media": "@media screen and (max-width:767px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            },
+            {
+              "media": "@media screen and (max-width:479px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            }
+          ],
+          "role": "REAL photo: fleet line-up (3 wrapped vans + F-250) with 4 techs, Superstition Mountains, lots of sky (1086px, low-res)"
+        },
+        {
+          "type": "card",
+          "kind": "heroReviewSnippet",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars"
+            },
+            {
+              "type": "paragraph",
+              "text": "“On time and stayed on schedule”"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "heroReviewSnippet",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars"
+            },
+            {
+              "type": "paragraph",
+              "text": "“Clear pricing and communication”"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "heroReviewSnippet",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars"
+            },
+            {
+              "type": "paragraph",
+              "text": "“Reliable electricians for our business”"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ"
+        },
+        {
+          "type": "paragraph",
+          "text": "Trusted by Phoenix businesses for dependable electrical work. From restaurant build-outs and tenant improvements to industrial power and panel upgrades, our team delivers safe, code-compliant solutions without delays or surprises."
+        },
+        {
+          "type": "button",
+          "label": "Get a Free Commercial Electrical Estimate",
+          "href": "/contact-us",
+          "variant": "secondary-button-with-icon",
+          "iconImage": {
+            "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+            "alt": "",
+            "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "Trusted by 100+ Arizona businesses"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6fc5f5eda8a0837b2d20b_Picture-folder-from-Celaya-Ventures.avif",
+          "alt": null,
+          "role": "REAL photo: fleet line-up (3 wrapped vans + F-250) with 4 techs, Superstition Mountains, lots of sky (1086px, low-res)",
+          "kind": "css background (.hero-wrapper)",
+          "responsiveOverrides": [
+            {
+              "media": "@media screen and (max-width:767px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            },
+            {
+              "media": "@media screen and (max-width:479px)",
+              "src": "/wf/a/66f6f6fce68c84d7791f0fa3_wire-guy-electrician.avif"
+            }
+          ]
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+          "alt": "",
+          "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative",
+          "kind": "img (inside button)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Commercial Electrical Estimate",
+          "href": "/contact-us"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "element": "section.services-section",
+      "purpose": "Featured commercial services: H2 + three cards (photo link, H3, blurb, \"Read More\") + \"View All Commercial Services\"",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Our top commercial services"
+        },
+        {
+          "level": 3,
+          "text": "Panel Upgrades"
+        },
+        {
+          "level": 3,
+          "text": "Hanging Lights"
+        },
+        {
+          "level": 3,
+          "text": "Troubleshooting"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Our top commercial services"
+        },
+        {
+          "type": "card",
+          "kind": "serviceCard",
+          "children": [
+            {
+              "type": "linkWrapper",
+              "href": "/services/ev-charger-installation",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.serviceimage._1.commercisl",
+                  "src": "/wf/a/697a78f44773da0cc1dccc2c_Screenshot-2026-01-28-at-2.00.25-PM.png",
+                  "cssSelector": ".serviceimage._1.commercisl",
+                  "role": "REAL photo (video still): commercial TI, two techs pulling SER cable (1080px)"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Panel Upgrades"
+            },
+            {
+              "type": "paragraph",
+              "text": "Upgrade electrical panels to support increased power demand, new equipment, and code requirements. We handle commercial service upgrades, load balancing, and panel replacements with minimal disruption to your business."
+            },
+            {
+              "type": "button",
+              "label": "Read More",
+              "href": "/services/commercial-electrical-troubleshooting",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "serviceCard",
+          "children": [
+            {
+              "type": "linkWrapper",
+              "href": "/services/recessed-lights-installation",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.serviceimage._2.commercial.aa",
+                  "src": "/wf/a/66f6ff5ac5733bb17e9c7d9d_electrician-cords-Large.avif",
+                  "cssSelector": ".serviceimage._2.commercial.aa",
+                  "role": "REAL photo: Klein tools flat-lay on yellow Romex (853x1280)"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Hanging Lights"
+            },
+            {
+              "type": "paragraph",
+              "text": "Professional installation of commercial lighting for offices, retail spaces, restaurants, and warehouses. We ensure proper layout, clean installs, and reliable performance for both function and aesthetics."
+            },
+            {
+              "type": "button",
+              "label": "Read More",
+              "href": "/services/hanging-lights",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "serviceCard",
+          "children": [
+            {
+              "type": "linkWrapper",
+              "href": "/services/electrical-troubleshooting",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.serviceimage._3.commercial.aaa",
+                  "src": "/wf/a/66f7000ce57741d169baf95c_wire-guy-electric-fun-Large.avif",
+                  "cssSelector": ".serviceimage._3.commercial.aaa",
+                  "role": "REAL photo: four techs in front of a wrapped van, one pointing at the logo (1280px)"
+                }
+              ]
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Troubleshooting"
+            },
+            {
+              "type": "paragraph",
+              "text": "Fast, reliable electrical troubleshooting for commercial buildings. We diagnose power issues, tripping breakers, faulty circuits, and equipment failures to get your business back up and running quickly."
+            },
+            {
+              "type": "button",
+              "label": "Read More",
+              "href": "/services/commercial-electrical-troubleshooting",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "button",
+          "label": "View All Commercial Services",
+          "href": "/services",
+          "variant": "secondary-button w-button"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/697a78f44773da0cc1dccc2c_Screenshot-2026-01-28-at-2.00.25-PM.png",
+          "alt": null,
+          "role": "REAL photo (video still): commercial TI, two techs pulling SER cable (1080px)",
+          "kind": "css background (.serviceimage._1.commercisl)"
+        },
+        {
+          "src": "/wf/a/66f6ff5ac5733bb17e9c7d9d_electrician-cords-Large.avif",
+          "alt": null,
+          "role": "REAL photo: Klein tools flat-lay on yellow Romex (853x1280)",
+          "kind": "css background (.serviceimage._2.commercial.aa)"
+        },
+        {
+          "src": "/wf/a/66f7000ce57741d169baf95c_wire-guy-electric-fun-Large.avif",
+          "alt": null,
+          "role": "REAL photo: four techs in front of a wrapped van, one pointing at the logo (1280px)",
+          "kind": "css background (.serviceimage._3.commercial.aaa)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Read More",
+          "href": "/services/commercial-electrical-troubleshooting"
+        },
+        {
+          "label": "Read More",
+          "href": "/services/hanging-lights"
+        },
+        {
+          "label": "Read More",
+          "href": "/services/commercial-electrical-troubleshooting"
+        },
+        {
+          "label": "View All Commercial Services",
+          "href": "/services"
+        }
+      ],
+      "notes": [
+        "Broken/mismatched links: \"Panel Upgrades\" photo → /services/ev-charger-installation, its Read More → /services/commercial-electrical-troubleshooting (should be /services/electrical-upgrades). \"Hanging Lights\" photo → /services/recessed-lights-installation (residential). \"Troubleshooting\" photo → /services/electrical-troubleshooting (residential) while Read More → commercial.",
+        "\"View All Commercial Services\" goes to /services, which opens on the Residential tab. Point it to /services-categories/commercial."
+      ]
+    },
+    {
+      "index": 2,
+      "element": "section.section.dark-background",
+      "purpose": "Capabilities checklist: H2 + six check-icon H3 items",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Commercial electrical solutions built around your business"
+        },
+        {
+          "level": 3,
+          "text": "Commercial Electrical Repairs"
+        },
+        {
+          "level": 3,
+          "text": "Lighting for Offices & Retail"
+        },
+        {
+          "level": 3,
+          "text": "Commercial Wiring & Circuits"
+        },
+        {
+          "level": 3,
+          "text": "Panel & Service Upgrades"
+        },
+        {
+          "level": 3,
+          "text": "Tenant Improvements"
+        },
+        {
+          "level": 3,
+          "text": "+ More!"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Commercial electrical solutions built around your business"
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Commercial Electrical Repairs"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Lighting for Offices & Retail"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Commercial Wiring & Circuits"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Panel & Service Upgrades"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Tenant Improvements"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "solutionItem",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-circle-check"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "+ More!"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "ctas": [],
+      "notes": [
+        "Link items to commercial services (Tenant Improvements → /services/tenant-improvements, Panel & Service Upgrades → /services/electrical-upgrades, Lighting for Offices & Retail → /services/led-lights)."
+      ]
+    },
+    {
+      "index": 3,
+      "element": "section.section.without-top-spacing",
+      "purpose": "Value props: three feature cards (Upfront Pricing / Reliable Work / Great Service)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 3,
+          "text": "Upfront Pricing"
+        },
+        {
+          "level": 3,
+          "text": "Reliable Work"
+        },
+        {
+          "level": 3,
+          "text": "Great Service"
+        }
+      ],
+      "content": [
+        {
+          "type": "card",
+          "kind": "featureCard",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-plug"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Upfront Pricing"
+            },
+            {
+              "type": "paragraph",
+              "text": "We provide transparent estimates for commercial electrical work with no hidden fees or surprise charges. You’ll know the scope, timeline, and cost before work begins so your project stays on budget."
+            },
+            {
+              "type": "button",
+              "label": "Get a Free Estimate",
+              "href": "/contact-us",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "featureCard",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-bolt"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Reliable Work"
+            },
+            {
+              "type": "paragraph",
+              "text": "Our licensed electricians handle commercial projects of all sizes, from small service calls to larger build-outs. We focus on clean installs, code compliance, and minimizing disruption to your business operations."
+            },
+            {
+              "type": "button",
+              "label": "View All Services",
+              "href": "/services",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "featureCard",
+          "children": [
+            {
+              "type": "icon",
+              "icon": "fa-lightbulb"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Great Service"
+            },
+            {
+              "type": "paragraph",
+              "text": "We understand schedules, inspections, and coordination matter. Our team communicates clearly, shows up on time, and follows through so your project stays on track from start to finish."
+            },
+            {
+              "type": "button",
+              "label": "Read About Us",
+              "href": "/about-us",
+              "variant": "icon-link",
+              "icon": "fa-arrow-right"
+            }
+          ]
+        }
+      ],
+      "images": [],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate",
+          "href": "/contact-us"
+        },
+        {
+          "label": "View All Services",
+          "href": "/services"
+        },
+        {
+          "label": "Read About Us",
+          "href": "/about-us"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "element": "div.section.without-space#reviews",
+      "purpose": "Reviews band: 5-star graphic, H3 \"Let our reviews speak for themselves\", button \"Get a Free Commercial Estimate Now\" to /contact-us, then the BrightLocal Showcase Reviews iframe",
+      "source": "embed",
+      "headings": [
+        {
+          "level": 3,
+          "text": "Let our reviews speak for themselves"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.section-testimonials-5",
+          "src": "/wf/a/66980076a856729471b47d7f_light-bulbs-copy.webp",
+          "cssSelector": ".section-testimonials-5",
+          "role": "Stock texture: pile of bulbs (600px) under a dark overlay"
+        },
+        {
+          "type": "card",
+          "kind": "reviewsIntro",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+              "alt": "",
+              "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+              "width": "95"
+            },
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Let our reviews speak for themselves"
+            },
+            {
+              "type": "button",
+              "label": "Get a Free Commercial Estimate Now",
+              "href": "/contact-us",
+              "variant": "primary-button-2 w-button"
+            }
+          ]
+        },
+        {
+          "type": "embedContainer",
+          "placeholderId": "21435",
+          "children": [
+            {
+              "type": "embedScript",
+              "provider": "BrightLocal \"Showcase Reviews\" widget (renders an iframe)",
+              "scriptSrc": "https://www.local-marketing-reports.com/external/showcase-reviews/embed/599158c9201cda7d9f4a0e3aa733389a1ff4d538?id=21435",
+              "scriptAttrs": {
+                "defer": ""
+              },
+              "loading": "lazy: webflow-lite injects the script when the parent is within 800px of the viewport"
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66980076a856729471b47d7f_light-bulbs-copy.webp",
+          "alt": null,
+          "role": "Stock texture: pile of bulbs (600px) under a dark overlay",
+          "kind": "css background (.section-testimonials-5)"
+        },
+        {
+          "src": "/wf/a/66aaa8d3906de3956ceb0637_Wire-Guy-Electric-Frame-2.png",
+          "alt": "",
+          "role": "5 gold stars graphic (71x12 PNG), decorative rating indicator; replace with inline SVG stars",
+          "kind": "img"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Commercial Estimate Now",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "Live widget (checked 2026-10-13) shows \"333 Total Reviews\", 5.0, newest review dated 02.26.2026: it stopped syncing ~8 months ago. siteSettings.reviewSummary says 380.",
+        "Review text inside the iframe is NOT indexable by Google. Sanity has 0 review documents; import real reviews (with permission/attribution) so they render as HTML."
+      ]
+    },
+    {
+      "index": 5,
+      "element": "div.code-embed-3.w-embed.w-script",
+      "purpose": "Hidden Elfsight app mount with no visible slot",
+      "source": "embed",
+      "headings": [],
+      "content": [
+        {
+          "type": "embedScript",
+          "provider": "Elfsight platform loader (elfsightcdn.com)",
+          "scriptSrc": "https://elfsightcdn.com/platform.js",
+          "scriptAttrs": {
+            "async": ""
+          },
+          "loading": "lazy: webflow-lite injects the script when the parent is within 800px of the viewport"
+        },
+        {
+          "type": "embedMount",
+          "provider": "Elfsight",
+          "widgetId": "e7fa68fc-7b96-47e6-8018-111822fff1a8",
+          "purpose": "Unknown Elfsight app (no visible slot; likely a floating widget such as a review badge or button)",
+          "liveStatus": "BROKEN: Elfsight boot API returns APP_VIEWS_LIMIT_REACHED (checked 2026-10-13); renders nothing"
+        }
+      ],
+      "images": [],
+      "ctas": []
+    },
+    {
+      "index": 6,
+      "element": "section.markets-section",
+      "purpose": "Service-area grid: H2 \"We proudly serve the entire Phoenix valley!\", six city tiles (H3 \"City, AZ\" + neighborhood blurb) over regional stock photos, each linking to the city page (Mesa links to /)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "We proudly serve the entire Phoenix valley!"
+        },
+        {
+          "level": 3,
+          "text": "Scottsdale, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Mesa, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Phoenix, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Gilbert, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Chandler, AZ"
+        },
+        {
+          "level": 3,
+          "text": "Tempe, AZ"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "We proudly serve the entire Phoenix valley!",
+          "html": "We proudly serve the <span class=\"accent\">entire Phoenix valley!</span>",
+          "accent": [
+            "entire Phoenix valley!"
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/scottsdale",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._1",
+                  "src": "/wf/a/690bd80cfa28bea3dc435ba6_pexels-jeremy-alford-211956852-12370436.jpg",
+                  "cssSelector": ".servicewrap._1",
+                  "role": "Stock: desert foothills above custom homes (Scottsdale tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Scottsdale, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._2",
+                  "src": "/wf/a/690bdd4683b26b967e8af7da_pexels-timmossholder-19457780.jpg",
+                  "cssSelector": ".servicewrap._2",
+                  "role": "Stock: Courthouse Butte, SEDONA (wrong city; used on the Mesa tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Mesa, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Eastmark, Las Sendas, Red Mountain Ranch, and Dobson Ranch"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/phoenix",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._3",
+                  "src": "/wf/a/690bddb3d93955270492cffe_pexels-justin-nealey-1251860-3391570.jpg",
+                  "cssSelector": ".servicewrap._3",
+                  "role": "Stock: saguaro desert and mountain (Phoenix tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Phoenix, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/gilbert",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._4",
+                  "src": "/wf/a/690bde01126955c1950c8def_pexels-chuck-shields-1116201851-34356412.jpg",
+                  "cssSelector": ".servicewrap._4",
+                  "role": "Stock: saguaro cluster (Gilbert tile)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Gilbert, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/chandler",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._5",
+                  "src": "/wf/a/690bde2dd844ca7a4551009c_pexels-jmeyer1220-15693246.jpg",
+                  "cssSelector": ".servicewrap._5",
+                  "role": "Stock: Ocotillo lake and condos, Chandler (city-specific)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Chandler, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "linkWrapper",
+          "href": "/locations/tempe",
+          "children": [
+            {
+              "type": "card",
+              "kind": "locationTile",
+              "children": [
+                {
+                  "type": "backgroundImage",
+                  "element": "div.servicewrap._6",
+                  "src": "/wf/a/690bde56d075637845561d2e_pexels-elolson15-16922246.jpg",
+                  "cssSelector": ".servicewrap._6",
+                  "role": "Stock: ASU Tempe campus with palms (city-specific)"
+                },
+                {
+                  "type": "heading",
+                  "level": 3,
+                  "text": "Tempe, AZ"
+                },
+                {
+                  "type": "paragraph",
+                  "text": "Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/690bd80cfa28bea3dc435ba6_pexels-jeremy-alford-211956852-12370436.jpg",
+          "alt": null,
+          "role": "Stock: desert foothills above custom homes (Scottsdale tile)",
+          "kind": "css background (.servicewrap._1)"
+        },
+        {
+          "src": "/wf/a/690bdd4683b26b967e8af7da_pexels-timmossholder-19457780.jpg",
+          "alt": null,
+          "role": "Stock: Courthouse Butte, SEDONA (wrong city; used on the Mesa tile)",
+          "kind": "css background (.servicewrap._2)"
+        },
+        {
+          "src": "/wf/a/690bddb3d93955270492cffe_pexels-justin-nealey-1251860-3391570.jpg",
+          "alt": null,
+          "role": "Stock: saguaro desert and mountain (Phoenix tile)",
+          "kind": "css background (.servicewrap._3)"
+        },
+        {
+          "src": "/wf/a/690bde01126955c1950c8def_pexels-chuck-shields-1116201851-34356412.jpg",
+          "alt": null,
+          "role": "Stock: saguaro cluster (Gilbert tile)",
+          "kind": "css background (.servicewrap._4)"
+        },
+        {
+          "src": "/wf/a/690bde2dd844ca7a4551009c_pexels-jmeyer1220-15693246.jpg",
+          "alt": null,
+          "role": "Stock: Ocotillo lake and condos, Chandler (city-specific)",
+          "kind": "css background (.servicewrap._5)"
+        },
+        {
+          "src": "/wf/a/690bde56d075637845561d2e_pexels-elolson15-16922246.jpg",
+          "alt": null,
+          "role": "Stock: ASU Tempe campus with palms (city-specific)",
+          "kind": "css background (.servicewrap._6)"
+        }
+      ],
+      "ctas": [],
+      "notes": [
+        "Only 6 of the 11 served areas get a tile; the redesign should show all 11 (Mesa, Gilbert, Chandler, Scottsdale, Phoenix, Tempe, Queen Creek, San Tan Valley, Apache Junction, Fountain Hills, Ahwatukee) for internal linking.",
+        "Blurbs are hard-coded here; Sanity location.neighborhoods is null on all 10 docs. Move each blurb into the location doc (e.g. location.cardBlurb or neighborhoods[]).",
+        "Mesa tile uses a photo of Sedona (Courthouse Butte). Replace.",
+        "Chandler blurb ends with a stray comma: \"Serving Ocotillo, Fulton Ranch, and Downtown Chandler,\"."
+      ]
+    },
+    {
+      "index": "7.0",
+      "element": "section.gallery-section → .image-gallery-heading, .elfsite-contain",
+      "purpose": "Photo gallery: H2 \"Recent photos of our work\" + Elfsight feed mount",
+      "source": "embed",
+      "headings": [
+        {
+          "level": 2,
+          "text": "Recent photos of our work"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "section.gallery-section",
+          "src": "/wf/a/66b294e9a28024cec652f08c_Electrician-website-background.webp",
+          "cssSelector": ".gallery-section",
+          "role": "Stock texture: ring of clear bulbs on white"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Recent photos of our work",
+          "html": "Recent photos of <span class=\"accent\">our work</span>",
+          "accent": [
+            "our work"
+          ]
+        },
+        {
+          "type": "embedScript",
+          "provider": "Elfsight platform loader (static.elfsight.com)",
+          "scriptSrc": "https://static.elfsight.com/platform/platform.js",
+          "scriptAttrs": {
+            "data-use-service-core": "",
+            "defer": ""
+          },
+          "loading": "lazy: webflow-lite injects the script when the parent is within 800px of the viewport"
+        },
+        {
+          "type": "embedMount",
+          "provider": "Elfsight",
+          "widgetId": "926532fb-4d1f-4eb9-b78f-282cc880e690",
+          "purpose": "Photo feed under \"Recent photos of our work\" (almost certainly the Instagram feed of @thewireguyelectric)",
+          "liveStatus": "BROKEN: Elfsight boot API returns APP_VIEWS_LIMIT_REACHED (checked 2026-10-13); the mount renders 0px, so the section shows a heading over an empty background"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66b294e9a28024cec652f08c_Electrician-website-background.webp",
+          "alt": null,
+          "role": "Stock texture: ring of clear bulbs on white",
+          "kind": "css background (.gallery-section)"
+        }
+      ],
+      "ctas": [],
+      "notes": [
+        "The Elfsight widget is over its view limit (APP_VIEWS_LIMIT_REACHED) so live visitors see a heading over an empty background.",
+        "Replace with first-party job photos (Sanity `project` docs or an image array) so images are indexable, fast and have alt text."
+      ]
+    },
+    {
+      "index": "7.1",
+      "element": "section.gallery-section → .section-testimonials",
+      "purpose": "Closing CTA band: H2 \"We're ready to work for you\", bulb-icon button to /contact-us, status line \"🟢 Free estimates available\" over a photo background",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "We're ready to work for you"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.section-testimonials.override",
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "cssSelector": ".section-testimonials.override",
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "We're ready to work for you"
+        },
+        {
+          "type": "button",
+          "label": "Get a Free Estimate",
+          "href": "/contact-us",
+          "variant": "secondary-button-with-icon",
+          "iconImage": {
+            "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+            "alt": "",
+            "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "🟢 Free estimates available"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "alt": null,
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)",
+          "kind": "css background (.section-testimonials.override)"
+        },
+        {
+          "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+          "alt": "",
+          "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative",
+          "kind": "img (inside button)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "Same band repeats on most pages; make it one shared default with per-page override.",
+        "Status line text differs by page (\"Free estimates available\" vs \"Active Now\"); keep as ctaSection.statusText."
+      ]
+    }
+  ],
+  "copy": [
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "“On time and stayed on schedule”"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "“Clear pricing and communication”"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "“Reliable electricians for our business”"
+    },
+    {
+      "section": 0,
+      "tag": "h1",
+      "text": "Licensed, Bonded & Insured Commercial Electricians Serving Phoenix, AZ"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "Trusted by Phoenix businesses for dependable electrical work. From restaurant build-outs and tenant improvements to industrial power and panel upgrades, our team delivers safe, code-compliant solutions without delays or surprises."
+    },
+    {
+      "section": 0,
+      "tag": "button",
+      "text": "Get a Free Commercial Electrical Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "Trusted by 100+ Arizona businesses"
+    },
+    {
+      "section": 1,
+      "tag": "h2",
+      "text": "Our top commercial services"
+    },
+    {
+      "section": 1,
+      "tag": "h3",
+      "text": "Panel Upgrades"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Upgrade electrical panels to support increased power demand, new equipment, and code requirements. We handle commercial service upgrades, load balancing, and panel replacements with minimal disruption to your business."
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Read More",
+      "href": "/services/commercial-electrical-troubleshooting"
+    },
+    {
+      "section": 1,
+      "tag": "h3",
+      "text": "Hanging Lights"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Professional installation of commercial lighting for offices, retail spaces, restaurants, and warehouses. We ensure proper layout, clean installs, and reliable performance for both function and aesthetics."
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Read More",
+      "href": "/services/hanging-lights"
+    },
+    {
+      "section": 1,
+      "tag": "h3",
+      "text": "Troubleshooting"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Fast, reliable electrical troubleshooting for commercial buildings. We diagnose power issues, tripping breakers, faulty circuits, and equipment failures to get your business back up and running quickly."
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Read More",
+      "href": "/services/commercial-electrical-troubleshooting"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "View All Commercial Services",
+      "href": "/services"
+    },
+    {
+      "section": 2,
+      "tag": "h2",
+      "text": "Commercial electrical solutions built around your business"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Commercial Electrical Repairs"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Lighting for Offices & Retail"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Commercial Wiring & Circuits"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Panel & Service Upgrades"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "Tenant Improvements"
+    },
+    {
+      "section": 2,
+      "tag": "h3",
+      "text": "+ More!"
+    },
+    {
+      "section": 3,
+      "tag": "h3",
+      "text": "Upfront Pricing"
+    },
+    {
+      "section": 3,
+      "tag": "p",
+      "text": "We provide transparent estimates for commercial electrical work with no hidden fees or surprise charges. You’ll know the scope, timeline, and cost before work begins so your project stays on budget."
+    },
+    {
+      "section": 3,
+      "tag": "button",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": 3,
+      "tag": "h3",
+      "text": "Reliable Work"
+    },
+    {
+      "section": 3,
+      "tag": "p",
+      "text": "Our licensed electricians handle commercial projects of all sizes, from small service calls to larger build-outs. We focus on clean installs, code compliance, and minimizing disruption to your business operations."
+    },
+    {
+      "section": 3,
+      "tag": "button",
+      "text": "View All Services",
+      "href": "/services"
+    },
+    {
+      "section": 3,
+      "tag": "h3",
+      "text": "Great Service"
+    },
+    {
+      "section": 3,
+      "tag": "p",
+      "text": "We understand schedules, inspections, and coordination matter. Our team communicates clearly, shows up on time, and follows through so your project stays on track from start to finish."
+    },
+    {
+      "section": 3,
+      "tag": "button",
+      "text": "Read About Us",
+      "href": "/about-us"
+    },
+    {
+      "section": 4,
+      "tag": "h3",
+      "text": "Let our reviews speak for themselves"
+    },
+    {
+      "section": 4,
+      "tag": "button",
+      "text": "Get a Free Commercial Estimate Now",
+      "href": "/contact-us"
+    },
+    {
+      "section": 6,
+      "tag": "h2",
+      "text": "We proudly serve the entire Phoenix valley!",
+      "html": "We proudly serve the <span class=\"accent\">entire Phoenix valley!</span>"
+    },
+    {
+      "section": 6,
+      "tag": "h3",
+      "text": "Scottsdale, AZ"
+    },
+    {
+      "section": 6,
+      "tag": "p",
+      "text": "North Scottsdale, DC Ranch, McCormick Ranch, and Gainey Ranch."
+    },
+    {
+      "section": 6,
+      "tag": "h3",
+      "text": "Mesa, AZ"
+    },
+    {
+      "section": 6,
+      "tag": "p",
+      "text": "Eastmark, Las Sendas, Red Mountain Ranch, and Dobson Ranch"
+    },
+    {
+      "section": 6,
+      "tag": "h3",
+      "text": "Phoenix, AZ"
+    },
+    {
+      "section": 6,
+      "tag": "p",
+      "text": "Arcadia, Biltmore, Ahwatukee, North Phoenix, and Central City."
+    },
+    {
+      "section": 6,
+      "tag": "h3",
+      "text": "Gilbert, AZ"
+    },
+    {
+      "section": 6,
+      "tag": "p",
+      "text": "Power Ranch, Val Vista Lakes, Seville, Morrison Ranch, and Agritopia."
+    },
+    {
+      "section": 6,
+      "tag": "h3",
+      "text": "Chandler, AZ"
+    },
+    {
+      "section": 6,
+      "tag": "p",
+      "text": "Serving Ocotillo, Fulton Ranch, and Downtown Chandler,"
+    },
+    {
+      "section": 6,
+      "tag": "h3",
+      "text": "Tempe, AZ"
+    },
+    {
+      "section": 6,
+      "tag": "p",
+      "text": "Downtown Tempe, South Tempe, The Lakes, and near ASU neighborhoods."
+    },
+    {
+      "section": "7.0",
+      "tag": "h2",
+      "text": "Recent photos of our work",
+      "html": "Recent photos of <span class=\"accent\">our work</span>"
+    },
+    {
+      "section": "7.1",
+      "tag": "h2",
+      "text": "We're ready to work for you"
+    },
+    {
+      "section": "7.1",
+      "tag": "button",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": "7.1",
+      "tag": "p",
+      "text": "🟢 Free estimates available"
+    }
+  ],
+  "links": [
+    {
+      "section": 0,
+      "text": "Get a Free Commercial Electrical Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    },
+    {
+      "section": 1,
+      "text": "",
+      "href": "/services/ev-charger-installation",
+      "kind": "cardLink"
+    },
+    {
+      "section": 1,
+      "text": "Read More",
+      "href": "/services/commercial-electrical-troubleshooting",
+      "kind": "button"
+    },
+    {
+      "section": 1,
+      "text": "",
+      "href": "/services/recessed-lights-installation",
+      "kind": "cardLink"
+    },
+    {
+      "section": 1,
+      "text": "Read More",
+      "href": "/services/hanging-lights",
+      "kind": "button"
+    },
+    {
+      "section": 1,
+      "text": "",
+      "href": "/services/electrical-troubleshooting",
+      "kind": "cardLink"
+    },
+    {
+      "section": 1,
+      "text": "Read More",
+      "href": "/services/commercial-electrical-troubleshooting",
+      "kind": "button"
+    },
+    {
+      "section": 1,
+      "text": "View All Commercial Services",
+      "href": "/services",
+      "kind": "button"
+    },
+    {
+      "section": 3,
+      "text": "Get a Free Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    },
+    {
+      "section": 3,
+      "text": "View All Services",
+      "href": "/services",
+      "kind": "button"
+    },
+    {
+      "section": 3,
+      "text": "Read About Us",
+      "href": "/about-us",
+      "kind": "button"
+    },
+    {
+      "section": 4,
+      "text": "Get a Free Commercial Estimate Now",
+      "href": "/contact-us",
+      "kind": "button"
+    },
+    {
+      "section": 6,
+      "text": "Scottsdale, AZ",
+      "href": "/locations/scottsdale",
+      "kind": "cardLink"
+    },
+    {
+      "section": 6,
+      "text": "Mesa, AZ",
+      "href": "/",
+      "kind": "cardLink"
+    },
+    {
+      "section": 6,
+      "text": "Phoenix, AZ",
+      "href": "/locations/phoenix",
+      "kind": "cardLink"
+    },
+    {
+      "section": 6,
+      "text": "Gilbert, AZ",
+      "href": "/locations/gilbert",
+      "kind": "cardLink"
+    },
+    {
+      "section": 6,
+      "text": "Chandler, AZ",
+      "href": "/locations/chandler",
+      "kind": "cardLink"
+    },
+    {
+      "section": 6,
+      "text": "Tempe, AZ",
+      "href": "/locations/tempe",
+      "kind": "cardLink"
+    },
+    {
+      "section": "7.1",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    }
+  ],
+  "pageBuilderMapping": [
+    {
+      "order": 1,
+      "sectionType": "heroSection",
+      "fromInventorySection": 0,
+      "fields": "heading = H1; text; primaryCta {Get a Free Commercial Electrical Estimate, /contact-us}; reviewSnippets 3; trustLine \"Trusted by 100+ Arizona businesses\""
+    },
+    {
+      "order": 2,
+      "sectionType": "NEW trustBarSection",
+      "fromInventorySection": null,
+      "fields": "100+ Arizona businesses, ROC #365306, licensed/bonded/insured, off-hours scheduling"
+    },
+    {
+      "order": 3,
+      "sectionType": "servicesSection",
+      "fromInventorySection": 1,
+      "fields": "heading \"Our top commercial services\"; category commercial or 3 picked items with overrides; cta {View All Commercial Services, /services-categories/commercial}"
+    },
+    {
+      "order": 4,
+      "sectionType": "NEW featureGridSection (checklist)",
+      "fromInventorySection": 2,
+      "fields": "heading \"Commercial electrical solutions built around your business\""
+    },
+    {
+      "order": 5,
+      "sectionType": "NEW featureGridSection (cards)",
+      "fromInventorySection": 3,
+      "fields": "3 cards"
+    },
+    {
+      "order": 6,
+      "sectionType": "NEW processStepsSection",
+      "fromInventorySection": null,
+      "fields": "Optional, SEO/conversion: walkthrough → written estimate → scheduled around operations → inspection/close-out (supported by existing card copy)"
+    },
+    {
+      "order": 7,
+      "sectionType": "reviewsSection",
+      "fromInventorySection": 4,
+      "fields": "cta {Get a Free Commercial Estimate Now, /contact-us}; prefer commercial reviews"
+    },
+    {
+      "order": 8,
+      "sectionType": "locationsSection",
+      "fromInventorySection": 6,
+      "fields": "heading \"We proudly serve the entire Phoenix valley!\""
+    },
+    {
+      "order": 9,
+      "sectionType": "NEW gallerySection",
+      "fromInventorySection": 7,
+      "fields": "commercial job photos (TI video still exists)"
+    },
+    {
+      "order": 10,
+      "sectionType": "faqSection",
+      "fromInventorySection": null,
+      "fields": "Optional: commercial FAQs (after-hours work, permits/inspections, TI lead times)"
+    },
+    {
+      "order": 11,
+      "sectionType": "ctaSection",
+      "fromInventorySection": 7,
+      "fields": "statusText \"Free estimates available\""
+    }
+  ]
+}

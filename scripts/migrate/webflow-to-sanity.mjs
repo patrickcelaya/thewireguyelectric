@@ -11,10 +11,12 @@
 //   sanity-import/production.ndjson  import with:
 //     npx sanity dataset import migration/sanity-import/production.ndjson production --replace
 //   sanity-import/id-map.json        stable document IDs across re-runs
+//   sanity-import/content-dates.json what each document's updatedAt describes (content-dates.mjs)
 //
-// Images are emitted as `_sanityAsset: "image@<webflow url>"`, which the Sanity
-// importer downloads and re-hosts, so nothing depends on Webflow's CDN afterwards.
-// Before import, the site renders these URLs directly (local dataset mode).
+// Images are read as `_sanityAsset: "image@<webflow url>"` and leave as references to the
+// Sanity assets the first import made from those files (their asset documents are in the
+// NDJSON; see "Self-contained images" below), so neither the dataset nor the site depends
+// on Webflow's CDN.
 
 import {readFile, writeFile, mkdir} from 'node:fs/promises'
 import {existsSync} from 'node:fs'
@@ -23,14 +25,16 @@ import {JSDOM} from 'jsdom'
 import {Schema} from '@sanity/schema'
 import {htmlToBlocks} from '@portabletext/block-tools'
 import * as cheerio from 'cheerio'
+import {BASELINE_PATH, stampContentDates} from './content-dates.mjs'
 
 const ROOT = new URL('../../', import.meta.url)
 const p = (rel) => new URL(rel, ROOT)
 const readJson = async (rel) => JSON.parse(await readFile(p(rel), 'utf8'))
 const items = (data) => (Array.isArray(data) ? data : data.items)
 
-const OUT_DIR = 'migration/sanity-import/'
-const ID_MAP_PATH = `${OUT_DIR}id-map.json`
+// MIGRATE_OUT_DIR lets a trial run write somewhere else; IDs always come from the committed map.
+const OUT_DIR = process.env.MIGRATE_OUT_DIR ? `${process.env.MIGRATE_OUT_DIR.replace(/\/$/, '')}/` : 'migration/sanity-import/'
+const ID_MAP_PATH = 'migration/sanity-import/id-map.json'
 const SITE = 'https://www.thewireguyelectric.com'
 
 // ---------------------------------------------------------------------------
@@ -107,9 +111,9 @@ const compiled = Schema.compile({
 const blockContentType = compiled.get('holder').fields.find((f) => f.name === 'body').type
 
 // Known-broken internal links on the live site, fixed at the source (redirects
-// also exist, but a direct link avoids a hop).
+// also exist, but a direct link avoids a hop). /estimate is a real page now (the
+// Free Estimate page every estimate link goes to), so links to it are kept.
 const LINK_FIXES = {
-  '/estimate': '/contact-us',
   '/locations/mesa': '/',
   '/services/electrical-panels': '/services/panels',
 }
@@ -132,6 +136,22 @@ function normalizeHref(href, docPath) {
   }
   return out
 }
+
+// Owner rule: every "Free Estimate" link goes to the Free Estimate page. The live copy links "Get a free estimate",
+// "request a free estimate", "free estimates" … to /contact-us (or to the old homepage form, /#contact); those become
+// /estimate (the same phrase test as ctaHref in web/src/lib/site.ts, plural included). Other links to /contact-us
+// ("Contact us") stay.
+const ESTIMATE_TEXT = /\bfree\b(?:\s+\w+){0,3}?\s+estimates?\b/i
+const CONTACT_FORM = /^(?:\/contact-us(?:[#?]|$)|\/#contact$)/
+function estimateHref(href, text, docPath) {
+  const words = (text ?? '').replace(/\s+/g, ' ').trim()
+  if (!ESTIMATE_TEXT.test(words) || !CONTACT_FORM.test(href ?? '')) return href
+  report.fixedLinks.push({doc: docPath, from: href, to: '/estimate', text: words})
+  return '/estimate'
+}
+
+// Webflow writes this placeholder into an image's alt when the editor chose "inherit"; it is not a description.
+const altText = (alt) => (alt && alt !== '__wf_reserved_inherit' ? alt : undefined)
 
 function youtubeUrl(src) {
   const id = src?.match(/(?:youtube(?:-nocookie)?\.com\/(?:embed\/|watch\?v=)|youtu\.be\/)([\w-]{11})/)?.[1]
@@ -174,7 +194,7 @@ function toPortableText(html, docPath) {
               const src = img.getAttribute('src')
               if (!/website-files\.com|webflow\.com/.test(src)) report.externalImages.push({doc: docPath, src})
               const caption = el.querySelector('figcaption')?.textContent.trim()
-              return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: img.getAttribute('alt') || undefined, caption: caption || undefined})
+              return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: altText(img.getAttribute('alt')), caption: caption || undefined})
             }
             return undefined
           }
@@ -182,7 +202,7 @@ function toPortableText(html, docPath) {
           if (tag === 'img' && el.getAttribute('src')) {
             const src = el.getAttribute('src')
             if (!/website-files\.com|webflow\.com/.test(src)) report.externalImages.push({doc: docPath, src})
-            return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: el.getAttribute('alt') || undefined})
+            return block({_type: 'figure', _sanityAsset: `image@${src}`, alt: altText(el.getAttribute('alt'))})
           }
           if (tag === 'table') {
             const rows = [...el.querySelectorAll('tr')].map((tr) => ({
@@ -197,7 +217,7 @@ function toPortableText(html, docPath) {
             if (!href) return undefined
             return {
               _type: '__annotation',
-              markDef: {_key: keyGenerator(), _type: 'link', href: normalizeHref(href, docPath), openInNewTab: el.getAttribute('target') === '_blank' || undefined},
+              markDef: {_key: keyGenerator(), _type: 'link', href: estimateHref(normalizeHref(href, docPath), el.textContent, docPath), openInNewTab: el.getAttribute('target') === '_blank' || undefined},
               children: next(el.childNodes),
             }
           }
@@ -209,12 +229,36 @@ function toPortableText(html, docPath) {
       },
     ],
   })
-  // Drop spacer paragraphs Webflow leaves behind (<p>‍</p>, <p><br></p>).
-  return blocks.filter((b) => b._type !== 'block' || b.children?.some((c) => c.text?.replace(/[\s‍]/g, '')))
+  // Drop spacer paragraphs Webflow leaves behind (<p>‍</p>, <p><br></p>), after trimming the line breaks it
+  // leaves at the start and end of a block (each would render as a stray <br>).
+  return blocks.map(trimBlock).filter((b) => b._type !== 'block' || b.children?.some((c) => c.text?.replace(/[\s‍]/g, '')))
+}
+
+/** A block without whitespace at its edges: the first span's leading and the last span's trailing whitespace go. */
+function trimBlock(b) {
+  if (b._type !== 'block' || !b.children?.length) return b
+  const children = b.children.map((c) => ({...c}))
+  const edge = (i, re) => {
+    if (typeof children[i]?.text === 'string') children[i].text = children[i].text.replace(re, '')
+  }
+  // a span that held only whitespace leaves its neighbour as the new edge
+  while (children.length) {
+    edge(0, /^[\s‍]+/)
+    if (children.length > 1 && children[0].text === '') children.shift()
+    else break
+  }
+  while (children.length) {
+    edge(children.length - 1, /[\s‍]+$/)
+    if (children.length > 1 && children.at(-1).text === '') children.pop()
+    else break
+  }
+  // a link whose only text was edge whitespace has no span left
+  const used = new Set(children.flatMap((c) => c.marks ?? []))
+  return {...b, children, markDefs: (b.markDefs ?? []).filter((m) => used.has(m._key))}
 }
 
 const image = (field, alt) =>
-  field?.url ? {_type: 'image', _sanityAsset: `image@${field.url}`, ...(alt || field.alt ? {alt: alt || field.alt} : {})} : undefined
+  field?.url ? {_type: 'image', _sanityAsset: `image@${field.url}`, ...(alt || altText(field.alt) ? {alt: alt || altText(field.alt)} : {})} : undefined
 
 const slug = (current) => ({_type: 'slug', current})
 const plainBlocks = (text) =>
@@ -272,12 +316,33 @@ const tabOrder = (tab) =>
     .map((_, a) => servicesPage(a).attr('href').split('/').pop())
     .get()
 const serviceOrder = [...new Set([...tabOrder('Residential'), ...tabOrder('Commercial'), ...tabOrder('All')])]
+
+// A service that is live with unpublished edits staged on it (isDraft and lastPublished both set) ships what
+// is live, not the draft (owner, 2026-10-17: hanging-lights): the body is the published page's rich text,
+// saved as migration/live-snapshots/services_<slug>.html, and the short description is its live /services card.
+async function publishedService(f) {
+  const file = `migration/live-snapshots/services_${f.slug}.html`
+  if (!existsSync(p(file))) throw new Error(`${f.slug} has unpublished edits staged in Webflow: save its live page as ${file}`)
+  const page = cheerio.load(await readFile(p(file), 'utf8'))
+  const richText = page('.w-richtext')
+  const card = servicesPage(`a.services-title[href="/services/${f.slug}"]`).first().closest('.w-dyn-item').find('p').first().text().trim()
+  if (richText.length !== 1 || !card) throw new Error(`${file}: expected one rich-text body and a /services card`)
+  // Webflow's rich text holds its own copy of the main photo (<id>_<main photo's file id>_<name>); point it at
+  // the main image, which the import already has.
+  const mainId = f['main-image']?.url?.match(/\/([0-9a-f]{24})_[^/]+$/)?.[1]
+  richText.find('img').each((_, img) => {
+    if (mainId && page(img).attr('src')?.includes(`_${mainId}_`)) page(img).attr('src', f['main-image'].url)
+  })
+  return {body: richText.html(), shortDescription: card}
+}
+
 for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
   if (it.isArchived) continue
   const f = it.fieldData
   const path = `/services/${f.slug}`
   // Keep a service only if it's live today, so we don't publish drafts by accident.
   if (!live(path) && (it.isDraft || !it.lastPublished)) continue
+  const published = it.isDraft && it.lastPublished ? await publishedService(f) : {body: f['post-body-2'], shortDescription: f['short-description']}
   push({
     _id: idFor(`service:${it.id}`),
     _type: 'service',
@@ -285,9 +350,9 @@ for (const it of items(await readJson('migration/webflow-cms/services.json'))) {
     slug: slug(f.slug),
     category: f.category ? ref(`serviceCategory:${f.category}`) : undefined,
     heading: live(path)?.h1?.[0] && live(path).h1[0] !== f.name ? live(path).h1[0] : undefined,
-    shortDescription: f['short-description'],
+    shortDescription: published.shortDescription,
     mainImage: image(f['main-image']),
-    body: toPortableText(f['post-body-2'], path),
+    body: toPortableText(published.body, path),
     seo: seoFor(path, `${f.name} in Mesa, AZ | The Wire Guy`, f['short-description']),
     order: serviceOrder.includes(f.slug) ? serviceOrder.indexOf(f.slug) : 100,
     webflowId: it.id,
@@ -318,9 +383,35 @@ for (const it of items(await readJson('migration/webflow-cms/locations.json'))) 
   })
 }
 
+// Posts removed on purpose (migration/content-data/removed-posts.json, README.md section 13 there): left out of the
+// dataset, each 301ing to the page the parity allowlist approved. The two files must agree, every slug must be a
+// published post, and no remaining document may link to a removed post (checked after the content modules).
+const removedPosts = await readJson('migration/content-data/removed-posts.json')
+const removedSlugs = new Set(removedPosts.posts.map((r) => r.slug))
+{
+  const fail = (msg) => {
+    console.error(`migration/content-data/removed-posts.json: ${msg}`)
+    process.exit(1)
+  }
+  const allowlist = await readJson('migration/seo-intentional-changes.json')
+  const allowed = allowlist.removed ?? {}
+  const frozen = new Set(allowlist.frozenTitleAndH1 ?? [])
+  const published = new Set(items(await readJson('migration/webflow-cms/blog-posts.json')).filter((it) => !it.isArchived && !it.isDraft).map((it) => it.fieldData.slug))
+  if (removedSlugs.size !== removedPosts.posts.length) fail('a slug is listed twice')
+  for (const {slug: s, redirect} of removedPosts.posts) {
+    const path = `/blog-posts/${s}`
+    if (!published.has(s)) fail(`${s} is not a published post in the Webflow export`)
+    if (frozen.has(path)) fail(`${path} is a Tier 1 page and can never be removed`)
+    // a path here, not another removed post; that it is a page this dataset builds is checked after the modules
+    if (!redirect?.startsWith('/') || removedSlugs.has(redirect.replace('/blog-posts/', ''))) fail(`${s}: redirect must be a site path and not a removed post, not "${redirect}"`)
+    if (allowed[path]?.redirect !== redirect) fail(`${path}: migration/seo-intentional-changes.json removed says ${allowed[path]?.redirect ?? 'nothing'}, not ${redirect}`)
+  }
+  for (const path of Object.keys(allowed)) if (!removedSlugs.has(path.replace('/blog-posts/', ''))) fail(`${path} is removed in migration/seo-intentional-changes.json but not listed here`)
+}
+
 // Blog posts (archived posts were never live; they get redirects instead)
 for (const it of items(await readJson('migration/webflow-cms/blog-posts.json'))) {
-  if (it.isArchived || it.isDraft) continue
+  if (it.isArchived || it.isDraft || removedSlugs.has(it.fieldData.slug)) continue
   const f = it.fieldData
   const path = `/blog-posts/${f.slug}`
   push({
@@ -436,7 +527,7 @@ push({
   phoneE164: biz.telephone ?? '+16027697892',
   email: biz.email,
   addresses: (biz.address ?? []).map((a, i) => {
-    // Scottsdale has its own Google Business Profile (appointment-only office);
+    // Scottsdale has its own Google Business Profile (the crew goes out to homes; no office visits);
     // it's modeled as a branch whose entity lives on /locations/scottsdale.
     const isScottsdale = a.addressLocality === 'Scottsdale'
     const scottsdale = isScottsdale ? locationKeys.find((k) => docs.some((d) => d._id === idFor(k) && d.slug?.current === 'scottsdale')) : undefined
@@ -448,7 +539,9 @@ push({
       addressLocality: a.addressLocality,
       addressRegion: a.addressRegion,
       postalCode: a.postalCode,
-      ...(scottsdale ? {gbpName: 'The Wire Guy Electric of Scottsdale', locationPage: ref(scottsdale), appointmentOnly: true} : {}),
+      // The Mesa address is the owners' home: keep it in the footer and schema for NAP
+      // consistency, but don't advertise it anywhere else (owner, 2026-10-13).
+      ...(scottsdale ? {gbpName: 'The Wire Guy Electric of Scottsdale', locationPage: ref(scottsdale)} : {footerOnly: true}),
     }
   }),
   openingHours: [{_type: 'openingHours', _key: 'weekdays', days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '17:00'}],
@@ -464,12 +557,88 @@ push({
   sisterCompanies: [
     {_type: 'linkItem', _key: 'cooling', label: 'The Cooling Guy HVAC', href: 'https://www.thecoolingguyhvac.com'},
     {_type: 'linkItem', _key: 'water', label: 'The Water Guy Plumbing', href: 'https://www.thewaterguyplumbing.com'},
+    {_type: 'linkItem', _key: 'taylor', label: 'Taylor Brothers Builders', href: 'https://www.taylorbrothersbuilders.com'},
   ],
   primaryCta: {_type: 'linkItem', label: 'Free Estimate', href: '/contact-us'},
   titleSuffix: 'The Wire Guy Electric',
   ga4MeasurementId: 'G-4ZYV7JMRJH',
   googleSiteVerification: live('/')?.googleSiteVerification ?? undefined,
 })
+
+// Content added on top of the Webflow export: the service pages added since (new-services, first, so
+// every later module treats them like the others), page-builder sections for the static
+// pages, data fixes, the business's profiles, real reviews, sourced local facts, the launch
+// copy edits, contextual internal links and the approved titles, meta descriptions and H1s.
+// Each module receives the document list and helpers and edits or adds documents in place.
+// content-edits runs at several points ("module:stage"); its header says why, and
+// cms-templates runs its service stage itself. cms-templates:posts sets the posts' quick
+// answers after the late edits, so it checks them against the bodies as they ship; the final
+// edits (post excerpts) wait for titles-meta, which makes seo.description the posts' meta.
+const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
+for (const step of ['new-services', 'fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'new-services:inserts', 'content-edits:late', 'cms-templates:posts', 'internal-links', 'titles-meta', 'content-edits:final']) {
+  const [name, stage] = step.split(':')
+  await (await import(`./content/${name}.mjs`)).default(ctx, stage)
+}
+
+// No remaining document may link to a removed post (its URL is a redirect now): fix the link in the content data.
+{
+  const gone = new Set([...removedSlugs].flatMap((s) => [`/blog-posts/${s}`, `/blog/${s}`]))
+  const hits = []
+  const look = (node, from) => {
+    if (Array.isArray(node)) return node.forEach((n) => look(n, from))
+    if (!node || typeof node !== 'object') return
+    for (const [k, v] of Object.entries(node)) {
+      if (typeof v === 'string' && ['href', 'url', 'path'].includes(k) && gone.has(v.replace(/^https?:\/\/(www\.)?thewireguyelectric\.com/i, '').split(/[?#]/)[0].replace(/\/+$/, ''))) hits.push(`${from}: ${v}`)
+      else look(v, from)
+    }
+  }
+  docs.forEach((d) => look(d, d.slug?.current ?? d._id))
+  if (hits.length) {
+    console.error('Links to removed posts (migration/content-data/removed-posts.json):', hits)
+    process.exit(1)
+  }
+  // Each redirect target must be a page this dataset builds (a typo like /services/panel would 404).
+  const ROUTE = {service: '/services/', post: '/blog-posts/', location: '/locations/', serviceCategory: '/services-categories/', postCategory: '/posts-categories/', page: '/'}
+  const built = new Set(['/estimate', ...docs.filter((d) => ROUTE[d._type] && d.slug?.current).map((d) => (d._type === 'page' && d.slug.current === 'index' ? '/' : ROUTE[d._type] + d.slug.current))])
+  const dead = removedPosts.posts.filter((r) => !built.has(r.redirect))
+  if (dead.length) {
+    console.error('migration/content-data/removed-posts.json: redirect targets that are not pages in the dataset:', dead.map((r) => `${r.slug} -> ${r.redirect}`))
+    process.exit(1)
+  }
+  report.removedPosts = [...removedSlugs]
+}
+
+// Self-contained images: every image the export gave as a Webflow URL (image@…) becomes a reference
+// to the Sanity asset the import already made from that file (legacy-image-map.mjs), and the asset's
+// document is added, so the dataset imports again without Webflow's CDN, which goes away when the
+// Webflow plan is cancelled. Earlier modules still name these images by URL (bodyRemovals, figureAlts).
+const legacyImages = await readJson('web/src/data/legacy-images.json')
+const legacyAssets = await readJson('migration/sanity-import/legacy-assets.json')
+const unmapped = new Set()
+const usedAssets = new Set()
+const selfContain = (node) => {
+  if (Array.isArray(node)) return node.forEach(selfContain)
+  if (!node || typeof node !== 'object') return
+  if (typeof node._sanityAsset === 'string') {
+    const url = node._sanityAsset.replace(/^image@/, '')
+    const id = legacyImages[url]?.asset
+    if (!id || !legacyAssets[id]) unmapped.add(url)
+    else {
+      delete node._sanityAsset
+      node.asset = {_type: 'reference', _ref: id}
+      usedAssets.add(id)
+    }
+  }
+  Object.values(node).forEach(selfContain)
+}
+docs.forEach(selfContain)
+if (unmapped.size) {
+  console.error('Images with no Sanity asset (run scripts/migrate/legacy-image-map.mjs):', [...unmapped])
+  process.exit(1)
+}
+const present = new Set(docs.map((d) => d._id))
+for (const id of [...usedAssets].sort()) if (!present.has(id)) push(legacyAssets[id])
+report.legacyImages = {referenced: usedAssets.size, assetDocumentsAdded: [...usedAssets].filter((id) => !present.has(id)).length}
 
 // Referential integrity: every reference must point at a document in this file.
 const ids = new Set(docs.map((d) => d._id))
@@ -486,9 +655,17 @@ if (dangling.length) {
   process.exit(1)
 }
 
+// Content dates (updatedAt) for the sitemap's <lastmod> and posts' dateModified: a page, service,
+// city, service category or post keeps its date unless its content changed materially since it was
+// dated (content-dates.mjs: 5% of its words, a heading or its FAQs), so the date only moves for a
+// real change (a dataset import resets Sanity's _updatedAt on every document, so that can't say it).
+const dates = stampContentDates(docs, existsSync(p(BASELINE_PATH)) ? await readJson(BASELINE_PATH) : {})
+report.contentDates = dates.dated
+
 await mkdir(p(OUT_DIR), {recursive: true})
 await writeFile(p(`${OUT_DIR}production.ndjson`), docs.map((d) => JSON.stringify(d)).join('\n') + '\n')
-await writeFile(p(ID_MAP_PATH), JSON.stringify(idMap, null, 2) + '\n')
+await writeFile(p(`${OUT_DIR}id-map.json`), JSON.stringify(idMap, null, 2) + '\n')
+await writeFile(p(`${OUT_DIR}content-dates.json`), JSON.stringify(dates.baseline, null, 1) + '\n')
 await writeFile(p(`${OUT_DIR}report.json`), JSON.stringify(report, null, 2) + '\n')
 
 const counts = docs.reduce((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {})

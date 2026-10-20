@@ -1,0 +1,650 @@
+{
+  "page": "about-us",
+  "url": "/about-us",
+  "capturedAt": "2026-10-13",
+  "source": "Discovery inventory about-us.json: the live page (thewireguyelectric.com/about-us) as served on 2026-10-13, verbatim",
+  "title": "Family-Owned Mesa Electricians Since 2017 | The Wire Guy",
+  "metaDescription": "Meet the family behind The Wire Guy Electric. Licensed, bonded, and insured since 2017, serving the Phoenix Valley with honest pricing.",
+  "h1": "The Wire Guy Electric is a family operated business",
+  "sections": [
+    {
+      "index": 0,
+      "element": "div.section.banner-inner",
+      "purpose": "Page banner: eyebrow \"established in 2017\", H1, intro paragraph over the crew photo",
+      "source": "static",
+      "headings": [
+        {
+          "level": 5,
+          "text": "established in 2017"
+        },
+        {
+          "level": 1,
+          "text": "The Wire Guy Electric is a family operated business"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.inner-wrapper",
+          "src": "/wf/a/66f7000ce57741d169baf95c_wire-guy-electric-fun-Large.avif",
+          "cssSelector": ".inner-wrapper",
+          "responsiveOverrides": [
+            {
+              "media": "@media screen and (max-width:767px)",
+              "src": "/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif"
+            },
+            {
+              "media": "@media screen and (max-width:479px)",
+              "src": "/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif"
+            }
+          ],
+          "role": "REAL photo: four techs in front of a wrapped van, one pointing at the logo (1280px)"
+        },
+        {
+          "type": "heading",
+          "level": 5,
+          "text": "established in 2017",
+          "styleRole": "eyebrow (small caps label)"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "The Wire Guy Electric is a family operated business"
+        },
+        {
+          "type": "paragraph",
+          "text": "At The Wire Guy Electric, we pride ourselves on our unwavering commitment to quality. With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients."
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f7000ce57741d169baf95c_wire-guy-electric-fun-Large.avif",
+          "alt": null,
+          "role": "REAL photo: four techs in front of a wrapped van, one pointing at the logo (1280px)",
+          "kind": "css background (.inner-wrapper)",
+          "responsiveOverrides": [
+            {
+              "media": "@media screen and (max-width:767px)",
+              "src": "/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif"
+            },
+            {
+              "media": "@media screen and (max-width:479px)",
+              "src": "/wf/a/66f6f9bd16c634b62a00280a_Picture-folder-201-from-Celaya-Ventures.avif"
+            }
+          ]
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "index": 1,
+      "element": "div.about-three-column-section",
+      "purpose": "Three-column band: dark column (H3 \"We treat you like family\", 3-item checklist, button), middle photo column (CSS background), light column (H3 license line + experience paragraph)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 3,
+          "text": "We treat you like family"
+        },
+        {
+          "level": 3,
+          "text": "Licensed, bonded, and insured. ROC#365306"
+        }
+      ],
+      "content": [
+        {
+          "type": "card",
+          "kind": "column",
+          "children": [
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "We treat you like family"
+            },
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                {
+                  "text": "We're family operated",
+                  "icon": "fa-circle-check"
+                },
+                {
+                  "text": "Born and raised in Mesa, AZ",
+                  "icon": "fa-circle-check"
+                },
+                {
+                  "text": "Experts on everything electrical!",
+                  "icon": "fa-circle-check"
+                }
+              ]
+            },
+            {
+              "type": "button",
+              "label": "See all services",
+              "href": "/contact-us",
+              "variant": "secondary-button-with-icon",
+              "iconImage": {
+                "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+                "alt": "",
+                "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative"
+              }
+            }
+          ]
+        },
+        {
+          "type": "backgroundImage",
+          "element": "div.about-second-column",
+          "src": "/wf/a/66f594e71e40871ad2c5baa0_Wire-Guy-Electricians-On-Truck-comp.avif",
+          "cssSelector": ".about-second-column",
+          "role": "REAL photo: four techs leaning on the tailgate of the copper-wrapped pickup (1280px)"
+        },
+        {
+          "type": "card",
+          "kind": "column",
+          "children": [
+            {
+              "type": "heading",
+              "level": 3,
+              "text": "Licensed, bonded, and insured. ROC#365306"
+            },
+            {
+              "type": "paragraph",
+              "text": "Our team has over 30 years of combined experience. We're dedicated electricians ready to please our residential and commercial clients. Any task big or small, we will always do our best to get it done right the first time."
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+          "alt": "",
+          "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative",
+          "kind": "img (inside button)"
+        },
+        {
+          "src": "/wf/a/66f594e71e40871ad2c5baa0_Wire-Guy-Electricians-On-Truck-comp.avif",
+          "alt": null,
+          "role": "REAL photo: four techs leaning on the tailgate of the copper-wrapped pickup (1280px)",
+          "kind": "css background (.about-second-column)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "See all services",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "Button label \"See all services\" links to /contact-us (label/target mismatch). Fix to /services or relabel.",
+        "The H3 \"Licensed, bonded, and insured. ROC#365306\" duplicates the footer H2."
+      ]
+    },
+    {
+      "index": 2,
+      "element": "section.section",
+      "purpose": "Team preview: eyebrow H6 \"Our Team\", H2 \"Team Members\", button to /our-team, six team cards (photo, H4 name + role, bio)",
+      "source": "static",
+      "headings": [
+        {
+          "level": 6,
+          "text": "Our Team"
+        },
+        {
+          "level": 2,
+          "text": "Team Members"
+        },
+        {
+          "level": 4,
+          "text": "Steven Taylor Owner"
+        },
+        {
+          "level": 4,
+          "text": "Cody Taylor Service Manager"
+        },
+        {
+          "level": 4,
+          "text": "Cade Reynolds Service Technician"
+        },
+        {
+          "level": 4,
+          "text": "Wade Adams Apprentice"
+        },
+        {
+          "level": 4,
+          "text": "Emma Woolington Office Manager"
+        },
+        {
+          "level": 4,
+          "text": "Lauren Taylor Marketing"
+        }
+      ],
+      "content": [
+        {
+          "type": "heading",
+          "level": 6,
+          "text": "Our Team",
+          "styleRole": "eyebrow (small caps label)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "Team Members"
+        },
+        {
+          "type": "button",
+          "label": "Our Team",
+          "href": "/our-team",
+          "variant": "primary-button w-button"
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6faaf6f0701b4a0add5ce_Team-Steven-Team.avif",
+              "alt": "",
+              "role": "Team portrait: Steven Taylor (CMU-wall series, 1280px)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Steven Taylor Owner",
+              "html": "Steven Taylor<br><span class=\"accent\">Owner</span>",
+              "accent": [
+                "Owner"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Steven founded The Wire Guy Electric in 2017, bringing over 10 years of experience to serve his community as a trusted resource. In his free time, he enjoys cooking, spending time with his partner Emma and their dog Lulu, watching movies, and doing projects around their home."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fada20ca5a9c9281bc60_Cody-Team-1-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Cody Taylor (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Cody Taylor Service Manager",
+              "html": "Cody Taylor<br><span class=\"accent\">Service Manager</span>",
+              "accent": [
+                "Service Manager"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Cody has been with The Wire Guy Electric since its start in 2017, working closely with our team to deliver top-notch service. A proud Arizona native, Cody enjoys family time, cooking on his Blackstone, and riding his motorcycle with his wife, Lauren."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fb23e8fd7842d67264a4_Team-Cade-1-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Cade Reynolds (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Cade Reynolds Service Technician",
+              "html": "Cade Reynolds<br><span class=\"accent\">Service Technician</span>",
+              "accent": [
+                "Service Technician"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Cade has been with us for about 3 years and has been a great addition to our team."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fb5b171fc1eb2b718897_Team-Wade-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Wade Adams (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Wade Adams Apprentice",
+              "html": "Wade Adams<br><span class=\"accent\">Apprentice</span>",
+              "accent": [
+                "Apprentice"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Wade is the newest member of our team, with a background in HVAC and home remodeling. Born and raised in Mesa, Arizona, he enjoys spending time with his family and fiancé, traveling, and snowboarding."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fb8728ffdc66b2710e9a_Team-Emma-1-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Emma Woolington (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Emma Woolington Office Manager",
+              "html": "Emma Woolington<br><span class=\"accent\">Office Manager</span>",
+              "accent": [
+                "Office Manager"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Emma has been with The Wire Guy for about 3 years and is the friendly voice you’ll hear on the phone. In her free time, she enjoys paddleboarding, cooking, trying new foods, crafting, and spending time with her partner Steven and their dog Lulu."
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "teamMemberCard",
+          "children": [
+            {
+              "type": "image",
+              "src": "/wf/a/66f6fbb0cc162d0f867bb162_Lauren-Team-Large.avif",
+              "alt": "",
+              "role": "Team portrait: Lauren Taylor (CMU-wall series)",
+              "class": "team-member-card-image"
+            },
+            {
+              "type": "heading",
+              "level": 4,
+              "text": "Lauren Taylor Marketing",
+              "html": "Lauren Taylor<br><span class=\"accent\">Marketing</span>",
+              "accent": [
+                "Marketing"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "Lauren has been with us for about a year, managing all things networking. An Arizona native, she loves living close to family. She and Cody married in September 2023 and are enjoying married life! Lauren enjoys Dr. Pepper, film photography, and sharing good food with Cody."
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6faaf6f0701b4a0add5ce_Team-Steven-Team.avif",
+          "alt": "",
+          "role": "Team portrait: Steven Taylor (CMU-wall series, 1280px)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fada20ca5a9c9281bc60_Cody-Team-1-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Cody Taylor (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fb23e8fd7842d67264a4_Team-Cade-1-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Cade Reynolds (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fb5b171fc1eb2b718897_Team-Wade-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Wade Adams (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fb8728ffdc66b2710e9a_Team-Emma-1-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Emma Woolington (CMU-wall series)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f6fbb0cc162d0f867bb162_Lauren-Team-Large.avif",
+          "alt": "",
+          "role": "Team portrait: Lauren Taylor (CMU-wall series)",
+          "kind": "img"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Our Team",
+          "href": "/our-team"
+        }
+      ],
+      "notes": [
+        "These six bios are an OLDER copy than /our-team and Sanity teamMember: Steven \"over 10 years\" / \"partner Emma\" (vs 12 years / fiance), Cody role \"Service Manager\" (vs \"Owner/Service Manager\"), Cade \"Service Technician\" / \"about 3 years\" (vs \"Lead Technician\" / \"about 6 years\"), Wade \"Apprentice\" / \"fiancé\" (vs \"Service Tech\" / \"wife and family\"), Emma \"paddleboarding\" / \"partner Steven\" (vs \"paddle boarding\" / \"fiance Steven\").",
+        "Rendering from teamMember docs fixes the drift; word count is unchanged within a few words. Confirm the current facts with the owners."
+      ]
+    },
+    {
+      "index": 3,
+      "element": "div.hire-popup",
+      "purpose": "Empty Webflow \"hire-popup\" div",
+      "source": "static",
+      "headings": [],
+      "content": [],
+      "images": [],
+      "ctas": []
+    }
+  ],
+  "copy": [
+    {
+      "section": 0,
+      "tag": "h5",
+      "text": "established in 2017"
+    },
+    {
+      "section": 0,
+      "tag": "h1",
+      "text": "The Wire Guy Electric is a family operated business"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "At The Wire Guy Electric, we pride ourselves on our unwavering commitment to quality. With a team of highly trained and licensed electricians, we are dedicated to delivering top-notch electrical solutions for both residential and commercial clients."
+    },
+    {
+      "section": 1,
+      "tag": "h3",
+      "text": "We treat you like family"
+    },
+    {
+      "section": 1,
+      "tag": "li",
+      "text": "We're family operated"
+    },
+    {
+      "section": 1,
+      "tag": "li",
+      "text": "Born and raised in Mesa, AZ"
+    },
+    {
+      "section": 1,
+      "tag": "li",
+      "text": "Experts on everything electrical!"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "See all services",
+      "href": "/contact-us"
+    },
+    {
+      "section": 1,
+      "tag": "h3",
+      "text": "Licensed, bonded, and insured. ROC#365306"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Our team has over 30 years of combined experience. We're dedicated electricians ready to please our residential and commercial clients. Any task big or small, we will always do our best to get it done right the first time."
+    },
+    {
+      "section": 2,
+      "tag": "h6",
+      "text": "Our Team"
+    },
+    {
+      "section": 2,
+      "tag": "h2",
+      "text": "Team Members"
+    },
+    {
+      "section": 2,
+      "tag": "button",
+      "text": "Our Team",
+      "href": "/our-team"
+    },
+    {
+      "section": 2,
+      "tag": "h4",
+      "text": "Steven Taylor Owner",
+      "html": "Steven Taylor<br><span class=\"accent\">Owner</span>"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "Steven founded The Wire Guy Electric in 2017, bringing over 10 years of experience to serve his community as a trusted resource. In his free time, he enjoys cooking, spending time with his partner Emma and their dog Lulu, watching movies, and doing projects around their home."
+    },
+    {
+      "section": 2,
+      "tag": "h4",
+      "text": "Cody Taylor Service Manager",
+      "html": "Cody Taylor<br><span class=\"accent\">Service Manager</span>"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "Cody has been with The Wire Guy Electric since its start in 2017, working closely with our team to deliver top-notch service. A proud Arizona native, Cody enjoys family time, cooking on his Blackstone, and riding his motorcycle with his wife, Lauren."
+    },
+    {
+      "section": 2,
+      "tag": "h4",
+      "text": "Cade Reynolds Service Technician",
+      "html": "Cade Reynolds<br><span class=\"accent\">Service Technician</span>"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "Cade has been with us for about 3 years and has been a great addition to our team."
+    },
+    {
+      "section": 2,
+      "tag": "h4",
+      "text": "Wade Adams Apprentice",
+      "html": "Wade Adams<br><span class=\"accent\">Apprentice</span>"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "Wade is the newest member of our team, with a background in HVAC and home remodeling. Born and raised in Mesa, Arizona, he enjoys spending time with his family and fiancé, traveling, and snowboarding."
+    },
+    {
+      "section": 2,
+      "tag": "h4",
+      "text": "Emma Woolington Office Manager",
+      "html": "Emma Woolington<br><span class=\"accent\">Office Manager</span>"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "Emma has been with The Wire Guy for about 3 years and is the friendly voice you’ll hear on the phone. In her free time, she enjoys paddleboarding, cooking, trying new foods, crafting, and spending time with her partner Steven and their dog Lulu."
+    },
+    {
+      "section": 2,
+      "tag": "h4",
+      "text": "Lauren Taylor Marketing",
+      "html": "Lauren Taylor<br><span class=\"accent\">Marketing</span>"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "Lauren has been with us for about a year, managing all things networking. An Arizona native, she loves living close to family. She and Cody married in September 2023 and are enjoying married life! Lauren enjoys Dr. Pepper, film photography, and sharing good food with Cody."
+    }
+  ],
+  "links": [
+    {
+      "section": 1,
+      "text": "See all services",
+      "href": "/contact-us",
+      "kind": "button"
+    },
+    {
+      "section": 2,
+      "text": "Our Team",
+      "href": "/our-team",
+      "kind": "button"
+    }
+  ],
+  "pageBuilderMapping": [
+    {
+      "order": 1,
+      "sectionType": "heroSection",
+      "fromInventorySection": 0,
+      "fields": "eyebrow \"established in 2017\"; heading = H1; text = banner paragraph; image = crew portrait"
+    },
+    {
+      "order": 2,
+      "sectionType": "NEW highlightsSplitSection",
+      "fromInventorySection": 1,
+      "fields": "heading \"We treat you like family\"; checklist 3; cta; image (truck photo); asideHeading \"Licensed, bonded, and insured. ROC#365306\"; asideBody paragraph"
+    },
+    {
+      "order": 3,
+      "sectionType": "NEW trustBarSection",
+      "fromInventorySection": null,
+      "fields": "Since 2017 · 30+ years combined experience · ROC #365306 · warranty line (\"Our work comes with a warranty.\", no term) · rating"
+    },
+    {
+      "order": 4,
+      "sectionType": "teamSection",
+      "fromInventorySection": 2,
+      "fields": "eyebrow \"Our Team\"; heading \"Team Members\"; cta {Our Team, /our-team}; members = all teamMember docs (or first 6)"
+    },
+    {
+      "order": 5,
+      "sectionType": "NEW officeLocationsSection",
+      "fromInventorySection": null,
+      "fields": "Optional: Mesa HQ + Scottsdale appointment-only office (entity consistency for both GBPs)"
+    },
+    {
+      "order": 6,
+      "sectionType": "reviewsSection",
+      "fromInventorySection": null,
+      "fields": "Optional in redesign (no reviews on the current page)"
+    },
+    {
+      "order": 7,
+      "sectionType": "ctaSection",
+      "fromInventorySection": null,
+      "fields": "Shared CTA band (the current page has none)"
+    }
+  ]
+}

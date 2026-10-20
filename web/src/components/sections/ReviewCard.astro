@@ -1,0 +1,26 @@
+---
+// One review card: the text word for word, the reviewer's name as on Google, the
+// source and date. The stars are a CSS mask (decorative; every review shown is 5/5
+// and the section says so to screen readers). Sized s/m/l by length.
+import type {Review} from '../../lib/types'
+import {formatDate} from '../../lib/format'
+
+interface Props {
+  review: Review
+  /** Inner pages: the card grows to its text (no clamp). */
+  static?: boolean
+}
+
+const {review, static: isStatic = false} = Astro.props
+const text = review.text.replace(/\s+/g, ' ').trim()
+const words = text.split(' ').length
+const size = words <= 14 ? 's' : words <= 42 ? 'm' : 'l'
+---
+
+<li class:list={['rv', isStatic && 'rv--static', `rv--${size}`]}>
+  <blockquote>{text}</blockquote>
+  <p class="rv__by">
+    <cite>{review.authorName}</cite>{' '}
+    {review.source ?? 'Google'} review{review.date && <> · {formatDate(review.date, 'short')}</>}
+  </p>
+</li>

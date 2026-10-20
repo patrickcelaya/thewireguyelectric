@@ -1,0 +1,106 @@
+---
+// A short checklist beside one real photo, with an optional side note on a paper
+// card over the photo's foot: "We treat you like family" with the licence note on
+// /about-us, "Why Work With Us?" on /careers. Each point is set large: its bold lead
+// (when it has one) in display type, the rest under it. The photo keeps its own
+// proportions (never cropped). A side-note heading that states the ROC licence links
+// it to the state lookup. Styles: styles/pages.css "HIGHLIGHTS".
+import type {HighlightsSection, SiteSettings} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import PortableText from '../PortableText.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Button from '../ui/Button.astro'
+import ExternalLink from '../ui/ExternalLink.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  section: HighlightsSection
+  settings: SiteSettings
+  number?: number
+}
+
+const {section, settings, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const points = section.checklist.filter((p) => p.lead || p.text)
+const {cta, image, asideHeading, asideBody} = section
+const hasAside = Boolean(asideHeading || asideBody?.length)
+
+// "Licensed, bonded, and insured. ROC#365306": the licence number links to the AZ ROC lookup.
+const roc = settings.rocLicense && asideHeading?.match(new RegExp(`ROC\\s*#\\s*${settings.rocLicense}`))
+const asideParts = roc && settings.rocLicenseUrl ? [asideHeading!.slice(0, roc.index), roc[0], asideHeading!.slice(roc.index! + roc[0].length)] : undefined
+---
+
+<section class:list={['section hls', !image && 'hls--solo']} {...sectionLabel(id, section.heading, section.eyebrow)}>
+  <div class="wrap hls__grid">
+    <div class="hls__copy">
+      {section.eyebrow && <Eyebrow number={number}>{section.eyebrow}</Eyebrow>}
+      {
+        section.heading && (
+          <h2 class="h2" id={id}>
+            {section.heading}
+          </h2>
+        )
+      }
+      {
+        points.length > 0 && (
+          <ul class="checks" role="list">
+            {points.map((p) => (
+              <li>
+                {p.lead ? (
+                  <>
+                    <span class="checks__lead">{p.lead}</span>{' '}
+                    {p.text && <span class="checks__text">{p.text}</span>}
+                  </>
+                ) : (
+                  <span class="checks__lead">{p.text}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+      {
+        cta && (
+          <div class="btn-row hls__cta">
+            <Button href={ctaHref(cta, redirects)} variant="ghost" size="md" icon="go">
+              {cta.label}
+            </Button>
+          </div>
+        )
+      }
+    </div>
+    {
+      (image || hasAside) && (
+        <div class="hls__side">
+          {image && (
+            <figure class="hls__photo">
+              <SanityImage image={image} widths={[640, 828, 1086, 1280]} sizes="(max-width:899px) 100vw, 46vw" />
+              {image.caption && <figcaption>{image.caption}</figcaption>}
+            </figure>
+          )}
+          {hasAside && (
+            <div class="hls__aside">
+              {asideHeading && (
+                <h3 class="hls__aside-h">
+                  {asideParts ? (
+                    <>
+                      {asideParts[0]}
+                      <ExternalLink href={settings.rocLicenseUrl!}>{asideParts[1]}</ExternalLink>
+                      {asideParts[2]}
+                    </>
+                  ) : (
+                    asideHeading
+                  )}
+                </h3>
+              )}
+              {asideBody && asideBody.length > 0 && <PortableText value={asideBody} class="hls__aside-body" />}
+            </div>
+          )}
+        </div>
+      )
+    }
+  </div>
+</section>

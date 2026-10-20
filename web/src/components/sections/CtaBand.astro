@@ -1,0 +1,84 @@
+---
+// The estimate band that closes most pages. A photo of the crew at the vans and trucks
+// is the stage (lib/cms.ts ctaBandPhoto: one of a few, chosen by the page so neighbouring
+// pages differ, never one the page already shows): the words sit on the empty top above
+// the people, the wire draws the bulb there, and the form card rises over the photo's
+// foot, clear of every head (no scrim on anyone). Copy: Site settings → CTA band (heading, status line). The band has one H2
+// (its heading); the form's title is an H3 under it.
+import type {SiteSettings} from '../../lib/types'
+import {officeHours, telHref} from '../../lib/site'
+import type {ImageRef} from '../../lib/types'
+import {ctaBandPhoto} from '../../lib/cms'
+import SanityImage from '../ui/SanityImage.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
+import Bulb from '../ui/Bulb.astro'
+import OfficeStatus from '../ui/OfficeStatus.astro'
+import RatingLine from '../ui/RatingLine.astro'
+import RocLink from '../ui/RocLink.astro'
+import EstimateForm from './EstimateForm.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** Defaults to Site settings → CTA band → heading. */
+  heading?: string
+  /** The line under the photo; defaults to the CTA band's text, else the standard line. */
+  text?: string
+  /** Section number for the eyebrow. */
+  number?: number | string
+  /** Prefix for the form's field ids. */
+  formId?: string
+  /** The form's "City or ZIP" example (EstimateForm). */
+  zipPlaceholder?: string
+  /** The stage photo, when the page picked it (ctaBandPhoto with the photos it shows); else picked by the path. */
+  photo?: ImageRef
+}
+
+const {settings, number, formId = 'cta', zipPlaceholder} = Astro.props
+const photo = Astro.props.photo ?? ctaBandPhoto(Astro.url.pathname)
+const band = settings.ctaBand
+const hours = officeHours(settings)
+// typographic apostrophes in display type
+const heading = (Astro.props.heading ?? band?.heading ?? 'You’ll know the price before we start').replace(/'/g, '’')
+const text =
+  Astro.props.text ??
+  band?.text ??
+  `Free estimates and a real person on the phone. Call us ${hours.prose}, or send the form and we’ll call you back.`
+---
+
+<section class="cta cv" aria-labelledby="cta-h" data-bulb-field>
+  <div class="cta__stage" data-bulb-edge>
+    <figure class="cta__media">
+      <SanityImage image={photo} widths={[640, 960, 1280, 1920, 2400]} sizes="(max-width:899px) 150vw, 107vw" />
+    </figure>
+    <div class="cta__wall">
+      <div class="cta__words">
+        <Eyebrow number={number}>Free estimates</Eyebrow>
+        <h2 id="cta-h">{heading}</h2>
+      </div>
+      <Bulb lead="right" />
+    </div>
+  </div>
+  <div class="wrap cta__lower">
+    <div class="cta__talk">
+      <p class="cta__sub">{text}</p>
+      {
+        band?.statusText && (
+          <p class="avail">
+            <span class="dot dot--live" aria-hidden="true" /> {band.statusText}
+          </p>
+        )
+      }
+      <p class="cta__talk-k">Prefer to talk?</p>
+      <p class="cta__phone">
+        <a class="tnum" href={telHref(settings)}>{settings.phone}</a>{' '}
+        <OfficeStatus settings={settings} />
+      </p>
+      {hours.line && <p class="cta__hours">Our Office Hours: {hours.line}</p>}
+      <RatingLine settings={settings} variant="quiet" />
+      <p class="cta__roc"><RocLink settings={settings} /></p>
+    </div>
+    <div class="cta__form" id="estimate">
+      <EstimateForm settings={settings} id={formId} titleTag="h3" zipPlaceholder={zipPlaceholder} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+{
+  "$comment": "The service-area cities as entities for structured data (lib/places.ts), by city slug ('mesa' is the home city). Each Wikidata id was checked both ways against its English Wikipedia article (SPARQL, 2026-10-17); gnis is the Wikidata P590 value that equals the USGS GNIS feature id in migration/local-facts (Ahwatukee has no P590, so none). scripts/seo/check-places.mjs fails when a served city has no entry here or a GNIS id disagrees with migration/local-facts.",
+  "state": {"name": "Arizona", "wikidata": "Q816", "wikipedia": "https://en.wikipedia.org/wiki/Arizona"},
+  "cities": {
+    "mesa": {"type": "City", "wikidata": "Q49261", "wikipedia": "https://en.wikipedia.org/wiki/Mesa,_Arizona", "gnis": 7890},
+    "gilbert": {"type": "City", "wikidata": "Q51684", "wikipedia": "https://en.wikipedia.org/wiki/Gilbert,_Arizona", "gnis": 5032},
+    "chandler": {"type": "City", "wikidata": "Q49272", "wikipedia": "https://en.wikipedia.org/wiki/Chandler,_Arizona", "gnis": 2748},
+    "ahwatukee": {"type": "Place", "wikidata": "Q4696446", "wikipedia": "https://en.wikipedia.org/wiki/Ahwatukee,_Phoenix", "within": "phoenix"},
+    "tempe": {"type": "City", "wikidata": "Q51685", "wikipedia": "https://en.wikipedia.org/wiki/Tempe,_Arizona", "gnis": 12233},
+    "phoenix": {"type": "City", "wikidata": "Q16556", "wikipedia": "https://en.wikipedia.org/wiki/Phoenix,_Arizona", "gnis": 44784},
+    "scottsdale": {"type": "City", "wikidata": "Q49221", "wikipedia": "https://en.wikipedia.org/wiki/Scottsdale,_Arizona", "gnis": 11029},
+    "fountain-hills": {"type": "City", "wikidata": "Q31820343", "wikipedia": "https://en.wikipedia.org/wiki/Fountain_Hills,_Arizona", "gnis": 36980},
+    "apache-junction": {"type": "City", "wikidata": "Q79829", "wikipedia": "https://en.wikipedia.org/wiki/Apache_Junction,_Arizona", "gnis": 25702},
+    "queen-creek": {"type": "City", "wikidata": "Q985299", "wikipedia": "https://en.wikipedia.org/wiki/Queen_Creek,_Arizona", "gnis": 9868},
+    "san-tan-valley": {"type": "City", "wikidata": "Q5241708", "wikipedia": "https://en.wikipedia.org/wiki/San_Tan_Valley,_Arizona", "gnis": 2576311}
+  }
+}

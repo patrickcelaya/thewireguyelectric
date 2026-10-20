@@ -1,0 +1,192 @@
+{
+  "$comment": "Service pages added after the Webflow export, and copy added to existing service bodies (decision D18, owner 2026-10-19: the business offers whole-home rewiring and hot tub, pool and spa electrical; surge protection is on the live /faq list of services). Applied by scripts/migrate/content/new-services.mjs, the first content module, so fixes, cms-templates, internal-links and titles-meta treat these documents like the 21 from Webflow. Every sentence restates a fact already on the site: the source posts, the live /faq answers, the existing service bodies or migration/local-facts (the paragraph-by-paragraph source map is new-services-sources.md, next to this file; README.md section 14 summarizes it). No prices: each page links its cost guide instead. Titles, meta descriptions and H1s are not set here; they are approved rows in titles-meta.json and migration/seo-intentional-changes.json (added).",
+  "services": [
+    {
+      "slug": "whole-home-rewiring",
+      "name": "Whole-Home Rewiring",
+      "category": "residential",
+      "order": 9.1,
+      "shortDescription": "Full and partial rewires for older Valley homes. Single strand aluminum branch wiring, cloth and knob-and-tube wiring replaced with copper, to current code.",
+      "body": [
+        "<h2>Whole-Home Rewiring in Mesa and the Phoenix Valley</h2>",
+        "<p>Some mid-century and older homes in Mesa, Phoenix and Scottsdale still have outdated electrical systems. Homes built before 1980 may have single strand aluminum wiring, cloth-insulated wiring or knob-and-tube wiring, all of which have known issues. At The Wire Guy Electric, we rewire whole houses, rewire the part of a house that needs it, and make aluminum branch wiring safe at every connection. We see single strand aluminum wiring all the time in older homes across Mesa, Tempe, Phoenix and Scottsdale.</p>",
+        "<h3>Single Strand Aluminum Wiring</h3>",
+        "<p>Between roughly 1965 and 1975, copper prices spiked, and builders across the country, Phoenix, Mesa and Tempe among them, wired homes with single strand aluminum branch circuits instead of copper. Parts of Scottsdale, Tempe, east Mesa and central Phoenix built in those years are especially likely to have it.</p>",
+        "<p>The trouble is at the connections. Aluminum expands and contracts more than copper as it heats and cools, and over thousands of cycles that loosens connections. It forms an oxide that resists current, and it corrodes where it touches a copper-rated terminal. The result is loose, corroded connections at outlets, switches and junction boxes that heat up under load.</p>",
+        "<p>Not all aluminum is a problem. The multi-strand aluminum in service entrance and feeder cables is still installed in new homes, and range, dryer and AC circuits are often aluminum. The fire risk is single strand aluminum on the 15 and 20 amp branch circuits that feed your outlets and lights.</p>",
+        "<p>In most cases we recommend a full rewire: every aluminum branch circuit comes out and copper goes in. That is the clear choice if you are remodeling or the wiring has other problems, such as deteriorated insulation. In some homes we can instead install AlumiConn connectors at every outlet, switch and junction box, which makes each aluminum-to-copper connection safe. Purple wire nuts and CO/ALR outlets on their own do not fix it. After every aluminum job we give you a signed remediation report for your insurer. More detail is in our guide to <a href=\"/blog-posts/aluminum-wiring-older-phoenix-homes\">aluminum wiring in older Phoenix homes</a>.</p>",
+        "<h3>Cloth, Knob-and-Tube and Ungrounded Wiring</h3>",
+        "<p>Aluminum is not the only old wiring we replace. Older Valley homes can also have:</p>",
+        "<ul><li>Knob-and-tube wiring, in homes from before the 1950s</li><li>Cloth-insulated wiring</li><li>Two-wire circuits with no ground, common in homes wired before grounding was standard</li><li>Outdated fuse boxes or ungrounded subpanels</li><li>Improvised DIY work from past owners or flips</li></ul>",
+        "<p>Heat adds to it. Decades of attic heat make conductor insulation brittle, and it cracks at the box, where it gets flexed. Some homes in central Phoenix still run on 60-amp service, half of what a modern home needs.</p>",
+        "<h3>Signs Your Home Needs Rewiring</h3>",
+        "<ul><li>Your home was built before 1980</li><li>Two-prong outlets throughout the house</li><li>Breakers that trip often, or fuses that blow</li><li>Warm or discolored outlets and switch plates</li><li>A burning smell near an outlet or switch</li><li>Lights that flicker when appliances turn on</li><li>Buzzing from switches or outlets</li><li>Your insurer or a buyer's inspector has flagged the wiring</li></ul>",
+        "<p>A burning smell, discolored outlets or warm switch plates are urgent. If you notice any of them, call an electrician right away.</p>",
+        "<h3>What a Rewire Involves</h3>",
+        "<p>A full house rewire replaces the existing wiring with new copper wiring that meets current National Electrical Code (NEC) standards. That means:</p>",
+        "<ul><li>Every branch circuit from the panel to your outlets, switches and lights replaced with new NM (Romex) cable.</li><li>New outlets and switches, with GFCI-protected outlets in kitchens, bathrooms, garages and outdoor areas as code requires.</li><li>Proper grounding, AFCI breakers where required, tamper-resistant outlets and the right wire size for each circuit.</li><li>A <a href=\"/services/panels\">panel upgrade</a> when the house needs one. Most homes that need a rewire do, often going from 60-amp or 100-amp service to 200 amps. Done together, the labor overlaps and the two cost less than doing them separately.</li></ul>",
+        "<p>Not every home needs a full rewire. Sometimes the kitchen and bathrooms need updating and the bedroom circuits are fine, or one part of the house is being remodeled. A partial rewire brings that area up to code. If the walls are already open for a <a href=\"/services/electrical-remodels\">remodel</a>, rewiring costs less, because we do not have to cut into drywall and fish wire through closed walls.</p>",
+        "<p>We start with an <a href=\"/services/electrical-safety-inspections\">electrical inspection</a>: we look at your panel, test your circuits, check your grounding and tell you what needs replacing and what is still safe.</p>",
+        "<h3>Permits, Timeline and Power During the Job</h3>",
+        "<p>A full rewire is the kind of major project where pulling a permit usually makes sense, especially if you plan to sell the home or want the work documented for insurance. We walk you through whether it makes sense for your home and what it adds to the cost. When we pull the permit, we schedule the inspection and make sure everything passes. In Mesa, residential electrical permits come from the City of Mesa Development Services Department.</p>",
+        "<p>A full rewire on a typical single-story home takes about 3 to 5 days of electrical work. Two-story homes and larger properties can take a week or more. We disconnect the old wiring, run all new circuits, install new outlets and switches, connect everything to the panel, and schedule the city inspection. Once it passes, the drywall can be patched and painted, usually by a separate contractor.</p>",
+        "<p>We try to keep some circuits live the whole time. In most homes the kitchen and at least one bathroom keep working throughout the job. If the rewire includes a panel upgrade, we coordinate the meter pull with the utility.</p>",
+        "<h3>What It Costs</h3>",
+        "<p>The price depends on the size of the house, the number of circuits, how easy the walls and attic are to reach, and how much of the old wiring comes out versus being abandoned in place. Drywall repair and painting are separate. Our <a href=\"/blog-posts/cost-to-rewire-house-arizona\">Arizona rewire cost guide</a> has the price ranges. We use flat-rate pricing, so you know the price before we start.</p>",
+        "<h3>Find Out What Wiring You Have</h3>",
+        "<p>If you are not sure what is in your walls, we can tell you during a free estimate. <a href=\"/estimate\">Request a free estimate</a> and we will look at your panel and wiring and give you a straight answer. Arizona ROC #365306.</p>"
+      ],
+      "faqs": [
+        {
+          "question": "How do I know if my house has aluminum wiring?",
+          "answer": "<p>Start with the age of the house: homes in the Phoenix metro built from about 1965 to 1975 are the most likely to have it. With the breaker off, take the cover off a switch or outlet. Aluminum wire is silver-gray where copper is orange-pink, and the cable jacket is usually printed \"AL\" or \"ALUMINUM\" every few feet. If you are not sure, we can tell you during a free estimate.</p>"
+        },
+        {
+          "question": "How long does it take to rewire a house?",
+          "answer": "<p>About 3 to 5 days of electrical work for a typical single-story home in the Phoenix area. Two-story homes and larger properties can take a week or more. Drywall repair comes after the work passes inspection.</p>"
+        },
+        {
+          "question": "Will I have power while my house is rewired?",
+          "answer": "<p>Mostly, yes. We try to keep at least some circuits live during the job, and in most homes the kitchen and at least one bathroom keep working throughout.</p>"
+        },
+        {
+          "question": "Will my insurance company accept the aluminum wiring repair?",
+          "answer": "<p>A lot of Arizona insurers will not write new policies on homes with untreated aluminum branch wiring, and they want to see remediation done by a licensed electrician, with documentation. We give you a signed remediation report for every aluminum job, suitable for State Farm, Allstate, Farmers, American Family and most other major carriers.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "hot-tub-pool-spa-electrical",
+      "name": "Hot Tub, Pool & Spa Electrical",
+      "category": "residential",
+      "order": 9.2,
+      "shortDescription": "Dedicated hot tub and spa circuits, pool pump wiring and equipment pads. GFCI protection, disconnects within sight and bonding done to code.",
+      "body": [
+        "<h2>Hot Tub, Pool and Spa Electrical in the Phoenix Valley</h2>",
+        "<p>Hot tub wiring is one of the most code-heavy jobs in a home, and pool equipment pads are where electrical corners get cut the most. The pads sit in full sun, they get worked on by pool companies, handymen and past owners, and the rules for them are stricter than anywhere else on the property. At The Wire Guy Electric, we wire hot tubs and spas, and we work on pool equipment circuits, bonding, disconnects and panels.</p>",
+        "<h3>Hot Tub and Spa Hookups</h3>",
+        "<p>Most 240V hot tubs pull 40 to 60 amps, so each one gets a dedicated circuit. We never splice into an existing one. A proper hookup includes:</p>",
+        "<ul><li>GFCI protection. The National Electrical Code requires it on every hot tub circuit, and a GFCI breaker cuts the power in milliseconds when something goes wrong.</li><li>A disconnect within sight of the tub and at least five feet from it, so anyone can shut the power off without going to the main panel. We usually mount it on the house wall closest to the tub.</li><li>The right wire size. A 50-amp tub typically takes 6-gauge copper wire in conduit.</li><li>Bonding. Every metal part within five feet of the tub, such as railings and ladders, is bonded to equipment ground.</li><li>Sun-rated, sealed conduit. Standard PVC gets brittle in direct Arizona sun within a few years, so we use UV-rated conduit or schedule 80 PVC on any run that sees sun, sealed against monsoon rain and dust.</li></ul>",
+        "<p>Smaller hot tubs sometimes run on a 120V plug-and-play setup and need only a dedicated GFCI outlet near the tub. Most mid-range and all premium hot tubs are 240V hardwired.</p>",
+        "<h3>Pool Pumps and Equipment Pads</h3>",
+        "<p>Every permanently installed pool needs a few things at the equipment pad:</p>",
+        "<ul><li>GFCI protection on the pump circuit, whatever the voltage.</li><li>A disconnect within sight of the motor, at least five feet back from the inside edge of the water.</li><li>Permanent wiring in conduit. A pool pump on an extension cord is a serious hazard.</li><li>Conduit that is sealed and in good condition. Sun-rotted gray PVC is one of the most common things we find on Valley equipment pads.</li><li>GFCI protection on any receptacle near the pool, which also has to sit a minimum distance from the water.</li><li>A bonding conductor tied to the motor and everything else in the grid.</li></ul>",
+        "<p>A pool built decades ago was legal under the code in effect at the time, and older installations are generally left alone as they sit. When equipment is replaced or the wiring is changed, the new work has to meet current requirements, so a pump swap is a good time to have the pad looked at.</p>",
+        "<p>A variable speed pump changes the electrical side too. Its drive is electronics, which are sensitive to heat and surges, so shade, the enclosure rating and <a href=\"/services/whole-house-surge-protection\">surge protection</a> matter. Many of these pumps run on 120 or 240 volts and are more efficient at 240. A long run to a pad at the back of the lot can also have voltage drop that the old motor tolerated and a drive will not, so we check the circuit before the swap.</p>",
+        "<h3>Bonding Is Not Grounding</h3>",
+        "<p>Grounding gives fault current a path back to the panel so a breaker opens. Bonding ties every piece of metal in and around the pool together with at least 8 gauge solid copper, so it all sits at the same electrical potential: the pump motor, the heater housing, the ladder and handrails, the light niche, metal fittings, the steel in the pool shell and the water itself. If stray voltage shows up and the ladder sits at a different potential than the water, a swimmer touching both becomes the path between them.</p>",
+        "<p>Bonding and GFCI protection are two separate systems solving two separate problems, and an older pool can have one and not the other. The most common defect we find is a bonding wire left loose after a pump, heater or salt cell was replaced. The pool works fine, and the protection is gone.</p>",
+        "<h3>Signs Your Pool or Spa Wiring Needs a Look</h3>",
+        "<ul><li>A pool pump that trips the GFCI, especially one that runs fine in the morning and trips once it heats up in the afternoon</li><li>A tingle when you touch the handrail, the ladder or the deck edge while wet</li><li>A bonding wire at the equipment pad that is cut, corroded or lying loose</li><li>Green or white corrosion on the bonding lug on the motor housing</li><li>Sun-damaged conduit or wiring at the pad</li><li>A pump that is dead and the breaker did not trip</li></ul>",
+        "<p>If anyone feels a tingle, get everyone out of the water and call. Never have a GFCI on pool equipment swapped for a standard breaker to stop the tripping: that removes the protection. Something is leaking current, and finding it is what our <a href=\"/services/electrical-troubleshooting\">electrical troubleshooting</a> service is for.</p>",
+        "<h3>Panel Capacity, Permits and Timing</h3>",
+        "<p>A 50-amp hot tub circuit can push a panel over capacity, especially with solar or a large AC unit already loading it, and an electric pool heat pump is a load similar to a second air conditioner. We always do a load calculation before we give you a number. If the panel cannot carry the new load, you may need a subpanel or a <a href=\"/services/panels\">panel upgrade</a> first.</p>",
+        "<p>A dedicated hot tub circuit is the kind of work most cities require a permit for. Pulling one adds time and cost, and we talk through the tradeoff with you before we start. When we pull the permit, we schedule the inspection and make sure everything passes. Most residential hot tub hookups are a one-day job: rough-in the same day, inspection the next business day, and the final connection and power-up after the inspector signs off. A panel upgrade adds two to three days.</p>",
+        "<h3>What It Costs</h3>",
+        "<p>The price depends on the distance from your panel to the tub, whether your panel has room for the circuit, and how the conduit has to run through stucco, tile roofs and slab foundations. Our <a href=\"/blog-posts/hot-tub-electrical-installation-cost-arizona\">hot tub electrical installation cost guide</a> has the price ranges. We use flat-rate pricing, so you know the price before we start.</p>",
+        "<h3>Plan Your Hot Tub or Pool Electrical</h3>",
+        "<p><a href=\"/estimate\">Request a free estimate</a> and we will walk your property, check your panel and give you a number you can count on. Arizona ROC #365306.</p>"
+      ],
+      "faqs": [
+        {
+          "question": "Does a hot tub need its own circuit?",
+          "answer": "<p>Yes. Most 240V hot tubs pull 40 to 60 amps, so they need a dedicated circuit with GFCI protection and a disconnect within sight of the tub, at least five feet from it. A smaller 120V plug-and-play tub needs a dedicated GFCI outlet near the tub.</p>"
+        },
+        {
+          "question": "Why does my pool pump keep tripping the GFCI?",
+          "answer": "<p>It is usually one of four things: moisture in the motor or the connections, a motor on its way out, a damaged underground run, or, least often, a GFCI breaker that has worn out. A pump that runs fine in the morning and trips once it heats up in the afternoon is usually the motor. Never have the GFCI swapped for a standard breaker to make the tripping stop; something is leaking current and needs to be found.</p>"
+        },
+        {
+          "question": "What is pool bonding?",
+          "answer": "<p>Bonding ties every piece of metal in and around the pool, and the water, together with heavy copper wire so it all sits at the same electrical potential. It is not the same as grounding, and a GFCI does not replace it. It keeps a swimmer from becoming the path for stray voltage between the ladder and the water.</p>"
+        },
+        {
+          "question": "How long does a hot tub hookup take?",
+          "answer": "<p>Most residential hookups are a one-day job: rough-in the same day, inspection the next business day, and the final connection and power-up after the inspector signs off. If a panel upgrade is involved, add two to three days.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "whole-house-surge-protection",
+      "name": "Whole-House Surge Protection",
+      "category": "residential",
+      "order": 7.5,
+      "shortDescription": "Whole-house surge protectors mounted at your main panel. Protects the AC, appliances, pool equipment and everything else on every circuit.",
+      "body": [
+        "<h2>Whole-House Surge Protectors in the Phoenix Valley</h2>",
+        "<p>A power strip protects only what is plugged into it. Your air conditioner, refrigerator, washer and dryer, garage door opener and pool pump are hardwired or permanently connected, and no power strip covers them. A whole-house surge protector mounts at your main electrical panel and protects every circuit in the house. At The Wire Guy Electric, we install them as a standalone job or along with a panel upgrade.</p>",
+        "<h3>How It Works</h3>",
+        "<p>The protector connects to a dedicated two-pole breaker and ties into your home's grounding system. When the voltage coming in spikes above a safe threshold, from lightning, a grid fluctuation or the inrush current from your own AC compressor, it sends the excess energy to ground before it reaches your circuits.</p>",
+        "<p>It will not stop a direct lightning strike. It handles the more common surges that quietly damage refrigerators, washers, TVs and HVAC systems over time.</p>",
+        "<h3>Why Surges Hit Arizona Homes Harder</h3>",
+        "<ul><li>Monsoon lightning. A strike does not have to hit your house; it only has to hit somewhere on the same stretch of power line. We get the most surge protector calls right before and right after monsoon season.</li><li>AC cycling. In summer your AC might cycle 30 to 50 times a day, and each start sends a small surge through your wiring. Over a season, those wear down anything with a circuit board.</li><li>Grid stress. When it is 115°F and every house in the Valley is running AC, voltage sags, brief interruptions and the surges when power comes back are common.</li><li>Older lines. Some parts of Mesa, Phoenix and Tempe have transformers and utility lines that are decades old, and homes there see more voltage irregularities than newer developments.</li></ul>",
+        "<h3>What It Protects</h3>",
+        "<p>Everything connected to your electrical system: HVAC equipment, kitchen appliances, laundry machines, TVs, computers and networking gear, smart home devices, security cameras, <a href=\"/services/hot-tub-pool-spa-electrical\">pool and spa equipment</a>, <a href=\"/services/ev-charger-installation\">EV chargers</a> and garage door openers. Anything with a microprocessor or digital controls is especially vulnerable.</p>",
+        "<p>We still recommend power strips on your most sensitive electronics as a second layer. Strips lose their protection after enough surges, usually with no warning, so the panel protector is the primary barrier.</p>",
+        "<h3>Installation</h3>",
+        "<p>It takes about an hour to install, with no drywall work and no trenching. We mount the protector on or next to your main panel, connect it to a dedicated 240-volt breaker and test it.</p>",
+        "<p>Grounding quality matters. If your ground rods are corroded, your grounding conductor is undersized or your bonding connections are loose, the surge protector cannot do its job, so we check all of it during the install and flag anything that needs attention. If the panel is full, we can sometimes use a tandem breaker; if not, it may be a good time to talk about a <a href=\"/services/panels\">panel upgrade</a>.</p>",
+        "<h3>How Long It Lasts</h3>",
+        "<p>Surge protectors are sacrificial: they absorb energy so your equipment does not have to, and that capacity runs out. In the Phoenix area a unit typically lasts 5 to 10 years. Each one has a status light, usually green. When it goes out or changes color, the unit has done its job and needs replacing. Check it once a year, in May before storm season starts.</p>",
+        "<h3>What It Costs</h3>",
+        "<p>Our <a href=\"/blog-posts/whole-house-surge-protector-guide-arizona\">whole-house surge protector guide</a> has the installed price and what the device itself costs. We use flat-rate pricing, so you know the price before we start.</p>",
+        "<h3>Get Surge Protection Installed</h3>",
+        "<p>It is a one-visit job. <a href=\"/estimate\">Request a free estimate</a>, or add it to a panel upgrade. Arizona ROC #365306.</p>"
+      ],
+      "faqs": [
+        {
+          "question": "Will a whole-house surge protector stop a lightning strike?",
+          "answer": "<p>Not a direct strike. It handles the more common surges: lightning that hits the power line somewhere down the street, utility grid fluctuations and your own AC cycling on and off. Those are the surges that quietly damage refrigerators, washers, TVs and HVAC systems over time.</p>"
+        },
+        {
+          "question": "Do I still need power strips with a whole-house surge protector?",
+          "answer": "<p>They help as a second layer on your most sensitive electronics. A power strip only protects what is plugged into it and wears out without warning, so the panel protector does the main work, including for hardwired equipment like the AC, the oven, the water heater and the pool pump.</p>"
+        },
+        {
+          "question": "How long does a whole-house surge protector last?",
+          "answer": "<p>In the Phoenix area, typically 5 to 10 years. Every modern unit has a status light, usually green. When it goes out or changes color, the protector needs to be replaced. Check it once a year, in May before storm season.</p>"
+        },
+        {
+          "question": "How long does a surge protector installation take?",
+          "answer": "<p>About an hour, in one visit. There is no drywall work and no trenching: we mount it at the panel, wire it to a dedicated breaker and test it.</p>"
+        }
+      ]
+    }
+  ],
+  "bodyInserts": [
+    {
+      "service": "fixture-replacements",
+      "before": "What We Find When the Old Fixture Comes Down",
+      "body": [
+        "<h3>Ceiling Fan Installation</h3>",
+        "<p>We install ceiling fans across the Phoenix valley every week. A fan is heavier than a light fixture and vibrates when it runs, so it needs a fan-rated electrical box secured to a ceiling joist. If the box that is there is not rated for a fan, we replace it: a regular light box can fail under the weight and vibration. Improper mounting is the number one reason fans wobble, make noise or fall.</p>",
+        "<p>Replacing a light fixture with a fan is a quick job when the wiring is in good shape and the box is fan-rated. Where there has never been a fan or a light, we cut in a fan-rated box, run wiring back to the panel or the nearest junction box, and add a wall switch if you need one. Vaulted and two-story ceilings take special mounting hardware.</p>",
+        "<p>Taking down a central light for a fan can leave the room darker, so we often install recessed lights around the room along with the fan. For a covered patio, use a fan rated for damp or wet locations. Prices are in our <a href=\"/blog-posts/ceiling-fan-installation-cost-arizona\">ceiling fan installation cost guide</a>.</p>"
+      ]
+    },
+    {
+      "service": "exterior-electrical",
+      "before": "How We Build Exterior Electrical",
+      "body": [
+        "<h3>How We Install Landscape Lighting</h3>",
+        "<p>Most homes do best with low-voltage (12V) LED lighting. A transformer steps your home's 120V down to 12V, and the low-voltage wire can be buried a few inches below the surface. Line voltage (120V) lighting needs conduit and deeper burial, and suits larger properties or powerful security flood lights.</p>",
+        "<p>We install path lights, uplights for trees, saguaros and architectural features, downlights mounted high in trees, wash lights for walls and the front of the house, step and hardscape lights, and pool and water feature lights. Choose fixtures rated for extreme heat and UV exposure, or the finish will fade and crack within a couple of years. LED fixtures use 75% less energy than halogen and produce far less heat, which matters where ground temperatures can hit 150 degrees in summer.</p>",
+        "<p>The job runs in four steps. We walk your property with you and plan the layout, then give you a flat-rate quote. We install the transformer, trench and bury the wiring and mount the fixtures, which takes 1 to 2 days for most homes. Last, we set up the timer or photocell and walk the yard with you at dusk to adjust angles and brightness.</p>"
+      ]
+    }
+  ],
+  "names": [
+    {
+      "service": "fixture-replacements",
+      "was": "Fixture Replacements",
+      "name": "Ceiling Fans & Light Fixtures",
+      "why": "The menu, cards and breadcrumbs show the name: it now leads with ceiling fans, as the retitled page does (titles-meta.json)."
+    },
+    {
+      "service": "exterior-electrical",
+      "was": "Exterior Electrical",
+      "name": "Landscape & Outdoor Lighting",
+      "why": "The menu, cards and breadcrumbs show the name: it now reads as the retitled page does (titles-meta.json). The page still covers outdoor outlets, patio power and detached structures."
+    }
+  ]
+}

@@ -10,3 +10,4 @@ dist/
 .DS_Store
 migration/parity-report*.json
 migration/seo-candidate*.json
+.claude/worktrees/

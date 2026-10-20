@@ -1,0 +1,46 @@
+---
+// A section's head: the eyebrow, the H2 (with a few words in copper), and an
+// optional intro with links (slot "more"). "split" puts the intro in a column
+// beside the heading (the editorial head); "stack" puts it underneath.
+import Eyebrow from './Eyebrow.astro'
+import Accent from './Accent.astro'
+
+interface Props {
+  heading: string
+  /** Words of the heading to set in copper (first occurrence). */
+  accent?: string
+  id?: string
+  eyebrow?: string
+  /** Section number for the eyebrow ("06"). */
+  number?: number | string
+  size?: 'display' | 'h2'
+  as?: 'h2' | 'h3'
+  intro?: string
+  layout?: 'split' | 'stack'
+  /** Rise into place on scroll (data-reveal; never above the fold). */
+  reveal?: boolean
+  class?: string
+}
+
+const {heading, accent, id, eyebrow, number, size = 'h2', as: Tag = 'h2', intro, layout = 'split', reveal = false, class: className} = Astro.props
+const hasMore = Astro.slots.has('more')
+---
+
+<div class:list={['head', layout === 'stack' && 'head--stack', className]}>
+  <div>
+    {eyebrow && <Eyebrow number={number}>{eyebrow}</Eyebrow>}
+    <Tag class={size} id={id} data-reveal={reveal || undefined}><Accent text={heading} accent={accent} /></Tag>
+  </div>
+  {
+    (intro || hasMore) && (
+      <div class="intro">
+        {intro && <p>{intro}</p>}
+        {hasMore && (
+          <p class="more">
+            <slot name="more" />
+          </p>
+        )}
+      </div>
+    )
+  }
+</div>

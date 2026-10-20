@@ -1,0 +1,41 @@
+---
+// The big copper 5.0 with the stars, the review count and the Google link. The
+// numeral is solid copper in a full line box (line-height 1), so no glyph is ever
+// clipped. Extra links go in the default slot (after the Google link).
+import type {SiteSettings} from '../../lib/types'
+import {ratingSummary, siteRating} from '../../lib/site'
+import ExternalLink from './ExternalLink.astro'
+import Stars from './Stars.astro'
+
+interface Props {
+  settings: SiteSettings
+}
+
+const {settings} = Astro.props
+const rating = siteRating(settings)
+---
+
+{
+  rating && (
+    <div class="score">
+      <p class="score__num" aria-hidden="true">
+        {rating.value}
+      </p>
+      <div class="score__txt">
+        <Stars />
+        <p>
+          <span class="sr-only">Rated {rating.value} out of 5 </span>
+          {ratingSummary(rating)}
+        </p>
+        <p class="score__links">
+          {rating.href && (
+            <ExternalLink class="link link--ext" href={rating.href}>
+              Read our reviews on {rating.source}
+            </ExternalLink>
+          )}{' '}
+          <slot />
+        </p>
+      </div>
+    </div>
+  )
+}

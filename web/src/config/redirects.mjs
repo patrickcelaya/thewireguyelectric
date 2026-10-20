@@ -1,22 +1,23 @@
 // 301 redirects, applied by the Vercel adapter at build time.
 //
-// Two sources:
+// Four sources:
 // 1. LEGACY_REDIRECTS: URLs that 404 or exist only as Webflow filler today
 //    (measured 2026-10-12, see migration/seo-equity/redirect-candidates.json).
-// 2. `redirect` documents in Sanity, so editors can add redirects without a deploy
+// 2. SHORT_LINKS: short addresses the business hands out (/review), as 302s.
+// 3. postRedirects: the old /blog/<slug> path of every published post.
+// 4. `redirect` documents in Sanity, so editors can add redirects without a deploy
 //    of code (a publish triggers a rebuild).
 //
 // Webflow had no 301 redirects configured (confirmed by the owner, 2026-10-12),
 // so there is no legacy rule list to carry over.
 import {createClient} from '@sanity/client'
+import {readFile} from 'node:fs/promises'
 
 /** @type {Record<string, string>} */
 export const LEGACY_REDIRECTS = {
   // Broken internal links on the live site.
-  '/estimate': '/contact-us',
   '/locations/mesa': '/',
   '/services/electrical-panels': '/services/panels',
-  '/blog/[slug]': '/blog-posts/[slug]',
   '/index.html': '/',
 
   // Misspelled URLs that Google has seen (Search Console, last 16 months) and
@@ -39,6 +40,15 @@ export const LEGACY_REDIRECTS = {
   '/blog-posts/the-benefits-and-efficiency-of-lighting': '/services/led-lights',
   '/blog-posts/understanding-of-residential-wiring': '/blog-posts/outdated-wiring-in-older-phoenix-homes',
 
+  // Live posts removed on purpose (decision D15, owner 2026-10-19: the business does not do generator work), with
+  // their old /blog/ paths, which postRedirects() no longer covers. migration/content-data/removed-posts.json and
+  // the parity allowlist's `removed` (migration/seo-intentional-changes.json) name the same targets;
+  // web/scripts/removed-posts.test.mjs checks that the three agree.
+  '/blog-posts/whole-home-standby-generator-installation-phoenix': '/services/panels',
+  '/blog/whole-home-standby-generator-installation-phoenix': '/services/panels',
+  '/blog-posts/generator-interlock-in-arizona': '/services/panels',
+  '/blog/generator-interlock-in-arizona': '/services/panels',
+
   // Webflow e-commerce template filler (200 and indexable today, ~7 words each).
   // /checkout, /paypal-checkout, /order-confirmation, /search, /401 and
   // /templates/* are deliberately NOT redirected: they never had value, and a
@@ -55,6 +65,21 @@ export const LEGACY_REDIRECTS = {
 }
 
 /**
+ * Short links the business hands out, as temporary (302) redirects: the destination is someone else's URL and may
+ * change, and a short link is no page of its own (no 200, nothing to index, not in the sitemap).
+ * - /review: Google's "write a review" form for the business's MAIN Google Business Profile, the Mesa one
+ *   (maps.app.goo.gl/j4qZJwx8ttVZo93w5; "Had us out? Leave a Google review" in the footer, and the link the crew
+ *   can text or print after a job). Not the Scottsdale profile. The place ID was read from that profile's place
+ *   card; it encodes the profile's CID, 4489697358306155784 (0x3e4e9bf5bed91d08), the same CID as the Google
+ *   entry in migration/content-data/profiles.json sameAs (the JSON-LD sameAs and hasMap). web/scripts/
+ *   short-links.test.mjs decodes it and fails if the two ever disagree; scripts/launch/verify.mjs checks the 302.
+ * @type {Record<string, {status: 302, destination: string}>}
+ */
+export const SHORT_LINKS = {
+  '/review': {status: 302, destination: 'https://search.google.com/local/writereview?placeid=ChIJo0p1h7CoK4cRCB3ZvvWbTj4'},
+}
+
+/**
  * Collapse chains (A→B, B→C becomes A→C, B→C) so every old URL is one hop from
  * its final page, and fail the build on loops.
  */
@@ -68,7 +93,7 @@ export function flattenRedirects(map) {
   for (const [source, value] of Object.entries(map)) {
     let target = dest(value)
     const seen = new Set([source])
-    while (map[target] !== undefined && !target.includes('[')) {
+    while (map[target] !== undefined) {
       if (seen.has(target)) throw new Error(`Redirect loop: ${[...seen, target].join(' -> ')}`)
       seen.add(target)
       target = dest(map[target])
@@ -90,4 +115,37 @@ export async function loadSanityRedirects({projectId, dataset, token}) {
   return Object.fromEntries(
     docs.map((/** @type {{source: string, destination: string, permanent?: boolean}} */ r) => [r.source.replace(/\/$/, '') || '/', {status: r.permanent === false ? 302 : 301, destination: r.destination}]),
   )
+}
+
+/**
+ * `/blog/<slug>` → `/blog-posts/<slug>` for each published post (live pages linked
+ * some posts by that path). Only real posts redirect, so an unknown /blog/ URL is a
+ * plain 404 instead of a redirect to one.
+ * @param {string[]} slugs
+ * @returns {Record<string, string>}
+ */
+export function postRedirects(slugs) {
+  return Object.fromEntries(slugs.map((slug) => [`/blog/${slug}`, `/blog-posts/${slug}`]))
+}
+
+/**
+ * Every published post's slug: from Sanity when it's configured, else from the local
+ * dataset the site builds from (see lib/sanity.ts).
+ * @param {{projectId?: string, dataset: string, token?: string, localDataset: URL}} options
+ * @returns {Promise<string[]>}
+ */
+export async function loadPostSlugs({projectId, dataset, token, localDataset}) {
+  if (projectId) {
+    const client = createClient({projectId, dataset, token, apiVersion: '2026-10-01', useCdn: false, perspective: 'published'})
+    return client.fetch(`*[_type == "post" && defined(slug.current)].slug.current`)
+  }
+  const text = await readFile(localDataset, 'utf8').catch(() => '')
+  return text
+    .split('\n')
+    .filter(Boolean)
+    .map((line) => JSON.parse(line))
+    .filter((doc) => doc._type === 'post' && !String(doc._id).startsWith('drafts.') && doc.slug?.current)
+    // _id order, as Sanity returns them
+    .sort((a, b) => (a._id < b._id ? -1 : a._id > b._id ? 1 : 0))
+    .map((doc) => doc.slug.current)
 }

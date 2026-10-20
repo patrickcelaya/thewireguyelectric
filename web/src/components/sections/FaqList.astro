@@ -1,0 +1,32 @@
+---
+// Questions and answers as native <details> (keyboard and screen-reader friendly,
+// answers always in the HTML). The page's single FAQPage node must be built from the
+// same questions (collectPageFaqs + faqNode in lib/schema.ts).
+import type {FaqItem} from '../../lib/types'
+import PortableText from '../PortableText.astro'
+
+interface Props {
+  faqs: FaqItem[]
+  /** Open the first answer (default). */
+  openFirst?: boolean
+  class?: string
+}
+
+const {faqs, openFirst = true, class: className} = Astro.props
+const items = faqs.filter((f) => f.question && f.answer?.length)
+---
+
+{
+  items.length > 0 && (
+    <div class:list={['faq__list', className]}>
+      {items.map((f, i) => (
+        <details class="qa" open={openFirst && i === 0}>
+          <summary>{f.question}</summary>
+          <div class="a">
+            <PortableText value={f.answer} />
+          </div>
+        </details>
+      ))}
+    </div>
+  )
+}

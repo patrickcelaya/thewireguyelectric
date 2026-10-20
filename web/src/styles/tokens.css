@@ -1,0 +1,123 @@
+/* =====================================================================
+   The Wire Guy Electric · design tokens (ported from the approved round-5 mockups; see docs/DESIGN_SYSTEM.md)
+   Built on "Editorial Luxe" (numbered kickers, oversized Red Hat Display, real photos edge to edge) with the strongest
+   ideas grafted from "Cinematic" (title-card hero, glass proof card, lit statement, copper values, photo bento).
+
+   TYPE  Red Hat Display 500–900 (display) + Red Hat Text 400–700 (text). Self-hosted latin-subset woff2 (src/assets/fonts,
+         bundled by Vite with hashed names; SiteLayout preloads the display face). Metric-matched local fallbacks keep line breaks identical while the fonts load (no CLS).
+   COLOUR  warm bone / paper / sand surfaces, copper and copper gradients. No flat black anywhere: deep petrol exists only
+         as type colour and as a tint ON photos, feathered, never across a face.
+
+   CONTRAST LEDGER (WCAG 2.2; text over photos is measured at the worst pixel by contrast.mjs + contrast.py)
+     ink   #0F2A35 on bone 13.53 · paper 14.48 · sand 12.29
+     text  #1D3039 on bone 12.38 · paper 13.24 · sand 11.24
+     muted #53646B on bone 5.58 · paper 5.97 · sand 5.07
+     copper #AA502E on bone 4.87 · paper 5.22
+     copper-700 #8E4024 on bone 6.53 · paper 6.98 · sand 5.93 · wash 6.0
+     white on copper 5.39 · on copper-700 7.24 · on copper-800 9.33 · cream #FFF4EC on copper-800 8.6 · glow #FFE2B8 on copper-800 7.6
+     dim #8A7D71 (the lit statement's unlit words) on bone 3.62  (large text: ≥ 3:1 even before it lights)
+   ===================================================================== */
+@font-face{font-family:"Red Hat Display";src:url("../assets/fonts/redhat-display-latin.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Red Hat Text";src:url("../assets/fonts/redhat-text-latin.woff2") format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+/* fallbacks measured from the woff2 files with fontTools (size-adjust from the advance widths of the H1 + lede at wght 740 / 400) */
+@font-face{font-family:"RHD Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("LiberationSans-Bold");font-weight:500 900;size-adjust:97.1%;ascent-override:104.84%;descent-override:31.41%;line-gap-override:0%}
+@font-face{font-family:"RHD Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("LiberationSans");font-weight:300 499;size-adjust:97.1%;ascent-override:104.84%;descent-override:31.41%;line-gap-override:0%}
+@font-face{font-family:"RHT Fallback";src:local("Arial"),local("ArialMT"),local("Liberation Sans"),local("LiberationSans");font-weight:300 549;size-adjust:100.17%;ascent-override:101.63%;descent-override:30.45%;line-gap-override:0%}
+@font-face{font-family:"RHT Fallback";src:local("Arial Bold"),local("Arial-BoldMT"),local("Liberation Sans Bold"),local("LiberationSans-Bold");font-weight:550 900;size-adjust:100.17%;ascent-override:101.63%;descent-override:30.45%;line-gap-override:0%}
+:root {
+  /* surfaces */
+  --bone: #F7F3EC;
+  --paper: #FDFBF7;
+  --white: #FFFFFF;
+  --sand: #EFE8DC;
+  --sand-2: #E6DCCB;
+  --wash: #F5E7DD;
+  --cream: #FFF4EC;
+  --line: #E2D8C8;
+  --line-strong: #CDBFAA;
+  --field-line: #7A878D;
+
+  /* ink: petrol as the type colour; as a fill only inside feathered photo tints */
+  --ink: #0F2A35;
+  --text: #1D3039;
+  --muted: #53646B;
+  --dim: #8A7D71;
+  --scrim: 15 42 53;
+
+  /* copper (brand #AA502E) */
+  --copper: #AA502E;
+  --copper-700: #8E4024;
+  --copper-800: #74331C;
+  --copper-900: #4E2213;
+  --copper-300: #E8A07A;
+  --glow: #FFE2B8;
+  --grad-copper: linear-gradient(120deg, #6A2E19 0%, #8E4024 34%, #AA502E 72%, #B95A33 100%);
+  --grad-copper-text: linear-gradient(160deg, #8E4024 10%, #AA502E 60%, #9A4626 100%);
+
+  /* signals */
+  --live: #2E9B5E;
+  --off: #7D8A90;
+  --error: #9E1F17;
+
+  /* type */
+  --font-display: "Red Hat Display", "RHD Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-text: "Red Hat Text", "RHT Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-display: clamp(2.5rem, 1rem + 5vw, 7.25rem);           /* 40 → 116: the editorial H2s */
+  --fs-h2: clamp(2.125rem, 1rem + 3vw, 4.5rem);               /* 34 → 72 */
+  --fs-h3: clamp(1.25rem, 1.1rem + .45vw, 1.5rem);
+  --fs-stand: clamp(1.25rem, .95rem + 1.05vw, 2rem);          /* 20 → 32 */
+  --fs-lede: clamp(1.125rem, 1.02rem + .4vw, 1.375rem);
+  --fs-body: 1.0625rem;
+  --fs-small: .9375rem;
+  --fs-meta: .8125rem;
+  --measure: 33em;
+
+  /* glyphs as CSS masks (no inline SVG per icon: fewer DOM nodes) */
+  --bulb-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 18'%3E%3Cpath d='M7 1.2a5.2 5.2 0 0 0-3 9.45c.55.4.85.95.85 1.6v.25h4.3v-.25c0-.65.3-1.2.85-1.6A5.2 5.2 0 0 0 7 1.2z' fill='none' stroke='black' stroke-width='1.7'/%3E%3Crect x='3.9' y='13.3' width='6.2' height='1.6' rx='.8'/%3E%3Cpath d='M5 15.6h4a2 2 0 0 1-4 0z'/%3E%3C/svg%3E");
+  --stars5: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 24'%3E%3Cpath transform='translate(0 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(26 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(52 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(78 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3Cpath transform='translate(104 0)' d='m12 2.6 2.85 5.95 6.45.82-4.74 4.47 1.2 6.42L12 17.12l-5.76 3.14 1.2-6.42L2.7 9.37l6.45-.82z'/%3E%3C/svg%3E");
+  --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12h15M13.5 6l6 6-6 6'/%3E%3C/svg%3E");
+  --ext: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8.5 7H17v8.5'/%3E%3C/svg%3E");
+  --phone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linejoin='round'%3E%3Cpath d='M5.5 3.5h3l2 5-2.6 1.6a11.5 11.5 0 0 0 6 6l1.6-2.6 5 2v3a2 2 0 0 1-2.1 2A17 17 0 0 1 3.5 5.6a2 2 0 0 1 2-2.1z'/%3E%3C/svg%3E");
+  --pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.2a7.3 7.3 0 0 0-7.3 7.3c0 5.2 6.2 11.6 6.5 11.9a1.1 1.1 0 0 0 1.6 0c.3-.3 6.5-6.7 6.5-11.9A7.3 7.3 0 0 0 12 2.2zm0 10.1a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6z'/%3E%3C/svg%3E");
+  --chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+  /* space */
+  --section-y: clamp(80px, 2rem + 6vw, 168px);
+  --gutter: clamp(20px, 5vw, 96px);
+  --max: 1560px;
+  --pad-x: max(var(--gutter), calc((100% - var(--max)) / 2));
+
+  /* header: a big, confident logo (owner, rounds 3 and 4: "logo to small"). It stays big when the bar condenses:
+       1600 px and up   124 px logo in a 156 px header  →  84 px in a 104 px bone strip
+       1366–1599       112 px in 144                   →  84 px in 104
+       1240–1365       100 px in 132                   →  80 px in 100
+        700–1239        88 px in 112                   →  68 px in  84
+        under 700       76 px in  96                   →  60 px in  72
+     (round 3: 68 px; round 4 first cut: 96 → 60 px). --logo-k = condensed / top, --glass-k = condensed bar / header. */
+  --hdr-h: 156px;
+  --hdr-c: 96px;         /* round-5 QA: the condensed strip is the 84 px logo plus 6 px of bone above and below */
+  --logo-h: 124px;
+  --logo-k: .67742;      /* 84 / 124 */
+  --glass-k: .61538;     /* 96 / 156 */
+  --callbar-h: 64px;
+
+  /* shape + depth */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(15 42 53 / .05), 0 2px 10px -3px rgb(15 42 53 / .07);
+  --shadow-2: 0 1px 2px rgb(15 42 53 / .05), 0 22px 44px -22px rgb(15 42 53 / .3);
+  --shadow-3: 0 2px 4px rgb(58 20 6 / .06), 0 40px 80px -36px rgb(58 20 6 / .45);
+  --glass: rgb(253 251 247 / .88);
+
+  /* motion */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --ease-draw: cubic-bezier(.65, 0, .25, 1);
+}
+@media (max-width: 1599px) { :root { --hdr-h: 144px; --logo-h: 112px; --logo-k: .75; --glass-k: .66667; } }
+@media (max-width: 1365px) { :root { --hdr-h: 132px; --hdr-c: 92px; --logo-h: 100px; --logo-k: .8; --glass-k: .69697; } }
+@media (max-width: 1239px) { :root { --hdr-h: 112px; --hdr-c: 84px; --logo-h: 88px; --logo-k: .77273; --glass-k: .75; } }
+@media (max-width: 699px) { :root { --hdr-h: 96px; --hdr-c: 72px; --logo-h: 76px; --logo-k: .78947; --glass-k: .75; } }

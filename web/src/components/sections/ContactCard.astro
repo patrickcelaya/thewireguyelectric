@@ -1,0 +1,65 @@
+---
+// The live templates' "Ready to Schedule Service?" block as the round-5 glass card
+// beside a long-form article: the 5.0 with its Google link, the template's words, the
+// phone, the email, the office hours and the button (→ /estimate, owner rule). No
+// address: the home address is never shown here. Values from Site settings. The card's
+// line is not a heading: the card sits beside articles, outside their outline.
+// Styles: styles/inner.css (.contact-card, .cc-*).
+import type {SiteSettings} from '../../lib/types'
+import {ESTIMATE_PATH, officeHours, ratingSummary, siteRating, telHref} from '../../lib/site'
+import Button from '../ui/Button.astro'
+import ExternalLink from '../ui/ExternalLink.astro'
+import Stars from '../ui/Stars.astro'
+
+interface Props {
+  settings: SiteSettings
+  /** The button's words (the live templates say "Schedule Now"). */
+  label?: string
+}
+
+const {settings, label = 'Schedule Now'} = Astro.props
+const rating = siteRating(settings)
+const hours = officeHours(settings).prose
+---
+
+<div class="contact-card">
+  {
+    rating && (
+      <div class="cc-score">
+        <p class="cc-num" aria-hidden="true">
+          {rating.value}
+        </p>
+        <div class="cc-meta">
+          <p class="cc-rating">
+            <Stars />{' '}
+            <span>
+              <span class="sr-only">Rated {rating.value} out of 5 </span>
+              {ratingSummary(rating)}
+            </span>
+          </p>
+          {rating.href && (
+            <p>
+              <ExternalLink class="link link--ext" href={rating.href}>
+                Read our reviews on {rating.source}
+              </ExternalLink>
+            </p>
+          )}
+        </div>
+      </div>
+    )
+  }
+  <p class="contact-card__k">{settings.businessName}</p>
+  <p class="contact-card__h">Ready to Schedule Service?</p>
+  <p class="contact-card__ph"><a class="tnum" href={telHref(settings)}>{settings.phone}</a></p>
+  {
+    settings.email && (
+      <p class="contact-card__mail">
+        <a class="link" href={`mailto:${settings.email}`}>
+          {settings.email}
+        </a>
+      </p>
+    )
+  }
+  {hours && <p class="contact-card__hours">{hours}</p>}
+  <Button href={ESTIMATE_PATH} icon="go" size="md">{label}</Button>
+</div>

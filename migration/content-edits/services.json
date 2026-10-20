@@ -1,0 +1,1714 @@
+{
+  "about": "The 21 service bodies, plus the service template lines and the service image alts in cms-templates.json; and the hanging-lights de-slop (slop-services-hl-NNN).",
+  "source": "slop-services/verified.json of the 2026-10-17 copy review: researched, then adversarially verified. Verdict accept, or amend (new_text is the amended text); no edit was rejected. slop-services-hl-001 … -016 (verdict \"lead\") were written in the integration round from the review's SLOP GUIDE and HARD RULES, at the lead's direction: hanging-lights ships its published copy (D10), which had no verified edits.",
+  "edits": [
+    {
+      "id": "slop-services-001",
+      "url": "/services/recessed-lights-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "31071dbe-ed83-4f44-8b71-76a5671c89fd",
+        "field": "body[17]",
+        "block_key": "k01d",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us",
+      "new_text": "How We Do Recessed Lighting",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-002",
+      "url": "/services/recessed-lights-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "31071dbe-ed83-4f44-8b71-76a5671c89fd",
+        "field": "body[26]",
+        "block_key": "k01z",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Free Recessed Lighting Estimate",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-003",
+      "url": "/services/electrical-safety-inspections",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "050d4bc4-e26f-48a5-9392-9a62eb51214c",
+        "field": "body[1]",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": "an inspection is a real assessment of what is actually in your walls and panel, not a sales walkthrough.",
+      "new_text": "an inspection is an assessment of what is in your walls and panel, not a sales walkthrough.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stacked intensifiers (\"a real assessment of what is actually\")"
+    },
+    {
+      "id": "slop-services-004",
+      "url": "/services/electrical-safety-inspections",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "050d4bc4-e26f-48a5-9392-9a62eb51214c",
+        "field": "body[15]",
+        "block_key": "k01c",
+        "block_style": "normal"
+      },
+      "old_text": " Knowing which is which is the point of hiring us.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph ends on a sales moral; delete the sentence"
+    },
+    {
+      "id": "slop-services-005",
+      "url": "/services/electrical-safety-inspections",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "050d4bc4-e26f-48a5-9392-9a62eb51214c",
+        "field": "body[16]",
+        "block_key": "k01e",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us",
+      "new_text": "How We Inspect",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-006",
+      "url": "/services/electrical-safety-inspections",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "050d4bc4-e26f-48a5-9392-9a62eb51214c",
+        "field": "body[25]",
+        "block_key": "k020",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Book an Electrical Safety Inspection",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-007",
+      "url": "/services/ev-charger-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0f2e0ba0-3b7d-4976-9c14-d76f9e09e199",
+        "field": "body[1]",
+        "block_key": "k009",
+        "block_style": "normal"
+      },
+      "old_text": "Whether you're in a new build in Eastmark, a 1970s ranch in Tempe, or a Scottsdale estate, we size the circuit correctly the first time",
+      "new_text": "In a new build in Eastmark, a 1970s ranch in Tempe, or a Scottsdale estate, we size the circuit correctly the first time",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Whether you're X, Y or Z\" stock opener; local places kept"
+    },
+    {
+      "id": "slop-services-008",
+      "url": "/services/ev-charger-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0f2e0ba0-3b7d-4976-9c14-d76f9e09e199",
+        "field": "body[13]",
+        "block_key": "k00x",
+        "block_style": "h3"
+      },
+      "old_text": "What a Proper Install Actually Includes",
+      "new_text": "What a Proper Install Includes",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"actually\" filler in a heading; heading now names the service; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-009",
+      "url": "/services/ev-charger-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0f2e0ba0-3b7d-4976-9c14-d76f9e09e199",
+        "field": "body[24]",
+        "block_key": "k01t",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us for EV Charger Installs",
+      "new_text": "How We Handle EV Charger Installs",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; keyword kept; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-010",
+      "url": "/services/ev-charger-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0f2e0ba0-3b7d-4976-9c14-d76f9e09e199",
+        "field": "body[34]",
+        "block_key": "k02j",
+        "block_style": "normal"
+      },
+      "old_text": "Whether you just picked up a new Tesla Model Y, an F-150 Lightning, a Mach-E, a Bolt, a Rivian, a Lucid, or anything else, we'll get you charging at home the right way.",
+      "new_text": "We set up home charging for a Tesla Model Y, an F-150 Lightning, a Mach-E, a Bolt, a Rivian, a Lucid, or anything else you drive.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Whether you...\" opener and \"the right way\" filler; every model kept"
+    },
+    {
+      "id": "slop-services-011",
+      "url": "/services/ev-charger-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0f2e0ba0-3b7d-4976-9c14-d76f9e09e199",
+        "field": "body[33]",
+        "block_key": "k02h",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Firm Number on Your EV Charger Install",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph promises \"a firm number\"); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-012",
+      "url": "/services/exterior-electrical",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "666e45e8-7138-4287-9b30-a5da05db4bd2",
+        "field": "body[1]",
+        "block_key": "k008",
+        "block_style": "normal"
+      },
+      "old_text": ", we build exterior work to survive that, not just to pass a first look.",
+      "new_text": ", we build exterior work to survive that.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not just X\" contrast padding"
+    },
+    {
+      "id": "slop-services-013",
+      "url": "/services/exterior-electrical",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "666e45e8-7138-4287-9b30-a5da05db4bd2",
+        "field": "body[19]",
+        "block_key": "k01p",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us for Exterior Work",
+      "new_text": "How We Build Exterior Electrical",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; keeps the H1 keyword \"Exterior Electrical\"; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-014",
+      "url": "/services/exterior-electrical",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "666e45e8-7138-4287-9b30-a5da05db4bd2",
+        "field": "body[29]",
+        "block_key": "k02d",
+        "block_style": "normal"
+      },
+      "old_text": "Whether it is one outlet by the patio or a full lighting plan for the yard, ",
+      "new_text": "For one outlet by the patio or a full lighting plan for the yard, ",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Whether it is X or Y\" CTA opener; stops just before the link \"request a free estimate\", which follows unchanged"
+    },
+    {
+      "id": "slop-services-015",
+      "url": "/services/exterior-electrical",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "666e45e8-7138-4287-9b30-a5da05db4bd2",
+        "field": "body[28]",
+        "block_key": "k02b",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Plan Your Outdoor Electrical Work",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-016",
+      "url": "/services/fixture-replacements",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b774cb00-152b-4a01-bdc0-74e5e7a242a1",
+        "field": "body[22]",
+        "block_key": "k01w",
+        "block_style": "normal (bullet list item)"
+      },
+      "old_text": ", no guessing.",
+      "new_text": ".",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet padding (\"No buzz, no flicker, no guessing\": the third item carries nothing); quickAnswer evidence \"Dimmer compatibility handled. No buzz, no flicker\" kept"
+    },
+    {
+      "id": "slop-services-017",
+      "url": "/services/fixture-replacements",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b774cb00-152b-4a01-bdc0-74e5e7a242a1",
+        "field": "body[20]",
+        "block_key": "k01r",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us",
+      "new_text": "How We Handle Fixture Swaps",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-018",
+      "url": "/services/fixture-replacements",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b774cb00-152b-4a01-bdc0-74e5e7a242a1",
+        "field": "body[30]",
+        "block_key": "k02g",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Bring Us Your Fixture List",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph is about a list of fixtures); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-019",
+      "url": "/services/electrical-troubleshooting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f3df576-ee3f-41cf-9d13-8691ccc1178e",
+        "field": "body[1]",
+        "block_key": "k008",
+        "block_style": "normal"
+      },
+      "old_text": "because it is the work that rewards actually knowing what you are looking at.",
+      "new_text": "because it rewards knowing what you are looking at.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler and repetition (\"the work... the work\")"
+    },
+    {
+      "id": "slop-services-020",
+      "url": "/services/electrical-troubleshooting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f3df576-ee3f-41cf-9d13-8691ccc1178e",
+        "field": "body[11]",
+        "block_key": "k011",
+        "block_style": "h3"
+      },
+      "old_text": "How We Actually Find It",
+      "new_text": "How We Find the Fault",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler in a heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-021",
+      "url": "/services/electrical-troubleshooting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f3df576-ee3f-41cf-9d13-8691ccc1178e",
+        "field": "body[25]",
+        "block_key": "k01x",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us",
+      "new_text": "What You Get From a Troubleshooting Visit",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-022",
+      "url": "/services/electrical-troubleshooting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f3df576-ee3f-41cf-9d13-8691ccc1178e",
+        "field": "body[34]",
+        "block_key": "k02j",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Book Electrical Troubleshooting",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-023",
+      "url": "/services/new-construction-wiring",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "41083339-3ed8-4ca6-b251-0b3ede68d936",
+        "field": "body[25]",
+        "block_key": "k024",
+        "block_style": "normal"
+      },
+      "old_text": "The houses that look genuinely finished got a lighting plan:",
+      "new_text": "The houses that look finished got a lighting plan:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"genuinely\" intensifier"
+    },
+    {
+      "id": "slop-services-024",
+      "url": "/services/new-construction-wiring",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "41083339-3ed8-4ca6-b251-0b3ede68d936",
+        "field": "body[26]",
+        "block_key": "k028",
+        "block_style": "h3"
+      },
+      "old_text": "Why Builders and Homeowners Choose Us",
+      "new_text": "How We Work With Builders and Homeowners",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-025",
+      "url": "/services/new-construction-wiring",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "41083339-3ed8-4ca6-b251-0b3ede68d936",
+        "field": "body[36]",
+        "block_key": "k02w",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a New Construction Wiring Bid",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph opens \"Send us your plans\"); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-026",
+      "url": "/services/panels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b9ff28c3-1497-48a2-8f70-f2d33f0f9e0b",
+        "field": "body[1]",
+        "block_key": "k008",
+        "block_style": "normal"
+      },
+      "old_text": "Your electrical panel is the heart of your home's electrical system. When it starts to fail, fill up, or fall behind what modern homes demand, everything else downstream suffers:",
+      "new_text": "Every circuit in your home runs through the electrical panel. When it starts to fail, runs out of breaker space, or can no longer carry the load, everything downstream suffers:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"heart of your home\" cliché and alliterative triplet (\"fail, fill up, or fall behind what modern homes demand\"); \"electrical panel\" stays in the first sentence; space and load restate the body's own signs and service-upgrade item"
+    },
+    {
+      "id": "slop-services-027",
+      "url": "/services/panels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b9ff28c3-1497-48a2-8f70-f2d33f0f9e0b",
+        "field": "body[22]",
+        "block_key": "k01u",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us for Panel Work",
+      "new_text": "Our Standards for Panel Work",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-028",
+      "url": "/services/panels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b9ff28c3-1497-48a2-8f70-f2d33f0f9e0b",
+        "field": "body[23]",
+        "block_key": "k01w",
+        "block_style": "normal (bullet list item)"
+      },
+      "old_text": " Code isn't optional. Grounding, bonding, working clearances, and arc-fault protection are done right, the first time.",
+      "new_text": " Grounding, bonding, working clearances, and arc-fault protection are all done to code.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler (\"Code isn't optional\") and cliché (\"done right, the first time\"); the bold lead-in \"NEC-compliant every time.\" is untouched"
+    },
+    {
+      "id": "slop-services-029",
+      "url": "/services/panels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b9ff28c3-1497-48a2-8f70-f2d33f0f9e0b",
+        "field": "body[24]",
+        "block_key": "k01z",
+        "block_style": "normal (bullet list item)"
+      },
+      "old_text": "We tell you what your job actually requires and what it does not, so you can make the call with real information instead of pressure.",
+      "new_text": "We tell you what your job requires and what it does not, so you can decide without pressure.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "intensifiers (\"actually\", \"real information\")"
+    },
+    {
+      "id": "slop-services-030",
+      "url": "/services/panels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b9ff28c3-1497-48a2-8f70-f2d33f0f9e0b",
+        "field": "body[31]",
+        "block_key": "k02i",
+        "block_style": "normal"
+      },
+      "old_text": "If your panel is aging, full, or on the recall list, don't wait for the problem to find you.",
+      "new_text": "If your panel is aging, full, or on the recall list, have it looked at.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "fear cliché (\"don't wait for the problem to find you\")"
+    },
+    {
+      "id": "slop-services-031",
+      "url": "/services/panels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "b9ff28c3-1497-48a2-8f70-f2d33f0f9e0b",
+        "field": "body[30]",
+        "block_key": "k02g",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Free Panel Replacement Estimate",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-032",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[1]",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": "That's fine for a basic swap, but it's not what we do best.",
+      "new_text": "That's fine for a basic swap.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported self-praise (\"not what we do best\")"
+    },
+    {
+      "id": "slop-services-033",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[1]",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": ", custom lighting is where we get to be craftsmen. Recessed cans cut exactly where they need to be. Chandeliers hung properly with the right box and bracing. Pendants balanced and level.",
+      "new_text": ", custom lighting means recessed cans cut exactly where they need to be, chandeliers hung with the right box and bracing, and pendants balanced and level.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "self-praise (\"where we get to be craftsmen\") and a run of fragments; every item kept"
+    },
+    {
+      "id": "slop-services-034",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[1]",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": "hardwired, and completely seamless.",
+      "new_text": "hardwired, with no gaps and no visible wiring.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"seamless\" buzzword; replaced with the body's own facts (no gaps, no visible wiring); quickAnswer evidence kept"
+    },
+    {
+      "id": "slop-services-035",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[3]",
+        "block_key": "k00d",
+        "block_style": "normal"
+      },
+      "old_text": "This is what separates a real install from a hardware-store kit. Most under-cabinet lighting on the market comes in pre-cut, fixed lengths:",
+      "new_text": "Most under-cabinet lighting on the market is a hardware-store kit in pre-cut, fixed lengths:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"This is what separates X from Y\" stock opener"
+    },
+    {
+      "id": "slop-services-036",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[4]",
+        "block_key": "k00f",
+        "block_style": "normal"
+      },
+      "old_text": "We do it differently. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler opener"
+    },
+    {
+      "id": "slop-services-037",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[4]",
+        "block_key": "k00f",
+        "block_style": "normal"
+      },
+      "old_text": "The result is a single, seamless line of light that runs the full length of each cabinet with no gaps, no visible wiring, and no bulky joints.",
+      "new_text": "You get one continuous line of light the full length of each cabinet, with no gaps, no visible wiring, and no bulky joints.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"seamless\" buzzword and \"The result is\" filler"
+    },
+    {
+      "id": "slop-services-038",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[5]",
+        "block_key": "k00l",
+        "block_style": "normal"
+      },
+      "old_text": "Done right, you don't see the lights. You see what they light up.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "aphorism paragraph with no fact; delete the whole block",
+      "applier_note": "Whole-block delete: apply through bodyRemovals by exact text, not editBody (which would leave an empty block)."
+    },
+    {
+      "id": "slop-services-039",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[8]",
+        "block_key": "k00t",
+        "block_style": "normal (bullet list item)"
+      },
+      "old_text": "Seamless installation with hidden wiring and driver placement",
+      "new_text": "Hidden wiring and driver placement",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"seamless\" buzzword; the bold lead-in \"Seamless installation\" goes, set \"Hidden wiring\" bold in its place",
+      "format": {
+        "strong": [
+          "Hidden wiring"
+        ]
+      },
+      "applier_note": "Bold lead-in: old_text spans the strong span \"Seamless installation\" and the plain span after it. Set \"Hidden wiring\" in strong so the item matches its four bold-led siblings (editBody alone would leave the whole item plain)."
+    },
+    {
+      "id": "slop-services-040",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[12]",
+        "block_key": "k014",
+        "block_style": "normal"
+      },
+      "old_text": "We do them right: properly spaced for even coverage, IC-rated where they touch insulation, wet-rated in bathrooms and soffits, and wired on dimmers where it makes sense.",
+      "new_text": "We space them for even coverage, use IC-rated cans where they touch insulation and wet-rated ones in bathrooms and soffits, and put them on dimmers where it makes sense.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"We do them right\" filler"
+    },
+    {
+      "id": "slop-services-041",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[16]",
+        "block_key": "k01e",
+        "block_style": "normal"
+      },
+      "old_text": "what will actually look right in the space.",
+      "new_text": "what will look right in the space.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler"
+    },
+    {
+      "id": "slop-services-042",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[24]",
+        "block_key": "k020",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners Choose Us for Custom Lighting",
+      "new_text": "How We Build Custom Lighting",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-043",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[25]",
+        "block_key": "k022",
+        "block_style": "normal (bullet list item)"
+      },
+      "old_text": "Built, not assembled.",
+      "new_text": "Cut to fit, soldered, and hardwired.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"X, not Y\" slogan; this is the bold lead-in span, keep it bold (pairs with the next edit)",
+      "applier_note": "Bold lead-in: \"Cut to fit, soldered, and hardwired.\" must stay strong like the other items in this list (editBody alone would make it plain). Apply together with -044."
+    },
+    {
+      "id": "slop-services-044",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[25]",
+        "block_key": "k022",
+        "block_style": "normal (bullet list item)"
+      },
+      "old_text": " We solder, we fit, we hardwire. No plug-in shortcuts.",
+      "new_text": " No plug-in shortcuts.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet (\"We solder, we fit, we hardwire\"), now said once in the bold lead-in (pairs with the previous edit)"
+    },
+    {
+      "id": "slop-services-045",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[28]",
+        "block_key": "k02b",
+        "block_style": "normal (bullet list item)"
+      },
+      "old_text": " It looks like it was always there.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché closer; quickAnswer evidence \"No visible wiring\" kept"
+    },
+    {
+      "id": "slop-services-046",
+      "url": "/services/custom-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ceaea820-cd7b-49d4-860d-7be675e60fc1",
+        "field": "body[34]",
+        "block_key": "k02p",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Plan Your Custom Lighting",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph promises \"a plan and a price\"); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-047",
+      "url": "/services/electrical-remodels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7d466218-450d-4f69-b8d0-1265014c6915",
+        "field": "body[2]",
+        "block_key": "k00d",
+        "block_style": "h3"
+      },
+      "old_text": "What a Kitchen Actually Needs",
+      "new_text": "What a Kitchen Remodel Needs",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler in a heading; heading now carries \"remodel\"; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-048",
+      "url": "/services/electrical-remodels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7d466218-450d-4f69-b8d0-1265014c6915",
+        "field": "body[11]",
+        "block_key": "k013",
+        "block_style": "h3"
+      },
+      "old_text": "What a Bathroom Actually Needs",
+      "new_text": "What a Bathroom Remodel Needs",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler in a heading; heading now carries \"remodel\"; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-049",
+      "url": "/services/electrical-remodels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7d466218-450d-4f69-b8d0-1265014c6915",
+        "field": "body[28]",
+        "block_key": "k02g",
+        "block_style": "normal"
+      },
+      "old_text": "None of this is a reason to panic. All of it is dramatically cheaper to fix while the walls are already open, which is the entire argument for handling it now.",
+      "new_text": "None of this is a reason to panic, but all of it is much cheaper to fix while the walls are already open.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical \"None of this... All of it...\" pair and moral ending (\"the entire argument\")"
+    },
+    {
+      "id": "slop-services-050",
+      "url": "/services/electrical-remodels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7d466218-450d-4f69-b8d0-1265014c6915",
+        "field": "body[33]",
+        "block_key": "k02q",
+        "block_style": "h3"
+      },
+      "old_text": "Why Homeowners and Contractors Choose Us",
+      "new_text": "How We Work With Homeowners and Contractors",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Why Choose Us\" heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-051",
+      "url": "/services/electrical-remodels",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7d466218-450d-4f69-b8d0-1265014c6915",
+        "field": "body[43]",
+        "block_key": "k03f",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Kitchen or Bath Remodel Estimate",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph says \"before the cabinets are ordered\"); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-052",
+      "url": "/services/commercial-service",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "77b076c9-7d9b-4d64-8d77-cb20de1e3598",
+        "field": "body[1]",
+        "block_key": "k00a",
+        "block_style": "normal"
+      },
+      "old_text": "When something electrical fails at a business, the cost is not the repair. It is the register that will not open,",
+      "new_text": "When something electrical fails at a business, the repair is the small cost. The big one is the register that will not open,",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"It's not X. It's Y.\" structure; every example kept"
+    },
+    {
+      "id": "slop-services-053",
+      "url": "/services/commercial-service",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "77b076c9-7d9b-4d64-8d77-cb20de1e3598",
+        "field": "body[15]",
+        "block_key": "k01c",
+        "block_style": "normal"
+      },
+      "old_text": "If you manage several properties, the thing that saves you time is not the hourly rate. It is having one electrician",
+      "new_text": "If you manage several properties, what saves you time is having one electrician",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not X. It is Y.\" structure"
+    },
+    {
+      "id": "slop-services-054",
+      "url": "/services/commercial-service",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "77b076c9-7d9b-4d64-8d77-cb20de1e3598",
+        "field": "body[17]",
+        "block_key": "k01g",
+        "block_style": "h3"
+      },
+      "old_text": "Preventive Work That Is Actually Worth Doing",
+      "new_text": "Preventive Work Worth Doing",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler in a heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-055",
+      "url": "/services/commercial-service",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "77b076c9-7d9b-4d64-8d77-cb20de1e3598",
+        "field": "body[40]",
+        "block_key": "k02x",
+        "block_style": "normal"
+      },
+      "old_text": "Whether it is one dead circuit or a property that needs somebody to get its electrical under control, get in touch.",
+      "new_text": "We take on one dead circuit or a whole property that needs its electrical brought under control.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Whether it is X or Y\" opener and \"get in touch\" restated CTA; the linked CTA after it is unchanged"
+    },
+    {
+      "id": "slop-services-056",
+      "url": "/services/commercial-service",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "77b076c9-7d9b-4d64-8d77-cb20de1e3598",
+        "field": "body[39]",
+        "block_key": "k02v",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Request Commercial Electrical Service",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-057",
+      "url": "/services/tenant-improvements",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9606b8d-cb12-42c9-97b4-46c9c6fb4140",
+        "field": "body[30]",
+        "block_key": "k02a",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Tenant Improvement Bid",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph is about getting a number from plans); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-058",
+      "url": "/services/led-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "266e78c1-4871-4014-80e9-f3777b74da45",
+        "field": "body[9]",
+        "block_key": "k00v",
+        "block_style": "h3"
+      },
+      "old_text": "Why LED Actually Pays Off Here",
+      "new_text": "Why LED Pays Off in Arizona",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler in a heading; \"Here\" made specific (the section is about Arizona heat); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-059",
+      "url": "/services/led-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "266e78c1-4871-4014-80e9-f3777b74da45",
+        "field": "body[25]",
+        "block_key": "k01v",
+        "block_style": "normal"
+      },
+      "old_text": "what a conversion would actually cost and save",
+      "new_text": "what a conversion would cost and save",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler"
+    },
+    {
+      "id": "slop-services-060",
+      "url": "/services/led-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "266e78c1-4871-4014-80e9-f3777b74da45",
+        "field": "body[24]",
+        "block_key": "k01t",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Free LED Conversion Estimate",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-061",
+      "url": "/services/outlets-and-switches",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a7a868f6-e77e-466a-8540-9ecd91b2b969",
+        "field": "body[15]",
+        "block_key": "k01b",
+        "block_style": "normal"
+      },
+      "old_text": "A receptacle that no longer grips is not just annoying, it is a heat problem at the contact.",
+      "new_text": "A receptacle that no longer grips is a heat problem at the contact.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not just X, it is Y\" structure"
+    },
+    {
+      "id": "slop-services-062",
+      "url": "/services/outlets-and-switches",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a7a868f6-e77e-466a-8540-9ecd91b2b969",
+        "field": "body[23]",
+        "block_key": "k01r",
+        "block_style": "normal"
+      },
+      "old_text": "we will get power where you actually need it.",
+      "new_text": "we will get power where you need it.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler"
+    },
+    {
+      "id": "slop-services-063",
+      "url": "/services/outlets-and-switches",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a7a868f6-e77e-466a-8540-9ecd91b2b969",
+        "field": "body[22]",
+        "block_key": "k01p",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Add or Replace Outlets and Switches",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-064",
+      "url": "/services/storefront-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e0f5126c-4645-4950-bd8a-e4ad684a8e9f",
+        "field": "body[20]",
+        "block_key": "k01i",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Fix a Dark Sign or Storefront",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph is about half-dark signs and dim entries); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-065",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "shortDescription"
+      },
+      "old_text": "dimming that actually works.",
+      "new_text": "dimming that works.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler; this shortDescription is the hero lede and card text only, the meta description comes from seo.description",
+      "skip": "Decision D10: hanging-lights ships its published copy, not the Webflow draft this edit was written against; the draft short description is no longer used."
+    },
+    {
+      "id": "slop-services-066",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[20]",
+        "block_key": "k01j",
+        "block_style": "normal"
+      },
+      "old_text": "Whether you have fixtures picked out or need help figuring out what will work in the space, ",
+      "new_text": "If you have fixtures picked out, or need help figuring out what will work in the space, ",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Whether you X or Y\" CTA opener; stops just before the link \"request a free estimate\", which follows unchanged",
+      "skip": "Decision D10: written against the unpublished hanging-lights draft body, which no longer ships."
+    },
+    {
+      "id": "slop-services-067",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[19]",
+        "block_key": "k01h",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Plan Your Pendant and Hanging Lights",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "skip": "Decision D10: written against the unpublished hanging-lights draft body, which no longer ships.",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-068",
+      "url": "/services/electrical-upgrades",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9796902e-a787-4ce2-b533-2d36e53cbfee",
+        "field": "body[11]",
+        "block_key": "k00z",
+        "block_style": "normal"
+      },
+      "old_text": " Finding that out first saves real money.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph ends on a vague moral (\"saves real money\") that restates the sentence before it"
+    },
+    {
+      "id": "slop-services-069",
+      "url": "/services/electrical-upgrades",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9796902e-a787-4ce2-b533-2d36e53cbfee",
+        "field": "body[20]",
+        "block_key": "k01h",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Free Commercial Upgrade Estimate",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-070",
+      "url": "/services/commercial-electrical-troubleshooting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6b14913f-f5ea-491d-a3a7-3654e8974e8e",
+        "field": "body[28]",
+        "block_key": "k01x",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Book Commercial Electrical Troubleshooting",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-071",
+      "url": "/services/emergency-exit-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5d0811fc-a8f0-4ef9-abdb-90efcf24a6ce",
+        "field": "body[13]",
+        "block_key": "k013",
+        "block_style": "normal"
+      },
+      "old_text": "This is why the only real test is the actual test: kill power",
+      "new_text": "The only test that counts is a power-off test: kill power",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "wordplay tic (\"the only real test is the actual test\"); quickAnswer evidence kept"
+    },
+    {
+      "id": "slop-services-072",
+      "url": "/services/emergency-exit-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5d0811fc-a8f0-4ef9-abdb-90efcf24a6ce",
+        "field": "body[22]",
+        "block_key": "k01n",
+        "block_style": "normal"
+      },
+      "old_text": "or you genuinely do not know",
+      "new_text": "or you do not know",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"genuinely\" filler"
+    },
+    {
+      "id": "slop-services-073",
+      "url": "/services/emergency-exit-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5d0811fc-a8f0-4ef9-abdb-90efcf24a6ce",
+        "field": "body[21]",
+        "block_key": "k01l",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get Your Exit and Emergency Lights Tested",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-074",
+      "url": "/services/dedicated-circuits",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "21f4cebf-5ada-482e-9bbd-ada8b837b646",
+        "field": "body[1]",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": "In practice it is the difference between equipment that runs reliably for years and equipment that keeps tripping, keeps failing, and keeps costing you service calls.",
+      "new_text": "In practice, equipment that shares a circuit is the equipment that trips, fails, and runs up service calls.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"the difference between X and Y\" plus rhythmic \"keeps... keeps... keeps\" triplet"
+    },
+    {
+      "id": "slop-services-075",
+      "url": "/services/dedicated-circuits",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "21f4cebf-5ada-482e-9bbd-ada8b837b646",
+        "field": "body[9]",
+        "block_key": "k00u",
+        "block_style": "h3"
+      },
+      "old_text": "What Sharing Actually Costs You",
+      "new_text": "What Sharing a Circuit Costs You",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler in a heading; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-076",
+      "url": "/services/dedicated-circuits",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "21f4cebf-5ada-482e-9bbd-ada8b837b646",
+        "field": "body[11]",
+        "block_key": "k00y",
+        "block_style": "normal"
+      },
+      "old_text": ", usually at the worst possible time",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"at the worst possible time\")"
+    },
+    {
+      "id": "slop-services-077",
+      "url": "/services/dedicated-circuits",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "21f4cebf-5ada-482e-9bbd-ada8b837b646",
+        "field": "body[21]",
+        "block_key": "k01i",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Plan a Dedicated Circuit",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job; the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-078",
+      "url": "/services/ballast-replacement-fluorescent-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "523336a6-4d18-4424-a207-d62474eb0deb",
+        "field": "body[11]",
+        "block_key": "k00t",
+        "block_style": "normal"
+      },
+      "old_text": "This is the real decision, and it is worth thinking about rather than defaulting.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "first sentence restates the heading (\"Repair or Convert to LED?\") and carries no fact; delete the whole block",
+      "applier_note": "Whole-block delete: apply through bodyRemovals by exact text, not editBody (which would leave an empty block)."
+    },
+    {
+      "id": "slop-services-079",
+      "url": "/services/ballast-replacement-fluorescent-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "523336a6-4d18-4424-a207-d62474eb0deb",
+        "field": "body[14]",
+        "block_key": "k00z",
+        "block_style": "normal"
+      },
+      "old_text": "There is also a hard reality worth planning around: fluorescent lamp",
+      "new_text": "Plan around supply, too: fluorescent lamp",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock phrase (\"a hard reality worth planning around\")"
+    },
+    {
+      "id": "slop-services-080",
+      "url": "/services/ballast-replacement-fluorescent-lighting",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "523336a6-4d18-4424-a207-d62474eb0deb",
+        "field": "body[21]",
+        "block_key": "k01f",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Get a Ballast Repair or LED Conversion Quote",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job (the paragraph offers \"both numbers\"); the block is one strong span, replace its whole text",
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-081",
+      "url": "/services/panels",
+      "target": {
+        "kind": "file",
+        "file": "migration/content-data/cms-templates.json"
+      },
+      "old_text": "Our transparent flat-rate pricing is competitive with no hidden fees. Contact us today to get a free & accurate quote. ",
+      "new_text": "We price panel work at a flat rate with no hidden fees. Ask us for a free quote. ",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "marketing filler (\"transparent\", \"competitive\", \"free & accurate quote\") and an unlinked restated CTA; flat rate, no hidden fees and the free quote are kept. This bodyEdits replacement is the text of /services/panels body block \"What It Costs\"; the same sentence is legacy copy on the live city pages, so the city track may see it too"
+    },
+    {
+      "id": "slop-services-082",
+      "url": "/services (12 service pages, main images)",
+      "target": {
+        "kind": "file",
+        "file": "migration/content-data/cms-templates.json"
+      },
+      "old_text": "\"recessed-lights-installation\": \"New recessed lights glowing in a vaulted kitchen ceiling\"",
+      "new_text": "\"recessed-lights-installation\": \"New recessed lights glowing in a vaulted kitchen ceiling\",\n      \"new-construction-wiring\": \"New wiring and electrical boxes on the open studs of a home under construction\",\n      \"hanging-lights\": \"Rows of hanging Edison bulbs under the open timber beams and ductwork of a restaurant ceiling\",\n      \"commercial-service\": \"An electrician testing terminal blocks in an open control panel with a multimeter\",\n      \"tenant-improvements\": \"Two-story wood-frame houses under construction, with a dumpster out front\",\n      \"led-lights\": \"Hexagonal LED light panels on a ceiling above a stairway with steel handrails\",\n      \"outlets-and-switches\": \"Three new white duplex outlets lying on a gray surface\",\n      \"storefront-lights\": \"A dim bar interior lit by warm lights under the counter and along the columns\",\n      \"electrical-upgrades\": \"An electrician in a hard hat and work gloves working on a wall-mounted electrical box\",\n      \"commercial-electrical-troubleshooting\": \"A technician drilling into the open casing of a rooftop air-conditioning unit\",\n      \"emergency-exit-lights\": \"A lit red exit sign with an arrow on a dark ceiling\",\n      \"dedicated-circuits\": \"A screwdriver pointing at breakers in an open distribution board full of colored wiring\",\n      \"ballast-replacement-fluorescent-lighting\": \"Rows of fluorescent tube lights across a commercial drop ceiling\"",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "missing alt text on 12 service main images (all stock, never shown on the page; they are the og:image and the Service JSON-LD image). Each alt describes what the photo shows, checked by eye. Five of them do not show the service at all (tenant-improvements: residential framing; led-lights: decorative hexagon ceiling LEDs; storefront-lights: a bar interior; commercial-electrical-troubleshooting: a rooftop AC unit; dedicated-circuits: European DIN-rail breakers): replacing or dropping those images is the better fix, see report"
+    },
+    {
+      "id": "slop-services-083",
+      "url": "/services (serviceAlts source note)",
+      "target": {
+        "kind": "file",
+        "file": "migration/content-data/cms-templates.json"
+      },
+      "old_text": "\"source\": \"Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt.\"",
+      "new_text": "\"source\": \"Descriptions of the crew's own photos from the redesign asset audit (section 4b) and migration/brand-photos/manifest.json; all 21 service images had an empty alt. The 12 stock photos (new-construction-wiring onward) are described from the images themselves (SEO review, 2026-10-17); hanging-lights reuses the alt page-sections gives the same photo.\"",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "keeps the data file's provenance note true after the alt additions above (apply together with the previous edit)"
+    },
+    {
+      "id": "slop-services-084",
+      "url": "/services/* (all 21)",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/services/[slug].astro"
+      },
+      "old_text": "faqIntro=\"From our FAQ, written by the electricians who do the work.\"",
+      "new_text": "faqIntro=\"From our FAQ page.\"",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported authorship boilerplate (nothing on the site says who wrote the FAQ); the same line is in web/src/pages/blog-posts/[slug].astro (posts track)",
+      "skip": "Same template line as slop-pages-072 (the same old text in web/src/pages/services/[slug].astro); slop-pages-072 is applied so the service, post and city templates read alike (\"From our FAQ.\")."
+    },
+    {
+      "id": "slop-services-085",
+      "url": "/services/* (all 21)",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/services/[slug].astro"
+      },
+      "old_text": "guidesIntro=\"Before you call, read up on the details, from licensed electricians.\"",
+      "new_text": "guidesIntro=\"Before you call, read up on the details.\"",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported authorship claim (posts carry no author; owner rule: blog authors not shown)",
+      "skip": "Same template line as slop-pages-073 (the same old text in web/src/pages/services/[slug].astro); slop-pages-073 is applied, written with the other template lines."
+    },
+    {
+      "id": "slop-services-086",
+      "url": "/services/* (all 21)",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/services/[slug].astro"
+      },
+      "old_text": "heading=\"More ways we can help\"",
+      "new_text": "heading={service.category ? `More ${service.category.name.toLowerCase()} electrical services` : 'More electrical services'}",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler heading (\"More ways we can help\") that fits any business; now descriptive (\"More residential electrical services\")"
+    },
+    {
+      "id": "slop-services-v01",
+      "url": "/services/ev-charger-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0f2e0ba0-3b7d-4976-9c14-d76f9e09e199",
+        "field": "body[20]",
+        "block_key": "k01h",
+        "block_style": "h3"
+      },
+      "old_text": "Level 1 vs Level 2: Which Do You Actually Need?",
+      "new_text": "Level 1 vs Level 2: Which Do You Need?",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"actually\" filler in a heading (the researcher removed it from the other \"actually\" headings but missed this one, on the highest-impression service page); \"Level 1 vs Level 2\" kept",
+      "added_by_verifier": true,
+      "applier_note": "Heading is one bold (strong) span: editBody inserts the replacement with marks [], which would drop the strong mark (h3 is weight 700, strong renders bolder), so keep the strong mark on the new heading text."
+    },
+    {
+      "id": "slop-services-v02",
+      "url": "/services/recessed-lights-installation",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "31071dbe-ed83-4f44-8b71-76a5671c89fd",
+        "field": "body[1]",
+        "block_key": "k008",
+        "block_style": "normal"
+      },
+      "old_text": "Done well, you stop noticing the lights and start noticing the room. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Done well, ... Done poorly, ...\" antithesis: the \"Done well\" half is the same no-fact aphorism the researcher deleted on custom-lighting (\"you don't see the lights. You see what they light up\"); the concrete \"Done poorly\" sentence (hot spots, dark corners) stays. Plain span, no link.",
+      "added_by_verifier": true
+    },
+    {
+      "id": "slop-services-hl-001",
+      "url": "/services/hanging-lights (hero lede; the card text on /services, /services-categories/commercial and the related-service cards)",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "shortDescription"
+      },
+      "old_text": "Hanging lights for commercial settings, perfect for businesses looking to enhance their ambiance and visual appeal.",
+      "new_text": "Pendant lights, chandeliers, and track lighting for commercial spaces. Help choosing fixtures, secure mounting, and minimal disruption to your business.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "stock benefit line (\"perfect for businesses looking to enhance their ambiance and visual appeal\"); now the fixtures and steps the body names, in the two-fragment style of the other service cards. Not the meta description: seo.description is set (titles track), so the page's title, meta and H1 stay as they are.",
+      "note": "Written in the integration round from the SLOP GUIDE and HARD RULES of the copy review, at the lead's direction (INTEGRATE_BRIEF, hanging-lights de-slop): the published copy ships under D10 and had no verified edits."
+    },
+    {
+      "id": "slop-services-hl-002",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[1]",
+        "block_key": "k002",
+        "block_style": "normal"
+      },
+      "old_text": "The Wire Guy Electric offers specialized services in hanging lights for commercial settings, perfect for businesses looking to enhance their ambiance and visual appeal. Whether you’re looking to install statement lighting in a reception area or need functional, stylish fixtures for a retail space, our experienced electricians ensure precision and aesthetic alignment in every project.",
+      "new_text": "The Wire Guy Electric installs hanging lights in commercial spaces, from statement lighting in a reception area to functional fixtures for a retail space.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"offers specialized services in\", \"perfect for businesses looking to enhance their ambiance and visual appeal\", a \"Whether you're looking to X or need Y\" opener and \"ensure precision and aesthetic alignment\"; the two examples (reception area, retail space) and the keywords stay, the business name keeps its italic"
+    },
+    {
+      "id": "slop-services-hl-003",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[3]",
+        "block_key": "k006",
+        "block_style": "h3"
+      },
+      "old_text": "Professional ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Professional\" filler in a heading; the keyword \"Hanging Light Installation Services\" stays, bold kept"
+    },
+    {
+      "id": "slop-services-hl-004",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[4]",
+        "block_key": "k008",
+        "block_style": "normal"
+      },
+      "old_text": "Work with our lighting experts to choose the best fixtures and layouts that complement your commercial decor and lighting needs.",
+      "new_text": "We help you choose fixtures and a layout that suit your space and the light you need.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"our lighting experts\", \"the best\", \"complement your commercial decor\"; the fact (help choosing fixtures and layout for the space and its lighting needs) stays; the bold label is untouched"
+    },
+    {
+      "id": "slop-services-hl-005",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[5]",
+        "block_key": "k00b",
+        "block_style": "normal"
+      },
+      "old_text": "Our team installs hanging lights with meticulous attention to detail, ensuring each fixture is securely mounted and optimally positioned for both illumination and design impact.",
+      "new_text": "We mount each fixture securely and position it for both the light it gives and how it looks.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"meticulous attention to detail\", \"ensuring\", \"optimally positioned for both illumination and design impact\"; the facts (secure mounting, placed for light and looks) stay; the bold label is untouched"
+    },
+    {
+      "id": "slop-services-hl-006",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[6]",
+        "block_key": "k00e",
+        "block_style": "normal"
+      },
+      "old_text": "Versatile Lighting Solutions: From pendant lights in dining areas to elaborate chandeliers in hotel lobbies or practical, stylish track lighting in art galleries, we handle a variety of hanging light installations.",
+      "new_text": "Fixture Types: We install pendant lights in dining areas, chandeliers in hotel lobbies and track lighting in art galleries.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Versatile Lighting Solutions\" label, \"elaborate\", \"practical, stylish\", \"we handle a variety of\"; the three fixture-and-place examples stay word for word",
+      "format": {
+        "strong": [
+          "Fixture Types"
+        ]
+      }
+    },
+    {
+      "id": "slop-services-hl-007",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[7]",
+        "block_key": "k00h",
+        "block_style": "h3"
+      },
+      "old_text": "Why Choose The Wire Guy Electric for Your Hanging Light Needs?",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "stock \"Why Choose Us\" heading; with the two no-fact items under it gone, its one remaining item (quality materials, safety standards) joins the installation list above"
+    },
+    {
+      "id": "slop-services-hl-008",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[8]",
+        "block_key": "k00j",
+        "block_style": "normal"
+      },
+      "old_text": "Enhanced Aesthetics: Elevate the look of your business with expertly installed hanging lights that reflect your brand’s style and enhance your space’s functionality.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Elevate\", \"expertly installed\", \"enhance your space's functionality\": a benefit line with no fact; deleted"
+    },
+    {
+      "id": "slop-services-hl-009",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[9]",
+        "block_key": "k00m",
+        "block_style": "normal"
+      },
+      "old_text": "Reliability and Safety: We prioritize safety and durability in every installation, using only high-quality materials and adhering to strict safety standards.",
+      "new_text": "Quality Materials: We use high-quality materials and follow strict safety standards on every installation.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"We prioritize safety and durability\", \"using only\", \"adhering to\"; the facts (high-quality materials, strict safety standards) stay; the label is renamed because \"Safe and Secure Installation\" now sits in the same list",
+      "format": {
+        "strong": [
+          "Quality Materials"
+        ]
+      }
+    },
+    {
+      "id": "slop-services-hl-010",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[10]",
+        "block_key": "k00p",
+        "block_style": "normal"
+      },
+      "old_text": "Customized Solutions: Every business is unique, and we tailor our lighting solutions to meet your specific aesthetic and functional requirements.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Customized Solutions\", \"Every business is unique\", \"tailor our lighting solutions\": its one fact (lighting planned for the space's looks and use) is the Design Consultation item's; deleted"
+    },
+    {
+      "id": "slop-services-hl-011",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[11]",
+        "block_key": "k00s",
+        "block_style": "h3"
+      },
+      "old_text": "Dedicated Commercial Lighting Expertise",
+      "new_text": "Commercial Lighting Service and Support",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Dedicated … Expertise\" heading; now names what the list under it covers (scheduling, efficient options, maintenance and support), keeping \"Commercial Lighting\"; bold kept"
+    },
+    {
+      "id": "slop-services-hl-012",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[12]",
+        "block_key": "k00u",
+        "block_style": "normal"
+      },
+      "old_text": "We schedule and execute installations with minimal disruption, allowing you to continue business as usual.",
+      "new_text": "We schedule the work so you can keep your business running.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"execute installations\", \"allowing you to continue business as usual\"; the fact (scheduled around the business) stays; the bold label \"Minimal Disruption to Business Operations\" is untouched"
+    },
+    {
+      "id": "slop-services-hl-013",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[13]",
+        "block_key": "k00x",
+        "block_style": "normal"
+      },
+      "old_text": "We offer a range of energy-efficient lighting options that reduce energy costs while providing beautiful, effective lighting.",
+      "new_text": "We offer energy-efficient lighting options that lower your energy costs.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"a range of\", \"while providing beautiful, effective lighting\"; the fact (energy-efficient options, lower energy costs) stays"
+    },
+    {
+      "id": "slop-services-hl-014",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[14]",
+        "block_key": "k010",
+        "block_style": "normal"
+      },
+      "old_text": "Post-installation, we provide ongoing support and maintenance services to ensure your lighting continues to function beautifully and efficiently.",
+      "new_text": "After the install, we provide ongoing support and maintenance for your lighting.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"to ensure your lighting continues to function beautifully and efficiently\"; the fact (ongoing support and maintenance after the install) stays"
+    },
+    {
+      "id": "slop-services-hl-015",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[15]",
+        "block_key": "k013",
+        "block_style": "h3"
+      },
+      "old_text": "Contact Us Today",
+      "new_text": "Plan Your Hanging Lights",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "generic stock CTA heading (\"Contact Us Today\"); now names the job, like \"Plan Your Custom Lighting\" (slop-services) and the verified draft heading (slop-services-067); bold kept"
+    },
+    {
+      "id": "slop-services-hl-016",
+      "url": "/services/hanging-lights",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "12a4bd61-7027-4716-8643-223d3a6ce257",
+        "field": "body[16]",
+        "block_key": "k015",
+        "block_style": "normal"
+      },
+      "old_text": "Light up your business with bespoke hanging light solutions from The Wire Guy Electric. Our commitment to quality, safety, and aesthetic excellence ensures your lighting installations will not only meet but exceed expectations. Contact us today to begin your consultation and transform your space with stunning hanging lights.",
+      "new_text": "Contact The Wire Guy Electric to begin your consultation.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "\"Light up your business\", \"bespoke … solutions\", \"commitment to quality, safety, and aesthetic excellence\", \"not only meet but exceed expectations\", \"transform your space with stunning\"; the call to action stays (no link: the live copy has none) and the business name keeps its italic"
+    }
+  ]
+}

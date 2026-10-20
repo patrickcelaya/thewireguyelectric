@@ -1,0 +1,3115 @@
+{
+  "about": "Blog posts 28–53 by slug (installing-car-charger… to why-your-lights-flicker-in-the-afternoon…).",
+  "source": "slop-posts-b/verified.json of the 2026-10-17 copy review: researched, then adversarially verified. Verdict accept, or amend (new_text is the amended text); no edit was rejected.",
+  "edits": [
+    {
+      "id": "slop-posts-b-001",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9660979-cf1c-4a28-a226-5ffa65cf08df",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "With the rise in popularity of electric vehicles (EVs), more and more homeowners in Arizona are considering the installation of electric car chargers in their homes.",
+      "new_text": "As electric vehicles (EVs) get more popular, more and more homeowners in Arizona are considering an electric car charger at home.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "filler opener (\"With the rise in popularity of\"), wordy nominalization; keywords kept",
+      "verifier_note": "Tier 1: \"installation\"/\"install\" still appears in the first 100 words via the H3 \"Why Install an Electric Car Charger at Home?\" and \"electric car charger at home\" now matches the title wording (checked by script)."
+    },
+    {
+      "id": "slop-posts-b-002",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9660979-cf1c-4a28-a226-5ffa65cf08df",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "Not only does this provide the convenience of charging your EV at home, but it also supports the shift towards sustainable transportation. ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"not only X, but also Y\" + generic sustainability filler; convenience is the first list item below"
+    },
+    {
+      "id": "slop-posts-b-003",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9660979-cf1c-4a28-a226-5ffa65cf08df",
+        "field": "body",
+        "block_key": "k00z",
+        "block_style": "number list item"
+      },
+      "old_text": " and can ensure a seamless process",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"seamless\"; the claim before it stays"
+    },
+    {
+      "id": "slop-posts-b-004",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9660979-cf1c-4a28-a226-5ffa65cf08df",
+        "field": "body",
+        "block_key": "k017",
+        "block_style": "number list item"
+      },
+      "old_text": "With years of experience in the electrical field, our team is well-versed in the nuances of EV charger installations.",
+      "new_text": "Our team has years of experience in the electrical field, including EV charger installations.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"well-versed in the nuances\""
+    },
+    {
+      "id": "slop-posts-b-005",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9660979-cf1c-4a28-a226-5ffa65cf08df",
+        "field": "body",
+        "block_key": "k01d",
+        "block_style": "number list item"
+      },
+      "old_text": "Our electricians prioritize safety, ensuring that your charger is installed correctly and safely for you and your vehicle.",
+      "new_text": "We make sure your charger is installed correctly and safely.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "padded generic benefit (\"prioritize safety, ensuring ... correctly and safely\")"
+    },
+    {
+      "id": "slop-posts-b-006",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9660979-cf1c-4a28-a226-5ffa65cf08df",
+        "field": "body",
+        "block_key": "k01i",
+        "block_style": "normal"
+      },
+      "old_text": "Installing an electric car charger at home in Arizona is a wise investment for any EV owner. It offers convenience, cost savings, and an increase in property value.",
+      "new_text": "Installing an electric car charger at home in Arizona gives an EV owner convenience and cost savings, and it can add to your property value.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"wise investment\" + closing triplet that restates the list; same three points kept (\"can\" matches the list item)"
+    },
+    {
+      "id": "slop-posts-b-007",
+      "url": "/blog-posts/installing-car-charger",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e9660979-cf1c-4a28-a226-5ffa65cf08df",
+        "field": "body",
+        "block_key": "k01i",
+        "block_style": "normal"
+      },
+      "old_text": "If you're considering this addition to your home, trust us to guide you through the process and ensure a safe and efficient installation.",
+      "new_text": "If you're considering one, we'll guide you through the process and install it safely.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock CTA padding (\"trust us\", \"ensure a safe and efficient installation\"); the linked estimate sentence after it is untouched"
+    },
+    {
+      "id": "slop-posts-b-008",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k000",
+        "block_style": "normal"
+      },
+      "old_text": "But all that power comes with a hidden risk: electrical surges.",
+      "new_text": "Every one of those devices can be damaged by an electrical surge.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock framing (\"comes with a hidden risk\")",
+      "format": {
+        "strong": [
+          "electrical surge"
+        ]
+      },
+      "formatting": "old \"electrical surges.\" was strong: make \"electrical surge\" strong in new_text"
+    },
+    {
+      "id": "slop-posts-b-009",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "That’s why many homeowners are asking the same question: Is whole-house surge protection really worth it?",
+      "new_text": "So is whole-house surge protection worth it? For most Phoenix homes, yes.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "stock framing; answer first (the post's own conclusion: \"one of the smartest upgrades you can make\" in Phoenix)",
+      "format": {
+        "em": [
+          "is whole-house surge protection worth it?"
+        ]
+      },
+      "formatting": "the old question was em: make \"is whole-house surge protection worth it?\" em",
+      "verifier_note": "Dropped the trailing \"Here is why.\": it is a signpost of the same kind as the deleted \"Let’s break it down.\" (edit 010)."
+    },
+    {
+      "id": "slop-posts-b-010",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k006",
+        "block_style": "normal"
+      },
+      "old_text": "Let’s break it down.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler signpost (\"Let's break it down\"); removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-011",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k00w",
+        "block_style": "normal"
+      },
+      "old_text": " Think of it as your home’s first line of defense — a bodyguard for everything that runs on electricity.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "metaphor padding with no fact"
+    },
+    {
+      "id": "slop-posts-b-012",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k010",
+        "block_style": "h3"
+      },
+      "old_text": "The Arizona Advantage: Why Surge Protection Matters Here",
+      "new_text": "Why Surge Protection Matters More in Arizona",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "colon-subtitle heading (\"The Arizona Advantage:\"); keyword kept",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-013",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k012",
+        "block_style": "normal"
+      },
+      "old_text": "Phoenix’s intense summer heat and high-power use make homes more vulnerable to surges than you might think.",
+      "new_text": "Phoenix’s summer heat and heavy power use make homes more vulnerable to surges.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "hedge filler (\"than you might think\")"
+    },
+    {
+      "id": "slop-posts-b-014",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k014",
+        "block_style": "normal"
+      },
+      "old_text": "Add in dust, older wiring, and occasional monsoon lightning, and you’ve got the perfect recipe for unpredictable power spikes.",
+      "new_text": "Dust, older wiring, and the occasional monsoon lightning strike add to the risk.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"the perfect recipe for\")"
+    },
+    {
+      "id": "slop-posts-b-015",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k01q",
+        "block_style": "normal"
+      },
+      "old_text": "It takes less than an hour, requires minimal downtime, and instantly safeguards your entire home.",
+      "new_text": "It takes less than an hour, needs minimal downtime, and protects the whole house once it’s in.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "rhythmic triplet; same facts",
+      "verifier_note": "The original triplet carries three facts and is not padding; only \"instantly safeguards your entire home\" was salesy. The proposed \"with minimal downtime, and covers the whole house as soon as it is in\" was ungrammatical as a series. Same facts, one verb changed."
+    },
+    {
+      "id": "slop-posts-b-016",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k01s",
+        "block_style": "normal"
+      },
+      "old_text": "this is also the perfect time to ask",
+      "new_text": "this is also a good time to ask",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"the perfect time\""
+    },
+    {
+      "id": "slop-posts-b-017",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k01w",
+        "block_style": "h3"
+      },
+      "old_text": "The Bottom Line",
+      "new_text": "Is It Worth It in Phoenix?",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock closer heading (\"The Bottom Line\")",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-018",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k01y",
+        "block_style": "normal"
+      },
+      "old_text": "Whole-house surge protection isn’t just about lightning — it’s about protecting your investment. In Phoenix’s high-heat environment, with constant A/C demand and grid stress, a surge protector is one of the smartest upgrades you can make.",
+      "new_text": "Yes. With constant A/C cycling and grid stress in Phoenix summers, a whole-house surge protector is one of the smartest upgrades you can make, and unlike a plug-in strip it covers your hardwired appliances too.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"isn't just X — it's Y\"; answer first, reasons taken from the post's own sections",
+      "formatting": "strong \"protecting your investment\" is removed with the phrase: no emphasis in new_text",
+      "verifier_note": "Removed \"Lightning is only part of it.\", which keeps the \"isn’t just X\" structure in another form. The hardwired point is the post’s own (block k00s)."
+    },
+    {
+      "id": "slop-posts-b-019",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k024",
+        "block_style": "normal"
+      },
+      "old_text": "At The Wire Guy Electric, we install top-rated whole-house surge protectors designed for the harsh Arizona environment.",
+      "new_text": "At The Wire Guy Electric, we install whole-house surge protectors at your main panel.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported superlative (\"top-rated\", \"designed for the harsh Arizona environment\")",
+      "formatting": "keep strong on \"The Wire Guy Electric\""
+    },
+    {
+      "id": "slop-posts-b-020",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k028",
+        "block_style": "normal"
+      },
+      "old_text": "✅ Licensed, bonded, and insured\n✅ Trusted by Valley homeowners since 2017\n✅ Honest pricing and same-day service available",
+      "new_text": "Licensed, bonded, and insured\nServing Valley homeowners since 2017\nHonest pricing and same-day service available",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji checkmarks; \"Trusted by\" -> \"Serving\" (year kept)",
+      "verifier_note": "Lines are separated by \"\\n\" inside one span; @portabletext/to-html renders them as <br>, so the list still breaks after the emoji go. \"Same-day service available\" needs owner confirmation (not slop)."
+    },
+    {
+      "id": "slop-posts-b-021",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k02a",
+        "block_style": "normal"
+      },
+      "old_text": " to keep your home safe and powered — no matter what the Arizona grid throws your way.",
+      "new_text": " to have a whole-house surge protector installed.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché closer (\"no matter what ... throws your way\")"
+    },
+    {
+      "id": "slop-posts-b-022",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k009",
+        "block_style": "normal"
+      },
+      "old_text": " They feel more welcoming, more polished, and more secure.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet used as padding"
+    },
+    {
+      "id": "slop-posts-b-023",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k00b",
+        "block_style": "normal"
+      },
+      "old_text": "Landscape lighting is one of those upgrades that improves your home's curb appeal, safety, and property value all at once. But like most electrical projects, the cost depends on what you want and what your property needs.",
+      "new_text": "Landscape lighting improves curb appeal, safety, and property value. What it costs depends on what you want lit and what your property needs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler (\"one of those upgrades that ... all at once\", \"like most electrical projects\")"
+    },
+    {
+      "id": "slop-posts-b-024",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k00d",
+        "block_style": "normal"
+      },
+      "old_text": " Here's what you should know before you start planning your project.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler signpost"
+    },
+    {
+      "id": "slop-posts-b-025",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k018",
+        "block_style": "normal"
+      },
+      "old_text": "Not all landscape lighting is created equal, and some types work better in the Arizona climate than others. Here are the most popular options we install:",
+      "new_text": "Some types of landscape lighting hold up better in the Arizona climate than others. These are the ones we install most:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"Not all X is created equal\")"
+    },
+    {
+      "id": "slop-posts-b-026",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k01p",
+        "block_style": "normal"
+      },
+      "old_text": "dedicated underwater or perimeter lights can completely transform the space at night",
+      "new_text": "you can add dedicated underwater or perimeter lights",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "hype (\"completely transform\"); the fixture requirements sentence after it stays"
+    },
+    {
+      "id": "slop-posts-b-027",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k01y",
+        "block_style": "normal"
+      },
+      "old_text": "a wide range of color temperatures",
+      "new_text": "several color temperatures",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"a wide range of\""
+    },
+    {
+      "id": "slop-posts-b-028",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k02j",
+        "block_style": "normal"
+      },
+      "old_text": "If you want landscape lighting that actually makes a visual impact and lasts, hardwired low-voltage LED is the investment worth making. Solar is fine for a few lights along a side path, but it won't deliver the kind of look that transforms a property.",
+      "new_text": "If you want landscape lighting that is bright and lasts, go with hardwired low-voltage LED. Solar is fine for a few lights along a side path, but not for lighting a whole property.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "sales filler (\"the investment worth making\", \"transforms a property\")"
+    },
+    {
+      "id": "slop-posts-b-029",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k00y",
+        "block_style": "normal"
+      },
+      "old_text": "Choosing the right EV charger can save you time and money. Here's a quick breakdown to help you decide:",
+      "new_text": "Level 1 and Level 2 chargers differ in voltage, charging speed, installation, and cost:",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "generic opener that fits any product; answer first",
+      "format": {
+        "strong": []
+      },
+      "formatting": "old strong first sentence is replaced: no emphasis in new_text",
+      "verifier_note": "The bullets right after this cover cost as well, and \"The quick breakdown:\" read clipped. Self-contained lead-in that names both keywords."
+    },
+    {
+      "id": "slop-posts-b-030",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k02g",
+        "block_style": "normal"
+      },
+      "old_text": " Next, we’ll dive into how these chargers perform in terms of real-world charging times and efficiency.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"dive into\" transition signpost; the cited sentence and its [1] link stay"
+    },
+    {
+      "id": "slop-posts-b-031",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k036",
+        "block_style": "normal"
+      },
+      "old_text": "Factors like battery size, the onboard charger's capacity, the home circuit's capability, and the local grid's load all play a role in determining charging speed",
+      "new_text": "Battery size, the onboard charger's capacity, the home circuit's capability, and the local grid's load all affect charging speed",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"play a role in determining\"; the [2] link after it is untouched"
+    },
+    {
+      "id": "slop-posts-b-032",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k03k",
+        "block_style": "normal"
+      },
+      "old_text": "Next, we'll look at the installation requirements and costs for Level 1 and Level 2 chargers.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "transition signpost; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-033",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k03o",
+        "block_style": "h2"
+      },
+      "old_text": "EV Charging 101 - Level 1 vs Level 2 vs DC Fast Charging ...",
+      "new_text": "Video: Level 1 vs Level 2 vs DC Fast Charging",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "scraped YouTube title used as a heading (\"101\", trailing \"...\"); keywords kept"
+    },
+    {
+      "id": "slop-posts-b-034",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k041",
+        "block_style": "normal"
+      },
+      "old_text": "The installation process and initial costs differ significantly between Level 1 and Level 2 chargers.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "first sentence restates the heading (\"Setup Requirements and Pricing\"); removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-035",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k055",
+        "block_style": "normal"
+      },
+      "old_text": "Next, we’ll dive into which charger works best for home and commercial setups.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"dive into\" signpost; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-036",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k05d",
+        "block_style": "normal"
+      },
+      "old_text": "Now that we've covered installation needs and costs, let's focus on selecting the right charger for your specific use.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "transition signpost; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-037",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k05z",
+        "block_style": "normal"
+      },
+      "old_text": "When it comes to business applications, Level 2 chargers are the preferred choice.",
+      "new_text": "For businesses, Level 2 chargers are the usual choice.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"When it comes to\"; the [3] sentence after it stays",
+      "formatting": "keep strong on \"Level 2 chargers\""
+    },
+    {
+      "id": "slop-posts-b-038",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k06i",
+        "block_style": "normal"
+      },
+      "old_text": "The Wire Guy Electric provides EV charger installation services for both homes and businesses in Mesa, AZ.",
+      "new_text": "We install EV chargers for homes and businesses in Mesa, AZ.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "corporate third-person filler (\"provides ... installation services\")"
+    },
+    {
+      "id": "slop-posts-b-039",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k06m",
+        "block_style": "bullet list item"
+      },
+      "old_text": "For businesses: They assess your infrastructure, recommend suitable solutions, handle wiring, perform panel upgrades, and walk you through the permit decision when one applies.",
+      "new_text": "For businesses: We assess your electrical setup, recommend chargers, handle the wiring and any panel upgrade, and walk you through the permit decision when one applies.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "vague \"recommend suitable solutions\"; third person about ourselves; permit wording kept",
+      "formatting": "keep strong on \"For businesses:\""
+    },
+    {
+      "id": "slop-posts-b-040",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k06p",
+        "block_style": "bullet list item"
+      },
+      "old_text": "For homes: They evaluate your electrical panel, install dedicated circuits, and ensure everything operates safely.",
+      "new_text": "For homes: We check your electrical panel, install the dedicated circuit, and make sure everything works safely.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "third person about ourselves; \"ensure everything operates\"",
+      "formatting": "keep strong on \"For homes:\""
+    },
+    {
+      "id": "slop-posts-b-041",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k06u",
+        "block_style": "normal"
+      },
+      "old_text": "Whether you're upgrading a home setup or equipping a commercial space, they offer end-to-end support tailored to your needs.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Whether you're X or Y\", \"end-to-end support tailored to your needs\"; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-042",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k06y",
+        "block_style": "h2"
+      },
+      "old_text": "Conclusion",
+      "new_text": "Which Charger to Choose",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock heading (\"Conclusion\")"
+    },
+    {
+      "id": "slop-posts-b-043",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k076",
+        "block_style": "normal"
+      },
+      "old_text": "Picking the right charger for your EV can make a big difference in convenience and cost. Level 1 chargers are great for overnight charging and lower mileage drivers, offering an easy setup with minimal expenses. On the other hand, Level 2 chargers are ideal for those who drive more often and need quicker charging, though they come with higher installation costs. In short, Level 1 is perfect for light, overnight use, while Level 2 is better for long commutes and frequent charging.",
+      "new_text": "Level 1 suits lower-mileage drivers who can charge overnight: setup is easy and costs little. Level 2 suits people who drive more and need faster charging, but installation costs more.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic opener + \"In short\" sentence that restates the paragraph; every point kept",
+      "format": {
+        "strong": [
+          "Level 1",
+          "Level 2"
+        ]
+      },
+      "formatting": "old \"Level 1 chargers\" / \"Level 2 chargers\" were strong: make \"Level 1\" and \"Level 2\" strong at the start of each sentence"
+    },
+    {
+      "id": "slop-posts-b-044",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k07e",
+        "block_style": "normal"
+      },
+      "old_text": "Consider your driving habits and budget to find the best fit.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph that ends on a moral; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-045",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k07m",
+        "block_style": "normal"
+      },
+      "old_text": "After deciding on a charger, here's how to move forward:",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler signpost (merged into the next line); removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-046",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k07q",
+        "block_style": "normal"
+      },
+      "old_text": "The Wire Guy Electric will:",
+      "new_text": "Once you've picked a charger, The Wire Guy Electric will:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "merges the removed signpost line"
+    },
+    {
+      "id": "slop-posts-b-047",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k07u",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Evaluate your electrical system and recommend the best solution",
+      "new_text": "Evaluate your electrical system and recommend a charger setup it can handle",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "vague \"recommend the best solution\"",
+      "verifier_note": "The proposed \"tell you what it can handle\" dropped the recommendation the item promised; this keeps both the recommendation and the capacity point without \"the best solution\"."
+    },
+    {
+      "id": "slop-posts-b-048",
+      "url": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "64b13f59-5c5d-4c7e-ab0e-817647d2e1b8",
+        "field": "body",
+        "block_key": "k086",
+        "block_style": "normal"
+      },
+      "old_text": "Whether you're charging at home or work, the right setup simplifies your EV experience and keeps you moving.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Whether you're X or Y\" closer with no fact; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-049",
+      "url": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e4ee9528-f5db-453b-add0-8ba5bc34045a",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "Living in a mid-century or historic home in Phoenix, Mesa, or Scottsdale has its perks: unique architecture, mature landscaping, and real character. But those beautiful homes might be hiding outdated electrical systems that were never meant to power today’s tech-heavy lives.",
+      "new_text": "Some mid-century and historic homes in Phoenix, Mesa, and Scottsdale still have outdated electrical systems that were never meant to power today’s tech-heavy lives.",
+      "tier": "tier1",
+      "verdict": "amend",
+      "reason": "rhythmic triplet (\"unique architecture, mature landscaping, and real character\") + \"beautiful homes might be hiding\"; cities and \"outdated electrical systems\" kept in the first sentences",
+      "verifier_note": "Tier 1. The proposed first sentence (\"...have real character.\") restated the frozen H2 right above it (\"Arizona Homes Have Character—And Sometimes, Outdated Wiring\"), which is itself a slop pattern. One sentence now; cities, \"mid-century\", \"historic\" and \"outdated electrical systems\" stay in the first words; \"Some\" keeps the original hedge (\"might be hiding\")."
+    },
+    {
+      "id": "slop-posts-b-050",
+      "url": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e4ee9528-f5db-453b-add0-8ba5bc34045a",
+        "field": "body",
+        "block_key": "k00s",
+        "block_style": "normal"
+      },
+      "old_text": "Fun Fact: ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"Fun Fact:\" label on a fire-safety point; the 60-amp fact stays",
+      "formatting": "the removed \"Fun Fact:\" label was strong; nothing left to format"
+    },
+    {
+      "id": "slop-posts-b-051",
+      "url": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e4ee9528-f5db-453b-add0-8ba5bc34045a",
+        "field": "body",
+        "block_key": "k00x",
+        "block_style": "normal"
+      },
+      "old_text": "Not sure what’s lurking behind your walls? Here are some red flags:",
+      "new_text": "Watch for these red flags:",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "rhetorical-question opener"
+    },
+    {
+      "id": "slop-posts-b-052",
+      "url": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e4ee9528-f5db-453b-add0-8ba5bc34045a",
+        "field": "body",
+        "block_key": "k01z",
+        "block_style": "normal"
+      },
+      "old_text": "The good news? ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "rhetorical device (\"The good news?\")"
+    },
+    {
+      "id": "slop-posts-b-053",
+      "url": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e4ee9528-f5db-453b-add0-8ba5bc34045a",
+        "field": "body",
+        "block_key": "k02g",
+        "block_style": "bullet list item"
+      },
+      "old_text": "(smart buyers ask about wiring!)",
+      "new_text": "(buyers ask about wiring)",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "exclamation-mark enthusiasm"
+    },
+    {
+      "id": "slop-posts-b-054",
+      "url": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e4ee9528-f5db-453b-add0-8ba5bc34045a",
+        "field": "body",
+        "block_key": "k02t",
+        "block_style": "normal"
+      },
+      "old_text": "We know Arizona codes, Arizona construction, and Arizona summers. And we do the job right the first time.",
+      "new_text": "We know Arizona codes and how Valley homes were built.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "rhythmic triplet + stock \"right the first time\"; \"hundreds of older homes\" sentence before it stays"
+    },
+    {
+      "id": "slop-posts-b-055",
+      "url": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e4ee9528-f5db-453b-add0-8ba5bc34045a",
+        "field": "body",
+        "block_key": "k031",
+        "block_style": "normal"
+      },
+      "old_text": "to schedule your safety walkthrough. Fast, friendly, and licensed—just how electrical work should be.",
+      "new_text": " to schedule your safety walkthrough.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "triplet slogan closer; also restores the missing space after the link (\"usto\"); linked words \"free estimate with us\" untouched"
+    },
+    {
+      "id": "slop-posts-b-056",
+      "url": "/blog-posts/permit-for-electrical-work",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9715870e-cbfc-44d3-bf32-be75eeb0a484",
+        "field": "body",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": " Here's what you need to know so you can make an informed decision.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "filler signpost (\"make an informed decision\")"
+    },
+    {
+      "id": "slop-posts-b-057",
+      "url": "/blog-posts/permit-for-electrical-work",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9715870e-cbfc-44d3-bf32-be75eeb0a484",
+        "field": "body",
+        "block_key": "k02o",
+        "block_style": "normal"
+      },
+      "old_text": "📞 ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji; the phone number itself is unchanged"
+    },
+    {
+      "id": "slop-posts-b-058",
+      "url": "/blog-posts/permit-for-electrical-work",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9715870e-cbfc-44d3-bf32-be75eeb0a484",
+        "field": "body",
+        "block_key": "k02r",
+        "block_style": "normal"
+      },
+      "old_text": "🌐 ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji; the linked domain is unchanged"
+    },
+    {
+      "id": "slop-posts-b-059",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k001",
+        "block_style": "normal"
+      },
+      "old_text": "As kids head back to school and routines kick back in, your home’s electrical system gets put to the test. Between charging laptops, powering gaming setups, running air purifiers, and using kitchen appliances non-stop, the demand on your circuits skyrockets — and most Phoenix homes aren’t ready for it.",
+      "new_text": "When kids head back to school, the electrical load in your home goes up: laptops charging, gaming setups, air purifiers, and kitchen appliances running non-stop. A lot of older Phoenix wiring was never sized for that.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"gets put to the test\", \"skyrockets\", unsupported \"most Phoenix homes\"; the older-wiring point is the post's own (list below)"
+    },
+    {
+      "id": "slop-posts-b-060",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "This season is the perfect time to take a serious look at your home’s electrical safety, energy efficiency, and upgrade potential to keep your family safe and powered up all year long.",
+      "new_text": "That makes the start of the school year a good time for an electrical safety check and a few upgrades.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"the perfect time\" + padded triplet (\"safety, energy efficiency, and upgrade potential\", \"safe and powered up\")",
+      "format": {
+        "strong": []
+      },
+      "formatting": "strong triplet removed with the phrase: no emphasis in new_text",
+      "verifier_note": "\"It is a good time\" had no clear subject after the reworded paragraph 059, and dropping upgrades lost the post’s second half (its \"Smart Electrical Upgrades\" section)."
+    },
+    {
+      "id": "slop-posts-b-061",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k00a",
+        "block_style": "normal"
+      },
+      "old_text": "September brings more than homework and drop-offs — it brings real load increases on your home grid:",
+      "new_text": "Four things add to the strain in September:",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"brings more than X — it brings Y\"; month kept (see report)",
+      "verifier_note": "The proposed \"the extra load comes from a few places:\" does not fit two of the four items below (older wiring, power strips are weak points, not load sources). Month kept for the owner to confirm (East Valley schools start late July/early August)."
+    },
+    {
+      "id": "slop-posts-b-062",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k00i",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Many homes in Phoenix were built before the era of digital overload. These systems weren’t designed to handle modern electrical demands.",
+      "new_text": "Many Phoenix homes were wired decades ago for far fewer devices, and those circuits weren’t designed for today’s load.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "fluff (\"the era of digital overload\")"
+    },
+    {
+      "id": "slop-posts-b-063",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k00l",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Plug Strips ≠ Solutions:",
+      "new_text": "Plug Strips Aren’t a Fix:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "decorative symbol (≠) in a label",
+      "formatting": "old label was strong: make \"Plug Strips Aren’t a Fix:\" strong"
+    },
+    {
+      "id": "slop-posts-b-064",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k00r",
+        "block_style": "normal"
+      },
+      "old_text": "Your kids’ safety starts with your outlets, wiring, and panel. Here’s what you should be checking:",
+      "new_text": "Start with your outlets, wiring, and panel:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "moral opener + signpost"
+    },
+    {
+      "id": "slop-posts-b-065",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k01i",
+        "block_style": "normal"
+      },
+      "old_text": "This school year, upgrade your home to be smarter, safer, and more efficient — without breaking the bank.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "triplet + cliché (\"without breaking the bank\"), no fact; removes the block [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-066",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k01u",
+        "block_style": "normal"
+      },
+      "old_text": "dangerous tangle nests",
+      "new_text": "tangled cords",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "odd filler phrase"
+    },
+    {
+      "id": "slop-posts-b-067",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k024",
+        "block_style": "normal"
+      },
+      "old_text": "Cooler, energy-efficient, and dimmable — perfect for study nooks, kitchens, and bedrooms.",
+      "new_text": "LED recessed lights run cooler, use less energy, and can be dimmed, which suits study nooks, kitchens, and bedrooms.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "fragment triplet + \"perfect for\"; same facts",
+      "verifier_note": "\"...and dim\" read as an adjective (\"are dim\"); \"can be dimmed\" keeps the original \"dimmable\"."
+    },
+    {
+      "id": "slop-posts-b-068",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k02d",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Save money on electric bills by optimizing your system for energy efficiency.",
+      "new_text": "Lower electric bills with energy-efficient upgrades like LED lighting.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic benefit (\"optimizing your system\"); tied to the LED item above",
+      "format": {
+        "strong": [
+          "Lower electric bills"
+        ]
+      },
+      "formatting": "old label \"Save money\" was strong: make \"Lower electric bills\" strong"
+    },
+    {
+      "id": "slop-posts-b-069",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k02j",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Create a learning-friendly environment for kids with stable power, proper lighting, and fast charging.",
+      "new_text": "Give kids steady power, good lighting, and USB outlets for charging.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "buzzword (\"learning-friendly environment\"); USB outlets are the post's own item",
+      "format": {
+        "strong": [
+          "Give kids steady power"
+        ]
+      },
+      "formatting": "old label was strong: make \"Give kids steady power\" strong"
+    },
+    {
+      "id": "slop-posts-b-070",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k02m",
+        "block_style": "normal"
+      },
+      "old_text": "Phoenix homes aren’t just fighting the heat — they’re fighting outdated systems not built for the modern tech stack. The transition back to school is the best time to catch up before the holidays (and the electrical load) hit hard.",
+      "new_text": "On top of the heat, many Phoenix homes run on outdated wiring that was never built for this many devices. Back-to-school is a good time to catch up, before the holidays add even more load.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"aren't just X — they're Y\", \"modern tech stack\", \"best time\""
+    },
+    {
+      "id": "slop-posts-b-071",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k02o",
+        "block_style": "h3"
+      },
+      "old_text": "Why Phoenix Parents Choose The Wire Guy Electric",
+      "new_text": "Book a Back-to-School Electrical Checkup",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Why Choose Us\" heading; matches the checkup offer in the CTA below",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-072",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k02r",
+        "block_style": "normal"
+      },
+      "old_text": "At The Wire Guy Electric, we work with busy families every day to create homes that are safe, efficient, and future-proof. Whether it’s adding outlets, upgrading panels, or installing whole-home surge protection, we make it easy for you to focus on your family — not your fuse box.",
+      "new_text": "At The Wire Guy Electric, we add outlets, upgrade panels, and install whole-home surge protection for Valley families.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "triplet, \"future-proof\", \"Whether it's\", pun closer; the three services kept",
+      "formatting": "strong \"The Wire Guy Electric\": keep it strong in new_text"
+    },
+    {
+      "id": "slop-posts-b-073",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k02v",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Fast, professional service",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic benefit that fits any contractor; removes the list item [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-074",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k031",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Respectful of your home and time",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic benefit that fits any contractor; removes the list item [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-075",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k033",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Proudly serving",
+      "new_text": "Serving",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler (\"Proudly\"); cities kept"
+    },
+    {
+      "id": "slop-posts-b-076",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k03b",
+        "block_style": "blockquote"
+      },
+      "old_text": "Because sending your kid to school with a dead iPad and a fried outlet isn’t the move.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "quippy slogan closer; removes the blockquote [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-077",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k001",
+        "block_style": "normal"
+      },
+      "old_text": "Every summer, Phoenix residents brace themselves for the wild weather that comes with monsoon season — booming thunderstorms, lightning strikes, and those dramatic haboobs that roll in like walls of dust. But while the skies put on a show, what most homeowners don’t realize is the lasting damage this weather can do to your home’s electrical system.",
+      "new_text": "Every summer in Phoenix, monsoon season brings thunderstorms, lightning, and haboobs that roll in like walls of dust. That weather can do lasting damage to your home’s electrical system, and the damage is not always obvious right away.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock opener (\"brace themselves\", \"the skies put on a show\", \"what most homeowners don't realize\"); the not-obvious point is from the post's warning-signs section",
+      "format": {
+        "strong": [
+          "lasting damage to your home’s electrical system"
+        ]
+      },
+      "formatting": "old strong ran over \"lasting damage this weather can do to your home’s electrical system.\": make \"lasting damage to your home’s electrical system\" strong"
+    },
+    {
+      "id": "slop-posts-b-078",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k005",
+        "block_style": "normal"
+      },
+      "old_text": "From fried circuits to corroded outdoor outlets, the aftermath of monsoons and dust storms can leave your home vulnerable to safety hazards, power outages, and expensive repairs. In this guide, we’ll break down exactly what monsoons and haboobs mean for your electrical system — and how The Wire Guy Electric can help Phoenix homeowners stay safe and storm-ready.",
+      "new_text": "Monsoons and dust storms can fry circuits and corrode outdoor outlets, which leads to safety hazards, power outages, and expensive repairs.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"From X to Y\", \"In this guide, we'll break down\", \"stay safe and storm-ready\"",
+      "formatting": "strong phrase removed: no emphasis in new_text",
+      "verifier_note": "Dropped the replacement outline sentence (\"Here is what each kind of storm does...\"): it is the same \"In this guide we’ll break down\" signpost in new words, and the researcher deleted the same pattern elsewhere (edit 108)."
+    },
+    {
+      "id": "slop-posts-b-079",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k00u",
+        "block_style": "h3"
+      },
+      "old_text": "Haboobs Are More Than Just Dusty Drama",
+      "new_text": "What Haboob Dust Does to Electrical Equipment",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"More Than Just\" + cutesy heading; keyword kept",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-080",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k00x",
+        "block_style": "normal"
+      },
+      "old_text": "Haboobs — the iconic dust storms that sweep through the Valley — carry",
+      "new_text": "Haboobs, the dust storms that sweep through the Valley, carry",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "fluff (\"iconic\")"
+    },
+    {
+      "id": "slop-posts-b-081",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k01r",
+        "block_style": "normal"
+      },
+      "old_text": "Pro Tip: Some damage may be slow-burning — you may not notice it until months later, when corrosion or heat stress starts causing visible problems.",
+      "new_text": "Some storm damage takes months to show up, once corrosion or heat stress starts causing visible problems.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Pro Tip:\" label + stacked hedges",
+      "formatting": "the removed \"Pro Tip:\" label was strong; no emphasis in new_text"
+    },
+    {
+      "id": "slop-posts-b-082",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k01x",
+        "block_style": "normal"
+      },
+      "old_text": "Prevention is always cheaper than repair. Here’s how Phoenix homeowners can storm-proof their homes:",
+      "new_text": "Here is how to protect your home before the next storm:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "moral opener (\"Prevention is always cheaper than repair\")"
+    },
+    {
+      "id": "slop-posts-b-083",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k02o",
+        "block_style": "h3"
+      },
+      "old_text": "Why Phoenix Homeowners Trust The Wire Guy Electric",
+      "new_text": "Post-Storm Electrical Help in Phoenix",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Why Choose Us\" heading",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-084",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k02r",
+        "block_style": "normal"
+      },
+      "old_text": " We know the desert. We know the storms. And we’ve been helping homeowners like you stay safe through monsoons, haboobs, and everything in between.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet padding with no fact; the licensed/bonded/insured sentence stays"
+    },
+    {
+      "id": "slop-posts-b-085",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k035",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Emergency troubleshooting",
+      "new_text": "Electrical troubleshooting",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "not slop: owner rule (no emergencies line; content model says never imply emergency service)",
+      "verifier_note": "Not slop. Accepted because site-settings.json and the FAQ make no emergency or after-hours claim (\"Our regular office hours are Monday through Friday, 9 AM to 5 PM\"); owner should still confirm. \"Free post-storm safety inspections\" and \"free safety check\" in the same post also need owner confirmation."
+    },
+    {
+      "id": "slop-posts-b-086",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k037",
+        "block_style": "normal"
+      },
+      "old_text": "We don’t just fix what’s broken — we prevent problems before they start.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"don't just X — Y\" slogan; removes the block [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-087",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k03a",
+        "block_style": "normal"
+      },
+      "old_text": "Don’t wait until something sparks, shorts, or fails.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "fear triplet; removes the block (the phone CTA after it stays) [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-088",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k03i",
+        "block_style": "blockquote"
+      },
+      "old_text": "You handle the rain and dust. We’ll handle the wires.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "slogan closer; removes the blockquote [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-089",
+      "url": "/blog-posts/recessed-lighting-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9e5a67e8-e6ec-4730-87f3-926803e536b7",
+        "field": "body",
+        "block_key": "k01x",
+        "block_style": "normal"
+      },
+      "old_text": "is a recipe for tripped breakers",
+      "new_text": "means tripped breakers",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"a recipe for\")"
+    },
+    {
+      "id": "slop-posts-b-090",
+      "url": "/blog-posts/recessed-lighting-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9e5a67e8-e6ec-4730-87f3-926803e536b7",
+        "field": "body",
+        "block_key": "k020",
+        "block_style": "normal"
+      },
+      "old_text": "That's not just a code violation. It's dangerous.",
+      "new_text": "That's a code violation, and it's dangerous.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not just X. It's Y.\""
+    },
+    {
+      "id": "slop-posts-b-091",
+      "url": "/blog-posts/recessed-lighting-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "9e5a67e8-e6ec-4730-87f3-926803e536b7",
+        "field": "body",
+        "block_key": "k02b",
+        "block_style": "h2"
+      },
+      "old_text": "Ready to Get Started?",
+      "new_text": "Get a Recessed Lighting Estimate",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic rhetorical CTA heading"
+    },
+    {
+      "id": "slop-posts-b-092",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k001",
+        "block_style": "h2"
+      },
+      "old_text": "Arizona Summers Are No Joke—Is Your Electrical System Ready?",
+      "new_text": "Is Your Electrical System Ready for an Arizona Summer?",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"No Joke\")",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-093",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "When the triple digits hit, your A/C runs non-stop, ceiling fans never stop spinning, and every outlet works overtime.",
+      "new_text": "When the triple digits hit, your A/C and ceiling fans run non-stop.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet padding (\"every outlet works overtime\")"
+    },
+    {
+      "id": "slop-posts-b-094",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k005",
+        "block_style": "normal"
+      },
+      "old_text": "At The Wire Guy Electric, we specialize in helping Scottsdale homeowners stay cool, safe, and energy-efficient all summer long. Here’s how you can prep your home for the heat.",
+      "new_text": "Here are five ways Scottsdale homeowners can get their electrical systems ready for the heat.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "triplet (\"cool, safe, and energy-efficient\") + \"specialize in\" + signpost",
+      "formatting": "strong \"The Wire Guy Electric\" is removed with the sentence: no emphasis in new_text"
+    },
+    {
+      "id": "slop-posts-b-095",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k00e",
+        "block_style": "normal"
+      },
+      "old_text": "Pro Tip: ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Pro Tip:\" label",
+      "formatting": "the removed \"Pro Tip:\" label was strong; nothing left to format"
+    },
+    {
+      "id": "slop-posts-b-096",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k00k",
+        "block_style": "normal"
+      },
+      "old_text": "Summer monsoons and lightning storms are no strangers to Arizona. One power surge can fry thousands of dollars in appliances or electronics. Protect your home with a whole-home surge protector—a small investment that saves big in the long run.",
+      "new_text": "Arizona summers bring monsoons and lightning storms. One power surge can fry thousands of dollars in appliances or electronics. Protect your home with a whole-home surge protector.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "clichés (\"no strangers to\", \"a small investment that saves big in the long run\")",
+      "formatting": "keep strong on \"whole-home surge protector\""
+    },
+    {
+      "id": "slop-posts-b-097",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k00o",
+        "block_style": "h3"
+      },
+      "old_text": "3. Ceiling Fans & Smart Thermostats = Lower Energy Bills",
+      "new_text": "3. Lower Energy Bills with Ceiling Fans and a Smart Thermostat",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "symbol (=) in a heading",
+      "formatting": "the heading text after \"3. \" was strong: make the text after \"3. \" strong"
+    },
+    {
+      "id": "slop-posts-b-098",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k00x",
+        "block_style": "h3"
+      },
+      "old_text": "4. Outdoor Lighting? Make It LED and Weatherproof",
+      "new_text": "4. Switch to LED, Weatherproof Outdoor Lighting",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "gimmick question in a heading",
+      "formatting": "the heading text after \"4. \" was strong: make the text after \"4. \" strong",
+      "verifier_note": "\"Make Outdoor Lighting LED\" was awkward."
+    },
+    {
+      "id": "slop-posts-b-099",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k017",
+        "block_style": "normal"
+      },
+      "old_text": "Whether you’re in an older ranch home in Tempe or a custom build in North Scottsdale, we offer quick, affordable safety inspections.",
+      "new_text": "We offer quick, affordable safety inspections for older ranch homes in Tempe and custom builds in North Scottsdale.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Whether you're X or Y\"; places kept",
+      "verifier_note": "Dropped the trailing \"alike\", which made the sentence clunkier than the original."
+    },
+    {
+      "id": "slop-posts-b-100",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k019",
+        "block_style": "h3"
+      },
+      "old_text": "Why Choose The Wire Guy Electric?",
+      "new_text": "About The Wire Guy Electric",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Why Choose Us?\" heading",
+      "verifier_note": "The list under this heading is credentials (licensed, scheduling, pricing, upgrades), not summer work; a plain label fits it."
+    },
+    {
+      "id": "slop-posts-b-101",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k01b",
+        "block_style": "bullet list item"
+      },
+      "old_text": "✅ Licensed & insured Arizona electricians",
+      "new_text": "Licensed & insured Arizona electricians",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji"
+    },
+    {
+      "id": "slop-posts-b-102",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k01d",
+        "block_style": "bullet list item"
+      },
+      "old_text": "✅ Fast scheduling in Scottsdale, Paradise Valley, and Phoenix",
+      "new_text": "Fast scheduling in Scottsdale, Paradise Valley, and Phoenix",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji"
+    },
+    {
+      "id": "slop-posts-b-103",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k01f",
+        "block_style": "bullet list item"
+      },
+      "old_text": "✅ Transparent pricing and honest advice",
+      "new_text": "Transparent pricing and honest advice",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji"
+    },
+    {
+      "id": "slop-posts-b-104",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k01h",
+        "block_style": "bullet list item"
+      },
+      "old_text": "✅ Specialists in modern electrical upgrades and heat-proof installations",
+      "new_text": "Modern electrical upgrades for Arizona homes",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji + unsupported claim (\"Specialists\", \"heat-proof\")"
+    },
+    {
+      "id": "slop-posts-b-105",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k01l",
+        "block_style": "normal"
+      },
+      "old_text": "Don't wait until you're sweating through a blackout or replacing fried electronics. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "fear opener; the tune-up CTA sentence stays"
+    },
+    {
+      "id": "slop-posts-b-106",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "body",
+        "block_key": "k01n",
+        "block_style": "normal"
+      },
+      "old_text": " for us online and we'll help you beat the summer heat.",
+      "new_text": " online.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"beat the summer heat\") + \"for us\" slip; linked words \"Book a free estimate\" untouched"
+    },
+    {
+      "id": "slop-posts-b-107",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k001",
+        "block_style": "normal"
+      },
+      "old_text": "As the triple-digit temps finally start to cool down in Phoenix, fall becomes the perfect time to reclaim your outdoor space. Whether you’re planning cozy patio dinners, backyard movie nights, or just want to show off your desert landscaping, the right outdoor lighting setup can transform your home’s curb appeal and functionality.",
+      "new_text": "Once the triple-digit temps break in Phoenix, fall is a good time to add outdoor lighting for patio dinners, backyard movie nights, and the curb appeal of your desert landscaping.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"the perfect time\", \"reclaim\", \"Whether you're\", \"transform\"; same uses and curb appeal kept",
+      "format": {
+        "em": []
+      },
+      "formatting": "em on \"perfect\" is removed with the word"
+    },
+    {
+      "id": "slop-posts-b-108",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k005",
+        "block_style": "normal"
+      },
+      "old_text": "In this post, we’ll walk through top outdoor lighting ideas, energy-saving tips, and safety upgrades to help you elevate your yard — all while keeping it Arizona-ready.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"In this post, we'll walk through\", \"elevate\"; removes the block [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-109",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k00c",
+        "block_style": "normal"
+      },
+      "old_text": "Summer in the Valley? Too hot. Winter? Too cold. But September through November? Just right.",
+      "new_text": "In the Valley, September through November is the easiest stretch of the year for outdoor work.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical Q-and-A gimmick; months kept",
+      "format": {
+        "strong": [
+          "September through November"
+        ]
+      },
+      "formatting": "old strong \"September through November? Just right.\": make \"September through November\" strong"
+    },
+    {
+      "id": "slop-posts-b-110",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k00f",
+        "block_style": "normal"
+      },
+      "old_text": "Here’s why fall is the ideal time to install or upgrade outdoor lighting:",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "restates the heading; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-111",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k00h",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Comfortable Temps = Easier Installations:",
+      "new_text": "Easier Installations in Cooler Weather:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "symbol (=) in a label",
+      "formatting": "old label (without the colon) was strong: make \"Easier Installations in Cooler Weather\" strong, colon plain"
+    },
+    {
+      "id": "slop-posts-b-112",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k00k",
+        "block_style": "bullet list item"
+      },
+      "old_text": "As the weather cools, homeowners spend more evenings outside — lighting becomes both functional and aesthetic.",
+      "new_text": "As the weather cools, you spend more evenings outside, so outdoor lighting gets more use.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "vague \"both functional and aesthetic\"",
+      "format": {
+        "em": []
+      },
+      "formatting": "em on \"and\" is removed with the phrase"
+    },
+    {
+      "id": "slop-posts-b-113",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k00v",
+        "block_style": "normal"
+      },
+      "old_text": "Not all lighting is created equal — especially under the Arizona sun. These options are durable, beautiful, and desert-appropriate:",
+      "new_text": "These options hold up under the Arizona sun:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"Not all X is created equal\") + triplet",
+      "formatting": "strong triplet removed: no emphasis in new_text"
+    },
+    {
+      "id": "slop-posts-b-114",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k01c",
+        "block_style": "normal"
+      },
+      "old_text": "Prevent trips and elevate nighttime hangouts on patios or stairs.",
+      "new_text": "Prevent trips on patios and stairs after dark.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"elevate\""
+    },
+    {
+      "id": "slop-posts-b-115",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k01m",
+        "block_style": "normal"
+      },
+      "old_text": "Just make sure the panel gets direct sunlight!",
+      "new_text": "Make sure the panel gets direct sunlight.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "exclamation mark"
+    },
+    {
+      "id": "slop-posts-b-116",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k01o",
+        "block_style": "h3"
+      },
+      "old_text": "Design Tips to Make Your Yard Look Pro-Level",
+      "new_text": "Outdoor Lighting Design Tips",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "fluff heading; keyword added from the title",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-117",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k01r",
+        "block_style": "normal"
+      },
+      "old_text": "You don’t need a landscape architect to make your yard pop — just follow a few principles:",
+      "new_text": "Follow these five principles:",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "filler (\"make your yard pop\")",
+      "verifier_note": "Five list items follow (checked). The proposed fragment \"Five principles to follow:\" read clipped."
+    },
+    {
+      "id": "slop-posts-b-118",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k01t",
+        "block_style": "bullet list item"
+      },
+      "old_text": "to add depth and dimension",
+      "new_text": "to add depth",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "doublet padding"
+    },
+    {
+      "id": "slop-posts-b-119",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k01w",
+        "block_style": "bullet list item"
+      },
+      "old_text": "These tones are cozy, flattering, and reduce glare in desert settings.",
+      "new_text": "These tones look warm and reduce glare in desert settings.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet"
+    },
+    {
+      "id": "slop-posts-b-120",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k022",
+        "block_style": "bullet list item"
+      },
+      "old_text": "Got a saguaros, mesquite tree, or boulders? Light them up with spot or uplights to create dramatic contrast.",
+      "new_text": "Light a saguaro, a mesquite tree, or boulders with spot or uplights for contrast.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical question (and \"a saguaros\")"
+    },
+    {
+      "id": "slop-posts-b-121",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k02d",
+        "block_style": "h4"
+      },
+      "old_text": "✅ Use Weatherproof Fixtures & Covers",
+      "new_text": "Use Weatherproof Fixtures & Covers",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji in a heading",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-122",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k02k",
+        "block_style": "h4"
+      },
+      "old_text": "✅ Check for GFCI Protection",
+      "new_text": "Check for GFCI Protection",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji in a heading",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-123",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k02p",
+        "block_style": "h4"
+      },
+      "old_text": "✅ Bury Cables Properly",
+      "new_text": "Bury Cables Properly",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji in a heading",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-124",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k02s",
+        "block_style": "normal"
+      },
+      "old_text": "High-voltage? Deeper.",
+      "new_text": "High-voltage lines go deeper.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical fragment (\"High-voltage? Deeper.\"); term kept (see report)"
+    },
+    {
+      "id": "slop-posts-b-125",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k02u",
+        "block_style": "h4"
+      },
+      "old_text": "✅ Hire a Licensed Electrician",
+      "new_text": "Hire a Licensed Electrician",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji in a heading",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-126",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k02z",
+        "block_style": "h3"
+      },
+      "old_text": "Eco-Friendly + Cost-Saving Tips",
+      "new_text": "Energy-Saving Outdoor Lighting Tips",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "symbol (+) and buzzword heading",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-127",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k032",
+        "block_style": "normal"
+      },
+      "old_text": "Save energy without sacrificing aesthetics:",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in; removes the block [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-128",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k03d",
+        "block_style": "h3"
+      },
+      "old_text": "Why Phoenix Homeowners Trust The Wire Guy Electric",
+      "new_text": "Outdoor Lighting Installation from The Wire Guy Electric",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Why Choose Us\" heading",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-129",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k03g",
+        "block_style": "normal"
+      },
+      "old_text": "At The Wire Guy Electric, we’ve lit up backyards from Arcadia to Queen Creek, helping homeowners design safe, stylish, and code-compliant outdoor lighting systems. We handle:",
+      "new_text": "At The Wire Guy Electric, we’ve designed and installed code-compliant outdoor lighting in backyards from Arcadia to Queen Creek. We handle:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet (\"safe, stylish, and code-compliant\"); places and \"code-compliant\" kept",
+      "formatting": "keep strong on \"Arcadia to Queen Creek\""
+    },
+    {
+      "id": "slop-posts-b-130",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k03w",
+        "block_style": "normal"
+      },
+      "old_text": "Whether you want to light up your party patio or just want to stop tripping on your steps at night, we’ve got you covered.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Whether you X or Y, we've got you covered\"; removes the block [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-131",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k03z",
+        "block_style": "normal"
+      },
+      "old_text": "Light up your nights. Show off your yard. Keep your family safe.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "slogan triplet; removes the block [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-132",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "body",
+        "block_key": "k048",
+        "block_style": "blockquote"
+      },
+      "old_text": "Your yard isn’t just a yard. Make it a vibe.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"isn't just X\" slogan closer; removes the blockquote [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-133",
+      "url": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "61014494-db2c-48ea-8893-8a7def5164af",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "Phoenix doesn't get hurricanes. We don't get ice storms. So why are we installing more whole-home standby generators every year?",
+      "new_text": "Phoenix doesn't get hurricanes or ice storms, but we install more whole-home standby generators every year.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical-question opener",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-b-134",
+      "url": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "61014494-db2c-48ea-8893-8a7def5164af",
+        "field": "body",
+        "block_key": "k005",
+        "block_style": "normal"
+      },
+      "old_text": "Because when the power does go out here, it goes out during a 115-degree afternoon. And losing AC in that kind of heat isn't just uncomfortable. For elderly residents, young kids, and anyone with medical equipment, it's genuinely dangerous.",
+      "new_text": "When the power does go out here, it goes out during a 115-degree afternoon, and losing AC in that heat is dangerous for elderly residents, young kids, and anyone with medical equipment.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"isn't just X ... it's Y\"; follows the reworded opener; the rest of the block stays",
+      "verifier_note": "Dropped the stiff \"The reason:\" lead-in; it reads straight on from the reworded opener (edit 133). Every fact kept.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-b-135",
+      "url": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "61014494-db2c-48ea-8893-8a7def5164af",
+        "field": "body",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": "Here's what you actually need to know before you sign a contract.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler signpost; removes the block [whole block: drop the block]",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-b-136",
+      "url": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "61014494-db2c-48ea-8893-8a7def5164af",
+        "field": "body",
+        "block_key": "k038",
+        "block_style": "h2"
+      },
+      "old_text": "What About Solar + Battery Instead?",
+      "new_text": "What About Solar and Battery Instead?",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "symbol (+) in a heading",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-b-137",
+      "url": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "61014494-db2c-48ea-8893-8a7def5164af",
+        "field": "body",
+        "block_key": "k03a",
+        "block_style": "normal"
+      },
+      "old_text": "Good question, and one we get a lot. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler opener",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-b-138",
+      "url": "/blog-posts/whole-home-standby-generator-installation-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "61014494-db2c-48ea-8893-8a7def5164af",
+        "field": "body",
+        "block_key": "k03c",
+        "block_style": "normal"
+      },
+      "old_text": "For true reliability during a long Phoenix outage, a natural gas standby generator is still the gold standard.",
+      "new_text": "For a long Phoenix outage, a natural gas standby generator is still the most reliable option.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"the gold standard\")",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-b-139",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "body",
+        "block_key": "k001",
+        "block_style": "normal"
+      },
+      "old_text": "If your breaker keeps tripping, you’re not alone — it’s one of the most common electrical issues Phoenix homeowners face, especially in older homes or during the summer heat. A tripping breaker is your electrical system’s way of saying, “Something’s not right.”",
+      "new_text": "If your breaker keeps tripping, you’re dealing with one of the most common electrical problems Phoenix homeowners face, especially in older homes or during the summer heat. Repeated trips mean something on that circuit is wrong.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"you're not alone\" + personification cliché; the fire-hazard warning after it stays",
+      "format": {
+        "em": []
+      },
+      "formatting": "em on the removed quote “Something’s not right.”: no emphasis in new_text",
+      "verifier_note": "The proposed \"in Phoenix homes, especially in older homes\" repeated \"homes\"; keeps the original \"Phoenix homeowners face\" wording and the keyword phrase \"breaker keeps tripping\"."
+    },
+    {
+      "id": "slop-posts-b-140",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "body",
+        "block_key": "k005",
+        "block_style": "normal"
+      },
+      "old_text": "Let’s break down what’s really happening and when it’s time to call a licensed electrician.",
+      "new_text": "Here are the usual causes, and when to call a licensed electrician.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Let's break down\""
+    },
+    {
+      "id": "slop-posts-b-141",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "body",
+        "block_key": "k013",
+        "block_style": "normal"
+      },
+      "old_text": "Replacing them not only solves the tripping issue but also boosts your home’s safety and value.",
+      "new_text": "Replacing them solves the tripping and improves your home’s safety and value.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not only X but also Y\""
+    },
+    {
+      "id": "slop-posts-b-142",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "body",
+        "block_key": "k017",
+        "block_style": "normal"
+      },
+      "old_text": "The desert heat doesn’t just affect your AC — it also puts stress on your electrical system.",
+      "new_text": "Desert heat strains your electrical system as well as your AC.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"doesn't just X — it also Y\""
+    },
+    {
+      "id": "slop-posts-b-143",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "body",
+        "block_key": "k01p",
+        "block_style": "normal"
+      },
+      "old_text": "Don’t wait until a simple tripped breaker turns into an electrical fire or appliance damage. ",
+      "new_text": "Left alone, the problem behind a tripping breaker can lead to an electrical fire or appliance damage. ",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "fear opener; the next sentence keeps the same risks and the service",
+      "verifier_note": "Deleting the sentence would drop a safety warning (fire, appliance damage); the next sentence does not repeat it, contrary to the proposed reason. Kept the warning without the \"Don’t wait until...\" fear formula."
+    },
+    {
+      "id": "slop-posts-b-144",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "body",
+        "block_key": "k01t",
+        "block_style": "normal"
+      },
+      "old_text": "✅ Family-owned and trusted in the Valley since 2017\n✅ Licensed, bonded, and insured\n✅ Upfront pricing and same-day service available",
+      "new_text": "Family-owned and serving the Valley since 2017\nLicensed, bonded, and insured\nUpfront pricing and same-day service available",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji checkmarks; \"trusted\" -> \"serving\" (year kept)",
+      "formatting": "each line was strong: keep each of the three lines strong",
+      "verifier_note": "Same \"\\n\"-separated lines as edit 020; keep each line strong as noted. \"Same-day service available\" needs owner confirmation."
+    },
+    {
+      "id": "slop-posts-b-145",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "body",
+        "block_key": "k020",
+        "block_style": "normal"
+      },
+      "old_text": "— we’ll get your lights (and peace of mind) back on.",
+      "new_text": ".",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"peace of mind\" crutch; linked words \"Call The Wire Guy Electric today or schedule online\" untouched"
+    },
+    {
+      "id": "slop-posts-b-146",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f7e4cdb-acc4-4717-a789-4d2811839795",
+        "field": "body",
+        "block_key": "k002",
+        "block_style": "normal"
+      },
+      "old_text": "Sound familiar?",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "rhetorical question; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-147",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f7e4cdb-acc4-4717-a789-4d2811839795",
+        "field": "body",
+        "block_key": "k00l",
+        "block_style": "normal"
+      },
+      "old_text": "and—yep—tripped breakers",
+      "new_text": "and tripped breakers",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "cutesy aside (\"yep\")"
+    },
+    {
+      "id": "slop-posts-b-148",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f7e4cdb-acc4-4717-a789-4d2811839795",
+        "field": "body",
+        "block_key": "k00u",
+        "block_style": "normal"
+      },
+      "old_text": "✅ Unplug Unused Appliances",
+      "new_text": "Unplug Unused Appliances",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji (in a pseudo-heading line; words kept)",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-149",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f7e4cdb-acc4-4717-a789-4d2811839795",
+        "field": "body",
+        "block_key": "k00y",
+        "block_style": "normal"
+      },
+      "old_text": "✅ Have Your A/C Checked",
+      "new_text": "Have Your A/C Checked",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji (in a pseudo-heading line; words kept)",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-150",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f7e4cdb-acc4-4717-a789-4d2811839795",
+        "field": "body",
+        "block_key": "k012",
+        "block_style": "normal"
+      },
+      "old_text": "✅ Schedule an Electrical Inspection",
+      "new_text": "Schedule an Electrical Inspection",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji (in a pseudo-heading line; words kept)",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-151",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f7e4cdb-acc4-4717-a789-4d2811839795",
+        "field": "body",
+        "block_key": "k01l",
+        "block_style": "normal"
+      },
+      "old_text": "Don’t let electrical issues leave you sweating it out. ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "pun opener; the services sentence stays"
+    },
+    {
+      "id": "slop-posts-b-152",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7f7e4cdb-acc4-4717-a789-4d2811839795",
+        "field": "body",
+        "block_key": "k01p",
+        "block_style": "normal"
+      },
+      "old_text": "Call today for fast, reliable service—and a home that keeps its cool when it counts.",
+      "new_text": "Call today and we’ll find out why your breaker keeps tripping.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock \"fast, reliable service\" + pun closer; CTA kept",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-153",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k000",
+        "block_style": "normal"
+      },
+      "old_text": "Have you ever noticed your lights flickering when the A/C kicks on or when you plug in a high-powered appliance? In Arizona homes—especially with how hard we push our electrical systems in the summer—this can be more than just a minor annoyance. Flickering lights could be the first sign of a deeper electrical issue that shouldn’t be ignored.",
+      "new_text": "If your lights flicker when the A/C kicks on or when you plug in a high-powered appliance, pay attention. In Arizona homes, where we push electrical systems hard every summer, flickering lights can be the first sign of a deeper electrical issue.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical-question opener + \"more than just\""
+    },
+    {
+      "id": "slop-posts-b-154",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k002",
+        "block_style": "normal"
+      },
+      "old_text": "At The Wire Guy Electric, we’ve seen it all across Phoenix, Mesa, Gilbert, and Scottsdale. From simple fixes to serious panel problems, our licensed electricians help homeowners stay safe and keep their homes running efficiently year-round.",
+      "new_text": "Our licensed electricians track down flickering lights in homes across Phoenix, Mesa, Gilbert, and Scottsdale. Sometimes it is a simple fix; sometimes it is a serious panel problem.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"we've seen it all\", generic benefit (\"stay safe and keep their homes running efficiently year-round\"); cities kept",
+      "format": {
+        "em": []
+      },
+      "formatting": "em \"The Wire Guy Electric\" is removed with the sentence: no emphasis in new_text"
+    },
+    {
+      "id": "slop-posts-b-155",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k00l",
+        "block_style": "h3"
+      },
+      "old_text": "Why It Matters",
+      "new_text": "What Happens If You Ignore Flickering Lights",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic heading (\"Why It Matters\")",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-156",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k00o",
+        "block_style": "normal"
+      },
+      "old_text": "In Arizona, our electrical systems work overtime, especially in the summer. Ignoring these early warning signs can lead to bigger problems down the road—from power outages to fire hazards.",
+      "new_text": "Arizona summers keep home electrical systems under heavy load for months. Ignored, these early warning signs can turn into power outages or fire hazards.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "clichés (\"work overtime\", \"down the road\")"
+    },
+    {
+      "id": "slop-posts-b-157",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k00q",
+        "block_style": "normal"
+      },
+      "old_text": "We always tell our clients: If it flickers, don’t ignore it. Get it inspected.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "slogan that restates the title; removes the block (the call CTA at the end stays) [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-158",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k015",
+        "block_style": "normal"
+      },
+      "old_text": "We’re family-owned, licensed, bonded, and proud to serve our Arizona neighbors with quality work and honest pricing.",
+      "new_text": "We’re family-owned, licensed, and bonded, with honest pricing.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler (\"proud to serve our Arizona neighbors with quality work\")"
+    },
+    {
+      "id": "slop-posts-b-159",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k017",
+        "block_style": "normal"
+      },
+      "old_text": "Need a trusted electrician?",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical question; removes the block [whole block: drop the block]",
+      "formatting": "block removed"
+    },
+    {
+      "id": "slop-posts-b-160",
+      "url": "/blog-posts/why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "82b390d7-cdee-4328-888f-e91066fd0597",
+        "field": "body",
+        "block_key": "k019",
+        "block_style": "normal"
+      },
+      "old_text": " We’re here to keep your home safe, your lights steady, and your power flowing.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhythmic triplet closer"
+    },
+    {
+      "id": "slop-posts-b-161",
+      "url": "/blog-posts/why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7c1f4829-b4bd-482b-832d-8a271663c7b0",
+        "field": "body",
+        "block_key": "k007",
+        "block_style": "normal"
+      },
+      "old_text": "Does cold weather affect circuit breakers? The answer is a bit more complex than a simple \"yes.\" While the cold air itself doesn't make the breaker fail, the behavioral changes and physical strain that come with winter weather are major culprits for power outages.",
+      "new_text": "Does cold weather affect circuit breakers? Not directly. Cold air doesn't make a breaker fail. What trips breakers in winter is how homes use power when it's cold, and the strain winter puts on motors and wiring.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "filler hedge (\"a bit more complex than a simple yes\"); answer first",
+      "format": {
+        "strong": []
+      },
+      "formatting": "strong \"behavioral changes\" / \"physical strain\" are removed with the phrase: no emphasis in new_text",
+      "verifier_note": "The proposed semicolon sentence ending in \"..., does.\" was hard to parse. Straight apostrophes match this block."
+    },
+    {
+      "id": "slop-posts-b-162",
+      "url": "/blog-posts/why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7c1f4829-b4bd-482b-832d-8a271663c7b0",
+        "field": "body",
+        "block_key": "k00d",
+        "block_style": "normal"
+      },
+      "old_text": "Here is why your breaker is tripping this winter and what you need to do about it.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler signpost; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-163",
+      "url": "/blog-posts/why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7c1f4829-b4bd-482b-832d-8a271663c7b0",
+        "field": "body",
+        "block_key": "k00f",
+        "block_style": "h2"
+      },
+      "old_text": "The Science: Cold vs. Hot",
+      "new_text": "What Cold Does to a Breaker",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "colon-label heading (\"The Science:\")"
+    },
+    {
+      "id": "slop-posts-b-164",
+      "url": "/blog-posts/why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7c1f4829-b4bd-482b-832d-8a271663c7b0",
+        "field": "body",
+        "block_key": "k00p",
+        "block_style": "normal"
+      },
+      "old_text": "So, if the cold actually helps the breaker, why is your power going out? It comes down to Overload vs. Mechanical Failure.",
+      "new_text": "Cold actually helps the breaker, so when the power goes out in winter, the cause is an overload or a mechanical failure.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "rhetorical-question transition",
+      "format": {
+        "strong": [
+          "overload",
+          "mechanical failure"
+        ]
+      },
+      "formatting": "old \"Overload\" / \"Mechanical Failure.\" were strong: make \"overload\" and \"mechanical failure\" strong",
+      "verifier_note": "Keeps the section’s point (cold helps the breaker) that the proposal dropped, without the rhetorical question."
+    },
+    {
+      "id": "slop-posts-b-165",
+      "url": "/blog-posts/why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7c1f4829-b4bd-482b-832d-8a271663c7b0",
+        "field": "body",
+        "block_key": "k01l",
+        "block_style": "normal"
+      },
+      "old_text": "extreme cold forces your system to work overtime",
+      "new_text": "extreme cold makes your system work harder",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliché (\"work overtime\")"
+    },
+    {
+      "id": "slop-posts-b-166",
+      "url": "/blog-posts/why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "7c1f4829-b4bd-482b-832d-8a271663c7b0",
+        "field": "body",
+        "block_key": "k032",
+        "block_style": "normal"
+      },
+      "old_text": "Don't ignore a tripping breaker—it’s trying to tell you something.",
+      "new_text": "If a breaker keeps tripping this winter, call The Wire Guy Electric.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph that ends on a moral; turned into a plain call to action",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-167",
+      "url": "/blog-posts/why-your-lights-flicker",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "96ea3051-9739-46c6-96ae-fe9ea19e6936",
+        "field": "body",
+        "block_key": "k005",
+        "block_style": "normal"
+      },
+      "old_text": "The key is knowing the difference.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock line (\"The key is\"); removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-168",
+      "url": "/blog-posts/why-your-lights-flicker",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "96ea3051-9739-46c6-96ae-fe9ea19e6936",
+        "field": "body",
+        "block_key": "k00d",
+        "block_style": "normal"
+      },
+      "old_text": "Phoenix heat also plays a role.",
+      "new_text": "Phoenix heat makes it worse.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"plays a role\""
+    },
+    {
+      "id": "slop-posts-b-169",
+      "url": "/blog-posts/why-your-lights-flicker",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "96ea3051-9739-46c6-96ae-fe9ea19e6936",
+        "field": "body",
+        "block_key": "k013",
+        "block_style": "normal"
+      },
+      "old_text": "Catching the issue early is far easier and less expensive than dealing with the fallout later.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph that is only a moral; removes the block [whole block: drop the block]"
+    },
+    {
+      "id": "slop-posts-b-170",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "body",
+        "block_key": "k001",
+        "block_style": "normal"
+      },
+      "old_text": "In Phoenix, the hottest part of the day isn’t just hard on you — it’s tough on your home’s electrical system too.",
+      "new_text": "In Phoenix, the hottest part of the day is hard on your home’s electrical system.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"isn't just X — it's Y\"",
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-171",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "body",
+        "block_key": "k003",
+        "block_style": "normal"
+      },
+      "old_text": "If you’ve noticed your lights flicker or dim in the late afternoon, especially during the summer, it’s not just an annoyance. It’s a sign something in your electrical setup needs attention.",
+      "new_text": "If your lights flicker or dim in the late afternoon, especially during the summer, something in your electrical setup needs attention.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"not just X. It's Y.\"; keywords (lights flicker, afternoon, summer) kept"
+    },
+    {
+      "id": "slop-posts-b-172",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "body",
+        "block_key": "k025",
+        "block_style": "normal"
+      },
+      "old_text": "In Phoenix, afternoon light flicker is more than just a quirk of the summer heat — it’s a clue that your home’s electrical system is under stress.",
+      "new_text": "In Phoenix, afternoon light flicker is a sign that your home’s electrical system is under stress.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"more than just X — it's Y\""
+    },
+    {
+      "id": "slop-posts-b-173",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "body",
+        "block_key": "k027",
+        "block_style": "normal"
+      },
+      "old_text": ", so your home stays safe, cool, and fully powered",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "rhythmic triplet"
+    },
+    {
+      "id": "slop-posts-b-174",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "body",
+        "block_key": "k02c",
+        "block_style": "normal"
+      },
+      "old_text": "📞 ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji; the phone number itself is unchanged"
+    },
+    {
+      "id": "slop-posts-b-175",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "body",
+        "block_key": "k02f",
+        "block_style": "normal"
+      },
+      "old_text": "🌐 ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji; the linked domain is unchanged"
+    },
+    {
+      "id": "slop-posts-b-901",
+      "url": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "c1fda8ab-4b59-49b1-b28c-10464321a588",
+        "field": "body",
+        "block_key": "k039",
+        "block_style": "h2"
+      },
+      "old_text": "Ready to Light Up Your Yard?",
+      "new_text": "Get a Landscape Lighting Estimate",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic rhetorical CTA heading (\"Ready to...?\"); same fix as edit 091 on the recessed-lighting post; the free-estimate paragraph under it stays",
+      "added_by_verifier": true
+    },
+    {
+      "id": "slop-posts-b-902",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "body",
+        "block_key": "k02b",
+        "block_style": "h3"
+      },
+      "old_text": "Why This Matters for Phoenix Families",
+      "new_text": "What These Upgrades Do for Phoenix Families",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock heading (\"Why This Matters\"); same fix as edit 155; the benefit list under it follows",
+      "added_by_verifier": true,
+      "formatting": "old_text is entirely strong: make new_text strong too"
+    },
+    {
+      "id": "slop-posts-b-903",
+      "url": "/blog-posts/phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6c9ff2f9-59a3-4410-a5b4-f023ee676578",
+        "field": "body",
+        "block_key": "k009",
+        "block_style": "h3"
+      },
+      "old_text": "The Hidden Electrical Dangers of Monsoon Season",
+      "new_text": "How Monsoon Storms Damage Electrical Systems",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"The Hidden Dangers of X\" heading; plain keyword heading that matches its own lead-in (\"...can silently damage your home’s electrical system. Here’s how:\") and edit 079",
+      "added_by_verifier": true,
+      "formatting": "old_text is entirely strong: make new_text strong too (the block’s trailing \"\\n\" stays outside old_text)"
+    },
+    {
+      "id": "slop-posts-b-904",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "body",
+        "block_key": "k016",
+        "block_style": "normal"
+      },
+      "old_text": "Installing a whole-house surge protector helps stabilize your electrical system and extend the life of your appliances.",
+      "new_text": "Installing a whole-house surge protector helps extend the life of your appliances.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "vague generic benefit (\"helps stabilize your electrical system\"): a surge protector diverts spikes, it does not stabilize the system; the appliance-life point stays",
+      "added_by_verifier": true
+    },
+    {
+      "id": "excerpt-posts-b-001",
+      "url": "/blog-posts/is-whole-house-surge-protection-necessary",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "769d1cc1-d357-41df-8635-ebe9cacf4154",
+        "field": "excerpt"
+      },
+      "old_text": "Learn why whole-house surge protection is essential for Phoenix homeowners. Protect your home’s wiring and electronics with The Wire Guy Electric’s professional installation.",
+      "new_text": "Why plug-in surge strips are not enough for Phoenix homes, what causes surges here, how a panel-mounted surge protector is installed and what it costs.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-002",
+      "url": "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d5c65e82-7f1d-4583-9847-6ba6b99305ef",
+        "field": "excerpt"
+      },
+      "old_text": "Is your Phoenix home ready for remote learning, after-school gaming, and smart devices? Discover top electrical upgrades and safety tips for modern families this school year.",
+      "new_text": "GFCI and AFCI outlets, a panel check, smoke and CO detectors, dedicated circuits for study and gaming rooms, and USB outlets for the Phoenix school year.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-003",
+      "url": "/blog-posts/summer-electrical-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f91ccb99-54b9-4da6-86c7-39d3d0d6c8cf",
+        "field": "excerpt"
+      },
+      "old_text": "Prepare your home for the extreme Arizona heat with summer electrical safety tips from The Wire Guy Electric. Trusted residential and commercial electricians in Scottsdale and beyond.",
+      "new_text": "Five ways to ready an Arizona home for triple-digit heat: panel capacity, whole-home surge protection, ceiling fans, LED outdoor lighting and a wiring check.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-004",
+      "url": "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4778fe02-c89f-48d6-85f3-2b10cb7fb521",
+        "field": "excerpt"
+      },
+      "old_text": "Want to upgrade your outdoor space this fall? Discover expert tips on outdoor lighting design, safety, and installation for Phoenix homes — from landscape lights to smart upgrades.",
+      "new_text": "Low-voltage landscape lights, wall washes, step lights and smart bulbs for Phoenix yards, plus the safety basics: weatherproof fixtures, GFCI, buried cable.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-005",
+      "url": "/blog-posts/why-does-my-breaker-keep-tripping",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5a0e4b4b-eb97-463e-af00-0a32e43c8c3d",
+        "field": "excerpt"
+      },
+      "old_text": "Breaker keeps tripping in your Phoenix home? Learn the most common causes — and how The Wire Guy Electric can fix it safely with same-day service.",
+      "new_text": "Overloaded circuits, short circuits, worn-out breakers and Phoenix heat: the four usual reasons a breaker keeps tripping, and when to call an electrician.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-b-006",
+      "url": "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "63971b02-d75d-4a0c-bc64-5ffe66aef211",
+        "field": "excerpt"
+      },
+      "old_text": "Wondering why your lights flicker in the afternoon in Phoenix? Learn the common causes, from peak heat power demand to loose wiring, and how The Wire Guy Electric can fix it fast.",
+      "new_text": "Afternoon light flicker in Phoenix: peak AC load, loose wiring, overloaded circuits or utility voltage dips. When it's a warning sign, and how to fix it.",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 import type {APIRoute} from 'astro'
 import {fetchQuery} from '../lib/sanity'
 import {absoluteUrl} from '../lib/seo'
+import {ESTIMATE_PAGE_UPDATED, ESTIMATE_PATH} from '../lib/site'
 
 type Entry = {path: string; lastmod?: string}
 
@@ -15,9 +16,12 @@ export const GET: APIRoute = async () => {
   const prefix: Record<string, string> = {service: '/services/', serviceCategory: '/services-categories/', location: '/locations/', post: '/blog-posts/'}
   const entries: Entry[] = docs.map((d) => ({
     path: d._type === 'page' ? (d.slug === 'index' ? '/' : `/${d.slug}`) : `${prefix[d._type]}${d.slug}`,
-    // Posts carry real publish/update dates; prefer them over _updatedAt (which the import resets).
+    // Every document carries its content date (posts: publish/update; the rest: updatedAt, stamped by the
+    // migration and by editors); prefer it over _updatedAt, which a dataset import resets on every document.
     lastmod: d.updatedAt ?? d.publishedAt ?? d._updatedAt,
   }))
+  // /estimate is a code route (the owner asked for a separate Free Estimate page, round 2), not a Sanity document
+  if (!entries.some((e) => e.path === ESTIMATE_PATH)) entries.push({path: ESTIMATE_PATH, lastmod: ESTIMATE_PAGE_UPDATED})
   for (const fixed of ['/', '/services', '/blog']) if (!entries.some((e) => e.path === fixed)) entries.push({path: fixed})
   entries.sort((a, b) => (a.path === '/' ? -1 : b.path === '/' ? 1 : a.path.localeCompare(b.path)))
 

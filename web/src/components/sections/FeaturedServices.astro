@@ -1,0 +1,46 @@
+---
+// Featured services on an inner page (servicesSection, layout "featured", any page but
+// the homepage, whose eight-tile mosaic is ServicesMosaic): the section's picked cards,
+// each a whole card on a real photo (ServiceTile, as on the city page), three to a row
+// (one on smaller screens). The head carries the section's intro and its link.
+// Styles: styles/inner.css "services on real photos".
+import type {ServicesSection} from '../../lib/types'
+import {ctaHref} from '../../lib/site'
+import {getRedirectMap} from '../../lib/queries'
+import {sectionLabel} from '../../lib/sections'
+import SectionHeader from '../ui/SectionHeader.astro'
+import TextLink from '../ui/TextLink.astro'
+import ServiceTile from './ServiceTile.astro'
+
+interface Props {
+  section: ServicesSection
+  number?: number
+}
+
+const {section, number} = Astro.props
+const redirects = await getRedirectMap()
+const id = `${section._key}-h`
+const {cta} = section
+const heading = section.heading ?? 'Our services'
+---
+
+{
+  section.services.length > 0 && (
+    <section class="section isvc" {...sectionLabel(id, heading)}>
+      <div class="wrap">
+        <SectionHeader heading={heading} accent={section.headingAccent} id={id} eyebrow={section.eyebrow} number={number} intro={section.intro}>
+          {cta && (
+            <TextLink slot="more" href={ctaHref(cta, redirects)} icon="go">
+              {cta.label}
+            </TextLink>
+          )}
+        </SectionHeader>
+        <ul class="tiles3" role="list">
+          {section.services.map((s) => (
+            <ServiceTile href={`/services/${s.slug}`} title={s.title} text={s.text} image={s.image ?? s.mainImage} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}

@@ -1,111 +1,6 @@
 {
   "fixedLinks": [
     {
-      "doc": "/services/commercial-service",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/new-construction-wiring",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/tenant-improvements",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/exterior-electrical",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/fixture-replacements",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/custom-lighting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/led-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/outlets-and-switches",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/storefront-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/hanging-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-upgrades",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/commercial-electrical-troubleshooting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/emergency-exit-lights",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/dedicated-circuits",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/ballast-replacement-fluorescent-lighting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-safety-inspections",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/ev-charger-installation",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-troubleshooting",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/electrical-remodels",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/panels",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/services/recessed-lights-installation",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
       "doc": "/locations/fountain-hills",
       "from": "https://www.thewireguyelectric.com",
       "to": "/"
@@ -151,74 +46,9 @@
       "to": "/"
     },
     {
-      "doc": "/blog-posts/kitchen-remodel-electrical-circuits-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/pool-pump-electrical-requirements-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/casita-adu-electrical-requirements-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/swamp-cooler-to-ac-conversion-electrical-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/ac-disconnect-box-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/smart-thermostat-c-wire-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/mini-split-electrical-requirements-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
       "doc": "/blog-posts/federal-pacific-zinsco-panels-arizona",
       "from": "/services/electrical-panels",
       "to": "/services/panels"
-    },
-    {
-      "doc": "/blog-posts/federal-pacific-zinsco-panels-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/why-is-my-electric-bill-so-high-phoenix-summer",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/half-house-lost-power-heat-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/electrical-panel-hot-to-the-touch-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/ac-keeps-tripping-breaker-arizona",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
     },
     {
       "doc": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
@@ -231,34 +61,15 @@
       "to": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix"
     },
     {
-      "doc": "/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/aluminum-wiring-older-phoenix-homes",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/whole-home-standby-generator-installation-phoenix",
-      "from": "/estimate",
-      "to": "/contact-us"
-    },
-    {
-      "doc": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
-      "from": "/estimate",
+      "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
+      "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
     },
     {
       "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
-      "from": "https://www.thewireguyelectric.com/contact-us",
-      "to": "/contact-us"
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "contact us for a free estimate"
     },
     {
       "doc": "/blog-posts/landscape-lighting-installation-cost-phoenix",
@@ -376,6 +187,12 @@
       "to": "/contact-us"
     },
     {
+      "doc": "/blog-posts/cost-to-rewire-house-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "give us a call or request a free estimate"
+    },
+    {
       "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
       "from": "https://www.thewireguyelectric.com/services/panels",
       "to": "/services/panels"
@@ -394,6 +211,12 @@
       "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "contact us for a free estimate"
     },
     {
       "doc": "/blog-posts/ceiling-fan-installation-cost-arizona",
@@ -429,6 +252,12 @@
       "doc": "/blog-posts/whole-house-surge-protector-guide-arizona",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/whole-house-surge-protector-guide-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Get a free estimate"
     },
     {
       "doc": "/blog-posts/recessed-lighting-installation-phoenix",
@@ -486,31 +315,6 @@
       "to": "/"
     },
     {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/services/panels",
-      "to": "/services/panels"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/services/electrical-troubleshooting",
-      "to": "/services/electrical-troubleshooting"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/locations/phoenix",
-      "to": "/locations/phoenix"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/locations/scottsdale",
-      "to": "/locations/scottsdale"
-    },
-    {
-      "doc": "/blog-posts/generator-interlock-in-arizona",
-      "from": "https://www.thewireguyelectric.com/locations/mesa",
-      "to": "/"
-    },
-    {
       "doc": "/blog-posts/dryer-outlet-for-ev",
       "from": "https://www.thewireguyelectric.com/services/ev-charger-installation",
       "to": "/services/ev-charger-installation"
@@ -556,14 +360,32 @@
       "to": "/contact-us"
     },
     {
+      "doc": "/blog-posts/diy-electrical-work-in-arizona",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Book a free estimate with us"
+    },
+    {
       "doc": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
     },
     {
+      "doc": "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "free estimate with us"
+    },
+    {
       "doc": "/blog-posts/summer-electrical-tips",
       "from": "https://www.thewireguyelectric.com/contact-us",
       "to": "/contact-us"
+    },
+    {
+      "doc": "/blog-posts/summer-electrical-tips",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Book a free estimate"
     },
     {
       "doc": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
@@ -589,6 +411,42 @@
       "doc": "/blog-posts/installing-car-charger",
       "from": "https://www.thewireguyelectric.com/#contact",
       "to": "/#contact"
+    },
+    {
+      "doc": "/blog-posts/installing-car-charger",
+      "from": "/#contact",
+      "to": "/estimate",
+      "text": "Please click here to get a free estimate for installation."
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "Get a free estimate"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "getting a free estimate"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "free estimates"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "free estimate"
+    },
+    {
+      "doc": "/faq",
+      "from": "/contact-us",
+      "to": "/estimate",
+      "text": "request a free estimate"
     }
   ],
   "droppedScripts": [
@@ -608,5 +466,691 @@
       "doc": "/blog-posts/level-1-vs-level-2-ev-chargers-which-to-choose",
       "src": "https://assets.seobotai.com/thewireguyelectric.com/6806df84e572faef869989e9/0115400c5ed8dd17af953d5871652879.jpg"
     }
-  ]
+  ],
+  "newServices": {
+    "source": "migration/content-data/new-services.json",
+    "added": [
+      "whole-home-rewiring",
+      "hot-tub-pool-spa-electrical",
+      "whole-house-surge-protection"
+    ],
+    "inserted": [
+      "fixture-replacements: 4 blocks before \"What We Find When the Old Fixture Comes Down\"",
+      "exterior-electrical: 4 blocks before \"How We Build Exterior Electrical\""
+    ],
+    "renamed": [
+      "fixture-replacements: Fixture Replacements -> Ceiling Fans & Light Fixtures",
+      "exterior-electrical: Exterior Electrical -> Landscape & Outdoor Lighting"
+    ]
+  },
+  "fixes": {
+    "locations": [
+      {
+        "slug": "ahwatukee",
+        "name": "Ahwatukee",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "fountain-hills",
+        "name": "Fountain Hills",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "scottsdale",
+        "name": "Scottsdale",
+        "cardBlurb": true,
+        "featured": 8,
+        "nearby": 3
+      },
+      {
+        "slug": "tempe",
+        "name": "Tempe",
+        "cardBlurb": true,
+        "featured": 6,
+        "nearby": 4
+      },
+      {
+        "slug": "san-tan-valley",
+        "name": "San Tan Valley",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "queen-creek",
+        "name": "Queen Creek",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "chandler",
+        "name": "Chandler",
+        "cardBlurb": true,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "apache-junction",
+        "name": "Apache Junction",
+        "cardBlurb": false,
+        "featured": 6,
+        "nearby": 3
+      },
+      {
+        "slug": "gilbert",
+        "name": "Gilbert",
+        "cardBlurb": true,
+        "featured": 7,
+        "nearby": 3
+      },
+      {
+        "slug": "phoenix",
+        "name": "Phoenix",
+        "cardBlurb": true,
+        "featured": 8,
+        "nearby": 3
+      }
+    ],
+    "faqs": {
+      "visible": 28,
+      "updated": 28,
+      "created": [],
+      "renamed": [
+        {
+          "from": "I want to upgrade my lighting, but I don't know what to do. Can you help me with the design?",
+          "to": "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?"
+        },
+        {
+          "from": "Are there any services you don't offer?",
+          "to": "Are there any services you don’t offer?"
+        },
+        {
+          "from": "Can you refer me to someone for a non-electrical project?",
+          "to": "I have another non-electrical project but don’t know where to start. Can you refer me to someone?"
+        },
+        {
+          "from": "How much does an electrical panel upgrade cost in Arizona?",
+          "to": "How much does an electrical panel replacement cost in Arizona?"
+        },
+        {
+          "from": "How much does it cost to install recessed lighting?",
+          "to": "How much does it cost to install recessed can lighting?"
+        }
+      ],
+      "unmatched": []
+    },
+    "services": {
+      "priced": [
+        "ev-charger-installation 750-3500",
+        "panels 5200-6500",
+        "recessed-lights-installation 1400-2200"
+      ],
+      "withRelatedPosts": 24
+    },
+    "posts": {
+      "mapped": 51,
+      "unmapped": []
+    },
+    "siteSettings": [
+      "heroQuotes",
+      "valueProps",
+      "capabilities",
+      "ctaBand",
+      "availabilityNote",
+      "googleBusinessProfileUrl",
+      "reviewSummary.reviewsUrl",
+      "rocLicenseUrl",
+      "addresses[].googleMapsUrl",
+      "addresses[].mapLinkText",
+      "homeCity.cardBlurb"
+    ]
+  },
+  "profiles": {
+    "sameAsAdded": [
+      "https://www.google.com/maps?cid=4489697358306155784",
+      "https://www.linkedin.com/company/the-wire-guy-electric",
+      "https://nextdoor.com/pages/the-wire-guy-electric-llc-mesa-az/"
+    ],
+    "offices": {
+      "Mesa": "geo",
+      "Scottsdale": "geo, 2 profiles"
+    },
+    "reviewSummary": "5 from 560+"
+  },
+  "reviews": {
+    "source": "migration/reviews/google-reviews.json",
+    "widgetTotal": "333 Total Reviews",
+    "pushed": 46,
+    "featured": 8,
+    "withLocation": 1,
+    "withService": 13,
+    "skipped": [
+      {
+        "review": "review:yahoo:Thai N.:2026-02-09",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct); the widget only shows a snippet ending in \"...\", not the full review"
+      },
+      {
+        "review": "review:yahoo:Matthew C.:2026-01-09",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct); the widget only shows a snippet ending in \"...\", not the full review; same review as review:google:Matthew Caswell:2026-01-09"
+      },
+      {
+        "review": "review:yahoo:Rob S.:2026-01-05",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct); the widget only shows a snippet ending in \"...\", not the full review"
+      },
+      {
+        "review": "review:yahoo:Matt K.:2025-12-18",
+        "reason": "source \"Yahoo\" is not in the review schema's source list (Google, Yelp, Facebook, Nextdoor, Angi, Direct)"
+      }
+    ],
+    "unresolved": []
+  },
+  "localFacts": {
+    "source": [
+      "migration/local-facts/locations.json",
+      "migration/local-facts/mesa.json"
+    ],
+    "applied": {
+      "gilbert": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "chandler": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "scottsdale": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "tempe": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "phoenix": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "ahwatukee": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "queen-creek": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "san-tan-valley": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "apache-junction": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ],
+      "fountain-hills": [
+        "county",
+        "zipCodes",
+        "neighborhoods",
+        "utilityProviders",
+        "permitNotes",
+        "faqs",
+        "geo"
+      ]
+    },
+    "homeCity": [
+      "county",
+      "neighborhoods",
+      "utilityProviders"
+    ],
+    "heldBackNeighborhoods": [],
+    "skipped": [],
+    "missing": []
+  },
+  "pageSections": {
+    "pages": {
+      "index": [
+        "heroSection:hero",
+        "teamIntroSection:team-intro",
+        "featureGridSection:value-props",
+        "servicesSection:top-services",
+        "featureGridSection:capabilities",
+        "quoteSection:pull-quote",
+        "processStepsSection:how-it-works",
+        "reviewsSection:reviews",
+        "locationsSection:areas",
+        "gallerySection:gallery",
+        "faqSection:faqs",
+        "postsSection:guides",
+        "ctaSection:cta"
+      ],
+      "about-us": [
+        "heroSection:hero",
+        "highlightsSection:family",
+        "trustBarSection:trust",
+        "teamSection:team",
+        "locationsSection:areas",
+        "ctaSection:cta"
+      ],
+      "our-team": [
+        "heroSection:hero",
+        "teamSection:team",
+        "quoteSection:quote",
+        "faqSection:faqs",
+        "ctaSection:cta"
+      ],
+      "careers": [
+        "heroSection:hero",
+        "highlightsSection:why-us",
+        "jobsSection:openings",
+        "teamSection:team",
+        "contactSection:apply-now"
+      ],
+      "faq": [
+        "heroSection:hero",
+        "faqSection:common",
+        "faqSection:customers",
+        "faqSection:topics",
+        "ctaSection:cta"
+      ],
+      "contact-us": [
+        "heroSection:hero",
+        "contactSection:contact",
+        "trustBarSection:trust",
+        "locationsSection:areas",
+        "faqSection:faqs"
+      ],
+      "services": [
+        "heroSection:hero",
+        "servicesSection:all-services",
+        "processStepsSection:how-it-works",
+        "locationsSection:areas",
+        "faqSection:faqs",
+        "ctaSection:cta"
+      ],
+      "blog": [
+        "heroSection:hero",
+        "postsSection:most-read",
+        "postsSection:posts",
+        "ctaSection:cta"
+      ],
+      "commercial-electrician": [
+        "heroSection:hero",
+        "servicesSection:top-services",
+        "featureGridSection:capabilities",
+        "reviewsSection:reviews",
+        "featureGridSection:value-props",
+        "servicesSection:all-commercial",
+        "locationsSection:areas",
+        "gallerySection:gallery",
+        "ctaSection:cta"
+      ]
+    },
+    "created": [
+      {
+        "type": "teamMember",
+        "name": "Blake Thompson",
+        "role": "Service Tech"
+      },
+      {
+        "type": "teamMember",
+        "name": "Brandon Connelly",
+        "role": "Service Tech"
+      },
+      {
+        "type": "teamMember",
+        "name": "Stephanie Langford",
+        "role": "Dispatcher"
+      }
+    ],
+    "jobDescription": "jobOpening.description = visible /careers job copy",
+    "notes": [],
+    "assets": 20
+  },
+  "cmsTemplates": {
+    "source": "migration/content-data/cms-templates.json",
+    "featuredPosts": 7,
+    "serviceImages": [
+      "ev-charger-installation",
+      "electrical-troubleshooting",
+      "commercial-service",
+      "new-construction-wiring",
+      "tenant-improvements",
+      "led-lights",
+      "outlets-and-switches",
+      "storefront-lights",
+      "hanging-lights",
+      "electrical-upgrades",
+      "commercial-electrical-troubleshooting",
+      "emergency-exit-lights",
+      "dedicated-circuits",
+      "electrical-safety-inspections",
+      "whole-home-rewiring",
+      "whole-house-surge-protection",
+      "fixture-replacements"
+    ],
+    "locationImages": [
+      "gilbert",
+      "chandler",
+      "ahwatukee",
+      "tempe",
+      "phoenix",
+      "scottsdale",
+      "fountain-hills",
+      "apache-junction",
+      "queen-creek",
+      "san-tan-valley"
+    ],
+    "teamPhotos": [
+      "steven-taylor",
+      "cody-taylor",
+      "cade-reynolds",
+      "wade-adams",
+      "emma-woolington",
+      "lauren-taylor"
+    ],
+    "serviceAlts": [
+      "panels",
+      "custom-lighting",
+      "electrical-remodels",
+      "exterior-electrical",
+      "recessed-lights-installation",
+      "ballast-replacement-fluorescent-lighting"
+    ],
+    "postImages": {
+      "shown": [
+        "pool-pump-electrical-requirements-arizona",
+        "casita-adu-electrical-requirements-arizona",
+        "swamp-cooler-to-ac-conversion-electrical-arizona",
+        "ac-disconnect-box-arizona",
+        "smart-thermostat-c-wire-arizona",
+        "mini-split-electrical-requirements-arizona",
+        "why-is-my-electric-bill-so-high-phoenix-summer",
+        "half-house-lost-power-heat-arizona",
+        "ac-keeps-tripping-breaker-arizona",
+        "ev-charger-hardwired-vs-plug-in-phoenix",
+        "aluminum-wiring-older-phoenix-homes",
+        "hot-tub-electrical-installation-cost-arizona",
+        "landscape-lighting-installation-cost-phoenix",
+        "cost-to-rewire-house-arizona",
+        "ceiling-fan-installation-cost-arizona",
+        "whole-house-surge-protector-guide-arizona",
+        "recessed-lighting-installation-phoenix",
+        "electrical-panel-upgrade-cost-arizona",
+        "why-your-circuit-breaker-keeps-tripping-in-cold-weather",
+        "can-hot-weather-cause-your-circuit-breaker-to-trip",
+        "is-whole-house-surge-protection-necessary",
+        "electrical-inspection-before-selling-a-home",
+        "permit-for-electrical-work",
+        "why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it",
+        "how-phoenix-heat-affects-your-homes-electrical-system",
+        "why-does-my-breaker-keep-tripping-in-the-summer",
+        "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+        "why-you-should-never-ignore-flickering-lights-in-your-arizona-home",
+        "summer-electrical-tips",
+        "common-electrical-issues-in-scottsdale-homes",
+        "7-signs-you-need-an-electrical-panel-upgrade",
+        "installing-car-charger"
+      ],
+      "notShown": [
+        "kitchen-remodel-electrical-circuits-arizona",
+        "electrical-panel-hot-to-the-touch-arizona",
+        "cutting-corners-panel-upgrades-phoenix",
+        "tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+        "why-your-lights-flicker",
+        "breaker-trips-ac",
+        "emfs-in-your-phoenix-home",
+        "how-to-wire-a-gfci-outlet",
+        "why-does-my-breaker-keep-tripping",
+        "bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+        "dryer-outlet-for-ev",
+        "top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall",
+        "phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes",
+        "phoenix-monsoon-electrical-damage-how-haboobs-storms-impact-your-system",
+        "diy-electrical-work-in-arizona",
+        "outdated-wiring-in-older-phoenix-homes",
+        "level-1-vs-level-2-ev-chargers-which-to-choose",
+        "federal-pacific-zinsco-panels-arizona",
+        "electrical-safety-tips"
+      ]
+    },
+    "atAGlance": [
+      "whole-home-rewiring",
+      "hot-tub-pool-spa-electrical",
+      "whole-house-surge-protection",
+      "panels"
+    ],
+    "quickAnswers": [
+      "whole-home-rewiring",
+      "hot-tub-pool-spa-electrical",
+      "whole-house-surge-protection",
+      "panels",
+      "recessed-lights-installation",
+      "electrical-safety-inspections",
+      "ev-charger-installation",
+      "exterior-electrical",
+      "fixture-replacements",
+      "electrical-troubleshooting",
+      "new-construction-wiring",
+      "custom-lighting",
+      "electrical-remodels",
+      "commercial-service",
+      "tenant-improvements",
+      "led-lights",
+      "outlets-and-switches",
+      "storefront-lights",
+      "hanging-lights",
+      "electrical-upgrades",
+      "commercial-electrical-troubleshooting",
+      "emergency-exit-lights",
+      "dedicated-circuits",
+      "ballast-replacement-fluorescent-lighting"
+    ],
+    "bodyEdits": [
+      "panels",
+      "ev-charger-installation",
+      "ev-charger-installation",
+      "electrical-remodels",
+      "new-construction-wiring"
+    ],
+    "bodyLinks": [
+      "panels → federal-pacific-zinsco-panels-arizona"
+    ],
+    "linkFixes": [
+      "recessed-lighting-installation-phoenix: \"Schedule your estimate\" → /estimate",
+      "why-does-my-breaker-keep-tripping: \"Call The Wire Guy Electric today or schedule online\" → /estimate",
+      "gilbert: \"Schedule a service today\" → /estimate",
+      "chandler: \"Contact The Wire Guy Electric today\" → /estimate",
+      "scottsdale: \"Contact The Wire Guy Electric today\" → /estimate",
+      "phoenix: \"Contact The Wire Guy Electric today\" → /estimate",
+      "tempe: \"Request service today\" → /estimate",
+      "queen-creek: \"Schedule service today\" → /estimate",
+      "san-tan-valley: \"Contact The Wire Guy Electric today\" → /estimate",
+      "apache-junction: \"Contact The Wire Guy Electric today\" → /estimate",
+      "fountain-hills: \"Schedule a consultation today\" → /estimate",
+      "breaker-trips-ac: \"At The Wire Guy Electric, we can help you diagnose potential issues.\" → /estimate",
+      "emfs-in-your-phoenix-home: \"The Wire Guy Electric, we can measure EMFs in your home \" → /estimate",
+      "why-your-lights-flicker: \"Call our family owned buisness, and we'll drive out to your property and diagnose any problems you may have.\" → /estimate",
+      "how-to-wire-a-gfci-outlet: \"contact us\" → /estimate",
+      "Do you offer free estimates?: \"Contact us today\" → /estimate",
+      "I want to upgrade my lighting, but I don’t know what to do. Can you help me with the design?: \"Contact us today\" → /estimate",
+      "How much does it cost to install an EV charger at home?: \"give us a call\" → /estimate",
+      "How long does it take to install recessed lighting?: \"contact us\" → /estimate",
+      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"National Fire Protection Association (NFPA)\" → https://www.nfpa.org/education-and-research/home-fire-safety/electrical-safety-in-the-home",
+      "How do I choose a good electrician in Phoenix?: \"Arizona Registrar of Contractors (ROC) website\" → https://roc.az.gov/",
+      "dryer-outlet-for-ev: \"APS Marketplace\" → (link removed)",
+      "why-your-circuit-breaker-keeps-tripping-in-cold-weather: \"Department of Energy\" → (link removed)",
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: \"While circuit breakers are designed to protect your home, extreme summer temperatures can make them more sensitive, leading to \"nuisance tripping\" or revealing underlying electrical issues.\" → https://arxiv.org/html/2410.08425v1 (linked words now \"nuisance tripping\")"
+    ],
+    "postCategories": {
+      "lighting": 6
+    },
+    "textFixes": [
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: all afternoon? The temperature",
+      "why-your-lights-flicker: family owned business",
+      "how-to-wire-a-gfci-outlet:  Connect the bare copper (or green) wire",
+      "how-to-wire-a-gfci-outlet:  Look at the back of your new GFCI.",
+      "how-to-wire-a-gfci-outlet: White to Silver). ",
+      "can-hot-weather-cause-your-circuit-breaker-to-trip:  Over years of seasonal temperature swings"
+    ],
+    "bodyRemovals": [
+      "hanging-lights: https://cdn.prod.website-files.com/66980076a856729471b47cf8/66ec54e19fc5fd4cd4215c36_Black%20Pendant%20Lamps%20Photo.jpg",
+      "panels: Upgrading Your Electrical Panel",
+      "level-1-vs-level-2-ev-chargers-which-to-choose: https://assets.seobotai.com/thewireguyelectric.com/6806df84e572faef869989e9/0115400c5ed8dd17af953d5871652879.jpg"
+    ],
+    "figureAlts": [
+      "can-hot-weather-cause-your-circuit-breaker-to-trip: Wiring diagram of a contactor controlling a single-phase motor with normally open and normally closed switches"
+    ],
+    "markersRemovedFrom": [
+      "level-1-vs-level-2-ev-chargers-which-to-choose"
+    ],
+    "postQuickAnswers": [
+      "why-does-my-breaker-keep-tripping-in-the-summer",
+      "why-your-lights-flicker",
+      "breaker-trips-ac",
+      "common-electrical-issues-in-scottsdale-homes",
+      "do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "how-phoenix-heat-affects-your-homes-electrical-system",
+      "emfs-in-your-phoenix-home"
+    ]
+  },
+  "internalLinks": {
+    "source": "migration/content-data/internal-links.json",
+    "added": 132,
+    "documents": 59,
+    "moved": 0
+  },
+  "titlesMeta": {
+    "source": "migration/content-data/titles-meta.json",
+    "applied": 75,
+    "added": 9,
+    "held": [
+      "/locations/ahwatukee title",
+      "/locations/ahwatukee meta",
+      "/locations/chandler title",
+      "/locations/chandler meta",
+      "/locations/phoenix title",
+      "/locations/phoenix meta",
+      "/locations/san-tan-valley title",
+      "/locations/san-tan-valley meta",
+      "/locations/scottsdale title",
+      "/locations/scottsdale meta"
+    ]
+  },
+  "contentEdits": {
+    "source": "migration/content-edits/",
+    "applied": {
+      "pages": 64,
+      "cities": 58,
+      "decisions": 40,
+      "services": 95,
+      "posts-a": 251,
+      "posts-b": 179
+    },
+    "splits": [
+      "D5-01"
+    ],
+    "blocksDropped": 114,
+    "skipped": [
+      "slop-pages-022",
+      "slop-services-065",
+      "slop-services-066",
+      "slop-services-067",
+      "slop-services-084",
+      "slop-services-085",
+      "slop-posts-a-223",
+      "slop-posts-a-224",
+      "slop-posts-a-225",
+      "slop-posts-a-226",
+      "slop-posts-a-227",
+      "slop-posts-a-228",
+      "slop-posts-b-133",
+      "slop-posts-b-134",
+      "slop-posts-b-135",
+      "slop-posts-b-136",
+      "slop-posts-b-137",
+      "slop-posts-b-138"
+    ],
+    "inFiles": [
+      "slop-pages-006 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-007 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-008 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-009 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-014 web/src/components/sections/Valley.astro",
+      "slop-pages-035 scripts/migrate/content/page-sections.mjs",
+      "slop-pages-070 web/src/components/sections/EstimateForm.astro",
+      "slop-pages-071 web/src/components/sections/ApplicationForm.astro",
+      "slop-pages-072 web/src/pages/services/[slug].astro",
+      "slop-pages-073 web/src/pages/services/[slug].astro",
+      "slop-pages-074 web/src/pages/blog-posts/[slug].astro",
+      "slop-pages-075 web/src/pages/blog-posts/[slug].astro",
+      "slop-pages-076 web/src/pages/locations/[slug].astro",
+      "review-pages-001 scripts/migrate/content/page-sections.mjs",
+      "review-pages-002 scripts/migrate/content/page-sections.mjs",
+      "review-pages-003 scripts/migrate/content/page-sections.mjs",
+      "slop-services-081 migration/content-data/cms-templates.json",
+      "slop-services-082 migration/content-data/cms-templates.json",
+      "slop-services-083 migration/content-data/cms-templates.json",
+      "slop-services-086 web/src/pages/services/[slug].astro",
+      "slop-cities-059 web/src/pages/locations/[slug].astro",
+      "D16-10 migration/content-data/service-relations.json"
+    ]
+  },
+  "removedPosts": [
+    "whole-home-standby-generator-installation-phoenix",
+    "generator-interlock-in-arizona"
+  ],
+  "legacyImages": {
+    "referenced": 61,
+    "assetDocumentsAdded": 59
+  },
+  "contentDates": []
 }

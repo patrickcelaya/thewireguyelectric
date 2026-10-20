@@ -1,0 +1,73 @@
+---
+// A blog post's head: the breadcrumb, the topic and reading time, the H1 (the post's
+// title) and the byline, beside the cover (a real photo: the post's own approved image,
+// lib/cms.ts ownPostImage, else postCover). The byline is the business (the owner's
+// choice) unless the post names an author; "Updated" shows only for a material update
+// (updatedAt set and different from the publish date); "Reviewed by" only when a
+// reviewer is set. The cover keeps its own alt text (what the photo shows, never the
+// post's title): it is the page's main image, the article's image and its share image.
+// Styles: styles/post.css.
+import type {ImageRef, PostDoc, SiteSettings} from '../../lib/types'
+import type {Crumb} from '../../lib/seo'
+import {formatDate, isoDate} from '../../lib/format'
+import {facesOf} from '../../lib/brand-photos'
+import {POST_COVER, facesInView} from '../../lib/cms'
+import Breadcrumbs from '../ui/Breadcrumbs.astro'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  post: PostDoc
+  settings: SiteSettings
+  crumbs: Crumb[]
+  /** The post's category, else the service it supports first. */
+  topic: string
+  minutes: number
+  cover: ImageRef
+}
+
+const {post, settings, crumbs, topic, minutes, cover} = Astro.props
+const updated = post.updatedAt && isoDate(post.updatedAt) !== isoDate(post.publishedAt) ? post.updatedAt : undefined
+const person = (p: NonNullable<PostDoc['author']>) => [p.name, p.role].filter(Boolean).join(', ')
+// a photo of people is framed so every head stays in view at both of the cover's ratios (4:3, 16:10 on phones)
+const focus = facesInView(facesOf(cover))
+---
+
+<div class="wrap post-head">
+  <Breadcrumbs crumbs={crumbs} />
+  <div class="post-head__grid">
+    <div class="post-head__copy">
+      <p class="post-kicker">
+        <span class="post-topic">{topic}</span>{' '}
+        <span class="post-kicker__t">{minutes} min read</span>
+      </p>
+      <h1 id="post-h" class="post-title">{post.title}</h1>
+      <p class="post-meta">
+        <span class="seps">
+          <span>
+            By{' '}
+            {post.author ? <a href="/our-team">{person(post.author)}</a> : <a href="/about-us">{settings.businessName}</a>}
+          </span>{' '}
+          <span class="post-meta__d">Published <time datetime={isoDate(post.publishedAt)}>{formatDate(post.publishedAt)}</time></span>
+          {
+            updated && (
+              <>
+                {' '}
+                <span class="post-meta__d">Updated <time datetime={isoDate(updated)}>{formatDate(updated)}</time></span>
+              </>
+            )
+          }
+        </span>
+      </p>
+      {
+        post.reviewedBy && (
+          <p class="post-meta post-meta--review">
+            Reviewed by <a href="/our-team">{person(post.reviewedBy)}</a>
+          </p>
+        )
+      }
+    </div>
+    <figure class="post-cover">
+      <SanityImage image={cover} widths={POST_COVER.widths} sizes={POST_COVER.sizes} style={focus && `object-position:${focus}`} priority />
+    </figure>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+---
+// The pair that closes most sections: Get a Free Estimate (→ /estimate) and Call.
+import type {SiteSettings} from '../../lib/types'
+import {ESTIMATE_PATH, telHref} from '../../lib/site'
+import Button from './Button.astro'
+
+interface Props {
+  settings: SiteSettings
+  estimateLabel?: string
+  /** "#estimate" when the form is on the page. */
+  estimateHref?: string
+  class?: string
+}
+
+const {settings, estimateLabel = 'Get a Free Estimate', estimateHref = ESTIMATE_PATH, class: className} = Astro.props
+---
+
+<div class:list={['btn-row', className]}>
+  <Button href={estimateHref} icon="go">{estimateLabel}</Button>{' '}
+  <Button href={telHref(settings)} variant="ghost" icon="tel"><span class="tnum">Call {settings.phone}</span></Button>
+</div>

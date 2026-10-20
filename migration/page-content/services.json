@@ -1,0 +1,628 @@
+{
+  "page": "services",
+  "url": "/services",
+  "capturedAt": "2026-10-13",
+  "source": "Discovery inventory services.json: the live page (thewireguyelectric.com/services) as served on 2026-10-13, verbatim",
+  "title": "Electrical Services in Mesa & Phoenix | The Wire Guy Electric",
+  "metaDescription": "Residential and commercial electrical across the Phoenix Valley. Panels, EV chargers, lighting, remodels, new construction, and tenant improvements.",
+  "h1": "Electrical Services in Mesa, Arizona and the Phoenix Valley",
+  "sections": [
+    {
+      "index": 0,
+      "element": "div.section.banner-inner.custom-padding",
+      "purpose": "Page banner: H1 + paragraph over the Steven B&W photo",
+      "source": "static",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Electrical Services in Mesa, Arizona and the Phoenix Valley"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.inner-wrapper.services",
+          "src": "/wf/a/66f6fcc4c6e9916a8a3ac839_Picture-folder-from-Celaya-Ventures-1-.avif",
+          "cssSelector": ".inner-wrapper.services",
+          "role": "REAL photo: black-and-white portrait of Steven in front of the van logo (1086px)"
+        },
+        {
+          "type": "heading",
+          "level": 1,
+          "text": "Electrical Services in Mesa, Arizona and the Phoenix Valley"
+        },
+        {
+          "type": "paragraph",
+          "text": "These services reflect a comprehensive range of electrical solutions that address the needs of both residential and commercial customers, covering everything from repairs to upgrades and safety evaluations."
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6fcc4c6e9916a8a3ac839_Picture-folder-from-Celaya-Ventures-1-.avif",
+          "alt": null,
+          "role": "REAL photo: black-and-white portrait of Steven in front of the van logo (1086px)",
+          "kind": "css background (.inner-wrapper.services)"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "index": 1,
+      "element": "div.section",
+      "purpose": "Tabbed service directory: tabs \"All Services\" / \"Commercial\" / \"Residential\" (Residential active by default), each pane a CMS list of service cards (image, category link, title link, short description, \"More Info\"/\"Learn More\")",
+      "source": "mixed",
+      "headings": [],
+      "content": [
+        {
+          "type": "button",
+          "label": "All Services",
+          "variant": "portfolio-tab-link w-tab-link",
+          "tab": "All",
+          "current": false
+        },
+        {
+          "type": "button",
+          "label": "Commercial",
+          "variant": "portfolio-tab-link w-tab-link",
+          "tab": "Commercial",
+          "current": false
+        },
+        {
+          "type": "button",
+          "label": "Residential",
+          "variant": "portfolio-tab-link w-tab-link",
+          "tab": "Residential",
+          "current": true
+        },
+        {
+          "type": "card",
+          "kind": "tabPane",
+          "children": [
+            {
+              "type": "cmsList",
+              "note": "Webflow collection list; legacy.ts fillList() re-renders it from Sanity using the first item as the card template. The card below is the sample/template item.",
+              "cardTemplate": [
+                {
+                  "type": "card",
+                  "kind": "serviceListCard",
+                  "children": [
+                    {
+                      "type": "linkWrapper",
+                      "href": "/services/commercial-service",
+                      "children": [
+                        {
+                          "type": "image",
+                          "src": "/wf/a/6a84e6355ac9c6f63b174637_pexels-bulat843-1243575272-34054464.jpg",
+                          "alt": "Services",
+                          "role": "Stock: tech probing an industrial control panel (Sanity image of commercial-service)",
+                          "class": "services-list-image"
+                        }
+                      ],
+                      "cms": "all 21 services (getServices)"
+                    },
+                    {
+                      "type": "link",
+                      "text": "Commercial",
+                      "href": "/services-categories/commercial"
+                    },
+                    {
+                      "type": "link",
+                      "text": "Commercial Electrical Service",
+                      "href": "/services/commercial-service"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Service, repair, and maintenance for commercial properties. Retail, office, restaurant, medical, and warehouse, with off-hours scheduling.",
+                      "cms": "all 21 services (getServices)"
+                    },
+                    {
+                      "type": "button",
+                      "label": "More Info",
+                      "href": "/services/commercial-service",
+                      "variant": "icon-link",
+                      "icon": "fa-arrow-right",
+                      "cms": "all 21 services (getServices)"
+                    }
+                  ],
+                  "cms": "all 21 services (getServices)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "tabPane",
+          "children": [
+            {
+              "type": "cmsList",
+              "note": "Webflow collection list; legacy.ts fillList() re-renders it from Sanity using the first item as the card template. The card below is the sample/template item.",
+              "cardTemplate": [
+                {
+                  "type": "card",
+                  "kind": "serviceListCard",
+                  "children": [
+                    {
+                      "type": "linkWrapper",
+                      "href": "/services/commercial-service",
+                      "children": [
+                        {
+                          "type": "image",
+                          "src": "/wf/a/6a84e6355ac9c6f63b174637_pexels-bulat843-1243575272-34054464.jpg",
+                          "alt": "Services",
+                          "role": "Stock: tech probing an industrial control panel (Sanity image of commercial-service)",
+                          "class": "services-list-image"
+                        }
+                      ],
+                      "cms": "services where category = commercial (11)"
+                    },
+                    {
+                      "type": "link",
+                      "text": "Commercial",
+                      "href": "/services-categories/commercial"
+                    },
+                    {
+                      "type": "link",
+                      "text": "Commercial Electrical Service",
+                      "href": "/services/commercial-service"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Service, repair, and maintenance for commercial properties. Retail, office, restaurant, medical, and warehouse, with off-hours scheduling.",
+                      "cms": "services where category = commercial (11)"
+                    },
+                    {
+                      "type": "button",
+                      "label": "Learn More",
+                      "href": "/services/commercial-service",
+                      "variant": "icon-link",
+                      "icon": "fa-arrow-right",
+                      "cms": "services where category = commercial (11)"
+                    }
+                  ],
+                  "cms": "services where category = commercial (11)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "card",
+          "kind": "tabPane",
+          "children": [
+            {
+              "type": "cmsList",
+              "note": "Webflow collection list; legacy.ts fillList() re-renders it from Sanity using the first item as the card template. The card below is the sample/template item.",
+              "cardTemplate": [
+                {
+                  "type": "card",
+                  "kind": "serviceListCard",
+                  "children": [
+                    {
+                      "type": "linkWrapper",
+                      "href": "/services/recessed-lights-installation",
+                      "children": [
+                        {
+                          "type": "image",
+                          "src": "/wf/a/66f7331d1545fa230bf07c46_IMG_0779_VSCO.jpg",
+                          "alt": "Services",
+                          "role": "REAL photo: recessed light grid in a vaulted kitchen ceiling (4284px)",
+                          "class": "services-list-image"
+                        }
+                      ],
+                      "cms": "services where category = residential (10)"
+                    },
+                    {
+                      "type": "link",
+                      "text": "Residential",
+                      "href": "/services-categories/residential"
+                    },
+                    {
+                      "type": "link",
+                      "text": "Recessed Lighting",
+                      "href": "/services/recessed-lights-installation"
+                    },
+                    {
+                      "type": "paragraph",
+                      "text": "Recessed can lighting laid out around how you use the room. IC-rated where required, dimmers included, clean retrofit into existing ceilings.",
+                      "cms": "services where category = residential (10)"
+                    },
+                    {
+                      "type": "button",
+                      "label": "Learn More",
+                      "href": "/services/recessed-lights-installation",
+                      "variant": "icon-link",
+                      "icon": "fa-arrow-right",
+                      "cms": "services where category = residential (10)"
+                    }
+                  ],
+                  "cms": "services where category = residential (10)"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/6a84e6355ac9c6f63b174637_pexels-bulat843-1243575272-34054464.jpg",
+          "alt": "Services",
+          "role": "Stock: tech probing an industrial control panel (Sanity image of commercial-service)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/6a84e6355ac9c6f63b174637_pexels-bulat843-1243575272-34054464.jpg",
+          "alt": "Services",
+          "role": "Stock: tech probing an industrial control panel (Sanity image of commercial-service)",
+          "kind": "img"
+        },
+        {
+          "src": "/wf/a/66f7331d1545fa230bf07c46_IMG_0779_VSCO.jpg",
+          "alt": "Services",
+          "role": "REAL photo: recessed light grid in a vaulted kitchen ceiling (4284px)",
+          "kind": "img"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "All Services"
+        },
+        {
+          "label": "Commercial"
+        },
+        {
+          "label": "Residential"
+        },
+        {
+          "label": "More Info",
+          "href": "/services/commercial-service",
+          "cms": "all 21 services (getServices)"
+        },
+        {
+          "label": "Learn More",
+          "href": "/services/commercial-service",
+          "cms": "services where category = commercial (11)"
+        },
+        {
+          "label": "Learn More",
+          "href": "/services/recessed-lights-installation",
+          "cms": "services where category = residential (10)"
+        }
+      ],
+      "notes": [
+        "Each service card is in the HTML twice (All pane + its category pane; hidden panes still count), so wordCount double-counts card copy (baseline 777).",
+        "All card images have alt \"Services\" (or the service name after the port). Use descriptive alt per service.",
+        "Card link label is \"More Info\" in the All pane and \"Learn More\" in the other panes."
+      ]
+    },
+    {
+      "index": 2,
+      "element": "section.section.subscribe.extra-padding",
+      "purpose": "Closing CTA band: H2 \"We're ready to work for you\", bulb-icon button to /contact-us, status line \"🟢 Active Now\" over a photo background",
+      "source": "static",
+      "headings": [
+        {
+          "level": 2,
+          "text": "We're ready to work for you"
+        }
+      ],
+      "content": [
+        {
+          "type": "backgroundImage",
+          "element": "div.section-testimonials.override",
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "cssSelector": ".section-testimonials.override",
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)"
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "text": "We're ready to work for you"
+        },
+        {
+          "type": "button",
+          "label": "Get a Free Estimate",
+          "href": "/contact-us",
+          "variant": "secondary-button-with-icon",
+          "iconImage": {
+            "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+            "alt": "",
+            "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative"
+          }
+        },
+        {
+          "type": "paragraph",
+          "text": "🟢 Active Now"
+        }
+      ],
+      "images": [
+        {
+          "src": "/wf/a/66f6f9eb7c27d2dc301685f9_electricans-working-wire-guy-electric-company.avif",
+          "alt": null,
+          "role": "REAL photo: two techs on ladders installing lighting in a vaulted room (1086px)",
+          "kind": "css background (.section-testimonials.override)"
+        },
+        {
+          "src": "/wf/a/66b2af7d0706bedf43bf4e95_Wire-Guy-Electric-Bulb-Icon-1-.avif",
+          "alt": "",
+          "role": "Brand bulb mark (copper, 512px) used as the animated icon inside CTA buttons; decorative",
+          "kind": "img (inside button)"
+        }
+      ],
+      "ctas": [
+        {
+          "label": "Get a Free Estimate",
+          "href": "/contact-us"
+        }
+      ],
+      "notes": [
+        "Same band repeats on most pages; make it one shared default with per-page override.",
+        "Status line text differs by page (\"Free estimates available\" vs \"Active Now\"); keep as ctaSection.statusText."
+      ]
+    },
+    {
+      "index": 3,
+      "element": "div.hire-popup",
+      "purpose": "Empty Webflow \"hire-popup\" div",
+      "source": "static",
+      "headings": [],
+      "content": [],
+      "images": [],
+      "ctas": []
+    }
+  ],
+  "copy": [
+    {
+      "section": 0,
+      "tag": "h1",
+      "text": "Electrical Services in Mesa, Arizona and the Phoenix Valley"
+    },
+    {
+      "section": 0,
+      "tag": "p",
+      "text": "These services reflect a comprehensive range of electrical solutions that address the needs of both residential and commercial customers, covering everything from repairs to upgrades and safety evaluations."
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "All Services"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Commercial"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Residential"
+    },
+    {
+      "section": 1,
+      "tag": "img-alt",
+      "text": "Services",
+      "src": "/wf/a/6a84e6355ac9c6f63b174637_pexels-bulat843-1243575272-34054464.jpg"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "Commercial",
+      "href": "/services-categories/commercial"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "Commercial Electrical Service",
+      "href": "/services/commercial-service"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Service, repair, and maintenance for commercial properties. Retail, office, restaurant, medical, and warehouse, with off-hours scheduling.",
+      "cms": "all 21 services (getServices)"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "More Info",
+      "href": "/services/commercial-service",
+      "cms": "all 21 services (getServices)"
+    },
+    {
+      "section": 1,
+      "tag": "img-alt",
+      "text": "Services",
+      "src": "/wf/a/6a84e6355ac9c6f63b174637_pexels-bulat843-1243575272-34054464.jpg"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "Commercial",
+      "href": "/services-categories/commercial"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "Commercial Electrical Service",
+      "href": "/services/commercial-service"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Service, repair, and maintenance for commercial properties. Retail, office, restaurant, medical, and warehouse, with off-hours scheduling.",
+      "cms": "services where category = commercial (11)"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Learn More",
+      "href": "/services/commercial-service",
+      "cms": "services where category = commercial (11)"
+    },
+    {
+      "section": 1,
+      "tag": "img-alt",
+      "text": "Services",
+      "src": "/wf/a/66f7331d1545fa230bf07c46_IMG_0779_VSCO.jpg"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "Residential",
+      "href": "/services-categories/residential"
+    },
+    {
+      "section": 1,
+      "tag": "link",
+      "text": "Recessed Lighting",
+      "href": "/services/recessed-lights-installation"
+    },
+    {
+      "section": 1,
+      "tag": "p",
+      "text": "Recessed can lighting laid out around how you use the room. IC-rated where required, dimmers included, clean retrofit into existing ceilings.",
+      "cms": "services where category = residential (10)"
+    },
+    {
+      "section": 1,
+      "tag": "button",
+      "text": "Learn More",
+      "href": "/services/recessed-lights-installation",
+      "cms": "services where category = residential (10)"
+    },
+    {
+      "section": 2,
+      "tag": "h2",
+      "text": "We're ready to work for you"
+    },
+    {
+      "section": 2,
+      "tag": "button",
+      "text": "Get a Free Estimate",
+      "href": "/contact-us"
+    },
+    {
+      "section": 2,
+      "tag": "p",
+      "text": "🟢 Active Now"
+    }
+  ],
+  "links": [
+    {
+      "section": 1,
+      "text": "",
+      "href": "/services/commercial-service",
+      "kind": "cardLink"
+    },
+    {
+      "section": 1,
+      "text": "Commercial",
+      "href": "/services-categories/commercial",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "Commercial Electrical Service",
+      "href": "/services/commercial-service",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "More Info",
+      "href": "/services/commercial-service",
+      "kind": "button"
+    },
+    {
+      "section": 1,
+      "text": "",
+      "href": "/services/commercial-service",
+      "kind": "cardLink"
+    },
+    {
+      "section": 1,
+      "text": "Commercial",
+      "href": "/services-categories/commercial",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "Commercial Electrical Service",
+      "href": "/services/commercial-service",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "Learn More",
+      "href": "/services/commercial-service",
+      "kind": "button"
+    },
+    {
+      "section": 1,
+      "text": "",
+      "href": "/services/recessed-lights-installation",
+      "kind": "cardLink"
+    },
+    {
+      "section": 1,
+      "text": "Residential",
+      "href": "/services-categories/residential",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "Recessed Lighting",
+      "href": "/services/recessed-lights-installation",
+      "kind": "link"
+    },
+    {
+      "section": 1,
+      "text": "Learn More",
+      "href": "/services/recessed-lights-installation",
+      "kind": "button"
+    },
+    {
+      "section": 2,
+      "text": "Get a Free Estimate",
+      "href": "/contact-us",
+      "kind": "button"
+    }
+  ],
+  "pageBuilderMapping": [
+    {
+      "order": 1,
+      "sectionType": "heroSection",
+      "fromInventorySection": 0,
+      "fields": "heading = H1 (keep exact); text = banner paragraph"
+    },
+    {
+      "order": 2,
+      "sectionType": "servicesSection",
+      "fromInventorySection": 1,
+      "fields": "layout: grouped by category (Residential, Commercial) with H2 per group instead of hidden tab panes; card fields from service docs"
+    },
+    {
+      "order": 3,
+      "sectionType": "NEW priceGuideSection",
+      "fromInventorySection": null,
+      "fields": "NEW for SEO: typical cost ranges already published on the site (panel $5,200-$6,500, full service $6,400-$8,750, six recessed lights $1,050-$1,750, Level 2 EV charger $750-$3,500, whole-house surge $300-$600) with links to the cost guides"
+    },
+    {
+      "order": 4,
+      "sectionType": "locationsSection",
+      "fromInventorySection": null,
+      "fields": "Service-area links (all 11)"
+    },
+    {
+      "order": 5,
+      "sectionType": "faqSection",
+      "fromInventorySection": null,
+      "fields": "Optional: \"What types of electrical services do you offer?\", \"Are there any services you don't offer?\""
+    },
+    {
+      "order": 6,
+      "sectionType": "ctaSection",
+      "fromInventorySection": 2,
+      "fields": "statusText \"Active Now\""
+    }
+  ]
+}

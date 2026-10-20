@@ -1,0 +1,27 @@
+---
+// The answer-first box above a post's body: the post's quick answer (else its excerpt)
+// and the early, descriptive link to the service the post supports first (its hub),
+// named the way people search for it (lib/cms.ts hubLinkLabel). Styles: styles/post.css.
+import type {ServiceSummary} from '../../lib/types'
+import {hubLinkLabel} from '../../lib/cms'
+
+interface Props {
+  text: string
+  /** The post's primary (hub) service. */
+  service?: ServiceSummary
+}
+
+const {text, service} = Astro.props
+---
+
+<section class="quick" aria-labelledby="quick-h">
+  <h2 class="quick__k" id="quick-h">Quick answer</h2>
+  <p class="quick__a">{text}</p>
+  {
+    service && (
+      <p class="quick__more">
+        Need help with this? See our <a href={`/services/${service.slug}`}>{hubLinkLabel(service)} service</a>.
+      </p>
+    )
+  }
+</section>

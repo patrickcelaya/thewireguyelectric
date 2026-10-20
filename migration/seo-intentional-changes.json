@@ -1,0 +1,223 @@
+{
+  "$comment": "Approved title, meta description and H1 changes for the parity gate (scripts/seo/parity.mjs reads this file). Each value is the exact new text; any other change to a title, meta or H1 is still an error. Source: the verified titles-meta review of 2026-10-17 (70 changes on 42 pages: 60 accepted, 4 amended, 6 added by the verifier; the DIY meta was rejected and is not here), with \"380+\" read as \"560+\" in the four metas that state the Google review count (decision D7: the Mesa profile shows 567 reviews on 2026-10-17). The values ship through the content pipeline (migration/content-data/titles-meta.json, scripts/migrate/content/titles-meta.mjs), which checks that every value it sets equals the one here. notDeployed lists the approved changes held back on purpose: the gate reports them as pending, and as an error if one ships early. frozenTitleAndH1: the 13 Tier 1 pages, whose title and H1 can never be approved for a change. Empty changes after the post-launch re-baseline. removed: live pages taken off the site on purpose (decision D15, 2026-10-19: the generator posts), each with the page it now 301s to in one hop; the gate reports the redirect as approved, and as an error if the page still answers 200, redirects elsewhere or chains. The content pipeline (migration/content-data/removed-posts.json) checks that it holds the same paths and redirects. A Tier 1 page can never be removed. added: pages new to the site on purpose (decision D18, 2026-10-19: three service pages), each with its exact title, meta description and H1; the gate fails if one is missing, answers anything but 200, is noindexed, has another canonical or shows another value, or if an added path is already live in the baseline. The content pipeline (migration/content-data/titles-meta.json rows with `added`) checks that it holds the same values.",
+  "frozenTitleAndH1": [
+    "/",
+    "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+    "/blog-posts/diy-electrical-work-in-arizona",
+    "/blog-posts/permit-for-electrical-work",
+    "/blog-posts/tesla-wall-connector-vs-chargepoint-home-flex-phoenix",
+    "/blog-posts/electrical-panel-upgrade-cost-arizona",
+    "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+    "/blog-posts/outdated-wiring-in-older-phoenix-homes",
+    "/blog-posts/installing-car-charger",
+    "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+    "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer",
+    "/blog-posts/cost-to-rewire-house-arizona",
+    "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it"
+  ],
+  "notDeployed": {
+    "/locations/ahwatukee": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/chandler": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/phoenix": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/san-tan-valley": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)",
+    "/locations/scottsdale": "wave 2, about 4 weeks after launch (docs/SEO_STRATEGY.md)"
+  },
+  "changes": {
+    "/locations/scottsdale": {
+      "meta": "Licensed Scottsdale electrician with a local office, serving DC Ranch, McCormick Ranch and Old Town. 5.0 from 560+ Google reviews.",
+      "title": "Electrician in Scottsdale, AZ | Free Estimates | The Wire Guy"
+    },
+    "/locations/gilbert": {
+      "meta": "Gilbert electrician for EV chargers, panel upgrades and repairs in Power Ranch, Seville and Val Vista Lakes. ROC #365306, 5.0 from 560+ Google reviews.",
+      "title": "Electrician in Gilbert, AZ | Free Estimates | The Wire Guy"
+    },
+    "/locations/chandler": {
+      "meta": "Chandler electrician for repairs, panel upgrades and commercial work in Ocotillo, Fulton Ranch and Downtown Chandler. ROC #365306, rated 5.0 on Google.",
+      "title": "Electrician in Chandler, AZ | Free Estimates | The Wire Guy"
+    },
+    "/locations/tempe": {
+      "meta": "Tempe electrician for repairs, panel upgrades and remodel wiring in Downtown Tempe, The Lakes and Maple-Ash. ROC #365306, rated 5.0 on Google.",
+      "title": "Electrician in Tempe, AZ | Free Estimates | The Wire Guy"
+    },
+    "/locations/queen-creek": {
+      "meta": "Queen Creek electrician for panel upgrades, repairs and remodel wiring in Montelena and Hastings Farms. ROC #365306, 5.0 from 560+ Google reviews.",
+      "title": "Electrician in Queen Creek, AZ | Free Estimates | The Wire Guy"
+    },
+    "/services/ev-charger-installation": {
+      "meta": "Tesla Wall Connector, ChargePoint and NEMA 14-50 installs in Mesa and across the Phoenix valley. Load calculation first, a sized circuit, free estimates.",
+      "title": "EV Charger Installation in Mesa & Phoenix, AZ | The Wire Guy"
+    },
+    "/locations/apache-junction": {
+      "meta": "Apache Junction electrician for panel upgrades, repairs and EV chargers in Superstition Foothills and Ironwood Estates. ROC #365306, rated 5.0 on Google.",
+      "title": "Electrician in Apache Junction | Free Estimates | The Wire Guy"
+    },
+    "/services/recessed-lights-installation": {
+      "h1": "Recessed Lighting Installation",
+      "meta": "Recessed lighting installation in Mesa and the Phoenix valley: laid out around how you use each room, retrofit into existing ceilings, dimmers included.",
+      "title": "Recessed Lighting Installation in Mesa, AZ | The Wire Guy"
+    },
+    "/services/panels": {
+      "h1": "Electrical Panel Upgrades & Replacements",
+      "meta": "Electrical panel upgrades and replacements in Mesa and the Phoenix valley: 200-amp swaps, 200 to 400-amp service upgrades, SRP and APS coordination.",
+      "title": "Panel Upgrades & Replacements in Mesa, AZ | The Wire Guy"
+    },
+    "/services/electrical-troubleshooting": {
+      "h1": "Electrical Troubleshooting",
+      "meta": "Dead outlets, tripping breakers, flickering lights or a burning smell? Electrical troubleshooting in Mesa and the Phoenix valley that fixes the cause.",
+      "title": "Electrical Troubleshooting & Repair in Mesa, AZ | The Wire Guy"
+    },
+    "/locations/phoenix": {
+      "meta": "Phoenix electrician for EV chargers, panel upgrades and recessed lighting in Arcadia, Biltmore and North Phoenix. ROC #365306, rated 5.0 on Google.",
+      "title": "Electrician in Phoenix, AZ | Free Estimates | The Wire Guy"
+    },
+    "/locations/ahwatukee": {
+      "meta": "Ahwatukee electrician for repairs, panel upgrades and EV chargers in Foothills Club West and Mountain Park Ranch. ROC #365306, rated 5.0 on Google.",
+      "title": "Electrician in Ahwatukee, AZ | Free Estimates | The Wire Guy"
+    },
+    "/locations/san-tan-valley": {
+      "meta": "San Tan Valley electrician for panel upgrades, EV chargers and repairs in Johnson Ranch and San Tan Heights. ROC #365306, 5.0 from 560+ Google reviews.",
+      "title": "Electrician in San Tan Valley, AZ | Free Estimates | The Wire Guy"
+    },
+    "/locations/fountain-hills": {
+      "meta": "Fountain Hills electrician for repairs, panel upgrades and EV chargers in SunRidge Canyon, Eagle Mountain and Firerock. ROC #365306, rated 5.0 on Google.",
+      "title": "Electrician in Fountain Hills, AZ | Free Estimates | The Wire Guy"
+    },
+    "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix": {
+      "meta": "A dead bathroom or garage outlet is usually a tripped GFCI, often on another outlet. Where to find it, how to reset it, and when the wiring is the problem."
+    },
+    "/blog-posts/why-does-my-breaker-keep-tripping-in-the-summer": {
+      "meta": "Overloaded circuits, an aging panel, heat-loosened connections or a failing AC compressor: why breakers trip in a Phoenix summer, and what to do about it."
+    },
+    "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system": {
+      "meta": "Phoenix heat loosens wiring connections, overloads breakers at peak AC load and cracks outdoor wire insulation. The warning signs and how to prevent it."
+    },
+    "/blog-posts/why-your-lights-flicker-in-the-afternoon-in-phoenix-and-how-to-fix-it": {
+      "meta": "Afternoon light flicker in Phoenix: peak AC load, loose wiring, overloaded circuits or utility voltage dips. When it's a warning sign, and how to fix it."
+    },
+    "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade": {
+      "meta": "Frequent trips, flickering lights, a fuse box, new appliances tripping breakers, scorch marks, power-strip overuse, rising bills: 7 signs to upgrade a panel."
+    },
+    "/services/electrical-safety-inspections": {
+      "title": "Electrical Safety Inspections in Mesa & Phoenix | The Wire Guy"
+    },
+    "/blog-posts/summer-electrical-tips": {
+      "meta": "Five ways to ready an Arizona home for triple-digit heat: panel capacity, whole-home surge protection, ceiling fans, LED outdoor lighting and a wiring check.",
+      "title": "Arizona Summer Electrical Tips | The Wire Guy Electric",
+      "h1": "Arizona Summer Electrical Tips"
+    },
+    "/services/electrical-upgrades": {
+      "h1": "Commercial Electrical Upgrades",
+      "title": "Commercial Electrical Upgrades in Mesa, AZ | The Wire Guy"
+    },
+    "/our-team": {
+      "meta": "Meet the team behind The Wire Guy Electric: owners Steven and Cody Taylor, our service techs and office staff. A family-owned Mesa electrician since 2017."
+    },
+    "/blog": {
+      "meta": "Cost guides and plain answers from a licensed Mesa electrician: breakers that trip in the heat, panel upgrades, EV chargers, permits and Arizona code."
+    },
+    "/services-categories/commercial": {
+      "meta": "Commercial electrical across the Phoenix valley: tenant improvements, LED retrofits, troubleshooting, dedicated circuits and exit lighting. Flat-rate pricing.",
+      "title": "Commercial Electrical Services in Mesa, AZ | The Wire Guy"
+    },
+    "/services-categories/residential": {
+      "meta": "Residential electrical across the Phoenix valley: panel upgrades, EV chargers, recessed lighting, troubleshooting, remodels and new construction wiring.",
+      "title": "Residential Electrical Services in Mesa, AZ | The Wire Guy"
+    },
+    "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell": {
+      "meta": "A fuse box, a Zinsco or Federal Pacific panel, new major appliances or breakers that keep tripping: how to tell your Arizona home has outgrown its panel."
+    },
+    "/blog-posts/electrical-panel-hot-to-the-touch-arizona": {
+      "meta": "A panel that is warm in Arizona sun can be normal; one hot from the inside points to a failing connection. How to tell the difference and what to do now."
+    },
+    "/blog-posts/hot-tub-electrical-installation-cost-arizona": {
+      "meta": "What hot tub electrical costs in the Phoenix metro in 2026, what code requires (GFCI, a disconnect in sight, wire sizing, bonding) and red flags in a quote."
+    },
+    "/blog-posts/common-electrical-issues-in-scottsdale-homes": {
+      "meta": "Overheating parts, surges, outdated wiring, tripping breakers and dead GFCI outlets: the electrical problems Scottsdale homes see most, and warning signs."
+    },
+    "/blog-posts/why-your-lights-flicker": {
+      "meta": "A brief dim when the AC starts is normal. When flickering lights point to a loose connection or a failing breaker, and how an electrician tracks it down."
+    },
+    "/blog-posts/emfs-in-your-phoenix-home": {
+      "meta": "Every home has EMFs. Where they come from in a Phoenix home, when unusually high readings point to a wiring fault, and what an electrician can do about it."
+    },
+    "/services/ballast-replacement-fluorescent-lighting": {
+      "title": "Fluorescent Ballast Replacement in Mesa, AZ | The Wire Guy"
+    },
+    "/services/led-lights": {
+      "title": "Commercial LED Lighting & Retrofits in Mesa, AZ | The Wire Guy"
+    },
+    "/services/electrical-remodels": {
+      "h1": "Kitchen & Bathroom Remodel Electrical",
+      "title": "Kitchen & Bath Remodel Electrical in Mesa, AZ | The Wire Guy"
+    },
+    "/blog-posts/is-whole-house-surge-protection-necessary": {
+      "meta": "Why plug-in surge strips are not enough for Phoenix homes, what causes surges here, how a panel-mounted surge protector is installed and what it costs."
+    },
+    "/services/hanging-lights": {
+      "meta": "Commercial hanging lights in Mesa and the Phoenix valley: pendants over dining areas, chandeliers in lobbies, track lighting in galleries. Free estimates."
+    },
+    "/blog-posts/phoenix-back-to-school-electrical-upgrades-for-safer-smarter-homes": {
+      "meta": "GFCI and AFCI outlets, a panel check, smoke and CO detectors, dedicated circuits for study and gaming rooms, and USB outlets for the Phoenix school year.",
+      "title": "Back-to-School Electrical Upgrades in Phoenix | The Wire Guy",
+      "h1": "Back-to-School Electrical Upgrades for Phoenix Homes"
+    },
+    "/blog-posts/top-outdoor-lighting-tips-to-elevate-your-phoenix-yard-this-fall": {
+      "meta": "Low-voltage landscape lights, wall washes, step lights and smart bulbs for Phoenix yards, plus the safety basics: weatherproof fixtures, GFCI, buried cable.",
+      "title": "Outdoor Lighting Tips for Phoenix Yards | The Wire Guy Electric",
+      "h1": "Outdoor Lighting Tips for Phoenix Yards This Fall"
+    },
+    "/blog-posts/why-does-my-breaker-keep-tripping": {
+      "meta": "Overloaded circuits, short circuits, worn-out breakers and Phoenix heat: the four usual reasons a breaker keeps tripping, and when to call an electrician."
+    },
+    "/blog-posts/electrical-safety-tips": {
+      "title": "10 Electrical Safety Tips Everyone Should Know | The Wire Guy",
+      "h1": "10 Electrical Safety Tips Everyone Should Know"
+    },
+    "/services/custom-lighting": {
+      "meta": "Custom cabinet lighting cut and soldered to fit, plus recessed cans, chandeliers, pendants and cove lighting, hardwired with no visible wiring."
+    },
+    "/services/fixture-replacements": {
+      "title": "Ceiling Fan & Light Fixture Installation in Mesa, AZ | The Wire Guy",
+      "meta": "Ceiling fan and light fixture installation in Mesa and the Phoenix valley: fan-rated boxes and bracing, chandeliers, pendants and dimmers. ROC #365306.",
+      "h1": "Ceiling Fan & Light Fixture Installation"
+    },
+    "/services/exterior-electrical": {
+      "title": "Landscape & Outdoor Lighting Installation in Mesa, AZ | The Wire Guy",
+      "meta": "Landscape and outdoor lighting installation in Mesa and the Phoenix valley: low-voltage LED, path and uplights, patio power and outdoor outlets.",
+      "h1": "Landscape & Outdoor Lighting Installation"
+    }
+  },
+  "removed": {
+    "/blog-posts/whole-home-standby-generator-installation-phoenix": {
+      "redirect": "/services/panels",
+      "tier1": false,
+      "reason": "D15 (owner, 2026-10-19): \"remove generator\". Standby generator installation, which the business does not do."
+    },
+    "/blog-posts/generator-interlock-in-arizona": {
+      "redirect": "/services/panels",
+      "tier1": false,
+      "reason": "D15 (owner, 2026-10-19): \"remove generator\". Generator interlock installation, which the business does not do."
+    }
+  },
+  "added": {
+    "/services/whole-home-rewiring": {
+      "title": "Whole-Home Rewiring in Mesa, AZ | The Wire Guy",
+      "meta": "Whole-home rewiring in Mesa and the Phoenix valley: aluminum wiring replacement, AlumiConn repairs, old cloth wiring and two-prong outlets. ROC #365306.",
+      "h1": "Whole-Home Rewiring",
+      "reason": "New page (D18, owner 2026-10-19: the business offers whole-home rewiring). Targets \"whole house rewiring mesa az\" and \"aluminum wiring replacement\": the rewire cost guide has 2,312 impressions at 7.5 and \"gilbert whole home wiring\" 346 at 9.0 with no service page behind them (seo-audit PLAN section 4, page 2). Title and H1 follow the service pattern (\"{Service} in Mesa, AZ | The Wire Guy\", H1 the service)."
+    },
+    "/services/hot-tub-pool-spa-electrical": {
+      "title": "Hot Tub, Pool & Spa Electrical in Mesa, AZ | The Wire Guy",
+      "meta": "Hot tub, pool and spa electrical in Mesa and the Phoenix valley: dedicated circuits, GFCI, disconnects, bonding and pool pump wiring. ROC #365306.",
+      "h1": "Hot Tub, Pool & Spa Electrical",
+      "reason": "New page (D18, owner 2026-10-19: the business offers hot tub, pool and spa electrical). Targets \"hot tub electrical installation\", \"pool pump wiring\" and \"spa electrical\": the hot tub and pool posts have no service page behind them, and three competitors have one (seo-audit PLAN section 4, page 9)."
+    },
+    "/services/whole-house-surge-protection": {
+      "title": "Whole-House Surge Protector Installation in Mesa, AZ | The Wire Guy",
+      "meta": "Whole-house surge protector installation in Mesa and the Phoenix valley, mounted at your panel to guard your AC, appliances and pool pump. ROC #365306.",
+      "h1": "Whole-House Surge Protector Installation",
+      "reason": "New page (D18; surge protection is on the live /faq list of services). Targets \"whole house surge protector installation\": two surge posts exist with no service page behind them (seo-audit PLAN section 4, page 5). The title is 67 characters, the length of the two retitles below."
+    }
+  }
+}

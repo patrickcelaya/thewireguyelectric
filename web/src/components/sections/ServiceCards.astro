@@ -1,0 +1,45 @@
+---
+// Service cards for the CMS templates: services that have one of the company's own
+// photos (lib/brand-photos) as whole photo cards (ServiceTile), three to a row (round-5
+// mockups), and every other service as a row in a two-column index below them (name,
+// short description, arrow), so no stock photo is ever shown and no row is left with an
+// orphan card. Each card's title is its one link. Styles: styles/inner.css (.tiles3,
+// .tile--card) and styles/cms.css (.svc-rows).
+import type {ServiceSummary} from '../../lib/types'
+import {photoTiles} from '../../lib/cms'
+import ServiceTile from './ServiceTile.astro'
+
+interface Props {
+  services: ServiceSummary[]
+  /** Photo cards at most (rounded down to whole rows of three). */
+  maxCards?: number
+}
+
+const {services, maxCards = 6} = Astro.props
+// the page reads the same split (lib/cms.ts photoTiles), so its other photos never repeat a card's
+const {cards, rows} = photoTiles(services, maxCards)
+---
+
+{
+  cards.length > 0 && (
+    <ul class="tiles3" role="list">
+      {cards.map((s) => (
+        <ServiceTile href={`/services/${s.slug}`} title={s.name} text={s.shortDescription} image={s.mainImage} />
+      ))}
+    </ul>
+  )
+}
+{
+  rows.length > 0 && (
+    <ul class:list={['svc-rows', cards.length > 0 && 'svc-rows--after']} role="list">
+      {rows.map((s) => (
+        <li class="svc-row">
+          <h3>
+            <a href={`/services/${s.slug}`}>{s.name}</a>
+          </h3>{' '}
+          {s.shortDescription && <p>{s.shortDescription}</p>}
+        </li>
+      ))}
+    </ul>
+  )
+}

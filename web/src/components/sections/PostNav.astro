@@ -1,0 +1,51 @@
+---
+// Previous and next post by publish date, at the foot of a post, each with a small
+// thumbnail beside its title: the post's own owner-approved image, else a company photo
+// of its subject the page doesn't show yet (lib/cms.ts postThumb), else none. The
+// thumbnail repeats what the card's words say, so it sits in an aria-hidden frame (its
+// alt still describes the photo); a photo of people is framed on every head.
+// Styles: styles/post.css.
+import type {ImageRef, PostSummary} from '../../lib/types'
+import {facesOf} from '../../lib/brand-photos'
+import {facesInView} from '../../lib/cms'
+import SanityImage from '../ui/SanityImage.astro'
+
+interface Props {
+  /** The next older post. */
+  prev?: PostSummary
+  /** The next newer post. */
+  next?: PostSummary
+  prevThumb?: ImageRef
+  nextThumb?: ImageRef
+}
+
+const {prev, next, prevThumb, nextThumb} = Astro.props
+const focus = (image: ImageRef) => facesInView(facesOf(image))
+---
+
+{
+  (prev || next) && (
+    <nav class="wrap post-nav" aria-label="More posts">
+      {prev && (
+        <a class:list={['post-nav__a post-nav__a--prev', prevThumb && 'post-nav__a--thumb']} href={`/blog-posts/${prev.slug}`}>
+          {prevThumb && (
+            <span class="post-nav__thumb" aria-hidden="true">
+              <SanityImage image={prevThumb} widths={[144, 256, 384]} sizes="(max-width:699px) 88px, 128px" style={focus(prevThumb) && `object-position:${focus(prevThumb)}`} />
+            </span>
+          )}
+          <span class="post-nav__k">Previous post</span> <span class="post-nav__t">{prev.title}</span>
+        </a>
+      )}{' '}
+      {next && (
+        <a class:list={['post-nav__a post-nav__a--next', nextThumb && 'post-nav__a--thumb']} href={`/blog-posts/${next.slug}`}>
+          {nextThumb && (
+            <span class="post-nav__thumb" aria-hidden="true">
+              <SanityImage image={nextThumb} widths={[144, 256, 384]} sizes="(max-width:699px) 88px, 128px" style={focus(nextThumb) && `object-position:${focus(nextThumb)}`} />
+            </span>
+          )}
+          <span class="post-nav__k">Next post</span> <span class="post-nav__t">{next.title}</span>
+        </a>
+      )}
+    </nav>
+  )
+}

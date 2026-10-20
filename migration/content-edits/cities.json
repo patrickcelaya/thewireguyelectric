@@ -1,0 +1,839 @@
+{
+  "about": "The 10 city bodies and the city template.",
+  "source": "slop-cities/verified.json of the 2026-10-17 copy review: researched, then adversarially verified. Verdict accept, or amend (new_text is the amended text); no edit was rejected.",
+  "edits": [
+    {
+      "id": "slop-cities-001",
+      "url": "/locations/ahwatukee",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "68cf0da6-26c4-4d22-ab98-65a6b5e0e1ae",
+        "field": "body[1]"
+      },
+      "old_text": "Finding reliable electrical services in Ahwatukee, Arizona, has never been easier. The Wire Guy Electric provides licensed residential and commercial electrical work throughout Ahwatukee and surrounding communities. Offering solutions for electrical panel upgrades, EV charger installations, lighting design, and emergency repairs, the team ensures homes and businesses stay safe, efficient, and up to code.",
+      "new_text": "The Wire Guy Electric does licensed residential and commercial electrical work throughout Ahwatukee, Arizona, and the surrounding communities: electrical panel upgrades, EV charger installations, lighting design, and electrical repairs, done to code.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k002. Filler opener (\"has never been easier\", an unsupported claim), \"offering solutions\", padding triplet (\"safe, efficient, and up to code\"). Keeps the service keywords, \"Ahwatukee, Arizona\" and \"up to code\" (as \"done to code\"). \"emergency repairs\" becomes \"electrical repairs\": owner rule \"no emergencies line\", and siteSettings.emergencyService is unset (the availability note never promises emergency service). Inside span k003 (plain text, no link)."
+    },
+    {
+      "id": "slop-cities-002",
+      "url": "/locations/ahwatukee",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "68cf0da6-26c4-4d22-ab98-65a6b5e0e1ae",
+        "field": "body[1]"
+      },
+      "old_text": "Located in the southern part of Phoenix, Ahwatukee is known for its proximity to South Mountain Park and Preserve — the largest municipal park in the country.",
+      "new_text": "Ahwatukee sits in the southern part of Phoenix, next to South Mountain Park and Preserve, one of the largest municipal parks in the country.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k002. Unsupported superlative: the City of Phoenix calls South Mountain Park/Preserve \"one of the largest municipally managed parks in the nation\" (phoenix.gov parks pages), not the largest; corrected to that wording. \"is known for its proximity to\" tightened. Inside span k003."
+    },
+    {
+      "id": "slop-cities-003",
+      "url": "/locations/ahwatukee",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "68cf0da6-26c4-4d22-ab98-65a6b5e0e1ae",
+        "field": "body[1]"
+      },
+      "old_text": "Many residential communities near Desert Foothills Park, Pecos Park, and Ahwatukee Country Club benefit from prompt and professional electrical services delivered by The Wire Guy Electric. Whether a home is located near the Ahwatukee Farmers Market or a business operates along East Chandler Boulevard, access to dependable electricians remains essential.",
+      "new_text": "We serve the neighborhoods around Desert Foothills Park, Pecos Park, and Ahwatukee Country Club, and homes and businesses near the Ahwatukee Farmers Market and along East Chandler Boulevard.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k002. \"benefit from prompt and professional electrical services delivered by\" filler, \"Whether ... or ...\" opener, closing moral (\"access to dependable electricians remains essential\"). Every landmark kept. Inside span k003."
+    },
+    {
+      "id": "slop-cities-004",
+      "url": "/locations/ahwatukee",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "68cf0da6-26c4-4d22-ab98-65a6b5e0e1ae",
+        "field": "body[1]"
+      },
+      "old_text": "Electrical systems must be maintained and updated to meet modern energy demands. As Ahwatukee neighborhoods continue to grow and develop, the need for experienced, licensed electricians remains a priority. The Wire Guy Electric is proud to offer services that align with the city’s commitment to sustainability and smart home integration.",
+      "new_text": "Power here comes from SRP, and because Ahwatukee is a Phoenix urban village, the City of Phoenix issues the permits; we handle the permit and the inspection for you.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Block _key k002. Swap-test paragraph with no facts (generic \"must be maintained\", growth filler, an invented \"city’s commitment to sustainability and smart home integration\": Ahwatukee is not a city). Rewritten from Ahwatukee’s own sourced permitNotes (SRP; one of Phoenix’s 15 urban villages, so City of Phoenix PDD issues permits) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Inside span k003. Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
+    },
+    {
+      "id": "slop-cities-005",
+      "url": "/locations/ahwatukee",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "68cf0da6-26c4-4d22-ab98-65a6b5e0e1ae",
+        "field": "body[1]"
+      },
+      "old_text": "Those seeking reliable electrical solutions in Ahwatukee can trust The Wire Guy Electric for quality service, attention to detail, and transparent pricing. From installations to emergency repairs, every project is completed with precision and professionalism.",
+      "new_text": "Pricing is flat-rate, with no hidden fees.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k002. \"can trust ... for\" stock phrase, padding triplet, closing moral (\"completed with precision and professionalism\"), second \"emergency repairs\" (owner rule, see the intro edit). The one real claim, transparent pricing, is kept concretely from Site settings valueProps (\"flat-rate pricing ... no hidden fees\", unchanged by the slop-pages edit to that card). Inside span k003."
+    },
+    {
+      "id": "slop-cities-006",
+      "url": "/locations/ahwatukee",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "68cf0da6-26c4-4d22-ab98-65a6b5e0e1ae",
+        "field": "body[1]"
+      },
+      "old_text": "Licensed and insured, The Wire Guy Electric is committed to serving the greater Ahwatukee community with electrical services designed to meet residential and commercial needs.\n\n",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k002. \"is committed to serving the greater ... community\" closer that restates the intro. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed. Deletes the sentence and its paragraph break so the bold CTA still follows the neighbourhood list after one blank line. Inside span k005 (plain text); the neighbourhood lines before it are untouched."
+    },
+    {
+      "id": "slop-cities-007",
+      "url": "/locations/apache-junction",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0681b633-cb09-4396-aa23-6890e47c6bc3",
+        "field": "body[1]"
+      },
+      "old_text": "Trusted electrical services are essential for the homes and businesses of Apache Junction, Arizona. The Wire Guy Electric offers licensed residential and commercial electrical work across Apache Junction, specializing in panel upgrades, EV charger installations, lighting improvements, and general electrical repairs.",
+      "new_text": "The Wire Guy Electric handles licensed residential and commercial electrical work across Apache Junction, Arizona, including panel upgrades, EV charger installations, lighting improvements, and general electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Filler opener that passes the swap test (\"... are essential for the homes and businesses of\"). Service keywords and \"Apache Junction, Arizona\" kept."
+    },
+    {
+      "id": "slop-cities-008",
+      "url": "/locations/apache-junction",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0681b633-cb09-4396-aa23-6890e47c6bc3",
+        "field": "body[2]"
+      },
+      "old_text": "Situated at the base of the Superstition Mountains, Apache Junction is known for its scenic desert landscapes, outdoor recreation, and attractions like Lost Dutchman State Park and the Apache Trail.",
+      "new_text": "Apache Junction sits at the base of the Superstition Mountains, near Lost Dutchman State Park and the Apache Trail.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. Brochure padding (\"scenic desert landscapes, outdoor recreation\"). The location and both landmarks kept."
+    },
+    {
+      "id": "slop-cities-009",
+      "url": "/locations/apache-junction",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0681b633-cb09-4396-aa23-6890e47c6bc3",
+        "field": "body[2]"
+      },
+      "old_text": "Homes and businesses near Ironwood Drive, Old West Highway, and Goldfield Ghost Town rely on professional electricians to keep their systems safe, reliable, and modern. The Wire Guy Electric proudly serves both established neighborhoods and new developments throughout Apache Junction.",
+      "new_text": "We work on homes and businesses near Ironwood Drive, Old West Highway, and Goldfield Ghost Town, in established neighborhoods and new developments.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. Swap-test filler (\"rely on professional electricians to keep their systems ...\") with a padding triplet (\"safe, reliable, and modern\"), \"proudly serves\". Landmarks and the established/new point kept."
+    },
+    {
+      "id": "slop-cities-010",
+      "url": "/locations/apache-junction",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0681b633-cb09-4396-aa23-6890e47c6bc3",
+        "field": "body[3]"
+      },
+      "old_text": "As Apache Junction continues to attract residents and visitors alike, the demand for skilled electrical services remains strong. The Wire Guy Electric is committed to providing dependable workmanship, energy-efficient solutions, and prompt service to meet the needs of this growing community.",
+      "new_text": "Apache Junction’s utility poles and power lines are owned by SRP. Electrical permits come from the city’s Division of Building Safety and Inspection, which takes applications online through MyGovernmentOnline (MGO), and we pull the permit and schedule the inspection for you.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, with an \"is committed to providing\" triplet and no facts. Rewritten from Apache Junction’s own sourced permitNotes (SRP owns the poles and lines; the Division of Building Safety and Inspection; MGO) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\""
+    },
+    {
+      "id": "slop-cities-011",
+      "url": "/locations/apache-junction",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0681b633-cb09-4396-aa23-6890e47c6bc3",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near Prospector Park, Superstition Mountain Museum, or Gold Canyon Golf Resort, customers in Apache Junction can trust The Wire Guy Electric for professional and reliable electrical service.",
+      "new_text": "We also work near Prospector Park, the Superstition Mountain Museum, and Gold Canyon Golf Resort.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener and \"can trust ... for professional and reliable\" stock phrase. All three landmarks kept, with \"near\" (local-facts.md notes Gold Canyon Golf Resort is in Gold Canyon, next to the city)."
+    },
+    {
+      "id": "slop-cities-012",
+      "url": "/locations/apache-junction",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0681b633-cb09-4396-aa23-6890e47c6bc3",
+        "field": "body[11]"
+      },
+      "old_text": "Licensed, insured, and dedicated to quality, The Wire Guy Electric proudly supports the Apache Junction community with expert electrical services.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Licensed, insured, and dedicated to quality, ... proudly supports the ... community with expert electrical services\": closer that restates the intro. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-013",
+      "url": "/locations/chandler",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "45991a6e-7d3c-4cfe-87cc-66241808fb54",
+        "field": "body[1]"
+      },
+      "old_text": "Reliable electrical services are essential for the growing homes and businesses of Chandler, Arizona. The Wire Guy Electric offers licensed residential and commercial electrical services throughout Chandler, specializing in panel upgrades, EV charger installations, lighting improvements, and general electrical repairs.",
+      "new_text": "In Chandler, Arizona, The Wire Guy Electric does licensed residential and commercial electrical work: panel upgrades, EV charger installations, lighting improvements, and general electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Filler opener that passes the swap test (\"... are essential for the growing homes and businesses of\"). Service keywords, \"residential and commercial\" (the page earns \"chandler commercial electrician\" impressions) and \"Chandler, Arizona\" kept."
+    },
+    {
+      "id": "slop-cities-014",
+      "url": "/locations/chandler",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "45991a6e-7d3c-4cfe-87cc-66241808fb54",
+        "field": "body[2]"
+      },
+      "old_text": "Located southeast of Phoenix, Chandler is known for its thriving tech industry, family-friendly neighborhoods, and vibrant downtown. Properties near Chandler Fashion Center, Tumbleweed Park, and Ocotillo Golf Club depend on skilled electricians to maintain safe, efficient, and modern electrical systems. The Wire Guy Electric proudly serves Chandler’s established communities and new developments with professional service and attention to detail.",
+      "new_text": "Chandler sits southeast of Phoenix and is known for its tech industry. We serve established neighborhoods and new developments near Chandler Fashion Center, Tumbleweed Park, and Ocotillo Golf Club.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. \"thriving\", \"vibrant\", brochure triplet; swap-test filler (\"depend on skilled electricians to maintain safe, efficient, and modern ...\"); \"proudly serves ... with professional service and attention to detail\". Location, tech industry, the three landmarks and the established/new point kept (downtown stays in body[4] and in the neighbourhood list)."
+    },
+    {
+      "id": "slop-cities-015",
+      "url": "/locations/chandler",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "45991a6e-7d3c-4cfe-87cc-66241808fb54",
+        "field": "body[3]"
+      },
+      "old_text": "As Chandler continues to grow with new residential neighborhoods and commercial centers, the need for experienced, dependable electricians rises. The Wire Guy Electric is committed to delivering top-tier service, energy-efficient solutions, and code-compliant workmanship across the city.",
+      "new_text": "Chandler homes are mostly on SRP, with some on APS, and the city’s Development Services Department issues the permits; we handle the permit and the inspection for you.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"top-tier\", \"is committed to delivering\" triplet. Rewritten from Chandler’s own sourced permitNotes (SRP/APS split; Development Services; the permit manual’s panel schedule and load calculations) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" \"code-compliant workmanship\" is carried by \"make sure everything passes\". Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
+    },
+    {
+      "id": "slop-cities-016",
+      "url": "/locations/chandler",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "45991a6e-7d3c-4cfe-87cc-66241808fb54",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near Veterans Oasis Park, the Price Corridor, or the historic downtown Chandler area, customers throughout Chandler can rely on The Wire Guy Electric for all their residential and commercial electrical needs.",
+      "new_text": "We also take jobs near Veterans Oasis Park, along the Price Corridor, and in historic downtown Chandler.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener and \"can rely on ... for all their ... needs\" stock phrase. All three places kept."
+    },
+    {
+      "id": "slop-cities-017",
+      "url": "/locations/chandler",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "45991a6e-7d3c-4cfe-87cc-66241808fb54",
+        "field": "body[11]"
+      },
+      "old_text": "Fully licensed and insured, The Wire Guy Electric proudly serves Chandler with expert electrical solutions tailored to the community’s evolving needs.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Fully licensed and insured, ... proudly serves Chandler with expert electrical solutions tailored to the community’s evolving needs\": closer that restates the intro. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed."
+    },
+    {
+      "id": "slop-cities-018",
+      "url": "/locations/chandler",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "45991a6e-7d3c-4cfe-87cc-66241808fb54",
+        "field": "body[12]"
+      },
+      "old_text": " for professional electrical service in Chandler, AZ.",
+      "new_text": " for electrical service in Chandler, AZ.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00q. Stock adjective in the CTA (\"professional\"). Only the plain span after the link is edited; the linked words \"Contact The Wire Guy Electric today\" (→ /) are untouched."
+    },
+    {
+      "id": "slop-cities-019",
+      "url": "/locations/fountain-hills",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "03b3d8e8-105f-49fb-8840-043e135f547c",
+        "field": "body[1]"
+      },
+      "old_text": "Electrical projects in Fountain Hills require the expertise of a licensed, local professional. The Wire Guy Electric proudly provides residential and commercial electrical services throughout Fountain Hills and nearby areas. Services include electrical panel upgrades, EV charger installations, lighting improvements, and comprehensive electrical repairs, delivered with a focus on safety and precision.",
+      "new_text": "The Wire Guy Electric does licensed residential and commercial electrical work throughout Fountain Hills and nearby areas: electrical panel upgrades, EV charger installations, lighting improvements, and electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Swap-test opener (\"require the expertise of a licensed, local professional\"), \"proudly provides\", \"comprehensive\", closing filler (\"delivered with a focus on safety and precision\"). Service keywords, \"licensed\" and \"residential and commercial\" kept."
+    },
+    {
+      "id": "slop-cities-020",
+      "url": "/locations/fountain-hills",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "03b3d8e8-105f-49fb-8840-043e135f547c",
+        "field": "body[2]"
+      },
+      "old_text": "Nestled east of Scottsdale and bordered by the McDowell Mountain Regional Park, Fountain Hills is known for its scenic beauty and the iconic Fountain Park, home to one of the world’s tallest fountains. Homes and businesses near Saguaro Boulevard, Palisades Boulevard, and Eagle Mountain Golf Club benefit from responsive and professional electrical service provided by The Wire Guy Electric.",
+      "new_text": "Fountain Hills sits east of Scottsdale, bordered by McDowell Mountain Regional Park, and is known for Fountain Park, home to one of the world’s tallest fountains. We work on homes and businesses near Saguaro Boulevard, Palisades Boulevard, and Eagle Mountain Golf Club.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. \"Nestled\", \"scenic beauty\", \"iconic\", \"benefit from responsive and professional electrical service provided by\". Location, the park, the fountain fact and the three places kept."
+    },
+    {
+      "id": "slop-cities-021",
+      "url": "/locations/fountain-hills",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "03b3d8e8-105f-49fb-8840-043e135f547c",
+        "field": "body[3]"
+      },
+      "old_text": "As Fountain Hills continues to grow with new residential developments and commercial spaces, the demand for dependable electricians increases. The Wire Guy Electric remains committed to supporting Fountain Hills’ homeowners and businesses with trusted electrical solutions tailored to the area’s unique needs.",
+      "new_text": "Fountain Hills is on SRP, and the Town issues permits through TOPPS, its online system; we handle the permit and the inspection for you.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test (\"remains committed to\", \"trusted electrical solutions tailored to the area’s unique needs\"), no facts. Rewritten from Fountain Hills’ own sourced permitNotes (SRP; Building Safety Division; TOPPS) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
+    },
+    {
+      "id": "slop-cities-022",
+      "url": "/locations/fountain-hills",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "03b3d8e8-105f-49fb-8840-043e135f547c",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near SunRidge Canyon Golf Club, Desert Botanical Garden, or the Fountain Hills Artists’ Gallery, customers can rely on The Wire Guy Electric for prompt service, quality craftsmanship, and transparent pricing.",
+      "new_text": "We also cover the area around SunRidge Canyon Golf Club and the Fountain Hills Artists’ Gallery.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener, \"can rely on ... for\" padding triplet. Drops \"Desert Botanical Garden\": docs/research/local-facts.md (\"Confirm with owner\" 5) flags it as in Phoenix’s Papago Park, not near Fountain Hills, so it is a wrong local fact, not an invented one being removed. Transparent pricing kept concretely from Site settings valueProps (\"flat-rate pricing ... no hidden fees\")."
+    },
+    {
+      "id": "slop-cities-023",
+      "url": "/locations/fountain-hills",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "03b3d8e8-105f-49fb-8840-043e135f547c",
+        "field": "body[11]"
+      },
+      "old_text": "Licensed, insured, and highly reviewed, The Wire Guy Electric is the trusted name for electrical services across Fountain Hills, AZ.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Licensed, insured, and highly reviewed, The Wire Guy Electric is the trusted name for ...\": unsupported superlative closer. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed. \"Highly reviewed\" is shown as the 5.0 Google rating in the same trust card and the reviews section.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-024",
+      "url": "/locations/fountain-hills",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "03b3d8e8-105f-49fb-8840-043e135f547c",
+        "field": "body[12]"
+      },
+      "old_text": " with The Wire Guy Electric for expert electrical service in Fountain Hills.",
+      "new_text": " with The Wire Guy Electric for electrical service in Fountain Hills.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00q. Stock adjective in the CTA (\"expert\"). Only the plain span after the link; the linked words \"Schedule a consultation today\" (→ /) are untouched."
+    },
+    {
+      "id": "slop-cities-025",
+      "url": "/locations/gilbert",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "20b13c1e-600a-4804-8ac7-eb5f96ca64d6",
+        "field": "body[1]"
+      },
+      "old_text": "Dependable electrical services are essential for the fast-growing community of Gilbert, Arizona. The Wire Guy Electric provides licensed residential and commercial electrical solutions throughout Gilbert, including panel upgrades, EV charger installations, lighting enhancements, and complete electrical repairs.",
+      "new_text": "The Wire Guy Electric does licensed residential and commercial electrical work across Gilbert, Arizona: panel upgrades, EV charger installations, lighting, and electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Filler opener that passes the swap test (\"... are essential for the fast-growing community of\"), \"solutions\", \"enhancements\", \"complete\". Service keywords, \"residential and commercial\" (the page earns \"commercial electrician gilbert\" impressions) and \"Gilbert, Arizona\" kept."
+    },
+    {
+      "id": "slop-cities-026",
+      "url": "/locations/gilbert",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "20b13c1e-600a-4804-8ac7-eb5f96ca64d6",
+        "field": "body[2]"
+      },
+      "old_text": "Once known as the “Hay Shipping Capital of the World,” Gilbert has evolved into a vibrant suburban town known for its family-friendly neighborhoods, thriving downtown, and outdoor spaces like Freestone Park and the Riparian Preserve at Water Ranch. Homes and businesses near SanTan Village, Agritopia, and the Heritage District depend on skilled electricians to ensure their electrical systems are modern, efficient, and safe. The Wire Guy Electric proudly serves Gilbert’s diverse communities with trusted, professional service.",
+      "new_text": "Gilbert was once known as the “Hay Shipping Capital of the World.” We serve homes and businesses near SanTan Village, Agritopia, and the Heritage District, and around Freestone Park and the Riparian Preserve at Water Ranch.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Block _key k006. \"has evolved into\", \"vibrant\", \"thriving\", swap-test filler with a padding triplet (\"depend on skilled electricians to ensure ... modern, efficient, and safe\"), \"proudly serves ... with trusted, professional service\". The hay-shipping history, the parks and the three places kept."
+    },
+    {
+      "id": "slop-cities-027",
+      "url": "/locations/gilbert",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "20b13c1e-600a-4804-8ac7-eb5f96ca64d6",
+        "field": "body[3]"
+      },
+      "old_text": "As Gilbert continues to attract new residents and businesses, the need for reliable, licensed electricians grows. The Wire Guy Electric is committed to delivering expert service, energy-efficient solutions, and quality workmanship that meets the needs of Gilbert’s dynamic growth.",
+      "new_text": "Most of Gilbert is on SRP, with a small APS area, and the Town of Gilbert issues permits; we handle the permit and the inspection for you.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"is committed to delivering\" triplet, \"dynamic growth\", no facts. Rewritten from Gilbert’s own sourced permitNotes (SRP/APS pocket; Town Development Services) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
+    },
+    {
+      "id": "slop-cities-028",
+      "url": "/locations/gilbert",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "20b13c1e-600a-4804-8ac7-eb5f96ca64d6",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near Discovery Park, Gilbert Regional Park, or along Val Vista Drive, customers across Gilbert can trust The Wire Guy Electric for their residential and commercial electrical needs.",
+      "new_text": "We work all over Gilbert, including near Discovery Park, Gilbert Regional Park, and along Val Vista Drive.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener and \"can trust ... for their ... needs\" stock phrase. All three places kept."
+    },
+    {
+      "id": "slop-cities-029",
+      "url": "/locations/gilbert",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "20b13c1e-600a-4804-8ac7-eb5f96ca64d6",
+        "field": "body[11]"
+      },
+      "old_text": "Licensed, insured, and experienced, The Wire Guy Electric is proud to support the Gilbert community with dependable electrical services for homes and businesses alike.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Licensed, insured, and experienced, ... is proud to support the Gilbert community with dependable electrical services for homes and businesses alike\": closer that restates the intro. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-030",
+      "url": "/locations/phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e1d4ac2d-1827-4e86-a36c-c918bb65ca9d",
+        "field": "body[1]"
+      },
+      "old_text": "Professional electrical services are essential for homes and businesses across Phoenix, Arizona. The Wire Guy Electric proudly offers licensed residential and commercial electrical solutions throughout Phoenix, including panel upgrades, EV charger installations, lighting enhancements, and complete electrical repairs.",
+      "new_text": "The Wire Guy Electric does licensed residential and commercial electrical work across Phoenix, Arizona: panel upgrades, EV charger installations, lighting, and electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Filler opener that passes the swap test (\"... are essential for homes and businesses across\"), \"proudly offers\", \"solutions\", \"complete\". Service keywords, \"residential\" (the page earns \"residential electricians phoenix\" impressions) and \"Phoenix, Arizona\" kept."
+    },
+    {
+      "id": "slop-cities-031",
+      "url": "/locations/phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e1d4ac2d-1827-4e86-a36c-c918bb65ca9d",
+        "field": "body[2]"
+      },
+      "old_text": "As Arizona’s capital and largest city, Phoenix is known for its sprawling metro area, iconic landmarks like Camelback Mountain, and cultural hubs such as the Heard Museum and Roosevelt Row Arts District. Homes and businesses near Downtown Phoenix, Arcadia, and the Biltmore District rely on experienced electricians to ensure their electrical systems are safe, efficient, and up to modern standards. The Wire Guy Electric provides expert service to both historic neighborhoods and new developments throughout the city.",
+      "new_text": "Phoenix is Arizona’s capital and largest city, home to Camelback Mountain, the Heard Museum, and the Roosevelt Row Arts District. We work in Downtown Phoenix, Arcadia, and the Biltmore District, in historic neighborhoods and new developments alike.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. \"sprawling\", \"iconic landmarks\", \"cultural hubs\", swap-test filler with a padding triplet (\"rely on experienced electricians to ensure ... safe, efficient, and up to modern standards\"), \"provides expert service\". Capital/largest-city fact, all landmarks and the historic/new point kept."
+    },
+    {
+      "id": "slop-cities-032",
+      "url": "/locations/phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e1d4ac2d-1827-4e86-a36c-c918bb65ca9d",
+        "field": "body[3]"
+      },
+      "old_text": "With Phoenix’s rapid growth in residential communities, tech centers, and commercial hubs, the demand for reliable, licensed electricians continues to rise. The Wire Guy Electric remains committed to delivering top-quality workmanship, energy-efficient solutions, and dependable service across the city.",
+      "new_text": "Phoenix is split between APS, which serves much of central and north Phoenix, and SRP, which serves other parts of the city, including Ahwatukee. Electrical permits come from the City of Phoenix Planning and Development Department, which can permit a home EV charger over the counter when the existing service is 200 amps single-phase or less and needs no upgrade. We pull the permit and schedule the inspection for you.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"remains committed to delivering top-quality ...\" triplet, no facts. Rewritten from Phoenix’s own sourced permitNotes (APS/SRP split; PDD; the over-the-counter EV charger rule at 200 amps single-phase) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\""
+    },
+    {
+      "id": "slop-cities-033",
+      "url": "/locations/phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e1d4ac2d-1827-4e86-a36c-c918bb65ca9d",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near Desert Ridge Marketplace, South Mountain Park, or Central Avenue Corridor, Phoenix residents and business owners can trust The Wire Guy Electric for professional and timely electrical service.",
+      "new_text": "Our Phoenix work also takes us near Desert Ridge Marketplace, South Mountain Park, and the Central Avenue Corridor.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener and \"can trust ... for professional and timely\" stock phrase. All three places kept."
+    },
+    {
+      "id": "slop-cities-034",
+      "url": "/locations/phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e1d4ac2d-1827-4e86-a36c-c918bb65ca9d",
+        "field": "body[11]"
+      },
+      "old_text": "Fully licensed, insured, and highly reviewed, The Wire Guy Electric proudly supports the greater Phoenix area with trusted electrical solutions for homes and businesses.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Fully licensed, insured, and highly reviewed, ... proudly supports the greater Phoenix area with trusted electrical solutions\": closer that restates the intro. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed. \"Highly reviewed\" is the 5.0 Google rating shown in the same trust card.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-035",
+      "url": "/locations/phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "e1d4ac2d-1827-4e86-a36c-c918bb65ca9d",
+        "field": "body[12]"
+      },
+      "old_text": " for reliable electrical services in Phoenix, AZ.",
+      "new_text": " for electrical services in Phoenix, AZ.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00q. Stock adjective in the CTA (\"reliable\"). Only the plain span after the link; the linked words \"Contact The Wire Guy Electric today\" (→ /) are untouched."
+    },
+    {
+      "id": "slop-cities-036",
+      "url": "/locations/queen-creek",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a78a917c-e053-44b2-af40-f950503c29c1",
+        "field": "body[1]"
+      },
+      "old_text": "Professional electrical services are essential for the fast-growing community of Queen Creek, Arizona. The Wire Guy Electric delivers licensed residential and commercial electrical solutions throughout Queen Creek, including panel upgrades, EV charger installations, lighting enhancements, and complete electrical repairs.",
+      "new_text": "The Wire Guy Electric is a licensed residential and commercial electrician working throughout Queen Creek, Arizona, on panel upgrades, EV charger installations, lighting, and electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Filler opener that passes the swap test (\"... are essential for the fast-growing community of\"), \"delivers ... solutions\", \"enhancements\", \"complete\". Service keywords and \"Queen Creek, Arizona\" kept; \"residential ... electrician\" matches the page’s \"residential electrician queen creek\" impressions."
+    },
+    {
+      "id": "slop-cities-037",
+      "url": "/locations/queen-creek",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a78a917c-e053-44b2-af40-f950503c29c1",
+        "field": "body[2]"
+      },
+      "old_text": "Situated southeast of Phoenix, Queen Creek is known for its rural charm, equestrian culture, and landmarks like Schnepf Farms and the Queen Creek Olive Mill. Homes and businesses near Ellsworth Road, Queen Creek Marketplace, and Mansel Carter Oasis Park rely on skilled electricians to maintain safe and modern electrical systems. The Wire Guy Electric is proud to support the evolving needs of Queen Creek residents and businesses as the community continues to expand.",
+      "new_text": "Queen Creek, southeast of Phoenix, is known for its equestrian culture and for Schnepf Farms and the Queen Creek Olive Mill. We serve homes and businesses near Ellsworth Road, Queen Creek Marketplace, and Mansel Carter Oasis Park.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. \"rural charm\", swap-test filler (\"rely on skilled electricians to maintain safe and modern ...\"), \"is proud to support the evolving needs ... as the community continues to expand\". Location, equestrian culture, both landmarks and the three places kept."
+    },
+    {
+      "id": "slop-cities-038",
+      "url": "/locations/queen-creek",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a78a917c-e053-44b2-af40-f950503c29c1",
+        "field": "body[3]"
+      },
+      "old_text": "With new residential neighborhoods and commercial developments appearing across Queen Creek, the demand for experienced electricians is steadily increasing. The Wire Guy Electric is committed to providing reliable service, energy-efficient solutions, and superior workmanship to support the town’s growing infrastructure.",
+      "new_text": "Queen Creek lies in both Maricopa and Pinal counties, and the Town lists SRP as its electric utility. Electrical permits come from the Town’s Development Services Department (Building Safety Division) through its Development Nexus portal; we pull the permit and schedule the inspection for you.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"is committed to providing\" triplet, \"superior\" with no evidence, no facts. Rewritten from Queen Creek’s own sourced permitNotes (two counties; SRP; Building Safety Division; Development Nexus) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\""
+    },
+    {
+      "id": "slop-cities-039",
+      "url": "/locations/queen-creek",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a78a917c-e053-44b2-af40-f950503c29c1",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near Horseshoe Park & Equestrian Centre, Desert Mountain Park, or downtown Queen Creek, customers trust The Wire Guy Electric for professional and dependable electrical service.",
+      "new_text": "We also work around Horseshoe Park & Equestrian Centre, Desert Mountain Park, and downtown Queen Creek.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener and \"customers trust ... for professional and dependable\" stock phrase. All three places kept."
+    },
+    {
+      "id": "slop-cities-040",
+      "url": "/locations/queen-creek",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "a78a917c-e053-44b2-af40-f950503c29c1",
+        "field": "body[11]"
+      },
+      "old_text": "Licensed, insured, and highly rated, The Wire Guy Electric proudly serves the Queen Creek community with quality electrical solutions for homes and businesses.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Licensed, insured, and highly rated, ... proudly serves the Queen Creek community with quality electrical solutions\": closer that restates the intro. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed. \"Highly rated\" is the 5.0 Google rating shown in the same trust card.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-041",
+      "url": "/locations/san-tan-valley",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "404cd96c-bcab-4cb0-a83c-aef8a375d43e",
+        "field": "body[1]"
+      },
+      "old_text": "Dependable electrical services are essential for the growing communities of San Tan Valley, Arizona. The Wire Guy Electric offers licensed residential and commercial electrical solutions, including panel upgrades, EV charger installations, lighting improvements, and general electrical repairs throughout San Tan Valley.",
+      "new_text": "The Wire Guy Electric does licensed residential and commercial electrical work throughout San Tan Valley, Arizona, including panel upgrades, EV charger installations, lighting improvements, and general electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Filler opener that passes the swap test (\"... are essential for the growing communities of\"), \"solutions\". Service keywords and \"San Tan Valley, Arizona\" kept."
+    },
+    {
+      "id": "slop-cities-042",
+      "url": "/locations/san-tan-valley",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "404cd96c-bcab-4cb0-a83c-aef8a375d43e",
+        "field": "body[2]"
+      },
+      "old_text": "Located in northern Pinal County, San Tan Valley is a rapidly expanding area known for its family-friendly neighborhoods and proximity to San Tan Mountain Regional Park. Homes and businesses near Johnson Ranch, Copper Basin, and the Village at San Tan Heights rely on professional electricians to keep their systems safe, efficient, and modern. The Wire Guy Electric is proud to support San Tan Valley’s residents as the community continues to grow and thrive.",
+      "new_text": "San Tan Valley sits in northern Pinal County, near San Tan Mountain Regional Park. We work on homes and businesses near Johnson Ranch, Copper Basin, and the Village at San Tan Heights.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. Growth filler (\"rapidly expanding area\", \"continues to grow and thrive\"), swap-test filler with a padding triplet (\"rely on professional electricians to keep their systems safe, efficient, and modern\"), \"is proud to support\". Location, the park and the three places kept (\"San Tan Heights\" also stays in the neighbourhood list, the local-facts evidence)."
+    },
+    {
+      "id": "slop-cities-043",
+      "url": "/locations/san-tan-valley",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "404cd96c-bcab-4cb0-a83c-aef8a375d43e",
+        "field": "body[3]"
+      },
+      "old_text": "As new residential developments and commercial centers expand across San Tan Valley, reliable electrical services remain a top priority. The Wire Guy Electric provides services tailored to the unique needs of the area’s homes and businesses, with a focus on safety, energy efficiency, and quality workmanship.",
+      "new_text": "San Tan Valley is on SRP, and during its transition to a town, Pinal County has handled permits and inspections; we handle the permit and the inspection for you.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test (\"remain a top priority\", \"tailored to the unique needs\", padding triplet), no facts. Rewritten from San Tan Valley’s own sourced permitNotes (2025 incorporation; Pinal County Building Safety under the IGA; SRP) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" Worded like permitNotes (\"has handled ... during the transition\") so it stays true when the IGA ends 2026-12-31; recheck it with the permit note after January 2027. Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
+    },
+    {
+      "id": "slop-cities-044",
+      "url": "/locations/san-tan-valley",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "404cd96c-bcab-4cb0-a83c-aef8a375d43e",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near San Tan Foothills High School, Encanterra Country Club, or Schnepf Farms, San Tan Valley residents and business owners can trust The Wire Guy Electric for professional and timely service.",
+      "new_text": "We also cover the area around San Tan Foothills High School, Encanterra Country Club, and Schnepf Farms.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener and \"can trust ... for professional and timely\" stock phrase. All three places kept, as \"the area around\" (local-facts.md notes Schnepf Farms is in Queen Creek)."
+    },
+    {
+      "id": "slop-cities-045",
+      "url": "/locations/san-tan-valley",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "404cd96c-bcab-4cb0-a83c-aef8a375d43e",
+        "field": "body[11]"
+      },
+      "old_text": "Licensed, insured, and dedicated to quality, The Wire Guy Electric proudly serves San Tan Valley with expert electrical services for both residential and commercial projects.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Licensed, insured, and dedicated to quality, ... proudly serves San Tan Valley with expert electrical services\": closer that restates the intro. Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-046",
+      "url": "/locations/san-tan-valley",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "404cd96c-bcab-4cb0-a83c-aef8a375d43e",
+        "field": "body[12]"
+      },
+      "old_text": " for reliable electrical service in San Tan Valley, AZ.",
+      "new_text": " for electrical service in San Tan Valley, AZ.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00q. Stock adjective in the CTA (\"reliable\"). Only the plain span after the link; the linked words \"Contact The Wire Guy Electric today\" (→ /) are untouched."
+    },
+    {
+      "id": "slop-cities-047",
+      "url": "/locations/scottsdale",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "2f563c7d-8748-4c6d-9092-24e0ab8c8349",
+        "field": "body[1]"
+      },
+      "old_text": "Quality electrical services in Scottsdale are essential for maintaining safe, energy-efficient homes and businesses. The Wire Guy Electric provides licensed residential and commercial electrical work across Scottsdale and its surrounding areas, offering services such as electrical panel upgrades, EV charger installations, smart home wiring, and lighting enhancements.",
+      "new_text": "The Wire Guy Electric does licensed residential and commercial electrical work across Scottsdale and the surrounding areas, including electrical panel upgrades, EV charger installations, smart home wiring, and lighting.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k003. Filler opener that passes the swap test (\"... are essential for maintaining safe, energy-efficient homes and businesses\"), \"offering services such as\", \"enhancements\". Every service named (incl. smart home wiring) kept."
+    },
+    {
+      "id": "slop-cities-048",
+      "url": "/locations/scottsdale",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "2f563c7d-8748-4c6d-9092-24e0ab8c8349",
+        "field": "body[2]"
+      },
+      "old_text": "Known for its upscale communities, luxury resorts, and vibrant arts scene, Scottsdale is a city that blends modern living with rich Southwestern culture. Properties near Old Town Scottsdale, Kierland Commons, and McCormick Ranch rely on skilled electricians to maintain high standards of safety and functionality. The Wire Guy Electric proudly serves homes and businesses throughout Scottsdale, from the bustling shops of Fashion Square to the serene surroundings of the McDowell Sonoran Preserve.",
+      "new_text": "Scottsdale is known for its resorts and its arts scene. We work on homes and businesses throughout the city, from Old Town Scottsdale, Kierland Commons, and McCormick Ranch to Fashion Square and the McDowell Sonoran Preserve.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k005. \"upscale\", \"luxury\", \"vibrant\", \"blends modern living with rich Southwestern culture\", swap-test filler (\"rely on skilled electricians to maintain high standards of safety and functionality\"), \"proudly serves\", \"bustling\", \"serene surroundings\". Resorts, arts scene and all five places kept."
+    },
+    {
+      "id": "slop-cities-049",
+      "url": "/locations/scottsdale",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "2f563c7d-8748-4c6d-9092-24e0ab8c8349",
+        "field": "body[3]"
+      },
+      "old_text": "As Scottsdale continues to expand with new developments and custom homes, expert electrical services are increasingly in demand. The Wire Guy Electric ensures that every project meets local code requirements while supporting Scottsdale’s commitment to innovation and energy efficiency.",
+      "new_text": "Scottsdale homes get power from SRP or APS depending on the part of the city, permits go through the city’s SPUR portal, and we handle the permit and the inspection for you.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Block _key k007. Growth-filler paragraph that passes the swap test, an invented \"Scottsdale’s commitment to innovation and energy efficiency\". Rewritten from Scottsdale’s own sourced permitNotes (SRP/APS split; Planning & Development; SPUR; the double-fee fine) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" \"every project meets local code requirements\" is carried by \"make sure everything passes\". Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
+    },
+    {
+      "id": "slop-cities-050",
+      "url": "/locations/scottsdale",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "2f563c7d-8748-4c6d-9092-24e0ab8c8349",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near WestWorld, Talking Stick Resort, or the Arizona Canal Trail, Scottsdale residents and business owners can trust The Wire Guy Electric for reliable service, transparent communication, and expert workmanship.",
+      "new_text": "We also work near WestWorld, Talking Stick Resort, and the Arizona Canal Trail.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k009. \"Whether located near ...\" opener and \"can trust ... for\" padding triplet. All three places kept, with \"near\" (local-facts.md notes Talking Stick Resort is on Salt River Pima-Maricopa Indian Community land)."
+    },
+    {
+      "id": "slop-cities-051",
+      "url": "/locations/scottsdale",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "2f563c7d-8748-4c6d-9092-24e0ab8c8349",
+        "field": "body[11]"
+      },
+      "old_text": "Fully licensed and insured, The Wire Guy Electric is proud to support the Scottsdale community with trusted electrical services designed to meet modern needs.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Block _key k00n. Closer that restates the intro (\"is proud to support the ... community with trusted electrical services designed to meet modern needs\"); licensed/insured is in the hero trust card and header (RocLink). Replaced with the one Scottsdale fact the body lacked: the appointment-only office (Site settings addresses[Scottsdale].appointmentOnly; this page is that office’s Google Business Profile landing page) and the office card’s own note \"Office visits by appointment only. We come to you.\" No address added.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-052",
+      "url": "/locations/scottsdale",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "2f563c7d-8748-4c6d-9092-24e0ab8c8349",
+        "field": "body[12]"
+      },
+      "old_text": " for expert electrical service in Scottsdale, AZ.",
+      "new_text": " for electrical service in Scottsdale, AZ.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00p. Stock adjective in the CTA (\"expert\"). Only the plain span after the link; the linked words \"Contact The Wire Guy Electric today\" (→ /) are untouched."
+    },
+    {
+      "id": "slop-cities-053",
+      "url": "/locations/tempe",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6281177e-a855-4a20-853b-94f7153efce1",
+        "field": "body[1]"
+      },
+      "old_text": "Reliable electrical service is essential for the homes and businesses of Tempe, Arizona. The Wire Guy Electric offers licensed residential and commercial electrical services throughout Tempe, specializing in panel upgrades, EV charger installations, lighting improvements, and general electrical repairs.",
+      "new_text": "Across Tempe, Arizona, The Wire Guy Electric does licensed residential and commercial electrical work, including panel upgrades, EV charger installations, lighting improvements, and general electrical repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k004. Filler opener that passes the swap test (\"... is essential for the homes and businesses of\"). Service keywords and \"Tempe, Arizona\" kept."
+    },
+    {
+      "id": "slop-cities-054",
+      "url": "/locations/tempe",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6281177e-a855-4a20-853b-94f7153efce1",
+        "field": "body[2]"
+      },
+      "old_text": "Located in the heart of the Phoenix metro area, Tempe is best known for Arizona State University, Tempe Town Lake, and the vibrant Mill Avenue District. Homes near the ASU campus, Tempe Marketplace, and Kiwanis Park depend on professional electricians to ensure their systems are safe, efficient, and up to modern standards. The Wire Guy Electric proudly serves both long-established neighborhoods and new developments across the city.",
+      "new_text": "Tempe, in the middle of the Phoenix metro area, is best known for Arizona State University, Tempe Town Lake, and the Mill Avenue District. We work in long-established neighborhoods and new developments across the city, including homes near the ASU campus, Tempe Marketplace, and Kiwanis Park.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k006. \"in the heart of\", \"vibrant\", swap-test filler with a padding triplet (\"depend on professional electricians to ensure ... safe, efficient, and up to modern standards\"), \"proudly serves\". Location, ASU, Town Lake, Mill Avenue and the three places kept."
+    },
+    {
+      "id": "slop-cities-055",
+      "url": "/locations/tempe",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6281177e-a855-4a20-853b-94f7153efce1",
+        "field": "body[3]"
+      },
+      "old_text": "As Tempe continues to grow with new construction, tech hubs, and residential communities, the demand for experienced electricians increases. The Wire Guy Electric is committed to providing Tempe homeowners and business owners with quality workmanship, transparent pricing, and dependable service.",
+      "new_text": "Tempe is mostly on SRP, with APS around downtown, and permits go through the city’s Citizen Access Portal; we handle the permit and the inspection for you.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Block _key k008. Growth-filler paragraph that passes the swap test, \"is committed to providing\" triplet. Rewritten from Tempe’s own sourced permitNotes (SRP/APS area around downtown; Building Safety Division; Citizen Access Portal) and the shared FAQ \"Do I need a permit for electrical work in Arizona?\" (faqs.json): \"We pull the permit, schedule the inspection, and make sure everything passes.\" The paragraph’s one real claim, transparent pricing, kept concretely from Site settings valueProps (\"flat-rate pricing ... no hidden fees\"). Launch review CQ-2: the verified text pasted the city’s FAQ answers (utility split, permit office, the shared permit answer) almost word for word onto the same page; it now says the same facts once, in other words, and the FAQ carries the detail. No new facts."
+    },
+    {
+      "id": "slop-cities-056",
+      "url": "/locations/tempe",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6281177e-a855-4a20-853b-94f7153efce1",
+        "field": "body[4]"
+      },
+      "old_text": "Whether located near Sun Devil Stadium, the Tempe Center for the Arts, or Papago Park, customers throughout Tempe trust The Wire Guy Electric for their electrical needs.",
+      "new_text": "We also work near Sun Devil Stadium, the Tempe Center for the Arts, and Papago Park.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00a. \"Whether located near ...\" opener and \"trust ... for their electrical needs\" stock phrase. All three places kept."
+    },
+    {
+      "id": "slop-cities-057",
+      "url": "/locations/tempe",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6281177e-a855-4a20-853b-94f7153efce1",
+        "field": "body[11]"
+      },
+      "old_text": "Licensed, insured, and experienced, The Wire Guy Electric is proud to provide comprehensive electrical services throughout Tempe, AZ.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Deletes the whole block (_key k00o); drop the emptied block. \"Licensed, insured, and experienced, ... is proud to provide comprehensive electrical services throughout Tempe\": closer that restates the intro (\"comprehensive\"). Its only facts (licensed, insured) are on every city page already: the hero trust card and header say \"Licensed, bonded, and insured · ROC #365306\" (RocLink), and the intro says licensed.",
+      "adapted": "old_text no longer ends in a line break: the converter now trims line breaks at block edges (decision D5), so the closing block ends at the full stop and the edit still empties it."
+    },
+    {
+      "id": "slop-cities-058",
+      "url": "/locations/tempe",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6281177e-a855-4a20-853b-94f7153efce1",
+        "field": "body[12]"
+      },
+      "old_text": " from The Wire Guy Electric for your residential or commercial electrical needs in Tempe.",
+      "new_text": " from The Wire Guy Electric for residential or commercial electrical work in Tempe.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "Block _key k00q. Stock phrase in the CTA (\"your ... electrical needs\"). Only the plain span after the link; the linked words \"Request service today\" (→ /) are untouched."
+    },
+    {
+      "id": "slop-cities-059",
+      "url": "/locations/* (all 10)",
+      "target": {
+        "kind": "file",
+        "file": "web/src/pages/locations/[slug].astro"
+      },
+      "old_text": "guidesIntro=\"Plain-English answers to the questions Arizona homeowners ask us most.\"",
+      "new_text": "guidesIntro=\"Plain-English answers to common questions from Arizona homeowners.\"",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "Unsupported claim (\"the questions ... ask us most\"): the guides shown are picked by cityGuides from post.featured, which cms-templates.json sets on the most-read guides in Search Console, so \"search for most\" is what is true. (The other city-template strings: the faqIntro fallback is slop-pages-076; the rest are data-driven or plain.)"
+    }
+  ]
+}

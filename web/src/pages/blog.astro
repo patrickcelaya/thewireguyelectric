@@ -1,21 +1,52 @@
 ---
-// All posts on one page. Webflow paginated with ?f384d0a1_page=N; one list gives
-// every post a link from /blog, and the old query URLs canonicalize here.
-import WebflowLayout from '../layouts/WebflowLayout.astro'
-import {getPage, getPosts, getSettings} from '../lib/queries'
-import {legacyPage, renderBlogPage} from '../lib/legacy'
-import {resolveDescription, resolveOgImage, resolveTitle} from '../lib/seo'
-import {blogNode, webPageNode} from '../lib/schema'
+// /blog: every post on one page (Webflow paginated with ?f384d0a1_page=N; the old
+// query URLs canonicalize here), composed in Sanity (page "blog") and drawn by the
+// section renderer: the most-read guides, then the whole archive under the service
+// each post supports. Title, description, H1 and the CollectionPage and Blog types are
+// unchanged from the live site. A page document without a posts list (content written
+// before the page builder) still lists every post, so no post loses its link from /blog.
+// Every post in the archive gets a thumbnail (lib/cms.ts postThumb): its own image when the
+// owner approved it, else a company photo of its subject; no photo shows twice on the page
+// (the hero's and the most-read cards' covers are taken first, then every row's own approved image
+// is set aside for its row, and the estimate band skips them all).
+import PageBuilderPage from '../components/PageBuilderPage.astro'
+import {getPage, getPostIndex, getPosts, getServices, getSettings} from '../lib/queries'
+import {markShown, postThumb, reserveOwnImages} from '../lib/cms'
+import {companyPhoto} from '../lib/brand-photos'
+import {resolveDescription, ogImageMeta, resolveTitle} from '../lib/seo'
+import {blogNode} from '../lib/schema'
+import {pageSchema} from '../lib/page-schema'
+import type {PageSection} from '../lib/types'
 
-const [settings, page, posts] = await Promise.all([getSettings(), getPage('blog'), getPosts()])
-const title = resolveTitle(page?.seo, `Electrical Tips & Guides | ${settings.businessName} Blog`)
-const description = resolveDescription(page?.seo, page?.intro)
-const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path: '/blog'}]
+const [settings, page, posts, postIndex, services] = await Promise.all([getSettings(), getPage('blog'), getPosts(), getPostIndex(), getServices()])
+if (!page) throw new Error('The /blog page document (page "blog") is missing from the dataset')
+const title = resolveTitle(page.seo, `Electrical Tips & Guides | ${settings.businessName} Blog`)
+const description = resolveDescription(page.seo, page.intro)
+const path = '/blog'
+const crumbs = [{name: 'Home', path: '/'}, {name: 'Blog', path}]
+
+const sections = page.sections ?? []
+const archive: PageSection = {_type: 'postsSection', _key: 'archive', layout: 'byService', limit: 0, posts}
+const listsAll = sections.some((s) => s._type === 'postsSection' && s.limit === 0)
+const composed = listsAll ? sections : [...sections.filter((s) => s._type === 'heroSection'), archive, ...sections.filter((s) => s._type !== 'heroSection')]
+// the photos the page shows above the archive: the hero's and the cards' covers (a card without one shows its post's
+// job photo, as GuidesBlock does); then a thumbnail for each archive row
+const taken = new Set<string>()
+for (const s of composed) {
+  if (s._type === 'heroSection') markShown(taken, s.image)
+  if (s._type === 'postsSection' && s.layout !== 'byService') markShown(taken, ...s.posts.map((p) => p.cover ?? (companyPhoto(p.mainImage) === 'job' ? p.mainImage : undefined)))
+}
+// every row's own approved image is set aside for it first, so an earlier row's fallback never takes it
+const reserved = reserveOwnImages(taken, composed.flatMap((s) => (s._type === 'postsSection' && s.layout === 'byService' ? s.posts : [])))
+const withThumbs = composed.map((s) =>
+  s._type === 'postsSection' && s.layout === 'byService' ? {...s, posts: s.posts.map((p, i) => ({...p, thumb: postThumb(p, postIndex, services, taken, i, reserved)}))} : s,
+)
+const shown = {...page, sections: withThumbs}
 ---
 
-<WebflowLayout
-  meta={{title, description, path: '/blog', ogImage: resolveOgImage(settings, page?.seo?.ogImage), breadcrumbs: crumbs}}
-  schema={[webPageNode({path: '/blog', title, description, type: 'CollectionPage', breadcrumbs: crumbs}), blogNode(settings, posts)]}
->
-  <Fragment set:html={renderBlogPage(legacyPage('blog')!, posts)} />
-</WebflowLayout>
+<PageBuilderPage
+  page={shown}
+  settings={settings}
+  meta={{title, description, path, ...ogImageMeta(settings, page.seo?.ogImage), breadcrumbs: crumbs}}
+  schema={pageSchema({page: shown, settings, path, title, description, type: 'CollectionPage', crumbs, extra: [blogNode(settings, posts)]})}
+/>

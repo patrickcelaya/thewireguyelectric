@@ -1,0 +1,4411 @@
+{
+  "about": "Blog posts 1–27 by slug (7-signs… to how-to-wire-a-gfci-outlet).",
+  "source": "slop-posts-a/verified.json of the 2026-10-17 copy review: researched, then adversarially verified. Verdict accept, or amend (new_text is the amended text); no edit was rejected.",
+  "edits": [
+    {
+      "id": "slop-posts-a-001",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k00r",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Your electrical panel is the heart of your home's power system, but outdated panels can pose safety risks, increase energy costs, and fail to meet modern demands.",
+      "new_text": "An outdated electrical panel can be a safety risk, can push up your power bill, and may not have the capacity a modern home needs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock metaphor opener (\"heart of your home\") + padded triplet"
+    },
+    {
+      "id": "slop-posts-a-002",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k01e",
+        "block_index": 8,
+        "block_style": "normal"
+      },
+      "old_text": "Upgrading prevents fires, ensures code compliance, and supports modern energy needs.",
+      "new_text": "Upgrading lowers the fire risk and brings the panel up to current code.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic benefit triplet with \"ensures\""
+    },
+    {
+      "id": "slop-posts-a-003",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k01g",
+        "block_index": 9,
+        "block_style": "h2"
+      },
+      "old_text": "Signs You Should Upgrade Your Electrical Panel - Golden ...",
+      "new_text": "Signs You Should Upgrade Your Electrical Panel",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "truncated scraped video title as a heading (keywords kept)"
+    },
+    {
+      "id": "slop-posts-a-004",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k01l",
+        "block_index": 12,
+        "block_style": "normal"
+      },
+      "old_text": "Your electrical panel distributes power from your utility provider to the circuits in your home, ensuring electricity reaches where it's needed",
+      "new_text": "Your electrical panel takes the power your utility delivers and splits it among the circuits in your home",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler clause (\"ensuring electricity reaches where it's needed\"); citation link [1] untouched"
+    },
+    {
+      "id": "slop-posts-a-005",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k032",
+        "block_index": 26,
+        "block_style": "normal"
+      },
+      "old_text": "Now that you know the basics, it's time to look at the seven warning signs that indicate your panel might need an upgrade. Stay tuned!",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler transition + exclamation (\"Stay tuned!\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-006",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k036",
+        "block_index": 28,
+        "block_style": "normal"
+      },
+      "old_text": "Here are seven key indicators that it might be time to replace your electrical panel:",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "first sentence restates the heading (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-007",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k03a",
+        "block_index": 30,
+        "block_style": "normal"
+      },
+      "old_text": "A licensed electrician should evaluate your panel’s capacity to ensure safety",
+      "new_text": "A licensed electrician should check your panel’s capacity",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler (\"to ensure safety\"); citation link [3] untouched"
+    },
+    {
+      "id": "slop-posts-a-008",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k03s",
+        "block_index": 36,
+        "block_style": "normal"
+      },
+      "old_text": "An upgrade may be necessary to accommodate modern energy needs",
+      "new_text": "An upgrade may be needed to add capacity",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "vague filler (\"accommodate modern energy needs\"); citation link [6] untouched"
+    },
+    {
+      "id": "slop-posts-a-009",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k03y",
+        "block_index": 38,
+        "block_style": "normal"
+      },
+      "old_text": "These issues require immediate attention from a professional to avoid further risks",
+      "new_text": "Have an electrician look at it right away",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock hedge (\"avoid further risks\"); citation link [6] untouched"
+    },
+    {
+      "id": "slop-posts-a-010",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k04f",
+        "block_index": 43,
+        "block_style": "normal"
+      },
+      "old_text": "If you notice any of these warning signs, it’s crucial to consult a licensed electrician for an assessment and potential upgrade. Addressing these issues promptly can help prevent more serious problems down the line.",
+      "new_text": "If you see any of these signs, have a licensed electrician assess the panel.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"it's crucial\" + paragraph ending on a moral"
+    },
+    {
+      "id": "slop-posts-a-011",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k04j",
+        "block_index": 45,
+        "block_style": "normal"
+      },
+      "old_text": "If you notice issues with your electrical panel, it's crucial to act promptly. Delaying necessary upgrades can lead to serious risks that go beyond the initial warning signs.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "restates the heading; \"it's crucial\"; no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-012",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k054",
+        "block_index": 53,
+        "block_style": "normal"
+      },
+      "old_text": "These are clear indicators that immediate action is needed.",
+      "new_text": "Any one of these means call an electrician now.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock phrase; plainer"
+    },
+    {
+      "id": "slop-posts-a-013",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k058",
+        "block_index": 55,
+        "block_style": "normal"
+      },
+      "old_text": "On the other hand, upgrading your panel can improve safety and efficiency, with an estimated 53% return on investment. Plus, modern panels typically last 25–40 years, making it a long-term improvement ",
+      "new_text": "An upgrade carries an estimated 53% return on investment, and modern panels typically last 25–40 years ",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler connectives (\"On the other hand\", \"Plus\", \"making it a long-term improvement\"); citation links [2][9] untouched"
+    },
+    {
+      "id": "slop-posts-a-014",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k05o",
+        "block_index": 59,
+        "block_style": "normal"
+      },
+      "old_text": "Here’s what you need to know about safely upgrading your electrical panel in Mesa.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-015",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k05q",
+        "block_index": 60,
+        "block_style": "normal"
+      },
+      "old_text": "If you’ve identified warning signs, the next step is to upgrade your panel with the help of licensed professionals. This ensures the work is done correctly, with all necessary permits and in compliance with the National Electrical Code (NEC).",
+      "new_text": "If you’ve spotted warning signs, have a licensed electrician do the upgrade, with the permits it needs and to the National Electrical Code (NEC).",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "wordy \"the next step is\"/\"This ensures\"; same facts"
+    },
+    {
+      "id": "slop-posts-a-016",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k05s",
+        "block_index": 61,
+        "block_style": "h3"
+      },
+      "old_text": "Why Hire a Licensed Electrician?",
+      "new_text": "What a Licensed Electrician Covers",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Why choose us\"-style heading (keyword kept)",
+      "verifier_note": "the list under it is NEC compliance, liability coverage and permit guidance; \"Handles\" does not fit \"Liability coverage\". \"Covers\" fits all three and keeps \"Licensed Electrician\"."
+    },
+    {
+      "id": "slop-posts-a-017",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k05u",
+        "block_index": 62,
+        "block_style": "normal"
+      },
+      "old_text": "Hiring a licensed electrician comes with several key advantages:",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "restates the heading (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-018",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k065",
+        "block_index": 66,
+        "block_style": "bullet list item"
+      },
+      "old_text": "Code and insurance adherence: Keeps your home up to code and aligned with insurance requirements.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "generic benefit that repeats the NEC item above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-019",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k068",
+        "block_index": 67,
+        "block_style": "normal"
+      },
+      "old_text": "These benefits safeguard your home and investment during the upgrade process.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "moral closer, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-020",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k06l",
+        "block_index": 72,
+        "block_style": "h3"
+      },
+      "old_text": ": Your Local Experts",
+      "new_text": " in Mesa",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "colon-subtitle slogan heading (crosses link \"The Wire Guy Electric\": linked words kept unchanged)",
+      "verifier_note": "same result as proposed, but old_text no longer touches the linked span \"The Wire Guy Electric\" (->/), so an editBody-style apply that refuses to touch linked spans can run it."
+    },
+    {
+      "id": "slop-posts-a-021",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k06u",
+        "block_index": 76,
+        "block_style": "bullet list item"
+      },
+      "old_text": "Comprehensive safety testing and final verification",
+      "new_text": "Safety testing and final verification",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"comprehensive\""
+    },
+    {
+      "id": "slop-posts-a-022",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k074",
+        "block_index": 78,
+        "block_style": "h2"
+      },
+      "old_text": "Conclusion",
+      "new_text": "Upgrading an Older Panel",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Conclusion\" heading",
+      "verifier_note": "\"When to Upgrade Your Panel\" nearly duplicates the post's own H3 \"When to Replace Your Panel\" (block 15). The section is about older panels and homes over 25 years old."
+    },
+    {
+      "id": "slop-posts-a-023",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k076",
+        "block_index": 79,
+        "block_style": "normal"
+      },
+      "old_text": "If you've noticed warning signs, it's time to act. Older electrical panels often struggle to handle today's energy demands, leading to safety risks and higher expenses.",
+      "new_text": "Older electrical panels often can't keep up with what a modern home draws, which means safety risks and higher costs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock CTA (\"it's time to act\")"
+    },
+    {
+      "id": "slop-posts-a-024",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k078",
+        "block_index": 80,
+        "block_style": "normal"
+      },
+      "old_text": "Upgrading your panel improves safety, boosts capacity, lowers energy bills, and ensures compliance with current codes. Modern panels not only safeguard your home but also meet the increasing power needs of modern households.",
+      "new_text": "Upgrading your panel improves safety, adds capacity and brings the system up to current code.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not only X but also Y\" + padded benefit list that restates the post"
+    },
+    {
+      "id": "slop-posts-a-025",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "body",
+        "block_key": "k07a",
+        "block_index": 81,
+        "block_style": "normal"
+      },
+      "old_text": "upgrading becomes even more crucial, as older panels",
+      "new_text": "upgrading matters even more, as older panels",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"crucial\"; citation link [2] untouched"
+    },
+    {
+      "id": "slop-posts-a-026",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k00a",
+        "block_index": 3,
+        "block_style": "normal"
+      },
+      "old_text": "The reason is simple and it is not bureaucratic: a technician",
+      "new_text": "The reason is safety: a technician",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"it's not X\" framing"
+    },
+    {
+      "id": "slop-posts-a-027",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k00o",
+        "block_index": 7,
+        "block_style": "normal"
+      },
+      "old_text": "Ours do not get that luxury.",
+      "new_text": "Ours do not last that long.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cute aside; plain statement"
+    },
+    {
+      "id": "slop-posts-a-028",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k00t",
+        "block_index": 9,
+        "block_style": "normal"
+      },
+      "old_text": "This is the real killer. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "dramatic filler sentence"
+    },
+    {
+      "id": "slop-posts-a-029",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k019",
+        "block_index": 16,
+        "block_style": "normal"
+      },
+      "old_text": "This is the scenario that sends people looking for answers at ten at night, so it deserves its own section.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "meta-commentary about the article itself (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-030",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k01v",
+        "block_index": 25,
+        "block_style": "normal"
+      },
+      "old_text": "Straight disconnect replacement is not a big job, and that is the good news in the middle of a heat wave.",
+      "new_text": "Replacing a disconnect is not a big job.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padding aside"
+    },
+    {
+      "id": "slop-posts-a-031",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k021",
+        "block_index": 28,
+        "block_style": "normal"
+      },
+      "old_text": "One more worth mentioning: the same monsoon storms",
+      "new_text": "The same monsoon storms",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in"
+    },
+    {
+      "id": "slop-posts-a-032",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k02j",
+        "block_index": 35,
+        "block_style": "normal"
+      },
+      "old_text": "It takes thirty seconds and it is the single easiest way to catch a failure before it happens on the hottest day of the year.",
+      "new_text": "It takes thirty seconds, and it can catch a failure before it happens on the hottest day of the year.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported superlative (\"the single easiest way\")"
+    },
+    {
+      "id": "slop-posts-a-033",
+      "url": "/blog-posts/ac-disconnect-box-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5c0a128c-9426-4bed-8b74-097dbca62748",
+        "field": "body",
+        "block_key": "k02l",
+        "block_index": 36,
+        "block_style": "normal"
+      },
+      "old_text": "at both ends the same way we do everything else:",
+      "new_text": "at both ends:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler clause (\"the same way we do everything else\")"
+    },
+    {
+      "id": "slop-posts-a-034",
+      "url": "/blog-posts/ac-keeps-tripping-breaker-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "dce80912-0e2a-46ba-babe-ecb2efe2a509",
+        "field": "body",
+        "block_key": "k004",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "One quick note before we dig in. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in (\"before we dig in\")"
+    },
+    {
+      "id": "slop-posts-a-035",
+      "url": "/blog-posts/ac-keeps-tripping-breaker-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "dce80912-0e2a-46ba-babe-ecb2efe2a509",
+        "field": "body",
+        "block_key": "k011",
+        "block_index": 14,
+        "block_style": "h2"
+      },
+      "old_text": "The Arizona Reality: Sometimes the Panel Has Outgrown the Home",
+      "new_text": "When the Panel Has Outgrown an Arizona Home",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "colon-subtitle heading (\"The Arizona Reality:\")",
+      "verifier_note": "the colon label goes, but the geo keyword \"Arizona\" stays in the H2 (the post targets \"AC keeps tripping breaker Arizona\")."
+    },
+    {
+      "id": "slop-posts-a-036",
+      "url": "/blog-posts/ac-keeps-tripping-breaker-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "dce80912-0e2a-46ba-babe-ecb2efe2a509",
+        "field": "body",
+        "block_key": "k013",
+        "block_index": 15,
+        "block_style": "normal"
+      },
+      "old_text": "When the AC finally tips a maxed-out panel over the edge every summer, the real fix is not chasing one breaker, it is a panel that fits how the home is actually used now.",
+      "new_text": "When the AC tips a maxed-out panel over the edge every summer, replacing one breaker will not solve it; the panel has to fit how the home is used now.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not X, it is Y\" structure"
+    },
+    {
+      "id": "slop-posts-a-037",
+      "url": "/blog-posts/ac-keeps-tripping-breaker-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "dce80912-0e2a-46ba-babe-ecb2efe2a509",
+        "field": "body",
+        "block_key": "k019",
+        "block_index": 18,
+        "block_style": "normal"
+      },
+      "old_text": " Ignoring it through an Arizona summer is how you end up with no cooling on the worst possible day.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph ending on a moral"
+    },
+    {
+      "id": "slop-posts-a-038",
+      "url": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ce1123f9-c25e-4e23-8448-8ecf0f3a9fc2",
+        "field": "body",
+        "block_key": "k00b",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": "Here's what you need to know if you own or are buying one of those homes.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"here's what you need to know\" filler (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-039",
+      "url": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ce1123f9-c25e-4e23-8448-8ecf0f3a9fc2",
+        "field": "body",
+        "block_key": "k00s",
+        "block_index": 9,
+        "block_style": "normal"
+      },
+      "old_text": " That's not a typo.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler aside"
+    },
+    {
+      "id": "slop-posts-a-040",
+      "url": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ce1123f9-c25e-4e23-8448-8ecf0f3a9fc2",
+        "field": "body",
+        "block_key": "k01c",
+        "block_index": 18,
+        "block_style": "normal"
+      },
+      "old_text": "One thing to note: large-appliance circuits",
+      "new_text": "Large-appliance circuits",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in (\"One thing to note\")",
+      "format": {
+        "strong": [
+          "Large-appliance circuits"
+        ]
+      },
+      "verifier_note": "apply: keep the strong mark on \"Large-appliance circuits\" (the source bolds \"large-appliance circuits\")."
+    },
+    {
+      "id": "slop-posts-a-041",
+      "url": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ce1123f9-c25e-4e23-8448-8ecf0f3a9fc2",
+        "field": "body",
+        "block_key": "k01o",
+        "block_index": 22,
+        "block_style": "h3"
+      },
+      "old_text": "Option 1: COPALUM Crimping (The Gold Standard)",
+      "new_text": "Option 1: COPALUM Crimping (CPSC-Endorsed)",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliche (\"The Gold Standard\"); the paragraph below says the CPSC endorses it"
+    },
+    {
+      "id": "slop-posts-a-042",
+      "url": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ee33d99d-318d-4525-b6f0-a774888a68af",
+        "field": "body",
+        "block_key": "k005",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Don’t panic — most of the time this comes down to a tripped GFCI outlet. Let’s go step by step.",
+      "new_text": "Most of the time this comes down to a tripped GFCI outlet.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock reassurance (\"Don't panic\") and filler transition; keyword \"GFCI outlet\" kept"
+    },
+    {
+      "id": "slop-posts-a-043",
+      "url": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ee33d99d-318d-4525-b6f0-a774888a68af",
+        "field": "body",
+        "block_key": "k01q",
+        "block_index": 24,
+        "block_style": "normal"
+      },
+      "old_text": "Replacing or adding GFCIs isn’t just about convenience — it’s about safety. ",
+      "new_text": "Replacing worn GFCIs and adding missing ones is a safety fix. ",
+      "tier": "tier1",
+      "verdict": "amend",
+      "reason": "\"isn't just X, it's Y\" structure",
+      "verifier_note": "deleting the sentence leaves \"The Safe Fix\" with only a CPSC statistic and no fix. This tightened sentence keeps the advice. \"Worn\" comes from block 16 and \"missing\" from block 22. Tier 1 light touch: the slop sentence is tightened, not removed."
+    },
+    {
+      "id": "slop-posts-a-044",
+      "url": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ee33d99d-318d-4525-b6f0-a774888a68af",
+        "field": "body",
+        "block_key": "k01q",
+        "block_index": 24,
+        "block_style": "normal"
+      },
+      "old_text": " Keeping them updated is one of the simplest ways to protect your family.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "paragraph ending on a moral (\"protect your family\")"
+    },
+    {
+      "id": "slop-posts-a-045",
+      "url": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ee33d99d-318d-4525-b6f0-a774888a68af",
+        "field": "body",
+        "block_key": "k01w",
+        "block_index": 26,
+        "block_style": "normal"
+      },
+      "old_text": ", don’t take chances. We’ll test",
+      "new_text": ", we’ll test",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock phrase (\"don't take chances\")"
+    },
+    {
+      "id": "slop-posts-a-046",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k001",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "If your breaker trips every time the AC kicks on, you’re not alone. This is one of the most common electrical complaints Phoenix homeowners deal with,",
+      "new_text": "A breaker that trips every time the AC kicks on is one of the most common electrical complaints Phoenix homeowners deal with,",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock reassurance (\"you're not alone\"); keywords kept"
+    },
+    {
+      "id": "slop-posts-a-047",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k003",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "What surprises most people is that this usually isn’t an AC problem. In many cases, it’s your home’s electrical system telling you it’s being pushed past what it can safely handle.",
+      "new_text": "This usually isn’t an AC problem. More often, your home’s electrical system is being pushed past what it can safely handle.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "wordy set-up (\"What surprises most people\")",
+      "verifier_note": "apply: keep the strong mark on \"isn’t an AC problem\"."
+    },
+    {
+      "id": "slop-posts-a-048",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k007",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": "And in Phoenix, that happens a lot.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler one-liner (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-049",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k00j",
+        "block_index": 8,
+        "block_style": "normal"
+      },
+      "old_text": "In Phoenix homes, this problem usually comes down to one of a few underlying electrical issues.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "first sentence restates the heading (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-050",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k00n",
+        "block_index": 10,
+        "block_style": "normal"
+      },
+      "old_text": "When the AC kicks on, the panel simply can’t keep up.",
+      "new_text": "When the AC kicks on, the panel can’t keep up.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeated filler \"simply\""
+    },
+    {
+      "id": "slop-posts-a-051",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k00z",
+        "block_index": 16,
+        "block_style": "normal"
+      },
+      "old_text": "Cooler weather gives people a false sense of security. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliche (\"false sense of security\")"
+    },
+    {
+      "id": "slop-posts-a-052",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k011",
+        "block_index": 17,
+        "block_style": "normal"
+      },
+      "old_text": "This is actually the best time to address the problem. Fixing it now prevents emergency calls, outages, and expensive surprises during the first 110-degree week.",
+      "new_text": "That makes winter the best time to fix it, before the first 110-degree week brings outages and emergency calls.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded triplet (\"emergency calls, outages, and expensive surprises\")"
+    },
+    {
+      "id": "slop-posts-a-053",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k01p",
+        "block_index": 29,
+        "block_style": "normal"
+      },
+      "old_text": "Addressing the issue early keeps your home safer and prevents much bigger problems down the road.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "moral closer, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-054",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k01v",
+        "block_index": 32,
+        "block_style": "normal"
+      },
+      "old_text": "Even if everything seems fine right now, catching these issues early is far easier and less expensive than dealing with them during peak summer heat.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeats the \"fix it early\" moral a third time (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-055",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k01x",
+        "block_index": 33,
+        "block_style": "h2"
+      },
+      "old_text": "Final Thoughts",
+      "new_text": "Get a Tripping AC Breaker Checked",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Final Thoughts\" heading"
+    },
+    {
+      "id": "slop-posts-a-056",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k01z",
+        "block_index": 34,
+        "block_style": "normal"
+      },
+      "old_text": "In Phoenix, an AC that trips a breaker isn’t just an inconvenience. It’s a sign your electrical system may be struggling to keep up.",
+      "new_text": "In Phoenix, an AC that trips a breaker is a sign your electrical system may be struggling to keep up.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"isn't just X. It's Y.\" structure"
+    },
+    {
+      "id": "slop-posts-a-057",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k021",
+        "block_index": 35,
+        "block_style": "normal"
+      },
+      "old_text": "Winter is the perfect time to find out why. Fixing the root cause now means fewer outages, better system performance, and peace of mind when temperatures rise.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"peace of mind\" triplet; repeats the winter point made above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-058",
+      "url": "/blog-posts/breaker-trips-ac",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "768bd5ab-4d95-4e5d-b3ff-efc802e82d2d",
+        "field": "body",
+        "block_key": "k023",
+        "block_index": 36,
+        "block_style": "normal"
+      },
+      "old_text": "If your breaker trips when the AC turns on, don’t ignore it. Have your electrical system checked by a licensed electrician who understands Phoenix homes and the demands they face year-round.",
+      "new_text": "If your breaker trips when the AC turns on, have a licensed electrician check your electrical system.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "restated CTA with generic padding"
+    },
+    {
+      "id": "slop-posts-a-059",
+      "url": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0375bf41-d1c9-4c0d-9d1c-b2d0d61751a5",
+        "field": "body",
+        "block_key": "k00d",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": "Heat is the enemy of electrical systems. ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "cliche opener; the linked sentence after it is untouched"
+    },
+    {
+      "id": "slop-posts-a-060",
+      "url": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0375bf41-d1c9-4c0d-9d1c-b2d0d61751a5",
+        "field": "body",
+        "block_key": "k00g",
+        "block_index": 3,
+        "block_style": "normal"
+      },
+      "old_text": "Here is everything you need to know about why your power trips when it’s hot out",
+      "new_text": "Here is why your power trips when it’s hot out",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"everything you need to know\""
+    },
+    {
+      "id": "slop-posts-a-061",
+      "url": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0375bf41-d1c9-4c0d-9d1c-b2d0d61751a5",
+        "field": "body",
+        "block_key": "k02u",
+        "block_index": 33,
+        "block_style": "normal"
+      },
+      "old_text": "You can’t control the weather, but you can control your electrical system.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock line, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-062",
+      "url": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0375bf41-d1c9-4c0d-9d1c-b2d0d61751a5",
+        "field": "body",
+        "block_key": "k037",
+        "block_index": 38,
+        "block_style": "normal"
+      },
+      "old_text": "If you are frustrated by constant flickering lights or breakers that won't stay on, it’s time to call in the pros.",
+      "new_text": "If you have constant flickering lights or breakers that won't stay on, call a licensed electrician.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock CTA (\"time to call in the pros\")"
+    },
+    {
+      "id": "slop-posts-a-063",
+      "url": "/blog-posts/can-hot-weather-cause-your-circuit-breaker-to-trip",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "0375bf41-d1c9-4c0d-9d1c-b2d0d61751a5",
+        "field": "body",
+        "block_key": "k03j",
+        "block_index": 44,
+        "block_style": "normal"
+      },
+      "old_text": "Don't let the heat leave you in the dark.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "slogan closer (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-064",
+      "url": "/blog-posts/casita-adu-electrical-requirements-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "945323db-f498-481f-b01b-ef6a7471b5ef",
+        "field": "body",
+        "block_key": "k00e",
+        "block_index": 4,
+        "block_style": "normal"
+      },
+      "old_text": "What did not go away is physics.",
+      "new_text": "The electrical limits did not.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "punchline filler"
+    },
+    {
+      "id": "slop-posts-a-065",
+      "url": "/blog-posts/casita-adu-electrical-requirements-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "945323db-f498-481f-b01b-ef6a7471b5ef",
+        "field": "body",
+        "block_key": "k00i",
+        "block_index": 6,
+        "block_style": "normal"
+      },
+      "old_text": "A casita is not one more circuit, it is a block of load:",
+      "new_text": "A casita is a whole block of load:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not X, it is Y\" structure"
+    },
+    {
+      "id": "slop-posts-a-066",
+      "url": "/blog-posts/casita-adu-electrical-requirements-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "945323db-f498-481f-b01b-ef6a7471b5ef",
+        "field": "body",
+        "block_key": "k011",
+        "block_index": 12,
+        "block_style": "normal"
+      },
+      "old_text": "The good news is that this is money you were probably going to spend eventually.",
+      "new_text": "This is usually money you were going to spend eventually.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"The good news is\" set-up"
+    },
+    {
+      "id": "slop-posts-a-067",
+      "url": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "19572e8e-6607-44bc-a1ed-cf9c9f7f4f77",
+        "field": "body",
+        "block_key": "k00a",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Ceiling fans are one of the most practical upgrades you can make to a home in Arizona. They help circulate air, reduce your reliance on AC during the milder months, and make rooms feel more comfortable year-round. But when it comes to installing one, the cost can vary quite a bit depending on what you're working with.",
+      "new_text": "A ceiling fan is a practical upgrade in an Arizona home: it moves air, lets you lean on the AC less in the milder months, and makes rooms more comfortable year-round. What it costs to install one depends on what you're working with.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported superlative + \"when it comes to\"; keywords kept"
+    },
+    {
+      "id": "slop-posts-a-068",
+      "url": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "19572e8e-6607-44bc-a1ed-cf9c9f7f4f77",
+        "field": "body",
+        "block_key": "k00u",
+        "block_index": 7,
+        "block_style": "normal"
+      },
+      "old_text": "Not every ceiling fan installation is the same. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler first sentence"
+    },
+    {
+      "id": "slop-posts-a-069",
+      "url": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "19572e8e-6607-44bc-a1ed-cf9c9f7f4f77",
+        "field": "body",
+        "block_key": "k02l",
+        "block_index": 29,
+        "block_style": "h2"
+      },
+      "old_text": "Ready to Get Started?",
+      "new_text": "Get a Ceiling Fan Estimate",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical stock CTA heading"
+    },
+    {
+      "id": "slop-posts-a-070",
+      "url": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "19572e8e-6607-44bc-a1ed-cf9c9f7f4f77",
+        "field": "body",
+        "block_key": "k02f",
+        "block_index": 26,
+        "block_style": "h2"
+      },
+      "old_text": "Why Flat-Rate Pricing Matters for This Job",
+      "new_text": "Flat-Rate vs. Hourly Pricing for Fan Installs",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Why X Matters\" heading; now names what the section compares"
+    },
+    {
+      "id": "slop-posts-a-071",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k001",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Living in Scottsdale, Arizona, comes with its unique set of challenges. One of these is dealing with common electrical issues in homes.",
+      "new_text": "The most common electrical issues in Scottsdale homes are overheating components, power surges and outages, outdated wiring, flickering lights and tripping breakers, and dead outlets or failing GFCIs.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "generic opener (\"comes with its unique set of challenges\"); now answer-first, using only the post's own list; keywords kept",
+      "verifier_note": "the proposed version said all five issues \"come from the heat, monsoon storms and older wiring\". The post does not say that about flickering lights or dead outlets (it blames loose connections, tripped breakers and worn connections). This is the post's own list of five, stated as the answer."
+    },
+    {
+      "id": "slop-posts-a-072",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k003",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "The city's hot climate and occasional dust storms can lead to specific electrical problems. These can range from overheating of electrical components to power surges and outages.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeats the new opening line; dust storms are covered under the next heading (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-073",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k005",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": "Older homes in the area may also face issues due to outdated wiring systems. These systems may not meet current safety standards, leading to potential hazards.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeated three more times below (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-074",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k007",
+        "block_index": 3,
+        "block_style": "normal"
+      },
+      "old_text": "Recognizing these issues early can help prevent more significant problems down the line. It can also ensure the safety of your home and loved ones.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"loved ones\" moral) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-075",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k009",
+        "block_index": 4,
+        "block_style": "normal"
+      },
+      "old_text": "This article aims to guide Scottsdale homeowners through these common electrical issues. It will provide insights into identifying these problems, understanding their causes, and when to seek help from professional electricians in Scottsdale, AZ.",
+      "new_text": "Here is how to spot each one, what causes it, and when to call a licensed electrician in Scottsdale, AZ.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "meta-commentary (\"This article aims to\")",
+      "verifier_note": "\"Below:\" is a fragment. This version is the same, written as a full sentence."
+    },
+    {
+      "id": "slop-posts-a-076",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00b",
+        "block_index": 5,
+        "block_style": "h2"
+      },
+      "old_text": "Understanding Scottsdale's Unique Electrical Challenges",
+      "new_text": "Why Scottsdale Homes See These Problems",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Understanding X\" heading; now names what the section covers",
+      "verifier_note": "the proposed heading (\"Heat, Haboobs and Monsoon Surges\") leaves out older wiring, which is one of the section's four paragraphs (block 9)."
+    },
+    {
+      "id": "slop-posts-a-077",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00d",
+        "block_index": 6,
+        "block_style": "normal"
+      },
+      "old_text": "Scottsdale's climate offers warmth and beauty but presents electrical challenges. The intense heat can stress electrical systems, potentially leading to failures.",
+      "new_text": "Scottsdale's intense heat stresses electrical systems and can lead to failures.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "brochure filler (\"warmth and beauty\") + hedge"
+    },
+    {
+      "id": "slop-posts-a-078",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00f",
+        "block_index": 7,
+        "block_style": "normal"
+      },
+      "old_text": "In addition, the area experiences powerful dust storms known as haboobs. These storms can cause electrical components to clog and overheat.",
+      "new_text": "The area also gets powerful dust storms known as haboobs, which can clog electrical components and make them overheat.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "wordy connective"
+    },
+    {
+      "id": "slop-posts-a-079",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00h",
+        "block_index": 8,
+        "block_style": "normal"
+      },
+      "old_text": "Power surges are another common issue due to the monsoon season. Surges can harm appliances and require special attention for protection.",
+      "new_text": "Monsoon season brings power surges, which can damage appliances.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "vague filler (\"require special attention\")"
+    },
+    {
+      "id": "slop-posts-a-080",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00j",
+        "block_index": 9,
+        "block_style": "normal"
+      },
+      "old_text": "Older homes in Scottsdale may have outdated wiring systems. These systems might not comply with modern safety standards, presenting an increased risk.",
+      "new_text": "Older homes in Scottsdale may still have outdated wiring that does not meet modern safety standards.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "wordy, hedged"
+    },
+    {
+      "id": "slop-posts-a-081",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00l",
+        "block_index": 10,
+        "block_style": "normal"
+      },
+      "old_text": "Homeowners should be vigilant about particular challenges like these. Addressing these issues involves understanding Scottsdale's environment:",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in to a list that repeats the four paragraphs above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-082",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00n",
+        "block_index": 11,
+        "block_style": "bullet list item"
+      },
+      "old_text": "High temperatures affecting components",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "list repeats the paragraphs above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-083",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00p",
+        "block_index": 12,
+        "block_style": "bullet list item"
+      },
+      "old_text": "Monsoon-induced power surges",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "list repeats the paragraphs above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-084",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00r",
+        "block_index": 13,
+        "block_style": "bullet list item"
+      },
+      "old_text": "Dust-related overheating risks",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "list repeats the paragraphs above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-085",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00t",
+        "block_index": 14,
+        "block_style": "bullet list item"
+      },
+      "old_text": "Outdated wiring in older homes",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "list repeats the paragraphs above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-086",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00v",
+        "block_index": 15,
+        "block_style": "normal"
+      },
+      "old_text": "Professional help from Scottsdale electricians can mitigate these risks. Regular inspections and updates are vital steps to safeguard your home.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"vital steps to safeguard\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-087",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k00z",
+        "block_index": 17,
+        "block_style": "normal"
+      },
+      "old_text": "Scottsdale homeowners often face unique electrical problems. Understanding these issues is crucial to avoid potential risks. Here are some common electrical problems faced in Scottsdale homes:",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"crucial\" + restates the heading (removes the whole block)",
+      "verifier_note": "the proposed new_text (\"The most common electrical problems in Scottsdale homes:\") repeats the H2 above it (\"Top Electrical Issues in Scottsdale Homes\"), which is the very pattern being removed. Drop the lead-in so the H2 goes straight to the list (removes the whole block)."
+    },
+    {
+      "id": "slop-posts-a-088",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k01b",
+        "block_index": 23,
+        "block_style": "normal"
+      },
+      "old_text": "Each of these issues can pose serious hazards. Proper handling is necessary to maintain safety and efficiency in homes.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-089",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k01f",
+        "block_index": 25,
+        "block_style": "normal"
+      },
+      "old_text": "Scottsdale's climate can cause overheating in electrical components. High temperatures put extra stress on wiring and devices. This can lead to premature failure and increased risk of fire. Regular checks and adequate ventilation help in mitigating such risks.",
+      "new_text": "High temperatures put extra stress on wiring and devices, which can lead to early failure and a higher risk of fire. Regular checks and good ventilation help.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "first sentence restates the heading; wordy"
+    },
+    {
+      "id": "slop-posts-a-090",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k01j",
+        "block_index": 27,
+        "block_style": "normal"
+      },
+      "old_text": "Monsoon storms in Scottsdale often result in power surges. These surges can harm sensitive electronics like computers and TVs. Installing surge protectors can offer crucial protection. Outages are also frequent, disrupting daily activities. A backup generator may help prevent significant inconvenience during outages.",
+      "new_text": "Monsoon storms in Scottsdale often bring power surges that can damage computers, TVs and other sensitive electronics; surge protectors guard against them. Outages are frequent too, and a backup generator can carry you through them.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"crucial protection\", padded sentences"
+    },
+    {
+      "id": "slop-posts-a-091",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k01n",
+        "block_index": 29,
+        "block_style": "normal"
+      },
+      "old_text": "Older homes in Scottsdale might still have outdated wiring systems. These systems may not comply with present-day safety codes, increasing fire risk. Outdated wiring might not handle the electrical load of modern devices. It's vital to have such systems inspected and updated by professionals.",
+      "new_text": "Outdated wiring in older Scottsdale homes may not meet present-day safety codes or handle the load of modern devices, which raises the fire risk. Have it inspected and updated by a licensed electrician.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"It's vital\", repetition"
+    },
+    {
+      "id": "slop-posts-a-092",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k01r",
+        "block_index": 31,
+        "block_style": "normal"
+      },
+      "old_text": "Flickering lights often point to poor electrical connections. This can be more than a nuisance, signaling underlying issues. Tripped circuit breakers are common and often indicate overloaded circuits or defective devices. Addressing these issues promptly prevents further complications.",
+      "new_text": "Flickering lights often point to poor electrical connections, and tripped circuit breakers to an overloaded circuit or a defective device.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "filler sentences (\"more than a nuisance\", \"prevents further complications\")",
+      "verifier_note": "the proposed text changed \"often indicate\" to \"usually mean\", which states the claim more strongly than the source. This version keeps \"often\"."
+    },
+    {
+      "id": "slop-posts-a-093",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k01v",
+        "block_index": 33,
+        "block_style": "normal"
+      },
+      "old_text": "Dead outlets are a frequent problem in Scottsdale homes. They may result from tripped breakers or worn connections. GFCI outlets are crucial for wet areas but can malfunction. They should be tested regularly to ensure proper function and safety.",
+      "new_text": "Dead outlets can come from a tripped breaker or a worn connection. GFCI outlets protect wet areas but can fail, so test them regularly.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"crucial\", swap-test filler",
+      "verifier_note": "the proposed text changed \"may result from\" to \"usually come from\", which states the claim more strongly than the source. This version keeps the hedge."
+    },
+    {
+      "id": "slop-posts-a-094",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k01x",
+        "block_index": 34,
+        "block_style": "normal"
+      },
+      "old_text": "Knowing these issues and signs empowers Scottsdale homeowners. Prompt attention to these problems can prevent more serious safety hazards. Engaging skilled Scottsdale electricians ensures the proper resolution of any underlying causes.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"empowers\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-095",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k021",
+        "block_index": 36,
+        "block_style": "normal"
+      },
+      "old_text": "Electrical issues often manifest through several warning signs. Paying attention to these signs can prevent major hazards. Recognizing them early can save both time and money.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-096",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k023",
+        "block_index": 37,
+        "block_style": "normal"
+      },
+      "old_text": "Homeowners should remain alert to any unusual electrical signs. Ignoring these can lead to costly repairs. Here are common warning signs to watch for:",
+      "new_text": "Watch for:",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in"
+    },
+    {
+      "id": "slop-posts-a-097",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02f",
+        "block_index": 43,
+        "block_style": "normal"
+      },
+      "old_text": "Flickering lights can signal poor wiring or loose connections. Regularly tripping breakers might indicate overloaded circuits or faulty appliances. Dead outlets often hint at faulty wiring or tripped breakers.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeats the section above word for word in meaning (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-098",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02h",
+        "block_index": 44,
+        "block_style": "normal"
+      },
+      "old_text": "Buzzing sounds from switches or outlets are a red flag. Such sounds often indicate loose wiring or overloaded circuits. It's important to address these issues to avoid major problems.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeated under the next heading; \"It's important\" (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-099",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02j",
+        "block_index": 45,
+        "block_style": "normal"
+      },
+      "old_text": "A persistent burning smell near outlets is a serious concern. This usually signifies overheating or a potential electrical fire. Immediate attention from a licensed electrician is crucial in these situations.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeated under the next heading (the safety advice is kept there) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-100",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02n",
+        "block_index": 47,
+        "block_style": "normal"
+      },
+      "old_text": "Buzzing sounds around outlets or switches are more than a nuisance. They are early signs of electrical issues. Such sounds typically suggest loose wiring or overloaded circuits.",
+      "new_text": "Buzzing from outlets or switches is an early sign of trouble, usually loose wiring or an overloaded circuit.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"more than a nuisance\", wordy"
+    },
+    {
+      "id": "slop-posts-a-101",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02p",
+        "block_index": 48,
+        "block_style": "normal"
+      },
+      "old_text": "Identifying the source of buzzing can prevent worsening problems. It's advisable to consult with Scottsdale electricians at the first sign of this issue. Ignoring buzzing sounds can lead to severe hazards, including electrical fires.",
+      "new_text": "Call an electrician at the first sign of it; left alone, it can lead to an electrical fire.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded sentences; warning kept"
+    },
+    {
+      "id": "slop-posts-a-102",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02r",
+        "block_index": 49,
+        "block_style": "normal"
+      },
+      "old_text": "Burning smells near outlets require urgent attention. These smells often indicate overheating or scorched wiring. Such issues can quickly escalate to electrical fires.",
+      "new_text": "A burning smell near an outlet needs urgent attention: it usually means overheating or scorched wiring, which can quickly become an electrical fire.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "choppy padded sentences"
+    },
+    {
+      "id": "slop-posts-a-103",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02t",
+        "block_index": 50,
+        "block_style": "normal"
+      },
+      "old_text": "Upon detecting a burning smell, turn off power to the affected area. Consult a qualified electrician to investigate and rectify the problem immediately. Timely action is vital to ensure safety.",
+      "new_text": "If you smell burning, turn off power to that area and call a licensed electrician right away.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"vital to ensure safety\"; safety step kept"
+    },
+    {
+      "id": "slop-posts-a-104",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k02z",
+        "block_index": 53,
+        "block_style": "normal"
+      },
+      "old_text": "Arc fault circuit interrupters (AFCIs) can prevent such dangerous incidents. They detect and disrupt the electrical supply in the presence of faults. Installing AFCIs is an effective preventive measure.",
+      "new_text": "Arc fault circuit interrupters (AFCIs) detect these faults and cut the power, which helps prevent a fire.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded, repetitive"
+    },
+    {
+      "id": "slop-posts-a-105",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k031",
+        "block_index": 54,
+        "block_style": "normal"
+      },
+      "old_text": "Electrical fires can be devastating. They are often caused by arc faults, overloaded circuits, or faulty devices. Regular electrical inspections can help in identifying potential fire hazards.",
+      "new_text": "Electrical fires are often caused by arc faults, overloaded circuits or faulty devices, and a regular electrical inspection can find those hazards.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "empty opener (\"can be devastating\")"
+    },
+    {
+      "id": "slop-posts-a-106",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k033",
+        "block_index": 55,
+        "block_style": "normal"
+      },
+      "old_text": "Ensure your home has working smoke detectors to alert you to fires. It's important to replace faulty wiring promptly. Always hire a professional electrician to handle suspected arc faults.",
+      "new_text": "Keep working smoke detectors in the house, replace faulty wiring promptly, and have a licensed electrician handle any suspected arc fault.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"It's important\"; same three steps"
+    },
+    {
+      "id": "slop-posts-a-107",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k035",
+        "block_index": 56,
+        "block_style": "normal"
+      },
+      "old_text": "Ignoring minor electrical issues can lead to serious consequences. Taking preventive measures helps safeguard your home and loved ones. Always prioritize safety and quality when addressing electrical concerns.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (moral closer) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-108",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k037",
+        "block_index": 57,
+        "block_style": "h2"
+      },
+      "old_text": "The Importance of Professional Electricians in Scottsdale",
+      "new_text": "DIY vs. Hiring a Scottsdale Electrician",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"The Importance of X\" heading (keyword kept)",
+      "verifier_note": "edits 109-113 delete every paragraph under this H2, so it sits directly over the H3s \"Why DIY Electrical Repairs Are Risky\" and \"Hiring Qualified Electricians in Scottsdale, AZ\". \"When to Call...\" does not describe those two subsections; this heading does, and it keeps \"Scottsdale Electrician\"."
+    },
+    {
+      "id": "slop-posts-a-109",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k039",
+        "block_index": 58,
+        "block_style": "normal"
+      },
+      "old_text": "The climate in Scottsdale poses unique challenges for electrical systems. Professional electricians understand these regional nuances. They offer expertise tailored to local conditions, ensuring safety and compliance.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (generic benefit copy) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-110",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03b",
+        "block_index": 59,
+        "block_style": "normal"
+      },
+      "old_text": "Hiring an electrical contractor in Scottsdale means having a team well-versed in local codes. They can quickly identify potential issues specific to the area. This knowledge helps in providing effective and lasting solutions.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (generic benefit copy) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-111",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03d",
+        "block_index": 60,
+        "block_style": "normal"
+      },
+      "old_text": "Attempting to fix electrical issues without professional help can lead to errors. Scottsdale electricians possess the skills necessary to handle complex electrical systems. They ensure any work completed is safe and up to standard.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (DIY risk is covered in the next subsection) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-112",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03f",
+        "block_index": 61,
+        "block_style": "normal"
+      },
+      "old_text": "A licensed electrician will maintain the reliability of your home's electrical system. They can prevent small problems from turning into costly repairs. Professional services guarantee quality, performance, and safety.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (triplet \"quality, performance, and safety\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-113",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03h",
+        "block_index": 62,
+        "block_style": "normal"
+      },
+      "old_text": "Regular inspections and maintenance by qualified electricians are critical. They keep the electrical system efficient and hazard-free. This proactive approach prolongs the lifespan of electrical components in your home.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (inspections are covered under Maintaining) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-114",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03l",
+        "block_index": 64,
+        "block_style": "normal"
+      },
+      "old_text": "DIY electrical repairs might seem cost-effective but they're often risky. Without proper knowledge, you risk serious injury or house fires. Electricity is unforgiving and requires careful handling.",
+      "new_text": "DIY electrical repairs can look cheaper, but without the training you risk serious injury or a house fire.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock line (\"Electricity is unforgiving\")"
+    },
+    {
+      "id": "slop-posts-a-115",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03n",
+        "block_index": 65,
+        "block_style": "normal"
+      },
+      "old_text": "Improper repairs can lead to further damage. This may result in higher costs than hiring a professional initially. Mistakes could also void warranties on electrical components.",
+      "new_text": "A bad repair can cause more damage, end up costing more than hiring an electrician would have, and void warranties on electrical components.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "choppy padded sentences"
+    },
+    {
+      "id": "slop-posts-a-116",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03p",
+        "block_index": 66,
+        "block_style": "normal"
+      },
+      "old_text": "DIY projects often lack compliance with local codes and standards. Scottsdale electricians ensure all work meets these essential regulations. Compliance is crucial for both safety and insurance purposes.",
+      "new_text": "DIY work often misses local code requirements, which matter for both safety and insurance.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"crucial\", \"ensure\""
+    },
+    {
+      "id": "slop-posts-a-117",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03r",
+        "block_index": 67,
+        "block_style": "normal"
+      },
+      "old_text": "Handling electrical repairs without experience can pose several risks. It's always advisable to leave electrical work to licensed professionals. They possess the necessary expertise to manage hazards safely.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "repeats the paragraphs above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-118",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03t",
+        "block_index": 68,
+        "block_style": "normal"
+      },
+      "old_text": "DIY attempts can put personal safety at risk. Electricity demands respect and caution. Trusting professionals can prevent accidents and ensure peace of mind.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"peace of mind\"; repeats the paragraphs above (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-119",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03x",
+        "block_index": 70,
+        "block_style": "normal"
+      },
+      "old_text": "Selecting the right electrician in Scottsdale is crucial. Experience and certification should top your checklist. Qualified professionals offer expertise that ensures safe and efficient repairs.",
+      "new_text": "Experience and licensing should top your checklist.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"crucial\", generic"
+    },
+    {
+      "id": "slop-posts-a-120",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k03z",
+        "block_index": 71,
+        "block_style": "normal"
+      },
+      "old_text": "Start by checking reviews and references. Past clients can provide insights into an electrician's reliability. Word of mouth is often a reliable source of recommendations.",
+      "new_text": "Read reviews and ask for references from past clients.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded"
+    },
+    {
+      "id": "slop-posts-a-121",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k041",
+        "block_index": 72,
+        "block_style": "normal"
+      },
+      "old_text": "Ensure the electrician has appropriate licensing. Scottsdale electricians must adhere to state regulations. Licensing guarantees that they possess the required skills and knowledge.",
+      "new_text": "Make sure the electrician holds an Arizona ROC license.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "vague \"state regulations\" and overclaim (\"guarantees\"); ROC licence is how the rest of the site states it"
+    },
+    {
+      "id": "slop-posts-a-122",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k043",
+        "block_index": 73,
+        "block_style": "normal"
+      },
+      "old_text": "Request estimates from multiple contractors to compare prices. However, prioritize quality over cost. Safety and reliability should always come first in electrical work.",
+      "new_text": "Get more than one estimate, but don't choose on price alone.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock moral (\"Safety and reliability should always come first\")"
+    },
+    {
+      "id": "slop-posts-a-123",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k045",
+        "block_index": 74,
+        "block_style": "normal"
+      },
+      "old_text": "Inquire about warranties and service agreements. This ensures accountability for the work completed. A reputable electrician will stand by their services and provide follow-up support.",
+      "new_text": "Ask about warranties, service agreements and follow-up support.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded"
+    },
+    {
+      "id": "slop-posts-a-124",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k049",
+        "block_index": 76,
+        "block_style": "normal"
+      },
+      "old_text": "Maintenance of your electrical system is vital for safety and efficiency. Neglecting it can lead to serious hazards. An ongoing maintenance plan helps avoid unexpected issues.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"vital\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-125",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k04b",
+        "block_index": 77,
+        "block_style": "normal"
+      },
+      "old_text": "Regular checks ensure that everything runs smoothly. It's important to address small problems before they escalate. Electrical systems require consistent monitoring and care.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"It's important\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-126",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k04d",
+        "block_index": 78,
+        "block_style": "normal"
+      },
+      "old_text": "Electrical contractors in Scottsdale AZ offer valuable maintenance services. They can identify potential risks and rectify them promptly. Professional maintenance helps reduce long-term costs.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (keyword-stuffed) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-127",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k04f",
+        "block_index": 79,
+        "block_style": "normal"
+      },
+      "old_text": "Simple tasks like checking outlets or breakers can be done monthly. However, complex inspections demand professional expertise. Regular visits from an electrician ensure thorough assessments.",
+      "new_text": "You can check outlets and breakers yourself once a month; leave full inspections to an electrician.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded"
+    },
+    {
+      "id": "slop-posts-a-128",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k04h",
+        "block_index": 80,
+        "block_style": "normal"
+      },
+      "old_text": "Implementing a maintenance routine provides peace of mind. It assures optimal performance and safety. Preserving your electrical system's integrity is crucial for a safe home environment.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"peace of mind\", \"crucial\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-129",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k04x",
+        "block_index": 88,
+        "block_style": "normal"
+      },
+      "old_text": "Inspections are essential to maintain compliance with electrical codes. Scottsdale's regulations are in place to protect residents. Staying up-to-date with these codes is crucial for safety.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"crucial\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-130",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k04z",
+        "block_index": 89,
+        "block_style": "normal"
+      },
+      "old_text": "Licensed electricians ensure code compliance through detailed inspections. They verify that all installations and repairs meet local standards. This adherence prevents penalties and potential hazards.",
+      "new_text": "A licensed electrician's inspection checks that installations and repairs meet local code.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded"
+    },
+    {
+      "id": "slop-posts-a-131",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k051",
+        "block_index": 90,
+        "block_style": "normal"
+      },
+      "old_text": "Scheduling regular inspections allows for early detection of issues. Such proactive measures can prevent costly repairs. Knowing your system complies with all local regulations ensures peace of mind.",
+      "new_text": "Regular inspections catch problems early, before they turn into costly repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"peace of mind\""
+    },
+    {
+      "id": "slop-posts-a-132",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k053",
+        "block_index": 91,
+        "block_style": "normal"
+      },
+      "old_text": "Professional evaluations by Scottsdale electricians are beneficial. They provide insights into your system's current state. Experts recommend the necessary adjustments to keep everything in order.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-133",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k055",
+        "block_index": 92,
+        "block_style": "normal"
+      },
+      "old_text": "Updating your system according to code is not just a legal obligation. It ensures maximum safety and efficiency. A proactive approach safeguards your family and property.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not just X\" + moral, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-134",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k059",
+        "block_index": 94,
+        "block_style": "normal"
+      },
+      "old_text": "Implementing preventative measures significantly reduces electrical risks. Simple actions can protect you from costly repairs. Identifying potential issues ahead of time is vital.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"vital\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-135",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05b",
+        "block_index": 95,
+        "block_style": "normal"
+      },
+      "old_text": "Be vigilant for any signs of electrical distress. Respond quickly to unusual smells, sounds, or heat from outlets. Early action can prevent accidents or further damage.",
+      "new_text": "Act quickly on unusual smells, sounds or heat from outlets.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded"
+    },
+    {
+      "id": "slop-posts-a-136",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05d",
+        "block_index": 96,
+        "block_style": "normal"
+      },
+      "old_text": "Use surge protectors to guard sensitive electronics. Scottsdale’s weather can cause unpredictable power surges. Surge protection minimizes the risk of damage during such events.",
+      "new_text": "Use surge protectors on sensitive electronics; Scottsdale’s storms cause power surges.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padded, repetitive"
+    },
+    {
+      "id": "slop-posts-a-137",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05f",
+        "block_index": 97,
+        "block_style": "normal"
+      },
+      "old_text": "Keep extension cords and appliances in good condition. Faulty equipment can lead to significant hazards. Replace worn or frayed cords immediately.",
+      "new_text": "Keep extension cords and appliances in good condition, and replace worn or frayed cords right away.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler middle sentence"
+    },
+    {
+      "id": "slop-posts-a-138",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05h",
+        "block_index": 98,
+        "block_style": "normal"
+      },
+      "old_text": "Childproof outlets if young children are present. Safety caps or tamper-resistant outlets prevent dangerous incidents. Taking preventive steps ensures a safer home environment for everyone.",
+      "new_text": "If you have young children, use safety caps or tamper-resistant outlets.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "moral closer"
+    },
+    {
+      "id": "slop-posts-a-139",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05j",
+        "block_index": 99,
+        "block_style": "h2"
+      },
+      "old_text": "Conclusion: Staying Ahead of Electrical Issues",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Conclusion:\" heading over a section with no facts (remove with the five paragraphs below) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-140",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05l",
+        "block_index": 100,
+        "block_style": "normal"
+      },
+      "old_text": "Staying proactive about electrical maintenance is critical. It mitigates risks and ensures home safety. Regular checks are an investment in your household's well-being.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-141",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05n",
+        "block_index": 101,
+        "block_style": "normal"
+      },
+      "old_text": "Recognize the unique challenges posed by Scottsdale's environment. Understanding potential issues keeps you prepared. It aids in addressing problems before they escalate.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-142",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05p",
+        "block_index": 102,
+        "block_style": "normal"
+      },
+      "old_text": "Engage with qualified Scottsdale electricians for their expertise. Their knowledge ensures safe and efficient solutions. Rely on professionals for comprehensive assessments and repairs.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"comprehensive\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-143",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05r",
+        "block_index": 103,
+        "block_style": "normal"
+      },
+      "old_text": "Adopting preventive measures adds an extra layer of protection. Smart maintenance helps avoid emergencies and costly fixes. Safety-conscious steps secure a stable electrical system.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-144",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05t",
+        "block_index": 104,
+        "block_style": "normal"
+      },
+      "old_text": "Ultimately, consistent attention fosters a safe, efficient home. Keep your electrical system in top condition. It is essential for peace of mind and the well-being of your home.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler, no fact (\"peace of mind\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-145",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05v",
+        "block_index": 105,
+        "block_style": "h2"
+      },
+      "old_text": "Additional Resources",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "section sends readers to \"local authorities\" and other contractors' websites with no links (remove with the two paragraphs below) (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-146",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05x",
+        "block_index": 106,
+        "block_style": "normal"
+      },
+      "old_text": "For more information on maintaining electrical safety, consider exploring the resources provided by local Scottsdale authorities. They offer guidelines tailored to regional needs and challenges.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "vague, no source named (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-147",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k05z",
+        "block_index": 107,
+        "block_style": "normal"
+      },
+      "old_text": "Additionally, consult websites of reputable electrical contractors in Scottsdale, AZ. They often provide educational content and tips for homeowners on their blogs or resource pages.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "tells readers to read competitors' sites; no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-148",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k061",
+        "block_index": 108,
+        "block_style": "h2"
+      },
+      "old_text": "The Wire Guy Electric (Best Scottsdale Electrician)",
+      "new_text": "The Wire Guy Electric in Scottsdale",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported superlative in a heading",
+      "verifier_note": "accepted as proposed. A verifier variant that kept \"Electrician\" in this heading clashed with the next sentence (\"...is a licensed electrical contractor...\"). The keyword stays on the page in the amended H2 57 (\"DIY vs. Hiring a Scottsdale Electrician\") and in H3 69."
+    },
+    {
+      "id": "slop-posts-a-149",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k063",
+        "block_index": 109,
+        "block_style": "normal"
+      },
+      "old_text": "are dedicated professionals with years of experience in the electrical industry. Our team is committed to delivering top-notch services to Scottsdale residents.",
+      "new_text": "is a licensed electrical contractor serving Scottsdale homes.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"top-notch\", \"dedicated professionals\"; linked words \"The Wire Guy Electric\" untouched",
+      "verifier_note": "linked words \"The Wire Guy Electric\" (->/locations/scottsdale) sit just before old_text and are not touched."
+    },
+    {
+      "id": "slop-posts-a-150",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "body",
+        "block_key": "k066",
+        "block_index": 110,
+        "block_style": "normal"
+      },
+      "old_text": "From troubleshooting to major electrical installations, we ensure safety and quality. Trust us for reliable and expert service in every project, big or small.",
+      "new_text": "We handle everything from troubleshooting to major electrical installations.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock closer (\"every project, big or small\")"
+    },
+    {
+      "id": "slop-posts-a-151",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7",
+        "field": "body",
+        "block_key": "k00l",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "It's also one of the most important investments you can make in your home's safety. Let's talk about what it actually costs",
+      "new_text": "We'll cover what it actually costs",
+      "tier": "tier1",
+      "verdict": "amend",
+      "reason": "unsupported superlative + \"Let's talk about\" filler; keywords kept",
+      "verifier_note": "the proposed text produced \"Here's what it actually costs here in Arizona\", which says \"here\" twice. Keywords stay in the first 100 words. Straight apostrophe, matching this block."
+    },
+    {
+      "id": "slop-posts-a-152",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7",
+        "field": "body",
+        "block_key": "k03v",
+        "block_index": 34,
+        "block_style": "normal"
+      },
+      "old_text": "Rewiring a house is a significant investment, but it's one that directly protects your family and your property.",
+      "new_text": "Rewiring a house is a significant investment.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "moral (\"protects your family\")"
+    },
+    {
+      "id": "slop-posts-a-153",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7",
+        "field": "body",
+        "block_key": "k03v",
+        "block_index": 34,
+        "block_style": "normal"
+      },
+      "old_text": " The peace of mind that comes with knowing every wire in your house is new, properly sized, and up to code is worth the cost.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"peace of mind\" closer"
+    },
+    {
+      "id": "slop-posts-a-154",
+      "url": "/blog-posts/cost-to-rewire-house-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4d47836-50cd-49dc-aba9-063bf920f4e7",
+        "field": "body",
+        "block_key": "k03x",
+        "block_index": 35,
+        "block_style": "normal"
+      },
+      "old_text": " Just the facts on what your home needs.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "slogan fragment"
+    },
+    {
+      "id": "slop-posts-a-155",
+      "url": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6edeeb66-1db1-42f8-8586-c6a343db255c",
+        "field": "body",
+        "block_key": "k004",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": " What gives?",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical filler question"
+    },
+    {
+      "id": "slop-posts-a-156",
+      "url": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6edeeb66-1db1-42f8-8586-c6a343db255c",
+        "field": "body",
+        "block_key": "k00k",
+        "block_index": 9,
+        "block_style": "normal"
+      },
+      "old_text": "One important note on aluminum here: the multi-strand",
+      "new_text": "A note on aluminum: the multi-strand",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in"
+    },
+    {
+      "id": "slop-posts-a-157",
+      "url": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6edeeb66-1db1-42f8-8586-c6a343db255c",
+        "field": "body",
+        "block_key": "k00k",
+        "block_index": 9,
+        "block_style": "normal"
+      },
+      "old_text": " Those are not the same thing. Service entrance aluminum is fine. Single strand branch circuit aluminum is the fire risk.",
+      "new_text": " Single strand branch circuit aluminum is the fire risk.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "restates the two sentences before it",
+      "verifier_note": "only the two restating sentences go. \"Single strand branch circuit aluminum is the fire risk\" is the post's only explicit fire-risk warning on this point (the sentence before only says \"scary stories\"), and the owner repeats this single-strand distinction across the live site."
+    },
+    {
+      "id": "slop-posts-a-158",
+      "url": "/blog-posts/cutting-corners-panel-upgrades-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "6edeeb66-1db1-42f8-8586-c6a343db255c",
+        "field": "body",
+        "block_key": "k03c",
+        "block_index": 52,
+        "block_style": "normal"
+      },
+      "old_text": " The cheap quote almost always costs more in the long run.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph ending on a moral after the CTA"
+    },
+    {
+      "id": "slop-posts-a-159",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k003",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "But Arizona has strict rules—and for good reason.",
+      "new_text": "But Arizona has strict rules.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "filler aside (\"and for good reason\"); keywords kept"
+    },
+    {
+      "id": "slop-posts-a-160",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k005",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": " Let’s break it down.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "filler transition"
+    },
+    {
+      "id": "slop-posts-a-161",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k00w",
+        "block_index": 11,
+        "block_style": "normal"
+      },
+      "old_text": "⚠️ ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "amend",
+      "reason": "emoji in body copy; safety warning kept",
+      "verifier_note": "only the emoji span (\"⚠️ \") is deleted. The bold span \"Important:\" is left alone instead of being rewritten, so the strong mark survives."
+    },
+    {
+      "id": "slop-posts-a-162",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k027",
+        "block_index": 30,
+        "block_style": "normal"
+      },
+      "old_text": "these hidden issues can spell disaster:",
+      "new_text": "these hidden issues can be dangerous:",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "cliche (\"spell disaster\")"
+    },
+    {
+      "id": "slop-posts-a-163",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k02o",
+        "block_index": 36,
+        "block_style": "normal"
+      },
+      "old_text": "The biggest risk? You don’t know what you don’t know. And Arizona’s",
+      "new_text": "Arizona’s",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "rhetorical question + cliche"
+    },
+    {
+      "id": "slop-posts-a-164",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k02s",
+        "block_index": 38,
+        "block_style": "normal"
+      },
+      "old_text": "the pros at ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "amend",
+      "reason": "stock phrase (\"call the pros\"); CTA kept",
+      "verifier_note": "same result as proposed, but the bold span \"The Wire Guy Electric\" is left alone, so its strong mark survives."
+    },
+    {
+      "id": "slop-posts-a-165",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k034",
+        "block_index": 43,
+        "block_style": "bullet list item"
+      },
+      "old_text": "You just want peace of mind that it’s done right",
+      "new_text": "You just want to know it’s done right",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"peace of mind\" crutch"
+    },
+    {
+      "id": "slop-posts-a-166",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k036",
+        "block_index": 44,
+        "block_style": "normal"
+      },
+      "old_text": "—with clean work, quick scheduling, and honest advice.",
+      "new_text": ".",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "padding triplet of unbacked claims"
+    },
+    {
+      "id": "slop-posts-a-167",
+      "url": "/blog-posts/diy-electrical-work-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "02c99f14-6cf7-4964-81e3-07e1e380af65",
+        "field": "body",
+        "block_key": "k03c",
+        "block_index": 46,
+        "block_style": "normal"
+      },
+      "old_text": "Whether you're planning a ceiling fan install or realize your panel needs an upgrade, we're here to help.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"Whether you need X or Y, we're here to help\"; the CTA line after it stays (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-168",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k000",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Your electrical panel is the heart of your home’s electrical system—distributing power where it’s needed and protecting your home from overloads. But if your panel is outdated or undersized, it could be putting your safety and appliances at risk.",
+      "new_text": "Your electrical panel sends power to every circuit in the house and protects your home from overloads. If it is outdated or undersized, it can put your safety and your appliances at risk.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock metaphor (\"the heart of your home\")"
+    },
+    {
+      "id": "slop-posts-a-169",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k002",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "we help Arizona homeowners upgrade their panels to meet today’s power demands—safely and efficiently.",
+      "new_text": "we upgrade panels for Arizona homeowners.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padding (\"safely and efficiently\", \"today's power demands\")"
+    },
+    {
+      "id": "slop-posts-a-170",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k00f",
+        "block_index": 6,
+        "block_style": "normal"
+      },
+      "old_text": "Thinking about installing a hot tub, EV charger, or a new HVAC system? These power-hungry additions often require",
+      "new_text": "A hot tub, EV charger, or new HVAC system often requires",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical-question opener"
+    },
+    {
+      "id": "slop-posts-a-171",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k00j",
+        "block_index": 8,
+        "block_style": "normal"
+      },
+      "old_text": "Frequent tripping isn’t just annoying—it’s a sign that your panel is struggling to keep up with demand. An upgrade can provide more capacity and peace of mind.",
+      "new_text": "Frequent tripping is a sign that your panel is struggling to keep up with demand. An upgrade adds capacity.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"isn't just X—it's Y\" + \"peace of mind\""
+    },
+    {
+      "id": "slop-posts-a-172",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k00n",
+        "block_index": 10,
+        "block_style": "normal"
+      },
+      "old_text": "These subtle signs can indicate overloaded circuits or poor connections, both of which are signs that your electrical system is under stress.",
+      "new_text": "These can point to overloaded circuits or poor connections, both signs that your electrical system is under stress.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "wordy"
+    },
+    {
+      "id": "slop-posts-a-173",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k018",
+        "block_index": 19,
+        "block_style": "bullet list item"
+      },
+      "old_text": "Peace of mind that your home is safe and future-ready",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"peace of mind\" benefit with no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-174",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k01a",
+        "block_index": 20,
+        "block_style": "normal"
+      },
+      "old_text": "Protect your home. Power your future.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "slogan (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-175",
+      "url": "/blog-posts/do-you-need-an-electrical-panel-upgrade-heres-how-to-tell",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "3028ed9b-0668-4938-856f-48e8fcb603eb",
+        "field": "body",
+        "block_key": "k01c",
+        "block_index": 21,
+        "block_style": "normal"
+      },
+      "old_text": "Whether you’re upgrading for safety, performance, or peace of mind, The Wire Guy Electric is here to help. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Whether you're X, Y or Z\" + \"peace of mind\"; the CTA sentence stays"
+    },
+    {
+      "id": "slop-posts-a-176",
+      "url": "/blog-posts/dryer-outlet-for-ev",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8852645a-0e6a-42f4-bd9e-be005f20d2af",
+        "field": "body",
+        "block_key": "k007",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": " The reality is more complicated. Let’s break it down.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler transition (\"Let's break it down\")"
+    },
+    {
+      "id": "slop-posts-a-177",
+      "url": "/blog-posts/dryer-outlet-for-ev",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8852645a-0e6a-42f4-bd9e-be005f20d2af",
+        "field": "body",
+        "block_key": "k00q",
+        "block_index": 7,
+        "block_style": "normal"
+      },
+      "old_text": "The catch? That circuit was only designed for laundry equipment,",
+      "new_text": "But that circuit was designed for laundry equipment,",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical-question opener"
+    },
+    {
+      "id": "slop-posts-a-178",
+      "url": "/blog-posts/dryer-outlet-for-ev",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8852645a-0e6a-42f4-bd9e-be005f20d2af",
+        "field": "body",
+        "block_key": "k029",
+        "block_index": 28,
+        "block_style": "bullet list item"
+      },
+      "old_text": "peace of mind that your wiring is safe and code-compliant",
+      "new_text": "wiring that is safe and code-compliant",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"peace of mind\" crutch"
+    },
+    {
+      "id": "slop-posts-a-179",
+      "url": "/blog-posts/dryer-outlet-for-ev",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8852645a-0e6a-42f4-bd9e-be005f20d2af",
+        "field": "body",
+        "block_key": "k02b",
+        "block_index": 29,
+        "block_style": "h3"
+      },
+      "old_text": "ready to charge the right way?",
+      "new_text": "get a dedicated EV charging circuit",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical stock CTA heading (kept lower-case like the post's other headings)",
+      "verifier_note": "apply: the whole heading is bold in the source; keep it bold."
+    },
+    {
+      "id": "slop-posts-a-180",
+      "url": "/blog-posts/dryer-outlet-for-ev",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "8852645a-0e6a-42f4-bd9e-be005f20d2af",
+        "field": "body",
+        "block_key": "k02p",
+        "block_index": 33,
+        "block_style": "normal"
+      },
+      "old_text": "safe, legal, and built to last.",
+      "new_text": "safe and up to code.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "padding triplet (\"built to last\")"
+    },
+    {
+      "id": "slop-posts-a-181",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k000",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Thinking about selling your Phoenix home? Before the “For Sale” sign goes up, one of the smartest (and often overlooked) steps you can take is scheduling a professional electrical inspection. It’s a simple way to avoid last-minute surprises that could delay your closing or cost you thousands in repairs.",
+      "new_text": "If you are selling your Phoenix home, schedule a professional electrical inspection before the “For Sale” sign goes up. It heads off last-minute surprises that could delay your closing or cost you thousands in repairs.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical-question opener + unsupported superlative (\"one of the smartest\"); keywords kept"
+    },
+    {
+      "id": "slop-posts-a-182",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k002",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "we help homeowners identify hidden electrical issues before buyers or inspectors do — so you can list with confidence and close without stress.",
+      "new_text": "we find hidden electrical issues before buyers or their inspectors do.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock benefit tail (\"list with confidence and close without stress\")"
+    },
+    {
+      "id": "slop-posts-a-183",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k006",
+        "block_index": 2,
+        "block_style": "h3"
+      },
+      "old_text": "Why an Electrical Inspection Matters Before Listing",
+      "new_text": "What an Electrical Inspection Before Listing Catches",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Why X Matters\" heading; now names what the section lists",
+      "verifier_note": "the proposed heading dropped the keyword phrase \"Electrical Inspection ... Before Listing\". This post targets \"electrical inspection before selling\", and the hard rules keep keyword-bearing headings. This version removes the \"Why X Matters\" pattern and keeps the keyword. Keep the strong mark on the whole heading."
+    },
+    {
+      "id": "slop-posts-a-184",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k01m",
+        "block_index": 24,
+        "block_style": "normal"
+      },
+      "old_text": "A clean electrical inspection report makes your listing stand out. Buyers appreciate seeing proof that the home has been professionally checked and cleared — it shows you’ve maintained your property and reduces the risk of negotiation delays later.",
+      "new_text": "A clean electrical inspection report shows buyers the home has been checked by a licensed electrician, which can mean fewer delays in negotiation.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "marketing filler (\"makes your listing stand out\")"
+    },
+    {
+      "id": "slop-posts-a-185",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k01t",
+        "block_index": 27,
+        "block_style": "normal"
+      },
+      "old_text": "make sure your electrical system is ready to pass with flying colors.",
+      "new_text": "make sure your electrical system will pass the buyer’s inspection.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliche (\"with flying colors\")"
+    },
+    {
+      "id": "slop-posts-a-186",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k01v",
+        "block_index": 28,
+        "block_style": "normal"
+      },
+      "old_text": "provides thorough, affordable electrical inspections across the Valley — from Scottsdale to Mesa and beyond.",
+      "new_text": "does pre-listing electrical inspections across the Valley, from Scottsdale to Mesa.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unbacked adjectives (\"thorough, affordable\")"
+    },
+    {
+      "id": "slop-posts-a-187",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k01y",
+        "block_index": 29,
+        "block_style": "normal"
+      },
+      "old_text": "✅ Family-owned and local since 2017",
+      "new_text": "Family-owned and local since 2017",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji used as a bullet (the three lines would read better as a list)"
+    },
+    {
+      "id": "slop-posts-a-188",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k020",
+        "block_index": 30,
+        "block_style": "normal"
+      },
+      "old_text": "✅ Licensed, bonded, and insured",
+      "new_text": "Licensed, bonded, and insured",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji used as a bullet"
+    },
+    {
+      "id": "slop-posts-a-189",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k022",
+        "block_index": 31,
+        "block_style": "normal"
+      },
+      "old_text": "✅ Clear reports and honest recommendations",
+      "new_text": "Clear reports and honest recommendations",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "emoji used as a bullet"
+    },
+    {
+      "id": "slop-posts-a-190",
+      "url": "/blog-posts/electrical-inspection-before-selling-a-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f4cfa47d-e803-4fbc-bfa6-0d11e9a3a963",
+        "field": "body",
+        "block_key": "k024",
+        "block_index": 32,
+        "block_style": "normal"
+      },
+      "old_text": " — and sell your home with confidence.",
+      "new_text": ".",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock closer"
+    },
+    {
+      "id": "slop-posts-a-191",
+      "url": "/blog-posts/electrical-panel-hot-to-the-touch-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "abca5015-bede-446d-b482-44ee57c9406a",
+        "field": "body",
+        "block_key": "k00u",
+        "block_index": 11,
+        "block_style": "normal"
+      },
+      "old_text": "The reason we take this seriously is simple. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler lead-in"
+    },
+    {
+      "id": "slop-posts-a-192",
+      "url": "/blog-posts/electrical-panel-hot-to-the-touch-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "abca5015-bede-446d-b482-44ee57c9406a",
+        "field": "body",
+        "block_key": "k00u",
+        "block_index": 11,
+        "block_style": "normal"
+      },
+      "old_text": " The panel is the heart of your home's electrical system, and it is the one place where a small problem has the biggest consequences.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock metaphor (\"the heart of your home\") + unsupported superlative"
+    },
+    {
+      "id": "slop-posts-a-193",
+      "url": "/blog-posts/electrical-panel-upgrade-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "637da57a-79e4-47d1-ba6e-da618c288e18",
+        "field": "body",
+        "block_key": "k002",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "so let's skip the fluff and get straight to real numbers.",
+      "new_text": "so here are the real numbers.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock phrase (\"skip the fluff\")"
+    },
+    {
+      "id": "slop-posts-a-194",
+      "url": "/blog-posts/electrical-panel-upgrade-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "637da57a-79e4-47d1-ba6e-da618c288e18",
+        "field": "body",
+        "block_key": "k00i",
+        "block_index": 6,
+        "block_style": "normal"
+      },
+      "old_text": "Every home is different. ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "filler first sentence"
+    },
+    {
+      "id": "slop-posts-a-195",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k000",
+        "block_index": 0,
+        "block_style": "h3"
+      },
+      "old_text": "Introduction",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Introduction\" heading over a single intro paragraph (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-196",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k002",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "Welcome to The Wire Guy Electric blog! We are your trusted local electricians, dedicated to providing high-quality electrical services while ensuring the safety and satisfaction of our customers. Safety is our top priority, and that's why we're kicking off our blog with some essential electricity safety tips that everyone should know. Whether you're a homeowner, a renter, or a business owner, these tips will help you stay safe and prevent electrical accidents.",
+      "new_text": "These ten electricity safety tips cover the basics for any home: outlets, water, cords and plugs, appliances, DIY work, GFCIs, children, outdoor power, smoke alarms, and what to do in an electrical emergency.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"your trusted partner\"-style intro, exclamation, \"Whether you're a homeowner, a renter, or a business owner\"; now a plain summary of the ten tips (keyword kept)"
+    },
+    {
+      "id": "slop-posts-a-197",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k00a",
+        "block_index": 5,
+        "block_style": "normal"
+      },
+      "old_text": "Water is a conductor of electricity, so it's crucial to keep all electrical devices away from water to avoid electrocution.",
+      "new_text": "Water conducts electricity, so keep electrical devices away from water to avoid electrocution.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"it's crucial\""
+    },
+    {
+      "id": "slop-posts-a-198",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k00m",
+        "block_index": 11,
+        "block_style": "normal"
+      },
+      "old_text": "While it can be tempting to tackle electrical projects on your own, it's always best to leave electrical work to the professionals. DIY electrical work can be extremely dangerous and can result in costly mistakes. If you need electrical work done, call The Wire Guy Electric - we're here to help!",
+      "new_text": "DIY electrical work can be extremely dangerous and lead to costly mistakes, so leave it to a licensed electrician. If you need electrical work done, call The Wire Guy Electric.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "exclamation + \"we're here to help\"; CTA kept"
+    },
+    {
+      "id": "slop-posts-a-199",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k00q",
+        "block_index": 13,
+        "block_style": "normal"
+      },
+      "old_text": "give us a call!",
+      "new_text": "give us a call.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "exclamation in body copy"
+    },
+    {
+      "id": "slop-posts-a-200",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k00y",
+        "block_index": 17,
+        "block_style": "normal"
+      },
+      "old_text": "Outdoor electrical safety is just as important as indoor electrical safety. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler first sentence"
+    },
+    {
+      "id": "slop-posts-a-201",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k016",
+        "block_index": 21,
+        "block_style": "normal"
+      },
+      "old_text": "In the event of an electrical emergency, such as an electrical fire or a person receiving an electrical shock, it's important to know how to respond. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"it's important to know\"; the heading already says it"
+    },
+    {
+      "id": "slop-posts-a-202",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k018",
+        "block_index": 22,
+        "block_style": "h3"
+      },
+      "old_text": "Conclusion",
+      "new_text": "Call The Wire Guy Electric",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Conclusion\" heading"
+    },
+    {
+      "id": "slop-posts-a-203",
+      "url": "/blog-posts/electrical-safety-tips",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "860801b8-5061-43de-8794-a2b7fa4b4d8c",
+        "field": "body",
+        "block_key": "k01a",
+        "block_index": 23,
+        "block_style": "normal"
+      },
+      "old_text": "Electricity is an essential part of our daily lives, but it can also be dangerous if not handled properly. By following these electricity safety tips, you can keep yourself and your loved ones safe and prevent electrical accidents. Remember, if you need any electrical work done, don't hesitate to call The Wire Guy Electric - your safety is our top priority!",
+      "new_text": "For electrical work beyond these tips, call The Wire Guy Electric.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"don't hesitate to call\", \"your safety is our top priority!\", moral closer; CTA kept"
+    },
+    {
+      "id": "slop-posts-a-204",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k001",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Phoenix homes rely heavily on electricity. Between long, brutal summers, nonstop air conditioning, solar installations, EV chargers, and older desert-era wiring, many Arizona homeowners",
+      "new_text": "Between long, brutal summers, nonstop air conditioning, solar installations, EV chargers, and older desert-era wiring, many homeowners in Phoenix",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "empty opener sentence; \"Phoenix\" kept in the first line"
+    },
+    {
+      "id": "slop-posts-a-205",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k009",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": "This guide breaks down where EMFs come from, why Phoenix homes tend to experience higher exposure, and when it’s time to call an electrician.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "meta-commentary (\"This guide breaks down\") (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-206",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k00l",
+        "block_index": 7,
+        "block_style": "normal"
+      },
+      "old_text": "Phoenix has a unique combination of factors that can contribute to elevated EMF readings.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "restates the heading (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-207",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k013",
+        "block_index": 16,
+        "block_style": "normal"
+      },
+      "old_text": "The concern is not their existence, but when they’re unusually strong or concentrated.",
+      "new_text": "The concern is EMFs that are unusually strong or concentrated.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not X, but Y\" structure",
+      "format": {
+        "strong": [
+          "unusually strong or concentrated"
+        ]
+      },
+      "verifier_note": "apply: keep the strong mark on \"unusually strong or concentrated\"."
+    },
+    {
+      "id": "slop-posts-a-208",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k01b",
+        "block_index": 19,
+        "block_style": "normal"
+      },
+      "old_text": "A licensed electrician doesn’t just measure EMFs. They identify and correct the electrical conditions causing them.",
+      "new_text": "A licensed electrician finds and corrects the electrical conditions behind high EMF readings.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"doesn't just X. They Y.\" structure"
+    },
+    {
+      "id": "slop-posts-a-209",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k01l",
+        "block_index": 24,
+        "block_style": "normal"
+      },
+      "old_text": " Meters identify symptoms. Electricians fix systems.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "slogan"
+    },
+    {
+      "id": "slop-posts-a-210",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k01s",
+        "block_index": 27,
+        "block_style": "normal"
+      },
+      "old_text": "These steps not only reduce unnecessary EMF exposure but also improve comfort and safety.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not only X but also Y\", no fact (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-211",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k01w",
+        "block_index": 29,
+        "block_style": "normal"
+      },
+      "old_text": "or if you simply want peace of mind about your home’s electrical system.",
+      "new_text": "or if you simply want your home’s electrical system checked.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"peace of mind\" crutch"
+    },
+    {
+      "id": "slop-posts-a-212",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k01y",
+        "block_index": 30,
+        "block_style": "h3"
+      },
+      "old_text": "Final Thoughts",
+      "new_text": "Get Your Wiring Checked",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"Final Thoughts\" heading"
+    },
+    {
+      "id": "slop-posts-a-213",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k020",
+        "block_index": 31,
+        "block_style": "normal"
+      },
+      "old_text": "EMFs are unavoidable in modern homes. However, elevated EMFs are often a warning sign, not something to dismiss. In Phoenix, where electrical systems work harder year-round than in most parts of the country, proper wiring, grounding, and load balancing are critical.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "summary that restates the post; \"critical\" (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-214",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k024",
+        "block_index": 32,
+        "block_style": "normal"
+      },
+      "old_text": "the smartest next step is a professional electrical inspection by a licensed electrician who understands Phoenix homes, desert conditions, and modern electrical demands. ",
+      "new_text": "start with an electrical inspection by a licensed electrician. ",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "unsupported superlative + padding triplet; the linked CTA after it is untouched",
+      "verifier_note": "the linked CTA \"The Wire Guy Electric, we can measure EMFs in your home \" (->/) comes after old_text and is not touched."
+    },
+    {
+      "id": "slop-posts-a-215",
+      "url": "/blog-posts/emfs-in-your-phoenix-home",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "50c78844-2c4c-4496-87f1-fe0e9fb8ef18",
+        "field": "body",
+        "block_key": "k01f",
+        "block_index": 21,
+        "block_style": "normal"
+      },
+      "old_text": " while improving overall electrical safety and performance.",
+      "new_text": ".",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler tail"
+    },
+    {
+      "id": "slop-posts-a-216",
+      "url": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4f9853d4-d52e-4843-9adf-3d7e458527f4",
+        "field": "body",
+        "block_key": "k010",
+        "block_index": 15,
+        "block_style": "normal"
+      },
+      "old_text": "This is the Arizona piece. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler signpost"
+    },
+    {
+      "id": "slop-posts-a-217",
+      "url": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4f9853d4-d52e-4843-9adf-3d7e458527f4",
+        "field": "body",
+        "block_key": "k018",
+        "block_index": 19,
+        "block_style": "normal"
+      },
+      "old_text": "which tells you everything about how the code itself views the two methods",
+      "new_text": "which shows how the code itself views the two methods",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "overstatement (\"tells you everything\")"
+    },
+    {
+      "id": "slop-posts-a-218",
+      "url": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4f9853d4-d52e-4843-9adf-3d7e458527f4",
+        "field": "body",
+        "block_key": "k01e",
+        "block_index": 22,
+        "block_style": "normal"
+      },
+      "old_text": "The hardwired version simply gives you a better, faster, safer install for almost the same money.",
+      "new_text": "The hardwired version is safer and charges faster, for almost the same money.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "padding triplet (\"better, faster, safer\")",
+      "verifier_note": "the proposed text dropped \"safer\", and safety is the post's whole case (plug-in outlets burning up). \"Faster\" is backed by 48 A vs 40 A (block 19). Only the empty \"better\" goes."
+    },
+    {
+      "id": "slop-posts-a-219",
+      "url": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4f9853d4-d52e-4843-9adf-3d7e458527f4",
+        "field": "body",
+        "block_key": "k01y",
+        "block_index": 30,
+        "block_style": "normal"
+      },
+      "old_text": " That is the goal.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler closer"
+    },
+    {
+      "id": "slop-posts-a-220",
+      "url": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4f9853d4-d52e-4843-9adf-3d7e458527f4",
+        "field": "body",
+        "block_key": "k022",
+        "block_index": 32,
+        "block_style": "normal"
+      },
+      "old_text": " No upsells, no shortcuts, and no plug-in outlet sitting in your garage waiting to fail.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "slogan triplet closer after the CTA"
+    },
+    {
+      "id": "slop-posts-a-221",
+      "url": "/blog-posts/federal-pacific-zinsco-panels-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5356c26e-bea3-4158-bbbf-79d7db67b29b",
+        "field": "body",
+        "block_key": "k00t",
+        "block_index": 10,
+        "block_style": "h2"
+      },
+      "old_text": "The Arizona Wrinkle: Heat Makes Old Panels Worse",
+      "new_text": "Heat Makes Old Panels Worse in Arizona",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "colon-subtitle heading"
+    },
+    {
+      "id": "slop-posts-a-222",
+      "url": "/blog-posts/federal-pacific-zinsco-panels-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "5356c26e-bea3-4158-bbbf-79d7db67b29b",
+        "field": "body",
+        "block_key": "k01b",
+        "block_index": 17,
+        "block_style": "normal"
+      },
+      "old_text": "the honest answer is that it is a question of when, not if.",
+      "new_text": "the honest answer is that it will need replacing.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cliche (\"when, not if\")"
+    },
+    {
+      "id": "slop-posts-a-223",
+      "url": "/blog-posts/generator-interlock-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "369343f7-e23f-43b5-8d43-b3ce6d342c50",
+        "field": "body",
+        "block_key": "k005",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": " Let’s walk through what Arizona homeowners need to know.",
+      "new_text": " Here is what Arizona code and the utilities require.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "filler transition",
+      "verifier_note": "deleting the sentence outright leaves no \"Arizona\" in the intro of a post titled \"...Generator Interlock in Arizona?\". This keeps the geo keyword in the first 100 words without the filler, and it matches what the sections cover (NEC 702, APS/SRP rules, the cities).",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-a-224",
+      "url": "/blog-posts/generator-interlock-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "369343f7-e23f-43b5-8d43-b3ce6d342c50",
+        "field": "body",
+        "block_key": "k00h",
+        "block_index": 4,
+        "block_style": "normal"
+      },
+      "old_text": "Here’s where it gets tricky.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "filler one-liner (removes the whole block)",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-a-225",
+      "url": "/blog-posts/generator-interlock-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "369343f7-e23f-43b5-8d43-b3ce6d342c50",
+        "field": "body",
+        "block_key": "k00s",
+        "block_index": 8,
+        "block_style": "h2"
+      },
+      "old_text": "Why This Matters in Arizona",
+      "new_text": "The Risks of a Non-Listed Setup in Arizona",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"Why This Matters\" heading; now names the section",
+      "verifier_note": "keeps the geo keyword that the original H2 carried. Keep the strong mark on the whole heading.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-a-226",
+      "url": "/blog-posts/generator-interlock-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "369343f7-e23f-43b5-8d43-b3ce6d342c50",
+        "field": "body",
+        "block_key": "k01p",
+        "block_index": 21,
+        "block_style": "number list item"
+      },
+      "old_text": "Pairing a standby generator with an automatic transfer switch gives you seamless protection.",
+      "new_text": "A standby generator paired with an automatic transfer switch takes over on its own when the power goes out.",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "\"seamless\"",
+      "verifier_note": "the proposed text read \"...automatic transfer switch switches your home over...\", which says \"switch\" twice.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-a-227",
+      "url": "/blog-posts/generator-interlock-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "369343f7-e23f-43b5-8d43-b3ce6d342c50",
+        "field": "body",
+        "block_key": "k025",
+        "block_index": 28,
+        "block_style": "h3"
+      },
+      "old_text": "Ready to Prep for Monsoon Season?",
+      "new_text": "Get Ready for Monsoon Season",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical stock CTA heading",
+      "verifier_note": "apply: the whole heading is bold in the source; keep it bold.",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-a-228",
+      "url": "/blog-posts/generator-interlock-in-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "369343f7-e23f-43b5-8d43-b3ce6d342c50",
+        "field": "body",
+        "block_key": "k02j",
+        "block_index": 32,
+        "block_style": "normal"
+      },
+      "old_text": "Don’t risk your safety or your insurance. Call The Wire Guy Electric and let’s install a backup system that’s safe, legal, and ready for the next storm.",
+      "new_text": "Call The Wire Guy Electric and we’ll install a code-listed backup system before the next storm.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Don't risk\" opener + padding triplet; CTA kept",
+      "verifier_note": "apply: keep the strong mark on \"The Wire Guy Electric\".",
+      "skip": "Decision D15 (owner, 2026-10-19: \"remove generator\"): the post is removed from the site and 301s to /services/panels (migration/content-data/removed-posts.json)."
+    },
+    {
+      "id": "slop-posts-a-229",
+      "url": "/blog-posts/half-house-lost-power-heat-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "31cae692-827c-41c7-8e99-af6a3b846dd6",
+        "field": "body",
+        "block_key": "k00n",
+        "block_index": 8,
+        "block_style": "normal"
+      },
+      "old_text": "The heat does not create the problem out of nowhere, it finds the weak point that was already developing.",
+      "new_text": "The heat finds a weak point that was already developing.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not X, it Y\" structure"
+    },
+    {
+      "id": "slop-posts-a-230",
+      "url": "/blog-posts/half-house-lost-power-heat-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "31cae692-827c-41c7-8e99-af6a3b846dd6",
+        "field": "body",
+        "block_key": "k00s",
+        "block_index": 10,
+        "block_style": "normal"
+      },
+      "old_text": "So a half-house outage that shows up in the worst heat is not a coincidence, it is the heat and the load exposing a connection that was already on its way out.",
+      "new_text": "So a half-house outage in the worst heat usually means the heat and the load have exposed a connection that was already on its way out.",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not X, it is Y\" structure"
+    },
+    {
+      "id": "slop-posts-a-231",
+      "url": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "328f03a0-a669-4752-8b37-731c2772d00f",
+        "field": "body",
+        "block_key": "k00p",
+        "block_index": 7,
+        "block_style": "bullet list item"
+      },
+      "old_text": " Phoenix homes love to punish easy wire runs.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "cute filler"
+    },
+    {
+      "id": "slop-posts-a-232",
+      "url": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "328f03a0-a669-4752-8b37-731c2772d00f",
+        "field": "body",
+        "block_key": "k02o",
+        "block_index": 37,
+        "block_style": "h2"
+      },
+      "old_text": "Ready for a Quote?",
+      "new_text": "Get a Hot Tub Wiring Quote",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "rhetorical stock CTA heading"
+    },
+    {
+      "id": "slop-posts-a-233",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "body",
+        "block_key": "k001",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": "Phoenix summers aren’t just hot — they’re extreme.",
+      "new_text": "Phoenix summers are extreme.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "\"aren't just X — they're Y\" structure; \"Phoenix summers\" kept",
+      "verifier_note": "apply: the whole sentence is bold in the source; keep \"Phoenix summers are extreme.\" bold."
+    },
+    {
+      "id": "slop-posts-a-234",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "body",
+        "block_key": "k029",
+        "block_index": 33,
+        "block_style": "normal"
+      },
+      "old_text": "Monsoon storms + summer heat = perfect conditions for dangerous power surges.",
+      "new_text": "Monsoon storms and summer heat create the conditions for dangerous power surges.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "gimmick formula and cliche (\"perfect conditions\")"
+    },
+    {
+      "id": "slop-posts-a-235",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "body",
+        "block_key": "k02q",
+        "block_index": 40,
+        "block_style": "normal"
+      },
+      "old_text": "provides expert electrical inspections, repairs, and upgrades to keep your home running safely and efficiently — no matter how hot it gets.",
+      "new_text": "provides electrical inspections, repairs, and upgrades to keep your home running safely, no matter how hot it gets.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "unbacked \"expert\" + \"safely and efficiently\" padding"
+    },
+    {
+      "id": "slop-posts-a-236",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "body",
+        "block_key": "k02w",
+        "block_index": 42,
+        "block_style": "normal"
+      },
+      "old_text": "📞 ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji in body copy (phone number itself untouched)"
+    },
+    {
+      "id": "slop-posts-a-237",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "body",
+        "block_key": "k02z",
+        "block_index": 43,
+        "block_style": "normal"
+      },
+      "old_text": "🌐 ",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "emoji in body copy (link untouched)"
+    },
+    {
+      "id": "slop-posts-a-238",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "body",
+        "block_key": "k033",
+        "block_index": 44,
+        "block_style": "normal"
+      },
+      "old_text": "Stay cool, stay safe, and keep your home powered all summer long.",
+      "new_text": "",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "slogan triplet closer (removes the whole block)"
+    },
+    {
+      "id": "slop-posts-a-239",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "body",
+        "block_key": "k02o",
+        "block_index": 39,
+        "block_style": "normal"
+      },
+      "old_text": "it can fail when you need it most.",
+      "new_text": "it can fail at the hottest time of year.",
+      "tier": "tier1",
+      "verdict": "accept",
+      "reason": "stock phrase (\"when you need it most\")"
+    },
+    {
+      "id": "slop-posts-a-240",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k004",
+        "block_index": 1,
+        "block_style": "normal"
+      },
+      "old_text": "are not just standard outlets; they are life-saving devices required by code",
+      "new_text": "are life-saving outlets required by code",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not just X; they are Y\" structure"
+    },
+    {
+      "id": "slop-posts-a-241",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k008",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": "But here is the catch: ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "filler set-up (\"here is the catch\")",
+      "verifier_note": "same result as proposed. The old_text now stops before the bold safety warning (\"A GFCI outlet will still \\\"work\\\"...\"), so that strong span is not cut."
+    },
+    {
+      "id": "slop-posts-a-242",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k00b",
+        "block_index": 3,
+        "block_style": "normal"
+      },
+      "old_text": "At The Wire Guy Electric, we believe in empowering homeowners, but safety comes first. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"empowering\" + stock \"safety comes first\""
+    },
+    {
+      "id": "slop-posts-a-243",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k00f",
+        "block_index": 4,
+        "block_style": "normal"
+      },
+      "old_text": " Electricity is unforgiving.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock line"
+    },
+    {
+      "id": "slop-posts-a-244",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k00k",
+        "block_index": 5,
+        "block_style": "h2"
+      },
+      "old_text": "The \"Golden Rule\" of GFCI Wiring: Line vs. Load",
+      "new_text": "Line vs. Load in GFCI Wiring",
+      "tier": "normal",
+      "verdict": "amend",
+      "reason": "cliche (\"Golden Rule\") colon-subtitle heading; keywords kept",
+      "verifier_note": "the proposed heading dropped \"GFCI Wiring\", the post's keyword (\"How to Wire a GFCI Outlet\"). This version removes the \"Golden Rule\" cliché and the colon subtitle and keeps the keyword."
+    },
+    {
+      "id": "slop-posts-a-245",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k01e",
+        "block_index": 17,
+        "block_style": "h2"
+      },
+      "old_text": "Step 1: Safety First (Kill the Power)",
+      "new_text": "Step 1: Turn Off the Power",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Safety First\" heading"
+    },
+    {
+      "id": "slop-posts-a-246",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k04f",
+        "block_index": 54,
+        "block_style": "normal"
+      },
+      "old_text": "Don't risk your home's safety on a guess. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "stock \"Don't risk\" line; CTA sentence kept"
+    },
+    {
+      "id": "slop-posts-a-v01",
+      "url": "/blog-posts/casita-adu-electrical-requirements-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "945323db-f498-481f-b01b-ef6a7471b5ef",
+        "field": "body",
+        "block_key": "k01q",
+        "block_index": 23,
+        "block_style": "normal"
+      },
+      "old_text": "the symptom is not dramatic, it is lights that dim",
+      "new_text": "the symptom is subtle: lights that dim",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"not X, it is Y\" structure; keeps the point that the symptom is easy to miss",
+      "added_by_verifier": true
+    },
+    {
+      "id": "slop-posts-a-v02",
+      "url": "/blog-posts/ev-charger-hardwired-vs-plug-in-phoenix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "4f9853d4-d52e-4843-9adf-3d7e458527f4",
+        "field": "body",
+        "block_key": "k006",
+        "block_index": 2,
+        "block_style": "normal"
+      },
+      "old_text": "This is not a hypothetical. ",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"It's not X\" filler opener (the next sentence makes the point)",
+      "added_by_verifier": true
+    },
+    {
+      "id": "slop-posts-a-v03",
+      "url": "/blog-posts/aluminum-wiring-older-phoenix-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ce1123f9-c25e-4e23-8448-8ecf0f3a9fc2",
+        "field": "body",
+        "block_key": "k003",
+        "block_index": 0,
+        "block_style": "normal"
+      },
+      "old_text": " This isn't a rare thing.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "\"It's not X\" filler; the first sentence (\"there's a real chance\") and the next one (why builders switched) already say it is common",
+      "added_by_verifier": true
+    },
+    {
+      "id": "slop-posts-a-v04",
+      "url": "/blog-posts/ceiling-fan-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "19572e8e-6607-44bc-a1ed-cf9c9f7f4f77",
+        "field": "body",
+        "block_key": "k02j",
+        "block_index": 28,
+        "block_style": "normal"
+      },
+      "old_text": " You know the price upfront and can make a decision without worrying about a ticking clock.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "paragraph ending on a restated benefit (block 5 already says \"No watching the clock\")",
+      "added_by_verifier": true
+    },
+    {
+      "id": "slop-posts-a-v05",
+      "url": "/blog-posts/how-to-wire-a-gfci-outlet",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "d6ba0e1a-98d5-4c08-93aa-b301d78afb52",
+        "field": "body",
+        "block_key": "k02i",
+        "block_index": 30,
+        "block_style": "normal"
+      },
+      "old_text": "Now that you know which wire brings the power, you can connect the new device.",
+      "new_text": "",
+      "tier": "normal",
+      "verdict": "accept",
+      "reason": "first sentence restates the heading (\"Step 3: Connect the New GFCI\") (removes the whole block)",
+      "added_by_verifier": true
+    },
+    {
+      "id": "excerpt-posts-a-001",
+      "url": "/blog-posts/how-phoenix-heat-affects-your-homes-electrical-system",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f726dd6f-edcf-416c-a7a4-9728a01b30fb",
+        "field": "excerpt"
+      },
+      "old_text": "Phoenix summers aren’t just hot — they’re extreme.",
+      "new_text": "Phoenix heat loosens wiring connections, overloads breakers at peak AC load and cracks outdoor wire insulation. The warning signs and how to prevent it.",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-002",
+      "url": "/blog-posts/common-electrical-issues-in-scottsdale-homes",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "f798b2cd-388f-4f35-a32e-5c553da4677e",
+        "field": "excerpt"
+      },
+      "old_text": "Living in Scottsdale, Arizona, comes with its unique set of challenges. One of these is dealing with common electrical issues in homes.",
+      "new_text": "Overheating parts, surges, outdated wiring, tripping breakers and dead GFCI outlets: the electrical problems Scottsdale homes see most, and warning signs.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-003",
+      "url": "/blog-posts/7-signs-you-need-an-electrical-panel-upgrade",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "76fac18c-ddc8-42bd-8f8c-86c28c16f9ae",
+        "field": "excerpt"
+      },
+      "old_text": "Identify the signs that your electrical panel needs an upgrade to enhance safety, efficiency, and compliance with modern power demands.",
+      "new_text": "Frequent trips, flickering lights, a fuse box, new appliances tripping breakers, scorch marks, power-strip overuse, rising bills: 7 signs to upgrade a panel.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-004",
+      "url": "/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "ee33d99d-318d-4525-b6f0-a774888a68af",
+        "field": "excerpt"
+      },
+      "old_text": "Bathroom or garage outlets not working? Learn how to reset a GFCI, common reasons it fails, and when to call The Wire Guy Electric in Phoenix.",
+      "new_text": "A dead bathroom or garage outlet is usually a tripped GFCI, often on another outlet. Where to find it, how to reset it, and when the wiring is the problem.",
+      "tier": "tier1",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-005",
+      "url": "/blog-posts/electrical-panel-hot-to-the-touch-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "abca5015-bede-446d-b482-44ee57c9406a",
+        "field": "excerpt"
+      },
+      "old_text": "An electrical panel that is hot to the touch can be normal summer heat, or a warning sign of a failing connection. Here is how to tell the difference, and what to do about it.",
+      "new_text": "A panel that is warm in Arizona sun can be normal; one hot from the inside points to a failing connection. How to tell the difference and what to do now.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    },
+    {
+      "id": "excerpt-posts-a-006",
+      "url": "/blog-posts/hot-tub-electrical-installation-cost-arizona",
+      "target": {
+        "kind": "ndjson",
+        "doc_id": "328f03a0-a669-4752-8b37-731c2772d00f",
+        "field": "excerpt"
+      },
+      "old_text": "Planning a hot tub in your Phoenix backyard? Here's what the electrical hookup actually costs in Arizona, what's required by code, and what separates a safe install from a dangerous one.",
+      "new_text": "What hot tub electrical costs in the Phoenix metro in 2026, what code requires (GFCI, a disconnect in sight, wire sizing, bonding) and red flags in a quote.",
+      "tier": "normal",
+      "verdict": "lead",
+      "reason": "Launch review CQ-5: the excerpt is the text on every guide and related card and, without a quick answer, the post's Quick answer box; it was the live meta the titles review rewrote, or an opener the body review cut as filler. It is now the approved meta (titles-meta.json). The page's meta description is its seo.description, so it does not change."
+    }
+  ]
+}

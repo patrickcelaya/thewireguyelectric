@@ -2,13 +2,17 @@
 // Compares a crawl of the new site against the live-site baseline and fails on
 // anything that could cost rankings.
 //
-//   node scripts/seo/parity.mjs --baseline migration/seo-baseline.json --candidate migration/seo-candidate.json [--allow-noindex] [--out report.json]
+//   node scripts/seo/parity.mjs --baseline migration/seo-baseline.json --candidate migration/seo-candidate.json [--allow-noindex] [--allow file] [--out report.json]
 //
 // ERRORS (exit 1): an indexable URL that no longer returns 200 or a 301 to a
-// sensible page; a changed <title>, meta description or H1; a missing or wrong
-// canonical; noindex on a page that's indexable today; lost JSON-LD types that
-// weren't deliberately removed.
-// WARNINGS: big word-count drops, fewer internal links, more images without alt.
+// sensible page; a changed <title>, meta description or H1 (unless it changed to
+// the value approved in migration/seo-intentional-changes.json); an approved
+// change that is missing, or that shipped before its planned date; a missing or
+// wrong canonical; noindex on a page that's indexable today; lost JSON-LD types
+// that weren't deliberately removed.
+// WARNINGS: big word-count drops, fewer internal links, more images without alt,
+// approved changes held back on purpose (notDeployed). Pages added on purpose (`added` in the allowlist) must be
+// live with exactly their approved title, meta description and H1.
 
 import {readFile, writeFile} from 'node:fs/promises'
 
@@ -19,6 +23,28 @@ const baseline = JSON.parse(await readFile(args.baseline ?? 'migration/seo-basel
 const candidate = JSON.parse(await readFile(args.candidate ?? 'migration/seo-candidate.json', 'utf8'))
 const SITE = 'https://www.thewireguyelectric.com'
 const allowNoindex = Boolean(args['allow-noindex'])
+
+// Approved title / meta description / H1 changes. Each entry is the exact new value (compared after
+// norm()), so the page may change only to that value: any other difference is still an error.
+//   {"changes": {"/locations/gilbert": {"title": "...", "meta": "...", "h1": "..."}}}
+const ALLOW_FILE = args.allow ?? 'migration/seo-intentional-changes.json'
+const allowFile = await readFile(ALLOW_FILE, 'utf8').then((t) => JSON.parse(t), (e) => {
+  if (e.code === 'ENOENT' && !args.allow) return {}
+  throw e
+})
+const allow = allowFile.changes ?? {}
+// Tier 1 pages (most of today's clicks): their title and H1 can never be approved for a change.
+const FROZEN = new Set(allowFile.frozenTitleAndH1 ?? [])
+// Approved changes held back on purpose ({path: when and why}, e.g. the wave 2 city titles): pending until
+// then, and an error if one ships early. Every other approved change must be live.
+const NOT_DEPLOYED = allowFile.notDeployed ?? {}
+const FIELDS = {title: 'title', meta: 'description', h1: 'h1'}
+// Live pages taken off the site on purpose ({path: {redirect, reason}}, e.g. the generator posts, decision D15):
+// each must answer a 301 in one hop to its approved page, which must be live.
+const REMOVED = allowFile.removed ?? {}
+// Pages new to the site on purpose ({path: {title, meta, h1, reason}}, decision D18: three service pages): each must
+// answer 200, indexable, with its own canonical and exactly the approved title, meta description and H1.
+const ADDED = allowFile.added ?? {}
 
 // Schema types removed on purpose (see docs/SEO_STRATEGY.md).
 const INTENTIONALLY_REMOVED_TYPES = new Set(['AggregateRating'])
@@ -48,6 +74,16 @@ for (const [path, before] of Object.entries(baseline.pages)) {
     add('error', path, 'missing', 'not crawled on the new site')
     continue
   }
+  if (REMOVED[path]) {
+    const want = REMOVED[path].redirect
+    const hops = after.redirectChain ?? []
+    const target = hops.length ? new URL(after.finalUrl).pathname : undefined
+    if (hops.length !== 1 || hops[0].status !== 301) add('error', path, 'removed', `removed on purpose, so it must 301 in one hop to ${want}; got ${hops.length ? hops.map((h) => `${h.status} ${h.from} -> ${h.to}`).join(' | ') : `status ${after.status}`}`)
+    else if (target !== want) add('error', path, 'removed', `removed on purpose, but redirects to ${target}, not the approved ${want}`)
+    else if (after.status !== 200) add('error', path, 'removed', `redirects to ${want}, which returns ${after.status}`)
+    else add('info', path, 'removed', `approved removal: 301 to ${want}`)
+    continue
+  }
   if (after.redirectChain?.length) {
     const hops = after.redirectChain.length
     const target = new URL(after.finalUrl).pathname
@@ -64,12 +100,25 @@ for (const [path, before] of Object.entries(baseline.pages)) {
   }
   if (!wasIndexable) continue
 
-  if (norm(before.title) !== norm(after.title)) add('error', path, 'title', `"${before.title}" -> "${after.title}"`)
-  if (norm(before.metaDescription) !== norm(after.metaDescription))
-    add(before.metaDescription ? 'error' : 'info', path, 'description', `"${before.metaDescription ?? ''}" -> "${after.metaDescription ?? ''}"`)
-  const h1b = norm(before.h1?.[0])
-  const h1a = norm(after.h1?.[0])
-  if (h1b !== h1a) add('error', path, 'h1', `"${before.h1?.[0] ?? ''}" -> "${after.h1?.[0] ?? ''}"`)
+  const approved = allow[path] ?? {}
+  const compare = (field, was, now, levelIfChanged) => {
+    const check = FIELDS[field]
+    if (approved[field] !== undefined) {
+      const held = NOT_DEPLOYED[path]
+      if (norm(now) === norm(approved[field])) {
+        if (held) add('error', path, `${check}-early`, `approved for later (${held}), but already live: "${now ?? ''}"`)
+        else add('info', path, check, `approved change: "${was ?? ''}" -> "${now ?? ''}"`)
+      } else if (norm(now) === norm(was)) {
+        if (held) add('warn', path, `${check}-pending`, `approved change not deployed yet (${held}): still "${was ?? ''}"`)
+        else add('error', path, `${check}-not-deployed`, `approved change missing: still "${was ?? ''}" (approved "${approved[field]}")`)
+      } else add('error', path, check, `changed, but not to the approved value: "${now ?? ''}" (approved "${approved[field]}")`)
+      return
+    }
+    if (norm(was) !== norm(now)) add(levelIfChanged, path, check, `"${was ?? ''}" -> "${now ?? ''}"`)
+  }
+  compare('title', before.title, after.title, 'error')
+  compare('meta', before.metaDescription, after.metaDescription, before.metaDescription ? 'error' : 'info')
+  compare('h1', before.h1?.[0], after.h1?.[0], 'error')
   if ((after.h1?.length ?? 0) !== 1) add('warn', path, 'h1-count', `${after.h1?.length ?? 0} H1s`)
   if (after.canonical !== canonicalFor(path)) add('error', path, 'canonical', `expected ${canonicalFor(path)}, got ${after.canonical ?? 'none'}`)
   if (/noindex/i.test(after.metaRobots ?? '') || /noindex/i.test(after.xRobotsTag ?? '')) add(allowNoindex ? 'info' : 'error', path, 'robots', `noindex on an indexable page (${after.metaRobots ?? after.xRobotsTag})`)
@@ -88,9 +137,53 @@ for (const [path, before] of Object.entries(baseline.pages)) {
   if (brokenTargets.length) add('error', path, 'broken-links', brokenTargets.join(', '))
 }
 
-// New URLs (not on the live site) are fine but worth listing.
+// An approval for a URL the baseline does not hold as an indexable 200 is stale or mistyped.
+for (const [path, fields] of Object.entries(allow)) {
+  const b = baseline.pages[path]
+  if (!b || b.status !== 200 || /noindex/i.test(b.metaRobots ?? '')) add('error', path, 'allowlist', `approved ${Object.keys(fields).join(', ')} for a URL that is not an indexable page in the baseline`)
+  for (const f of Object.keys(fields)) if (!FIELDS[f]) add('error', path, 'allowlist', `unknown field "${f}" (use title, meta or h1)`)
+  for (const f of ['title', 'h1']) if (fields[f] !== undefined && FROZEN.has(path)) add('error', path, 'allowlist', `${f} of a Tier 1 page is frozen and cannot be approved`)
+}
+for (const [path, r] of Object.entries(REMOVED)) {
+  const b = baseline.pages[path]
+  if (!b || b.status !== 200) add('error', path, 'allowlist', 'removal approved for a URL that is not a live page in the baseline')
+  if (FROZEN.has(path)) add('error', path, 'allowlist', 'a Tier 1 page can never be removed')
+  if (allow[path]) add('error', path, 'allowlist', 'removed, and also approved for a title, meta or H1 change')
+  if (!r?.redirect?.startsWith('/') || REMOVED[r.redirect]) add('error', path, 'allowlist', `removal needs a redirect to a live page, not "${r?.redirect}"`)
+}
+for (const path of Object.keys(NOT_DEPLOYED)) if (!allow[path]) add('error', path, 'allowlist', 'held back in notDeployed, but no change is approved for it')
+
+for (const [path, want] of Object.entries(ADDED)) {
+  const b = baseline.pages[path]
+  if (b?.status === 200) {
+    add('error', path, 'allowlist', 'approved as a new page, but it is a live page in the baseline')
+    continue
+  }
+  if (allow[path] || REMOVED[path]) add('error', path, 'allowlist', 'added, and also approved for a change or a removal')
+  for (const f of Object.keys(FIELDS)) if (want[f] === undefined) add('error', path, 'allowlist', `added page needs an approved ${f}`)
+  const after = candidate.pages[path]
+  if (!after) {
+    add('error', path, 'added', 'approved new page not crawled on the new site (missing from the sitemap and every link?)')
+    continue
+  }
+  if (after.redirectChain?.length || after.status !== 200) {
+    add('error', path, 'added', `approved new page answers ${after.redirectChain?.length ? `a redirect to ${after.finalUrl}` : after.status}, not 200`)
+    continue
+  }
+  const now = {title: after.title, meta: after.metaDescription, h1: after.h1?.[0]}
+  const wrong = Object.keys(FIELDS).filter((f) => want[f] !== undefined && norm(now[f]) !== norm(want[f]))
+  for (const f of wrong) add('error', path, FIELDS[f], `new page shows "${now[f] ?? ''}", not the approved "${want[f]}"`)
+  if ((after.h1?.length ?? 0) !== 1) add('warn', path, 'h1-count', `${after.h1?.length ?? 0} H1s`)
+  if (after.canonical !== canonicalFor(path)) add('error', path, 'canonical', `expected ${canonicalFor(path)}, got ${after.canonical ?? 'none'}`)
+  if (/noindex/i.test(after.metaRobots ?? '') || /noindex/i.test(after.xRobotsTag ?? '')) add(allowNoindex ? 'info' : 'error', path, 'robots', `noindex on an approved new page (${after.metaRobots ?? after.xRobotsTag})`)
+  const brokenTargets = (after.internalLinks ?? []).filter((l) => candidate.pages[l] && candidate.pages[l].status >= 400)
+  if (brokenTargets.length) add('error', path, 'broken-links', brokenTargets.join(', '))
+  if (!wrong.length) add('info', path, 'added', `approved new page: "${now.title}"`)
+}
+
+// Other new URLs (not on the live site) are fine but worth listing.
 for (const path of Object.keys(candidate.pages)) {
-  if (!baseline.pages[path] && candidate.pages[path].status === 200) add('info', path, 'new-url', 'not on the live site')
+  if (!baseline.pages[path] && !ADDED[path] && candidate.pages[path].status === 200) add('info', path, 'new-url', 'not on the live site')
 }
 
 const summary = rows.reduce((acc, r) => ((acc[r.level] = (acc[r.level] ?? 0) + 1), acc), {})
