@@ -5,7 +5,7 @@ export default defineCliConfig({
     projectId: process.env.SANITY_STUDIO_PROJECT_ID ?? 'qhi2uf0l',
     dataset: process.env.SANITY_STUDIO_DATASET ?? 'production',
   },
-  // Hosted at https://<studioHost>.sanity.studio after `pnpm --filter studio deploy`.
+  // Hosted at https://<studioHost>.sanity.studio after `pnpm --filter studio run deploy`.
   studioHost: process.env.SANITY_STUDIO_HOST ?? 'thewireguyelectric',
   deployment: {autoUpdates: true},
   typegen: {
