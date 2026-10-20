@@ -2,6 +2,7 @@
 // Every SEO-relevant <head> tag for a page. Canonicals always point at the
 // production origin, and non-production builds are noindexed (see lib/seo.ts).
 import {SITE_INDEXABLE, SITE_URL, absoluteUrl, type PageMeta} from '../lib/seo'
+import {ogCardAlt, ogCardSpec, recordOgCard} from '../lib/og-card'
 import type {SiteSettings} from '../lib/types'
 
 interface Props {
@@ -14,9 +15,12 @@ const canonical = absoluteUrl(meta.path)
 const robots = !SITE_INDEXABLE || meta.noIndex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'
 // A canonical on a page that asks not to be indexed sends mixed signals; omit it.
 const showCanonical = !meta.noIndex
-const ogImage = meta.ogImage ?? `${SITE_URL}/og-default.png`
-// every share image is 1200×630: a Sanity rendition cropped to that box (lib/image.ts ogImageUrl) or /og-default.png
-const ogImageAlt = meta.ogImage ? meta.ogImageAlt : undefined
+// every share image is 1200×630. A build makes each page its share card (lib/og-card.ts) from the photo ogImageMeta
+// picked; the dev server, which draws no cards, shows that photo's rendition (lib/image.ts ogImageUrl) or /og-default.png
+const card = ogCardSpec(meta.path, meta.title, settings, meta.ogPhoto, meta.ogCard)
+recordOgCard(card)
+const ogImage = import.meta.env.PROD ? `${SITE_URL}${card.file}` : (meta.ogImage ?? `${SITE_URL}/og-default.png`)
+const ogImageAlt = import.meta.env.PROD ? ogCardAlt(card, settings.businessName) : meta.ogImage ? meta.ogImageAlt : undefined
 ---
 
 <title>{meta.title}</title>

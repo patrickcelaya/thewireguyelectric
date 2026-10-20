@@ -5,6 +5,7 @@ import {loadEnv} from 'vite'
 import {LEGACY_REDIRECTS, SHORT_LINKS, flattenRedirects, loadPostSlugs, loadSanityRedirects, postRedirects} from './src/config/redirects.mjs'
 import {oneHopRedirects} from './src/config/one-hop-redirects.mjs'
 import {buildInfoFile, readBuildInfo} from './src/config/build-info.mjs'
+import {ogCards} from './src/config/og-cards.mjs'
 
 const env = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '')
 
@@ -28,8 +29,8 @@ export default defineConfig({
   output: 'static',
   adapter: vercel(),
   // after the adapter: every redirect matches with or without a trailing slash, in one hop;
-  // /build-info.json for the Ignored Build Step (scripts/ignore-build.mjs)
-  integrations: [oneHopRedirects(), buildInfoFile(buildInfo)],
+  // /build-info.json for the Ignored Build Step (scripts/ignore-build.mjs); every page's share card in /og
+  integrations: [oneHopRedirects(), buildInfoFile(buildInfo), ogCards()],
   redirects: flattenRedirects({...LEGACY_REDIRECTS, ...SHORT_LINKS, ...postRedirects(postSlugs), ...sanityRedirects}),
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},

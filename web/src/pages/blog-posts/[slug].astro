@@ -113,6 +113,7 @@ const image = imageObjectNode(cover, {id: primaryImageId})
     path,
     ogType: 'article',
     ...ogImageMeta(settings, post.seo?.ogImage, cover),
+    ogCard: {eyebrow: topic === 'Guide' ? 'Guide' : `Guide · ${topic}`},
     noIndex: post.seo?.noIndex,
     breadcrumbs: crumbs,
     publishedTime: post.publishedAt,
