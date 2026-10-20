@@ -63,6 +63,21 @@ export const FLEET_PHOTO = {
 }
 
 /**
+ * Emma, the office manager who answers the phone, for the call buttons (header and phone call bar): her
+ * portrait cropped to a square around her head box with room for hair and a little
+ * shoulder (the head stays whole inside the frame).
+ */
+const EMMA = libraryRole('team:emma-woolington')
+const emmaCrop = () => {
+  const [x0, y0, x1, y1] = EMMA.faces!.split(',').map(Number)
+  const side = Math.min(1, Math.max(x1 - x0, y1 - y0) * 1.5)
+  const left = Math.min(Math.max(0, (x0 + x1) / 2 - side / 2), 1 - side)
+  const top = Math.min(Math.max(0, (y0 + y1) / 2 - side / 2), 1 - side)
+  return {left, top, right: 1 - left - side, bottom: 1 - top - side}
+}
+export const OFFICE_FACE: ImageRef = {...libraryImage(EMMA, ''), hotspot: undefined, crop: emmaCrop()}
+
+/**
  * Head boxes (x0,y0,x1,y1 as fractions of the uncropped photo) of the company's
  * photos of people, by Sanity asset. SanityImage writes them to data-faces wherever
  * the photo is used, so the QA face checks (faces.mjs) can prove no layout ever

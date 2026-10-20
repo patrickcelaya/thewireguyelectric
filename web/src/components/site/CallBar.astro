@@ -5,6 +5,8 @@
 // its visible text (WCAG 2.5.3).
 import type {SiteSettings} from '../../lib/types'
 import {ESTIMATE_PATH, telHref} from '../../lib/site'
+import {OFFICE_FACE} from '../../lib/brand-photos'
+import {imageUrl} from '../../lib/image'
 
 interface Props {
   settings: SiteSettings
@@ -13,9 +15,11 @@ interface Props {
 }
 
 const {settings, estimateHref = ESTIMATE_PATH} = Astro.props
+// Emma's face beside "Call now" (2x its 28 px circle), as in the header's call buttons
+const face = imageUrl(OFFICE_FACE, {width: 64, height: 64})
 ---
 
 <nav class="callbar" aria-label="Quick contact">
-  <a class="call btn--tel" href={telHref(settings)}>Call now<span class="sr-only"> {settings.phone}</span></a>{' '}
+  <a class="call" href={telHref(settings)}><img class="call__face" src={face} alt="" width="28" height="28" decoding="async" fetchpriority="low" />Call now<span class="sr-only"> {settings.phone}</span></a>{' '}
   <a class="est-l" href={estimateHref}>Free Estimate</a>
 </nav>

@@ -2,7 +2,7 @@
 // Checks the structured data and share tags of every page in a build, so a content or
 // template change can't quietly bring back a defect the SEO review removed.
 //
-//   node scripts/seo/check-structured-data.mjs [--dir web/.vercel/output/static] [--out report.json]
+//   node scripts/seo/check-structured-data.mjs [--dir web/.vercel/output/static] [--cards web/node_modules/.cache/og-cards/specs] [--out report.json]
 //
 // Fails (exit 1) when a page breaks any of these:
 //   parse        every JSON-LD block parses, and the page has exactly one, a single @graph
@@ -12,8 +12,10 @@
 //                entity another page defines (/services/*#service, /blog-posts/*#article,
 //                /our-team#*, /locations/*#business|#service, /blog#blog)
 //   images       og:image, and the image of the page's Service, BlogPosting and primary image, is a
-//                photo the page shows (an <img>/<source>/background on it) or the default share image
-//   og           og:image carries its 1200×630 size
+//                photo the page shows (an <img>/<source>/background on it) or the default share image.
+//                og:image is the page's share card (/og/….jpg, src/config/og-cards.mjs): the photo in the
+//                card is what has to be shown (the card specs the build leaves, --cards)
+//   og           og:image carries its 1200×630 size, and a share card's file is in the build
 //   prices       service pages show no price (no "$<digit>" in their text or markup, no offers)
 //   alt          no alt text is Webflow's "__wf_reserved_inherit" placeholder
 //   sameAs       no sameAs is a link shortener (share.google, goo.gl, bit.ly)
@@ -23,14 +25,15 @@
 //                of a Q&A shown on several pages; shared questions are marked up on /faq only).
 //                On a build where every page is noindex (a preview), every page counts
 //
-// The default share image is the one /estimate (a page with no image of its own) uses.
+// The default share image is the one /estimate (a page with no image of its own) uses: the photo in its card.
 
-import {readFile, readdir, writeFile} from 'node:fs/promises'
+import {access, readFile, readdir, writeFile} from 'node:fs/promises'
 import path from 'node:path'
 import * as cheerio from 'cheerio'
 
 const args = Object.fromEntries(process.argv.slice(2).reduce((acc, a, i, all) => (a.startsWith('--') ? [...acc, [a.slice(2), all[i + 1]]] : acc), []))
 const dir = path.resolve(args.dir ?? 'web/.vercel/output/static')
+const cardsDir = path.resolve(args.cards ?? 'web/node_modules/.cache/og-cards/specs')
 const SITE = 'https://www.thewireguyelectric.com'
 
 async function htmlFiles(d) {
@@ -82,8 +85,17 @@ const fail = (page, check, detail) => rows.push({page, check, detail})
 const files = (await htmlFiles(dir)).sort()
 const pages = new Map()
 for (const file of files) pages.set(pagePath(file), cheerio.load(await readFile(file, 'utf8')))
-const defaultOg = pages.get('/estimate')?.('meta[property="og:image"]').attr('content')
-if (!defaultOg) fail('/estimate', 'images', 'no og:image on /estimate to take the default share image from')
+// the share cards: /og/….jpg → the photo in it, as an asset key (none for the typographic card)
+const cards = new Map()
+for (const f of await readdir(cardsDir).catch(() => [])) {
+  const spec = JSON.parse(await readFile(path.join(cardsDir, f), 'utf8'))
+  cards.set(`${SITE}${spec.file}`, spec.photo ? spec.photo.ref.replace(/^image-/, '').replace(/-[a-z0-9]+$/, '') : null)
+}
+/** The image a share image shows: a card's photo (null for the typographic card), else the URL's own asset. */
+const shareImage = (url) => (cards.has(url) ? cards.get(url) : url)
+const estimateOg = pages.get('/estimate')?.('meta[property="og:image"]').attr('content')
+const defaultOg = estimateOg && shareImage(estimateOg)
+if (!estimateOg) fail('/estimate', 'images', 'no og:image on /estimate to take the default share image from')
 
 /** Each page's top-level nodes, for the checks across pages. */
 const graphsOf = new Map()
@@ -150,7 +162,11 @@ for (const [page, $] of pages) {
   const isShown = (url) => shown.has(assetKey(url)) || (defaultOg && assetKey(url) === assetKey(defaultOg))
   const og = $('meta[property="og:image"]').attr('content')
   if (!og) fail(page, 'og', 'no og:image')
-  else if (!isShown(og)) fail(page, 'images', `og:image is not shown on the page: ${assetKey(og)}`)
+  else if (og.startsWith(`${SITE}/og/`)) {
+    if (!cards.has(og)) fail(page, 'og', `og:image is a share card the build has no spec for: ${og}`)
+    else if (cards.get(og) && !isShown(cards.get(og))) fail(page, 'images', `the share card's photo is not shown on the page: ${cards.get(og)}`)
+    if (!(await access(path.join(dir, new URL(og).pathname)).then(() => true, () => false))) fail(page, 'og', `the share card is not in the build: ${new URL(og).pathname}`)
+  } else if (!isShown(og)) fail(page, 'images', `og:image is not shown on the page: ${assetKey(og)}`)
   if (og && ($('meta[property="og:image:width"]').attr('content') !== '1200' || $('meta[property="og:image:height"]').attr('content') !== '630')) fail(page, 'og', 'og:image without its 1200×630 size')
   const imageUrls = (img) => (Array.isArray(img) ? img : [img]).map((i) => (typeof i === 'string' ? i : i?.url)).filter(Boolean)
   for (const node of nodes) {

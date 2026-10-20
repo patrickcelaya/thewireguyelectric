@@ -197,6 +197,11 @@ html:not(.js) .dd:is(:hover,:focus-within) .dd-panel--mega{display:flex}
 .oc .tel-ic{box-shadow:inset 0 0 0 1.5px var(--off)}
 .tel-ic::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--live);opacity:0;pointer-events:none}
 .motion.oo .tel-ic::after{animation:live-ring 2.6s var(--ease-out) .6s 3}
+/* Emma's face inside the status ring, with a small copper phone badge at the lower right */
+.tel-ic--face::before{content:none}
+.tel-ic--face img{width:calc(100% - 6px);height:calc(100% - 6px);border-radius:50%;object-fit:cover;background:var(--wash)}
+.tel-ic__b{position:absolute;right:-3px;bottom:-3px;display:grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--copper-700);box-shadow:0 0 0 2px var(--paper)}
+.tel-ic__b::before{content:"";width:9px;height:9px;background:#fff;-webkit-mask:var(--phone) center/contain no-repeat;mask:var(--phone) center/contain no-repeat}
 @keyframes live-ring{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.4);opacity:0}}
 .hdr-est{position:relative;display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 22px 0 24px;border-radius:var(--r-pill);background:var(--copper);color:#fff;font:650 1rem/1 var(--font-text);letter-spacing:.005em;text-decoration:none;white-space:nowrap;box-shadow:0 1px 0 rgb(255 255 255 / .22) inset,0 10px 22px -12px rgb(142 64 36 / .8);transition:background-color .2s var(--ease)}
 .hdr-est::after{content:"";width:17px;height:17px;background:currentColor;-webkit-mask:var(--arrow) center/contain no-repeat;mask:var(--arrow) center/contain no-repeat;transition:transform .25s var(--ease)}
@@ -587,7 +592,8 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
   .callbar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:60;height:var(--callbar-h);padding:8px 10px calc(8px + env(safe-area-inset-bottom,0px));background:rgb(247 243 236 / .97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
   .callbar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:var(--r-pill);font:650 1rem/1 var(--font-text);text-decoration:none}
   .callbar .call{box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
-  .callbar .call::before{width:18px;height:18px}
+  .callbar .call__face{width:28px;height:28px;border-radius:50%;object-fit:cover;background:var(--wash);box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--line-strong)}
+  .oo .callbar .call__face{box-shadow:0 0 0 1.5px var(--paper),0 0 0 3px var(--live)}
   .callbar .est-l{background:var(--copper);color:#fff}
   /* the open menu has its own Call and Free Estimate pair; the bar, inert then, would cover them, and taps
      on it would land on whatever menu control lies under it */
@@ -612,14 +618,15 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
    smoothly, lazy photos fade in once loaded. Enhancement only, gated like the reveals: html.motion (motion allowed), scroll
    timelines for the scroll pieces. Photos of people move but never fade (same rule as the tiles). No layout is touched. */
 @media (prefers-reduced-motion:no-preference){
-  .motion .hero__copy>*,.motion .ihero__copy>*,.motion .phero__copy>*{animation:enter .75s var(--ease-out) both}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(2){animation-delay:.07s}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(3){animation-delay:.14s}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(4){animation-delay:.21s}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(n+5){animation-delay:.28s}
-  .motion .phero__photo,.motion .ihero__side{animation:settle-in .9s var(--ease-out) .1s both}
-  @keyframes enter{from{opacity:.35;transform:translateY(14px)}to{opacity:1;transform:none}}   /* never from 0: the heading can be the LCP */
-  @keyframes settle-in{from{opacity:.6;transform:scale(1.015)}to{opacity:1;transform:none}}
+  /* short and from mostly-opaque, so the first screen is complete quickly (Speed Index) */
+  .motion .hero__copy>*,.motion .ihero__copy>*,.motion .phero__copy>*{animation:enter .45s var(--ease-out) both}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(2){animation-delay:.04s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(3){animation-delay:.08s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(4){animation-delay:.12s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(n+5){animation-delay:.16s}
+  .motion .phero__photo,.motion .ihero__side{animation:settle-in .6s var(--ease-out) both}
+  @keyframes enter{from{opacity:.6;transform:translateY(10px)}to{opacity:1;transform:none}}   /* never from 0: the heading can be the LCP */
+  @keyframes settle-in{from{opacity:.8;transform:scale(1.015)}to{opacity:1;transform:none}}
   .motion .btn{transition:background-color .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease-out)}
   .motion .btn:hover{transform:translateY(-1px)}
   .motion .btn:active{transform:translateY(1px) scale(.985)}

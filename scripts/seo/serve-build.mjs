@@ -26,7 +26,7 @@ const outDir = path.resolve(args.dir ?? 'web/.vercel/output')
 const staticDir = path.join(outDir, 'static')
 const config = JSON.parse(await readFile(path.join(outDir, 'config.json'), 'utf8'))
 
-const TYPES = {'.html': 'text/html; charset=utf-8', '.xml': 'application/xml', '.json': 'application/json', '.txt': 'text/plain', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.avif': 'image/avif', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.ico': 'image/x-icon'}
+const TYPES = {'.html': 'text/html; charset=utf-8', '.xml': 'application/xml', '.json': 'application/json', '.txt': 'text/plain', '.css': 'text/css', '.js': 'text/javascript', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.avif': 'image/avif', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.ico': 'image/x-icon'}
 
 async function findFile(pathname) {
   const clean = decodeURIComponent(pathname)

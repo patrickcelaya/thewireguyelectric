@@ -80,7 +80,7 @@ The single source of truth for the business entity. It feeds the header, footer,
 | serviceAreas | ref location[] | Cities for `areaServed`. The query adds `shortName` (bare city) because some location names still hold the full H1 |
 | **homeCity** | object | **New.** Mesa is the homepage, so it has no `location` document. City lists show Mesa from here, linking to `/`. Fields: `name`, `cardBlurb`, `image` (alt required), `neighborhoods[]`, `county`, `utilityProviders[]` (same list as location) |
 | sisterCompanies | linkItem[] | The Cooling Guy HVAC, The Water Guy Plumbing, Taylor Brothers Builders. Link only |
-| logo, defaultOgImage | image (+alt) | Logo alt is the business name. `defaultOgImage` is the share image (og:image, cropped to 1200×630, with its alt as og:image:alt) of every page without a photo of its own: home, cities, /blog, /faq, /careers. The migration sets it to the crew portrait (all six faces survive the crop); empty = `/og-default.png` |
+| logo, defaultOgImage | image (+alt) | Logo alt is the business name. `defaultOgImage` is the photo in the share card (og:image, a 1200×630 card drawn at build time: see DESIGN_SYSTEM.md, Share cards) of every page without a photo of its own: home, cities, /blog, /faq, /careers. The migration sets it to the crew portrait (all six faces stay in the card's photo panel); empty = the typographic card |
 | headerNav, footerNav, primaryCta | linkItem(s) | Navigation |
 | **ctaBand** | callToAction | **New.** The site-wide closing band ("You'll know the price before we start"). Templates use it; so does any CTA band section left without a heading |
 | **valueProps** | featureItem[] | **New.** Shared "why us" cards ("No BS pricing", "Big jobs and small ones", "We come back if anything's wrong") |

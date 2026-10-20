@@ -1,5 +1,6 @@
 import type {ImageRef, Seo, SiteSettings} from './types'
 import {imageAlt, ogImageUrl} from './image'
+import type {OgCardText} from './og-card'
 
 export const SITE_URL = 'https://www.thewireguyelectric.com'
 
@@ -34,10 +35,14 @@ export interface PageMeta {
   description?: string
   /** Path without trailing slash, e.g. "/services/panels". */
   path: string
-  /** A 1200×630 rendition (ogImageMeta); empty = /og-default.png. */
+  /** A 1200×630 rendition (ogImageMeta); empty = /og-default.png. The share card (lib/og-card.ts) replaces it in a build. */
   ogImage?: string
   /** What the share image shows (og:image:alt); only when it is known. */
   ogImageAlt?: string
+  /** The photo behind ogImage, which the share card is made from. */
+  ogPhoto?: ImageRef
+  /** The share card's eyebrow and headline (the headline defaults to the title before " | "). */
+  ogCard?: OgCardText
   ogType?: 'website' | 'article'
   noIndex?: boolean
   breadcrumbs?: Crumb[]
@@ -69,10 +74,10 @@ export function resolveDescription(seo: Seo | undefined, ...fallbacks: Array<str
  * og:image and its alt. Pass only images the page shows: a stock photo the page hides
  * never becomes its preview.
  */
-export function ogImageMeta(settings: SiteSettings, ...images: Array<ImageRef | undefined | null>): Pick<PageMeta, 'ogImage' | 'ogImageAlt'> {
+export function ogImageMeta(settings: SiteSettings, ...images: Array<ImageRef | undefined | null>): Pick<PageMeta, 'ogImage' | 'ogImageAlt' | 'ogPhoto'> {
   for (const image of [...images, settings.defaultOgImage]) {
     const url = ogImageUrl(image)
-    if (url) return {ogImage: url, ogImageAlt: imageAlt(image)}
+    if (url && image) return {ogImage: url, ogImageAlt: imageAlt(image), ogPhoto: image}
   }
   return {}
 }

@@ -186,10 +186,10 @@ It checks, and fails on any miss: apex → www in one 301/308 with the path kept
 curl -sI https://www.thewireguyelectric.com/
 curl -sI http://thewireguyelectric.com/
 curl -sI https://thewireguyelectric.com/about-us
-curl -sI https://www.thewireguyelectric.com/og-default.png
+curl -sI https://www.thewireguyelectric.com/og/index.jpg
 ```
 
-Expect `200` and `server: Vercel` with no `x-robots-tag` on www; one 301/308 to `https://www.thewireguyelectric.com/…` from the apex, path kept; `200 image/png` for the share image. The Vercel domain cards should read **Valid Configuration**, and the certificate should be issued within minutes. Today the apex answers `301` to www from Webflow, and `og-default.png` is 404 on Webflow.
+Expect `200` and `server: Vercel` with no `x-robots-tag` on www; one 301/308 to `https://www.thewireguyelectric.com/…` from the apex, path kept; `200 image/jpeg` for the homepage's share card. The Vercel domain cards should read **Valid Configuration**, and the certificate should be issued within minutes. Today the apex answers `301` to www from Webflow.
 
 **L10, Owner.**
 1. On a phone, on www, submit /estimate with the name `QA test - ignore` and tap a phone number. Expect "Your request is in." and the dialer.
