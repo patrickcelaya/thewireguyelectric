@@ -18,6 +18,8 @@ import OfficeStatus from '../ui/OfficeStatus.astro'
 import RocLink from '../ui/RocLink.astro'
 import Button from '../ui/Button.astro'
 import Logo from './Logo.astro'
+import {OFFICE_FACE} from '../../lib/brand-photos'
+import {imageUrl} from '../../lib/image'
 
 interface Props {
   settings: SiteSettings
@@ -31,6 +33,8 @@ const rating = siteRating(settings)
 const roc = licence(settings)
 const hours = officeHours(settings).line
 const tel = telHref(settings)
+// Emma's face in the call buttons' ring (2x the 38px circle); the badge keeps the phone glyph so it still reads as a call
+const face = imageUrl(OFFICE_FACE, {width: 80, height: 80})
 
 const cur = (href: string) => (href === current ? 'page' : undefined)
 const inSection = (hrefs: string[]) => current !== '/' && hrefs.includes(current)
@@ -134,12 +138,12 @@ const servicesCur = current === '/services' || current.startsWith('/services/') 
         </nav>
         <div class="hdr-cta">
           <a class="hdr-tel" href={tel}
-            ><span class="tel-ic" data-office aria-hidden="true"></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
+            ><span class="tel-ic tel-ic--face" data-office aria-hidden="true"><img src={face} alt="" width="38" height="38" decoding="async" fetchpriority="low" /><span class="tel-ic__b"></span></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
           >{' '}
           <a class="hdr-est" href={ESTIMATE_PATH} aria-current={cur(ESTIMATE_PATH)}>Get a Free Estimate</a>
         </div>
         <a class="hdr-call" href={tel}
-          ><span class="tel-ic" data-office aria-hidden="true"></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
+          ><span class="tel-ic tel-ic--face" data-office aria-hidden="true"><img src={face} alt="" width="38" height="38" decoding="async" fetchpriority="low" /><span class="tel-ic__b"></span></span><b class="tnum"><span class="sr-only">Call </span>{settings.phone}</b></a
         >
         <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav"
           ><span class="menu-btn__l" data-menu-label>Menu</span><span class="menu-btn__i" aria-hidden="true"><i></i><i></i></span></button
