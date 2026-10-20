@@ -25,7 +25,8 @@ const LABELS: Record<(typeof FIELDS)[number], string> = {
   fullTime: 'Full-time',
   startDate: 'Start date',
   message: 'Message',
-  file_url: 'Résumé',
+  // plain ASCII: the Formspark email template (Postcraft) can only link a button to a field named this way
+  file_url: 'Resume',
 }
 
 type Lead = Record<(typeof FIELDS)[number] | 'formType' | 'page', string>

@@ -13,7 +13,7 @@ Each submission goes to every destination that is configured. One success is eno
 
 | Env var (Vercel, Production and Preview) | Destination | What it receives |
 |---|---|---|
-| `FORMSPARK_FORM_ID` (the ID after `https://submit-form.com/`) | Formspark inbox and its notification email | The filled-in fields under readable labels (Name, Phone, Email, City or ZIP, Years of experience, Full-time, Start date, Message, Résumé), plus Form and Page. `_email.subject` is "Estimate request: Name (ZIP)" or "Job application: Name" (the name and ZIP on one line, cut at 80 and 40 characters; the fields keep them whole); `_email.from` (the sender's name) is "Wire Guy website" |
+| `FORMSPARK_FORM_ID` (the ID after `https://submit-form.com/`) | Formspark inbox and its notification email | The filled-in fields under readable labels (Name, Phone, Email, City or ZIP, Years of experience, Full-time, Start date, Message, Resume), plus Form and Page. `_email.subject` is "Estimate request: Name (ZIP)" or "Job application: Name" (the name and ZIP on one line, cut at 80 and 40 characters; the fields keep them whole); `_email.from` (the sender's name) is "Wire Guy website" |
 | `LEAD_WEBHOOK_URL` | Any webhook, e.g. a Zapier catch hook to Housecall Pro | JSON with fixed keys: `name`, `phone`, `email`, `zip`, `experience`, `fullTime`, `startDate`, `message`, `file_url`, `formType`, `page`. Unused keys are empty strings |
 | `RESEND_API_KEY` + `LEADS_TO_EMAIL` (+ `LEADS_FROM_EMAIL`) | A plain-text email via Resend | The same labels as Formspark, under "Form: Estimate request" or "Form: Job application". Reply-to is the visitor's email |
 
@@ -51,11 +51,21 @@ Add a second destination (`LEAD_WEBHOOK_URL` or Resend) soon after launch, so a 
 
 Sources (read 2026-10-17): Formspark's [spam protection](https://documentation.formspark.io/setup/spam-protection.html), [limits and plans](https://documentation.formspark.io/troubleshooting/limits-and-plans.html), [AJAX](https://documentation.formspark.io/examples/ajax.html) and [notification email](https://documentation.formspark.io/customization/notification-email.html) pages.
 
+## The notification email (Formspark custom template)
+
+Formspark's notification email uses a custom template, edited in Postcraft (Formspark → the form → Settings → email notifications → customize). It reads the fields above by their labels (`data.Name`, `data.Phone`, `data.[City or ZIP]`, `data.Resume`, `data.Form`, `data.Page`) and `viewLink`:
+
+- a white card with the logo, "New estimate request" or "New job application" (from `Form`), the name, City or ZIP, and Call / Email buttons (`tel:` and `mailto:` links);
+- a Details card with each filled-in field (empty ones are left out), an "Open résumé" button and the page it was sent from;
+- "View in Formspark" and the business line at the foot, on the site's bone background, copper and petrol.
+
+The subject still comes from `_email.subject` (the template sets none). **Renaming a label in `LABELS` (`web/src/pages/api/contact.ts`) blanks that field in the email** until the template is updated to match. Button links take a whole-field binding with an ASCII name only, which is why the résumé label is `Resume`.
+
 ## The résumé upload (Vercel Blob)
 
 The /careers form has a plain file field (`name="resume"`, in `ApplicationForm.astro`); the form posts as `multipart/form-data`.
 
-- **Saving:** `/api/contact` puts the file in the project's Vercel Blob store (`wireguy-resumes`, connected to the project as `BLOB_READ_WRITE_TOKEN`) under `resumes/resume-<random>.<ext>`, and sends its link to every destination as `file_url` (labelled "Résumé" in Formspark).
+- **Saving:** `/api/contact` puts the file in the project's Vercel Blob store (`wireguy-resumes`, connected to the project as `BLOB_READ_WRITE_TOKEN`) under `resumes/resume-<random>.<ext>`, and sends its link to every destination as `file_url` (labelled "Resume" in Formspark: the notification template links its button to that field, and its validator takes ASCII names only).
 - **Limits:** 4 MB, and PDF, Word (doc/docx), RTF, ODT, TXT, Pages, JPEG, PNG or HEIC. Vercel refuses any request over 4.5 MB before the function runs, so the browser checks the size first (`forms.ts`) and says so inline. A file over the limit or of another type is logged and left out; the application is still delivered.
 - **Without JavaScript:** the upload works the same (it is part of the normal form post). Only the size check is lost: a file over 4.5 MB gets Vercel's error page.
 - **If Blob is down or the token is missing:** the application is delivered without the résumé, and the function log says why.
