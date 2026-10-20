@@ -10,7 +10,7 @@
 // 2. Sends every page's directory copy (`/services/panels/index.html`, which the static
 //    output also answers) to the page itself in one 301, so no duplicate URL serves 200.
 // 3. Adds the response headers every page sends: the clickjacking protection the live
-//    site sends (X-Frame-Options SAMEORIGIN, CSP frame-ancestors 'self'), and
+//    site sends (X-Frame-Options SAMEORIGIN, CSP frame-ancestors 'self'), COOP same-origin, and
 //    X-Robots-Tag: noindex on every host but www.thewireguyelectric.com (the
 //    *.vercel.app aliases and previews stay out of the index even once the site is
 //    indexable; www never matches). scripts/seo/serve-build.mjs answers as the www host.
@@ -30,6 +30,8 @@ const HEADER_ROUTES = [
       'Content-Security-Policy': "frame-ancestors 'self'",
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
+      // isolates the page from windows it opens (the site opens no popup it needs to talk to)
+      'Cross-Origin-Opener-Policy': 'same-origin',
     },
     continue: true,
   },

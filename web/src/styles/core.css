@@ -618,14 +618,15 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
    smoothly, lazy photos fade in once loaded. Enhancement only, gated like the reveals: html.motion (motion allowed), scroll
    timelines for the scroll pieces. Photos of people move but never fade (same rule as the tiles). No layout is touched. */
 @media (prefers-reduced-motion:no-preference){
-  .motion .hero__copy>*,.motion .ihero__copy>*,.motion .phero__copy>*{animation:enter .75s var(--ease-out) both}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(2){animation-delay:.07s}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(3){animation-delay:.14s}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(4){animation-delay:.21s}
-  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(n+5){animation-delay:.28s}
-  .motion .phero__photo,.motion .ihero__side{animation:settle-in .9s var(--ease-out) .1s both}
-  @keyframes enter{from{opacity:.35;transform:translateY(14px)}to{opacity:1;transform:none}}   /* never from 0: the heading can be the LCP */
-  @keyframes settle-in{from{opacity:.6;transform:scale(1.015)}to{opacity:1;transform:none}}
+  /* short and from mostly-opaque, so the first screen is complete quickly (Speed Index) */
+  .motion .hero__copy>*,.motion .ihero__copy>*,.motion .phero__copy>*{animation:enter .45s var(--ease-out) both}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(2){animation-delay:.04s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(3){animation-delay:.08s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(4){animation-delay:.12s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(n+5){animation-delay:.16s}
+  .motion .phero__photo,.motion .ihero__side{animation:settle-in .6s var(--ease-out) both}
+  @keyframes enter{from{opacity:.6;transform:translateY(10px)}to{opacity:1;transform:none}}   /* never from 0: the heading can be the LCP */
+  @keyframes settle-in{from{opacity:.8;transform:scale(1.015)}to{opacity:1;transform:none}}
   .motion .btn{transition:background-color .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease-out)}
   .motion .btn:hover{transform:translateY(-1px)}
   .motion .btn:active{transform:translateY(1px) scale(.985)}

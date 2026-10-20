@@ -32,6 +32,9 @@ export default defineConfig({
   // /build-info.json for the Ignored Build Step (scripts/ignore-build.mjs); every page's share card in /og
   integrations: [oneHopRedirects(), buildInfoFile(buildInfo), ogCards()],
   redirects: flattenRedirects({...LEGACY_REDIRECTS, ...SHORT_LINKS, ...postRedirects(postSlugs), ...sanityRedirects}),
+  // every page's CSS in its <head>: no render-blocking stylesheet request before the first paint (the 15 KB budget,
+  // docs/DESIGN_SYSTEM.md); a page's CSS is 17-26 KB brotli, sent once per page view
+  build: {inlineStylesheets: 'always'},
   prefetch: {prefetchAll: false, defaultStrategy: 'hover'},
   image: {domains: ['cdn.sanity.io']},
   vite: {
