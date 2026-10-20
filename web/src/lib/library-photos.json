@@ -1042,15 +1042,7 @@
   "faces": "0.23,0.62,0.27,0.69;0.33,0.55,0.37,0.63;0.43,0.58,0.47,0.66;0.52,0.57,0.56,0.65;0.62,0.57,0.66,0.65;0.71,0.61,0.75,0.69",
   "orientation": "landscape",
   "quality": 5,
-  "roles": [
-   "cityHero:gilbert"
-  ],
-  "heroCrop": {
-   "top": 0,
-   "left": 0.1054,
-   "bottom": 0.2308,
-   "right": 0.1254
-  }
+  "roles": []
  },
  {
   "id": "image-89ec12e9dcc18b46e2d6bbaa8d444c62a1f2fbb2-1600x2400-jpg",
@@ -1710,7 +1702,14 @@
   "orientation": "landscape",
   "quality": 4,
   "roles": [
-   "fleet"
-  ]
+   "fleet",
+   "cityHero:gilbert"
+  ],
+  "heroCrop": {
+   "top": 0,
+   "left": 0.03,
+   "bottom": 0.06,
+   "right": 0.03
+  }
  }
 ]

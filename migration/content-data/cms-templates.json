@@ -165,12 +165,12 @@
       {
         "location": "gilbert",
         "heroImage": {
-          "photo": "library/wire-guy-team-branded-van-truck-sky.jpg",
+          "photo": "library/wire-guy-electric-fleet-desert-lineup.jpg",
           "crop": {
             "top": 0,
-            "left": 0.1054,
-            "bottom": 0.2308,
-            "right": 0.1254
+            "left": 0.03,
+            "bottom": 0.06,
+            "right": 0.03
           }
         },
         "mainImage": {
