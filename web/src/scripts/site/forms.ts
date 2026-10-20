@@ -4,7 +4,7 @@
 // #send-error), which CSS shows. With JS: inline errors (described only once shown),
 // one request per submit, the confirmation focused and its bulb switched on, and a
 // failure brought into view. The job application (ApplicationForm.astro) also
-// waits for a résumé upload in progress before it sends.
+// checks the résumé's size before it sends (the file goes in the same request).
 import {all, reduceMotion, track} from './util'
 
 /** Bots that submit faster than a person can are ignored by the API; wait out the rest of this. */
@@ -23,56 +23,19 @@ function showSent(box: HTMLElement) {
   box.closest('[data-est-page]')?.classList.add('is-lit')
 }
 
-/**
- * The résumé upload (FlowDrive's widget in [data-resume]) sends the file from the browser and writes its link into a
- * hidden file_url field when it's done, announcing that with an `fdupload` event (`fderror` / `fdremove` otherwise).
- * Returns a wait for the uploads in progress, if any: it resolves true once the last one's link is in the form.
- */
-function trackUpload(form: HTMLFormElement) {
-  let uploading = 0
-  let waiting: Array<(ok: boolean) => void> = []
-  const start = (e: Event) => {
-    const t = e.target as HTMLInputElement
-    const files = e instanceof DragEvent ? e.dataTransfer?.files : t.type === 'file' ? t.files : undefined
-    if (files?.length && t.closest?.('[data-resume]')) uploading += files.length
+/** The résumé field's size check: Vercel refuses a request over 4.5 MB, so a bigger file is caught here first. */
+const RESUME_MAX_BYTES = 4 * 1024 * 1024
+function resumeTooBig(form: HTMLFormElement) {
+  const input = form.querySelector<HTMLInputElement>('[data-resume] input[type=file]')
+  const file = input?.files?.[0]
+  const err = input?.closest('[data-resume]')?.querySelector<HTMLElement>('.err')
+  const big = Boolean(file && file.size > RESUME_MAX_BYTES)
+  if (err) err.hidden = !big
+  if (input) {
+    input.setAttribute('aria-invalid', String(big))
+    input.setAttribute('aria-describedby', [`${input.id}-h`, big && err?.id].filter(Boolean).join(' '))
   }
-  const end = (ok: boolean) => () => {
-    uploading = Math.max(0, uploading - 1)
-    if (uploading) return
-    waiting.forEach((resolve) => resolve(ok))
-    waiting = []
-  }
-  form.addEventListener('change', start)
-  form.addEventListener('drop', start)
-  form.addEventListener('fdupload', end(true))
-  form.addEventListener('fderror', end(false))
-  form.addEventListener('fdremove', end(false))
-  return () => (uploading ? new Promise<boolean>((resolve) => waiting.push(resolve)) : undefined)
-}
-
-/**
- * FlowDrive builds the upload once the page has loaded: a focusable box, a "button" that answers clicks only, and a
- * nameless file input laid over both. Make the file input the one tab stop and name it by the field's own line and
- * the button's words ("Please upload a resume. Upload files").
- */
-function labelUpload(form: HTMLFormElement) {
-  const field = form.querySelector<HTMLElement>('[data-resume]')
-  const line = field?.querySelector<HTMLElement>('[data-resume-line]')
-  if (!field || !line) return
-  const tidy = () => {
-    const input = field.querySelector<HTMLInputElement>('input[type=file]')
-    if (!input) return false
-    const button = field.querySelector('fdx-upload')
-    if (button) {
-      button.id ||= `${line.id}-button`
-      button.setAttribute('tabindex', '-1')
-      button.setAttribute('aria-hidden', 'true')
-    }
-    field.querySelector('fdx-container')?.removeAttribute('tabindex')
-    input.setAttribute('aria-labelledby', button ? `${line.id} ${button.id}` : line.id)
-    return true
-  }
-  if (!tidy()) new MutationObserver((_, observer) => tidy() && observer.disconnect()).observe(field, {childList: true, subtree: true})
+  return big ? input : undefined
 }
 
 function enhance(box: HTMLElement) {
@@ -84,8 +47,7 @@ function enhance(box: HTMLElement) {
   if (!form || !fill || !alert || !submit || !submitLabel) return
   const idleLabel = submitLabel.textContent
   const failure = box.querySelector('[data-est-fail]')?.innerHTML ?? ''
-  const upload = trackUpload(form)
-  labelUpload(form)
+  form.querySelector('[data-resume] input[type=file]')?.addEventListener('change', () => resumeTooBig(form))
   // the fill time is measured on this one clock (never the wall clock, which may be off on the visitor's device)
   const t0 = performance.now()
   let sending = false
@@ -143,6 +105,8 @@ function enhance(box: HTMLElement) {
         bad.push(field)
       } else field.removeAttribute('aria-describedby')
     }
+    const big = resumeTooBig(form)
+    if (big) bad.push(big)
     if (bad.length) {
       const name = form.querySelector(`label[for="${bad[0].id}"]`)?.firstChild?.textContent?.trim()
       alert.textContent = bad.length === 1 ? `1 field needs attention: ${name}.` : `${bad.length} fields need attention.`
@@ -152,10 +116,7 @@ function enhance(box: HTMLElement) {
     alert.textContent = ''
     busy(true)
     const wait = new Promise((ok) => setTimeout(ok, Math.max(0, MIN_FILL_MS - (performance.now() - t0))))
-    Promise.all([upload() ?? true, wait]).then(([uploaded]) => {
-      if (uploaded) return send()
-      fail('The résumé didn’t upload. Try it again, or send your application without it.')
-    })
+    wait.then(send)
   })
 }
 

@@ -5,10 +5,9 @@
 // answers 303 back to #sent or #send-error without JS, and with JS it validates
 // inline and focuses the confirmation. One form per page (fixed ids). The fields are
 // the ones the live application asked for; the API delivers them by name. The résumé
-// goes through the owner's FlowDrive widget, as on the live form: the browser sends the
-// file to FlowDrive, the widget writes its link into a hidden file_url field, and the
-// API passes that link on (docs/FORMS.md). Without JS there is no upload, and the form
-// still sends.
+// is a plain file field: the form posts as multipart, the API saves the file to the
+// project's Vercel Blob store and sends its link on as file_url (docs/FORMS.md). It
+// works the same with or without JS; the script only checks the size before sending.
 import type {SiteSettings} from '../../lib/types'
 import {telHref} from '../../lib/site'
 import LitBulb from '../ui/LitBulb.astro'
@@ -25,9 +24,6 @@ interface Props {
 
 const {settings, id, title = 'Apply Now', titleTag: Title = 'h3', submitLabel = 'Send my application', successMessage} = Astro.props
 const tel = telHref(settings)
-// The owner's FlowDrive key, the one the live /careers page loads. It is public by design: FlowDrive only takes
-// uploads from the sites added to the account.
-const FLOWDRIVE_ID = 'SQVTL3y1qL7KkNqzIzsD6'
 ---
 
 <div class="est est--apply" data-est="careers">
@@ -35,7 +31,7 @@ const FLOWDRIVE_ID = 'SQVTL3y1qL7KkNqzIzsD6'
     <Title class="est__title">{title}</Title>
     <p class="hint">Name, phone and email are all we need to reach you. The rest helps us get to know you.</p>
   </div>
-  <form action="/api/contact" method="post" aria-label={title}>
+  <form action="/api/contact" method="post" enctype="multipart/form-data" aria-label={title}>
     <div class="est__alert" role="alert" data-est-alert></div>
     <p class="est__fail" id="send-error" data-est-fail>We couldn’t send that. Please call <a href={tel}>{settings.phone}</a>, or try again in a moment.</p>
     <input type="hidden" name="formType" value="careers" />
@@ -80,10 +76,10 @@ const FLOWDRIVE_ID = 'SQVTL3y1qL7KkNqzIzsD6'
       <textarea id={`${id}-message`} name="message" rows="4"></textarea>
     </div>
     <div class="field field--full upload" data-resume>
-      <p class="upload__k" id={`${id}-resume`} data-resume-line>Please upload a resume.</p>
-      <div class="upload__box" fd-upload="default" fd-input="file_url">
-        <noscript><p class="upload__off">The upload needs JavaScript. You can still send this form without a résumé.</p></noscript>
-      </div>
+      <label for={`${id}-resume`}>Résumé <span class="req">(optional)</span></label>
+      <input id={`${id}-resume`} name="resume" type="file" accept=".pdf,.doc,.docx,.rtf,.odt,.txt,.pages,image/jpeg,image/png,image/heic" aria-describedby={`${id}-resume-h`} />
+      <span class="upload__h" id={`${id}-resume-h`}>PDF, Word or a photo, up to 4 MB.</span>
+      <span class="err" id={`${id}-resume-e`} hidden>That file is over 4 MB. Please choose a smaller one, or send the form without it.</span>
     </div>
     <div class="submit">
       <button class="btn btn--primary btn--lg btn--go" type="submit"><span data-submit-label>{submitLabel}</span></button>
@@ -97,4 +93,4 @@ const FLOWDRIVE_ID = 'SQVTL3y1qL7KkNqzIzsD6'
     </div>
   </div>
 </div>
-<script is:inline defer data-fd-id={FLOWDRIVE_ID} src="https://files.tryflowdrive.com/index.min.js"></script>
+

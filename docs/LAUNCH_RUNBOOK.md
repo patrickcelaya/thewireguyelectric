@@ -5,7 +5,7 @@ The one document for the DNS cutover from Webflow to Vercel. It says who does ea
 **Launch day (L): Thursday 2026-10-22.** If it moves, keep the offsets (T-2 is two days before L, and so on).
 
 **Who:**
-- **Owner:** anyone with the dashboard logins (WordPress.com, Vercel team celaya-ventures, GitHub, Sanity, Formspark, FlowDrive, Google, Bing, Webflow).
+- **Owner:** anyone with the dashboard logins (WordPress.com, Vercel team celaya-ventures, GitHub, Sanity, Formspark, Google, Bing, Webflow).
 - **Claude:** the repository, the checks and the content import. Secrets (the Sanity token, the bypass secret, the deploy hook URL, the Formspark form ID) go into dashboards or shell variables, never into chat or this file.
 
 **Ground rules:**
@@ -33,7 +33,7 @@ The one document for the DNS cutover from Webflow to Vercel. It says who does ea
 |---|---|---|---|
 | T-5 | Sat 10-17 | Owner | [Lower the www TTL to 300](#t-5-to-t-3-dns-ttl-webflow-freeze-questions). Freeze Webflow. Start on the [owner questions](#owner-questions) |
 | T-5 | Sat 10-17 | Claude | Merge the launch-fix PRs into PR #1; run the gates |
-| T-3 | Mon 10-19 | Owner | [Formspark form](#formspark) and `FORMSPARK_FORM_ID`; [FlowDrive check](#flowdrive-résumé-upload); [Vercel build settings](#vercel-settings) |
+| T-3 | Mon 10-19 | Owner | [Formspark form](#formspark) and `FORMSPARK_FORM_ID`; [Vercel build settings](#vercel-settings) |
 | T-3 | Mon 10-19 | Claude | Confirm the TTL is 300; test a lead on the preview |
 | T-2 | Tue 10-20 | Owner | [Add the domains in Vercel](#t-2-add-the-domains-in-vercel); send Claude the two DNS values |
 | T-2 | Tue 10-20 | Claude | Check the values are Vercel's; prepare the after-cutover checks |
@@ -194,7 +194,7 @@ Expect `200` and `server: Vercel` with no `x-robots-tag` on www; one 301/308 to 
 **L10, Owner.**
 1. On a phone, on www, submit /estimate with the name `QA test - ignore` and tap a phone number. Expect "Your request is in." and the dialer.
 2. Check the Formspark inbox and that the notification reached office@thewireguyelectric.com (not in spam). Delete the test entry.
-3. Submit /careers with a one-page test PDF. Confirm the résumé link arrives; delete the file in FlowDrive.
+3. Submit /careers with a one-page test PDF. Confirm the résumé link arrives; delete the file in Vercel → Storage → wireguy-resumes.
 4. Send an email to office@thewireguyelectric.com from an outside account and reply to it.
 
 **L11, Claude.** Only after L9 passes:
@@ -276,13 +276,9 @@ Owner, T-3:
 
 **Claude, T-3:** after the redeploy, submit /estimate on the preview as `QA test - ignore` and expect "Your request is in."; the owner confirms the inbox entry and the email, then deletes it. Soon after launch, add a second destination (`LEAD_WEBHOOK_URL` or Resend) so one provider's refusal can't lose a lead.
 
-### FlowDrive (résumé upload)
+### Résumé upload (Vercel Blob)
 
-The /careers form keeps the live site's résumé upload through the owner's FlowDrive widget (the same public widget key as the live page). Files go from the browser straight to FlowDrive; the form sends only the link, and only an `https` link on `tryflowdrive.com`.
-
-Owner, by T-3, at https://tryflowdrive.com:
-- **The account is active** and separate from the Webflow plan that will be cancelled. Note its plan and monthly quota.
-- **Allowed sites include `thewireguyelectric.com`.** Uploads from `thewireguyelectric.vercel.app` are refused unless that host is added too, so the real upload test is on www at L10.
+The /careers form sends the résumé with the application; `/api/contact` saves it to the project's Vercel Blob store (`wireguy-resumes`, already created and connected as `BLOB_READ_WRITE_TOKEN`) and Formspark receives a download link. No separate account: FlowDrive is no longer used. Details in docs/FORMS.md.
 
 ## Search engines and analytics
 
@@ -383,7 +379,7 @@ The full list, with what the site shows today and what we did, is in [`migration
 |---|---|---|
 | 1 | **ROC licence (D8).** The site, FAQ and Nextdoor show 365306; van photos, Facebook, Instagram, Yelp and BuildZoom show 340400. Which is active? Nine city meta descriptions name 365306 | 365306 stays |
 | 2 | **Formspark:** create the form and buy the bundle (above) | No leads are delivered: blocks launch |
-| 3 | **FlowDrive:** account active, separate from Webflow, `thewireguyelectric.com` allowed | Résumés can't be uploaded; applications still arrive |
+| 3 | ~~FlowDrive~~ **Answered 2026-10-20:** replaced by Vercel Blob (no account needed) | — |
 | 4 | **"Trusted by 100+ Arizona businesses" (D3)** on /commercial-electrician: is the number right? The three starred quotes there were removed: no review says them | Line stays (the live page shows it) |
 | 5 | **Scottsdale office:** staffed Mon–Fri 9–5, or by appointment only? | **Answered 2026-10-20:** neither: no appointments at the office; the crew goes out to homes. "(by appointment)" removed from the site; schema still lists no office hours |
 | 6 | **Home page hero quotes:** "Went above and beyond, great prices too!", "Could not be more pleased!", "Excellent, polite and timely service!" match no review | They stay (live copy) |

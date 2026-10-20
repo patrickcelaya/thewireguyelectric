@@ -106,7 +106,7 @@ Run on 2026-10-17 against the Sanity-backed preview and an indexable local build
 Still to do before launch, each in [`LAUNCH_RUNBOOK.md`](LAUNCH_RUNBOOK.md):
 - **Replace the Ignored Build Step guard.** The same-commit guard from the README cancels any rebuild of an already-deployed commit: on 2026-10-17 it canceled at least 8 production deployments of `d3db0c6`. Left in place it would cancel the launch redeploy (leaving www noindexed) and every Sanity publish. The content-aware `node scripts/ignore-build.mjs` replaces it.
 - Set **On-Demand Concurrent Builds** to "Run up to one build per branch".
-- Set up Formspark and confirm the FlowDrive account.
+- Set up Formspark (done). Résumés go to Vercel Blob (done).
 - Back up Sanity, import the launch dataset, then freeze Studio edits: a `--replace` import overwrites any Studio edit made since the last one.
 - Re-run `verify.mjs` and the parity crawl on the preview.
 

@@ -51,27 +51,20 @@ Add a second destination (`LEAD_WEBHOOK_URL` or Resend) soon after launch, so a 
 
 Sources (read 2026-10-17): Formspark's [spam protection](https://documentation.formspark.io/setup/spam-protection.html), [limits and plans](https://documentation.formspark.io/troubleshooting/limits-and-plans.html), [AJAX](https://documentation.formspark.io/examples/ajax.html) and [notification email](https://documentation.formspark.io/customization/notification-email.html) pages.
 
-## The résumé upload (FlowDrive)
+## The résumé upload (Vercel Blob)
 
-The live /careers form took résumés through FlowDrive, the owner's file-upload service. The new form uses the same widget and the same public key (`SQVTL3y1qL7KkNqzIzsD6`, in `ApplicationForm.astro`):
+The /careers form has a plain file field (`name="resume"`, in `ApplicationForm.astro`); the form posts as `multipart/form-data`.
 
-- **Loading:** the FlowDrive script loads on /careers only (`defer`, so it starts before `DOMContentLoaded`, which it waits for).
-- **Upload:** the widget replaces `<div fd-upload="default" fd-input="file_url">` with its upload box. The browser sends the file straight to FlowDrive, so Vercel's 4.5 MB request limit doesn't apply. When the upload finishes, the widget puts the file's link in a hidden `file_url` field.
-- **Sending:** if the visitor presses send while an upload is still running, the form waits for it. If the upload fails, the form says so and sends nothing; the next press sends without the résumé.
-- **Checking the link:** the API forwards `file_url` to every destination only when it is an `https:` link on `tryflowdrive.com` or one of its subdomains, with no port and no user name. Anything else is dropped with a log line, and the application is still delivered.
-- **Without JavaScript:** there is no upload. The field says so, and that the form still sends.
-
-What the owner must keep in place:
-
-- **Account:** the FlowDrive account behind the key must stay active. It is a separate service from the Webflow plan.
-- **Allowed sites:** FlowDrive only accepts uploads from sites added to the account (subdomains included). Keep thewireguyelectric.com there. Uploads from thewireguyelectric.vercel.app are refused unless that host is added too, so test a real upload on www after the DNS switch.
-- **Privacy:** files sit in FlowDrive at unguessable but public links.
-
-If FlowDrive is ever dropped, any widget that writes an https link into `file_url` works the same way. The API's host check (`FLOWDRIVE_HOST` in `contact.ts`) then needs the new host.
+- **Saving:** `/api/contact` puts the file in the project's Vercel Blob store (`wireguy-resumes`, connected to the project as `BLOB_READ_WRITE_TOKEN`) under `resumes/resume-<random>.<ext>`, and sends its link to every destination as `file_url` (labelled "Résumé" in Formspark).
+- **Limits:** 4 MB, and PDF, Word (doc/docx), RTF, ODT, TXT, Pages, JPEG, PNG or HEIC. Vercel refuses any request over 4.5 MB before the function runs, so the browser checks the size first (`forms.ts`) and says so inline. A file over the limit or of another type is logged and left out; the application is still delivered.
+- **Without JavaScript:** the upload works the same (it is part of the normal form post). Only the size check is lost: a file over 4.5 MB gets Vercel's error page.
+- **If Blob is down or the token is missing:** the application is delivered without the résumé, and the function log says why.
+- **Privacy:** files sit at unguessable but public links. Delete old ones in Vercel → Storage → wireguy-resumes when they are no longer needed.
+- **Cost:** Vercel's included Blob allowance covers thousands of résumés; expect $0.
 
 ## Testing after a change
 
-- **Locally:** build with `PUBLIC_SANITY_PROJECT_ID= pnpm --filter web build`, then serve `web/.vercel/output` (the static files plus `functions/_render.func/entry.mjs`). Point `LEAD_WEBHOOK_URL` at a local catch server. Never post test leads to the real providers from a script, and never upload to FlowDrive from a test: intercept `api.tryflowdrive.com` and answer with a fake link.
+- **Locally:** build with `PUBLIC_SANITY_PROJECT_ID= pnpm --filter web build`, then serve `web/.vercel/output` (the static files plus `functions/_render.func/entry.mjs`). Point `LEAD_WEBHOOK_URL` at a local catch server. Never post test leads to the real providers from a script.
 - **On the preview, after setting `FORMSPARK_FORM_ID` and redeploying:**
   1. Submit /estimate with the name "QA test - ignore". Expect "Your request is in.".
   2. Confirm the entry in the Formspark inbox and that the notification email arrived (not in spam).

@@ -7,6 +7,7 @@
 // At least one must succeed, or the visitor is told to call instead. Setup, the
 // Formspark settings that reject every lead, and the status codes: docs/FORMS.md.
 import type {APIRoute} from 'astro'
+import {put} from '@vercel/blob'
 
 export const prerender = false
 
@@ -86,20 +87,31 @@ async function toResend(apiKey: string, to: string, lead: Lead) {
   if (!res.ok) throw await refused('Resend', res)
 }
 
-// The résumé on /careers goes from the browser to FlowDrive (components/sections/ApplicationForm.astro), which writes
-// the file's link into file_url. Only an https link on a FlowDrive host is passed on: anything else is not a file the
-// widget uploaded, so the application is delivered without it.
-const FLOWDRIVE_HOST = /(^|\.)tryflowdrive\.com$/i
-function resumeUrl(value: string) {
-  if (!value) return ''
-  try {
-    const url = new URL(value)
-    if (url.protocol === 'https:' && FLOWDRIVE_HOST.test(url.hostname) && !url.username && !url.password && !url.port) return url.href
-    console.warn('[contact] résumé link dropped (not https on a FlowDrive host):', `${url.protocol}//${url.hostname}`)
-  } catch {
-    console.warn('[contact] résumé link dropped (not a URL)')
+// The résumé on /careers is a plain file field (components/sections/ApplicationForm.astro). It is saved to the
+// project's Vercel Blob store (BLOB_READ_WRITE_TOKEN, connected to the project) under an unguessable name, and its
+// link goes to every destination as file_url. A file that is too big, of the wrong type, or that can't be saved is
+// logged and left out: the application is still delivered. Vercel refuses request bodies over 4.5 MB before this
+// runs, so the form's limit (and forms.ts's check) is 4 MB.
+const RESUME_MAX_BYTES = 4 * 1024 * 1024
+const RESUME_TYPES = /\.(pdf|docx?|rtf|odt|txt|pages|jpe?g|png|heic)$/i
+async function saveResume(file: FormDataEntryValue | null) {
+  if (!(file instanceof File) || file.size === 0) return ''
+  if (file.size > RESUME_MAX_BYTES || !RESUME_TYPES.test(file.name)) {
+    console.warn('[contact] résumé left out:', {size: file.size, type: file.type, name: file.name.slice(-12)})
+    return ''
   }
-  return ''
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('[contact] résumé left out: BLOB_READ_WRITE_TOKEN is not set')
+    return ''
+  }
+  try {
+    const ext = file.name.match(RESUME_TYPES)?.[0].toLowerCase() ?? ''
+    const blob = await put(`resumes/resume${ext}`, file, {access: 'public', addRandomSuffix: true, contentType: file.type || undefined, abortSignal: AbortSignal.timeout(PROVIDER_TIMEOUT_MS)})
+    return blob.url
+  } catch (e) {
+    console.error('[contact] résumé could not be saved:', e instanceof Error ? e.message : e)
+    return ''
+  }
 }
 
 // A form posted without JavaScript asks for a page, not JSON: send the browser back to the page it came from (same
@@ -149,7 +161,7 @@ export const POST: APIRoute = async ({request}) => {
   const lead = Object.fromEntries([
     ...FIELDS.map((k) => [k, get(k)]),
     ['message', get('message') || 'No details given'],
-    ['file_url', resumeUrl(get('file_url'))],
+    ['file_url', await saveResume(data.get('resume'))],
     ['formType', get('formType') === 'careers' ? 'careers' : 'estimate'],
     ['page', request.headers.get('referer') ?? ''],
   ]) as Lead
