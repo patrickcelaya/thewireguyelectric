@@ -63,8 +63,21 @@ function rails() {
   }
 }
 
+/**
+ * Lazy photos fade in once they have loaded (img.img-in). A photo already in the cache when the
+ * script runs is left alone, so nothing that is on screen ever flashes.
+ */
+function photoFades() {
+  if (reduceMotion) return
+  for (const img of all<HTMLImageElement>('img[loading=lazy]')) {
+    if (img.complete) continue
+    img.addEventListener('load', () => img.classList.add('img-in'), {once: true})
+  }
+}
+
 export function initMotion() {
   reveals()
+  photoFades()
   eagerPhotos()
   heroFit()
   rails()

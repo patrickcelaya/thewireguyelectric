@@ -608,6 +608,46 @@ html:not(.js) .rv blockquote{display:block;-webkit-line-clamp:unset;overflow:vis
 .reveal-js [data-reveal]{transition:opacity .9s var(--ease-out),transform .9s var(--ease-out)}
 .reveal-js [data-reveal]:not(.is-in){opacity:0;transform:translateY(36px)}
 @media print{[data-reveal]{animation:none!important;opacity:1!important;transform:none!important}}
+/* ---- motion pass (round 6): the hero settles in on load, inner-page cards and rows rise as they arrive, the FAQ opens
+   smoothly, lazy photos fade in once loaded. Enhancement only, gated like the reveals: html.motion (motion allowed), scroll
+   timelines for the scroll pieces. Photos of people move but never fade (same rule as the tiles). No layout is touched. */
+@media (prefers-reduced-motion:no-preference){
+  .motion .hero__copy>*,.motion .ihero__copy>*,.motion .phero__copy>*{animation:enter .75s var(--ease-out) both}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(2){animation-delay:.07s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(3){animation-delay:.14s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(4){animation-delay:.21s}
+  .motion :is(.hero__copy,.ihero__copy,.phero__copy)>:nth-child(n+5){animation-delay:.28s}
+  .motion .phero__photo,.motion .ihero__side{animation:settle-in .9s var(--ease-out) .1s both}
+  @keyframes enter{from{opacity:.35;transform:translateY(14px)}to{opacity:1;transform:none}}   /* never from 0: the heading can be the LCP */
+  @keyframes settle-in{from{opacity:.6;transform:scale(1.015)}to{opacity:1;transform:none}}
+  .motion .btn{transition:background-color .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease-out)}
+  .motion .btn:hover{transform:translateY(-1px)}
+  .motion .btn:active{transform:translateY(1px) scale(.985)}
+  .motion img.img-in{animation:img-in .5s var(--ease) both}
+  @keyframes img-in{from{opacity:0}to{opacity:1}}
+}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    /* words and plain cards rise and fade in */
+    .motion :is(.rv-row>li,.trust__item,.step,.svc-row,.svcrow,.signs__list>li,.faq .qa,.facts--grid>*,.sol>li,h2.display:not([data-reveal]),.mt__copy,.hls__copy,.glance__copy){animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+    /* cards with photos only move (people are never faded) */
+    .motion :is(.guide,.crew__card,.wg__item,.glance__photo,.mt__photo,.hls__photo){animation:card-in linear both;animation-timeline:view();animation-range:entry 0% entry 65%}
+    @keyframes card-in{from{transform:translateY(48px) scale(.975)}to{transform:none}}
+    /* a row of three staggers by a few percent, like the value cards */
+    .motion :is(.rv-row>li,.trust__item,.step,.guide,.crew__card,.wg__item,.facts--grid>*):nth-child(3n+2){animation-range:entry 6% entry 72%}
+    .motion :is(.rv-row>li,.trust__item,.step,.guide,.crew__card,.wg__item,.facts--grid>*):nth-child(3n){animation-range:entry 12% entry 80%}
+    /* phones: finished within the first third of entry, so nothing sits faded mid-screen (round-5 QA rule) */
+    @media (max-width:699px){.motion :is(.rv-row>li,.trust__item,.step,.svc-row,.svcrow,.signs__list>li,.faq .qa,.facts--grid>*,.sol>li,h2.display:not([data-reveal]),.mt__copy,.hls__copy,.glance__copy,.guide,.crew__card,.wg__item,.glance__photo,.mt__photo,.hls__photo){animation-range:entry 0% entry 35%}}
+  }
+}
+/* the FAQ answer slides open (browsers with ::details-content; the others still snap, as before) */
+@supports selector(::details-content){
+  @media (prefers-reduced-motion:no-preference){
+    .motion .qa{interpolate-size:allow-keywords}
+    .motion .qa::details-content{height:0;overflow:clip;transition:height .4s var(--ease-out),content-visibility .4s allow-discrete}
+    .motion .qa[open]::details-content{height:auto}
+  }
+}
 /* below-the-fold sections are laid out and painted only as they approach (their last size is remembered). Homepage only:
    on the shorter inner pages the size estimates put the targets below them (the footer's links, a FAQ under the valley)
    in the wrong place until they render, which tools that measure target spacing at load read as overlaps */
