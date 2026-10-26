@@ -25,7 +25,7 @@ An empty message is sent as "No details given". A changed env var reaches the fu
 |---|---|---|
 | 204 | Delivered to at least one destination | The confirmation. GA4 `generate_lead` fires only here, and only for estimate requests |
 | 202 | Dropped as a bot: the hidden `company_website` field was filled, or the form was filled in under 2.5 s | The confirmation (bots move on). Logged as `[contact] dropped as bot` |
-| 400 | No name or no phone, or a body that isn't form data | Inline errors (with JS) |
+| 400 | No name, no phone, or no valid email (both forms require all three), or a body that isn't form data | Inline errors (with JS) |
 | 403 | A cross-site POST (Astro's origin check) | — |
 | 405 | Any method but POST (`Allow: POST`). A monitor can GET the URL to tell "deployed" from "missing" | — |
 | 502 | Every destination failed or timed out. Logged as `[contact] delivery failed: …` with the provider's status and the start of its answer | "We couldn't send that. Please call …", scrolled into view and focused |

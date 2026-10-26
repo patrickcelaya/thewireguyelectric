@@ -65,9 +65,9 @@ const hours = officeHours(settings).prose
       <span class="err" id={`${id}-phone-e`} hidden>Please enter a phone number we can call.</span>
     </div>
     <div class="field">
-      <label for={`${id}-email`}>Email <span class="req">(optional)</span></label>
-      <input id={`${id}-email`} name="email" type="email" autocomplete="email" />
-      <span class="err" id={`${id}-email-e`} hidden>Please check the email address, or leave it blank.</span>
+      <label for={`${id}-email`}>Email <span class="req">(required)</span></label>
+      <input id={`${id}-email`} name="email" type="email" autocomplete="email" required aria-required="true" />
+      <span class="err" id={`${id}-email-e`} hidden>Please enter an email address we can write to.</span>
     </div>
     <div class="field">
       <label for={`${id}-zip`}>City or ZIP</label>
