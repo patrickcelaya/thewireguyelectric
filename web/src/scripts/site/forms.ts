@@ -95,7 +95,8 @@ function enhance(box: HTMLElement) {
     const bad: HTMLInputElement[] = []
     for (const field of all<HTMLInputElement>('input[required], input[type=email]', form)) {
       const value = field.value.trim()
-      const invalid = field.required ? !value : Boolean(value) && !field.checkValidity()
+      // a required field must be filled; any filled email must also be an address (bob@ is not)
+      const invalid = (field.required && !value) || (Boolean(value) && !field.checkValidity())
       const msgId = `${field.id}-e`
       const msg = document.getElementById(msgId)
       field.setAttribute('aria-invalid', String(invalid))

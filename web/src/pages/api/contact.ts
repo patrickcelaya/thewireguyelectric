@@ -88,6 +88,9 @@ async function toResend(apiKey: string, to: string, lead: Lead) {
   if (!res.ok) throw await refused('Resend', res)
 }
 
+/** Something@something.tld: the same bar as the browser's type=email check, plus a dot in the domain. */
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 // The résumé on /careers is a plain file field (components/sections/ApplicationForm.astro). It is saved to the
 // project's Vercel Blob store (BLOB_READ_WRITE_TOKEN, connected to the project) under an unguessable name, and its
 // link goes to every destination as file_url. A file that is too big, of the wrong type, or that can't be saved is
@@ -133,7 +136,8 @@ function back(request: Request, ok: boolean) {
 }
 
 // Status codes: 204 delivered; 202 dropped as a bot (it still looks like success, but scripts/site/forms.ts counts a
-// lead only on 204); 400 missing name or phone, or a body that isn't a form; 502 every destination failed; 503 none set.
+// lead only on 204); 400 missing name, phone or email (or an email that isn't an address), or a body that isn't a
+// form; 502 every destination failed; 503 none set.
 export const POST: APIRoute = async ({request}) => {
   const json = (request.headers.get('accept') ?? '').includes('application/json')
   const reply = (status: number, body: string | null = null) => (json ? new Response(body, {status}) : back(request, status < 300))
@@ -154,8 +158,9 @@ export const POST: APIRoute = async ({request}) => {
     console.warn('[contact] dropped as bot', {honeypot, fillMs: get('fillMs')})
     return reply(202)
   }
-  // A name and a phone number are enough to call someone back; details are optional.
-  if (!get('name') || !get('phone')) {
+  // Both forms require a name, a phone number and an email address (the forms check too, but a post can skip them);
+  // details are optional.
+  if (!get('name') || !get('phone') || !EMAIL.test(get('email'))) {
     return reply(400, 'Missing required fields')
   }
 
