@@ -1,0 +1,389 @@
+{
+  "$comment": "Blog posts written after launch (README.md section 15). Applied by scripts/migrate/content/new-posts.mjs, the last content module. Topics from Search Console queries the site ranked poorly for (September 2026 report). Every fact is checked against the page in `sources`, which is not published. No prices: posts link the cost guides.",
+  "posts": [
+    {
+      "slug": "100-to-200-amp-service-upgrade-arizona",
+      "title": "Upgrading From 100 to 200 Amp Service in Arizona: How It Works",
+      "seoTitle": "100 to 200 Amp Service Upgrade in Arizona: The Process",
+      "seoDescription": "What a 100 to 200 amp service upgrade involves in the Valley: load calculation, city permit, SRP or APS coordination, inspection, and what to ask in a quote.",
+      "excerpt": "A 100 to 200 amp service upgrade is more than a bigger panel. Here is how the load calculation, permit, SRP or APS coordination, and inspection fit together in the Valley.",
+      "quickAnswer": "Going from 100 to 200 amps replaces the meter-main, service conductors, and grounding, not just the breakers. The job starts with an NEC Article 220 load calculation, then a city permit, a utility disconnect by SRP or APS, inspection, and reconnection. The utility will not restore power until the city approves the work.",
+      "relatedServices": [
+        "panels",
+        "electrical-upgrades"
+      ],
+      "publishedAt": "2026-11-05T16:00:00Z",
+      "photo": "siemens-meter-main-inspection-tag",
+      "body": [
+        "<p>Most people look into a 200 amp service upgrade because something new is coming: an EV, a heat pump, a pool, a casita. Then they search \"200 amp service upgrade near me,\" talk to three electricians, and get three different descriptions of the job. Here is how it actually works in the Valley, from the load calculation to the moment SRP or APS turns the power back on.</p>",
+        "<h2>A Service Upgrade Is Not the Same as a Panel Swap</h2>",
+        "<p>A panel swap replaces the breaker panel at the same rating. An old 200 amp panel comes out, a new 200 amp panel goes in, and the size of the utility connection stays the same.</p>",
+        "<p>A service upgrade raises the capacity of the whole connection: the main breaker, the meter socket, the conductors coming into the house, and the grounding. From the driveway it can look like we just hung a bigger gray box. It is not the same job.</p>",
+        "<p>In Arizona the two get tangled together because so many Valley homes have a meter-main combo, where the utility meter and the main panel share one enclosure. The utilities push hard toward that equipment. SRP's service specifications call for all-in-one equipment on any modification to existing metering, and APS requires an all-in-one meter-main from its pre-approved list on underground upgrades, allowing a separate meter and panel only on overhead service. So in practice, a 100 to 200 amp upgrade here almost always means a new meter-main.</p>",
+        "<p>APS also spells out in its service manual that a service entrance being upgraded to a larger main breaker has to be brought up to current code and specification requirements. That is the honest reason a service upgrade is never just a bigger breaker.</p>",
+        "<h2>Signs You Need One</h2>",
+        "<p>A 100 amp service is not automatically a problem. A smaller home with a gas range, dryer, and water heater can live on it fine. The trouble starts when you add a large load:</p>",
+        "<ul>\n<li><strong>An EV charger.</strong> A Level 2 charger is a big load that runs for hours, and on a 100 amp service it often does not fit next to the air conditioner. Our <a href=\"/services/ev-charger-installation\">EV charger installation</a> page covers the charger side.</li>\n<li><strong>A larger AC or a heat pump.</strong> Upsizing the system, or trading gas heat for a heat pump with electric backup heat, adds load on exactly the days the house is already working hardest.</li>\n<li><strong>A pool, spa, or pool heat pump.</strong></li>\n<li><strong>A casita, ADU, or garage conversion.</strong> We walked through that in our post on <a href=\"/blog-posts/casita-adu-electrical-requirements-arizona\">casita and ADU electrical</a>.</li>\n<li><strong>A kitchen remodel,</strong> especially going from gas to induction or adding a wall oven.</li>\n<li><strong>A full panel</strong> with nowhere to land the next circuit.</li>\n</ul>",
+        "<p>None of those settles the question by itself, though. A load calculation does.</p>",
+        "<h2>Step 1: The Load Calculation</h2>",
+        "<p>Article 220 of the National Electrical Code is how an electrician works out what a house actually needs. It is not adding up every breaker in the panel. For a single home, the optional method in 220.82 counts the first 10 kVA of general load at 100 percent and the rest at 40 percent, then adds the larger of the heating or cooling load. A related section, 220.83, is written for checking whether an existing house can take on new load.</p>",
+        "<p>There is another route worth asking about. Section 220.87 allows the existing load to be based on a full year of actual maximum demand data, taken at 125 percent, with the new load added on top. In the Valley, a year of data includes July, which is exactly the month you want it to include.</p>",
+        "<p>Sometimes the math says your existing service can carry what you are adding, and a good electrician tells you so instead of selling an upgrade. When it says no, the same calculation shows the city why 200 amps is the right size. Chandler's homeowner permit manual, for example, asks for a panel schedule and notes that load calculations may also be required.</p>",
+        "<h2>Step 2: The City Permit</h2>",
+        "<p>A service upgrade is permitted work, and each city runs its own process: Mesa through Development Services and its DIMES system, Gilbert through its OneStopShop portal, Phoenix through the Planning and Development Department, and so on. Phoenix lists service upgrades up to 200 amps among the residential permits that can be issued over the counter or online, while services of 400 amps or more go to plan review.</p>",
+        "<p>The permit matters for more than paperwork. SRP's specifications note that Maricopa County and most cities in its territory have ordinances that keep SRP from energizing the service until the permit is in place and the city or county has approved the installation. APS says the same about work that replaces or relocates its meter. No permit, no power.</p>",
+        "<h2>Step 3: Coordinating With SRP or APS</h2>",
+        "<p>Which utility you have depends on your address, not just your city. SRP serves most of Mesa, Gilbert, Chandler, and Tempe, along with Queen Creek, San Tan Valley, Apache Junction, Fountain Hills, and Ahwatukee. APS serves much of central and north Phoenix, most of north Scottsdale, and pockets of Gilbert, Chandler, and Tempe. Downtown Mesa has a third option: the City of Mesa runs its own electric utility in a 5.5 square mile area centered on downtown.</p>",
+        "<p>How the work splits:</p>",
+        "<ul>\n<li><strong>The utility owns the meter and its wires up to your equipment.</strong> On APS overhead service, its ownership ends at the top of your weatherhead. On underground service, it ends where its conductors land in your meter section. Only utility employees can break the meter seal or pull the meter.</li>\n<li><strong>You own the meter-main and everything past it,</strong> including the riser or mast. That is the part the electrician replaces.</li>\n<li><strong>The utility signs off on the change.</strong> SRP treats a change in ampacity as a modification that its Distribution Design group and the city both have to approve, and it reconnects power once both have. APS asks to be contacted before service is changed and requires three days' notice to de-energize a service outside an emergency.</li>\n</ul>",
+        "<p>Your electrician should make those calls and line up the disconnect, inspection, and reconnect. On the SRP side, projects that need new, upgraded, or relocated service go through <a href=\"https://www.srpnet.com/doing-business/builders-developers-contractors/construction-services\" target=\"_blank\" rel=\"noopener\">SRP's Project Plan Portal</a>. On the APS side, the upgrade rules are in section 200 of <a href=\"https://www.aps.com/-/media/APS/APSCOM-PDFs/About/Construction-and-Power-Line-Siting/Construction-Services/Electric-Service-Requirements-Manual/200.pdf\" target=\"_blank\" rel=\"noopener\">APS's Electric Service Requirements Manual</a>.</p>",
+        "<h2>Step 4: Inspection and Reconnect</h2>",
+        "<p>The sequence is utility disconnect, installation, city inspection, utility reconnect. The utility restores power only after the city approves the work, not on the electrician's word.</p>",
+        "<h2>Overhead vs. Underground Service</h2>",
+        "<p><strong>Overhead service</strong> comes from a pole to a mast or riser on your house. The utility's drop attaches at the house, and the mast and weatherhead are yours. When the riser also holds up the service drop, SRP requires it to be continuous rigid or intermediate steel conduit, so an old mast often gets replaced along with the meter-main. APS does not allow an overhead riser to be enclosed in a wall, which rules out a flush-mounted panel on overhead service.</p>",
+        "<p><strong>Underground service</strong> comes up out of the ground into the bottom of the meter-main. Many of these units are semi-flush, set partly into the stucco or block. Replacing one means cutting and patching the wall, and that should be written into the quote, not discovered on the day.</p>",
+        "<p><strong>Converting overhead to underground</strong> is a much bigger project. SRP's specifications make the customer responsible for it, and the new trench and conduit must be inspected before backfill.</p>",
+        "<h2>How Long It Takes</h2>",
+        "<p>Neither utility publishes a fixed timeline for a residential upgrade, so be skeptical of a firm date given before the permit and utility review are done. What moves the schedule:</p>",
+        "<ul>\n<li>Whether the permit is issued over the counter or goes to plan review</li>\n<li>How much the utility has to do on its side, and when its crews can get there</li>\n<li>APS's three-day notice to de-energize the service</li>\n<li>Mast, riser, or underground conduit work, and especially an overhead to underground conversion</li>\n<li>When the city inspection can be scheduled</li>\n</ul>",
+        "<p>The outage itself is usually the short part. On a straightforward replacement, the power is typically off for part of a single day.</p>",
+        "<h2>What to Ask For in a Quote</h2>",
+        "<p>When you compare quotes for a 200 amp service upgrade, each one should cover:</p>",
+        "<ul>\n<li>A written load calculation, not just \"you need 200 amps\"</li>\n<li>Who pulls the permit, and whether the final inspection is included</li>\n<li>Who coordinates with SRP or APS and schedules the disconnect and reconnect</li>\n<li>The exact meter-main by brand and model, surface or semi-flush, number of breaker spaces, and confirmation it is on your utility's approved list and meets your city's adopted code (Mesa and Chandler are on the 2023 NEC)</li>\n<li>Grounding and bonding brought up to current code</li>\n<li>Any mast, riser, or conduit work</li>\n<li>Who patches the stucco or block around a recessed unit</li>\n<li>Any new circuits, like an EV charger, listed as separate line items</li>\n<li>The contractor's Arizona ROC license number</li>\n</ul>",
+        "<p>For what this work costs, see our <a href=\"/blog-posts/electrical-panel-upgrade-cost-arizona\">electrical panel upgrade cost guide</a>, and our <a href=\"/services/panels\">panel and service upgrade page</a> covers how we handle the job.</p>",
+        "<p>If you have been searching for 200 amp service upgrades near me anywhere from Mesa to Phoenix, <a href=\"/estimate\">request a free estimate</a>. We will look at your service, run the numbers, and tell you straight whether you need the upgrade.</p>"
+      ],
+      "sources": [
+        {
+          "claim": "SRP: all-in-one equipment shall be used for all new installations or existing metering equipment modifications (overhead and underground residential SES sections, 2026 republication).",
+          "url": "https://azure-na-assets.contentstack.com/v3/assets/bltefc1fc708dcc94e7/blt87e6290270102348/6a85de4fc0f001dc63fe7495/Electric_Service_Specifications.pdf"
+        },
+        {
+          "claim": "APS: all new underground service installations and upgrades require an all-in-one/meter-main panel from the APS pre-approved list; split systems permitted for overhead only; flush-mount panels with an overhead riser prohibited (list rev. 01/30/2026).",
+          "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/About/Construction-and-Power-Line-Siting/Construction-Services/Electric-Service-Requirements-Manual/APS_Residential_Pre-Approved_Equipment_List.pdf"
+        },
+        {
+          "claim": "APS ESRM 200.2-2 Upgrade Service: contact APS before service is changed; service entrances upgraded (increased main breaker ampacity) must be brought up to current code and specification requirements.",
+          "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/About/Construction-and-Power-Line-Siting/Construction-Services/Electric-Service-Requirements-Manual/200.pdf"
+        },
+        {
+          "claim": "NEC 220.82 optional method: 100% of first 10 kVA plus 40% of remainder, plus the larger heating or AC load; 220.83 for existing dwelling units adding load.",
+          "url": "https://www.ecmweb.com/code-basics/one-family-dwelling-unit-load-calculations"
+        },
+        {
+          "claim": "NEC 220.87: existing load may be based on one year of maximum demand data; maximum demand at 125 percent plus the new load must not exceed the service rating.",
+          "url": "https://powermonitors.com/whitepapers/recording-for-nec-220-compliance/"
+        },
+        {
+          "claim": "Chandler's Homeowner's Building Permit Manual asks for a panel schedule and says load calculations may also be required.",
+          "url": "https://www.chandleraz.gov/government/departments/development-services/building-safety-plan-review-permits-and-inspections"
+        },
+        {
+          "claim": "Mesa requires a construction permit for installing or modifying electrical systems; apply through DIMES; 2023 NEC on the adopted code list.",
+          "url": "https://www.mesaaz.gov/business/development-services/residential-construction"
+        },
+        {
+          "claim": "Gilbert electrical permits go through the Town OneStopShop portal (from repo local-facts, verified 2026-10-13).",
+          "url": "https://www.gilbertaz.gov/departments/development-services/plan-review-inspection/permits-applications"
+        },
+        {
+          "claim": "Phoenix: electric service upgrades, replacements and repairs for services not exceeding 200 amps may be issued over the counter; 400 amp or greater services require submittal for review.",
+          "url": "https://www.phoenix.gov/pddsite/Documents/TRT/dsd_trt_pdf_00366.pdf"
+        },
+        {
+          "claim": "Phoenix online residential permits include Electrical Service Upgrade (up to 200 AMP).",
+          "url": "https://www.phoenix.gov/content/dam/phoenix/pddsite/documents/trt/external/dsd_trt_pdf_00933.pdf"
+        },
+        {
+          "claim": "Chandler adopted the 2023 NEC for plans submitted on or after 2025-07-01.",
+          "url": "https://www.chandleraz.gov/government/departments/development-services/building-safety-plan-review-permits-and-inspections"
+        },
+        {
+          "claim": "SRP: Maricopa County and most cities/towns in SRP territory have ordinances restricting SRP from energizing until permits are obtained and the AHJ approves the installation; contact SRP and the AHJ before panel modifications; SRP reconnects when both approve.",
+          "url": "https://azure-na-assets.contentstack.com/v3/assets/bltefc1fc708dcc94e7/blt87e6290270102348/6a85de4fc0f001dc63fe7495/Electric_Service_Specifications.pdf"
+        },
+        {
+          "claim": "APS ESRM 100.9: where changes require relocating or replacing APS meters, APS will not energize until the inspection authority approves the wiring.",
+          "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/About/Construction-and-Power-Line-Siting/Construction-Services/Electric-Service-Requirements-Manual/100.pdf"
+        },
+        {
+          "claim": "APS ESRM 100.16: only APS employees may break seals or move/replace meters; three days advance notice required to de-energize a service outside an emergency.",
+          "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/About/Construction-and-Power-Line-Siting/Construction-Services/Electric-Service-Requirements-Manual/100.pdf"
+        },
+        {
+          "claim": "APS ESRM 102.19: overhead secondary ownership ends at the top of the weatherhead; underground secondary ownership ends at the wire termination on the meter section; customer owns the underground conduit riser.",
+          "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/About/Construction-and-Power-Line-Siting/Construction-Services/Electric-Service-Requirements-Manual/100.pdf"
+        },
+        {
+          "claim": "SRP glossary: Modification = change in ampacity, added load, relocation or conversion; Distribution Design and the AHJ must approve all modifications. SES is customer-owned; customer installs, owns and maintains the SES and riser.",
+          "url": "https://azure-na-assets.contentstack.com/v3/assets/bltefc1fc708dcc94e7/blt87e6290270102348/6a85de4fc0f001dc63fe7495/Electric_Service_Specifications.pdf"
+        },
+        {
+          "claim": "SRP: service riser used as a mast to support the service drop must be continuous rigid steel or intermediate conduit (no EMT).",
+          "url": "https://azure-na-assets.contentstack.com/v3/assets/bltefc1fc708dcc94e7/blt87e6290270102348/6a85de4fc0f001dc63fe7495/Electric_Service_Specifications.pdf"
+        },
+        {
+          "claim": "SRP: customer is responsible for overhead-to-underground modification as approved by the AHJ; trenching and conduit must be inspected prior to backfill.",
+          "url": "https://azure-na-assets.contentstack.com/v3/assets/bltefc1fc708dcc94e7/blt87e6290270102348/6a85de4fc0f001dc63fe7495/Electric_Service_Specifications.pdf"
+        },
+        {
+          "claim": "SRP pre-approved residential SES list includes surface and semi-flush 200 A all-in-one units (semi-flush for underground use).",
+          "url": "https://azure-na-assets.contentstack.com/v3/assets/bltefc1fc708dcc94e7/blt87e6290270102348/6a85de4fc0f001dc63fe7495/Electric_Service_Specifications.pdf"
+        },
+        {
+          "claim": "SRP Project Plan Portal is for projects requiring new, upgraded or relocated power services; all projects requiring SRP construction services go through it.",
+          "url": "https://www.srpnet.com/doing-business/builders-developers-contractors/construction-services"
+        },
+        {
+          "claim": "Utility territory by city (SRP/APS split for Gilbert, Chandler, Tempe, Scottsdale, Phoenix; SRP-only for Queen Creek, San Tan Valley, Apache Junction, Fountain Hills, Ahwatukee) from repo local-facts, sourced to SRP ESS 2026 service-area map and APS Metro Phoenix territory map.",
+          "url": "https://www.aps.com/-/media/APS/APSCOM-PDFs/Residential/Service-Plans/Service-Territory-Map/APS_Service_Territory_Phoenix_Metro.pdf"
+        },
+        {
+          "claim": "City of Mesa delivers electric service within a 5.5-square-mile Electric Service Area centered on downtown; SRP serves the rest of the city.",
+          "url": "https://selectmesa.com/business-environment/infrastructure/"
+        },
+        {
+          "claim": "Outage typically part of one day on a straightforward replacement: from the company's own published cost guide (\"4 to 8 hours without power\", \"most jobs are completed in a single day\"), not independently verified.",
+          "url": "https://www.thewireguyelectric.com/blog-posts/electrical-panel-upgrade-cost-arizona"
+        }
+      ]
+    },
+    {
+      "slug": "commercial-electrical-maintenance-checklist-arizona",
+      "title": "Commercial Electrical Maintenance in Arizona: What to Check and When",
+      "seoTitle": "Commercial Electrical Maintenance Checklist for Arizona",
+      "seoDescription": "Commercial electrical maintenance for Valley businesses: panels, infrared scans, exit lights, GFCIs, rooftop disconnects, and a pre-summer and monsoon list.",
+      "excerpt": "Panels, infrared scans, exit and emergency lights, GFCIs, and rooftop disconnects: what Valley businesses should check, how often, and why Arizona heat and monsoon dust shorten the schedule.",
+      "quickAnswer": "Plan on a yearly infrared scan of panels and disconnects under load, monthly tests on emergency lights (30 seconds each) and GFCIs, and a full 90-minute emergency lighting test once a year. In the Valley, add two seasonal walkthroughs: one in spring before the heat, and one after monsoon season ends September 30.",
+      "relatedServices": [
+        "commercial-service",
+        "emergency-exit-lights",
+        "commercial-electrical-troubleshooting"
+      ],
+      "publishedAt": "2026-11-05T16:10:00Z",
+      "photo": "new-panel-conduit-bank-metal-building",
+      "body": [
+        "<p>Most commercial electrical repair calls we take in the Valley start the same way. Something had been running hot for months and finally let go, usually on a summer afternoon under the building's heaviest load. It did not fail out of nowhere. Nobody was looking at it.</p>",
+        "<p>That is what commercial electrical maintenance is for: a short list of things checked on a schedule, written down, and fixed while they are still small. Here is what belongs on that list for a retail center, office, restaurant, or warehouse in Mesa and the East Valley, how often, and what Arizona heat and monsoon dust change.</p>",
+        "<h2>What Preventive Maintenance Actually Covers</h2>",
+        "<p>For most small and mid-size commercial buildings, the list looks like this:</p>",
+        "<ul>",
+        "<li><strong>Panels and switchgear.</strong> Covers off, looking for heat discoloration, corrosion, dust, open breaker slots, and breakers that do not match the wire they protect.</li>",
+        "<li><strong>Infrared scan.</strong> A thermal camera on panels, disconnects, and terminations while the building is running. More on that below.</li>",
+        "<li><strong>Connection checks.</strong> Terminations that show heat on the scan get checked against the manufacturer's torque values with the power off.</li>",
+        "<li><strong>Emergency and exit lights.</strong> Monthly and annual testing, battery replacement, and a check that the egress path still matches the floor plan.</li>",
+        "<li><strong>GFCI devices.</strong> Kitchens, restrooms, rooftops, and exterior receptacles. Pushing the test button is the whole test, and it is the one that gets skipped.</li>",
+        "<li><strong>Interior lighting.</strong> Failing ballasts, flickering tubes, and whether it is time to convert a whole floor to LED instead of chasing fixtures one at a time.</li>",
+        "<li><strong>Parking lot and storefront lighting.</strong> Pole lights, wall packs, sign circuits, photocells, and timers.</li>",
+        "<li><strong>Surge protection.</strong> If there is a surge protective device at the service, its status indicator gets checked.</li>",
+        "<li><strong>Rooftop HVAC disconnects.</strong> The boxes next to every rooftop unit, which take more abuse than anything else on the property.</li>",
+        "<li><strong>Labeling and panel schedules.</strong> A directory that matches what is actually on each breaker.</li>",
+        "</ul>",
+        "<p>Handling that list across one building or several is the core of our <a href=\"/services/commercial-service\">commercial service and maintenance work</a>.</p>",
+        "<h2>Why the Valley Is Hard on Electrical Equipment</h2>",
+        "<p>Connections fail from heat and movement. Every time a load comes on, the conductor and lug warm up and expand a little, then cool and contract when it shuts off. A rooftop unit cycling all day through a Mesa summer does that constantly, starting from a roof deck that is already baking. Over a few seasons a tight connection works loose, and a loose connection makes more heat, which loosens it further.</p>",
+        "<p>Then there is dust. Haboobs push it into panels, disconnects, and fixtures, where it holds moisture against contacts and blankets parts that are supposed to shed heat. The National Weather Service defines monsoon season as June 15 through September 30, and that window brings the lightning, wind-driven rain, and surges that do the most damage to Valley buildings.</p>",
+        "<p>Rooftop disconnects get the worst of it: full sun, dried-out gaskets, and whips gone chalky and cracked. Our post on <a href=\"/blog-posts/ac-disconnect-box-arizona\">AC disconnect boxes in Arizona</a> covers the residential version, and all of it applies on a commercial roof.</p>",
+        "<h2>Infrared Scans: Finding the Heat Before It Fails</h2>",
+        "<p>A thermal camera shows heat you cannot see. A loose lug, an overloaded phase, or a failing breaker shows up as a hot spot well before it scorches or melts.</p>",
+        "<p>The catch is that the scan has to happen under real load. A connection with no current through it does not heat up, so a scan with the building dark tells you very little. That usually means scanning during operating hours, with covers removed by someone qualified to work around energized equipment.</p>",
+        "<p>Some commercial property insurers scan electrical equipment during their own loss control visits and refer policyholders to an electrician when they find a hot spot. If your carrier has handed you a report like that, our <a href=\"/services/commercial-electrical-troubleshooting\">commercial electrical troubleshooting</a> page covers how we trace a hot spot to its cause.</p>",
+        "<h2>What NFPA 70B Says, in Plain Terms</h2>",
+        "<p>NFPA 70B is the National Fire Protection Association's document on electrical equipment maintenance. For fifty years it was a recommended practice. With the 2023 edition, effective January 2023, it became a standard, written in terms of what must be done rather than what should be, and NFPA has since published a 2026 edition. NFPA's own <a href=\"https://www.nfpa.org/news-blogs-and-articles/blogs/2023/03/08/nfpa-70b-is-a-critical-tool-for-reliability-and-safety\" target=\"_blank\" rel=\"noopener\">overview of that change</a> is a quick read.</p>",
+        "<p>The useful idea for a business owner is how it sets intervals. Equipment is rated on three things: its physical condition, how critical it is, and the environment it operates in. Whichever of those is worst drives how often it gets maintained. A clean, newer panel in a conditioned electrical room lands on a longer interval than an older one in a dusty warehouse. Infrared inspection is on that schedule at least once a year, and more often for equipment already showing problems.</p>",
+        "<p>Whether a city or insurer enforces NFPA 70B at your building is a separate question, and NFPA itself has said jurisdictions may take time to work out how to use it. You do not need a copy to use the logic: look at your equipment on a schedule, look harder at the gear in the worst shape and the worst environment, and write down what you find.</p>",
+        "<h2>Emergency Lights, Exit Signs, and GFCIs</h2>",
+        "<p>These have the most clearly defined test intervals of anything on the list. As NFPA lays out in its <a href=\"https://www.nfpa.org/news-blogs-and-articles/nfpa-journal/2020/07/01/nfpa-101-july\" target=\"_blank\" rel=\"noopener\">guidance on NFPA 101, the Life Safety Code</a>, battery-powered emergency lights need:</p>",
+        "<ul>",
+        "<li>A test of at least 30 seconds every month, usually with the unit's test button, to confirm the lamps work and the battery holds more than a residual charge.</li>",
+        "<li>A full-duration test of at least 90 minutes once a year, to confirm the battery can carry the lights for the whole required period.</li>",
+        "<li>Records of both. An undocumented test looks a lot like no test.</li>",
+        "</ul>",
+        "<p>Self-testing units run their own tests, but they still need a visual check every 30 days for damage and warning indicators. Illuminated exit signs get a visual check at the same interval.</p>",
+        "<p>The annual test is where Valley buildings come up short. Heat shortens battery life, so a unit in a warehouse or near a roof deck can pass the monthly button test and still go dark well before 90 minutes. If yours are overdue, our <a href=\"/services/emergency-exit-lights\">emergency and exit lighting</a> page explains how we handle testing and battery replacement.</p>",
+        "<p>GFCIs are simpler. The Consumer Product Safety Commission recommends testing them monthly with the built-in test button. One that will not trip, or will not reset, gets replaced.</p>",
+        "<h2>What Fire Inspectors and Insurers Tend to Flag</h2>",
+        "<p>The electrical items that come up on a routine business fire inspection are rarely exotic:</p>",
+        "<ul>",
+        "<li>Storage in front of electrical panels. That working space has to stay clear, and the back-of-house panel behind a stack of boxes is a classic finding.</li>",
+        "<li>Extension cords and power strips doing the job of permanent wiring.</li>",
+        "<li>Missing covers on junction boxes, outlets, and switches, and open slots in a panel where a breaker was removed.</li>",
+        "<li>Exit signs that are dark and emergency lights that fail their test.</li>",
+        "<li>Panel directories that are blank, faded, or label a breaker \"spare\" when it clearly feeds something.</li>",
+        "</ul>",
+        "<p>An accurate panel schedule is the cheapest item on this list and one of the most useful. When something trips at 4 p.m. on a Friday, it is the difference between a quick reset and somebody flipping breakers until the wrong suite goes dark.</p>",
+        "<h2>A Simple Seasonal Checklist</h2>",
+        "<h3>Pre-Summer: Spring, Before the Heat and Storms</h3>",
+        "<ul>",
+        "<li>Infrared scan of main panels, subpanels, and rooftop disconnects while the building is under load</li>",
+        "<li>Walk the roof: disconnect enclosures, gaskets, covers, whips, and conduit that has gone brittle in the sun</li>",
+        "<li>Check the status indicator on the surge protector at the service</li>",
+        "<li>Run the annual 90-minute emergency lighting test if it is due, and replace weak batteries before summer finishes them off</li>",
+        "<li>Confirm photocells and timers on parking lot and storefront lighting, since sunset moves a long way between winter and summer</li>",
+        "</ul>",
+        "<h3>Post-Monsoon: October, Once the Season Ends</h3>",
+        "<ul>",
+        "<li>Open exterior and rooftop enclosures and look for water, corrosion, and packed-in dust</li>",
+        "<li>Repair pole lights, wall packs, and sign sections knocked out by storms or by water in a fixture</li>",
+        "<li>Test GFCIs on the roof and exterior, which see the most moisture</li>",
+        "<li>Check the surge protector status again</li>",
+        "<li>Update the panel schedule for anything that changed over the summer</li>",
+        "</ul>",
+        "<h3>Every Month</h3>",
+        "<p>Emergency light and GFCI tests, a look at the exit signs, a line in the log, and a walk past the panels to make sure nothing is stacked in front of them.</p>",
+        "<h2>Getting It on a Schedule</h2>",
+        "<p>None of this requires a big program, just somebody who owns the list. For property managers with several buildings, the value is one electrician who already knows where the panels are, which suites share distribution, and what was found last time. As a <a href=\"/commercial-electrician\">commercial electrician in Mesa</a>, we would rather put that work on the calendar ahead of time than react to it on the hottest afternoon of the year.</p>",
+        "<p>Whether you need commercial electrical repair on something already failing, commercial wiring services for a change in the space, or a look at a building nobody has checked in years, <a href=\"/estimate\">request an estimate</a> and tell us what you have. The Wire Guy Electric is family-owned and licensed in Arizona, ROC 365306.</p>"
+      ],
+      "sources": [
+        {
+          "claim": "NFPA 70B moved from Recommended Practice to Standard with the 2023 edition, issued Dec 27, 2022 and effective Jan 16, 2023; first edition 1973 as a recommended practice; 'may take some time for jurisdictions to determine how to best utilize and enforce NFPA 70B'",
+          "url": "https://www.nfpa.org/news-blogs-and-articles/blogs/2023/03/08/nfpa-70b-is-a-critical-tool-for-reliability-and-safety"
+        },
+        {
+          "claim": "NFPA 70B is titled Standard for Electrical Equipment Maintenance; current edition listed as 2026 (editions 2023 and 2026 shown)",
+          "url": "https://www.nfpa.org/codes-and-standards/nfpa-70b-standard-development/70b"
+        },
+        {
+          "claim": "NFPA 70B 2023 Equipment Condition Assessment rates physical condition, criticality and operating environment; the highest (worst) score drives intervals per Table 9.2.2; dusty/dirty environments raise the condition rating",
+          "url": "https://e-hazard.com/critical-role-equipment-condition-assessments-nfpa-70b-drive-maintenance-intervals/"
+        },
+        {
+          "claim": "NFPA 70B 2023: thermographic inspection of electrical equipment at least every 12 months; Condition 3 equipment at least every 6 months",
+          "url": "https://www.infraredtraining.com/en-gb/home/resources/blog/nfpa-70b-2023-new-guidelines-for-electric-inspections/"
+        },
+        {
+          "claim": "NFPA 70B 2023 includes annual infrared thermography inspections of electrical equipment (corroborating source)",
+          "url": "https://www.fluke.com/en-us/learn/blog/thermal-imaging/nfpa-70b-how-thermal-imaging-supports-electrical-equipment-maintenance"
+        },
+        {
+          "claim": "NFPA 101 emergency lighting: monthly test of at least 30 seconds (manual method), annual test of at least 90 minutes; self-testing units need a 30-day visual inspection; exit sign illumination visually checked at intervals not exceeding 30 days; documentation required",
+          "url": "https://www.nfpa.org/news-blogs-and-articles/nfpa-journal/2020/07/01/nfpa-101-july"
+        },
+        {
+          "claim": "CPSC: test GFCIs at least once a month using the test button; replace if it does not trip or reset",
+          "url": "https://www.cpsc.gov/s3fs-public/099_0.pdf"
+        },
+        {
+          "claim": "NWS defines the Southwest monsoon season as June 15 to September 30",
+          "url": "https://www.weather.gov/media/twc/Monsoon.pdf"
+        },
+        {
+          "claim": "Insurer loss control: FCCI scans electrical equipment and breaker fronts during property evaluations and refers hot spots to a qualified electrician",
+          "url": "https://www.fcci-group.com/content/dam/fcci/documents/FCCI-Thermography-Services.pdf"
+        },
+        {
+          "claim": "Fire code: working space in front of electrical service equipment kept clear with no storage; extension cords not a substitute for permanent wiring; open junction boxes prohibited and covers required (IFC 605.3/605.5/605.6, 2009 edition text as quoted in a Tucson Fire Department inspection record; section numbers vary by edition)",
+          "url": "https://pro.tucsonaz.gov/casedetails/T09FR02520/"
+        },
+        {
+          "claim": "NEC 408.4(A) circuit directory must identify each circuit; 408.7 unused openings must be closed",
+          "url": "https://ecmweb.com/home/article/55247439/nec-requirements-for-switchboards-and-panelboards"
+        },
+        {
+          "claim": "City of Mesa Fire Prevention enforces adopted codes",
+          "url": "https://mesaaz.gov/business/fire-prevention"
+        },
+        {
+          "claim": "Business services, Arizona heat shortening exit-light battery life, rooftop/disconnect and lighting scope: The Wire Guy Electric service pages (commercial-service, emergency-exit-lights, commercial-electrical-troubleshooting, storefront-lights) in migration/sanity-import/production.ndjson",
+          "url": "https://www.thewireguyelectric.com/services/commercial-service"
+        }
+      ]
+    },
+    {
+      "slug": "holiday-lights-tripping-gfci-arizona",
+      "title": "Why Your Holiday Lights Keep Tripping the GFCI (and How to Fix It)",
+      "seoTitle": "Holiday Lights Tripping the GFCI? Causes and Fixes",
+      "seoDescription": "Holiday lights keep killing your outdoor outlets? A Mesa electrician explains why GFCIs trip, how to find the bad strand, and when the outlet is the problem.",
+      "excerpt": "Sprinklers, winter rain and sun-cracked cords make holiday lights and GFCIs fight in Valley yards. Here is how to find the strand that is tripping it, and when the problem is in the wiring instead.",
+      "quickAnswer": "Water or damage in a strand, cord or plug connection is the usual cause. A GFCI trips on a few thousandths of an amp of leakage, so unplug everything, reset it, and add strands back one at a time until it trips. If it trips with nothing plugged in, the wiring needs an electrician.",
+      "relatedServices": [
+        "outlets-and-switches",
+        "exterior-electrical",
+        "electrical-troubleshooting"
+      ],
+      "publishedAt": "2026-11-05T16:20:00Z",
+      "photo": "white-duplex-outlet-textured-wall",
+      "body": [
+        "<p>It happens in a lot of Valley front yards every November. The lights go up Saturday, look great that night, and by Tuesday the whole display is dark, the outlet by the garage door is dead, and nobody knows which button to push.</p>",
+        "<p>Most of the time that is a GFCI doing exactly what it was built to do. The real job is figuring out what it is reacting to, because the fix is almost never the outlet itself.</p>",
+        "<h2>What a GFCI Is Watching For</h2>",
+        "<p>A GFCI compares the current going out on the hot wire with the current coming back on the neutral. If some is missing, it is leaking somewhere it should not be: through water, a damaged cord, or a person. According to the <a href=\"https://www.cpsc.gov/s3fs-public/099_0.pdf\" target=\"_blank\" rel=\"noopener\">Consumer Product Safety Commission</a>, a GFCI cuts power when that difference is as small as six thousandths of an amp.</p>",
+        "<p>That sensitivity is the point, and it is why holiday lights and GFCIs fight. Hundreds of feet of thin cord and dozens of plug connections sit outside overnight. Any one of them taking on a little water is enough. The National Electrical Code requires GFCI protection on outdoor receptacles at homes (section 210.8), and it has since 1973.</p>",
+        "<h2>Tripped GFCI or Tripped Breaker?</h2>",
+        "<p>A breaker trips on too much current. Lights plus a space heater in the garage on the same circuit is an overload, and the breaker in your panel will be in the middle or off position. <a href=\"/blog-posts/why-does-my-breaker-keep-tripping\">Why breakers keep tripping</a> covers that side.</p>",
+        "<p>A GFCI trips on leakage, not load. One bad strand drawing almost nothing can trip it, and the breakers will look normal. A breaker cares about how many amps are flowing. A GFCI cares about thousandths of an amp going the wrong way. One wrinkle: if your GFCI protection is built into a breaker in the panel, that breaker trips on either problem.</p>",
+        "<h2>Why the Front Yard Goes Dead From the Garage</h2>",
+        "<p>A lot of Valley homes have one GFCI outlet protecting a chain of outlets downstream of it: the front porch, the back patio, sometimes a bathroom. That GFCI might be in the garage or a bathroom, and the outdoor outlets themselves may have no buttons at all.</p>",
+        "<p>So the lights on the front of the house trip a GFCI behind a closed garage door. Check the garage, every bathroom and the exterior walls, and check the garage fridge after any trip, since it is often on that same GFCI. Our post on <a href=\"/blog-posts/bathroom-or-garage-outlets-not-working-heres-how-to-fix\">bathroom and garage outlets that stop working</a> walks through finding it.</p>",
+        "<h2>The Usual Causes in a Valley Yard</h2>",
+        "<ul>",
+        "<li><strong>Sprinklers and drip lines.</strong> Spray heads hit outlets and connections near landscaping, and a drip emitter that has drifted under a plug keeps it wet for hours. If you overseeded with winter rye, your sprinklers are running more than usual right now. If it trips around the same time every night, compare that to your irrigation schedule.</li>",
+        "<li><strong>Winter rain.</strong> When a winter storm comes through, every connection lying on the ground takes on water.</li>",
+        "<li><strong>Plugs in low spots.</strong> Connections in a puddle, in damp gravel, or under the roof's drip edge. Get them off the ground.</li>",
+        "<li><strong>Sun-damaged cords and strands.</strong> Strands stored in a hot garage, or cords left out through a Phoenix summer, get brittle and crack, and cracked insulation lets water in. Look for split jackets, cracked sockets and bare wire.</li>",
+        "<li><strong>Indoor or cheap extension cords.</strong> Use cords marked for outdoor use and rated for what you plug into them.</li>",
+        "<li><strong>Too much on one run.</strong> Every strand leaks a tiny amount. Stack up enough of them, add moisture, and it adds up. Also check the label for how many strands can connect end to end. The <a href=\"https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/Holiday-Safety\" target=\"_blank\" rel=\"noopener\">CPSC's holiday safety guidance</a> says never string together more than three sets of incandescent lights. LED strands usually allow more, and the label is what to follow.</li>",
+        "<li><strong>Inflatables.</strong> The blower is a small motor sitting on wet grass. Water in the motor, or a cord pinched where it enters the inflatable, will trip a GFCI.</li>",
+        "<li><strong>Timers.</strong> A plug-in timer not rated for outdoor use can collect water inside. Use an outdoor-rated one and keep it off the ground.</li>",
+        "</ul>",
+        "<h2>Troubleshooting Strand by Strand</h2>",
+        "<ol>",
+        "<li>Unplug everything from the dead outlets.</li>",
+        "<li>Find the tripped GFCI and press RESET until it clicks.</li>",
+        "<li>If it will not reset with nothing plugged in, or trips again right away, the problem is in the wiring or an outlet box, not your decorations. Stop here.</li>",
+        "<li>If it holds, plug things back in one cord and one strand at a time, waiting a minute between each.</li>",
+        "<li>When it trips, the last thing you added is your suspect. Set it aside and keep going, because there can be more than one.</li>",
+        "<li>Look the suspect over for cracked sockets, split insulation, corroded plug blades or water in a connection. A wet strand may be fine once it dries. A damaged one goes in the trash.</li>",
+        "</ol>",
+        "<p>If it only trips at night or after the sprinklers run, test in the evening when things are damp. While you are at it, press TEST and then RESET. The CPSC recommends testing every GFCI at least once a month.</p>",
+        "<h2>Never Bypass It</h2>",
+        "<p>Somebody always suggests running a cord through a window to an indoor outlet, or swapping the GFCI for a regular outlet. Do not do either. The GFCI is the only thing between a wet cord and whoever touches it, often a kid grabbing an inflatable. If it is tripping, something is leaking, and removing the device just means nothing stops it.</p>",
+        "<p>The one real fix on the device side is replacing a GFCI that has actually failed. They do wear out, especially outdoor ones that have baked on a west wall for years. Outside, that means a GFCI replaced with a weather-resistant GFCI.</p>",
+        "<h2>Check the Cover</h2>",
+        "<p>Outdoor receptacles in wet locations need an in-use cover, the deep bubble style that closes over the plug while something is plugged in. The National Electrical Code (406.9(B)) requires them to be weatherproof whether or not a plug is inserted, with a hood that is listed and marked \"extra-duty.\" A flat flip lid that only closes with nothing plugged in is wide open all season.</p>",
+        "<p>Summer sun is hard on these covers. One that is cracked, chalky or will not latch is not keeping water out. Swapping one is quick, and it is one of the first things we check on any <a href=\"/services/outlets-and-switches\">outlet call</a>.</p>",
+        "<h2>Roofline Lights on Tile</h2>",
+        "<p>On concrete tile roofs, cords get pinched between tiles or under clips, the insulation wears through in the wind, and that spot sits in the rain runoff. Use clips made for tile, keep plug connections off the roof surface, and never staple or nail through a cord.</p>",
+        "<h2>LED vs. Incandescent</h2>",
+        "<p>ENERGY STAR puts certified LED light strings at roughly 92 percent less energy than incandescent strings. That makes overload trips much less likely and lets you run more lights per circuit. It does not stop GFCI trips. A wet LED connection leaks the same as a wet incandescent one, so LEDs fix the breaker problem, not the GFCI problem.</p>",
+        "<h2>When the Fix Is on the House Side</h2>",
+        "<p>If you have dried everything out, tossed the bad strands and it still trips, the answer may be in the wiring:</p>",
+        "<ul>",
+        "<li>A GFCI that will not reset, trips with nothing plugged in, or feels warm.</li>",
+        "<li>Outdoor outlets sharing one GFCI with the garage, a bathroom and the garage fridge, so one wet strand takes everything down.</li>",
+        "<li>No outlet where the display actually is, so the lights run on a chain of extension cords across the yard.</li>",
+        "<li>A breaker that trips whenever the lights and the garage are both in use.</li>",
+        "</ul>",
+        "<p>A new outdoor receptacle where you need it, with GFCI protection and a proper in-use cover, or a dedicated circuit for the outdoor outlets, keeps the display from taking down the rest of the house. That is <a href=\"/services/exterior-electrical\">exterior electrical work</a> we do across Mesa, Gilbert, Chandler and the rest of the Valley. When a trip does not make sense, <a href=\"/services/electrical-troubleshooting\">electrical troubleshooting</a> means finding where the current is going, not just pressing the button again.</p>",
+        "<p>If you would rather have somebody track it down, <a href=\"/estimate\">request an estimate</a> and tell us what is tripping and when.</p>"
+      ],
+      "sources": [
+        {
+          "claim": "A GFCI interrupts power when current differs by as little as 0.006 amperes (6 mA); outdoor receptacles have required GFCI under the NEC since 1973; a receptacle GFCI protects downstream outlets; a GFCI breaker protects against both ground fault and overload; test every GFCI at least once a month.",
+          "url": "https://www.cpsc.gov/s3fs-public/099_0.pdf"
+        },
+        {
+          "claim": "Never string together more than three sets of incandescent lights and never overload electrical outlets.",
+          "url": "https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/Holiday-Safety"
+        },
+        {
+          "claim": "NEC 210.8(A)(3): outdoor receptacles at dwelling units require GFCI protection (listed in 2017 and 2020 editions).",
+          "url": "https://iaeimagazine.org/electrical-fundamentals/nec-requirements-for-gfci-protection-section-210-8"
+        },
+        {
+          "claim": "NEC 406.9(B): 15 and 20 A, 125 and 250 V receptacles in wet locations must have an enclosure that is weatherproof whether or not the attachment plug cap is inserted (NC Office of State Fire Marshal interpretation).",
+          "url": "https://ncosfm.gov/electrical/4069b-use-type-receptacle-covers-wet-locations/open"
+        },
+        {
+          "claim": "NEC 406.9(B)(1) requires outlet box hoods for wet-location receptacles to be identified as extra-duty.",
+          "url": "https://www.ecmweb.com/whats-wrong-here/article/21131964/whats-wrong-here-hint-less-than-extra-duty-rated"
+        },
+        {
+          "claim": "ENERGY STAR certified decorative light strings use approximately 92% less energy than conventional incandescent light strings.",
+          "url": "https://www.energystar.gov/products/decorative_light_strings"
+        }
+      ]
+    }
+  ]
+}

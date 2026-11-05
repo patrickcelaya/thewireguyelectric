@@ -574,8 +574,9 @@ push({
 // cms-templates runs its service stage itself. cms-templates:posts sets the posts' quick
 // answers after the late edits, so it checks them against the bodies as they ship; the final
 // edits (post excerpts) wait for titles-meta, which makes seo.description the posts' meta.
+// new-posts runs last: the blog posts written since arrive complete and change nothing else.
 const ctx = {docs, push, idFor, ref, slug, image, plainBlocks, toPortableText, live, readJson, p, SITE, report}
-for (const step of ['new-services', 'fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'new-services:inserts', 'content-edits:late', 'cms-templates:posts', 'internal-links', 'titles-meta', 'content-edits:final']) {
+for (const step of ['new-services', 'fixes', 'profiles', 'content-edits:early', 'reviews', 'local-facts', 'page-sections', 'cms-templates', 'new-services:inserts', 'content-edits:late', 'cms-templates:posts', 'internal-links', 'titles-meta', 'content-edits:final', 'new-posts']) {
   const [name, stage] = step.split(':')
   await (await import(`./content/${name}.mjs`)).default(ctx, stage)
 }
