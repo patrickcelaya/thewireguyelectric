@@ -1144,6 +1144,10 @@
       "D16-10 migration/content-data/service-relations.json"
     ]
   },
+  "newPosts": {
+    "source": "migration/content-data/new-posts.json",
+    "added": []
+  },
   "removedPosts": [
     "whole-home-standby-generator-installation-phoenix",
     "generator-interlock-in-arizona"

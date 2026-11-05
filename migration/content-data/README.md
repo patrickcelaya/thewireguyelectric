@@ -10,7 +10,7 @@ The data files in this folder are applied by `scripts/migrate/content/fixes.mjs`
 | `post-services.json` | `relatedServices` on all 51 posts |
 | `site-settings.json` | `heroQuotes`, `valueProps`, `capabilities`, `ctaBand`, `availabilityNote`, `googleBusinessProfileUrl`, `reviewSummary.reviewsUrl`, `rocLicenseUrl`, `addresses[].googleMapsUrl`, `addresses[].mapLinkText` |
 
-Five later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11), `internal-links.json` (§12) and `new-services.json` (§14). `removed-posts.json` (§13) is read by `webflow-to-sanity.mjs` itself.
+Six later files have modules of their own: `cms-templates.json` (§9), `titles-meta.json` (§10), `profiles.json` (§11), `internal-links.json` (§12), `new-services.json` (§14) and `new-posts.json` (§15). `removed-posts.json` (§13) is read by `webflow-to-sanity.mjs` itself.
 
 The data files use slugs, not document IDs. The module turns each slug into a reference. The migration stops with an error naming the file and entry if any of these happens:
 
@@ -390,3 +390,11 @@ The module stops if a slug exists or is live in the baseline, a category, servic
 
 **Photos.** Rewiring uses the library's rough-in photo (also new construction's hero; `photoTiles` now shows a photo once in a list of service cards, so a page that lists both shows it on one card), surge protection the panel with a breaker labelled for the surge protector, and fixture replacements the ceiling fan photo (its chandelier photo left `serviceAlts`). There is no pool or spa photo, so that page has the plain hero.
 
+
+## 15. Blog posts added after launch (`new-posts.json`)
+
+Posts written since the move off Webflow (the first three for the September 2026 report: a 100 to 200 amp service upgrade, commercial electrical maintenance, holiday lights tripping a GFCI, each picked from a Search Console query the site ranked poorly for). Applied by `scripts/migrate/content/new-posts.mjs`, the **last** content module: a new post arrives complete, so no earlier module needs an entry for it (`post-services.json`, `cms-templates.json` `postImages` and `titles-meta.json` stay about the 51 Webflow posts).
+
+Each entry sets the H1 (`title`), the title tag (`seoTitle` + " | The Wire Guy", at most 70 characters), the meta description (`seoDescription`, 120 to 160 characters), the card text (`excerpt`), the 40 to 60 word `quickAnswer`, one to three `relatedServices` (the first is the primary), `publishedAt`, the cover (`photo`: a company photo's `name` in `web/src/lib/library-photos.json`, at least 1,200 px wide, shown as the post's main image) and the `body` as HTML, converted with the export's `toPortableText`. `sources` lists where each fact was checked; it is not published. Their IDs are `idFor('post:new:<slug>')`.
+
+The module stops if a slug exists, was a page on the old site (the baseline or `removed-posts.json`), a service or photo is missing, the quick answer is outside 40 to 60 words or repeats the title or the opening, any text names a price or a 24/7, emergency or same-day claim, an internal link points to a page the dataset doesn't build, or an entry has no sources. A new post has no `updatedAt` until it is edited materially (`content-dates.mjs`). Import only the new documents (`sanity dataset import <file> production --replace` with those lines), so no Studio edit elsewhere is overwritten.
