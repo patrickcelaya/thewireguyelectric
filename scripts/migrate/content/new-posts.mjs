@@ -4,7 +4,8 @@
 //
 //   posts   slug, title (the H1), seoTitle (the title tag before " | The Wire Guy"), seoDescription,
 //           excerpt (cards), quickAnswer (40-60 words), relatedServices (service slugs, the first is
-//           the primary), publishedAt, photo (a company photo's name in web/src/lib/library-photos.json),
+//           the primary), publishedAt, photo (a company photo's name in web/src/lib/library-photos.json,
+//           uploaded: migration/brand-photos/assets.json),
 //           body (HTML, converted with the same toPortableText as every other body), sources (where
 //           each fact was checked)
 //
@@ -17,6 +18,7 @@ import {blocksFrom} from './new-services.mjs'
 
 const DATA = 'migration/content-data/new-posts.json'
 const PHOTOS = 'web/src/lib/library-photos.json'
+const ASSETS = 'migration/brand-photos/assets.json'
 const PRICE = /\$\s?\d/
 const BANNED = /24\s*\/\s*7|around the clock|emergency service|same[- ]day/i
 const ROUTE = {service: '/services/', post: '/blog-posts/', location: '/locations/', serviceCategory: '/services-categories/'}
@@ -29,6 +31,7 @@ export default async function newPosts(ctx) {
   const {docs, push, idFor, readJson, live, report} = ctx
   const data = await readJson(DATA)
   const photos = await readJson(PHOTOS)
+  const {library = []} = await readJson(ASSETS)
   const removed = new Set((await readJson('migration/content-data/removed-posts.json')).posts.map((r) => r.slug))
   const fail = (msg) => {
     throw new Error(`${DATA}: ${msg}`)
@@ -68,6 +71,9 @@ export default async function newPosts(ctx) {
     const photo = photos.find((ph) => ph.name === p.photo) ?? fail(`${p.slug}: no photo named "${p.photo}" in ${PHOTOS}`)
     const width = Number(photo.id.match(/-(\d+)x\d+-[a-z0-9]+$/)?.[1])
     if (!(width >= 1200)) fail(`${p.slug}: ${p.photo} is ${width} px wide; a shown image is at least 1,200 px`)
+    // the photo's asset document joins the dataset (once), as cms-templates does, so the reference resolves locally
+    const asset = library.find((a) => a.assetId === photo.id) ?? fail(`${p.slug}: ${p.photo} is not uploaded (${ASSETS}; run upload.mjs)`)
+    if (!docs.some((d) => d._id === asset.assetId)) push(asset.document)
 
     push({
       _id: idFor(`post:new:${p.slug}`),
