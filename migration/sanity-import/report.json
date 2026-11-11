@@ -1144,6 +1144,14 @@
       "D16-10 migration/content-data/service-relations.json"
     ]
   },
+  "newPosts": {
+    "source": "migration/content-data/new-posts.json",
+    "added": [
+      "100-to-200-amp-service-upgrade-arizona",
+      "commercial-electrical-maintenance-checklist-arizona",
+      "holiday-lights-tripping-gfci-arizona"
+    ]
+  },
   "removedPosts": [
     "whole-home-standby-generator-installation-phoenix",
     "generator-interlock-in-arizona"

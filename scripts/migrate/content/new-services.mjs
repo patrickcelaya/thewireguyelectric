@@ -25,7 +25,7 @@ const BANNED = /24\s*\/\s*7|around the clock|emergency service/i
 const blockText = (b) => (b.children ?? []).map((c) => c.text ?? '').join('')
 
 /** Portable Text from HTML with every key prefixed, so inserted blocks never share a key with the body they join. */
-function blocksFrom(ctx, html, path, prefix) {
+export function blocksFrom(ctx, html, path, prefix) {
   const blocks = ctx.toPortableText(html, path) ?? []
   return blocks.map((b, i) => {
     const key = `${prefix}${i}`
