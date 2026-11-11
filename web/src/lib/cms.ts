@@ -136,18 +136,25 @@ export function cityGuides(city: string, serviceSlugs: string[], index: PostInde
 
 /**
  * A service's guides: its related posts (picked, or posts that reference it), then the
- * featured and newest posts that support it, then the most-read guides, so the block is
- * never empty or short on a service no post is written around yet. Every picked post
- * shows, up to five (GuidesBlock lays out four and five); otherwise three.
+ * posts written for it that aren't picked yet (their primary hub is this service, newest
+ * first), then the featured and newest posts that support it, then the most-read guides,
+ * so the block is never empty or short on a service no post is written around yet. Every
+ * picked post and every post whose primary hub is this service shows, up to five
+ * (GuidesBlock lays out four and five); otherwise three. So a new post is linked from its
+ * hub page once it is published, without waiting for someone to pick it, wherever the
+ * hub's picks leave room.
  */
 export function serviceGuides(
   related: PostSummary[] | null | undefined,
   serviceSlug: string,
   index: PostIndexEntry[],
-  count = Math.min(5, Math.max(3, related?.length ?? 0)),
+  count?: number,
 ): PostSummary[] {
+  const picked = related ?? []
+  const own = index.filter((p) => p.services[0] === serviceSlug && !picked.some((r) => r.slug === p.slug)).sort(newestFirst)
+  const n = count ?? Math.min(5, Math.max(3, picked.length + own.length))
   const mostRead = index.filter((p) => p.featured)
-  return uniqueBy([...(related ?? []), ...supporting([serviceSlug], index), ...mostRead], (p) => p.slug).slice(0, count)
+  return uniqueBy([...picked, ...own, ...supporting([serviceSlug], index), ...mostRead], (p) => p.slug).slice(0, n)
 }
 
 /** Whether every one of `posts` supports the service (lists it among its related services). */
